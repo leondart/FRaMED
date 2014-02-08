@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="objectrolemodel" nsURI="http://objectrolemodel/1.0" nsPrefix="objectrolemodel">
+  <eSubpackages name="Types" nsURI="types" nsPrefix="de.tu-dresden.inf.rosi">
+    <eClassifiers xsi:type="ecore:EClass" name="EOperation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="EAttribute"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+          eType="#//Types/EOperation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+          eType="#//Types/EAttribute" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleType" eSuperTypes="#//Types/Type"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NaturalType" eSuperTypes="#//Types/Type"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ContextType" eSuperTypes="#//Types/Type"/>
+  </eSubpackages>
+  <eSubpackages name="Relations" nsURI="relatiions" nsPrefix="de.tu-dresden.inf.rosi">
+    <eClassifiers xsi:type="ecore:EClass" name="Relation" abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Inheritance" abstract="true" eSuperTypes="#//Relations/Relation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Relations/Relation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Fulfilment" eSuperTypes="#//Relations/Relation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" eSuperTypes="#//Relations/Relation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleInvariant" abstract="true" eSuperTypes="#//Relations/Constraint">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="role" lowerBound="1"
+          eType="#//Types/RoleType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RelationshipConstraint" abstract="true"
+        eSuperTypes="#//Relations/Constraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleConstraint" abstract="true" eSuperTypes="#//Relations/Constraint">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1"
+          eType="#//Types/RoleType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="second" lowerBound="1"
+          eType="#//Types/RoleType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflexiveConstraint" abstract="true"
+        eSuperTypes="#//Relations/Constraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexConstraint" eSuperTypes="#//Relations/Constraint"/>
+  </eSubpackages>
+  <eSubpackages name="Inheritance" nsURI="inheritance" nsPrefix="de.tu-dresden.inf.rosi">
+    <eClassifiers xsi:type="ecore:EClass" name="ClassInheritance" eSuperTypes="#//Inheritance/Inheritance">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="super" lowerBound="1"
+          eType="#//Inheritance/NaturalType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sub" lowerBound="1" eType="#//Inheritance/NaturalType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleInheritance" eSuperTypes="#//Relations/Inheritance #//Inheritance/Inheritance">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="super" lowerBound="1"
+          eType="#//Inheritance/RoleType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sub" lowerBound="1" eType="#//Inheritance/RoleType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContextInheritance" eSuperTypes="#//Inheritance/Inheritance">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="super" lowerBound="1"
+          eType="#//Inheritance/ContextType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sub" lowerBound="1" eType="#//Inheritance/ContextType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NaturalType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ContextType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Inheritance" abstract="true"/>
+  </eSubpackages>
+  <eSubpackages name="Relationships" nsURI="relationships" nsPrefix="de.tu-dresden.inf.rosi">
+    <eClassifiers xsi:type="ecore:EClass" name="Irreflexive" eSuperTypes="#//Relationships/RelationshipConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Cyclic" eSuperTypes="#//Relationships/RelationshipConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Total" eSuperTypes="#//Relationships/RelationshipConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Relationship">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstLower" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0">
+        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+          <details key="wildcards" value=""/>
+          <details key="name" value=""/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstUpper" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondLower" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondUpper" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1"
+          eType="#//Relationships/RoleType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="second" lowerBound="1"
+          eType="#//Relationships/RoleType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstParthood" lowerBound="1"
+          eType="#//Relationships/Parthood"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondParthood" lowerBound="1"
+          eType="#//Relationships/Parthood"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RelationshipConstraint" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relationship" lowerBound="1"
+          eType="#//Relationships/Relationship"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="Parthood">
+      <eLiterals name="ExclusivePart"/>
+      <eLiterals name="SharablePart" value="1"/>
+      <eLiterals name="EssentialPart" value="2"/>
+      <eLiterals name="MandatoryPart" value="3"/>
+      <eLiterals name="InseparablePart" value="4"/>
+      <eLiterals name="Unconstrained" value="5"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="Roles" nsURI="roles" nsPrefix="de.tu-dresden.inf.rosi">
+    <eClassifiers xsi:type="ecore:EClass" name="RoleImplication" eSuperTypes="#//Roles/RoleConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleProhibition" eSuperTypes="#//Roles/RoleConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleEquivalence" eSuperTypes="#//Roles/RoleConstraint"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleSingleton" eSuperTypes="#//Relations/RoleInvariant #//Roles/RoleInvariant"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NaturalType"/>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleType" eSuperTypes="#//Roles/AbstractRole"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Fulfilment">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="filled" lowerBound="1"
+          eType="#//Roles/AbstractRole"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="filler" lowerBound="1"
+          eType="#//Roles/NaturalType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleConstraint" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1"
+          eType="#//Roles/AbstractRole"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="second" lowerBound="1"
+          eType="#//Roles/AbstractRole"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleInvariant" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
+          eType="#//Roles/AbstractRole"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReflexiveConstraint" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1"
+          eType="#//Roles/RoleType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ends" lowerBound="2"
+          upperBound="2" eType="#//Roles/AbstractRole"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleGroup" eSuperTypes="#//Roles/AbstractRole">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="items" lowerBound="1"
+          upperBound="-1" eType="#//Roles/AbstractRole"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractRole" abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ComplexConstraint">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="groups" lowerBound="1"
+          upperBound="-1" eType="#//Roles/RoleGroup"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="Contexts" nsURI="contexts" nsPrefix="de.tu-dresden.inf.rosi">
+    <eClassifiers xsi:type="ecore:EClass" name="ContextType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rolemodel" lowerBound="1"
+          eType="#//Contexts/RoleModel" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleModel">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participants" upperBound="-1"
+          eType="#//Contexts/AbstractRole" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="player" upperBound="-1"
+          eType="#//Contexts/NaturalTypes" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+          eType="#//Contexts/Relation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subcategories" upperBound="-1"
+          eType="#//Contexts/ContextType" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractRole"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NaturalTypes"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Relation"/>
+  </eSubpackages>
+</ecore:EPackage>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="orm.editor.ORMMultiPageEditor"
+            contributorClass="orm.editor.ORMGraphicalEditorActionBarContributor"
+            default="false"
+            extensions="orm"
+            id="ORMEditor.editorID"
+            name="ORM GEF Editor">
+      </editor>
+   </extension>
+
+</plugin>
