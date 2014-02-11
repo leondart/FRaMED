@@ -37,7 +37,7 @@ public class ORMMethodeCreateCommand extends Command {
 		 * Remove the {@link Methode} from the container {@link Type}.
 		 */
 		@Override public void undo() {
-			methode.setType(type);
+			methode.setType(null);
 		}
 
 	

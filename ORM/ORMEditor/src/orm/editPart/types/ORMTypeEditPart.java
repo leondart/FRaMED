@@ -149,6 +149,13 @@ public abstract class ORMTypeEditPart  extends AbstractGraphicalEditPart impleme
 					 	}
 				 	}
 			 	}
+			 else if(collectionAtt.getChildren().contains(((ORMAttributeEditPart)childEditPart).getFigure())){
+				 collectionAtt.remove(((ORMAttributeEditPart)childEditPart).getFigure());
+				 if(collectionAtt.getChildren().size() == 0){
+				 		contentPane.remove(collectAttribute);
+				 }
+			 }
+			
 		 }
 		 
 		 if (childEditPart.getModel() instanceof Methode) {
@@ -170,6 +177,13 @@ public abstract class ORMTypeEditPart  extends AbstractGraphicalEditPart impleme
 					 	}
 				 	}
 			 	}
+			 else if(collectionMet.getChildren().contains(((ORMMethodEditPart)childEditPart).getFigure())){
+				 collectionMet.remove(((ORMMethodEditPart)childEditPart).getFigure());
+				 if(collectionMet.getChildren().size() == 0){
+				 		contentPane.remove(collectMethode);
+				 	}
+			 }
+			 
 		 }
 			 
 

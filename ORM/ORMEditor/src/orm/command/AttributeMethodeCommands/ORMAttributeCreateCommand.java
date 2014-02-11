@@ -36,9 +36,13 @@ public class ORMAttributeCreateCommand extends Command {
 	 * Remove the {@link Attribute} from the container {@link Type}.
 	 */
 	@Override public void undo() {
-		attribute.setType(type);
+		attribute.setType(null);
 	}
 
+	@Override
+	public boolean canUndo() {
+		return true;
+	}
 
 	
 	public void setContainer(final Type type) {
