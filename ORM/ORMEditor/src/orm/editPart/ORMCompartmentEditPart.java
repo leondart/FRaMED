@@ -143,7 +143,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
 		
 		 
 		 
-		 if (childEditPart.getModel() instanceof Rolemodel) {
+		 if (childEditPart.getModel() instanceof Rolemodel && rolePart == null) {
 		
 			 
 			 //TODO: testing if this work for all cases
@@ -236,6 +236,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
 				 // save the state of the editor(ExpandState) so that user does not get confused when he tries to hit the save button
 				 // when he has open the other editor
 				 save.run();
+				 
 			}
 			 
 			 else if(!(model.isIsExpand())){	

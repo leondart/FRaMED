@@ -16,6 +16,7 @@ public class ORMAttributeDeleteCommand extends Command {
 	  @Override
 	  public void execute() {
 		  att.setType(null);
+		  
 	  }
 	 
 	  @Override

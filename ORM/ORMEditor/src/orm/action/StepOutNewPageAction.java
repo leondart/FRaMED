@@ -2,14 +2,17 @@ package orm.action;
 
 import java.util.List;
 
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.ui.actions.SaveAction;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 
 import orm.editPart.ORMCompartmentEditPart;
 import orm.editPart.ORMGroupingEditPart;
+import orm.editor.ORMGraphicalEditor;
 
 /**
  * @author Kay Bierzynski
@@ -28,7 +31,7 @@ public class StepOutNewPageAction extends SelectionAction {
   public  StepOutNewPageAction(IWorkbenchPart part) {
       super(part);
       setId( STEP_OUT_NEW_PAGE_ID);
-      setText("Step out new Page");
+      setText("Step out new Window");
       request = new Request(STEP_OUT_NEW_PAGE_REQUEST);
   }
 
@@ -40,13 +43,18 @@ public class StepOutNewPageAction extends SelectionAction {
    */
   @Override
   public void run() {
+	  ORMGraphicalEditor editorPart = null;
 	// selected objects must be compartemne or grouping editpart because the action is enabled.
       @SuppressWarnings("unchecked") List<AbstractGraphicalEditPart> editParts = getSelectedObjects();
       CompoundCommand compoundCommand = new CompoundCommand();
       for(AbstractGraphicalEditPart editPart : editParts) {
           compoundCommand.add(editPart.getCommand(request));
+          if(editorPart==null) editorPart = (ORMGraphicalEditor) ((DefaultEditDomain)editPart.getViewer().getEditDomain()).getEditorPart();
       }
+      SaveAction save = new SaveAction(editorPart);
       execute(compoundCommand);
+      save.run();
+      editorPart.getOwnViewer().getSelectionManager().deselectAll();
   }
 
 

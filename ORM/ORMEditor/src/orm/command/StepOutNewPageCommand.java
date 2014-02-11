@@ -55,10 +55,16 @@ public class StepOutNewPageCommand extends Command {
 		  if(editpart.getModel() instanceof Compartment){
 			  if(((Compartment)editpart.getModel()).getParentRolemodel() != null){
 				  Compartment ct = ((Compartment)editpart.getModel()).getParentRolemodel().getCt();
-				  
-				  //set the row editors on the same level
-				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(ct);	
-				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(ct);	
+				  Grouping group = ((Compartment)editpart.getModel()).getParentRolemodel().getParentGroup();
+				  //set the two editors on the same level
+				  if(ct!= null){
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(ct);	
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(ct);
+				  }
+				  else{
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(group);	
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(group);					  
+				  }	
 			  }
 			  else{
 				  CompartmentDiagram cd = ((Compartment)editpart.getModel()).getCd();

@@ -52,20 +52,26 @@ public class GoUpTreeCommand extends Command {
 				e1.printStackTrace();
 		   }
 		  
-		  // cannot use editpar.getViewer().getRootEditPart().setContents(oldParentEditPart);
+		  // cannot use editpart.getViewer().getRootEditPart().setContents(oldParentEditPart);
 		  // because editpart would not have a parent and without a parent it cannot be registered in viewer
 		  // --> solution: parent editpart and its children editparts will be initialisied agian
 		  if(editpart.getModel() instanceof Compartment){
 			  if(((Compartment)editpart.getModel()).getParentRolemodel() != null){
 				  Compartment ct = ((Compartment)editpart.getModel()).getParentRolemodel().getCt();
-				 
-				  //set teh two editors on the same level
-				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(ct);	
-				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(ct);	
+				  Grouping group = ((Compartment)editpart.getModel()).getParentRolemodel().getParentGroup();
+				  //set the two editors on the same level
+				  if(ct!= null){
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(ct);	
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(ct);
+				  }
+				  else{
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(group);	
+					  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(group);					  
+				  }
 			  }
 			  else{
 				  CompartmentDiagram cd = ((Compartment)editpart.getModel()).getCd();
-				  // editpart.getViewer().setContents(cd);
+				 
 				  //set tabs on the same level
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(cd);	
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(cd);	

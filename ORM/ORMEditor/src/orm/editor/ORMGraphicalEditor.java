@@ -64,7 +64,7 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
 	 private PropertySheetPage propertyPage;
 	 
 	 public GraphicalViewer getOwnViewer(){ return getGraphicalViewer();}
-	 
+	
 	 public IEditorPart getParentEditor(){return parentEditor;}
 	 
 	 public boolean getIsEditorData(){ return isEditorData;}

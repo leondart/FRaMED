@@ -132,15 +132,48 @@ public abstract class ORMTypeEditPart  extends AbstractGraphicalEditPart impleme
 
 		 if (childEditPart.getModel() instanceof Attribute) {
 			 IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-          contentPane.remove(((ORMAttributeEditPart)childEditPart).getFigure());
+			 if(contentPane.getChildren().contains(((ORMAttributeEditPart)childEditPart).getFigure())){
+				 contentPane.remove(((ORMAttributeEditPart)childEditPart).getFigure());
+				 	if(contentPane.getChildren().size()<4 && contentPane.getChildren().contains(collectAttribute)){
+				 		if(collectionAtt.getChildren().size() == 0){
+						 contentPane.remove(collectAttribute);
+					 	}
+					 	else{
+						 	IFigure child = (IFigure) collectionAtt.getChildren().get(0);
+						 	contentPane.remove(collectAttribute);
+						 	contentPane.add(child);
+						 	contentPane.add(collectAttribute);
+					 }
+					 	if(collectionAtt.getChildren().size() == 0){
+					 		contentPane.remove(collectAttribute);
+					 	}
+				 	}
+			 	}
 		 }
 		 
 		 if (childEditPart.getModel() instanceof Methode) {
 			 IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
-	          contentPane.remove(((ORMMethodEditPart)childEditPart).getFigure());
-			 }
-
+			 if(contentPane.getChildren().contains(((ORMMethodEditPart)childEditPart).getFigure())){
+				 contentPane.remove(((ORMMethodEditPart)childEditPart).getFigure());
+				 	if(contentPane.getChildren().size()<4 && contentPane.getChildren().contains(collectMethode)){
+				 		if(collectionMet.getChildren().size() == 0){
+						 contentPane.remove(collectMethode);
+					 	}
+					 	else{
+						 	IFigure child = (IFigure) collectionMet.getChildren().get(0);
+						 	contentPane.remove(collectMethode);
+						 	contentPane.add(child);
+						 	contentPane.add(collectMethode);
+					 }
+					 	if(collectionMet.getChildren().size() == 0){
+					 		contentPane.remove(collectMethode);
+					 	}
+				 	}
+			 	}
 		 }
+			 
+
+	 }
 	 
 	 @Override protected List getModelChildren() {
 			List children = new ArrayList();
@@ -199,7 +232,7 @@ public abstract class ORMTypeEditPart  extends AbstractGraphicalEditPart impleme
 	    	return ((ORMTypeFigure)getFigure()).getConnectionAnchor();
 	    }
 	  
-	@Override protected void refreshVisuals() {
+	@Override public void refreshVisuals() {
 		final ORMTypeFigure figure = (ORMTypeFigure) getFigure();
 	    final Type model = (Type) getModel();
 	    final GraphicalEditPart parent = (GraphicalEditPart) getParent();
@@ -208,7 +241,13 @@ public abstract class ORMTypeEditPart  extends AbstractGraphicalEditPart impleme
 	    parent.setLayoutConstraint(this, figure, model.getConstraints());
 	   
 	  }
-
+	@Override
+	public void setLayoutConstraint(EditPart child, IFigure childFigure,
+			Object constraint) {
+			if(constraint != null){
+				childFigure.getParent().setConstraint(childFigure, constraint);
+			}
+		}
 	
 	@Override public void activate() {
 	    if(!isActive()) {
@@ -251,8 +290,8 @@ public abstract class ORMTypeEditPart  extends AbstractGraphicalEditPart impleme
 	 
 	    // Adapter interface
 	    @Override public void notifyChanged(Notification notification) {
+	    
 	      refreshChildren();
-	     
 	      refreshVisuals();
 	      // for synchronsation with role list of the Compartement in above layer of the tree
 	      if(getParent().getParent() instanceof ORMCompartmentEditPart) ((ORMCompartmentEditPart)getParent().getParent()).refreshVisuals();

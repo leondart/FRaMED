@@ -9,7 +9,6 @@ import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 
 import orm.command.connectionkinds.ORMRelationCreateCommand;
-import orm.editPart.ORMCompartmentDiagramEditPart;
 import orm.editPart.ORMCompartmentEditPart;
 import orm.editPart.ORMGroupingEditPart;
 import orm.editPart.ORMRoleGroupEditPart;
@@ -42,7 +41,9 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		Command retVal = null;
 		//Fulfiment End
 		if(request.getNewObjectType().equals(Fulfilment.class) && request.getSourceEditPart() instanceof ORMNaturalTypeEditPart 
-		   && request.getTargetEditPart().getModel() instanceof Compartment ){
+		   && request.getTargetEditPart().getModel() instanceof Compartment ||
+		   request.getNewObjectType().equals(Fulfilment.class) && request.getSourceEditPart() instanceof ORMCompartmentEditPart 
+		   && request.getTargetEditPart().getModel() instanceof Compartment){
 			ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
 			 result.setTargetNode((Node)getHost().getModel());
 			 retVal = result;
@@ -101,13 +102,19 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 		Command retVal = null;
 		//Fufillment start
-		if(request.getNewObjectType().equals(Fulfilment.class) && request.getTargetEditPart() instanceof ORMNaturalTypeEditPart 
-		   && (request.getTargetEditPart().getParent() instanceof ORMCompartmentDiagramEditPart || request.getTargetEditPart().getParent().getParent() instanceof ORMGroupingEditPart)){
+		if(request.getNewObjectType().equals(Fulfilment.class) && request.getTargetEditPart() instanceof ORMNaturalTypeEditPart ||
+		   request.getNewObjectType().equals(Fulfilment.class) && request.getTargetEditPart() instanceof ORMCompartmentEditPart){
 			    ORMRelationCreateCommand result = new ORMRelationCreateCommand();
 			    result.setSourceNode((Node)getHost().getModel());
 			    result.setRelation((Relation) request.getNewObject());
-			    if(((NaturalType)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((NaturalType)getHost().getModel()).getParentRolemodel());
-			    if(((NaturalType)getHost().getModel()).getCd() != null) result.setRelationContainer(((NaturalType)getHost().getModel()).getCd());
+			    if(getHost().getModel() instanceof NaturalType){
+			    	if(((NaturalType)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((NaturalType)getHost().getModel()).getParentRolemodel());
+			    	if(((NaturalType)getHost().getModel()).getCd() != null) result.setRelationContainer(((NaturalType)getHost().getModel()).getCd());
+			    }
+			    else{
+			    	if(((Compartment)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((Compartment)getHost().getModel()).getParentRolemodel());
+			    	if(((Compartment)getHost().getModel()).getCd() != null) result.setRelationContainer(((Compartment)getHost().getModel()).getCd());
+			    }
 			    request.setStartCommand(result);
 			    retVal = result;
 		}
