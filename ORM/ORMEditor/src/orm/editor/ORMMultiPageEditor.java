@@ -121,19 +121,12 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   // save for the active editor and synchronisation between the two editors
   @Override
   public void doSave(IProgressMonitor monitor) {
-    if (this.equals(getSite().getPage().getActiveEditor())) {
-      if (editorBeh.equals(getActiveEditor())) {
-        editorBeh.doSave(monitor);
-        // update the other editor
-        editorData.getOwnViewer().setContents(editorBeh.getOwnViewer().getContents().getModel());
-      }
-      if (editorData.equals(getActiveEditor())) {
-        editorData.doSave(monitor);
-        // update the other editor
-        editorBeh.getOwnViewer().setContents(editorData.getOwnViewer().getContents().getModel());
+    for (int i = 0; i < getPageCount(); i++) {
+      IEditorPart editorPart = getEditor(i);
+      if (editorPart.isDirty()) {
+        editorPart.doSave(monitor);
       }
     }
-
   }
 
   @Override
