@@ -1,11 +1,17 @@
 package orm.editor;
 
+import java.io.IOException;
 import java.util.EventObject;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -22,6 +28,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
+import orm.model.OrmPackage;
+
 /**
  * 
  * @author Kay Bierzynski
@@ -32,6 +40,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   private ORMGraphicalEditor editorBeh;
   private ORMGraphicalEditor editorData;
+
+  private Resource resource;
 
   public ORMGraphicalEditor getEditorBeh() {
     return editorBeh;
@@ -50,7 +60,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   // create/adds the beahvioreditor to the multipageeditor
   void createPage0() {
     try {
-      editorBeh = new ORMGraphicalEditor(this, false);
+      editorBeh = new ORMGraphicalEditor(this, resource, false);
       int index = addPage(editorBeh, getEditorInput());
       setPageText(index, "Behavior");
     } catch (PartInitException e) {
@@ -62,7 +72,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   // create/adds the dataeditor to the multipageeditor
   void createPage1() {
     try {
-      editorData = new ORMGraphicalEditor(this, true);
+      editorData = new ORMGraphicalEditor(this, resource, true);
       int index = addPage(editorData, getEditorInput());
       setPageText(index, "Data");
     } catch (PartInitException e) {
@@ -86,8 +96,25 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       throw new PartInitException("Invalid Input: Must be IFileEditorInput");
     super.init(site, editorInput);
     getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
-
     // getSite().getWorkbenchWindow().getSelectionService().;
+    initializeResource(editorInput);
+  }
+
+  private void initializeResource(IEditorInput editorInput) {
+    OrmPackage.eINSTANCE.eClass(); // This initializes the OrmPackage singleton implementation.
+    ResourceSet resourceSet = new ResourceSetImpl();
+    if (editorInput instanceof IFileEditorInput) {
+      IFileEditorInput fileInput = (IFileEditorInput) editorInput;
+      IFile file = fileInput.getFile();
+      resource = resourceSet.createResource(URI.createURI(file.getLocationURI().toString()));
+      try {
+        resource.load(null);
+      } catch (IOException e) {
+        // TODO do something smarter.
+        e.printStackTrace();
+        resource = null;
+      }
+    }
   }
 
   // TODO: testen ob save all richtig funktioniert
@@ -199,5 +226,4 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       });
     }
   }
-
 }

@@ -3,12 +3,8 @@ package orm.editor;
 import java.io.IOException;
 import java.util.EventObject;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor.PropertyValueWrapper;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.gef.DefaultEditDomain;
@@ -31,7 +27,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
@@ -46,7 +41,6 @@ import orm.action.StepInNewPageAction;
 import orm.action.StepOutNewPageAction;
 import orm.editPart.ORMEditPartFactory;
 import orm.model.CompartmentDiagram;
-import orm.model.OrmPackage;
 import orm.model.provider.OrmItemProviderAdapterFactory;
 
 /**
@@ -75,13 +69,15 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     return isEditorData;
   }
 
-  public ORMGraphicalEditor(IEditorPart editor, boolean flag) {
-    this.isEditorData = flag;
-    this.parentEditor = editor;
+  public ORMGraphicalEditor(IEditorPart editor, Resource resource, boolean flag) {
+
+    isEditorData = flag;
+    parentEditor = editor;
+    cdResource = resource;
+    cd = (CompartmentDiagram) cdResource.getContents().get(0);
+
     setEditDomain(new DefaultEditDomain(this));
-
   }
-
 
   @Override
   protected void initializeGraphicalViewer() {
@@ -107,7 +103,8 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
   }
 
   // need to override because getSite.getPage().getActiveEditor would return multipageditor
-  // and with that the select actions would not function
+  // and with that the select actions
+  // would not function
   @Override
   public void selectionChanged(IWorkbenchPart part, ISelection selection) {
     updateActions(getSelectionActions());
@@ -178,27 +175,7 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     super.init(site, input);
-    loadInput(input);
-  }
-
-  private void loadInput(IEditorInput input) {
-    OrmPackage.eINSTANCE.eClass(); // This initializes the OrmPackage singleton implementation.
-    ResourceSet resourceSet = new ResourceSetImpl();
-    if (input instanceof IFileEditorInput) {
-      IFileEditorInput fileInput = (IFileEditorInput) input;
-      IFile file = fileInput.getFile();
-      cdResource = resourceSet.createResource(URI.createURI(file.getLocationURI().toString()));
-      try {
-        cdResource.load(null);
-        cd = (CompartmentDiagram) cdResource.getContents().get(0);
-      } catch (IOException e) {
-        // TODO do something smarter.
-        e.printStackTrace();
-        cdResource = null;
-      }
-    }
-
-
+    // loadInput(input);
   }
 
   // TODO: anpassen an multiPageEditor --> bug wenn man im Behavior Editor etwas veraendert enabled
@@ -312,4 +289,5 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
       source.setPropertyValue(id, value);
     }
   }
+
 }
