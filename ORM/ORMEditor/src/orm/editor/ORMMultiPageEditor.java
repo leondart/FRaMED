@@ -219,4 +219,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       });
     }
   }
+
+  public void setContents(Object obj) {
+    editorBeh.getOwnViewer().setContents(obj);
+    editorData.getOwnViewer().setContents(obj);
+  }
 }
