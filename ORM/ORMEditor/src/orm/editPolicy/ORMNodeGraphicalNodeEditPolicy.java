@@ -22,6 +22,7 @@ import orm.model.Inheritance;
 import orm.model.NaturalType;
 import orm.model.Node;
 import orm.model.Relation;
+import orm.model.RelationContainer;
 import orm.model.Relationship;
 import orm.model.RelationshipConstraint;
 import orm.model.RoleEquivalence;
@@ -30,8 +31,12 @@ import orm.model.RoleProhibition;
 import orm.model.RoleType;
 
 /**
- * This class handels the create logic of relations.
+ * This class handles the create logic of relations.
  * For the specification of the logic look up the model description.
+ * NewObject = O/o
+ * SourceEditPart = S/s
+ * TargetEditPart = T/t
+ * Model = M/m
  * @author Kay Bierzynski
  * */
 public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
@@ -39,60 +44,43 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		Command retVal = null;
-		//Fulfiment End
-		if(request.getNewObjectType().equals(Fulfilment.class) && request.getSourceEditPart() instanceof ORMNaturalTypeEditPart 
-		   && request.getTargetEditPart().getModel() instanceof Compartment ||
-		   request.getNewObjectType().equals(Fulfilment.class) && request.getSourceEditPart() instanceof ORMCompartmentEditPart 
-		   && request.getTargetEditPart().getModel() instanceof Compartment){
-			ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			 result.setTargetNode((Node)getHost().getModel());
-			 retVal = result;
+		//Fulfilment End
+		if( oSTCheck(request, Fulfilment.class, ORMNaturalTypeEditPart.class, ORMCompartmentEditPart.class)||
+			oSTCheck(request, Fulfilment.class, ORMCompartmentEditPart.class, ORMCompartmentEditPart.class) && tNotEqualSCheck(request)
+			){
+			 retVal = setupConnectionCompleteCommand(request);
 		}
+		
 		//Role Implication End
-		if(request.getNewObjectType().equals(RoleImplication.class) && request.getSourceEditPart().getModel() instanceof AbstractRole
-		   && request.getTargetEditPart().getModel() instanceof AbstractRole && !(request.getTargetEditPart().equals(request.getSourceEditPart()))
-		   && request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart){
-			 ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			 result.setTargetNode((Node)getHost().getModel());
-			 retVal = result;
+		if( oSMTMCheck(request, RoleImplication.class, AbstractRole.class, AbstractRole.class) && tNotEqualSCheck(request)){
+			 retVal = setupConnectionCompleteCommand(request);
 		}
 		// Role Equilvalence End
-		if(testRoleEquilvalence(request)){
-			 ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			 result.setTargetNode((Node)getHost().getModel());
-			 retVal = result;
+		if( oSTMCheck(request, RoleEquivalence.class, ORMRoleTypeEditPart.class , AbstractRole.class ) && tNotEqualSCheck(request) ||
+			oSTCheck(request, RoleEquivalence.class, ORMRoleGroupEditPart.class, ORMRoleTypeEditPart.class )&& tNotEqualSCheck(request)){
+			 retVal = setupConnectionCompleteCommand(request);
 		}
 		//Role Prohibition End
-		if(request.getNewObjectType().equals(RoleProhibition.class) && request.getSourceEditPart() instanceof ORMRoleTypeEditPart 
-		   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart  && !(request.getTargetEditPart().equals(request.getSourceEditPart()))
-		   && request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart){
-			ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			result.setTargetNode((Node)getHost().getModel());
-			retVal = result;
+		if( oSTCheck(request, RoleProhibition.class, ORMRoleTypeEditPart.class, ORMRoleTypeEditPart.class) && tNotEqualSCheck(request)){
+			retVal = setupConnectionCompleteCommand(request);
 		}
+		
 		//Inheritance End
-		if(testInheritance(request)){
-			ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			result.setTargetNode((Node)getHost().getModel());
-			retVal = result;
+		if(oSTCheck(request,Inheritance.class, ORMRoleTypeEditPart.class, ORMRoleTypeEditPart.class) && tNotEqualSCheck(request)||  
+		   oSTCheck(request, Inheritance.class, ORMNaturalTypeEditPart.class, ORMNaturalTypeEditPart.class) && tNotEqualSCheck(request) ||
+		   oSTCheck(request, Inheritance.class,  ORMCompartmentEditPart.class,  ORMCompartmentEditPart.class) && tNotEqualSCheck(request)){
+			retVal = setupConnectionCompleteCommand(request);
 		}
 		//Relationship End
-		if(request.getNewObjectType().equals(Relationship.class) && request.getSourceEditPart() instanceof ORMRoleTypeEditPart 
-		   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart  && !(request.getTargetEditPart().equals(request.getSourceEditPart()))
-		   && (request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart ||  request.getTargetEditPart().getParent() instanceof ORMRoleGroupEditPart)){
-			 ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			 result.setTargetNode((Node)getHost().getModel());
-			 retVal = result;
+		if(oSTCheck(request, Relationship.class, ORMRoleTypeEditPart.class,ORMRoleTypeEditPart.class)  && tNotEqualSCheck(request)){
+			 retVal = setupConnectionCompleteCommand(request);
 		}
 		
 		//Irreflexive Acyclic Total End
-		if(request.getNewObject() instanceof RelationshipConstraint && request.getSourceEditPart() instanceof ORMRoleTypeEditPart 
-		   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart  && !(request.getTargetEditPart().equals(request.getSourceEditPart()))
-		   && (request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart ||  request.getTargetEditPart().getParent() instanceof ORMRoleGroupEditPart)
+		if(request.getNewObject() instanceof RelationshipConstraint && request.getSourceEditPart() instanceof ORMRoleTypeEditPart
+		   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart  && tNotEqualSCheck(request)
 		   && testIrreflexiveTotalAcylic(request,true)){
-			 ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
-			 result.setTargetNode((Node)getHost().getModel());
-			 retVal = result;
+			 retVal = setupConnectionCompleteCommand(request);
 		}
 		
 		return retVal;
@@ -102,95 +90,60 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 		Command retVal = null;
 		//Fufillment start
-		if(request.getNewObjectType().equals(Fulfilment.class) && request.getTargetEditPart() instanceof ORMNaturalTypeEditPart ||
-		   request.getNewObjectType().equals(Fulfilment.class) && request.getTargetEditPart() instanceof ORMCompartmentEditPart){
-			    ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-			    result.setSourceNode((Node)getHost().getModel());
-			    result.setRelation((Relation) request.getNewObject());
+		if(oTCheck(request, Fulfilment.class, ORMNaturalTypeEditPart.class) ||
+		   oTCheck(request, Fulfilment.class, ORMCompartmentEditPart.class)){
 			    if(getHost().getModel() instanceof NaturalType){
-			    	if(((NaturalType)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((NaturalType)getHost().getModel()).getParentRolemodel());
-			    	if(((NaturalType)getHost().getModel()).getCd() != null) result.setRelationContainer(((NaturalType)getHost().getModel()).getCd());
+			    	if(((NaturalType)getHost().getModel()).getParentRolemodel() != null) retVal = setupConnectionStartCommand(request, ((NaturalType)getHost().getModel()).getParentRolemodel());
+			    	if(((NaturalType)getHost().getModel()).getCd() != null) retVal = setupConnectionStartCommand(request, ((NaturalType)getHost().getModel()).getCd());
 			    }
 			    else{
-			    	if(((Compartment)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((Compartment)getHost().getModel()).getParentRolemodel());
-			    	if(((Compartment)getHost().getModel()).getCd() != null) result.setRelationContainer(((Compartment)getHost().getModel()).getCd());
-			    }
-			    request.setStartCommand(result);
-			    retVal = result;
+			    	if(((Compartment)getHost().getModel()).getParentRolemodel() != null) retVal = setupConnectionStartCommand(request,((Compartment)getHost().getModel()).getParentRolemodel());
+			    	if(((Compartment)getHost().getModel()).getCd() != null) retVal = setupConnectionStartCommand(request, ((Compartment)getHost().getModel()).getCd());
+			    }		 
 		}
 		// Role Implication start
-		if(request.getNewObjectType().equals(RoleImplication.class) && request.getTargetEditPart().getModel() instanceof AbstractRole
-			&& request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart){
-			  	ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-			    result.setSourceNode((Node)getHost().getModel());
-			    result.setRelation((Relation) request.getNewObject());
-			    result.setRelationContainer(((AbstractRole)getHost().getModel()).getParentRolemodel());
-			    request.setStartCommand(result);
-			    retVal = result;
+		if(oTMCheck(request, RoleImplication.class,  AbstractRole.class)){
+			retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRolemodel());
 		}
 		//Role Equivalence start
-		if(request.getNewObjectType().equals(RoleEquivalence.class) && request.getTargetEditPart().getModel() instanceof AbstractRole
-			&& request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart){
-		  	ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-		    result.setSourceNode((Node)getHost().getModel());
-		    result.setRelation((Relation) request.getNewObject());
-		    result.setRelationContainer(((AbstractRole)getHost().getModel()).getParentRolemodel());
-		    request.setStartCommand(result);
-		    retVal = result;
+		if(oTMCheck(request,RoleEquivalence.class,  AbstractRole.class)){
+			retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRolemodel());
 	    }
 		// Role Prohibition start
-		if(request.getNewObjectType().equals(RoleProhibition.class) && request.getTargetEditPart() instanceof ORMRoleTypeEditPart
-			&& request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart){
-		  	ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-		    result.setSourceNode((Node)getHost().getModel());
-		    result.setRelation((Relation) request.getNewObject());
-		    result.setRelationContainer(((AbstractRole)getHost().getModel()).getParentRolemodel());
-		    request.setStartCommand(result);
-		    retVal = result;
+		if(oTCheck(request, RoleProhibition.class, ORMRoleTypeEditPart.class)){
+			retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRolemodel());
 	    }
 		
 		//Inheritance start 
 		// TODO: check if RoleGroup can inherited from RoleType
 		if(request.getNewObjectType().equals(Inheritance.class) && !(request.getTargetEditPart() instanceof ORMRoleGroupEditPart) && !(request.getTargetEditPart() instanceof ORMGroupingEditPart)
 			&& !(request.getTargetEditPart().getParent() instanceof ORMRoleGroupEditPart)){
-		  	ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-		    result.setSourceNode((Node)getHost().getModel());
-		    result.setRelation((Relation) request.getNewObject());
+			
 		    if( request.getTargetEditPart().getModel() instanceof AbstractRole){
-		    	result.setRelationContainer((( AbstractRole)getHost().getModel()).getParentRolemodel());
+		    	retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRolemodel());
 		    }
 		    else if(request.getTargetEditPart() instanceof ORMNaturalTypeEditPart) {
-		    	result.setRelationContainer(((NaturalType)getHost().getModel()).getParentRolemodel());
+		    	if(((NaturalType)getHost().getModel()).getParentRolemodel() != null) retVal = setupConnectionStartCommand(request, ((NaturalType)getHost().getModel()).getParentRolemodel());
+		    	if(((NaturalType)getHost().getModel()).getCd() != null) retVal = setupConnectionStartCommand(request, ((NaturalType)getHost().getModel()).getCd());
 		    }
 		    else if(request.getTargetEditPart() instanceof ORMCompartmentEditPart) {
-		     if(((Compartment)getHost().getModel()).getParentRolemodel() != null)	result.setRelationContainer(((Compartment)getHost().getModel()).getParentRolemodel());
-		     if(((Compartment)getHost().getModel()).getCd() != null)	result.setRelationContainer(((Compartment)getHost().getModel()).getCd());
+		    	if(((Compartment)getHost().getModel()).getParentRolemodel() != null) retVal = setupConnectionStartCommand(request,((Compartment)getHost().getModel()).getParentRolemodel());
+		    	if(((Compartment)getHost().getModel()).getCd() != null) retVal = setupConnectionStartCommand(request, ((Compartment)getHost().getModel()).getCd());
 		    }
-		    request.setStartCommand(result);
-		    retVal = result;
+		  
 	    }		
 		// Relationship  start
-		if(request.getNewObjectType().equals(Relationship.class) && request.getTargetEditPart() instanceof ORMRoleTypeEditPart){
-			ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-			result.setSourceNode((Node)getHost().getModel());
-			result.setRelation((Relation) request.getNewObject());
-			if(((RoleType)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((RoleType)getHost().getModel()).getParentRolemodel());
-			if(((RoleType)getHost().getModel()).getParentRoleGroup() != null) result.setRelationContainer(((RoleType)getHost().getModel()).getParentRoleGroup());
-			request.setStartCommand(result);
-			retVal = result;
+		if(oTCheck(request, Relationship.class, ORMRoleTypeEditPart.class)){
+			if(((RoleType)getHost().getModel()).getParentRolemodel() != null) retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRolemodel());
+			if(((RoleType)getHost().getModel()).getParentRoleGroup() != null) retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRoleGroup());
 		}
 		
 		// Irreflexive Acyclic Total start
 		if(request.getNewObject() instanceof RelationshipConstraint && request.getTargetEditPart() instanceof ORMRoleTypeEditPart 
 		   && testIrreflexiveTotalAcylic(request,false)){
-				ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-				result.setSourceNode((Node)getHost().getModel());
-				result.setRelation((Relation) request.getNewObject());
-				if(((RoleType)getHost().getModel()).getParentRolemodel() != null) result.setRelationContainer(((RoleType)getHost().getModel()).getParentRolemodel());
-				if(((RoleType)getHost().getModel()).getParentRoleGroup() != null) result.setRelationContainer(((RoleType)getHost().getModel()).getParentRoleGroup());
-				request.setStartCommand(result);
-				retVal = result;
-			}
+			if(((RoleType)getHost().getModel()).getParentRolemodel() != null) retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRolemodel());
+			if(((RoleType)getHost().getModel()).getParentRoleGroup() != null) retVal = setupConnectionStartCommand(request, ((AbstractRole)getHost().getModel()).getParentRoleGroup());
+		}
 		
 		return retVal;
 	}
@@ -204,31 +157,55 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 		return null;
 	}
+		
 	
-	private boolean testRoleEquilvalence(CreateConnectionRequest request){
-		return request.getNewObjectType().equals(RoleEquivalence.class) && request.getSourceEditPart() instanceof ORMRoleTypeEditPart  
-			   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart && !(request.getTargetEditPart().equals(request.getSourceEditPart())) 
-			   && request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart ||
-			   request.getNewObjectType().equals(RoleEquivalence.class) && request.getSourceEditPart() instanceof ORMRoleTypeEditPart  
-			   && request.getTargetEditPart() instanceof ORMRoleGroupEditPart && !(request.getTargetEditPart().equals(request.getSourceEditPart())) 
-			   && request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart ||
-			   request.getNewObjectType().equals(RoleEquivalence.class) && request.getSourceEditPart() instanceof ORMRoleGroupEditPart  
-			   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart && !(request.getTargetEditPart().equals(request.getSourceEditPart()))
-			   && request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart;
+	private boolean oSTCheck(CreateConnectionRequest request, Class object, Class source, Class target ){
+		
+		return 	  request.getNewObjectType().equals(object) && target.isInstance(request.getTargetEditPart()) 
+				   &&  source.isInstance(request.getSourceEditPart());
 	}
 	
-
-	private boolean testInheritance(CreateConnectionRequest request){
-		// test1: for RoleType and Role Group test2: for NaturalType test3: for Compartments
-		return request.getNewObjectType().equals(Inheritance.class) && request.getSourceEditPart() instanceof  ORMRoleTypeEditPart  
-			   && request.getTargetEditPart() instanceof ORMRoleTypeEditPart && !(request.getTargetEditPart().equals(request.getSourceEditPart()))
-			   && request.getTargetEditPart().getParent() instanceof ORMRolemodelEditPart||
-			   request.getNewObjectType().equals(Inheritance.class) && request.getSourceEditPart() instanceof ORMNaturalTypeEditPart  
-			   && request.getTargetEditPart() instanceof  ORMNaturalTypeEditPart  && !(request.getTargetEditPart().equals(request.getSourceEditPart()))||
-			   request.getNewObjectType().equals(Inheritance.class) && request.getSourceEditPart() instanceof ORMCompartmentEditPart  
-			   && request.getTargetEditPart() instanceof ORMCompartmentEditPart && !(request.getTargetEditPart().equals(request.getSourceEditPart()));
+	private boolean oSMTMCheck(CreateConnectionRequest request, Class object, Class source, Class target ){
+		
+		return   request.getNewObjectType().equals(object) && target.isInstance(request.getTargetEditPart().getModel())
+				&&  source.isInstance(request.getSourceEditPart().getModel());
 	}
 	
+	
+	private boolean oSTMCheck(CreateConnectionRequest request, Class object, Class source, Class target ){
+		
+		return   request.getNewObjectType().equals(object) && target.isInstance(request.getTargetEditPart().getModel())
+				&&  source.isInstance(request.getSourceEditPart());
+	}
+	
+	private boolean oTCheck(CreateConnectionRequest request, Class object,  Class target ){
+		
+		return   request.getNewObjectType().equals(object) && target.isInstance(request.getTargetEditPart());
+	}
+	
+	private boolean oTMCheck(CreateConnectionRequest request, Class object,  Class target ){
+		
+		return   request.getNewObjectType().equals(object) && target.isInstance(request.getTargetEditPart().getModel());
+	}
+	
+	private boolean tNotEqualSCheck(CreateConnectionRequest request){
+		return !(request.getTargetEditPart().equals(request.getSourceEditPart()));
+	}
+	
+	private ORMRelationCreateCommand setupConnectionCompleteCommand(CreateConnectionRequest request){
+		ORMRelationCreateCommand result =  (ORMRelationCreateCommand) request.getStartCommand();
+		result.setTargetNode((Node)getHost().getModel());
+		return result;
+	}
+	
+	private ORMRelationCreateCommand setupConnectionStartCommand(CreateConnectionRequest request, RelationContainer rm){
+		ORMRelationCreateCommand result = new ORMRelationCreateCommand();
+	    result.setSourceNode((Node)getHost().getModel());
+	    result.setRelation((Relation) request.getNewObject());
+	    result.setRelationContainer(rm);
+	    request.setStartCommand(result);
+		return result;
+	}
 	
 	private boolean testIrreflexiveTotalAcylic(CreateConnectionRequest request, boolean isTargetTest){
 		boolean returnValue = false;
