@@ -74,7 +74,6 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
-    cd = (CompartmentDiagram) cdResource.getContents().get(0);
 
     setEditDomain(new DefaultEditDomain(this));
   }
@@ -171,11 +170,11 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     }
   }
 
-  // initialise input
+  // initialize input
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     super.init(site, input);
-    // loadInput(input);
+    cd = (CompartmentDiagram) cdResource.getContents().get(0);
   }
 
   // TODO: anpassen an multiPageEditor --> bug wenn man im Behavior Editor etwas veraendert enabled
