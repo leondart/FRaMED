@@ -5,7 +5,9 @@ import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
+import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.actions.ActionFactory;
@@ -47,7 +49,13 @@ public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor
     toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
     toolBarManager.add(getAction(ActionFactory.REDO.getId()));
     toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
-    toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
+    
+    IAction a = getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY);
+    IContributionItem ci = new ActionContributionItem(a);
+    
+    toolBarManager.add(ci);
+    
+    toolBarManager.add(a);
     toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
   }
 
