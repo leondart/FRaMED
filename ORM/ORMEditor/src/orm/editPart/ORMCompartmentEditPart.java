@@ -29,13 +29,13 @@ import orm.editor.ORMMultiPageEditor;
 import orm.figure.ORMCompartmentV1Figure;
 import orm.figure.ORMCompartmentV2Figure;
 import orm.figure.PartFigure;
-import orm.model.AbstractRole;
-import orm.model.Compartment;
-import orm.model.CompartmentDiagram;
-import orm.model.RoleGroup;
-import orm.model.RoleType;
-import orm.model.Rolemodel;
-import orm.model.Type;
+import org.framed.orm.model.AbstractRole;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Type;
 
 /**
  * EditPart for Compartments -(this Comment related to a older version) it is in the package

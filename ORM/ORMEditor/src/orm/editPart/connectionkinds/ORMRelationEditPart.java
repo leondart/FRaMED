@@ -19,7 +19,7 @@ import orm.editPart.ORMCompartmentEditPart;
 import orm.editPart.ORMGroupingEditPart;
 import orm.editPolicy.ORMRelationBendpointEditPolicy;
 import orm.editPolicy.ORMRelationConnectionEditPolicy;
-import orm.model.Relation;
+import org.framed.orm.model.Relation;
 
 /**
  * @author Kay Bierzynski

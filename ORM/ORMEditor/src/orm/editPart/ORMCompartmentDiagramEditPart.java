@@ -20,7 +20,7 @@ import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.swt.SWT;
 
 import orm.editPolicy.ORMCompartmentDiagramXYLayoutPolicy;
-import orm.model.CompartmentDiagram;
+import org.framed.orm.model.CompartmentDiagram;
 
 /**
  * @author Kay Bierzynski

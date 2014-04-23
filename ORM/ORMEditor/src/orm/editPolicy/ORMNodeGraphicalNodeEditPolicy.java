@@ -15,20 +15,20 @@ import orm.editPart.ORMRoleGroupEditPart;
 import orm.editPart.ORMRolemodelEditPart;
 import orm.editPart.types.ORMNaturalTypeEditPart;
 import orm.editPart.types.ORMRoleTypeEditPart;
-import orm.model.AbstractRole;
-import orm.model.Compartment;
-import orm.model.Fulfilment;
-import orm.model.Inheritance;
-import orm.model.NaturalType;
-import orm.model.Node;
-import orm.model.Relation;
-import orm.model.RelationContainer;
-import orm.model.Relationship;
-import orm.model.RelationshipConstraint;
-import orm.model.RoleEquivalence;
-import orm.model.RoleImplication;
-import orm.model.RoleProhibition;
-import orm.model.RoleType;
+import org.framed.orm.model.AbstractRole;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Inheritance;
+import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Relationship;
+import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.RoleEquivalence;
+import org.framed.orm.model.RoleImplication;
+import org.framed.orm.model.RoleProhibition;
+import org.framed.orm.model.RoleType;
 
 /**
  * This class handles the create logic of relations.

@@ -2,7 +2,7 @@ package orm.command;
 
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Node;
+import org.framed.orm.model.Node;
 
 /**
  * @author Kay Bierzynski

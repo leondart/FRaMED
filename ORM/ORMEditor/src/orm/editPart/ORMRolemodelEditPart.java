@@ -23,9 +23,9 @@ import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import orm.editPolicy.ORMRolemodelXYLayoutPolicy;
 import orm.figure.ORMCompartmentV2Figure;
 import orm.figure.ORMRolemodelFigure;
-import orm.model.Compartment;
-import orm.model.Rolemodel;
-import orm.model.Type;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Type;
 
 /**
  * @author Kay Bierzynski

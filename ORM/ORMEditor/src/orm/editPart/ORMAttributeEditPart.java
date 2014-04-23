@@ -17,7 +17,7 @@ import orm.editPolicy.ORMAttributeDirectEditPolicy;
 import orm.editor.ORMNodeCellEditorLocator;
 import orm.editor.ORMNodeDirectEditManager;
 import orm.figure.LabelFigure;
-import orm.model.Attribute;
+import org.framed.orm.model.Attribute;
 
 
 /**

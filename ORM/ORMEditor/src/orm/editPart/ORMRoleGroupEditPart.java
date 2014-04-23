@@ -32,8 +32,8 @@ import orm.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import orm.editor.ORMNodeCellEditorLocator;
 import orm.editor.ORMNodeDirectEditManager;
 import orm.figure.ORMRoleGroupFigure;
-import orm.model.Relation;
-import orm.model.RoleGroup;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.RoleGroup;
 
 /**
  * @author Kay Bierzynski

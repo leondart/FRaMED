@@ -23,10 +23,10 @@ import orm.editPart.ORMCompartmentEditPart;
 import orm.editPart.ORMGroupingEditPart;
 import orm.figure.ORMCompartmentV1Figure;
 import orm.figure.ORMGroupingV1Figure;
-import orm.model.Compartment;
-import orm.model.Grouping;
-import orm.model.NaturalType;
-import orm.model.RoleType;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Grouping;
+import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.RoleType;
 
 /**
  * @author Kay Bierzynski

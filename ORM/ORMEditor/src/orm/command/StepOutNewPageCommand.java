@@ -10,9 +10,9 @@ import org.eclipse.ui.WorkbenchException;
 
 import orm.editor.ORMGraphicalEditor;
 import orm.editor.ORMMultiPageEditor;
-import orm.model.Compartment;
-import orm.model.CompartmentDiagram;
-import orm.model.Grouping;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
 
 /**
  * @author Kay Bierzynski

@@ -6,7 +6,7 @@ import org.eclipse.gef.requests.DirectEditRequest;
 
 import orm.command.AttributeMethodeCommands.ORMAttributeRenameCommand;
 import orm.figure.LabelFigure;
-import orm.model.Attribute;
+import org.framed.orm.model.Attribute;
 
 /**
  * @author Kay Bierzynski

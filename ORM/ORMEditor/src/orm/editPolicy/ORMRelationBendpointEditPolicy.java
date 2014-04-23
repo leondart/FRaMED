@@ -8,7 +8,7 @@ import org.eclipse.gef.requests.BendpointRequest;
 import orm.command.connectionkinds.ORMRelationCreateBendpointCommand;
 import orm.command.connectionkinds.ORMRelationDeleteBendpointCommand;
 import orm.command.connectionkinds.ORMRelationMoveBendpointCommand;
-import orm.model.Relation;
+import org.framed.orm.model.Relation;
 
 
 

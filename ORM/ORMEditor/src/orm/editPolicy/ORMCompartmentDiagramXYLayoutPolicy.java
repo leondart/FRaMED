@@ -17,13 +17,13 @@ import orm.command.ORMNodeChangeConstraintsCommand;
 import orm.command.ORMRoleModelCreateCommand;
 import orm.command.types.ORMCompartmentCreateCommand;
 import orm.command.types.ORMNaturalTypeCreateCommand;
-import orm.model.CompartmentDiagram;
-import orm.model.Compartment;
-import orm.model.Grouping;
-import orm.model.NaturalType;
-import orm.model.Node;
-import orm.model.OrmFactory;
-import orm.model.Rolemodel;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Grouping;
+import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski

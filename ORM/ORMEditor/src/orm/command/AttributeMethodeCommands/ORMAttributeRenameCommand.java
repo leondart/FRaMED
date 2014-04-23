@@ -2,7 +2,7 @@ package orm.command.AttributeMethodeCommands;
 
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Attribute;
+import org.framed.orm.model.Attribute;
 
 
 

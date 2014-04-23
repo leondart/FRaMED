@@ -5,7 +5,7 @@ import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
 
 import orm.command.AttributeMethodeCommands.ORMMethodeDeleteCommand;
-import orm.model.Methode;
+import org.framed.orm.model.Methode;
 
 /**
  * @author Kay Bierzynski

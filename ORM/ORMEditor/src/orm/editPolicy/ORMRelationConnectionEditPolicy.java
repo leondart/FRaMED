@@ -5,7 +5,7 @@ import org.eclipse.gef.editpolicies.ConnectionEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
 
 import orm.command.connectionkinds.ORMRelationDeleteCommand;
-import orm.model.Relation;
+import org.framed.orm.model.Relation;
 
 /**
  * @author Kay Bierzynski

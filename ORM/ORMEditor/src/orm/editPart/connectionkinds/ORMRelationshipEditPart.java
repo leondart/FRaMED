@@ -8,7 +8,7 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.swt.SWT;
 
 import orm.figure.LabelFigure;
-import orm.model.Relationship;
+import org.framed.orm.model.Relationship;
 
 /**
  * @author Kay Bierzynski

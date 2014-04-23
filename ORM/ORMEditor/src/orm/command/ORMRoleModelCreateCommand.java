@@ -3,9 +3,9 @@ package orm.command;
 
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Compartment;
-import orm.model.Grouping;
-import orm.model.Rolemodel;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Grouping;
+import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski

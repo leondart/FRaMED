@@ -37,12 +37,12 @@ import orm.figure.ORMGroupingV1Figure;
 import orm.figure.ORMGroupingV2Figure;
 import orm.figure.PartFigure;
 
-import orm.model.Compartment;
-import orm.model.CompartmentDiagram;
-import orm.model.Grouping;
-import orm.model.Node;
-import orm.model.Relation;
-import orm.model.Rolemodel;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Rolemodel;
 
 
 /**

@@ -6,7 +6,7 @@ import org.eclipse.gef.requests.DirectEditRequest;
 
 import orm.command.AttributeMethodeCommands.ORMMethodeRenameCommand;
 import orm.figure.LabelFigure;
-import orm.model.Methode;
+import org.framed.orm.model.Methode;
 
 /**
  * @author Kay Bierzynski

@@ -11,7 +11,7 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.swt.SWT;
 
 import orm.figure.LabelFigure;
-import orm.model.Fulfilment;
+import org.framed.orm.model.Fulfilment;
 
 
 /**

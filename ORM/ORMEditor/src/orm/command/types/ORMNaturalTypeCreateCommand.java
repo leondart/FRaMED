@@ -3,9 +3,9 @@ package orm.command.types;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import orm.model.CompartmentDiagram;
-import orm.model.NaturalType;
-import orm.model.Rolemodel;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski

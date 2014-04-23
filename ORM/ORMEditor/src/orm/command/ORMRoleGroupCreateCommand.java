@@ -3,8 +3,8 @@ package orm.command;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import orm.model.RoleGroup;
-import orm.model.Rolemodel;
+import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski

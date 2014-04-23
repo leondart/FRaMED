@@ -2,8 +2,8 @@ package orm.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import orm.model.RoleImplication;
-import orm.model.OrmFactory;
+import org.framed.orm.model.RoleImplication;
+import org.framed.orm.model.OrmFactory;
 
 /**
  * @author Kay Bierzynski

@@ -7,11 +7,11 @@ import java.util.Map;
 
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Node;
-import orm.model.Relation;
-import orm.model.RoleGroup;
-import orm.model.RoleType;
-import orm.model.Rolemodel;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski

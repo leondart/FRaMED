@@ -17,7 +17,7 @@ import orm.editPolicy.ORMMethodeDirectEditPolicy;
 import orm.editor.ORMNodeCellEditorLocator;
 import orm.editor.ORMNodeDirectEditManager;
 import orm.figure.LabelFigure;
-import orm.model.Methode;
+import org.framed.orm.model.Methode;
 
 /**
  * @author Kay Bierzynski

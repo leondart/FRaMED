@@ -28,7 +28,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
-import orm.model.OrmPackage;
+import org.framed.orm.model.OrmPackage;
 
 /**
  * 

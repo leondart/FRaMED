@@ -3,7 +3,7 @@ package orm.command;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Node;
+import org.framed.orm.model.Node;
 
 
 /**

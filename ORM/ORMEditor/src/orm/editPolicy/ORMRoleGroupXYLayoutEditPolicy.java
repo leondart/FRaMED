@@ -14,10 +14,10 @@ import orm.command.ORMNodeChangeConstraintsCommand;
 import orm.command.ORMRoleGroupCreateCommand;
 import orm.command.types.ORMRoleTypeCreateCommand;
 import orm.figure.ORMRoleGroupFigure;
-import orm.model.AbstractRole;
-import orm.model.Node;
-import orm.model.RoleGroup;
-import orm.model.RoleType;
+import org.framed.orm.model.AbstractRole;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.RoleType;
 
 /**
  * @author Kay Bierzynski

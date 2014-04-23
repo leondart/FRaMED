@@ -6,9 +6,9 @@ import org.eclipse.gef.requests.CreateRequest;
 
 import orm.command.AttributeMethodeCommands.ORMAttributeCreateCommand;
 import orm.command.AttributeMethodeCommands.ORMMethodeCreateCommand;
-import orm.model.Attribute;
-import orm.model.Methode;
-import orm.model.Type;
+import org.framed.orm.model.Attribute;
+import org.framed.orm.model.Methode;
+import org.framed.orm.model.Type;
 
 /**
  * @author Kay Bierzynski

@@ -2,9 +2,9 @@ package orm.command.connectionkinds;
 
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Relation;
-import orm.model.Node;
-import orm.model.RelationContainer;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.RelationContainer;
 
 /**
  * @author Kay Bierzynski

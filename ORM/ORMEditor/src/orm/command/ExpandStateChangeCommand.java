@@ -4,7 +4,7 @@ import org.eclipse.gef.commands.Command;
 
 
 
-import orm.model.Type;
+import org.framed.orm.model.Type;
 
 /**
  * @author Kay Bierzynski

@@ -26,11 +26,11 @@ import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.viewers.TextCellEditor;
 
-import orm.model.Attribute;
-import orm.model.Compartment;
-import orm.model.Methode;
-import orm.model.Relation;
-import orm.model.Type;
+import org.framed.orm.model.Attribute;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Methode;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 import orm.editPart.ORMAttributeEditPart;
 import orm.editPart.ORMCompartmentEditPart;
 import orm.editPart.ORMMethodEditPart;

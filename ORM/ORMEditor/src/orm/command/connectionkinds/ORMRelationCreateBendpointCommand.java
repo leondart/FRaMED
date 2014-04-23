@@ -3,7 +3,7 @@ package orm.command.connectionkinds;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 
-import orm.model.Relation;
+import org.framed.orm.model.Relation;
 
 /**
  * @author Kay Bierzynski

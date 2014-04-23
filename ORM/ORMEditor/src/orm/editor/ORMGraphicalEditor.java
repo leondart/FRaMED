@@ -34,14 +34,14 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 
 import orm.action.GoDownTreeAction;
 import orm.action.GoUpTreeAction;
 import orm.action.StepInNewPageAction;
 import orm.action.StepOutNewPageAction;
 import orm.editPart.ORMEditPartFactory;
-import orm.model.CompartmentDiagram;
-import orm.model.provider.OrmItemProviderAdapterFactory;
 
 /**
  * 

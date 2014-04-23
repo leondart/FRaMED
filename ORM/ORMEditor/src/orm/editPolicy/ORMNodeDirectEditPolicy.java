@@ -10,7 +10,7 @@ import orm.figure.ORMGroupingV1Figure;
 import orm.figure.ORMGroupingV2Figure;
 import orm.figure.ORMRoleGroupFigure;
 import orm.figure.ORMTypeFigure;
-import orm.model.Node;
+import org.framed.orm.model.Node;
 
 /**
  * @author Kay Bierzynski
