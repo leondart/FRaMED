@@ -345,38 +345,83 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc -->
+   * Create a <code>Rectangle</code> instance from a <code>String</code>. The expected
+   * representation is "x,y,width,height". Illegal representations will return a null
+   * value.
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public Rectangle createRectangleFromString(EDataType eDataType, String initialValue) {
-    return (Rectangle)super.createFromString(eDataType, initialValue);
+    if(initialValue == null) {
+      return null;
+    }
+    initialValue.replaceAll("\\s", "");
+    String[] values = initialValue.split(",");
+    if(values.length != 4) {
+      return null;
+    }
+
+    Rectangle rect = new Rectangle();
+    try {
+      rect.setLocation(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+      rect.setSize(Integer.parseInt(values[2]), Integer.parseInt(values[3]));
+    } catch(NumberFormatException e) {
+      EcorePlugin.INSTANCE.log(e);
+      rect = null;
+    }
+    return rect;
   }
 
   /**
    * <!-- begin-user-doc -->
+   * Convert a <code>Rectangle</code> to a <code>String</code> representation. The
+   * <code>Rectangle</code> is represented as "x,y,width,heigth".
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public String convertRectangleToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
+    if(instanceValue == null) {
+      return null;
+    }
+    Rectangle rect = (Rectangle) instanceValue;
+    return rect.x+","+rect.y+","+rect.width+","+rect.height;
   }
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public Point createPointFromString(EDataType eDataType, String initialValue) {
-    return (Point)super.createFromString(eDataType, initialValue);
+      if(initialValue == null) {
+          return null;
+      }
+      initialValue.replaceAll("\\s", "");
+      String[] values = initialValue.split(",");
+      if(values.length != 2) {
+          return null;
+      }
+
+      Point point = new Point();
+      try { 
+          point.setLocation(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+      } catch(NumberFormatException e) {
+          EcorePlugin.INSTANCE.log(e);
+          point = null;       
+      }
+      return point;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public String convertPointToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
+      if(instanceValue == null) {
+          return null;
+      }
+      Point p = (Point)instanceValue;
+      return p.x+","+p.y;
   }
 
   /**
