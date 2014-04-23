@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ORMEditor
-Bundle-SymbolicName: ORMEditor;singleton:=true
+Bundle-SymbolicName: org.framed.orm.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: orm.editor.Activator
+Bundle-Activator: org.framed.orm.ui.editor.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gef;bundle-version="3.9.0",
@@ -17,4 +17,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui;bundle-version="2.9.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: orm.editor
+Export-Package: org.framed.orm.ui.editor

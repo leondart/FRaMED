@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="orm.editor.ORMMultiPageEditor"
-            contributorClass="orm.editor.ORMGraphicalEditorActionBarContributor"
+            class="org.framed.orm.ui.editor.ORMMultiPageEditor"
+            contributorClass="org.framed.orm.ui.editor.ORMGraphicalEditorActionBarContributor"
             default="true"
             extensions="orm"
             id="ORMEditor.editorID"
