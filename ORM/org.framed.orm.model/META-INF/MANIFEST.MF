@@ -11,6 +11,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.draw2d;bundle-version="3.9.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: orm.model,
- orm.model.impl,
- orm.model.util
+Export-Package: org.framed.orm.model,
+ org.framed.orm.model.impl,
+ org.framed.orm.model.util
