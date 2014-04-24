@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<de.tu-dresden.inf.rosi:CompartmentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:de.tu-dresden.inf.rosi="http://orm/1.0">
-  <relations xsi:type="de.tu-dresden.inf.rosi:Fulfilment" target="//@compartments.0" source="//@players.2" fufilledRole="Customer"/>
-  <relations xsi:type="de.tu-dresden.inf.rosi:Fulfilment" target="//@compartments.0" source="//@players.1" fufilledRole="Customer"/>
-  <relations xsi:type="de.tu-dresden.inf.rosi:Fulfilment" target="//@compartments.1" source="//@players.0" fufilledRole="Source, Target"/>
-  <relations xsi:type="de.tu-dresden.inf.rosi:Fulfilment" target="//@compartments.0" source="//@players.0" fufilledRole="RoleGroup"/>
-  <relations xsi:type="de.tu-dresden.inf.rosi:Fulfilment" target="//@compartments.0" source="//@compartments.1" fufilledRole="Transaction"/>
+<org.framed.orm.model:CompartmentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <relations xsi:type="org.framed.orm.model:Fulfilment" target="//@compartments.0" source="//@players.2" fufilledRole="Customer"/>
+  <relations xsi:type="org.framed.orm.model:Fulfilment" target="//@compartments.0" source="//@players.1" fufilledRole="Customer"/>
+  <relations xsi:type="org.framed.orm.model:Fulfilment" target="//@compartments.1" source="//@players.0" fufilledRole="Source, Target"/>
+  <relations xsi:type="org.framed.orm.model:Fulfilment" target="//@compartments.0" source="//@players.0" fufilledRole="RoleGroup"/>
+  <relations xsi:type="org.framed.orm.model:Fulfilment" target="//@compartments.0" source="//@compartments.1" fufilledRole="Transaction"/>
   <compartments incomingLinks="//@relations.1 //@relations.3 //@relations.4 //@relations.0" Name="Bank" constraints="263,154,269,187" isExpand="true">
     <attributes Name="name:String"/>
     <operations Name="executeTransactions()"/>
     <operations Name="login(id:Int,key:Key):Customer"/>
     <rolemodel>
-      <relations xsi:type="de.tu-dresden.inf.rosi:Irreflexive" target="//@compartments.0/@rolemodel/@participants.2/@items.1" source="//@compartments.0/@rolemodel/@participants.0">
+      <relations xsi:type="org.framed.orm.model:Relationship" target="//@compartments.0/@rolemodel/@participants.2" source="//@compartments.0/@rolemodel/@participants.1/@items.0" secondLower="1" firstUpper="-1" sourceLabelValue="0..*" targetLabelValue="1"/>
+      <relations xsi:type="org.framed.orm.model:Relationship" target="//@compartments.0/@rolemodel/@participants.2" source="//@compartments.0/@rolemodel/@participants.1/@items.1" secondLower="1" firstUpper="-1" secondUpper="-1" sourceLabelValue="0..*" targetLabelValue="1..*"/>
+      <relations xsi:type="org.framed.orm.model:Irreflexive" target="//@compartments.0/@rolemodel/@participants.1/@items.1" source="//@compartments.0/@rolemodel/@participants.2">
         <bendpoints>468,275</bendpoints>
       </relations>
-      <participants xsi:type="de.tu-dresden.inf.rosi:RoleType" incomingLinks="//@compartments.0/@rolemodel/@participants.2/@relations.0 //@compartments.0/@rolemodel/@participants.2/@relations.1" outgoingLinks="//@compartments.0/@rolemodel/@relations.0" Name="Customer" constraints="25,102,217,145" isExpand="true">
+      <participants xsi:type="org.framed.orm.model:RoleType" Name="Transaction" constraints="613,108,195,97" isExpand="true">
+        <attributes Name="execution:DateTime"/>
+        <operations Name="execute():Bool"/>
+        <operations Name="isExecuted():Bool"/>
+      </participants>
+      <participants xsi:type="org.framed.orm.model:RoleGroup" Name="RoleGroup (XOR)" constraints="301,66,265,280">
+        <items xsi:type="org.framed.orm.model:RoleType" outgoingLinks="//@compartments.0/@rolemodel/@relations.0" Name="CheckingsAccount" constraints="23,30,217,109" isExpand="true">
+          <attributes Name="limit:Money"/>
+          <operations Name="decrease(amount:Money)"/>
+          <operations Name="getLimit():Money"/>
+          <operations Name="setLimit(l:Money)"/>
+        </items>
+        <items xsi:type="org.framed.orm.model:RoleType" incomingLinks="//@compartments.0/@rolemodel/@relations.2" outgoingLinks="//@compartments.0/@rolemodel/@relations.1" Name="SavingsAccount" constraints="23,174,217,85" isExpand="true">
+          <attributes Name="transactionFee:Double"/>
+          <operations Name="decrease(amount:Money)"/>
+        </items>
+      </participants>
+      <participants xsi:type="org.framed.orm.model:RoleType" incomingLinks="//@compartments.0/@rolemodel/@relations.0 //@compartments.0/@rolemodel/@relations.1" outgoingLinks="//@compartments.0/@rolemodel/@relations.2" Name="Customer" constraints="25,102,217,145" isExpand="true">
         <attributes Name="id:Int"/>
         <attributes Name="name:String"/>
         <operations Name="addSavingsAccount():Bool"/>
@@ -21,25 +40,6 @@
         <operations Name="transfer(from:Int,to:Int):Bool"/>
         <operations Name="getAccounts():Int[]"/>
         <operations Name="getBalance(id:Int):Money"/>
-      </participants>
-      <participants xsi:type="de.tu-dresden.inf.rosi:RoleType" Name="Transaction" constraints="613,108,195,97" isExpand="true">
-        <attributes Name="execution:DateTime"/>
-        <operations Name="execute():Bool"/>
-        <operations Name="isExecuted():Bool"/>
-      </participants>
-      <participants xsi:type="de.tu-dresden.inf.rosi:RoleGroup" Name="RoleGroup (XOR)" constraints="301,66,265,280">
-        <relations xsi:type="de.tu-dresden.inf.rosi:Relationship" target="//@compartments.0/@rolemodel/@participants.0" source="//@compartments.0/@rolemodel/@participants.2/@items.0" secondLower="1" firstUpper="-1" sourceLabelValue="0..*" targetLabelValue="1"/>
-        <relations xsi:type="de.tu-dresden.inf.rosi:Relationship" target="//@compartments.0/@rolemodel/@participants.0" source="//@compartments.0/@rolemodel/@participants.2/@items.1" secondLower="1" firstUpper="-1" secondUpper="-1" sourceLabelValue="0..*" targetLabelValue="1..*"/>
-        <items xsi:type="de.tu-dresden.inf.rosi:RoleType" outgoingLinks="//@compartments.0/@rolemodel/@participants.2/@relations.0" Name="CheckingsAccount" constraints="23,30,217,109" isExpand="true">
-          <attributes Name="limit:Money"/>
-          <operations Name="decrease(amount:Money)"/>
-          <operations Name="getLimit():Money"/>
-          <operations Name="setLimit(l:Money)"/>
-        </items>
-        <items xsi:type="de.tu-dresden.inf.rosi:RoleType" incomingLinks="//@compartments.0/@rolemodel/@relations.0" outgoingLinks="//@compartments.0/@rolemodel/@participants.2/@relations.1" Name="SavingsAccount" constraints="23,174,217,85" isExpand="true">
-          <attributes Name="transactionFee:Double"/>
-          <operations Name="decrease(amount:Money)"/>
-        </items>
       </participants>
     </rolemodel>
   </compartments>
@@ -49,17 +49,17 @@
     <operations Name="bind(s:Account,t:Account):Bool"/>
     <operations Name="execute():Bool"/>
     <rolemodel>
-      <relations xsi:type="de.tu-dresden.inf.rosi:Relationship" target="//@compartments.1/@rolemodel/@participants.0" source="//@compartments.1/@rolemodel/@participants.1" secondLower="1" firstLower="1" sourceLabelValue="1" targetLabelValue="1"/>
-      <relations xsi:type="de.tu-dresden.inf.rosi:RoleProhibition" target="//@compartments.1/@rolemodel/@participants.0" source="//@compartments.1/@rolemodel/@participants.1">
+      <relations xsi:type="org.framed.orm.model:Relationship" target="//@compartments.1/@rolemodel/@participants.0" source="//@compartments.1/@rolemodel/@participants.1" secondLower="1" firstLower="1" sourceLabelValue="1" targetLabelValue="1"/>
+      <relations xsi:type="org.framed.orm.model:RoleProhibition" target="//@compartments.1/@rolemodel/@participants.0" source="//@compartments.1/@rolemodel/@participants.1">
         <bendpoints>372,149</bendpoints>
       </relations>
-      <relations xsi:type="de.tu-dresden.inf.rosi:Irreflexive" target="//@compartments.1/@rolemodel/@participants.0" source="//@compartments.1/@rolemodel/@participants.1">
+      <relations xsi:type="org.framed.orm.model:Irreflexive" target="//@compartments.1/@rolemodel/@participants.0" source="//@compartments.1/@rolemodel/@participants.1">
         <bendpoints>494,150</bendpoints>
       </relations>
-      <participants xsi:type="de.tu-dresden.inf.rosi:RoleType" incomingLinks="//@compartments.1/@rolemodel/@relations.0 //@compartments.1/@rolemodel/@relations.1 //@compartments.1/@rolemodel/@relations.2" Name="Source" constraints="114,162,217,50" isExpand="true">
+      <participants xsi:type="org.framed.orm.model:RoleType" incomingLinks="//@compartments.1/@rolemodel/@relations.0 //@compartments.1/@rolemodel/@relations.1 //@compartments.1/@rolemodel/@relations.2" Name="Source" constraints="114,162,217,50" isExpand="true">
         <operations Name="deposite(amount:Money)"/>
       </participants>
-      <participants xsi:type="de.tu-dresden.inf.rosi:RoleType" outgoingLinks="//@compartments.1/@rolemodel/@relations.0 //@compartments.1/@rolemodel/@relations.1 //@compartments.1/@rolemodel/@relations.2" Name="Target" constraints="114,54,218,50" isExpand="true">
+      <participants xsi:type="org.framed.orm.model:RoleType" outgoingLinks="//@compartments.1/@rolemodel/@relations.0 //@compartments.1/@rolemodel/@relations.1 //@compartments.1/@rolemodel/@relations.2" Name="Target" constraints="114,54,218,50" isExpand="true">
         <operations Name="withdraw(amount:Money)"/>
       </participants>
     </rolemodel>
@@ -86,4 +86,4 @@
     <attributes Name="POBox:String"/>
     <operations Name="signature():Key"/>
   </players>
-</de.tu-dresden.inf.rosi:CompartmentDiagram>
+</org.framed.orm.model:CompartmentDiagram>
