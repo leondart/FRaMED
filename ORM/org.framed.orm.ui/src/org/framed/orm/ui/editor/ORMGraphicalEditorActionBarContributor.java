@@ -5,9 +5,7 @@ import org.eclipse.gef.ui.actions.DeleteRetargetAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.RedoRetargetAction;
 import org.eclipse.gef.ui.actions.UndoRetargetAction;
-import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.actions.ActionFactory;
@@ -19,18 +17,30 @@ import org.eclipse.ui.actions.RetargetAction;
  * */
 public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor {
 
-  private static String TOGGLE_GRID_LABEL = "&Grid";
-  private static String TOGGLE_SNAP_TO_GERMETRY_LABEL = "Snap to Geo&metry";
+  private static String TOGGLE_GRID_LABEL = "Show Grid";
+  private static String TOGGLE_SNAP_TO_GERMETRY_LABEL = "Snap to Geometry";
 
   @Override
   protected void buildActions() {
     addRetargetAction(new UndoRetargetAction());
     addRetargetAction(new RedoRetargetAction());
     addRetargetAction(new DeleteRetargetAction());
-    addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY,
-        TOGGLE_GRID_LABEL, IAction.AS_CHECK_BOX));
-    addRetargetAction(new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY,
-        TOGGLE_SNAP_TO_GERMETRY_LABEL, IAction.AS_CHECK_BOX));
+
+    // add grid icon to grid action
+    final RetargetAction gridAction =
+        new RetargetAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY, "", IAction.AS_CHECK_BOX);
+    gridAction.setImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/grid.png"));
+    gridAction.setToolTipText(TOGGLE_GRID_LABEL);
+    addRetargetAction(gridAction);
+
+    final RetargetAction snapAction =
+        new RetargetAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY, "", IAction.AS_CHECK_BOX);
+    snapAction.setImageDescriptor(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/grid-snap.png"));
+    snapAction.setToolTipText(TOGGLE_SNAP_TO_GERMETRY_LABEL);
+
+    addRetargetAction(snapAction);
 
   }
 
@@ -49,7 +59,7 @@ public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor
     toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
     toolBarManager.add(getAction(ActionFactory.REDO.getId()));
     toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
-    toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));;
+    toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));
     toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
   }
 
