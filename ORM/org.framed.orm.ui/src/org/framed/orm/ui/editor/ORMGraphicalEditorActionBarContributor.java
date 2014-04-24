@@ -49,13 +49,7 @@ public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor
     toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
     toolBarManager.add(getAction(ActionFactory.REDO.getId()));
     toolBarManager.add(getAction(ActionFactory.DELETE.getId()));
-    
-    IAction a = getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY);
-    IContributionItem ci = new ActionContributionItem(a);
-    
-    toolBarManager.add(ci);
-    
-    toolBarManager.add(a);
+    toolBarManager.add(getAction(GEFActionConstants.TOGGLE_GRID_VISIBILITY));;
     toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
   }
 
