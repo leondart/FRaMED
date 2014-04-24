@@ -22,84 +22,91 @@ import org.framed.orm.ui.figure.LabelFigure;
  * @author Kay Bierzynski
  * */
 public class ORMMethodEditPart extends AbstractGraphicalEditPart {
-  
-	private ORMMethodAdapter adapter;
-	
-	public ORMMethodEditPart() {
-	    super();
-	    adapter = new ORMMethodAdapter();
-	  }
-	
-	@Override
-	protected IFigure createFigure() {
-		 LabelFigure label = new LabelFigure();
-		return label;
-	}
 
-	@Override
-	protected void createEditPolicies() {
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMMethodeDirectEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMMethodeComponentEditPolicy());
-	}
-	
-	@Override public void performRequest(Request req) {
-		 
-	    if(req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
-	      performDirectEditing();
-	    }
-	  }
-	 
-	private void performDirectEditing() {
-		TextFlow textFlow = ((LabelFigure) getFigure()).getTextFlow();
-		ORMNodeDirectEditManager manager = new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(textFlow), textFlow);
-	    manager.show(); // refresh view
-	  }
+  private ORMMethodAdapter adapter;
 
-	
-	
-	@Override protected void refreshVisuals() {
-		final LabelFigure figure = (LabelFigure) getFigure();
-	    final Methode model = (Methode) getModel();
-	
-	    figure.setText(model.getName());
-	    figure.setToolTip(new Label(model.getName()));
-	  }
-	
-	@Override public void activate() {
-	    if(!isActive()) {
-	      ((Methode)getModel()).eAdapters().add(adapter);
-	    }
-	    super.activate();
-	  }
-	 
-	  @Override public void deactivate() {
-	    if(isActive()) {
-	      ((Methode)getModel()).eAdapters().remove(adapter);
-	    }
-	 
-	    super.deactivate();
-	  }
-	   
-	  public class ORMMethodAdapter implements Adapter {
-	 
-	    // Adapter interface
-	    @Override public void notifyChanged(Notification notification) {
-	      refreshVisuals();
-	     
-	    }
-	 
-	    @Override public Notifier getTarget() {
-	      return (Methode)getModel();
-	    }
-	 
-	    @Override public void setTarget(Notifier newTarget) {
-	      // Do nothing.
-	    }
-	 
-	    @Override public boolean isAdapterForType(Object type) {
-	      return type.equals(Methode.class);
-	    }
-	  } 
-	
-	
+  public ORMMethodEditPart() {
+    super();
+    adapter = new ORMMethodAdapter();
+  }
+
+  @Override
+  protected IFigure createFigure() {
+    LabelFigure label = new LabelFigure();
+    return label;
+  }
+
+  @Override
+  protected void createEditPolicies() {
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMMethodeDirectEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMMethodeComponentEditPolicy());
+  }
+
+  @Override
+  public void performRequest(Request req) {
+
+    if (req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+      performDirectEditing();
+    }
+  }
+
+  private void performDirectEditing() {
+    TextFlow textFlow = ((LabelFigure) getFigure()).getTextFlow();
+    ORMNodeDirectEditManager manager =
+        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
+            textFlow), textFlow);
+    manager.show(); // refresh view
+  }
+
+  @Override
+  protected void refreshVisuals() {
+    final LabelFigure figure = (LabelFigure) getFigure();
+    final Methode model = (Methode) getModel();
+
+    figure.setText(model.getName());
+    figure.setToolTip(new Label(model.getName()));
+  }
+
+  @Override
+  public void activate() {
+    if (!isActive()) {
+      ((Methode) getModel()).eAdapters().add(adapter);
+    }
+    super.activate();
+  }
+
+  @Override
+  public void deactivate() {
+    if (isActive()) {
+      ((Methode) getModel()).eAdapters().remove(adapter);
+    }
+
+    super.deactivate();
+  }
+
+  public class ORMMethodAdapter implements Adapter {
+
+    // Adapter interface
+    @Override
+    public void notifyChanged(Notification notification) {
+      refreshVisuals();
+    }
+
+    @Override
+    public Notifier getTarget() {
+      return (Methode) getModel();
+    }
+
+    @Override
+    public void setTarget(Notifier newTarget) {
+      // Do nothing.
+    }
+
+    @Override
+    public boolean isAdapterForType(Object type) {
+      return type.equals(Methode.class);
+    }
+  }
+
+
 }
