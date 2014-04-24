@@ -1,7 +1,6 @@
 package org.framed.orm.ui.command.AttributeMethodeCommands;
 
 import org.eclipse.gef.commands.Command;
-
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.Type;
 
@@ -10,24 +9,27 @@ import org.framed.orm.model.Type;
  * */
 public class ORMAttributeDeleteCommand extends Command {
 
-	  private Attribute att;
-	  private Type type;
-	 
-	  @Override
-	  public void execute() {
-		  att.setType(null);
-		  
-	  }
-	 
-	  @Override
-	  public void undo() {
-	    att.setType(type);
-	  }
-	 
-	  public void setAttribute(Attribute att) {
-	    this.att = att;
-	    this.type = att.getType();
-	  }
-	
-	
+  private Attribute att;
+  private Type type;
+  private int position;
+
+  @Override
+  public void execute() {
+    att.setType(null);
+  }
+
+  @Override
+  public void undo() {
+    att.setType(type);
+    type.getAttributes().remove(att);
+    type.getAttributes().add(position, att);
+  }
+
+  public void setAttribute(Attribute att) {
+    this.att = att;
+    this.type = att.getType();
+    position = type.getAttributes().indexOf(att);
+  }
+
+
 }

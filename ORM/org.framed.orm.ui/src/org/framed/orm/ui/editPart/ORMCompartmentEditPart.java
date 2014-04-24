@@ -30,6 +30,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ExpandStateChangeCommand;
 import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
+import org.framed.orm.ui.editor.Activator;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
@@ -232,12 +233,12 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
     command.setContainer(model);
     SaveAction save = new SaveAction(editorPart);
     Image imageExpand =
-        new Image(null, ImageDescriptor
-            .createFromFile(this.getClass(), "../icons/expandArrow3.png").createImage(),
-            SWT.IMAGE_COPY);
+        new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/expandArrow3.png").createImage(), SWT.IMAGE_COPY);
+
     Image imageCollapse =
-        new Image(null, ImageDescriptor.createFromFile(this.getClass(),
-            "../icons/collapseArrow3.png").createImage(), SWT.IMAGE_COPY);
+        new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/collapseArrow3.png").createImage(), SWT.IMAGE_COPY);
     if (model.isIsExpand()) {
       figure.getListAttMet().remove(figure.getAttributeFigure());
       if (!isEditorData)
@@ -292,12 +293,11 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
     ORMCompartmentV2Figure figure = new ORMCompartmentV2Figure(isEditorData);
 
     Image imageExpand =
-        new Image(null, ImageDescriptor
-            .createFromFile(this.getClass(), "../icons/expandArrow3.png").createImage(),
-            SWT.IMAGE_COPY);
+        new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/expandArrow3.png").createImage(), SWT.IMAGE_COPY);
     Image imageCollapse =
-        new Image(null, ImageDescriptor.createFromFile(this.getClass(),
-            "../icons/collapseArrow3.png").createImage(), SWT.IMAGE_COPY);
+        new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/collapseArrow3.png").createImage(), SWT.IMAGE_COPY);
 
     figure.getBasicRec().setAntialias(SWT.ON);
     figure.getButton().addActionListener(new ActionListener() {
