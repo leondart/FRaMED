@@ -104,9 +104,11 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
       if (contentPane.getChildren().size() >= 3) {
         collectionAtt.add(((ORMAttributeEditPart) childEditPart).getFigure());
         collectAttribute.setToolTip(collectionAtt);
-
-      } else
-        contentPane.add(((ORMAttributeEditPart) childEditPart).getFigure());
+      } else {
+        Attribute attribute = (Attribute) childEditPart.getModel();
+        int attributeIndex = attribute.getType().getAttributes().indexOf(attribute);
+        contentPane.add(((ORMAttributeEditPart) childEditPart).getFigure(), attributeIndex);
+      }
     }
 
     if (childEditPart.getModel() instanceof Methode) {
@@ -121,7 +123,9 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
         collectMethode.setToolTip(collectionMet);
       } else {
         // add method to right position determined by the model
-        contentPane.add(((ORMMethodEditPart) childEditPart).getFigure(), index);
+        Methode method = (Methode) childEditPart.getModel();
+        int methodIndex = method.getType().getOperations().indexOf(method);
+        contentPane.add(((ORMMethodEditPart) childEditPart).getFigure(), methodIndex);
       }
     }
   }
