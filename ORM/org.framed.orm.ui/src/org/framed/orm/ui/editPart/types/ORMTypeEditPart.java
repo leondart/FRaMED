@@ -96,12 +96,12 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
      */
     if (childEditPart.getModel() instanceof Attribute) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-      if (contentPane.getChildren().size() >= 3
-          && !(contentPane.getChildren().contains(collectAttribute))) {
-        collectAttribute.setToolTip(collectionAtt);
-        contentPane.add(collectAttribute);
-      }
       if (contentPane.getChildren().size() >= 3) {
+
+        if (!(contentPane.getChildren().contains(collectAttribute))) {
+          contentPane.add(collectAttribute);
+        }
+
         collectionAtt.add(((ORMAttributeEditPart) childEditPart).getFigure());
         collectAttribute.setToolTip(collectionAtt);
       } else {
@@ -113,12 +113,12 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
     if (childEditPart.getModel() instanceof Methode) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
-      if (contentPane.getChildren().size() >= 3
-          && !(contentPane.getChildren().contains(collectMethode))) {
-        collectMethode.setToolTip(collectionMet);
-        contentPane.add(collectMethode);
-      }
       if (contentPane.getChildren().size() >= 3) {
+
+        if (!(contentPane.getChildren().contains(collectMethode))) {
+          contentPane.add(collectMethode);
+        }
+
         collectionMet.add(((ORMMethodEditPart) childEditPart).getFigure());
         collectMethode.setToolTip(collectionMet);
       } else {
@@ -136,58 +136,55 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
     if (childEditPart.getModel() instanceof Attribute) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
+
       if (contentPane.getChildren().contains(((ORMAttributeEditPart) childEditPart).getFigure())) {
         contentPane.remove(((ORMAttributeEditPart) childEditPart).getFigure());
-        if (contentPane.getChildren().size() < 4
-            && contentPane.getChildren().contains(collectAttribute)) {
-          if (collectionAtt.getChildren().size() == 0) {
-            contentPane.remove(collectAttribute);
-          } else {
-            IFigure child = (IFigure) collectionAtt.getChildren().get(0);
-            contentPane.remove(collectAttribute);
-            contentPane.add(child);
-            contentPane.add(collectAttribute);
-          }
-          if (collectionAtt.getChildren().size() == 0) {
-            contentPane.remove(collectAttribute);
-          }
-        }
-      } else if (collectionAtt.getChildren().contains(
-          ((ORMAttributeEditPart) childEditPart).getFigure())) {
+      } else {
         collectionAtt.remove(((ORMAttributeEditPart) childEditPart).getFigure());
+      }
+
+      if (contentPane.getChildren().contains(collectAttribute)) {
+
+        if (contentPane.getChildren().size() < 4) {
+          IFigure child = (IFigure) collectionAtt.getChildren().get(0);
+          contentPane.remove(collectAttribute);
+          contentPane.add(child);
+          contentPane.add(collectAttribute);
+        }
+
         if (collectionAtt.getChildren().size() == 0) {
           contentPane.remove(collectAttribute);
         }
-      }
 
+      }
     }
+
 
     if (childEditPart.getModel() instanceof Methode) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
+
       if (contentPane.getChildren().contains(((ORMMethodEditPart) childEditPart).getFigure())) {
         contentPane.remove(((ORMMethodEditPart) childEditPart).getFigure());
-        if (contentPane.getChildren().size() < 4
-            && contentPane.getChildren().contains(collectMethode)) {
-          if (collectionMet.getChildren().size() == 0) {
-            contentPane.remove(collectMethode);
-          } else {
-            IFigure child = (IFigure) collectionMet.getChildren().get(0);
-            contentPane.remove(collectMethode);
-            contentPane.add(child);
-            contentPane.add(collectMethode);
-          }
-          if (collectionMet.getChildren().size() == 0) {
-            contentPane.remove(collectMethode);
-          }
-        }
-      } else if (collectionMet.getChildren().contains(
-          ((ORMMethodEditPart) childEditPart).getFigure())) {
+      } else {
         collectionMet.remove(((ORMMethodEditPart) childEditPart).getFigure());
+      }
+
+      if (contentPane.getChildren().contains(collectMethode)) {
+
+        if (contentPane.getChildren().size() < 4) {
+          IFigure child = (IFigure) collectionMet.getChildren().get(0);
+          contentPane.remove(collectMethode);
+          contentPane.add(child);
+          contentPane.add(collectMethode);
+        }
+
         if (collectionMet.getChildren().size() == 0) {
           contentPane.remove(collectMethode);
         }
+
       }
     }
+
   }
 
   @Override
