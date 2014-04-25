@@ -155,7 +155,6 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
         if (collectionAtt.getChildren().size() == 0) {
           contentPane.remove(collectAttribute);
         }
-
       }
     }
 
@@ -181,7 +180,6 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
         if (collectionMet.getChildren().size() == 0) {
           contentPane.remove(collectMethode);
         }
-
       }
     }
 
