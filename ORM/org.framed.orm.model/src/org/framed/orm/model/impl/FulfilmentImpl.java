@@ -36,6 +36,8 @@ import org.framed.orm.model.RelationContainer;
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getDim1BP <em>Dim1 BP</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getDim2BP <em>Dim2 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getFufilledRole <em>Fufilled Role</em>}</li>
  * </ul>
  * </p>
@@ -72,6 +74,26 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
    * @ordered
    */
   protected Node source;
+
+  /**
+   * The cached value of the '{@link #getDim1BP() <em>Dim1 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim1BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim1BP;
+
+  /**
+   * The cached value of the '{@link #getDim2BP() <em>Dim2 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim2BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim2BP;
 
   /**
    * The default value of the '{@link #getFufilledRole() <em>Fufilled Role</em>}' attribute.
@@ -290,6 +312,30 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Point> getDim1BP() {
+    if (dim1BP == null) {
+      dim1BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.FULFILMENT__DIM1_BP);
+    }
+    return dim1BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Point> getDim2BP() {
+    if (dim2BP == null) {
+      dim2BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.FULFILMENT__DIM2_BP);
+    }
+    return dim2BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getFufilledRole() {
     return fufilledRole;
   }
@@ -380,6 +426,10 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
       case OrmPackage.FULFILMENT__SOURCE:
         if (resolve) return getSource();
         return basicGetSource();
+      case OrmPackage.FULFILMENT__DIM1_BP:
+        return getDim1BP();
+      case OrmPackage.FULFILMENT__DIM2_BP:
+        return getDim2BP();
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         return getFufilledRole();
     }
@@ -408,6 +458,14 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
       case OrmPackage.FULFILMENT__SOURCE:
         setSource((Node)newValue);
         return;
+      case OrmPackage.FULFILMENT__DIM1_BP:
+        getDim1BP().clear();
+        getDim1BP().addAll((Collection<? extends Point>)newValue);
+        return;
+      case OrmPackage.FULFILMENT__DIM2_BP:
+        getDim2BP().clear();
+        getDim2BP().addAll((Collection<? extends Point>)newValue);
+        return;
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         setFufilledRole((String)newValue);
         return;
@@ -435,6 +493,12 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
       case OrmPackage.FULFILMENT__SOURCE:
         setSource((Node)null);
         return;
+      case OrmPackage.FULFILMENT__DIM1_BP:
+        getDim1BP().clear();
+        return;
+      case OrmPackage.FULFILMENT__DIM2_BP:
+        getDim2BP().clear();
+        return;
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         setFufilledRole(FUFILLED_ROLE_EDEFAULT);
         return;
@@ -458,6 +522,10 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
         return target != null;
       case OrmPackage.FULFILMENT__SOURCE:
         return source != null;
+      case OrmPackage.FULFILMENT__DIM1_BP:
+        return dim1BP != null && !dim1BP.isEmpty();
+      case OrmPackage.FULFILMENT__DIM2_BP:
+        return dim2BP != null && !dim2BP.isEmpty();
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         return FUFILLED_ROLE_EDEFAULT == null ? fufilledRole != null : !FUFILLED_ROLE_EDEFAULT.equals(fufilledRole);
     }
@@ -476,6 +544,10 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (bendpoints: ");
     result.append(bendpoints);
+    result.append(", dim1BP: ");
+    result.append(dim1BP);
+    result.append(", dim2BP: ");
+    result.append(dim2BP);
     result.append(", fufilledRole: ");
     result.append(fufilledRole);
     result.append(')');

@@ -834,13 +834,31 @@ public interface OrmPackage extends EPackage {
   int ROLE_TYPE__SOURCE = TYPE_FEATURE_COUNT + 3;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_TYPE__DIM1_BP = TYPE_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_TYPE__DIM2_BP = TYPE_FEATURE_COUNT + 5;
+
+  /**
    * The feature id for the '<em><b>First</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__FIRST = TYPE_FEATURE_COUNT + 4;
+  int ROLE_TYPE__FIRST = TYPE_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>Second</b></em>' reference.
@@ -849,7 +867,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__SECOND = TYPE_FEATURE_COUNT + 5;
+  int ROLE_TYPE__SECOND = TYPE_FEATURE_COUNT + 7;
 
   /**
    * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
@@ -858,7 +876,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 6;
+  int ROLE_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 8;
 
   /**
    * The feature id for the '<em><b>Parent Role Group</b></em>' container reference.
@@ -867,7 +885,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__PARENT_ROLE_GROUP = TYPE_FEATURE_COUNT + 7;
+  int ROLE_TYPE__PARENT_ROLE_GROUP = TYPE_FEATURE_COUNT + 9;
 
   /**
    * The number of structural features of the '<em>Role Type</em>' class.
@@ -876,7 +894,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 8;
+  int ROLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 10;
 
   /**
    * The number of operations of the '<em>Role Type</em>' class.
@@ -934,13 +952,31 @@ public interface OrmPackage extends EPackage {
   int RELATION__SOURCE = 3;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__DIM1_BP = 4;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__DIM2_BP = 5;
+
+  /**
    * The number of structural features of the '<em>Relation</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATION_FEATURE_COUNT = 4;
+  int RELATION_FEATURE_COUNT = 6;
 
   /**
    * The number of operations of the '<em>Relation</em>' class.
@@ -996,6 +1032,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int CONSTRAINT__SOURCE = RELATION__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__DIM1_BP = RELATION__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTRAINT__DIM2_BP = RELATION__DIM2_BP;
 
   /**
    * The number of structural features of the '<em>Constraint</em>' class.
@@ -1060,6 +1114,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ABSTRACT_ROLE__SOURCE = CONSTRAINT__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_ROLE__DIM1_BP = CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_ROLE__DIM2_BP = CONSTRAINT__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>First</b></em>' reference.
@@ -1160,6 +1232,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_GROUP__SOURCE = ABSTRACT_ROLE__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_GROUP__DIM1_BP = ABSTRACT_ROLE__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_GROUP__DIM2_BP = ABSTRACT_ROLE__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>First</b></em>' reference.
@@ -1425,6 +1515,24 @@ public interface OrmPackage extends EPackage {
   int RELATIONSHIP_CONSTRAINT__SOURCE = CONSTRAINT__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_CONSTRAINT__DIM1_BP = CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP_CONSTRAINT__DIM2_BP = CONSTRAINT__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Relation</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1496,6 +1604,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int TOTAL__SOURCE = RELATIONSHIP_CONSTRAINT__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOTAL__DIM1_BP = RELATIONSHIP_CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOTAL__DIM2_BP = RELATIONSHIP_CONSTRAINT__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>Relation</b></em>' reference.
@@ -1580,6 +1706,24 @@ public interface OrmPackage extends EPackage {
   int FULFILMENT__SOURCE = RELATION__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FULFILMENT__DIM1_BP = RELATION__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FULFILMENT__DIM2_BP = RELATION__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Fufilled Role</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1651,6 +1795,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_CONSTRAINT__SOURCE = CONSTRAINT__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_CONSTRAINT__DIM1_BP = CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_CONSTRAINT__DIM2_BP = CONSTRAINT__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>Ends</b></em>' reference list.
@@ -1744,6 +1906,24 @@ public interface OrmPackage extends EPackage {
   int ROLE_EQUIVALENCE__SOURCE = ROLE_CONSTRAINT__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_EQUIVALENCE__DIM1_BP = ROLE_CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_EQUIVALENCE__DIM2_BP = ROLE_CONSTRAINT__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Ends</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1835,6 +2015,24 @@ public interface OrmPackage extends EPackage {
   int ACYCLIC__SOURCE = RELATIONSHIP_CONSTRAINT__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACYCLIC__DIM1_BP = RELATIONSHIP_CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACYCLIC__DIM2_BP = RELATIONSHIP_CONSTRAINT__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Relation</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1908,6 +2106,24 @@ public interface OrmPackage extends EPackage {
   int INHERITANCE__SOURCE = RELATION__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INHERITANCE__DIM1_BP = RELATION__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INHERITANCE__DIM2_BP = RELATION__DIM2_BP;
+
+  /**
    * The number of structural features of the '<em>Inheritance</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1970,6 +2186,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int RELATIONSHIP__SOURCE = RELATION__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__DIM1_BP = RELATION__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__DIM2_BP = RELATION__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>Second Parthood</b></em>' attribute.
@@ -2108,6 +2342,24 @@ public interface OrmPackage extends EPackage {
   int ROLE_PROHIBITION__SOURCE = ROLE_CONSTRAINT__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_PROHIBITION__DIM1_BP = ROLE_CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_PROHIBITION__DIM2_BP = ROLE_CONSTRAINT__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Ends</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2199,6 +2451,24 @@ public interface OrmPackage extends EPackage {
   int IRREFLEXIVE__SOURCE = RELATIONSHIP_CONSTRAINT__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IRREFLEXIVE__DIM1_BP = RELATIONSHIP_CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IRREFLEXIVE__DIM2_BP = RELATIONSHIP_CONSTRAINT__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Relation</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2270,6 +2540,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_IMPLICATION__SOURCE = ROLE_CONSTRAINT__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_IMPLICATION__DIM1_BP = ROLE_CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_IMPLICATION__DIM2_BP = ROLE_CONSTRAINT__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>Ends</b></em>' reference list.
@@ -2363,6 +2651,24 @@ public interface OrmPackage extends EPackage {
   int ROLE_INVARIANT__SOURCE = CONSTRAINT__SOURCE;
 
   /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_INVARIANT__DIM1_BP = CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_INVARIANT__DIM2_BP = CONSTRAINT__DIM2_BP;
+
+  /**
    * The feature id for the '<em><b>Subject</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2434,6 +2740,24 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int COMPLEX_CONSTRAINT__SOURCE = CONSTRAINT__SOURCE;
+
+  /**
+   * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPLEX_CONSTRAINT__DIM1_BP = CONSTRAINT__DIM1_BP;
+
+  /**
+   * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPLEX_CONSTRAINT__DIM2_BP = CONSTRAINT__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>Groups</b></em>' reference list.
@@ -3248,6 +3572,28 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EReference getRelation_Source();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.framed.orm.model.Relation#getDim1BP <em>Dim1 BP</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Dim1 BP</em>'.
+   * @see org.framed.orm.model.Relation#getDim1BP()
+   * @see #getRelation()
+   * @generated
+   */
+  EAttribute getRelation_Dim1BP();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.framed.orm.model.Relation#getDim2BP <em>Dim2 BP</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Dim2 BP</em>'.
+   * @see org.framed.orm.model.Relation#getDim2BP()
+   * @see #getRelation()
+   * @generated
+   */
+  EAttribute getRelation_Dim2BP();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.Constraint <em>Constraint</em>}'.
@@ -4069,6 +4415,22 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EReference RELATION__SOURCE = eINSTANCE.getRelation_Source();
+
+    /**
+     * The meta object literal for the '<em><b>Dim1 BP</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION__DIM1_BP = eINSTANCE.getRelation_Dim1BP();
+
+    /**
+     * The meta object literal for the '<em><b>Dim2 BP</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION__DIM2_BP = eINSTANCE.getRelation_Dim2BP();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.ConstraintImpl <em>Constraint</em>}' class.

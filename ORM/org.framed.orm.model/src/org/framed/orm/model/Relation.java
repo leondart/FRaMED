@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.framed.orm.model.Relation#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getSource <em>Source</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relation#getDim1BP <em>Dim1 BP</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relation#getDim2BP <em>Dim2 BP</em>}</li>
  * </ul>
  * </p>
  *
@@ -127,5 +129,37 @@ public interface Relation extends EObject {
    * @generated
    */
   void setSource(Node value);
+
+  /**
+   * Returns the value of the '<em><b>Dim1 BP</b></em>' attribute list.
+   * The list contents are of type {@link org.eclipse.draw2d.geometry.Point}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Dim1 BP</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dim1 BP</em>' attribute list.
+   * @see org.framed.orm.model.OrmPackage#getRelation_Dim1BP()
+   * @model dataType="org.framed.orm.model.Point"
+   * @generated
+   */
+  EList<Point> getDim1BP();
+
+  /**
+   * Returns the value of the '<em><b>Dim2 BP</b></em>' attribute list.
+   * The list contents are of type {@link org.eclipse.draw2d.geometry.Point}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Dim2 BP</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Dim2 BP</em>' attribute list.
+   * @see org.framed.orm.model.OrmPackage#getRelation_Dim2BP()
+   * @model dataType="org.framed.orm.model.Point"
+   * @generated
+   */
+  EList<Point> getDim2BP();
 
 } // Relation

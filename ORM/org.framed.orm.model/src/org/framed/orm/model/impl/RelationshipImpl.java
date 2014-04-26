@@ -37,6 +37,8 @@ import org.framed.orm.model.Relationship;
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim1BP <em>Dim1 BP</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim2BP <em>Dim2 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondParthood <em>Second Parthood</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondLower <em>Second Lower</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstLower <em>First Lower</em>}</li>
@@ -80,6 +82,26 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * @ordered
    */
   protected Node source;
+
+  /**
+   * The cached value of the '{@link #getDim1BP() <em>Dim1 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim1BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim1BP;
+
+  /**
+   * The cached value of the '{@link #getDim2BP() <em>Dim2 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim2BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim2BP;
 
   /**
    * The default value of the '{@link #getSecondParthood() <em>Second Parthood</em>}' attribute.
@@ -438,6 +460,30 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Point> getDim1BP() {
+    if (dim1BP == null) {
+      dim1BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.RELATIONSHIP__DIM1_BP);
+    }
+    return dim1BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Point> getDim2BP() {
+    if (dim2BP == null) {
+      dim2BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.RELATIONSHIP__DIM2_BP);
+    }
+    return dim2BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Parthood getSecondParthood() {
     return secondParthood;
   }
@@ -675,6 +721,10 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
       case OrmPackage.RELATIONSHIP__SOURCE:
         if (resolve) return getSource();
         return basicGetSource();
+      case OrmPackage.RELATIONSHIP__DIM1_BP:
+        return getDim1BP();
+      case OrmPackage.RELATIONSHIP__DIM2_BP:
+        return getDim2BP();
       case OrmPackage.RELATIONSHIP__SECOND_PARTHOOD:
         return getSecondParthood();
       case OrmPackage.RELATIONSHIP__SECOND_LOWER:
@@ -716,6 +766,14 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
         return;
       case OrmPackage.RELATIONSHIP__SOURCE:
         setSource((Node)newValue);
+        return;
+      case OrmPackage.RELATIONSHIP__DIM1_BP:
+        getDim1BP().clear();
+        getDim1BP().addAll((Collection<? extends Point>)newValue);
+        return;
+      case OrmPackage.RELATIONSHIP__DIM2_BP:
+        getDim2BP().clear();
+        getDim2BP().addAll((Collection<? extends Point>)newValue);
         return;
       case OrmPackage.RELATIONSHIP__SECOND_PARTHOOD:
         setSecondParthood((Parthood)newValue);
@@ -765,6 +823,12 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
       case OrmPackage.RELATIONSHIP__SOURCE:
         setSource((Node)null);
         return;
+      case OrmPackage.RELATIONSHIP__DIM1_BP:
+        getDim1BP().clear();
+        return;
+      case OrmPackage.RELATIONSHIP__DIM2_BP:
+        getDim2BP().clear();
+        return;
       case OrmPackage.RELATIONSHIP__SECOND_PARTHOOD:
         setSecondParthood(SECOND_PARTHOOD_EDEFAULT);
         return;
@@ -809,6 +873,10 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
         return target != null;
       case OrmPackage.RELATIONSHIP__SOURCE:
         return source != null;
+      case OrmPackage.RELATIONSHIP__DIM1_BP:
+        return dim1BP != null && !dim1BP.isEmpty();
+      case OrmPackage.RELATIONSHIP__DIM2_BP:
+        return dim2BP != null && !dim2BP.isEmpty();
       case OrmPackage.RELATIONSHIP__SECOND_PARTHOOD:
         return secondParthood != SECOND_PARTHOOD_EDEFAULT;
       case OrmPackage.RELATIONSHIP__SECOND_LOWER:
@@ -841,6 +909,10 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (bendpoints: ");
     result.append(bendpoints);
+    result.append(", dim1BP: ");
+    result.append(dim1BP);
+    result.append(", dim2BP: ");
+    result.append(dim2BP);
     result.append(", secondParthood: ");
     result.append(secondParthood);
     result.append(", secondLower: ");

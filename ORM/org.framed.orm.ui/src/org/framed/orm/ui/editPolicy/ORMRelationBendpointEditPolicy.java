@@ -1,5 +1,6 @@
 package org.framed.orm.ui.editPolicy;
 
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.BendpointEditPolicy;
@@ -26,9 +27,18 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     ORMRelationCreateBendpointCommand command = new ORMRelationCreateBendpointCommand();
 
     Point p = request.getLocation();
+    Connection conn = getConnection();
+
+    conn.translateToRelative(p);
+    Point sourceP = conn.getSourceAnchor().getReferencePoint();
+    Point targetP = conn.getTargetAnchor().getReferencePoint();
+
+    conn.translateToRelative(sourceP);
+    conn.translateToRelative(targetP);
+
 
     command.setRelation((Relation) request.getSource().getModel());
-    command.setLocation(p);
+    command.setDimension(p.getDifference(sourceP), p.getDifference(targetP));
     command.setIndex(request.getIndex());
 
     return command;
@@ -42,9 +52,17 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     ORMRelationMoveBendpointCommand command = new ORMRelationMoveBendpointCommand();
 
     Point p = request.getLocation();
+    Connection conn = getConnection();
+
+    conn.translateToRelative(p);
+    Point sourceP = conn.getSourceAnchor().getReferencePoint();
+    Point targetP = conn.getTargetAnchor().getReferencePoint();
+
+    conn.translateToRelative(sourceP);
+    conn.translateToRelative(targetP);
 
     command.setRelation((Relation) request.getSource().getModel());
-    command.setLocation(p);
+    command.setNewDimension(p.getDifference(sourceP), p.getDifference(targetP));
     command.setIndex(request.getIndex());
 
     return command;

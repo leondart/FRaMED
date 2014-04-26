@@ -966,6 +966,24 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRelation_Dim1BP() {
+    return (EAttribute)relationEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRelation_Dim2BP() {
+    return (EAttribute)relationEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getConstraint() {
     return constraintEClass;
   }
@@ -1243,6 +1261,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEAttribute(relationEClass, RELATION__BENDPOINTS);
     createEReference(relationEClass, RELATION__TARGET);
     createEReference(relationEClass, RELATION__SOURCE);
+    createEAttribute(relationEClass, RELATION__DIM1_BP);
+    createEAttribute(relationEClass, RELATION__DIM2_BP);
 
     constraintEClass = createEClass(CONSTRAINT);
 
@@ -1420,6 +1440,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEAttribute(getRelation_Bendpoints(), this.getPoint(), "bendpoints", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelation_Target(), this.getNode(), this.getNode_IncomingLinks(), "target", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelation_Source(), this.getNode(), this.getNode_OutgoingLinks(), "source", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelation_Dim1BP(), this.getPoint(), "dim1BP", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelation_Dim2BP(), this.getPoint(), "dim2BP", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

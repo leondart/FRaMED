@@ -40,6 +40,8 @@ import org.framed.orm.model.Rolemodel;
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getDim1BP <em>Dim1 BP</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getDim2BP <em>Dim2 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getFirst <em>First</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getSecond <em>Second</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
@@ -79,6 +81,26 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
    * @ordered
    */
   protected Node source;
+
+  /**
+   * The cached value of the '{@link #getDim1BP() <em>Dim1 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim1BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim1BP;
+
+  /**
+   * The cached value of the '{@link #getDim2BP() <em>Dim2 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim2BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim2BP;
 
   /**
    * The cached value of the '{@link #getFirst() <em>First</em>}' reference.
@@ -290,6 +312,30 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.ROLE_TYPE__SOURCE, newSource, newSource));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Point> getDim1BP() {
+    if (dim1BP == null) {
+      dim1BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.ROLE_TYPE__DIM1_BP);
+    }
+    return dim1BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Point> getDim2BP() {
+    if (dim2BP == null) {
+      dim2BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.ROLE_TYPE__DIM2_BP);
+    }
+    return dim2BP;
   }
 
   /**
@@ -540,6 +586,10 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
       case OrmPackage.ROLE_TYPE__SOURCE:
         if (resolve) return getSource();
         return basicGetSource();
+      case OrmPackage.ROLE_TYPE__DIM1_BP:
+        return getDim1BP();
+      case OrmPackage.ROLE_TYPE__DIM2_BP:
+        return getDim2BP();
       case OrmPackage.ROLE_TYPE__FIRST:
         if (resolve) return getFirst();
         return basicGetFirst();
@@ -575,6 +625,14 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
         return;
       case OrmPackage.ROLE_TYPE__SOURCE:
         setSource((Node)newValue);
+        return;
+      case OrmPackage.ROLE_TYPE__DIM1_BP:
+        getDim1BP().clear();
+        getDim1BP().addAll((Collection<? extends Point>)newValue);
+        return;
+      case OrmPackage.ROLE_TYPE__DIM2_BP:
+        getDim2BP().clear();
+        getDim2BP().addAll((Collection<? extends Point>)newValue);
         return;
       case OrmPackage.ROLE_TYPE__FIRST:
         setFirst((RoleType)newValue);
@@ -612,6 +670,12 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
       case OrmPackage.ROLE_TYPE__SOURCE:
         setSource((Node)null);
         return;
+      case OrmPackage.ROLE_TYPE__DIM1_BP:
+        getDim1BP().clear();
+        return;
+      case OrmPackage.ROLE_TYPE__DIM2_BP:
+        getDim2BP().clear();
+        return;
       case OrmPackage.ROLE_TYPE__FIRST:
         setFirst((RoleType)null);
         return;
@@ -644,6 +708,10 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
         return target != null;
       case OrmPackage.ROLE_TYPE__SOURCE:
         return source != null;
+      case OrmPackage.ROLE_TYPE__DIM1_BP:
+        return dim1BP != null && !dim1BP.isEmpty();
+      case OrmPackage.ROLE_TYPE__DIM2_BP:
+        return dim2BP != null && !dim2BP.isEmpty();
       case OrmPackage.ROLE_TYPE__FIRST:
         return first != null;
       case OrmPackage.ROLE_TYPE__SECOND:
@@ -669,6 +737,8 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
         case OrmPackage.ROLE_TYPE__BENDPOINTS: return OrmPackage.RELATION__BENDPOINTS;
         case OrmPackage.ROLE_TYPE__TARGET: return OrmPackage.RELATION__TARGET;
         case OrmPackage.ROLE_TYPE__SOURCE: return OrmPackage.RELATION__SOURCE;
+        case OrmPackage.ROLE_TYPE__DIM1_BP: return OrmPackage.RELATION__DIM1_BP;
+        case OrmPackage.ROLE_TYPE__DIM2_BP: return OrmPackage.RELATION__DIM2_BP;
         default: return -1;
       }
     }
@@ -702,6 +772,8 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
         case OrmPackage.RELATION__BENDPOINTS: return OrmPackage.ROLE_TYPE__BENDPOINTS;
         case OrmPackage.RELATION__TARGET: return OrmPackage.ROLE_TYPE__TARGET;
         case OrmPackage.RELATION__SOURCE: return OrmPackage.ROLE_TYPE__SOURCE;
+        case OrmPackage.RELATION__DIM1_BP: return OrmPackage.ROLE_TYPE__DIM1_BP;
+        case OrmPackage.RELATION__DIM2_BP: return OrmPackage.ROLE_TYPE__DIM2_BP;
         default: return -1;
       }
     }
@@ -734,6 +806,10 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (bendpoints: ");
     result.append(bendpoints);
+    result.append(", dim1BP: ");
+    result.append(dim1BP);
+    result.append(", dim2BP: ");
+    result.append(dim2BP);
     result.append(')');
     return result.toString();
   }

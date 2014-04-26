@@ -36,6 +36,8 @@ import org.framed.orm.model.RelationContainer;
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getDim1BP <em>Dim1 BP</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getDim2BP <em>Dim2 BP</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,6 +73,26 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
    * @ordered
    */
   protected Node source;
+
+  /**
+   * The cached value of the '{@link #getDim1BP() <em>Dim1 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim1BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim1BP;
+
+  /**
+   * The cached value of the '{@link #getDim2BP() <em>Dim2 BP</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDim2BP()
+   * @generated
+   * @ordered
+   */
+  protected EList<Point> dim2BP;
 
   /**
    * <!-- begin-user-doc -->
@@ -269,6 +291,30 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Point> getDim1BP() {
+    if (dim1BP == null) {
+      dim1BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.INHERITANCE__DIM1_BP);
+    }
+    return dim1BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Point> getDim2BP() {
+    if (dim2BP == null) {
+      dim2BP = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.INHERITANCE__DIM2_BP);
+    }
+    return dim2BP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -338,6 +384,10 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
       case OrmPackage.INHERITANCE__SOURCE:
         if (resolve) return getSource();
         return basicGetSource();
+      case OrmPackage.INHERITANCE__DIM1_BP:
+        return getDim1BP();
+      case OrmPackage.INHERITANCE__DIM2_BP:
+        return getDim2BP();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -364,6 +414,14 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
       case OrmPackage.INHERITANCE__SOURCE:
         setSource((Node)newValue);
         return;
+      case OrmPackage.INHERITANCE__DIM1_BP:
+        getDim1BP().clear();
+        getDim1BP().addAll((Collection<? extends Point>)newValue);
+        return;
+      case OrmPackage.INHERITANCE__DIM2_BP:
+        getDim2BP().clear();
+        getDim2BP().addAll((Collection<? extends Point>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -388,6 +446,12 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
       case OrmPackage.INHERITANCE__SOURCE:
         setSource((Node)null);
         return;
+      case OrmPackage.INHERITANCE__DIM1_BP:
+        getDim1BP().clear();
+        return;
+      case OrmPackage.INHERITANCE__DIM2_BP:
+        getDim2BP().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -408,6 +472,10 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
         return target != null;
       case OrmPackage.INHERITANCE__SOURCE:
         return source != null;
+      case OrmPackage.INHERITANCE__DIM1_BP:
+        return dim1BP != null && !dim1BP.isEmpty();
+      case OrmPackage.INHERITANCE__DIM2_BP:
+        return dim2BP != null && !dim2BP.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -424,6 +492,10 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (bendpoints: ");
     result.append(bendpoints);
+    result.append(", dim1BP: ");
+    result.append(dim1BP);
+    result.append(", dim2BP: ");
+    result.append(dim2BP);
     result.append(')');
     return result.toString();
   }

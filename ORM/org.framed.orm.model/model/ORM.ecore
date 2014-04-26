@@ -130,6 +130,10 @@
         eOpposite="#//Node/incomingLinks"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Node"
         eOpposite="#//Node/outgoingLinks"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dim1BP" upperBound="-1"
+        eType="#//Point"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dim2BP" upperBound="-1"
+        eType="#//Point"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" eSuperTypes="#//Relation"/>
   <eClassifiers xsi:type="ecore:EClass" name="RoleConstraint" abstract="true" eSuperTypes="#//Constraint">

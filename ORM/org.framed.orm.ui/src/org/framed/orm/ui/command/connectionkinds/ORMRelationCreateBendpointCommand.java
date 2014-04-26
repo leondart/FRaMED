@@ -1,8 +1,8 @@
 package org.framed.orm.ui.command.connectionkinds;
 
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
-
 import org.framed.orm.model.Relation;
 
 /**
@@ -12,20 +12,23 @@ public class ORMRelationCreateBendpointCommand extends Command {
 
   /** Index on which the new bendpoint is added. */
   private int index;
-  /** Location of new bendpoint. */
-  private Point location;
+
+  private Dimension dim1, dim2;
   /** Relation to which the bendpoint is added. */
   private Relation relation;
 
   @Override
   public void execute() {
-
-    relation.getBendpoints().add(index, location);
+    Point source = new Point(dim1.width, dim1.height);
+    Point target = new Point(dim2.width, dim2.height);
+    relation.getDim1BP().add(index, source);
+    relation.getDim2BP().add(index, target);
   }
 
   @Override
   public void undo() {
-    relation.getBendpoints().remove(index);
+    relation.getDim1BP().remove(index);
+    relation.getDim2BP().remove(index);
   }
 
   /**
@@ -39,15 +42,6 @@ public class ORMRelationCreateBendpointCommand extends Command {
   }
 
   /**
-   * Set the location where the new bendpoint is added.
-   * 
-   * @param location point in the diagram where the new bendpoint is added.
-   */
-  public void setLocation(final Point location) {
-    this.location = location;
-  }
-
-  /**
    * Set the relation on which the new bendpoint is added.
    * 
    * @param relation relation on which the bendpoint is added.
@@ -56,5 +50,8 @@ public class ORMRelationCreateBendpointCommand extends Command {
     this.relation = relation;
   }
 
-
+  public void setDimension(Dimension dim1, Dimension dim2) {
+    this.dim1 = dim1;
+    this.dim2 = dim2;
+  }
 }

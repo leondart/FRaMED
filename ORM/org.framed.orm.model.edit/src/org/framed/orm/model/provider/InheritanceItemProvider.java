@@ -63,6 +63,8 @@ public class InheritanceItemProvider
       addBendpointsPropertyDescriptor(object);
       addTargetPropertyDescriptor(object);
       addSourcePropertyDescriptor(object);
+      addDim1BPPropertyDescriptor(object);
+      addDim2BPPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -134,6 +136,50 @@ public class InheritanceItemProvider
   }
 
   /**
+   * This adds a property descriptor for the Dim1 BP feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDim1BPPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relation_dim1BP_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature", "_UI_Relation_type"),
+         OrmPackage.Literals.RELATION__DIM1_BP,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Dim2 BP feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDim2BPPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relation_dim2BP_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature", "_UI_Relation_type"),
+         OrmPackage.Literals.RELATION__DIM2_BP,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,6 +203,8 @@ public class InheritanceItemProvider
 
     switch (notification.getFeatureID(Inheritance.class)) {
       case OrmPackage.INHERITANCE__BENDPOINTS:
+      case OrmPackage.INHERITANCE__DIM1_BP:
+      case OrmPackage.INHERITANCE__DIM2_BP:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }
