@@ -1,6 +1,7 @@
 package org.framed.orm.test;
 
 import org.framed.orm.model.tests.ORMAllTests;
+import org.framed.orm.ui.tests.FramedAllUiTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -12,7 +13,7 @@ import org.junit.runners.Suite;
  */
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ORMAllTests.class})
+@Suite.SuiteClasses({ORMAllTests.class, FramedAllUiTests.class})
 public class FramedTestsuite {
   /*
    * This class remains empty
