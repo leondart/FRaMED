@@ -9,26 +9,13 @@ import org.junit.runner.RunWith;
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class FramedComponentsOrmTests extends FramedComponentsAbstractTests {
 
-  private static String TEST_PROJECT_NAME = "junit-plugin-test";
-
   @Test
   public void canCreateNewModelFile() throws Exception {
 
     createTestProject();
 
-    bot.menu("File").menu("New").menu("Other...").click();
-
-    SWTBotShell shell = bot.shell("New");
-    shell.activate();
-
-    bot.tree().expandNode("Example EMF Model Creation Wizards").select("Orm Model");
-    bot.button("Next >").click();
-
-    bot.textWithLabel("Enter or select the parent folder:").setText(TEST_PROJECT_NAME);
-    bot.button("Next >").click();
-
-    bot.comboBox("Model Object").setSelection("Compartment Diagram");
-    bot.button("Finish").click();
+    SWTBotShell shell =
+        createNewOrmModelFileWizard(ORM_WIZARD_CATEGORY, MY_TEST_PROJECT, "Orm Model", "My.orm");
 
     bot.waitUntil(Conditions.shellCloses(shell));
   }

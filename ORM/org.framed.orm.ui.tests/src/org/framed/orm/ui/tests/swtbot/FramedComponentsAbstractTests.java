@@ -3,6 +3,7 @@ package org.framed.orm.ui.tests.swtbot;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
 import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
+import org.eclipse.swtbot.swt.finder.waits.Conditions;
 import org.eclipse.swtbot.swt.finder.waits.DefaultCondition;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTree;
@@ -15,6 +16,10 @@ import org.junit.runner.RunWith;
 public class FramedComponentsAbstractTests {
 
   protected static String MY_TEST_PROJECT = "FramedTestProject";
+
+  protected static String ORM_WIZARD_CATEGORY = "Example EMF Model Creation Wizards";
+
+  protected static String ORM_FILE_TYPE = "Orm Model";
 
   protected static SWTWorkbenchBot bot;
 
@@ -42,6 +47,7 @@ public class FramedComponentsAbstractTests {
     SWTBotShell shell = createNewProjectWizard(category, projectType, projectName);
 
     bot.button("Finish").click();
+    bot.waitUntil(Conditions.shellCloses(shell));
     // assert project exists
   }
 
@@ -52,12 +58,34 @@ public class FramedComponentsAbstractTests {
     SWTBotShell shell = bot.shell("New Project");
     shell.setFocus();
 
-    bot.text().setText("Project");
-
-    bot.waitUntil(new NodeAvailableAndSelect(bot.tree(), category, projectName));
+    bot.text().setText(projectType);
+    bot.waitUntil(new NodeAvailableAndSelect(bot.tree(), category, projectType));
 
     bot.button("Next >").click();
     bot.textWithLabel("Project name:").setText(projectName);
+    return shell;
+  }
+
+  protected SWTBotShell createNewOrmModelFileWizard(String category, String parentProjectName,
+      String fileType, String fileName) {
+    bot.menu("File").menu("New").menu("Other...").click();
+
+    SWTBotShell shell = bot.shell("New");
+    shell.activate();
+
+    bot.text().setText(fileType);
+    bot.waitUntil(new NodeAvailableAndSelect(bot.tree(), category, fileType));
+
+    bot.tree().expandNode(category).select(fileType);
+    bot.button("Next >").click();
+
+    bot.textWithLabel("Enter or select the parent folder:").setText(parentProjectName);
+    bot.textWithLabel("File name:").setText(fileName);
+    bot.button("Next >").click();
+
+    bot.comboBox(0).setSelection("Compartment Diagram");
+    // bot.comboBox("Model Object").setSelection("Compartment Diagram");
+    bot.button("Finish").click();
     return shell;
   }
 
