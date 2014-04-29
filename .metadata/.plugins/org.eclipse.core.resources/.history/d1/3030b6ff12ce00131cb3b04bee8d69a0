@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+package org.framed.orm.ui.editPolicy;
+
+import org.eclipse.gef.requests.CreateRequest;
+
+/**
+ * @author paul
+ *
+ */
+public class ORMComponentCreationPolicy {
+
+	public boolean canCreate(CreateRequest request){
+		return true;
+	}
+	
+}
