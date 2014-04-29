@@ -1,7 +1,7 @@
 package org.framed.orm.ui.command.connectionkinds;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
-
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RelationContainer;
@@ -26,6 +26,12 @@ public class ORMRelationCreateCommand extends Command {
 	    relation.setSource(source);
 	    relation.setTarget(target);
 	    relation.setRelationContainer(rc);
+	    
+	    // for self-loop
+	    if(source.equals(target)){
+	      insertSelfLoopBPs();
+	    }
+	    
 	  }
 	 
 	  @Override public void undo() {
@@ -34,6 +40,17 @@ public class ORMRelationCreateCommand extends Command {
 	    relation.getTarget().getIncomingLinks().remove(relation);
 	    relation.setTarget(null);
 	    relation.setRelationContainer(null);
+	  }
+	  
+	  public void insertSelfLoopBPs(){
+	    int w = source.getConstraints().width;
+        int h = source.getConstraints().height;
+        relation.getDim1BP().add(new Point(0,h/2+30));
+        relation.getDim1BP().add(new Point(w/2+30,h/2+30));
+        relation.getDim1BP().add(new Point(w/2+30,0));
+        relation.getDim2BP().add(new Point(0,h/2+30));
+        relation.getDim2BP().add(new Point(w/2+30,h/2+30));
+        relation.getDim2BP().add(new Point(w/2+30,0));
 	  }
 	 
 	  public void setSourceNode(Node source) {

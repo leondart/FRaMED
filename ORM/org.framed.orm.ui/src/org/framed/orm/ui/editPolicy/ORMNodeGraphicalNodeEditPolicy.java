@@ -43,7 +43,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     if (oSTCheck(request, Fulfilment.class, ORMNaturalTypeEditPart.class,
         ORMCompartmentEditPart.class)
         || oSTCheck(request, Fulfilment.class, ORMCompartmentEditPart.class,
-            ORMCompartmentEditPart.class) && tNotEqualSCheck(request)) {
+            ORMCompartmentEditPart.class)) {
       retVal = setupConnectionCompleteCommand(request);
     }
 

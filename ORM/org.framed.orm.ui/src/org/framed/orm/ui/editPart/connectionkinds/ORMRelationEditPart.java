@@ -3,7 +3,6 @@ package org.framed.orm.ui.editPart.connectionkinds;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.RelativeBendpoint;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -65,21 +64,20 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
         && getRoot().getContents() instanceof ORMCompartmentEditPart) {
 
       Connection connection = getConnectionFigure();
-      //List<Point> modelConstraint = ((Relation) getModel()).getBendpoints();
-      //List<AbsoluteBendpoint> figureConstraint = new ArrayList<AbsoluteBendpoint>();
       List<Point> dim1Constraint = ((Relation) getModel()).getDim1BP();
       List<Point> dim2Constraint = ((Relation) getModel()).getDim2BP();
       List<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
-      // this check is needed, while during the execute of the CreateBendpointCommand the refreshVisual is called
-      if(dim1Constraint.size() == dim2Constraint.size()){
-        for (int i = 0;i<dim1Constraint.size();i++){//modelConstraint) {
+      // this check is needed, while during the execute of the CreateBendpointCommand the
+      // refreshVisual is called
+      if (dim1Constraint.size() == dim2Constraint.size()) {
+        for (int i = 0; i < dim1Constraint.size(); i++) {// modelConstraint) {
           RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
           // p.x = width p.y = height
-          Dimension dim1 = new Dimension(dim1Constraint.get(i).x,dim1Constraint.get(i).y);
+          Dimension dim1 = new Dimension(dim1Constraint.get(i).x, dim1Constraint.get(i).y);
           Dimension dim2 = new Dimension(dim2Constraint.get(i).x, dim2Constraint.get(i).y);
           rbp.setRelativeDimensions(dim1, dim2);
-        
-          figureConstraint.add(rbp);//new AbsoluteBendpoint(p));
+
+          figureConstraint.add(rbp);
         }
       }
       connection.setRoutingConstraint(figureConstraint);
