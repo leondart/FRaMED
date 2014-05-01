@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package org.framed.orm.ui.editor;
+
+import org.eclipse.gef.commands.CommandStackEvent;
+import org.eclipse.gef.commands.CommandStackEventListener;
+
+/**
+ * @author paul
+ *
+ */
+public class EditorChangeNotifier implements CommandStackEventListener {
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.commands.CommandStackEventListener#stackChanged(org.eclipse.gef.commands.CommandStackEvent)
+	 */
+	@Override
+	public void stackChanged(CommandStackEvent event) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

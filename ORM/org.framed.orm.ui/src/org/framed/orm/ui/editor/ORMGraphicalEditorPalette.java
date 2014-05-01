@@ -42,6 +42,11 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 	    createConnectionsDrawer();
 	  }
 	 
+	  //!	Update function for EditorChangeNotifier
+	  public void update(){
+		  System.out.println("Palette update.");
+	  }
+	  
 	  private void addSelectionTool() {
 	    SelectionToolEntry entry = new SelectionToolEntry();
 	    group.add(entry);

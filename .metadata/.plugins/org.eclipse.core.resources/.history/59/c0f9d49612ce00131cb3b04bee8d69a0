@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package org.framed.orm.ui.editPolicy;
+
+/**
+ * @author paul
+ *
+ */
+public class ORMComponentCreationPolicy {
+
+}
