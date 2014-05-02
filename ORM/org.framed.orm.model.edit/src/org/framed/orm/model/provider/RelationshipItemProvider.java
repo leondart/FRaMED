@@ -74,6 +74,7 @@ public class RelationshipItemProvider
       addFirstParthoodPropertyDescriptor(object);
       addSourceLabelValuePropertyDescriptor(object);
       addTargetLabelValuePropertyDescriptor(object);
+      addRlshipConstraintsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -360,6 +361,28 @@ public class RelationshipItemProvider
          false,
          false,
          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
+   * This adds a property descriptor for the Rlship Constraints feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addRlshipConstraintsPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relationship_rlshipConstraints_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_rlshipConstraints_feature", "_UI_Relationship_type"),
+         OrmPackage.Literals.RELATIONSHIP__RLSHIP_CONSTRAINTS,
+         true,
+         false,
+         true,
+         null,
          null,
          null));
   }
