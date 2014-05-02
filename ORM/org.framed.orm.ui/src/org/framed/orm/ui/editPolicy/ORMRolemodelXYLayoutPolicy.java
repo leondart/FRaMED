@@ -35,7 +35,7 @@ import org.framed.orm.ui.figure.ORMRolemodelFigure;
 public class ORMRolemodelXYLayoutPolicy extends XYLayoutEditPolicy {
 
 private static final Dimension DEFAULT_TYPE_DIMENSION = new Dimension(200, 200);
-private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_Natural = new Dimension(50, 50);	
+private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL = new Dimension(50, 50);	
 private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(200, 100);	
 	/**
 	  * Command created top change the constraints of a {@link Node} instance.
@@ -76,7 +76,7 @@ private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(
 		     //here are init size set
 		       command.setRoleType((RoleType)(request.getNewObject()));
 
-		       command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION_ROLE_Natural));
+		       command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));
        	       command.setParentRolemodel((Rolemodel)getHost().getModel());
        	       		       
        	       retVal =  command; 
@@ -92,7 +92,7 @@ private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(
 	     
 	   		  command.setNaturalType((NaturalType)(request.getNewObject()));
 	   		  //here are init size set
-	   		  command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION_ROLE_Natural));
+	   		  command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));
 	   		  command.setParentRolemodel((Rolemodel)getHost().getModel());
 	   		  retVal =  command;
 	   	  }
