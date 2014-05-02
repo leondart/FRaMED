@@ -6,12 +6,14 @@ import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Methode;
+import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
 import org.framed.orm.ui.editPolicy.ORMMethodeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMMethodeDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
@@ -22,6 +24,17 @@ import org.framed.orm.ui.figure.LabelFigure;
  * @author Kay Bierzynski
  * */
 public class ORMMethodEditPart extends AbstractGraphicalEditPart {
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.eclipse.gef.editparts.AbstractGraphicalEditPart#getDragTracker(org.eclipse.gef.Request)
+   */
+  @Override
+  public DragTracker getDragTracker(Request request) {
+    return new ORMDragEditPartsTracker(this);
+  }
 
   private ORMMethodAdapter adapter;
 
