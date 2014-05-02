@@ -11,7 +11,11 @@ import org.framed.orm.model.Type;
  * */
 public class ExpandStateChangeCommand extends Command {
 	
-	private Type type;
+	public ExpandStateChangeCommand() {
+    super.setLabel("ExpandStateChange");
+	}
+
+  private Type type;
 
 	/** 
 	 * The command can be executed if all parameters have been set.

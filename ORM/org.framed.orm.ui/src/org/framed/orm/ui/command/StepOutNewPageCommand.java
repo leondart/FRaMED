@@ -17,9 +17,13 @@ import org.framed.orm.ui.editor.ORMMultiPageEditor;
  * @author Kay Bierzynski
  * */
 public class StepOutNewPageCommand extends Command {
-	
-	 private AbstractGraphicalEditPart editpart;
-	 
+
+  private AbstractGraphicalEditPart editpart;
+
+  public StepOutNewPageCommand() {
+    super.setLabel("StepOutNewPage");
+  }
+
 	  @Override
 	  public void execute() {
 		  

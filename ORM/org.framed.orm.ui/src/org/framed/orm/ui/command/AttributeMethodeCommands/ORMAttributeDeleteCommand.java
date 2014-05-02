@@ -13,6 +13,10 @@ public class ORMAttributeDeleteCommand extends Command {
   private Type type;
   private int position;
 
+  public ORMAttributeDeleteCommand(){
+    super.setLabel("ORMAttributeDelete");
+  }
+  
   @Override
   public void execute() {
     att.setType(null);

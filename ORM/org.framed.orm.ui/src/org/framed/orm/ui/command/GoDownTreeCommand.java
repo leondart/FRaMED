@@ -18,6 +18,10 @@ public class GoDownTreeCommand extends Command {
 
   private AbstractGraphicalEditPart editpart;
 
+  public GoDownTreeCommand(){
+    super.setLabel("GoDownTree");
+  }
+  
   @Override
   public void execute() {
 

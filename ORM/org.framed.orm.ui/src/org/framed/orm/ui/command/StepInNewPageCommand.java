@@ -17,6 +17,10 @@ public class StepInNewPageCommand extends Command {
 
 	 private AbstractGraphicalEditPart editpart;
 	 
+	 public StepInNewPageCommand(){
+		 super.setLabel("StepInNewPage");
+	 }
+	 
 	  @Override
 	  public void execute() {
 		  
@@ -48,7 +52,8 @@ public class StepInNewPageCommand extends Command {
 		   
 		   // set the two editors on same level
 		   ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(editpart.getModel());	
-		   ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(editpart.getModel());	
+		   ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(editpart.getModel());
+		   
 	  }
 	 
 	 @Override

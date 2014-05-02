@@ -16,6 +16,9 @@ public class ORMRelationCreateCommand extends Command {
 	  private Relation relation;
 	  private RelationContainer rc;
 
+	  public ORMRelationCreateCommand(){
+	    super.setLabel("ORMRelationCreate");
+	  }
 	  
 	  @Override
 	  public boolean canExecute() {

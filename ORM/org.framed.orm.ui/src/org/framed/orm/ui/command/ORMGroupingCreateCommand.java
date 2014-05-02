@@ -13,7 +13,11 @@ import org.framed.orm.model.Rolemodel;
 public class ORMGroupingCreateCommand extends Command {
 	
 	
-		private Grouping grouping;
+  public ORMGroupingCreateCommand() {
+    super.setLabel("ORMGroupingCreate");
+  }
+
+    private Grouping grouping;
 		private Rectangle constraints;
 		
 		private CompartmentDiagram cd;

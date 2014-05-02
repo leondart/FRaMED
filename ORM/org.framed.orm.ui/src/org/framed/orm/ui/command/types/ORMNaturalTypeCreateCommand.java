@@ -16,6 +16,11 @@ public class ORMNaturalTypeCreateCommand extends Command {
 		private Rectangle   constraints;
 		private Rolemodel   parentrolemodel;
 		private CompartmentDiagram   cd;
+		
+		public ORMNaturalTypeCreateCommand(){
+		  super.setLabel("ORMNaturalTypeCreate");
+		}
+		
 		/** 
 		 * The command can be executed if all parameters have been set.
 		 */

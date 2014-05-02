@@ -28,6 +28,10 @@ public class ORMRoleTypeDeleteCommand extends Command {
 	  /** Targets for the relations that start or end at this node. */
 	  private Map<Relation, Node> targetLinks;
 	  
+	  public ORMRoleTypeDeleteCommand(){
+	    super.setLabel("ORMRoleTypeDelete");
+	  }
+	  
 	 @Override
 	  public void execute() {
 		detachLinks();

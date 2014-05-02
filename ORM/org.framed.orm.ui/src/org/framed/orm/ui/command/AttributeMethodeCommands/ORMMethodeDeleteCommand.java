@@ -15,6 +15,10 @@ public class ORMMethodeDeleteCommand extends Command {
   private Type type;
   private int position;
 
+  public ORMMethodeDeleteCommand(){
+    super.setLabel("ORMMethodeDeleteCommand");
+  }
+  
   @Override
   public void execute() {
     met.setType(null);

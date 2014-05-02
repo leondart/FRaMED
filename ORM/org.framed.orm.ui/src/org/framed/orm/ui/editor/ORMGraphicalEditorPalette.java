@@ -1,6 +1,9 @@
 package org.framed.orm.ui.editor;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteDrawer;
@@ -33,6 +36,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 	
 	PaletteGroup group;
 	 
+	private boolean RoleTypeVisible = false;
+	private Map<String,CreationToolEntry> entries = new HashMap<String,CreationToolEntry>();
+	
 	  public ORMGraphicalEditorPalette() {
 		  
 	    addGroup();
@@ -40,11 +46,24 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 	    createComponentsDrawer();
 	    createComponentPartsDrawer();
 	    createConnectionsDrawer();
+	    
+	    EditorChangeNotifier.instance().register(this);            //get notified when changes in the editor occur
+	    initVisibility();
 	  }
-	 
+
+	  private void initVisibility() {
+	    setRoleTypeVisible(false);
+	  }
+
+    @Override
+	  public boolean equals(Object other){
+	    return this.getClass().equals(other.getClass());
+	  }
+	  
 	  //!	Update function for EditorChangeNotifier
-	  public void update(){
-		  System.out.println("Palette update.");
+	  public void update(String type){
+		  System.out.println("Palette update: "+type);
+		  if(type == "StepIn" /*&& !isRoleTypeVisible()*/) setRoleTypeVisible(true);
 	  }
 	  
 	  private void addSelectionTool() {
@@ -63,18 +82,27 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 			CreationToolEntry entry = new CreationToolEntry("Compartment", "Create a new Compartment", new ORMCompartmentFactory(), null, null);
 			entry.setToolClass(CreationAndDirectEditTool.class);
 			drawer.add(entry);
+			entries.put("Compartment", entry);
+			
 			entry = new CreationToolEntry("NaturalType", "Create a new NaturalType", new ORMNaturalTypeFactory(), null, null);
 			entry.setToolClass(CreationAndDirectEditTool.class);
 			drawer.add(entry);
+			entries.put("NaturalType", entry);
+			
 			entry = new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null, null);
 			entry.setToolClass(CreationAndDirectEditTool.class);
 			drawer.add(entry);
+			entries.put("RoleType", entry);
+			
 			entry = new CreationToolEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(), null, null);
 			entry.setToolClass(CreationAndDirectEditTool.class);
 			drawer.add(entry);
+			entries.put("RoleGroup", entry);
+			
 			entry = new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
 			entry.setToolClass(CreationAndDirectEditTool.class);
 			drawer.add(entry);
+			entries.put("Group", entry);
 			group.add(drawer);
 	}
 	
@@ -125,6 +153,15 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 			drawer.add(entry9);
 			group.add(drawer);
 	  }
+
+    public boolean isRoleTypeVisible() {
+      return RoleTypeVisible;
+    }
+
+    public void setRoleTypeVisible(boolean roleTypeVisible) {
+      RoleTypeVisible = roleTypeVisible;
+      entries.get("RoleType").setVisible(roleTypeVisible);
+    }
 }
 
 

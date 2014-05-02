@@ -19,6 +19,10 @@ import org.framed.orm.ui.editor.ORMMultiPageEditor;
  * */
 public class GoUpTreeCommand extends Command {
 
+  public GoUpTreeCommand() {
+    super.setLabel("GoUpTree");
+  }
+
   private AbstractGraphicalEditPart editpart;
 
   @Override

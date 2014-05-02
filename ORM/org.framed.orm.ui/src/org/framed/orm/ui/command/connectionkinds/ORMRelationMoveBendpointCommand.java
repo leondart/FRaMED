@@ -21,6 +21,10 @@ public class ORMRelationMoveBendpointCommand extends Command {
   private Point oldDim1, oldDim2;
   private Dimension newDim1, newDim2;
 
+  public ORMRelationMoveBendpointCommand(){
+    super.setLabel("ORMRelationMoveBendpoint");
+  }
+  
   /** Move the bendpoint to the new location. */
   public void execute() {
     if (oldDim1 == null && oldDim2 == null) {

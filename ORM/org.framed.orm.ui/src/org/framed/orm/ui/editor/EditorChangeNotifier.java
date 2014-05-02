@@ -40,11 +40,23 @@ public class EditorChangeNotifier implements EditPartListener,CommandStackEventL
 	 */
 	@Override
 	public void stackChanged(CommandStackEvent event) {
-		System.out.println("Stack changed"+event.getCommand());
+	  if(event.getCommand().getLabel() == null) return;
+//	  System.out.println("Stack changed: "+event.getCommand().getLabel());
+	  
+	  /*notify all registered observers*/
+	  Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
+
+      while(it.hasNext())
+      {
+          it.next().update(event.getCommand().getLabel());
+      }   
 	}
 	
 	public void register(ORMGraphicalEditorPalette observer){
-		observers.add(observer);
+	  if(!observers.contains(observer)){
+	     observers.add(observer);
+	  }
+
 	}
 	
 	public void unregister(ORMGraphicalEditorPalette observer){
@@ -58,7 +70,7 @@ public class EditorChangeNotifier implements EditPartListener,CommandStackEventL
 
 		while(it.hasNext())
 		{
-			it.next().update();
+			it.next().update(child.toString());
 		}		
 	}
 

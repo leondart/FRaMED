@@ -12,6 +12,10 @@ public class ORMMethodeRenameCommand extends Command {
 	  private String oldMethodeName, newMethodeName;
 	  private Methode met;
 	 
+	  public ORMMethodeRenameCommand(){
+	    super.setLabel("ORMMethodeRename");
+	  }
+	  
 	  @Override public void execute() {
 	    oldMethodeName = met.getName();
 	    met.setName(newMethodeName);

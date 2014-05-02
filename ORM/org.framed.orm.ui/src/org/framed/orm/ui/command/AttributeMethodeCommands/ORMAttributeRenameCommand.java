@@ -14,6 +14,10 @@ public class ORMAttributeRenameCommand extends Command {
 	  private String oldAttributeName, newAtttributeName;
 	  private Attribute att;
 	 
+	  public ORMAttributeRenameCommand(){
+	    super.setLabel("ORMAttributeRename");
+	  }
+	  
 	  @Override public void execute() {
 	     oldAttributeName = att.getName();
 	     att.setName(newAtttributeName);

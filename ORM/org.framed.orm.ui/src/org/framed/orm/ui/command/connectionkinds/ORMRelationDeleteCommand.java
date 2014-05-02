@@ -20,6 +20,10 @@ public class ORMRelationDeleteCommand extends Command {
     /** Target of the relation. */
     private Node target;
  
+    public ORMRelationDeleteCommand(){
+      super.setLabel("ORMRelationDelete");
+    }
+    
     /**
      * {@inheritDoc}
      */

@@ -15,6 +15,10 @@ public class ORMNodeChangeConstraintsCommand extends Command {
 	private Rectangle newConstraint;
 	private Node node;
 	
+	public ORMNodeChangeConstraintsCommand(){
+	  super.setLabel("ORMNodeChangeConstraints");
+	}
+	
 	/**
 	 * The command can be executed when all parameters have been set.
 	 */

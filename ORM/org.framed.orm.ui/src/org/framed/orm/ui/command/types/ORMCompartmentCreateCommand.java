@@ -20,6 +20,11 @@ public class ORMCompartmentCreateCommand extends Command {
 	
 	private CompartmentDiagram cd;
 	private Rolemodel rm, parentrolemodel;
+	
+	public ORMCompartmentCreateCommand(){
+	  super.setLabel("ORMCompartmentCreate");
+	}
+	
 	/** 
 	 * The command can be executed if all parameters have been set.
 	 */

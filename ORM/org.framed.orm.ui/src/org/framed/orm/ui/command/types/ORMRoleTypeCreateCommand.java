@@ -16,6 +16,11 @@ public class ORMRoleTypeCreateCommand extends Command {
 	private Rectangle   constraints;
 	private Rolemodel   parentrolemodel;
 	private RoleGroup   roleGroup;
+	
+	public ORMRoleTypeCreateCommand(){
+	  super.setLabel("ORMRoleTypeCreate");
+	}
+	
 	/** 
 	 * The command can be executed if all parameters have been set.
 	 */

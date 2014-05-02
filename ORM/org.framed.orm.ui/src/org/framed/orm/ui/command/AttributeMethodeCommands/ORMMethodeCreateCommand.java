@@ -14,6 +14,10 @@ public class ORMMethodeCreateCommand extends Command {
 		private Methode methode;
 		private Type type;
 
+		public ORMMethodeCreateCommand(){
+		  super.setLabel("ORMMethodeCreate");
+		}
+		
 		/** 
 		 * The command can be executed if all parameters have been set.
 		 */

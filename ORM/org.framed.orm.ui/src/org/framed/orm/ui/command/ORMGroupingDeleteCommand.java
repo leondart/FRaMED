@@ -28,6 +28,10 @@ public class ORMGroupingDeleteCommand extends Command {
 	  /** Targets for the links that start or end at this node. */
 	  private Map<Relation, Node> targetLinks;
 	  
+	  public ORMGroupingDeleteCommand(){
+	    super.setLabel("ORMGroupingDelete");
+	  }
+	  
 	  @Override
 	  public void execute() {
 		detachLinks(); 

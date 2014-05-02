@@ -29,6 +29,9 @@ public class ORMRoleGroupDeleteCommand extends Command {
   /** Targets for the relations that start or end at this node. */
   private Map<Relation, Node> targetLinks;
 
+  public ORMRoleGroupDeleteCommand(){
+    super.setLabel("ORMRoleGroupDelete");
+  }
 
   @Override
   public void execute() {

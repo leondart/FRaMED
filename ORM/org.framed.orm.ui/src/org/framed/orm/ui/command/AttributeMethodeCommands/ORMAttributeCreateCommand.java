@@ -13,6 +13,10 @@ public class ORMAttributeCreateCommand extends Command {
 	private Attribute attribute;
 	private Type type;
 
+	public ORMAttributeCreateCommand(){
+	  super.setLabel("ORMAttributeCreate");
+	}
+	
 	/** 
 	 * The command can be executed if all parameters have been set.
 	 */

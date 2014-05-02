@@ -22,6 +22,10 @@ public class ORMRelationDeleteBendpointCommand extends Command {
 
   private Point dim1, dim2;
 
+  public ORMRelationDeleteBendpointCommand(){
+    super.setLabel("ORMRelationDeleteBendpoint");
+  }
+  
   /**
    * Only execute when the relation is not null and index is valid.
    */

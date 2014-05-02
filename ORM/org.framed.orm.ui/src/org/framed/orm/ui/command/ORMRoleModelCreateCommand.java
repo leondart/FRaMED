@@ -17,6 +17,10 @@ public class ORMRoleModelCreateCommand extends Command {
 		private Compartment compartment;
 		private Rolemodel rm;
 
+		public ORMRoleModelCreateCommand(){
+			super.setLabel("ORMRoleModelCreate");
+		}
+		
 		/** 
 		 * The command can be executed if all parameters have been set.
 		 */

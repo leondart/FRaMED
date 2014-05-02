@@ -17,6 +17,10 @@ public class ORMRelationCreateBendpointCommand extends Command {
   /** Relation to which the bendpoint is added. */
   private Relation relation;
 
+  public ORMRelationCreateBendpointCommand(){
+    super.setLabel("ORMRelationCreateBendpoint");
+  }
+  
   @Override
   public void execute() {
     Point source = new Point(dim1.width, dim1.height);

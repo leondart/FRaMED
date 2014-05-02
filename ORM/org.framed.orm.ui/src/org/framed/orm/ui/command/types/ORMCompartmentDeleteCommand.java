@@ -28,6 +28,10 @@ public class ORMCompartmentDeleteCommand extends Command {
 	  /** Targets for the relations that start or end at this node. */
 	  private Map<Relation, Node> targetLinks;
 	  
+	  public ORMCompartmentDeleteCommand(){
+	    super.setLabel("ORMCompartmentDelete");
+	  }
+	  
 	  @Override
 	  public void execute() {
 		detachLinks();

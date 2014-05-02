@@ -12,6 +12,10 @@ public class ORMNodeRenameCommand extends Command {
 	 private String oldName, newName;
 	  private Node model;
 	 
+	  public ORMNodeRenameCommand(){
+	    super.setLabel("ORMNodeRename");
+	  }
+	  
 	  @Override public void execute() {
 	    oldName = model.getName();
 	    model.setName(newName);
