@@ -17,6 +17,7 @@ import org.eclipse.gef.ui.actions.DirectEditAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
 import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
+import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
@@ -122,7 +123,11 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
 
   @Override
   protected PaletteRoot getPaletteRoot() {
-    return new ORMGraphicalEditorPalette();
+    PaletteRoot tmp = new ORMGraphicalEditorPalette();
+    PaletteViewer viewer = new PaletteViewer();
+    viewer.setPaletteRoot(tmp);
+    viewer.enableVerticalScrollbar(true);
+    return tmp;
   }
 
   // creates own actions and actions for shortcuts
