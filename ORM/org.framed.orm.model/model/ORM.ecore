@@ -112,6 +112,8 @@
         defaultValueLiteral="*"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetLabelValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="*"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rlshipConstraints" upperBound="-1"
+        eType="#//RelationshipConstraint" eOpposite="#//RelationshipConstraint/relation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoleProhibition" eSuperTypes="#//RoleConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="Irreflexive" eSuperTypes="#//RelationshipConstraint"/>
@@ -119,7 +121,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RelationshipConstraint" abstract="true"
       eSuperTypes="#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relation" lowerBound="1"
-        eType="#//Relationship"/>
+        eType="#//Relationship" eOpposite="#//Relationship/rlshipConstraints"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relationContainer" eType="#//RelationContainer"

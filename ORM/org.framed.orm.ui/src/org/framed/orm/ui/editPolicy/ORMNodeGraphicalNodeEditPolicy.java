@@ -8,9 +8,11 @@ import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.AbstractRole;
+import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Fulfilment;
 import org.framed.orm.model.Inheritance;
+import org.framed.orm.model.Irreflexive;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
@@ -21,7 +23,9 @@ import org.framed.orm.model.RoleEquivalence;
 import org.framed.orm.model.RoleImplication;
 import org.framed.orm.model.RoleProhibition;
 import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Total;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
 import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMRoleGroupEditPart;
@@ -35,6 +39,7 @@ import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
  * @author Kay Bierzynski
  * */
 public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
+  private Relationship testedRelationship = null;
 
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
@@ -75,7 +80,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     }
     // Relationship End
     if (oSTCheck(request, Relationship.class, ORMRoleTypeEditPart.class, ORMRoleTypeEditPart.class)
-        && tNotEqualSCheck(request)) {
+        && tNotEqualSCheck(request) && !hasARelationship(request, true)) {
       retVal = setupConnectionCompleteCommand(request);
     }
 
@@ -83,8 +88,12 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     if (request.getNewObject() instanceof RelationshipConstraint
         && request.getSourceEditPart() instanceof ORMRoleTypeEditPart
         && request.getTargetEditPart() instanceof ORMRoleTypeEditPart && tNotEqualSCheck(request)
-        && testIrreflexiveTotalAcylic(request, true)) {
-      retVal = setupConnectionCompleteCommand(request);
+        && hasARelationship(request, true)&& !hasConstrainKind(request)) {
+      ORMRelationshipConstraintCreateCommand result =
+          (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
+      result.setTargetNode((Node) getHost().getModel());
+      result.setRelationship(testedRelationship);
+      retVal = result;
     }
 
     return retVal;
@@ -198,15 +207,19 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     // Irreflexive Acyclic Total start
     if (request.getNewObject() instanceof RelationshipConstraint
         && request.getTargetEditPart() instanceof ORMRoleTypeEditPart
-        && testIrreflexiveTotalAcylic(request, false)) {
+        && hasARelationship(request, false)) {
+
+      ORMRelationshipConstraintCreateCommand result = new ORMRelationshipConstraintCreateCommand();
+      result.setSourceNode((Node) getHost().getModel());
+      result.setRelationshipConstraint((RelationshipConstraint) request.getNewObject());
+      request.setStartCommand(result);
+
       if (((RoleType) getHost().getModel()).getParentRolemodel() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRolemodel());
+        result.setRelationContainer(((AbstractRole) getHost().getModel()).getParentRolemodel());
       if (((RoleType) getHost().getModel()).getParentRoleGroup() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRoleGroup());
+        result.setRelationContainer(((AbstractRole) getHost().getModel()).getParentRoleGroup());
+
+      retVal = result;
     }
 
     return retVal;
@@ -238,7 +251,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         && source.isInstance(request.getSourceEditPart().getModel());
   }
 
-
+  // the methods is for future adaption of the logic
   private boolean oSTMCheck(CreateConnectionRequest request, Class object, Class source,
       Class target) {
 
@@ -279,10 +292,21 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return result;
   }
 
-  private boolean testIrreflexiveTotalAcylic(CreateConnectionRequest request, boolean isTargetTest) {
-    boolean returnValue = false;
-    List<Relation> relList = new ArrayList();
-    List<Relation> relSourceList = new ArrayList();
+  private boolean hasConstrainKind(CreateConnectionRequest request) {
+    
+    if(testedRelationship != null){
+      for(RelationshipConstraint rel: testedRelationship.getRlshipConstraints()){
+        if(request.getNewObject() instanceof Irreflexive && rel instanceof Irreflexive) return true;
+        if(request.getNewObject() instanceof Total && rel instanceof Total) return true;
+        if(request.getNewObject() instanceof Acyclic && rel instanceof Acyclic) return true;
+      }
+    }
+    return false;
+  }
+  
+  private boolean hasARelationship(CreateConnectionRequest request, boolean isTargetTest) {
+    List<Relation> relList = new ArrayList<Relation>();
+    List<Relation> relSourceList = new ArrayList<Relation>();
     // false source true target
     if (isTargetTest) {
       relList.addAll(((ORMRoleTypeEditPart) request.getTargetEditPart())
@@ -296,22 +320,25 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       for (Relation rel : relList) {
         if (rel instanceof Relationship) {
           for (Relation rel2 : relSourceList) {
-            if (rel2.equals(rel))
-              returnValue = true;
+            if (rel2.equals(rel)){
+              testedRelationship = (Relationship) rel;
+              return true;
+            }
           }
 
         }
       }
     } else {
+      // test: has the focused editpart a relationship as connection?
       relList.addAll(((ORMRoleTypeEditPart) request.getTargetEditPart())
           .getModelSourceConnections());
       relList.addAll(((ORMRoleTypeEditPart) request.getTargetEditPart())
           .getModelTargetConnections());
       for (Relation rel : relList) {
         if (rel instanceof Relationship)
-          returnValue = true;
+          return true;
       }
     }
-    return returnValue;
+    return false;
   }
 }

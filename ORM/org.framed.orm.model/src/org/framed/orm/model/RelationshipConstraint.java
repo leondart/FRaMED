@@ -22,6 +22,7 @@ package org.framed.orm.model;
 public interface RelationshipConstraint extends Constraint {
   /**
    * Returns the value of the '<em><b>Relation</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Relation</em>' reference isn't clear,
@@ -31,7 +32,8 @@ public interface RelationshipConstraint extends Constraint {
    * @return the value of the '<em>Relation</em>' reference.
    * @see #setRelation(Relationship)
    * @see org.framed.orm.model.OrmPackage#getRelationshipConstraint_Relation()
-   * @model required="true"
+   * @see org.framed.orm.model.Relationship#getRlshipConstraints
+   * @model opposite="rlshipConstraints" required="true"
    * @generated
    */
   Relationship getRelation();

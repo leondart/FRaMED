@@ -2,6 +2,8 @@
  */
 package org.framed.orm.model;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +21,7 @@ package org.framed.orm.model;
  *   <li>{@link org.framed.orm.model.Relationship#getFirstParthood <em>First Parthood</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -248,5 +251,23 @@ public interface Relationship extends Relation {
    * @generated
    */
   void setTargetLabelValue(String value);
+
+  /**
+   * Returns the value of the '<em><b>Rlship Constraints</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.model.RelationshipConstraint}.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationshipConstraint#getRelation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Rlship Constraints</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Rlship Constraints</em>' reference list.
+   * @see org.framed.orm.model.OrmPackage#getRelationship_RlshipConstraints()
+   * @see org.framed.orm.model.RelationshipConstraint#getRelation
+   * @model opposite="relation"
+   * @generated
+   */
+  EList<RelationshipConstraint> getRlshipConstraints();
 
 } // Relationship

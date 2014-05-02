@@ -4,6 +4,7 @@ package org.framed.orm.model.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -87,11 +88,63 @@ public abstract class RelationshipConstraintImpl extends ConstraintImpl implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRelation(Relationship newRelation) {
+  public NotificationChain basicSetRelation(Relationship newRelation, NotificationChain msgs) {
     Relationship oldRelation = relation;
     relation = newRelation;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP_CONSTRAINT__RELATION, oldRelation, relation));
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP_CONSTRAINT__RELATION, oldRelation, newRelation);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRelation(Relationship newRelation) {
+    if (newRelation != relation) {
+      NotificationChain msgs = null;
+      if (relation != null)
+        msgs = ((InternalEObject)relation).eInverseRemove(this, OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS, Relationship.class, msgs);
+      if (newRelation != null)
+        msgs = ((InternalEObject)newRelation).eInverseAdd(this, OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS, Relationship.class, msgs);
+      msgs = basicSetRelation(newRelation, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP_CONSTRAINT__RELATION, newRelation, newRelation));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case OrmPackage.RELATIONSHIP_CONSTRAINT__RELATION:
+        if (relation != null)
+          msgs = ((InternalEObject)relation).eInverseRemove(this, OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS, Relationship.class, msgs);
+        return basicSetRelation((Relationship)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+      case OrmPackage.RELATIONSHIP_CONSTRAINT__RELATION:
+        return basicSetRelation(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**

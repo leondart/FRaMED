@@ -876,6 +876,15 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRelationship_RlshipConstraints() {
+    return (EReference)relationshipEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRoleProhibition() {
     return roleProhibitionEClass;
   }
@@ -1246,6 +1255,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEAttribute(relationshipEClass, RELATIONSHIP__FIRST_PARTHOOD);
     createEAttribute(relationshipEClass, RELATIONSHIP__SOURCE_LABEL_VALUE);
     createEAttribute(relationshipEClass, RELATIONSHIP__TARGET_LABEL_VALUE);
+    createEReference(relationshipEClass, RELATIONSHIP__RLSHIP_CONSTRAINTS);
 
     roleProhibitionEClass = createEClass(ROLE_PROHIBITION);
 
@@ -1425,6 +1435,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEAttribute(getRelationship_FirstParthood(), this.getParthood(), "firstParthood", "Unconstrained", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRelationship_SourceLabelValue(), ecorePackage.getEString(), "sourceLabelValue", "*", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRelationship_TargetLabelValue(), ecorePackage.getEString(), "targetLabelValue", "*", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationship_RlshipConstraints(), this.getRelationshipConstraint(), this.getRelationshipConstraint_Relation(), "rlshipConstraints", null, 0, -1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(roleProhibitionEClass, RoleProhibition.class, "RoleProhibition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1433,7 +1444,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEClass(roleImplicationEClass, RoleImplication.class, "RoleImplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(relationshipConstraintEClass, RelationshipConstraint.class, "RelationshipConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelationshipConstraint_Relation(), this.getRelationship(), null, "relation", null, 1, 1, RelationshipConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationshipConstraint_Relation(), this.getRelationship(), this.getRelationship_RlshipConstraints(), "relation", null, 1, 1, RelationshipConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationEClass, Relation.class, "Relation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRelation_RelationContainer(), this.getRelationContainer(), this.getRelationContainer_Relations(), "relationContainer", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -18,13 +18,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Parthood;
 import org.framed.orm.model.RelationContainer;
 import org.framed.orm.model.Relationship;
+import org.framed.orm.model.RelationshipConstraint;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +50,7 @@ import org.framed.orm.model.Relationship;
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstParthood <em>First Parthood</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSourceLabelValue <em>Source Label Value</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTargetLabelValue <em>Target Label Value</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRlshipConstraints <em>Rlship Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -262,6 +266,16 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * @ordered
    */
   protected String targetLabelValue = TARGET_LABEL_VALUE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getRlshipConstraints() <em>Rlship Constraints</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRlshipConstraints()
+   * @generated
+   * @ordered
+   */
+  protected EList<RelationshipConstraint> rlshipConstraints;
 
   /**
    * <!-- begin-user-doc -->
@@ -652,6 +666,19 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<RelationshipConstraint> getRlshipConstraints() {
+    if (rlshipConstraints == null) {
+      rlshipConstraints = new EObjectWithInverseResolvingEList<RelationshipConstraint>(RelationshipConstraint.class, this, OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS, OrmPackage.RELATIONSHIP_CONSTRAINT__RELATION);
+    }
+    return rlshipConstraints;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -667,6 +694,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
         if (source != null)
           msgs = ((InternalEObject)source).eInverseRemove(this, OrmPackage.NODE__OUTGOING_LINKS, Node.class, msgs);
         return basicSetSource((Node)otherEnd, msgs);
+      case OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS:
+        return ((InternalEList<InternalEObject>)(InternalEList<?>)getRlshipConstraints()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -685,6 +714,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
         return basicSetTarget(null, msgs);
       case OrmPackage.RELATIONSHIP__SOURCE:
         return basicSetSource(null, msgs);
+      case OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS:
+        return ((InternalEList<?>)getRlshipConstraints()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -741,6 +772,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
         return getSourceLabelValue();
       case OrmPackage.RELATIONSHIP__TARGET_LABEL_VALUE:
         return getTargetLabelValue();
+      case OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS:
+        return getRlshipConstraints();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -799,6 +832,10 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
       case OrmPackage.RELATIONSHIP__TARGET_LABEL_VALUE:
         setTargetLabelValue((String)newValue);
         return;
+      case OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS:
+        getRlshipConstraints().clear();
+        getRlshipConstraints().addAll((Collection<? extends RelationshipConstraint>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -853,6 +890,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
       case OrmPackage.RELATIONSHIP__TARGET_LABEL_VALUE:
         setTargetLabelValue(TARGET_LABEL_VALUE_EDEFAULT);
         return;
+      case OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS:
+        getRlshipConstraints().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -893,6 +933,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
         return SOURCE_LABEL_VALUE_EDEFAULT == null ? sourceLabelValue != null : !SOURCE_LABEL_VALUE_EDEFAULT.equals(sourceLabelValue);
       case OrmPackage.RELATIONSHIP__TARGET_LABEL_VALUE:
         return TARGET_LABEL_VALUE_EDEFAULT == null ? targetLabelValue != null : !TARGET_LABEL_VALUE_EDEFAULT.equals(targetLabelValue);
+      case OrmPackage.RELATIONSHIP__RLSHIP_CONSTRAINTS:
+        return rlshipConstraints != null && !rlshipConstraints.isEmpty();
     }
     return super.eIsSet(featureID);
   }

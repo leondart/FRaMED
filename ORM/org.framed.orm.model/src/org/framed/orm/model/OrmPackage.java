@@ -2278,13 +2278,22 @@ public interface OrmPackage extends EPackage {
   int RELATIONSHIP__TARGET_LABEL_VALUE = RELATION_FEATURE_COUNT + 7;
 
   /**
+   * The feature id for the '<em><b>Rlship Constraints</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__RLSHIP_CONSTRAINTS = RELATION_FEATURE_COUNT + 8;
+
+  /**
    * The number of structural features of the '<em>Relationship</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_FEATURE_COUNT = RELATION_FEATURE_COUNT + 8;
+  int RELATIONSHIP_FEATURE_COUNT = RELATION_FEATURE_COUNT + 9;
 
   /**
    * The number of operations of the '<em>Relationship</em>' class.
@@ -3469,6 +3478,17 @@ public interface OrmPackage extends EPackage {
   EAttribute getRelationship_TargetLabelValue();
 
   /**
+   * Returns the meta object for the reference list '{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Rlship Constraints</em>'.
+   * @see org.framed.orm.model.Relationship#getRlshipConstraints()
+   * @see #getRelationship()
+   * @generated
+   */
+  EReference getRelationship_RlshipConstraints();
+
+  /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleProhibition <em>Role Prohibition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4325,6 +4345,14 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EAttribute RELATIONSHIP__TARGET_LABEL_VALUE = eINSTANCE.getRelationship_TargetLabelValue();
+
+    /**
+     * The meta object literal for the '<em><b>Rlship Constraints</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIONSHIP__RLSHIP_CONSTRAINTS = eINSTANCE.getRelationship_RlshipConstraints();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleProhibitionImpl <em>Role Prohibition</em>}' class.
