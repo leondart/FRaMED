@@ -81,10 +81,10 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
   @Override
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
-    System.out.println("Init graphical viewer");
     getGraphicalViewer().setContents(cd);
+    // add the change notifier as listener
     getGraphicalViewer().getContents().getViewer().getContents().getViewer().getEditDomain()
-    .getCommandStack().addCommandStackEventListener(EditorChangeNotifier.instance());	//add the change notifier as listener
+        .getCommandStack().addCommandStackEventListener(EditorChangeNotifier.instance());
   }
 
   @Override

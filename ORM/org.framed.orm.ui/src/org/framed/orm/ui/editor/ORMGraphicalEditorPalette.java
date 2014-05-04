@@ -33,184 +33,210 @@ import org.framed.orm.ui.tool.CreationAndDirectEditTool;
  * @author Kay Bierzynski
  * */
 public class ORMGraphicalEditorPalette extends PaletteRoot {
-	
-	PaletteGroup group;
-	 
-//	private boolean RoleTypeVisible = false;
-	private Map<String,Boolean> entryVisibility = new HashMap<String,Boolean>();
-	private Map<String,CreationToolEntry> entries = new HashMap<String,CreationToolEntry>();
-	
-	  public ORMGraphicalEditorPalette() {
-		  
-	    addGroup();
-	    addSelectionTool();
-	    createComponentsDrawer();
-	    createComponentPartsDrawer();
-	    createConnectionsDrawer();
-	    
-	    EditorChangeNotifier.instance().register(this);            //get notified when changes in the editor occur
-	  }
 
-	  /*adds a palette entry to the maps*/
-	  private void addEntry(String name,CreationToolEntry entry,Boolean visibility){
-        entries.put(name, entry);
-	    setEntryVisibility(name, visibility);
-	  }
-	  
-	  /*sets the visibility of an entry in the map and in the palette*/
-	  private void setEntryVisibility(String name,Boolean visibility){
-	    entryVisibility.put(name, visibility);
-	    entries.get(name).setVisible(visibility.booleanValue());
-	  }
-	  
-	  private boolean getEntryVisisbility(String name){
-	    return entryVisibility.get(name).booleanValue();
-	  }
-	  
-    @Override
-	  public boolean equals(Object other){
-	    return this.getClass().equals(other.getClass());
-	  }
-	  
-	  //!	Update function for EditorChangeNotifier
-	  public void update(String type){
-		  System.out.println("Palette update: "+type);
-		  if(type == "StepIn" || type == "GoDownTree"){
-		    setEntryVisibility("RoleType", true);
-		    setEntryVisibility("RoleGroup", true);
-		    setEntryVisibility("Role Implication", true);
-		    setEntryVisibility("Role Equivalence", true);
-		    setEntryVisibility("Role Prohibition", true);
-		    setEntryVisibility("Relationship", true);
-		    setEntryVisibility("Irreflexive", true);
-		    setEntryVisibility("Total", true);
-		    setEntryVisibility("Acyclic", true);
-		    
-		    setEntryVisibility("Compartment", false);
-		    setEntryVisibility("NaturalType", false);
-		    setEntryVisibility("Group", false);
-		    setEntryVisibility("Fulfilment", false);
-		  }else if(type == "StepOut" || type == "GoUpTree"){
-		    setEntryVisibility("RoleType", false);
-            setEntryVisibility("RoleGroup", false);
-            setEntryVisibility("Role Implication", false);
-            setEntryVisibility("Role Equivalence", false);
-            setEntryVisibility("Role Prohibition", false);
-            setEntryVisibility("Relationship", false);
-            setEntryVisibility("Irreflexive", false);
-            setEntryVisibility("Total", false);
-            setEntryVisibility("Acyclic", false);
-            
-            setEntryVisibility("Compartment", true);
-            setEntryVisibility("NaturalType", true);
-            setEntryVisibility("Group", true);
-            setEntryVisibility("Fulfilment", true);
-		  }
-		  
-		  
-	  }
-	  
-	  private void addSelectionTool() {
-	    SelectionToolEntry entry = new SelectionToolEntry();
-	    group.add(entry);
-	    setDefaultEntry(entry);
-	  }
-	 
-	  private void addGroup() {
-	    group = new PaletteGroup("Framed Controls");
-	    add(group);
-	  }
-	 
-	  private void createComponentsDrawer() {
-			PaletteDrawer drawer = new PaletteDrawer("Componenten");
-			CreationToolEntry entry = new CreationToolEntry("Compartment", "Create a new Compartment", new ORMCompartmentFactory(), null, null);
-			entry.setToolClass(CreationAndDirectEditTool.class);
-			drawer.add(entry);
-			addEntry("Compartment", entry,true);
-			
-			entry = new CreationToolEntry("NaturalType", "Create a new NaturalType", new ORMNaturalTypeFactory(), null, null);
-			entry.setToolClass(CreationAndDirectEditTool.class);
-			drawer.add(entry);
-			addEntry("NaturalType", entry,true);
-			
-			entry = new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null, null);
-			entry.setToolClass(CreationAndDirectEditTool.class);
-			drawer.add(entry);
-			addEntry("RoleType", entry,false);
-			
-			entry = new CreationToolEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(), null, null);
-			entry.setToolClass(CreationAndDirectEditTool.class);
-			drawer.add(entry);
-			addEntry("RoleGroup", entry,false);
-			
-			entry = new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
-			entry.setToolClass(CreationAndDirectEditTool.class);
-			drawer.add(entry);
-			addEntry("Group", entry,true);
-			
-			group.add(drawer);
-	}
-	
+  PaletteGroup group;
 
-	  
-	  private void createComponentPartsDrawer() {
+  // private boolean RoleTypeVisible = false;
+  private Map<String, Boolean> entryVisibility = new HashMap<String, Boolean>();
+  private Map<String, CreationToolEntry> entries = new HashMap<String, CreationToolEntry>();
 
-			PaletteDrawer drawer = new PaletteDrawer("Parts");
-			
-			CreationToolEntry entry1 = new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodeFactory(), null, null);
-		    entry1.setToolClass(CreationAndDirectEditTool.class); 
-			drawer.add(entry1);
-			addEntry("Methode", entry1,true);
+  public ORMGraphicalEditorPalette() {
 
-			CreationToolEntry entry2 = new CreationToolEntry("Attribute", "Create a new Attribute", new ORMAttributeFactory(), null, null);
-		    entry2.setToolClass(CreationAndDirectEditTool.class); 
-			drawer.add(entry2);
-			addEntry("Attribute", entry2,true);
+    addGroup();
+    addSelectionTool();
+    createComponentsDrawer();
+    createComponentPartsDrawer();
+    createConnectionsDrawer();
 
-			group.add(drawer);
-	  }
-	  
-	  private void createConnectionsDrawer() {
+    EditorChangeNotifier.instance().register(this); // get notified when changes in the editor occur
+  }
 
-	    PaletteDrawer drawer = new PaletteDrawer("Connections");
-	    CreationToolEntry entry1 = new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation", new ORMFulfilmentFactory(), null, null);
-	    drawer.add(entry1);
-	    addEntry("Fulfilment", entry1,true);
+  /* adds a palette entry to the maps */
+  private void addEntry(String name, CreationToolEntry entry, Boolean visibility) {
+    entries.put(name, entry);
+    setEntryVisibility(name, visibility);
+  }
 
-	    CreationToolEntry  entry2 = new ConnectionCreationToolEntry("Role Implication", "Create a new Role Implication Relation", new ORMRoleImplicationFactory(), null, null);
-	    drawer.add(entry2);
-	    addEntry("Role Implication", entry2,false);
+  /* sets the visibility of an entry in the map and in the palette */
+  private void setEntryVisibility(String name, Boolean visibility) {
+    entryVisibility.put(name, visibility);
+    entries.get(name).setVisible(visibility.booleanValue());
+  }
 
-	    CreationToolEntry  entry3 = new ConnectionCreationToolEntry("Role Equivalence", "Create a new Role Equivalence Relation", new ORMRoleEquivalenceFactory(), null, null);
-	    drawer.add(entry3);
-	    addEntry("Role Equivalence", entry3,false);
+  private boolean getEntryVisisbility(String name) {
+    return entryVisibility.get(name).booleanValue();
+  }
 
-	    CreationToolEntry  entry4 = new ConnectionCreationToolEntry("Role Prohibition", "Create a new Role Prohibition Relation", new ORMRoleProhibitionFactory(), null, null);
-	    drawer.add(entry4);
-	    addEntry("Role Prohibition", entry4,false);
+  @Override
+  public boolean equals(Object other) {
+    return this.getClass().equals(other.getClass());
+  }
 
-	    CreationToolEntry  entry5 = new ConnectionCreationToolEntry("Inheritance", "Create a new Inheritance Relation", new ORMInheritanceFactory(), null, null);
-	    drawer.add(entry5);
-	    addEntry("Inheritance", entry5,true);
+  // ! Update function for EditorChangeNotifier
+  public void update(String type) {
+    if (type.equals("StepIn") || type.equals("GoDownTree")) {
+      setEntryVisibility("RoleType", true);
+      setEntryVisibility("RoleGroup", true);
+      setEntryVisibility("Role Implication", true);
+      setEntryVisibility("Role Equivalence", true);
+      setEntryVisibility("Role Prohibition", true);
+      setEntryVisibility("Relationship", true);
+      setEntryVisibility("Irreflexive", true);
+      setEntryVisibility("Total", true);
+      setEntryVisibility("Acyclic", true);
 
-	    CreationToolEntry  entry6 = new ConnectionCreationToolEntry("Relationship", "Create a new Relationship Relation", new ORMRelationshipFactory(), null, null);
-	    drawer.add(entry6);
-	    addEntry("Relationship", entry6,false);
+      setEntryVisibility("Compartment", false);
+      setEntryVisibility("NaturalType", false);
+      setEntryVisibility("Group", false);
+      setEntryVisibility("Fulfilment", false);
+    } else if (type.equals("StepOut") || type.equals("GoUpTree")) {
+      setEntryVisibility("RoleType", false);
+      setEntryVisibility("RoleGroup", false);
+      setEntryVisibility("Role Implication", false);
+      setEntryVisibility("Role Equivalence", false);
+      setEntryVisibility("Role Prohibition", false);
+      setEntryVisibility("Relationship", false);
+      setEntryVisibility("Irreflexive", false);
+      setEntryVisibility("Total", false);
+      setEntryVisibility("Acyclic", false);
 
-	    CreationToolEntry  entry7 = new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation", new ORMIrreflexiveFactory(), null, null);
-	    drawer.add(entry7);
-	    addEntry("Irreflexive", entry7,false);
+      setEntryVisibility("Compartment", true);
+      setEntryVisibility("NaturalType", true);
+      setEntryVisibility("Group", true);
+      setEntryVisibility("Fulfilment", true);
+    }
+  }
 
-	    CreationToolEntry  entry8 = new ConnectionCreationToolEntry("Total", "Create a new Total Relation", new ORMTotalFactory(), null, null);
-	    drawer.add(entry8);
-	    addEntry("Total", entry8,false);
+  private void addSelectionTool() {
+    SelectionToolEntry entry = new SelectionToolEntry();
+    group.add(entry);
+    setDefaultEntry(entry);
+  }
 
-	    CreationToolEntry  entry9 = new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation", new ORMAcyclicFactory(), null, null);
-	    drawer.add(entry9);
-	    addEntry("Acyclic", entry9,false);
+  private void addGroup() {
+    group = new PaletteGroup("Framed Controls");
+    add(group);
+  }
 
-	    group.add(drawer);
-	  }
+  private void createComponentsDrawer() {
+    PaletteDrawer drawer = new PaletteDrawer("Componenten");
+    CreationToolEntry entry =
+        new CreationToolEntry("Compartment", "Create a new Compartment",
+            new ORMCompartmentFactory(), null, null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry);
+    addEntry("Compartment", entry, true);
+
+    entry =
+        new CreationToolEntry("NaturalType", "Create a new NaturalType",
+            new ORMNaturalTypeFactory(), null, null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry);
+    addEntry("NaturalType", entry, true);
+
+    entry =
+        new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,
+            null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry);
+    addEntry("RoleType", entry, false);
+
+    entry =
+        new CreationToolEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(),
+            null, null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry);
+    addEntry("RoleGroup", entry, false);
+
+    entry =
+        new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry);
+    addEntry("Group", entry, true);
+
+    group.add(drawer);
+  }
+
+
+
+  private void createComponentPartsDrawer() {
+
+    PaletteDrawer drawer = new PaletteDrawer("Parts");
+
+    CreationToolEntry entry1 =
+        new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodeFactory(), null,
+            null);
+    entry1.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry1);
+    addEntry("Methode", entry1, true);
+
+    CreationToolEntry entry2 =
+        new CreationToolEntry("Attribute", "Create a new Attribute", new ORMAttributeFactory(),
+            null, null);
+    entry2.setToolClass(CreationAndDirectEditTool.class);
+    drawer.add(entry2);
+    addEntry("Attribute", entry2, true);
+
+    group.add(drawer);
+  }
+
+  private void createConnectionsDrawer() {
+
+    PaletteDrawer drawer = new PaletteDrawer("Connections");
+    CreationToolEntry entry1 =
+        new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation",
+            new ORMFulfilmentFactory(), null, null);
+    drawer.add(entry1);
+    addEntry("Fulfilment", entry1, true);
+
+    CreationToolEntry entry2 =
+        new ConnectionCreationToolEntry("Role Implication",
+            "Create a new Role Implication Relation", new ORMRoleImplicationFactory(), null, null);
+    drawer.add(entry2);
+    addEntry("Role Implication", entry2, false);
+
+    CreationToolEntry entry3 =
+        new ConnectionCreationToolEntry("Role Equivalence",
+            "Create a new Role Equivalence Relation", new ORMRoleEquivalenceFactory(), null, null);
+    drawer.add(entry3);
+    addEntry("Role Equivalence", entry3, false);
+
+    CreationToolEntry entry4 =
+        new ConnectionCreationToolEntry("Role Prohibition",
+            "Create a new Role Prohibition Relation", new ORMRoleProhibitionFactory(), null, null);
+    drawer.add(entry4);
+    addEntry("Role Prohibition", entry4, false);
+
+    CreationToolEntry entry5 =
+        new ConnectionCreationToolEntry("Inheritance", "Create a new Inheritance Relation",
+            new ORMInheritanceFactory(), null, null);
+    drawer.add(entry5);
+    addEntry("Inheritance", entry5, true);
+
+    CreationToolEntry entry6 =
+        new ConnectionCreationToolEntry("Relationship", "Create a new Relationship Relation",
+            new ORMRelationshipFactory(), null, null);
+    drawer.add(entry6);
+    addEntry("Relationship", entry6, false);
+
+    CreationToolEntry entry7 =
+        new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation",
+            new ORMIrreflexiveFactory(), null, null);
+    drawer.add(entry7);
+    addEntry("Irreflexive", entry7, false);
+
+    CreationToolEntry entry8 =
+        new ConnectionCreationToolEntry("Total", "Create a new Total Relation",
+            new ORMTotalFactory(), null, null);
+    drawer.add(entry8);
+    addEntry("Total", entry8, false);
+
+    CreationToolEntry entry9 =
+        new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
+            new ORMAcyclicFactory(), null, null);
+    drawer.add(entry9);
+    addEntry("Acyclic", entry9, false);
+
+    group.add(drawer);
+  }
 }
-
-
