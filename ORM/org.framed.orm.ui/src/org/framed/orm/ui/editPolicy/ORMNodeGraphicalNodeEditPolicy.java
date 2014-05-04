@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
@@ -29,6 +30,7 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreate
 import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMRoleGroupEditPart;
+import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
 import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
 
@@ -40,6 +42,14 @@ import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
  * */
 public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   private Relationship testedRelationship = null;
+
+  @Override
+  protected void showCreationFeedback(CreateConnectionRequest request) {
+      if (!parentTest(request.getTargetEditPart(), request.getSourceEditPart())) {
+        super.showCreationFeedback(request);
+    }
+
+  }
 
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
@@ -54,17 +64,23 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
     // Role Implication End
     if (oSMTMCheck(request, RoleImplication.class, AbstractRole.class, AbstractRole.class)
-        && tNotEqualSCheck(request)) {
+        && tNotEqualSCheck(request)
+        && !parentTest(request.getTargetEditPart(), request.getSourceEditPart())
+        && !childrenTest(request.getTargetEditPart(), request.getSourceEditPart())) {
       retVal = setupConnectionCompleteCommand(request);
     }
     // Role Equilvalence End
     if (oSMTMCheck(request, RoleEquivalence.class, AbstractRole.class, AbstractRole.class)
-        && tNotEqualSCheck(request)) {
+        && tNotEqualSCheck(request)
+        && !parentTest(request.getTargetEditPart(), request.getSourceEditPart())
+        && !childrenTest(request.getTargetEditPart(), request.getSourceEditPart())) {
       retVal = setupConnectionCompleteCommand(request);
     }
     // Role Prohibition End
     if (oSMTMCheck(request, RoleProhibition.class, AbstractRole.class, AbstractRole.class)
-        && tNotEqualSCheck(request)) {
+        && tNotEqualSCheck(request)
+        && !parentTest(request.getTargetEditPart(), request.getSourceEditPart())
+        && !childrenTest(request.getTargetEditPart(), request.getSourceEditPart())) {
       retVal = setupConnectionCompleteCommand(request);
     }
 
@@ -88,7 +104,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     if (request.getNewObject() instanceof RelationshipConstraint
         && request.getSourceEditPart() instanceof ORMRoleTypeEditPart
         && request.getTargetEditPart() instanceof ORMRoleTypeEditPart && tNotEqualSCheck(request)
-        && hasARelationship(request, true)&& !hasConstrainKind(request)) {
+        && hasARelationship(request, true) && !hasConstrainKind(request)) {
       ORMRelationshipConstraintCreateCommand result =
           (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
       result.setTargetNode((Node) getHost().getModel());
@@ -292,18 +308,67 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return result;
   }
 
-  private boolean hasConstrainKind(CreateConnectionRequest request) {
+  public boolean parentTest(EditPart target, EditPart source) {
+    boolean flag;
+    flag = false;
     
-    if(testedRelationship != null){
-      for(RelationshipConstraint rel: testedRelationship.getRlshipConstraints()){
-        if(request.getNewObject() instanceof Irreflexive && rel instanceof Irreflexive) return true;
-        if(request.getNewObject() instanceof Total && rel instanceof Total) return true;
-        if(request.getNewObject() instanceof Acyclic && rel instanceof Acyclic) return true;
+    if (target != null && source != null) {
+      if (target.equals(source.getParent())) {
+        return true;
+      } else {
+        if (source.getParent() instanceof ORMRolemodelEditPart) {
+          return false;
+        } else {
+          flag = parentTest(target, source.getParent());
+        }
+      }
+    }
+    
+    return flag;
+  }
+
+  public boolean childrenTest(EditPart target, EditPart source) {
+    boolean flag ;
+    flag= false;
+    ArrayList<EditPart> children = new ArrayList<EditPart>();
+    ArrayList<EditPart> roleGroups = new ArrayList<EditPart>();
+    children.addAll(source.getChildren());
+
+    for (EditPart child : children) {
+      if (target.equals(child))
+        return true;
+      if (child instanceof ORMRoleGroupEditPart) {
+        roleGroups.add(child);
+      }
+    }
+
+    if (roleGroups.size() == 0) {
+      return false;
+    } else {
+      for (EditPart rg : roleGroups) {
+        flag = childrenTest(target, rg);
+        if (flag)
+          return flag;
+      }
+    }
+    return flag;
+  }
+
+  private boolean hasConstrainKind(CreateConnectionRequest request) {
+
+    if (testedRelationship != null) {
+      for (RelationshipConstraint rel : testedRelationship.getRlshipConstraints()) {
+        if (request.getNewObject() instanceof Irreflexive && rel instanceof Irreflexive)
+          return true;
+        if (request.getNewObject() instanceof Total && rel instanceof Total)
+          return true;
+        if (request.getNewObject() instanceof Acyclic && rel instanceof Acyclic)
+          return true;
       }
     }
     return false;
   }
-  
+
   private boolean hasARelationship(CreateConnectionRequest request, boolean isTargetTest) {
     List<Relation> relList = new ArrayList<Relation>();
     List<Relation> relSourceList = new ArrayList<Relation>();
@@ -320,7 +385,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       for (Relation rel : relList) {
         if (rel instanceof Relationship) {
           for (Relation rel2 : relSourceList) {
-            if (rel2.equals(rel)){
+            if (rel2.equals(rel)) {
               testedRelationship = (Relationship) rel;
               return true;
             }

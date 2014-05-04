@@ -10,11 +10,10 @@ import org.eclipse.draw2d.MidpointLocator;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Relation;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
+
 
 public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
 
@@ -47,7 +46,8 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
     }
     return conn;
   }
-
+  
+  /***/
   @Override
   public void refreshVisuals() {
     super.refreshVisuals();
