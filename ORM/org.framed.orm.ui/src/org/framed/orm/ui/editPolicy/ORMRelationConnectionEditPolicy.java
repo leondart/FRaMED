@@ -20,6 +20,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
     if (getHost().getModel() instanceof RelationshipConstraint) {
       ORMRealtionshipConstraintDeleteCommand command = new ORMRealtionshipConstraintDeleteCommand();
       command.setRelationshipConstraint((RelationshipConstraint) getHost().getModel());
+      command.setEPViewer(getHost().getViewer());
       retVal = command;
     } else {
       ORMRelationDeleteCommand command = new ORMRelationDeleteCommand();

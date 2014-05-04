@@ -1,10 +1,15 @@
 package org.framed.orm.ui.command.connectionkinds;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RelationContainer;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 public class ORMRealtionshipConstraintDeleteCommand extends Command {
   
@@ -17,17 +22,18 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
   /** Target of the relation. */
   private Node target;
   private Relationship rlship;
-
+  private EditPartViewer epViewer;
   /**
    * {@inheritDoc}
    */
   @Override
   public boolean canExecute() {
-    return relation != null;
+    return relation != null && epViewer != null;
   }
 
   /**
-   * Disconnect Relation from source and target things and remove from owner RelationConatiner.
+   * Disconnect Relation from source 
+   * and target things and remove from owner RelationConatiner.
    */
   @Override
   public void execute() {
@@ -41,10 +47,18 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
     relation.setRelationContainer(null);
     relation.setRelation(null);
   
+    final List<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+  
+    relCList.addAll(rlship.getRlshipConstraints());
+   
+   for(final RelationshipConstraint relC : relCList){
+      ((ORMRelationshipConstraintEditPart) epViewer.getEditPartRegistry().get(relC)).refreshVisuals();
+    }
   }
 
   /**
-   * Reconnect the relation to the source and target and add it to the owner RelationContainer.
+   * Reconnect the relation to the source 
+   * and target and add it to the owner RelationContainer.
    */
   @Override
   public void undo() {
@@ -61,5 +75,10 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
    */
   public void setRelationshipConstraint(final RelationshipConstraint relaiton) {
     relation = relaiton;
+  }
+  
+
+  public void setEPViewer(final EditPartViewer epViewer) {
+    this.epViewer=epViewer;
   }
 }

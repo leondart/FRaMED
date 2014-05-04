@@ -26,6 +26,10 @@ public class ORMRelationshipConstraintCreateCommand extends Command {
     relation.setTarget(target);
     relation.setRelationContainer(rc);
     relation.setRelation(rlship);
+    if(rlship.getRlshipConstraints().size() != 0){
+      relation.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
+      relation.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
+    }
   }
 
   @Override
@@ -36,6 +40,7 @@ public class ORMRelationshipConstraintCreateCommand extends Command {
     relation.setTarget(null);
     relation.setRelationContainer(null);
     relation.setRelation(null);
+    
   }
 
   public void setSourceNode(Node source) {
