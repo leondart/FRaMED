@@ -53,7 +53,6 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     return fig;
   }
 
-
   @Override
   protected void createEditPolicies() {
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNodeDirectEditPolicy());
@@ -62,7 +61,6 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
   }
-
 
   @Override
   public void performRequest(Request req) {
