@@ -15,13 +15,13 @@ import org.framed.orm.model.RelationContainer;
 public class ORMRelationCreateCommand extends Command {
 
   /***/
-  private Node target;
+  protected Node target;
   /***/
-  private Node source;
+  protected Node source;
   /***/
-  private Relation relation;
+  protected Relation relation;
   /***/
-  private RelationContainer relcon;
+  protected RelationContainer relcon;
 
   /***/
   public ORMRelationCreateCommand() {
@@ -84,9 +84,6 @@ public class ORMRelationCreateCommand extends Command {
       final Point p = new Point((ps.x() + pt.x()) / 2, (ps.y() + pt.y()) / 2);
       Dimension d1 = p.getDifference(ps);
       Dimension d2 = p.getDifference(pt);
-
-      // +1 to count in the relation which is created at the moment
-     
 
       Point dim1P = new Point(d1.width(), d1.height());
       Point dim2P = new Point(d2.width(), d2.height());
