@@ -91,6 +91,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Fulfilment" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fufilledRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="&lt;...>"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fulfilledRoles" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoleEquivalence" eSuperTypes="#//RoleConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="Acyclic" eSuperTypes="#//RelationshipConstraint"/>

@@ -39,6 +39,7 @@ import org.framed.orm.model.RelationContainer;
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getDim1BP <em>Dim1 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getDim2BP <em>Dim2 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getFufilledRole <em>Fufilled Role</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.FulfilmentImpl#getFulfilledRoles <em>Fulfilled Roles</em>}</li>
  * </ul>
  * </p>
  *
@@ -114,6 +115,16 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
    * @ordered
    */
   protected String fufilledRole = FUFILLED_ROLE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getFulfilledRoles() <em>Fulfilled Roles</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFulfilledRoles()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> fulfilledRoles;
 
   /**
    * <!-- begin-user-doc -->
@@ -357,6 +368,18 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getFulfilledRoles() {
+    if (fulfilledRoles == null) {
+      fulfilledRoles = new EDataTypeUniqueEList<String>(String.class, this, OrmPackage.FULFILMENT__FULFILLED_ROLES);
+    }
+    return fulfilledRoles;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -432,6 +455,8 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
         return getDim2BP();
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         return getFufilledRole();
+      case OrmPackage.FULFILMENT__FULFILLED_ROLES:
+        return getFulfilledRoles();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -469,6 +494,10 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         setFufilledRole((String)newValue);
         return;
+      case OrmPackage.FULFILMENT__FULFILLED_ROLES:
+        getFulfilledRoles().clear();
+        getFulfilledRoles().addAll((Collection<? extends String>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -502,6 +531,9 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         setFufilledRole(FUFILLED_ROLE_EDEFAULT);
         return;
+      case OrmPackage.FULFILMENT__FULFILLED_ROLES:
+        getFulfilledRoles().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -528,6 +560,8 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
         return dim2BP != null && !dim2BP.isEmpty();
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
         return FUFILLED_ROLE_EDEFAULT == null ? fufilledRole != null : !FUFILLED_ROLE_EDEFAULT.equals(fufilledRole);
+      case OrmPackage.FULFILMENT__FULFILLED_ROLES:
+        return fulfilledRoles != null && !fulfilledRoles.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -550,6 +584,8 @@ public class FulfilmentImpl extends MinimalEObjectImpl.Container implements Fulf
     result.append(dim2BP);
     result.append(", fufilledRole: ");
     result.append(fufilledRole);
+    result.append(", fulfilledRoles: ");
+    result.append(fulfilledRoles);
     result.append(')');
     return result.toString();
   }

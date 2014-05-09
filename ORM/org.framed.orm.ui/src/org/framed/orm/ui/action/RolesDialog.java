@@ -12,15 +12,17 @@ import org.eclipse.swt.widgets.Button;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Node;
 
-public class AddRoletypesDialog extends Dialog {
+public class RolesDialog extends Dialog {
 
   
   private  ArrayList<AbstractRole> roles;
   private  ArrayList<Button> roleButtons;
+  private  ArrayList<String> choosenRoles;
   
-  protected AddRoletypesDialog(Shell shell) {
+  protected RolesDialog(Shell shell) {
     super(shell);
     roleButtons = new ArrayList<Button>();
+    choosenRoles = new ArrayList<String>();
   }
 
   protected void cancelPressed() {
@@ -29,7 +31,7 @@ public class AddRoletypesDialog extends Dialog {
   }
 
   protected void configureShell(Shell newShell) {
-    newShell.setText("Hello World");
+    newShell.setText("Choose roles");
     super.configureShell(newShell);
   }
   
@@ -37,8 +39,9 @@ public class AddRoletypesDialog extends Dialog {
     Composite composite = (Composite) super.createDialogArea(parent);
 
     for(AbstractRole role : roles){
-      Button button = new Button(composite, SWT.RADIO);
+      Button button = new Button(composite, SWT.CHECK);
       button.setText(((Node)role).getName());
+      button.setData(role);
       roleButtons.add(button);
     }
 
@@ -46,13 +49,21 @@ public class AddRoletypesDialog extends Dialog {
 }
   
   protected void okPressed() {
-    int returnCode = -1;
+    int returnCode = 1;
     setReturnCode(returnCode);
-    
+    for(Button button : roleButtons){
+      if(button.getSelection()){
+        choosenRoles.add(button.getText());
+      }
+    }
     close();
   }
   
   public void setRoles( ArrayList<AbstractRole> roles){
     this.roles = roles;
+  }
+  
+  public ArrayList<String> getChoosenRoles(){
+    return choosenRoles;
   }
 }

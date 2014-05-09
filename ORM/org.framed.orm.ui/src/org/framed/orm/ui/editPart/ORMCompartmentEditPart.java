@@ -229,20 +229,24 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
 
     ORMCompartmentV2Figure figure = (ORMCompartmentV2Figure) getFigure();
     Type model = (Type) getModel();
+    
     ExpandStateChangeCommand command = new ExpandStateChangeCommand();
     command.setContainer(model);
+    
     SaveAction save = new SaveAction(editorPart);
     Image imageExpand =
         new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/expandArrow3.png").createImage(), SWT.IMAGE_COPY);
-
     Image imageCollapse =
         new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/collapseArrow3.png").createImage(), SWT.IMAGE_COPY);
+    
     if (model.isIsExpand()) {
       figure.getListAttMet().remove(figure.getAttributeFigure());
+      
       if (!isEditorData)
         figure.getListAttMet().remove(figure.getMethodeFigure());
+      
       ((Label) figure.getButton().getChildren().get(0)).setIcon(imageExpand);
       getViewer().getEditDomain().getCommandStack().execute(command);
 

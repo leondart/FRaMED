@@ -26,7 +26,7 @@ public class ORMFulfilmentEditPart extends ORMRelationEditPart {
 		
 	@Override protected IFigure createFigure() {
 		Label tooltipTarget = new Label();
-		tooltipTarget.setText("Direct Editing of this Value over the Propertysheet from the related Realtionship under tragetLabelValue.");
+		tooltipTarget.setText("This tooltip is for layouting of the text, which is not implemented yet");
 		
 	    PolylineConnection conn = new PolylineConnection();
 	    conn.setAntialias(SWT.ON);
@@ -43,7 +43,16 @@ public class ORMFulfilmentEditPart extends ORMRelationEditPart {
         ConnectionEndpointLocator targetEndL = new  ConnectionEndpointLocator(conn,true);
         targetEndL.setVDistance(-1);
         targetEndL.setUDistance(1);
-        targetLabel.setText(((Fulfilment)getModel()).getFufilledRole());
+        String text = "<...>";
+        for(String name : ((Fulfilment)getModel()).getFulfilledRoles()){
+          if(text.equals("<...>")){
+            text = name;
+          }
+          else{
+            text = text + ", " + name;
+          }
+        }
+        targetLabel.setText(text);
         targetLabel.setToolTip(tooltipTarget);
         conn.add(targetLabel,targetEndL);
         
@@ -54,8 +63,19 @@ public class ORMFulfilmentEditPart extends ORMRelationEditPart {
 	@Override 
 	 protected void refreshVisuals() {
 		super.refreshVisuals();
+		
 		final Fulfilment model = (Fulfilment) getModel();
-
-		targetLabel.setText(model.getFufilledRole());
+		
+		String text = "<...>";
+        for(String name : model.getFulfilledRoles()){
+          if(text.equals("<...>")){
+            text = name;
+          }
+          else{
+            text = text + ", " + name;
+          }
+        }
+        
+        targetLabel.setText(text);
 	}
 }
