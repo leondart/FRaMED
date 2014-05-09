@@ -46,7 +46,6 @@ public class StepCommand extends Command {
         if (!part.equals(editorPart.getParentEditor())) {
           ORMMultiPageEditor multiPart = (ORMMultiPageEditor) part;
           multiPart.setContents(editpart.getViewer().getContents().getModel());
-          activePage.activate(editorPart.getParentEditor());
         }
       }
     } else {
