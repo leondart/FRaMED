@@ -1,9 +1,13 @@
 package org.framed.orm.ui.command.connectionkinds;
 
+import java.util.ArrayList;
+
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Relationship;
+import org.framed.orm.model.RelationshipConstraint;
 
 
 /**
@@ -19,12 +23,17 @@ public class ORMRelationMoveBendpointCommand extends Command {
   private Relation relation;
 
   private Point oldDim1, oldDim2;
+
   private Dimension newDim1, newDim2;
 
-  public ORMRelationMoveBendpointCommand(){
+  private Relationship rlship;
+
+  private ArrayList<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+
+  public ORMRelationMoveBendpointCommand() {
     super.setLabel("ORMRelationMoveBendpoint");
   }
-  
+
   /** Move the bendpoint to the new location. */
   public void execute() {
     if (oldDim1 == null && oldDim2 == null) {
@@ -36,6 +45,20 @@ public class ORMRelationMoveBendpointCommand extends Command {
     Point target = new Point(newDim2.width, newDim2.height);
     relation.getDim1BP().set(index, source);
     relation.getDim2BP().set(index, target);
+
+    if (relation instanceof RelationshipConstraint) {
+
+      rlship = ((RelationshipConstraint) relation).getRelation();
+      relCList.addAll(rlship.getRlshipConstraints());
+
+      for (RelationshipConstraint relC : relCList) {
+        if (!relC.equals(relation)) {
+          relC.getDim1BP().set(index, source);
+          relC.getDim2BP().set(index, target);
+        }
+      }
+    }
+
   }
 
   /** Restore the old location of the bendpoint. */
@@ -43,6 +66,16 @@ public class ORMRelationMoveBendpointCommand extends Command {
   public void undo() {
     relation.getDim1BP().set(index, oldDim1);
     relation.getDim2BP().set(index, oldDim2);
+
+    if (relation instanceof RelationshipConstraint) {
+      for (RelationshipConstraint relC : relCList) {
+        if (!relC.equals(relation)) {
+          relC.getDim1BP().set(index, oldDim1);
+          relC.getDim2BP().set(index, oldDim2);
+        }
+      }
+    }
+
   }
 
   /**

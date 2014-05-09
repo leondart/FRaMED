@@ -63,6 +63,8 @@ public class ORMRelationCreateCommand extends Command {
     relation.getTarget().getIncomingLinks().remove(relation);
     relation.setTarget(null);
     relation.setRelationContainer(null);
+    relation.getDim1BP().clear();
+    relation.getDim2BP().clear();
   }
 
   /***/
@@ -92,20 +94,20 @@ public class ORMRelationCreateCommand extends Command {
       if (relCount % 2 == 0) {
         relCount = relCount / 2;
         if (Math.abs(dim1P.y()) > Math.abs(dim1P.x())) {
-          dim1P.setX(-(dim1P.x() + relCount * 10));
-          dim2P.setX(-(dim2P.x() + relCount * 10));
+          dim1P.setX(-(dim1P.x() + relCount * 20));
+          dim2P.setX(-(dim2P.x() + relCount * 20));
         } else {
-          dim1P.setY(-(dim1P.y() + relCount * 10));
-          dim2P.setY(-(dim2P.y() + relCount * 10));
+          dim1P.setY(-(dim1P.y() + relCount * 20));
+          dim2P.setY(-(dim2P.y() + relCount * 20));
         }
       } else {
         relCount = (relCount + 1) / 2;
         if (Math.abs(dim1P.y()) > Math.abs(dim1P.x())) {
-          dim1P.setX(dim1P.x() + relCount * 10);
-          dim2P.setX(dim2P.x() + relCount * 10);
+          dim1P.setX(dim1P.x() + relCount * 20);
+          dim2P.setX(dim2P.x() + relCount * 20);
         } else {
-          dim1P.setY(dim1P.y() + relCount * 10);
-          dim2P.setY(dim2P.y() + relCount * 10);
+          dim1P.setY(dim1P.y() + relCount * 20);
+          dim2P.setY(dim2P.y() + relCount * 20);
         }
       }
 

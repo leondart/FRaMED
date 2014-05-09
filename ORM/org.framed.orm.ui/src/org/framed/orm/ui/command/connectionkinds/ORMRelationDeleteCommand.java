@@ -1,7 +1,9 @@
 package org.framed.orm.ui.command.connectionkinds;
 
-import org.eclipse.gef.commands.Command;
+import java.util.ArrayList;
 
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RelationContainer;
@@ -19,7 +21,11 @@ public class ORMRelationDeleteCommand extends Command {
   private Node source;
   /** Target of the relation. */
   private Node target;
-
+  
+  private ArrayList<Point> dim1BPList = new ArrayList<Point>();
+  
+  private ArrayList<Point> dim2BPList = new ArrayList<Point>();
+  
   public ORMRelationDeleteCommand() {
     super.setLabel("ORMRelationDelete");
   }
@@ -40,10 +46,14 @@ public class ORMRelationDeleteCommand extends Command {
     relationCon = relation.getRelationContainer();
     source = relation.getSource();
     target = relation.getTarget();
-
+    dim1BPList.addAll(relation.getDim1BP());
+    dim2BPList.addAll(relation.getDim2BP());
+    
     relation.setSource(null);
     relation.setTarget(null);
     relation.setRelationContainer(null);
+    relation.getDim1BP().clear();
+    relation.getDim2BP().clear();
   }
 
   /**
@@ -54,6 +64,9 @@ public class ORMRelationDeleteCommand extends Command {
     relation.setSource(source);
     relation.setTarget(target);
     relation.setRelationContainer(relationCon);
+    relation.getDim1BP().addAll(dim1BPList);
+    relation.getDim2BP().addAll(dim2BPList);
+    
   }
 
   /**
@@ -64,4 +77,5 @@ public class ORMRelationDeleteCommand extends Command {
   public void setRelation(final Relation relaiton) {
     relation = relaiton;
   }
+  
 }

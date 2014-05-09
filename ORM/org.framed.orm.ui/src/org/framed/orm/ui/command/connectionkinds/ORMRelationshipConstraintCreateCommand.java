@@ -24,15 +24,18 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
     relationCons.setTarget(target);
     relationCons.setRelationContainer(relcon);
     relationCons.setRelation(rlship);
+    
     if (rlship.getRlshipConstraints().size() != 0) {
       relationCons.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
       relationCons.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
     }
+    
     if (relationCons.getDim1BP().isEmpty()) {
       Point ps = new Point(source.getConstraints().x(), source.getConstraints().y());
       Point pt = new Point(target.getConstraints().x(), target.getConstraints().y());
       adaptRelationCreation(ps, pt);
     }
+    
   }
 
   @Override
@@ -43,7 +46,8 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
     relationCons.setTarget(null);
     relationCons.setRelationContainer(null);
     relationCons.setRelation(null);
-
+    relationCons.getDim1BP().clear();
+    relationCons.getDim2BP().clear();
   }
 
   @Override
