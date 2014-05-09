@@ -37,8 +37,9 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
-import org.framed.orm.ui.action.GoDownTreeAction;
-import org.framed.orm.ui.action.GoUpTreeAction;
+import org.framed.orm.ui.action.AddRoletypesToFulfillment;
+import org.framed.orm.ui.action.StepInAction;
+import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepOutNewPageAction;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
@@ -136,11 +137,11 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
 
     super.createActions();
 
-    IAction action = new GoDownTreeAction(this);
+    IAction action = new StepInAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 
-    action = new GoUpTreeAction(this);
+    action = new StepOutAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 
@@ -151,6 +152,11 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     action = new StepOutNewPageAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
+    
+    action = new AddRoletypesToFulfillment(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
 
     // create direct editing action for shortcuts
     action = new DirectEditAction(this);

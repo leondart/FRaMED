@@ -17,29 +17,29 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
  * @author Kay BIerzynski
  * */
 //TODO: rename this class to StepOut
-public class GoUpTreeAction extends SelectionAction {
+public class StepOutAction extends SelectionAction {
 
 
-	public static final String GO_UP_TREE_ID = "GoUpTree";
-	public static final String  GO_UP_TREE_REQUEST = "GoUpTree";
+	public static final String STEP_OUT_ID = "StepOut";
+	public static final String  STEP_OUT_REQUEST = "StepOut";
 	private Request request;
 
 	/**
 	 * Create a new instance of the class.
 	 * @param part
 	 */
-	public GoUpTreeAction(IWorkbenchPart part) {
+	public StepOutAction(IWorkbenchPart part) {
 		super(part);
-		setId( GO_UP_TREE_ID);
+		setId( STEP_OUT_ID);
 		setText("Step out");
-		request = new Request(GO_UP_TREE_REQUEST);
+		request = new Request(STEP_OUT_REQUEST);
 	}
 
 	/**
-	 * Execute the commands that perform the {@link GoUpTreeAction#GO_UP_TREE_REQUEST GO_UP_TREE_REQUEST}.
+	 * Execute the commands that perform the {@link StepOutAction#STEP_OUT_REQUEST GO_UP_TREE_REQUEST}.
 	 *
 	 * It is assumed that this method is executed directly after
-	 * {@link GoUpTreeAction#calculateEnabled() calculateEnabled()}
+	 * {@link StepOutAction#calculateEnabled() calculateEnabled()}
 	 */
 	@Override
 	public void run() {

@@ -17,10 +17,10 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
  * @author Kay Bierzynski
  * */
 //TODO: rename Class to STepIn
-public class GoDownTreeAction extends SelectionAction {
+public class StepInAction extends SelectionAction {
 
-	public static final String GO_DOWN_TREE_ID = "GoDownTree";
-	public static final String  GO_DOWN_TREE_REQUEST = "GoDownTree";
+	public static final String STEP_IN_ID = "StepIn";
+	public static final String  STEP_IN_REQUEST = "StepIn";
 
 	private Request request;
 
@@ -28,18 +28,18 @@ public class GoDownTreeAction extends SelectionAction {
     * Create a new instance of the class.
     * @param part
     */
-   public GoDownTreeAction(IWorkbenchPart part) {
+   public StepInAction(IWorkbenchPart part) {
        super(part);
-       setId( GO_DOWN_TREE_ID);
+       setId( STEP_IN_ID);
        setText("Step in");
-       request = new Request(GO_DOWN_TREE_REQUEST);
+       request = new Request(STEP_IN_REQUEST);
    }
 
    /**
-    * Execute the commands that perform the {@link GoDownTreeAction#GO_DOWN_TREE_REQUEST GO_DOWN_TREE_REQUEST}.
+    * Execute the commands that perform the {@link StepInAction#STEP_IN_REQUEST GO_DOWN_TREE_REQUEST}.
     *
     * It is assumed that this method is executed directly after
-    * {@link GoDownTreeAction#calculateEnabled() calculateEnabled()}
+    * {@link StepInAction#calculateEnabled() calculateEnabled()}
     */
    @Override
    public void run() {

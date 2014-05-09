@@ -7,8 +7,9 @@ import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.actions.ActionFactory;
-import org.framed.orm.ui.action.GoDownTreeAction;
-import org.framed.orm.ui.action.GoUpTreeAction;
+import org.framed.orm.ui.action.AddRoletypesToFulfillment;
+import org.framed.orm.ui.action.StepInAction;
+import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepOutNewPageAction;
 
@@ -24,6 +25,7 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
         setActionRegistry(actionRegistry);
     }
  
+	
     @Override
     public void buildContextMenu(IMenuManager menu) {
         GEFActionConstants.addStandardActionGroups(menu);
@@ -34,13 +36,15 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
         menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
         action = getActionRegistry().getAction(ActionFactory.REDO.getId());
         menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
-        action = getActionRegistry().getAction(GoDownTreeAction.GO_DOWN_TREE_ID);
+        action = getActionRegistry().getAction(StepInAction.STEP_IN_ID);
         menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
-        action = getActionRegistry().getAction(GoUpTreeAction.GO_UP_TREE_ID);
+        action = getActionRegistry().getAction(StepOutAction.STEP_OUT_ID);
         menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
         action = getActionRegistry().getAction(StepInNewPageAction.STEP_IN_NEW_PAGE_ID);
         menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
         action = getActionRegistry().getAction(StepOutNewPageAction.STEP_OUT_NEW_PAGE_ID);
+        menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+        action = getActionRegistry().getAction(AddRoletypesToFulfillment.ADD_RTS_TO_FUL_ID);
         menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
     }
  
