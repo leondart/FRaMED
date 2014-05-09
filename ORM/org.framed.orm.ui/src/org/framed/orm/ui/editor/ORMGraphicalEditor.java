@@ -13,6 +13,7 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.DirectEditAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
@@ -38,6 +39,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 import org.framed.orm.ui.action.AddRolesToFulfillmentAction;
+import org.framed.orm.ui.action.DeleteRelationshipConstraintsAction;
 import org.framed.orm.ui.action.RemoveRolesFromFulfillmentAction;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
@@ -70,7 +72,11 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
   public boolean getIsEditorData() {
     return isEditorData;
   }
-
+  
+  public ActionRegistry getEditorActionRegistry() {
+    return getActionRegistry();
+  }
+  
   public ORMGraphicalEditor(IEditorPart editor, Resource resource, boolean flag) {
 
     isEditorData = flag;
@@ -159,6 +165,10 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     getSelectionActions().add(action.getId());
     
     action = new RemoveRolesFromFulfillmentAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+    
+    action = new DeleteRelationshipConstraintsAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 

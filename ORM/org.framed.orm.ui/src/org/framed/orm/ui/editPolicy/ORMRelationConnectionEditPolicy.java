@@ -8,8 +8,10 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.ui.command.connectionkinds.ExecuteDeleteRlshipConsActionCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRealtionshipConstraintDeleteCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationDeleteCommand;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
  * @author Kay Bierzynski
@@ -20,10 +22,12 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
   protected Command getDeleteCommand(GroupRequest request) {
     Command retVal = null;
 
-    if (getHost().getModel() instanceof RelationshipConstraint) {
-      retVal =
-          setupRelationshipConstraintDelete((RelationshipConstraint) getHost().getModel(),
-              getHost().getViewer());
+    if (getHost().getModel() instanceof RelationshipConstraint && getHost() instanceof ORMRelationshipConstraintEditPart) {
+        ExecuteDeleteRlshipConsActionCommand command = new ExecuteDeleteRlshipConsActionCommand();
+        command.setEditPart((ORMRelationshipConstraintEditPart) getHost());
+        
+        retVal = command;
+       
     } else if (getHost().getModel() instanceof Relationship) {
       Relationship rlship = (Relationship) getHost().getModel();
       CompoundCommand compoundCommand = new CompoundCommand();

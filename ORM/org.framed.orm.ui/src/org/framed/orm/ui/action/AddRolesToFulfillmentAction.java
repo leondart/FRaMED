@@ -80,11 +80,11 @@ public class AddRolesToFulfillmentAction extends SelectionAction {
     if (returnCode == -1) {
       return;
     }
-    // add all choosen roles, when the popup dialog is closed through ok button
+    // add all chosen roles, when the popup dialog is closed through ok button
     else if (returnCode == 1) {
       AddRolesToFulCommand command = new AddRolesToFulCommand();
       command.setFulfillment(ful);
-      command.setRoles(dialog.getChoosenRoles());
+      command.setRoles(dialog.getChosenRoles());
       editPart.getViewer().getEditDomain().getCommandStack().execute(command);
     }
   }

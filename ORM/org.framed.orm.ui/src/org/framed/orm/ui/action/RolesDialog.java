@@ -17,12 +17,12 @@ public class RolesDialog extends Dialog {
   
   private  ArrayList<AbstractRole> roles;
   private  ArrayList<Button> roleButtons;
-  private  ArrayList<String> choosenRoles;
+  private  ArrayList<String> chosenRoles;
   
   protected RolesDialog(Shell shell) {
     super(shell);
     roleButtons = new ArrayList<Button>();
-    choosenRoles = new ArrayList<String>();
+    chosenRoles = new ArrayList<String>();
   }
 
   protected void cancelPressed() {
@@ -53,7 +53,7 @@ public class RolesDialog extends Dialog {
     setReturnCode(returnCode);
     for(Button button : roleButtons){
       if(button.getSelection()){
-        choosenRoles.add(button.getText());
+        chosenRoles.add(button.getText());
       }
     }
     close();
@@ -63,7 +63,7 @@ public class RolesDialog extends Dialog {
     this.roles = roles;
   }
   
-  public ArrayList<String> getChoosenRoles(){
-    return choosenRoles;
+  public ArrayList<String> getChosenRoles(){
+    return chosenRoles;
   }
 }
