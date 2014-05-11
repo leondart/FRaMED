@@ -12,6 +12,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 /**
  * @author Kay BIerzynski
@@ -49,7 +50,10 @@ public class GoUpTreeAction extends SelectionAction {
 		CompoundCommand compoundCommand = new CompoundCommand();
 		for(AbstractGraphicalEditPart editPart : editParts) {
 			compoundCommand.add(editPart.getCommand(request));
-			if(editorPart==null) editorPart = (ORMGraphicalEditor) ((DefaultEditDomain)editPart.getViewer().getEditDomain()).getEditorPart();
+			if(editorPart==null){
+			  editorPart = (ORMGraphicalEditor) ((DefaultEditDomain)editPart.getViewer().getEditDomain()).getEditorPart();
+			  editorPart.setEditorType(EditorType.ROLES);        //because we go up to the roles level
+			}
 		}
 		SaveAction save = new SaveAction(editorPart);
 		execute(compoundCommand);

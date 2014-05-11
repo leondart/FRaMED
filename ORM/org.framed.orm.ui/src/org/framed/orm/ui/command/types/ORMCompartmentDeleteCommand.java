@@ -48,7 +48,7 @@ public class ORMCompartmentDeleteCommand extends Command {
 	 
 	  public void setCompartment(Compartment type) {
 	    this.compartment = type;
-	    this.cd = type.getCd();
+	    this.cd = type.getCompartmentDiagram();
 	    this.parentrolemodel = type.getParentRolemodel();
 	  }
 	

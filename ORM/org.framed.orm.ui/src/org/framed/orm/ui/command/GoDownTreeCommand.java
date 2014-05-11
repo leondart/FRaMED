@@ -9,6 +9,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 
 /**
@@ -25,27 +26,29 @@ public class GoDownTreeCommand extends Command {
   @Override
   public void execute() {
 
+    //get the current editorpart
     ORMGraphicalEditor editorPart =
         (ORMGraphicalEditor) ((DefaultEditDomain) editpart.getViewer().getEditDomain())
             .getEditorPart();
-    IWorkbenchPage activePage = editorPart.getSite().getWorkbenchWindow().getActivePage();
+    IWorkbenchPage activePage = editorPart.getSite().getWorkbenchWindow().getActivePage();  //get the current active page
     IEditorInput input = editorPart.getEditorInput();
     IEditorPart[] editorlist = activePage.getEditors();
 
     // close all old editor instances
-    for (IEditorPart part : editorlist) {
+    for (IEditorPart editor : editorlist) {
 
-      if (!(part.equals(editorPart.getParentEditor())) && part.getEditorInput().equals(input)) {
-        activePage.closeEditor(part, true);
+      if (!editor.equals(editorPart.getParentEditor()) && editor.getEditorInput().equals(input)) {
+        activePage.closeEditor(editor, true);
       }
 
     }
 
     try {
-      // open new editor instance with old content edipart model
+      // open new editor instance with old content editpart model
       ORMMultiPageEditor newPart =
           (ORMMultiPageEditor) activePage.openEditor(input, "ORMEditor.editorID", false,
               IWorkbenchPage.MATCH_NONE);
+      editorPart.setEditorType(EditorType.ROLES);
       newPart.setContents(editpart.getViewer().getContents().getModel());
       // set focus on the editor instance with new content
       activePage.activate(editorPart.getParentEditor());

@@ -67,7 +67,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompartmentDiagram getCd() {
+  public CompartmentDiagram getCompartmentDiagram() {
     if (eContainerFeatureID() != OrmPackage.COMPARTMENT__CD) return null;
     return (CompartmentDiagram)eInternalContainer();
   }
@@ -254,7 +254,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
       case OrmPackage.COMPARTMENT__CD:
-        return getCd();
+        return getCompartmentDiagram();
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         return getRolemodel();
       case OrmPackage.COMPARTMENT__PARENT_ROLEMODEL:
@@ -314,7 +314,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
       case OrmPackage.COMPARTMENT__CD:
-        return getCd() != null;
+        return getCompartmentDiagram() != null;
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         return rolemodel != null;
       case OrmPackage.COMPARTMENT__PARENT_ROLEMODEL:

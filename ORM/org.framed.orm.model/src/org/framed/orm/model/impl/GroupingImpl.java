@@ -207,7 +207,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompartmentDiagram getCd() {
+  public CompartmentDiagram getCompartmentDiagram() {
     if (eContainerFeatureID() != OrmPackage.GROUPING__CD) return null;
     return (CompartmentDiagram)eInternalContainer();
   }
@@ -411,7 +411,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
       case OrmPackage.GROUPING__CONSTRAINTS:
         return getConstraints();
       case OrmPackage.GROUPING__CD:
-        return getCd();
+        return getCompartmentDiagram();
       case OrmPackage.GROUPING__ROLEMODEL:
         return getRolemodel();
       case OrmPackage.GROUPING__PARENT_ROLEMODEL:
@@ -506,7 +506,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
       case OrmPackage.GROUPING__CONSTRAINTS:
         return CONSTRAINTS_EDEFAULT == null ? constraints != null : !CONSTRAINTS_EDEFAULT.equals(constraints);
       case OrmPackage.GROUPING__CD:
-        return getCd() != null;
+        return getCompartmentDiagram() != null;
       case OrmPackage.GROUPING__ROLEMODEL:
         return rolemodel != null;
       case OrmPackage.GROUPING__PARENT_ROLEMODEL:

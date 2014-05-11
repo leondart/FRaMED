@@ -16,7 +16,7 @@ import org.framed.orm.model.OrmFactory;
  * <p>
  * The following features are tested:
  * <ul>
- *   <li>{@link org.framed.orm.model.Grouping#getCd() <em>Cd</em>}</li>
+ *   <li>{@link org.framed.orm.model.Grouping#getCompartmentDiagram() <em>Cd</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -93,10 +93,10 @@ public class GroupingTest extends TestCase {
   }
 
   /**
-   * Tests the '{@link org.framed.orm.model.Grouping#getCd() <em>Cd</em>}' feature getter.
+   * Tests the '{@link org.framed.orm.model.Grouping#getCompartmentDiagram() <em>Cd</em>}' feature getter.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.framed.orm.model.Grouping#getCd()
+   * @see org.framed.orm.model.Grouping#getCompartmentDiagram()
    * @generated
    */
   public void testGetCd() {

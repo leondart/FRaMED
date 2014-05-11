@@ -3032,7 +3032,7 @@ public interface OrmPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Cd</em>'.
-   * @see org.framed.orm.model.Compartment#getCd()
+   * @see org.framed.orm.model.Compartment#getCompartmentDiagram()
    * @see #getCompartment()
    * @generated
    */
@@ -3075,7 +3075,7 @@ public interface OrmPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Cd</em>'.
-   * @see org.framed.orm.model.Grouping#getCd()
+   * @see org.framed.orm.model.Grouping#getCompartmentDiagram()
    * @see #getGrouping()
    * @generated
    */
@@ -3279,7 +3279,7 @@ public interface OrmPackage extends EPackage {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Ct</em>'.
-   * @see org.framed.orm.model.Rolemodel#getCt()
+   * @see org.framed.orm.model.Rolemodel#getCompartment()
    * @see #getRolemodel()
    * @generated
    */

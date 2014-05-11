@@ -134,9 +134,9 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           retVal =
               setupConnectionStartCommand(request,
                   ((Compartment) getHost().getModel()).getParentRolemodel());
-        if (((Compartment) getHost().getModel()).getCd() != null)
+        if (((Compartment) getHost().getModel()).getCompartmentDiagram() != null)
           retVal =
-              setupConnectionStartCommand(request, ((Compartment) getHost().getModel()).getCd());
+              setupConnectionStartCommand(request, ((Compartment) getHost().getModel()).getCompartmentDiagram());
       }
     }
     // Role Implication start
@@ -202,9 +202,9 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           retVal =
               setupConnectionStartCommand(request,
                   ((Compartment) getHost().getModel()).getParentRolemodel());
-        if (((Compartment) getHost().getModel()).getCd() != null)
+        if (((Compartment) getHost().getModel()).getCompartmentDiagram() != null)
           retVal =
-              setupConnectionStartCommand(request, ((Compartment) getHost().getModel()).getCd());
+              setupConnectionStartCommand(request, ((Compartment) getHost().getModel()).getCompartmentDiagram());
       }
 
     }

@@ -48,7 +48,7 @@ public class ORMGroupingDeleteCommand extends Command {
 	 
 	  public void setGrouping(Grouping grouping) {
 	    this.grouping = grouping;
-	    this.cd = grouping.getCd();
+	    this.cd = grouping.getCompartmentDiagram();
 	    this.parentrolemodel = grouping.getParentRolemodel();
 	  }
 	  

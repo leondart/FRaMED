@@ -48,8 +48,9 @@ import org.framed.orm.ui.editPart.ORMEditPartFactory;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
-
+public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/AbstractGraphicalEditor {
+  public enum EditorType{COMPARTMENT,ROLES};    //if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
+  
   private Resource cdResource;
   private CompartmentDiagram cd;
 
@@ -57,6 +58,9 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
   private boolean isEditorData;
   private PropertySheetPage propertyPage;
 
+  private EditorChangeNotifier changeNotifier = new EditorChangeNotifier(this);
+  private EditorType editorType = EditorType.COMPARTMENT;   //standard is compartment
+  
   public GraphicalViewer getOwnViewer() {
     return getGraphicalViewer();
   }
@@ -74,17 +78,21 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
-
+    
     setEditDomain(new DefaultEditDomain(this));
+    
+//    ((ORMMultiPageEditor)parentEditor).setEditorChangeNotifier(changeNotifier);
   }
 
   @Override
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
     getGraphicalViewer().setContents(cd);
+//    this.addListenerObject(changeNotifier);
     // add the change notifier as listener
-    getGraphicalViewer().getContents().getViewer().getContents().getViewer().getEditDomain()
-        .getCommandStack().addCommandStackEventListener(EditorChangeNotifier.instance());
+    getGraphicalViewer().getEditDomain().getCommandStack().addCommandStackEventListener(changeNotifier);
+//    getGraphicalViewer().getContents().addEditPartListener(changeNotifier);
+//    getEditDomain().getEditorPart().addPropertyListener(changeNotifier);
   }
 
   @Override
@@ -96,7 +104,7 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
     getGraphicalViewer().setContextMenu(
         new ORMGraphicalEditorContextMenuProvider(getGraphicalViewer(), getActionRegistry()));
 
-    // register grid und snap to geometry action
+    // register grid and snap to geometry action
     getActionRegistry().registerAction(new ToggleGridAction(getGraphicalViewer()));
     getActionRegistry().registerAction(new ToggleSnapToGeometryAction(getGraphicalViewer()));
 
@@ -123,10 +131,18 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
 
   @Override
   protected PaletteRoot getPaletteRoot() {
-    PaletteRoot tmp = new ORMGraphicalEditorPalette();
+    ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette();
+    
     PaletteViewer viewer = new PaletteViewer();
+    
+    changeNotifier.register(tmp);                                       //register the palette for editor changes
+    if(getEditorType() == EditorType.ROLES)
+      tmp.setRoleEntriesVisibility(true);
+    else
+      tmp.setRoleEntriesVisibility(false);
+    //TODO: Load the correct palette configuration depending on which state the editor is at creation
     viewer.setPaletteRoot(tmp);
-    viewer.enableVerticalScrollbar(true);
+    viewer.enableVerticalScrollbar(false);
     return tmp;
   }
 
@@ -198,7 +214,7 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
   }
 
   /**
-   * This methos implements adapting to {@link IPropertySheetPage}. All other requests are forwarded
+   * This methods implements adapting to {@link IPropertySheetPage}. All other requests are forwarded
    * to the {@link GraphicalEditorWithFlyoutPalette#getAdapter(Class) parent} implementation.
    */
   @Override
@@ -240,6 +256,21 @@ public class ORMGraphicalEditor extends GraphicalEditorWithFlyoutPalette {
       return propertyPage;
     }
     return super.getAdapter(type);
+  }
+
+  public EditorType getEditorType() {
+    return editorType;
+  }
+
+  public void setEditorType(EditorType editorType) {
+    if(this.editorType.equals(editorType)) return;
+    
+    this.editorType = editorType;
+    changeNotifier.editorTypeChanged(editorType);
+    
+    //set behavior and data editor type to the same type (btw: the complete design of this editor hick-hack should be refactored) 
+    ((ORMMultiPageEditor)getParentEditor()).getBehaviorEditor().setEditorType(editorType);
+    ((ORMMultiPageEditor)getParentEditor()).getDataEditor().setEditorType(editorType);
   }
 
   /**

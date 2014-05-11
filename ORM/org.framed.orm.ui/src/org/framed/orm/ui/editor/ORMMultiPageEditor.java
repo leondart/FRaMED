@@ -27,8 +27,11 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
 import org.framed.orm.model.OrmPackage;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 /**
  * 
@@ -40,9 +43,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   private ORMGraphicalEditor editorBeh;
   private ORMGraphicalEditor editorData;
-
+  private EditorChangeNotifier changeNotifier = null;
   private Resource resource;
 
+  public void setEditorChangeNotifier(EditorChangeNotifier changeNotifier){
+    this.changeNotifier = changeNotifier;
+  }
+  
   public ORMGraphicalEditor getEditorBeh() {
     return editorBeh;
   }
@@ -181,6 +188,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
     }
 
+    if(changeNotifier != null) changeNotifier.pageChanged(newPageIndex);
   }
 
 
@@ -206,6 +214,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   public void resourceChanged(final IResourceChangeEvent event) {
     if (event.getType() == IResourceChangeEvent.PRE_CLOSE) {
       Display.getDefault().asyncExec(new Runnable() {
+        
         public void run() {
           IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
           for (int i = 0; i < pages.length; i++) {
@@ -216,11 +225,27 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
             }
           }
         }
+        
       });
     }
   }
+  
+  public ORMGraphicalEditor getBehaviorEditor(){
+    return editorBeh;
+  }
+  
+  public ORMGraphicalEditor getDataEditor(){
+    return editorData;
+  }
 
   public void setContents(Object obj) {
+//    System.out.println("setContents: "+obj);
+    /*first, check which editor type we will get when setting the object as content. The palette will be updated*/
+//    if(!editorBeh.getEditorType().equals(editorData.getEditorType()))
+//      editorData.setEditorType(editorBeh.getEditorType());
+//    else
+//      editorBeh.setEditorType(EditorType.ROLES);
+    
     editorBeh.getOwnViewer().setContents(obj);
     editorData.getOwnViewer().setContents(obj);
   }

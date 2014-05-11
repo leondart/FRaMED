@@ -144,7 +144,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Compartment getCt() {
+  public Compartment getCompartment() {
     if (eContainerFeatureID() != OrmPackage.ROLEMODEL__CT) return null;
     return (Compartment)eInternalContainer();
   }
@@ -317,7 +317,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
       case OrmPackage.ROLEMODEL__PLAYERS:
         return getPlayers();
       case OrmPackage.ROLEMODEL__CT:
-        return getCt();
+        return getCompartment();
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         return getParentGroup();
       case OrmPackage.ROLEMODEL__GROUPS:
@@ -406,7 +406,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
       case OrmPackage.ROLEMODEL__PLAYERS:
         return players != null && !players.isEmpty();
       case OrmPackage.ROLEMODEL__CT:
-        return getCt() != null;
+        return getCompartment() != null;
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         return getParentGroup() != null;
       case OrmPackage.ROLEMODEL__GROUPS:

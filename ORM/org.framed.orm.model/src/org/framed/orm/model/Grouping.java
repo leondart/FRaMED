@@ -38,14 +38,14 @@ public interface Grouping extends Node {
    * @model opposite="groups" transient="false" derived="true"
    * @generated
    */
-  CompartmentDiagram getCd();
+  CompartmentDiagram getCompartmentDiagram();
 
   /**
    * Sets the value of the '{@link org.framed.orm.model.Grouping#getCd <em>Cd</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Cd</em>' container reference.
-   * @see #getCd()
+   * @see #getCompartmentDiagram()
    * @generated
    */
   void setCd(CompartmentDiagram value);

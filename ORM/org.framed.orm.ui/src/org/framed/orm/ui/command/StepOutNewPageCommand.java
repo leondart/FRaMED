@@ -57,7 +57,7 @@ public class StepOutNewPageCommand extends Command {
 		  // --> solution: parent editpart and its children editparts will be initialisied agian
 		  if(editpart.getModel() instanceof Compartment){
 			  if(((Compartment)editpart.getModel()).getParentRolemodel() != null){
-				  Compartment ct = ((Compartment)editpart.getModel()).getParentRolemodel().getCt();
+				  Compartment ct = ((Compartment)editpart.getModel()).getParentRolemodel().getCompartment();
 				  Grouping group = ((Compartment)editpart.getModel()).getParentRolemodel().getParentGroup();
 				  //set the two editors on the same level
 				  if(ct!= null){
@@ -70,7 +70,7 @@ public class StepOutNewPageCommand extends Command {
 				  }	
 			  }
 			  else{
-				  CompartmentDiagram cd = ((Compartment)editpart.getModel()).getCd();
+				  CompartmentDiagram cd = ((Compartment)editpart.getModel()).getCompartmentDiagram();
 				  
 				  //set the row editors on the same level
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(cd);	
@@ -86,7 +86,7 @@ public class StepOutNewPageCommand extends Command {
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(group);	
 			  }
 			  else{
-				  CompartmentDiagram cd = ((Grouping)editpart.getModel()).getCd();
+				  CompartmentDiagram cd = ((Grouping)editpart.getModel()).getCompartmentDiagram();
 				  
 				  //set the row editors on the same level
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(cd);	

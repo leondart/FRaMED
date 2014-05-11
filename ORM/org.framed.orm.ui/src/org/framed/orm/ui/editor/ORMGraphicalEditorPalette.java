@@ -10,6 +10,7 @@ import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMCompartmentFactory;
@@ -47,8 +48,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     createComponentsDrawer();
     createComponentPartsDrawer();
     createConnectionsDrawer();
-
-    EditorChangeNotifier.instance().register(this); // get notified when changes in the editor occur
+    
+//    EditorChangeNotifier.instance().register(this); // get notified when changes in the editor occur
   }
 
   /* adds a palette entry to the maps */
@@ -67,14 +68,13 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     return entryVisibility.get(name).booleanValue();
   }
 
-  @Override
-  public boolean equals(Object other) {
-    return this.getClass().equals(other.getClass());
-  }
+//  @Override
+//  public boolean equals(Object other) {
+//    return this.getClass().equals(other.getClass());
+//  }
 
-  // ! Update function for EditorChangeNotifier
-  public void update(String type) {
-    if (type.equals("StepIn") || type.equals("GoDownTree")) {
+  public void setRoleEntriesVisibility(boolean visible){
+    if(visible){
       setEntryVisibility("RoleType", true);
       setEntryVisibility("RoleGroup", true);
       setEntryVisibility("Role Implication", true);
@@ -89,7 +89,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("NaturalType", false);
       setEntryVisibility("Group", false);
       setEntryVisibility("Fulfilment", false);
-    } else if (type.equals("StepOut") || type.equals("GoUpTree")) {
+    }else{
       setEntryVisibility("RoleType", false);
       setEntryVisibility("RoleGroup", false);
       setEntryVisibility("Role Implication", false);
@@ -105,6 +105,24 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Group", true);
       setEntryVisibility("Fulfilment", true);
     }
+  }
+  
+  
+  
+  public void update(ORMGraphicalEditor.EditorType type){
+    if(type.equals(EditorType.COMPARTMENT))
+      setRoleEntriesVisibility(false);
+    else
+      setRoleEntriesVisibility(true);
+  }
+  
+  // ! Update function for EditorChangeNotifier
+  public void update(String type) {
+//    System.out.println("Update "+type);
+    if (type.equals("StepIn") || type.equals("GoDownTree") || type.equals("StepInNewPage"))
+      setRoleEntriesVisibility(true);
+    else
+      setRoleEntriesVisibility(false);
   }
 
   private void addSelectionTool() {

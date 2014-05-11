@@ -96,14 +96,14 @@ public interface Rolemodel extends RelationContainer {
    * @model opposite="rolemodel" transient="false"
    * @generated
    */
-  Compartment getCt();
+  Compartment getCompartment();
 
   /**
    * Sets the value of the '{@link org.framed.orm.model.Rolemodel#getCt <em>Ct</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Ct</em>' container reference.
-   * @see #getCt()
+   * @see #getCompartment()
    * @generated
    */
   void setCt(Compartment value);

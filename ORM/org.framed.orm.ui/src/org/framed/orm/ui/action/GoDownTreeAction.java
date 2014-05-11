@@ -12,6 +12,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 /**
  * @author Kay Bierzynski
@@ -44,12 +45,16 @@ public class GoDownTreeAction extends SelectionAction {
    @Override
    public void run() {
 	   ORMGraphicalEditor editorPart = null;
-       // selected objects must be compartment or groupin editpart because the action is enabled.
+       // selected objects must be compartment or grouping editpart because the action is enabled.
        @SuppressWarnings("unchecked") List<AbstractGraphicalEditPart> editParts = getSelectedObjects();
        CompoundCommand compoundCommand = new CompoundCommand();
        for(AbstractGraphicalEditPart editPart : editParts) {
            compoundCommand.add(editPart.getCommand(request));
-           if(editorPart==null) editorPart = (ORMGraphicalEditor) ((DefaultEditDomain)editPart.getViewer().getEditDomain()).getEditorPart();
+           if(editorPart==null) 
+           {
+             editorPart = (ORMGraphicalEditor) ((DefaultEditDomain)editPart.getViewer().getEditDomain()).getEditorPart();
+             editorPart.setEditorType(EditorType.COMPARTMENT);          //because we go down to the compartments level
+           }
        }
        SaveAction save = new SaveAction(editorPart);
        execute(compoundCommand);
