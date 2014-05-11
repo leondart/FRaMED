@@ -26,7 +26,7 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
  *         CommandStackEventListener use that one instead of this helper class
  * 
  */
-public class EditorChangeNotifier implements EditPartListener, CommandStackEventListener, IPropertyListener/*, IWindowListener*/ {
+public class EditorChangeNotifier implements /*EditPartListener,*/ CommandStackEventListener/*, IPropertyListener, IWindowListener*/ {
 
   static int id = 0;
   private List<ORMGraphicalEditorPalette> observers = new ArrayList<ORMGraphicalEditorPalette>();
@@ -61,17 +61,16 @@ public class EditorChangeNotifier implements EditPartListener, CommandStackEvent
 //     System.out.println("Stack changed: "+event.getCommand().getLabel());
     String type = event.getCommand().getLabel();
     
-    if (type.equals("StepIn") || type.equals("GoDownTree") || type.equals("StepInNewPage"))
-      getParentEditor().setEditorType(EditorType.ROLES);
-    else
-      getParentEditor().setEditorType(EditorType.COMPARTMENT);
-    
-//    /* notify all registered observers */
-//    Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
-//
-//    while (it.hasNext()) {
-//      it.next().update();
-//    }
+//    if (type.equals("StepIn") || type.equals("GoDownTree") || type.equals("StepInNewPage"))
+//      getParentEditor().setEditorType(EditorType.ROLES);
+//    else
+//      getParentEditor().setEditorType(EditorType.COMPARTMENT);
+    /* notify all registered observers */
+    Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
+
+    while (it.hasNext()) {
+      it.next().update(type);
+    }
   }
 
   public void editorTypeChanged(ORMGraphicalEditor.EditorType type){
@@ -91,47 +90,7 @@ public class EditorChangeNotifier implements EditPartListener, CommandStackEvent
   public void unregister(ORMGraphicalEditorPalette observer) {
     observers.remove(observer);
   }
-
-  @Override
-  public void childAdded(EditPart child, int index) {
-    Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
-//System.out.println("child added");
-    while (it.hasNext()) {
-      it.next().update(child.toString());
-    }
-  }
-
-  @Override
-  public void partActivated(EditPart editpart) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void partDeactivated(EditPart editpart) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void removingChild(EditPart child, int index) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void selectedStateChanged(EditPart editpart) {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void propertyChanged(Object source, int propId) {
-    // TODO Auto-generated method stub
-    
-//    System.out.println("Property changed("+id+"): "+source);
-  }
-
+  
   public ORMGraphicalEditor getParentEditor() {
     return parentEditor;
   }

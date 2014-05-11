@@ -119,9 +119,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   // ! Update function for EditorChangeNotifier
   public void update(String type) {
 //    System.out.println("Update "+type);
-    if (type.equals("StepIn") || type.equals("GoDownTree") || type.equals("StepInNewPage"))
-      setRoleEntriesVisibility(true);
-    else
+//    if (type.equals("StepInNewPage"))
+//      setRoleEntriesVisibility(true);
+    /*else*/ if(type.equals("StepOutNewPage"))
       setRoleEntriesVisibility(false);
   }
 

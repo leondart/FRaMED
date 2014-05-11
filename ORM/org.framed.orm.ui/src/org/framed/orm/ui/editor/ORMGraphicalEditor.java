@@ -53,7 +53,7 @@ import org.framed.orm.ui.editPart.ORMEditPartFactory;
  * @author Kay Bierzynski
  * */
 public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/AbstractGraphicalEditor {
-  public enum EditorType{COMPARTMENT,ROLES};    //if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
+  public enum EditorType{COMPARTMENT,ROLES/*TODO: ,GROUPING*/};    //if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
   
   private Resource cdResource;
   private CompartmentDiagram cd;

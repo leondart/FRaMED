@@ -8,8 +8,11 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 public class StepCommand extends Command {
 
@@ -41,11 +44,17 @@ public class StepCommand extends Command {
 
     }
 
+//    System.out.println("Editor.size: "+editors.size());
+    
     if (editors.size() > 1) {
       for (IEditorPart part : editors) {
         if (!part.equals(editorPart.getParentEditor())) {
           ORMMultiPageEditor multiPart = (ORMMultiPageEditor) part;
           multiPart.setContents(editpart.getViewer().getContents().getModel());
+          if(editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram || editpart.getViewer().getContents().getModel() instanceof Grouping)
+            multiPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+          else
+            multiPart.getEditorBeh().setEditorType(EditorType.ROLES);
         }
       }
     } else {
@@ -54,6 +63,13 @@ public class StepCommand extends Command {
         ORMMultiPageEditor newPart =
             (ORMMultiPageEditor) activePage.openEditor(input, "ORMEditor.editorID", false,
                 IWorkbenchPage.MATCH_NONE);
+
+        if(editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram || editpart.getViewer().getContents().getModel() instanceof Grouping)
+          newPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+        else
+          newPart.getEditorBeh().setEditorType(EditorType.ROLES);    
+//        editorPart.setEditorType(EditorType.ROLES);
+
         newPart.setContents(editpart.getViewer().getContents().getModel());
         // set focus on the editor instance with new content
         activePage.activate(editorPart.getParentEditor());

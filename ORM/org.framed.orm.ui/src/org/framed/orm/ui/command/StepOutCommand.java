@@ -5,6 +5,7 @@ import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 
 /**
@@ -33,6 +34,8 @@ public class StepOutCommand extends StepCommand {
     if (editpart.getModel() instanceof Compartment) {
       final Compartment compartment = (Compartment) editpart.getModel();
       
+      editorPart.setEditorType(EditorType.COMPARTMENT);
+      
       if (compartment.getParentRolemodel() != null) {
         Compartment ct = compartment.getParentRolemodel().getCompartment();
         Grouping group = compartment.getParentRolemodel().getParentGroup();
@@ -52,10 +55,12 @@ public class StepOutCommand extends StepCommand {
         Grouping group = ((Grouping) editpart.getModel()).getParentRolemodel().getParentGroup();
         // set tabs on the same level
         ormMultiPageEditor.setContents(group);
+        editorPart.setEditorType(EditorType.ROLES);
       } else {
         CompartmentDiagram cd = ((Grouping) editpart.getModel()).getCompartmentDiagram();
         // set tabs on the same level
         ormMultiPageEditor.setContents(cd);
+        editorPart.setEditorType(EditorType.COMPARTMENT);
       }
     }
   }

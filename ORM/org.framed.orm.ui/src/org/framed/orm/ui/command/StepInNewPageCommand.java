@@ -7,8 +7,11 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.WorkbenchException;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 /**
  * @author Kay Bierzynski
@@ -54,6 +57,10 @@ public class StepInNewPageCommand extends Command {
 		   ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(editpart.getModel());	
 		   ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(editpart.getModel());
 		   
+		   if(editpart.getModel() instanceof CompartmentDiagram || editpart.getModel() instanceof Grouping)
+		     ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+		    else
+		     ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().setEditorType(EditorType.ROLES);
 	  }
 	 
 	 @Override
