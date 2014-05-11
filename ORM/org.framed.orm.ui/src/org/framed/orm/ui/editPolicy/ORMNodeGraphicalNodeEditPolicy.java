@@ -227,7 +227,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
       ORMRelationshipConstraintCreateCommand result = new ORMRelationshipConstraintCreateCommand();
       result.setSourceNode((Node) getHost().getModel());
-      result.setRelationshipConstraint((RelationshipConstraint) request.getNewObject());
+      result.setRelation((RelationshipConstraint) request.getNewObject());
       request.setStartCommand(result);
 
       if (((RoleType) getHost().getModel()).getParentRolemodel() != null)

@@ -2,6 +2,8 @@
  */
 package org.framed.orm.model;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -12,6 +14,7 @@ package org.framed.orm.model;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.framed.orm.model.Fulfilment#getFufilledRole <em>Fufilled Role</em>}</li>
+ *   <li>{@link org.framed.orm.model.Fulfilment#getFulfilledRoles <em>Fulfilled Roles</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,5 +49,21 @@ public interface Fulfilment extends Relation {
    * @generated
    */
   void setFufilledRole(String value);
+
+  /**
+   * Returns the value of the '<em><b>Fulfilled Roles</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Fulfilled Roles</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Fulfilled Roles</em>' attribute list.
+   * @see org.framed.orm.model.OrmPackage#getFulfilment_FulfilledRoles()
+   * @model
+   * @generated
+   */
+  EList<String> getFulfilledRoles();
 
 } // Fulfilment

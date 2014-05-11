@@ -3,6 +3,7 @@ package org.framed.orm.ui.command.connectionkinds;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
@@ -12,17 +13,24 @@ import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 public class ORMRealtionshipConstraintDeleteCommand extends Command {
-  
+
   /** Relation to be deleted. */
-  private RelationshipConstraint relation; 
-  /** RelationContainer that owns the relatiob. */
+  private RelationshipConstraint relation;
+  /** RelationContainer that owns the relation. */
   private RelationContainer relationCon;
   /** Source of the relation. */
   private Node source;
   /** Target of the relation. */
   private Node target;
+
   private Relationship rlship;
+
   private EditPartViewer epViewer;
+
+  private ArrayList<Point> dim1BPList = new ArrayList<Point>();
+
+  private ArrayList<Point> dim2BPList = new ArrayList<Point>();
+
   /**
    * {@inheritDoc}
    */
@@ -32,8 +40,7 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * Disconnect Relation from source 
-   * and target things and remove from owner RelationConatiner.
+   * Disconnect Relation from source and target things and remove from owner RelationConatiner.
    */
   @Override
   public void execute() {
@@ -41,24 +48,28 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
     source = relation.getSource();
     target = relation.getTarget();
     rlship = relation.getRelation();
-    
+    dim1BPList.addAll(relation.getDim1BP());
+    dim2BPList.addAll(relation.getDim2BP());
+
     relation.setSource(null);
     relation.setTarget(null);
     relation.setRelationContainer(null);
     relation.setRelation(null);
-  
+    relation.getDim1BP().clear();
+    relation.getDim2BP().clear();
+
     final List<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
-  
+
     relCList.addAll(rlship.getRlshipConstraints());
-   
-   for(final RelationshipConstraint relC : relCList){
-      ((ORMRelationshipConstraintEditPart) epViewer.getEditPartRegistry().get(relC)).refreshVisuals();
+
+    for (final RelationshipConstraint relC : relCList) {
+      ((ORMRelationshipConstraintEditPart) epViewer.getEditPartRegistry().get(relC))
+          .refreshVisuals();
     }
   }
 
   /**
-   * Reconnect the relation to the source 
-   * and target and add it to the owner RelationContainer.
+   * Reconnect the relation to the source and target and add it to the owner RelationContainer.
    */
   @Override
   public void undo() {
@@ -66,6 +77,14 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
     relation.setTarget(target);
     relation.setRelationContainer(relationCon);
     relation.setRelation(rlship);
+
+    if (rlship.getRlshipConstraints().size() != 0) {
+      relation.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
+      relation.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
+    } else {
+      relation.getDim1BP().addAll(dim1BPList);
+      relation.getDim2BP().addAll(dim2BPList);
+    }
   }
 
   /**
@@ -76,9 +95,9 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
   public void setRelationshipConstraint(final RelationshipConstraint relaiton) {
     relation = relaiton;
   }
-  
+
 
   public void setEPViewer(final EditPartViewer epViewer) {
-    this.epViewer=epViewer;
+    this.epViewer = epViewer;
   }
 }

@@ -66,6 +66,7 @@ public class FulfilmentItemProvider
       addDim1BPPropertyDescriptor(object);
       addDim2BPPropertyDescriptor(object);
       addFufilledRolePropertyDescriptor(object);
+      addFulfilledRolesPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -203,6 +204,28 @@ public class FulfilmentItemProvider
   }
 
   /**
+   * This adds a property descriptor for the Fulfilled Roles feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addFulfilledRolesPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Fulfilment_fulfilledRoles_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Fulfilment_fulfilledRoles_feature", "_UI_Fulfilment_type"),
+         OrmPackage.Literals.FULFILMENT__FULFILLED_ROLES,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
+  }
+
+  /**
    * This returns Fulfilment.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -243,6 +266,7 @@ public class FulfilmentItemProvider
       case OrmPackage.FULFILMENT__DIM1_BP:
       case OrmPackage.FULFILMENT__DIM2_BP:
       case OrmPackage.FULFILMENT__FUFILLED_ROLE:
+      case OrmPackage.FULFILMENT__FULFILLED_ROLES:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }

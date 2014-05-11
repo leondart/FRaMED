@@ -768,6 +768,15 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFulfilment_FulfilledRoles() {
+    return (EAttribute)fulfilmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRoleEquivalence() {
     return roleEquivalenceEClass;
   }
@@ -1239,6 +1248,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     fulfilmentEClass = createEClass(FULFILMENT);
     createEAttribute(fulfilmentEClass, FULFILMENT__FUFILLED_ROLE);
+    createEAttribute(fulfilmentEClass, FULFILMENT__FULFILLED_ROLES);
 
     roleEquivalenceEClass = createEClass(ROLE_EQUIVALENCE);
 
@@ -1419,6 +1429,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     initEClass(fulfilmentEClass, Fulfilment.class, "Fulfilment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFulfilment_FufilledRole(), ecorePackage.getEString(), "fufilledRole", "<...>", 0, 1, Fulfilment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFulfilment_FulfilledRoles(), ecorePackage.getEString(), "fulfilledRoles", null, 0, -1, Fulfilment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(roleEquivalenceEClass, RoleEquivalence.class, "RoleEquivalence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -1733,13 +1733,22 @@ public interface OrmPackage extends EPackage {
   int FULFILMENT__FUFILLED_ROLE = RELATION_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Fulfilled Roles</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FULFILMENT__FULFILLED_ROLES = RELATION_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Fulfilment</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FULFILMENT_FEATURE_COUNT = RELATION_FEATURE_COUNT + 1;
+  int FULFILMENT_FEATURE_COUNT = RELATION_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Fulfilment</em>' class.
@@ -3350,6 +3359,17 @@ public interface OrmPackage extends EPackage {
   EAttribute getFulfilment_FufilledRole();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.framed.orm.model.Fulfilment#getFulfilledRoles <em>Fulfilled Roles</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Fulfilled Roles</em>'.
+   * @see org.framed.orm.model.Fulfilment#getFulfilledRoles()
+   * @see #getFulfilment()
+   * @generated
+   */
+  EAttribute getFulfilment_FulfilledRoles();
+
+  /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleEquivalence <em>Role Equivalence</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4241,6 +4261,14 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EAttribute FULFILMENT__FUFILLED_ROLE = eINSTANCE.getFulfilment_FufilledRole();
+
+    /**
+     * The meta object literal for the '<em><b>Fulfilled Roles</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FULFILMENT__FULFILLED_ROLES = eINSTANCE.getFulfilment_FulfilledRoles();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleEquivalenceImpl <em>Role Equivalence</em>}' class.

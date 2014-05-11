@@ -1,9 +1,13 @@
 package org.framed.orm.ui.command.connectionkinds;
 
 
+import java.util.ArrayList;
+
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Relationship;
+import org.framed.orm.model.RelationshipConstraint;
 
 
 
@@ -22,10 +26,14 @@ public class ORMRelationDeleteBendpointCommand extends Command {
 
   private Point dim1, dim2;
 
-  public ORMRelationDeleteBendpointCommand(){
+  private Relationship rlship;
+
+  private ArrayList<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+
+  public ORMRelationDeleteBendpointCommand() {
     super.setLabel("ORMRelationDeleteBendpoint");
   }
-  
+
   /**
    * Only execute when the relation is not null and index is valid.
    */
@@ -44,6 +52,20 @@ public class ORMRelationDeleteBendpointCommand extends Command {
     dim2 = relation.getDim2BP().get(index);
     relation.getDim1BP().remove(index);
     relation.getDim2BP().remove(index);
+
+    if (relation instanceof RelationshipConstraint) {
+
+      rlship = ((RelationshipConstraint) relation).getRelation();
+      relCList.addAll(rlship.getRlshipConstraints());
+
+      for (RelationshipConstraint relC : relCList) {
+        if (!relC.equals(relation)) {
+          relC.getDim1BP().remove(index);
+          relC.getDim2BP().remove(index);
+        }
+      }
+    }
+
   }
 
   /**
@@ -53,6 +75,17 @@ public class ORMRelationDeleteBendpointCommand extends Command {
   public void undo() {
     relation.getDim1BP().add(index, dim1);
     relation.getDim2BP().add(index, dim2);
+
+    if (relation instanceof RelationshipConstraint) {
+
+      for (RelationshipConstraint relC : relCList) {
+        if (!relC.equals(relation)) {
+          relC.getDim1BP().add(index, dim1);
+          relC.getDim2BP().add(index, dim2);
+        }
+      }
+    }
+
   }
 
   /**

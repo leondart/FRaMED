@@ -1,5 +1,6 @@
 package org.framed.orm.ui.editPolicy;
 
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -10,12 +11,12 @@ import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.ui.action.GoDownTreeAction;
-import org.framed.orm.ui.action.GoUpTreeAction;
+import org.framed.orm.ui.action.StepInAction;
+import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepOutNewPageAction;
-import org.framed.orm.ui.command.GoDownTreeCommand;
-import org.framed.orm.ui.command.GoUpTreeCommand;
+import org.framed.orm.ui.command.StepInCommand;
+import org.framed.orm.ui.command.StepOutCommand;
 import org.framed.orm.ui.command.ORMGroupingDeleteCommand;
 import org.framed.orm.ui.command.StepInNewPageCommand;
 import org.framed.orm.ui.command.StepOutNewPageCommand;
@@ -24,6 +25,7 @@ import org.framed.orm.ui.command.types.ORMNaturalTypeDeleteCommand;
 import org.framed.orm.ui.command.types.ORMRoleTypeDeleteCommand;
 import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.ORMGroupingV1Figure;
 
@@ -62,21 +64,25 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
 	    return retVal;
 	  }
 	
-	 private GoDownTreeCommand createGoDownTreeCommand() {
+	 private StepInCommand createStepInCommand() {
 	        EditPart host =  getHost();
 	        
-	        GoDownTreeCommand command = new  GoDownTreeCommand();
-	        command.setEditPart((AbstractGraphicalEditPart)host);
+	        StepInCommand command = new  StepInCommand();
+	        command.setEditPart((AbstractGraphicalEditPart)host);	        
+	        command.setEditorPart( (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain())
+	            .getEditorPart());
 	        
 	        return command;
 	    }
 	
 	 
-	 private GoUpTreeCommand createGoUpTreeCommand() {
+	 private StepOutCommand createStepOutCommand() {
 	        EditPart host =  getHost();
 	       
-	        GoUpTreeCommand command = new  GoUpTreeCommand();
+	        StepOutCommand command = new  StepOutCommand();
 	        command.setEditPart((AbstractGraphicalEditPart)host);
+	        command.setEditorPart( (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain())
+            .getEditorPart());
 	        return command;
 	    }
 	 
@@ -104,11 +110,11 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
      */
     @Override
     public Command getCommand(Request request) {
-        if(request.getType().equals(GoDownTreeAction.GO_DOWN_TREE_REQUEST)){
-            return createGoDownTreeCommand();
+        if(request.getType().equals(StepInAction.STEP_IN_REQUEST)){
+            return createStepInCommand();
         }
-        if(request.getType().equals(GoUpTreeAction.GO_UP_TREE_REQUEST)){
-            return createGoUpTreeCommand();
+        if(request.getType().equals(StepOutAction.STEP_OUT_REQUEST)){
+            return createStepOutCommand();
         }
         if(request.getType().equals(StepInNewPageAction.STEP_IN_NEW_PAGE_REQUEST)){
             return createStepInNewPageCommand();

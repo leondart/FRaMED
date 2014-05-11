@@ -1,57 +1,58 @@
 package org.framed.orm.ui.command.connectionkinds;
 
 
-import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.RelationContainer;
+
+import org.eclipse.draw2d.geometry.Point;
+import org.framed.orm.model.Relation;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 
-public class ORMRelationshipConstraintCreateCommand extends Command {
+public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCommand {
 
-  private Node target;
-  private Node source;
-  private RelationshipConstraint relation;
-  private RelationContainer rc;
+
+  private RelationshipConstraint relationCons;
   private Relationship rlship;
 
   @Override
   public boolean canExecute() {
-    return target != null && source != null && relation != null && rc != null && rlship != null;
+    return target != null && source != null && relationCons != null && relcon != null && rlship != null;
   }
 
   @Override
   public void execute() {
-    relation.setSource(source);
-    relation.setTarget(target);
-    relation.setRelationContainer(rc);
-    relation.setRelation(rlship);
-    if(rlship.getRlshipConstraints().size() != 0){
-      relation.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
-      relation.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
+    relationCons.setSource(source);
+    relationCons.setTarget(target);
+    relationCons.setRelationContainer(relcon);
+    relationCons.setRelation(rlship);
+    
+    if (rlship.getRlshipConstraints().size() != 0) {
+      relationCons.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
+      relationCons.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
     }
+    
+    if (relationCons.getDim1BP().isEmpty()) {
+      Point ps = new Point(source.getConstraints().x(), source.getConstraints().y());
+      Point pt = new Point(target.getConstraints().x(), target.getConstraints().y());
+      adaptRelationCreation(ps, pt);
+    }
+    
   }
 
   @Override
   public void undo() {
-    relation.getSource().getOutgoingLinks().remove(relation);
-    relation.setSource(null);
-    relation.getTarget().getIncomingLinks().remove(relation);
-    relation.setTarget(null);
-    relation.setRelationContainer(null);
-    relation.setRelation(null);
-    
+    relationCons.getSource().getOutgoingLinks().remove(relationCons);
+    relationCons.setSource(null);
+    relationCons.getTarget().getIncomingLinks().remove(relationCons);
+    relationCons.setTarget(null);
+    relationCons.setRelationContainer(null);
+    relationCons.setRelation(null);
+    relationCons.getDim1BP().clear();
+    relationCons.getDim2BP().clear();
   }
 
-  public void setSourceNode(Node source) {
-    this.source = source;
-  }
-
-  public void setTargetNode(Node target) {
-    this.target = target;
-  }
-
-  public void setRelationshipConstraint(RelationshipConstraint relation) {
+  @Override
+  public void setRelation(final Relation relation) {
+    this.relationCons = (RelationshipConstraint) relation;
     this.relation = relation;
   }
 
@@ -59,8 +60,7 @@ public class ORMRelationshipConstraintCreateCommand extends Command {
     this.rlship = rlship;
   }
 
-  public void setRelationContainer(RelationContainer rm) {
-    this.rc = rm;
-  }
+
+  
 
 }
