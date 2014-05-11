@@ -34,7 +34,7 @@ public class StepOutCommand extends StepCommand {
       final Compartment compartment = (Compartment) editpart.getModel();
       
       if (compartment.getParentRolemodel() != null) {
-        Compartment ct = compartment.getParentRolemodel().getCt();
+        Compartment ct = compartment.getParentRolemodel().getCompartment();
         Grouping group = compartment.getParentRolemodel().getParentGroup();
         // set the two editors on the same level
         if (ct != null) {
@@ -43,7 +43,7 @@ public class StepOutCommand extends StepCommand {
           ormMultiPageEditor.setContents(group);
         }
       } else {
-        CompartmentDiagram cd = compartment.getCd();
+        CompartmentDiagram cd = compartment.getCompartmentDiagram();
         // set tabs on the same level
         ormMultiPageEditor.setContents(cd);
       }
@@ -53,7 +53,7 @@ public class StepOutCommand extends StepCommand {
         // set tabs on the same level
         ormMultiPageEditor.setContents(group);
       } else {
-        CompartmentDiagram cd = ((Grouping) editpart.getModel()).getCd();
+        CompartmentDiagram cd = ((Grouping) editpart.getModel()).getCompartmentDiagram();
         // set tabs on the same level
         ormMultiPageEditor.setContents(cd);
       }
