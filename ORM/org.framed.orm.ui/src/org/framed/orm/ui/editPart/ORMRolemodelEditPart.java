@@ -22,6 +22,7 @@ import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRolemodelXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMRolemodelFigure;
@@ -81,6 +82,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
   @Override
   protected void createEditPolicies() {
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMRolemodelXYLayoutPolicy());
+    installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
   }
 

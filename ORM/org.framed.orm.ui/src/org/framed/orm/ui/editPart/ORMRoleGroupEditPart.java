@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
+import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRoleGroupComponentEditPolicy;
@@ -59,6 +60,7 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMRoleGroupXYLayoutEditPolicy());
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMRoleGroupComponentEditPolicy());
     installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
+    installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
   }
 
