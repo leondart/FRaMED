@@ -58,12 +58,14 @@ public class RemoveRolesFromFulfillmentAction extends SelectionAction {
 
 
     ArrayList<AbstractRole> roles = new ArrayList<AbstractRole>();
-
-
+    ArrayList<AbstractRole> targetRoles = new ArrayList<AbstractRole>();
+    targetRoles.addAll(target.getRolemodel().getParticipants());
+    
     // get the roles, which already are fulfilled/played by the source of the selected
     // fulfillment
-    for (AbstractRole role : target.getRolemodel().getParticipants()) {
+    for (int i=0; i<targetRoles.size(); i++) {
       for (String name : ful.getFulfilledRoles()) {
+        AbstractRole role = targetRoles.get(i);
         if (name.equals(((Node) role).getName()))
           roles.add(role);
       }
