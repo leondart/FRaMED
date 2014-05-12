@@ -17,6 +17,7 @@ import org.eclipse.gef.ui.views.palette.PaletteViewerPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.framed.orm.ui.editor.ORMFlyoutPaletteComposite.ORMFlyoutPreferences;
 
 /**
  * @author studium
@@ -24,8 +25,8 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class AbstractGraphicalEditor extends GraphicalEditor{
 
-    private PaletteViewerProvider provider;
-    private FlyoutPaletteComposite splitter;
+    private ORMPaletteViewerProvider provider;
+    private ORMFlyoutPaletteComposite splitter;
     private CustomPalettePage page;
 
     /**
@@ -41,8 +42,8 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * 
      * @return the palette provider
      */
-    protected PaletteViewerProvider createPaletteViewerProvider() {
-        return new PaletteViewerProvider(getEditDomain());
+    protected ORMPaletteViewerProvider createPaletteViewerProvider() {
+        return new ORMPaletteViewerProvider(getEditDomain());
     }
 
     /**
@@ -56,7 +57,7 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * @see GraphicalEditor#createPartControl(Composite)
      */
     public void createPartControl(Composite parent) {
-        splitter = new FlyoutPaletteComposite(parent, SWT.NONE, getSite()
+        splitter = new ORMFlyoutPaletteComposite(parent, SWT.NONE, getSite()
                 .getPage(), getPaletteViewerProvider(), getPalettePreferences());
         super.createPartControl(splitter);
         splitter.setGraphicalControl(getGraphicalControl());
@@ -94,8 +95,8 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * @return the FlyoutPreferences object used to save the flyout palette's
      *         preferences
      */
-    protected FlyoutPreferences getPalettePreferences() {
-        return FlyoutPaletteComposite.createFlyoutPreferences(InternalGEFPlugin
+    protected ORMFlyoutPreferences getPalettePreferences() {
+        return ORMFlyoutPaletteComposite.createFlyoutPreferences(InternalGEFPlugin
                 .getDefault().getPluginPreferences());
     }
 
@@ -114,7 +115,7 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      *         PaletteViewers for this editor
      * @see #createPaletteViewerProvider()
      */
-    protected final PaletteViewerProvider getPaletteViewerProvider() {
+    protected final ORMPaletteViewerProvider getPaletteViewerProvider() {
         if (provider == null)
             provider = createPaletteViewerProvider();
         return provider;
@@ -140,15 +141,15 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * @author Pratik Shah
      * @since 3.0
      */
-    protected class CustomPalettePage extends PaletteViewerPage {
+    protected class CustomPalettePage extends ORMPaletteViewerPage {
         /**
          * Constructor
          * 
-         * @param provider
+         * @param ormPaletteViewerProvider
          *            the provider used to create a PaletteViewer
          */
-        public CustomPalettePage(PaletteViewerProvider provider) {
-            super(provider);
+        public CustomPalettePage(ORMPaletteViewerProvider ormPaletteViewerProvider) {
+            super(ormPaletteViewerProvider);
         }
 
         /**

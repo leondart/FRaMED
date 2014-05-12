@@ -52,6 +52,7 @@ public class ORMPaletteViewerProvider {
    */
   public PaletteViewer createPaletteViewer(Composite parent) {
     PaletteViewer pViewer = new PaletteViewer();
+    pViewer.enableVerticalScrollbar(true);
     pViewer.createControl(parent);
     configurePaletteViewer(pViewer);
     hookPaletteViewer(pViewer);
