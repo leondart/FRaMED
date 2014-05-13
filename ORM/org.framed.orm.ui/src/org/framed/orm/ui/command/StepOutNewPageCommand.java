@@ -12,6 +12,7 @@ import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 /**
  * @author Kay Bierzynski
@@ -45,6 +46,12 @@ public class StepOutNewPageCommand extends Command {
 				ORMMultiPageEditor newPart = (ORMMultiPageEditor) page.openEditor(input, "ORMEditor.editorID", false, IWorkbenchPage.MATCH_NONE );
 		     	newPart.getEditorBeh().getOwnViewer().setContents( editpart.getViewer().getContents().getModel());
 		     	newPart.getEditorData().getOwnViewer().setContents( editpart.getViewer().getContents().getModel());
+		     	
+		     	if(editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram || editpart.getViewer().getContents().getModel() instanceof Grouping)
+		          newPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+		        else
+		          newPart.getEditorBeh().setEditorType(EditorType.ROLES);
+		     	
 				// set focus on the editor instance with new content
 				page.activate(editorPart.getParentEditor());
 		   } catch (PartInitException e1) {
@@ -76,6 +83,9 @@ public class StepOutNewPageCommand extends Command {
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().getOwnViewer().setContents(cd);	
 				  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorData().getOwnViewer().setContents(cd);	
 			  }
+			  
+			  ((ORMMultiPageEditor)editorPart.getParentEditor()).getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+			  
 		  }
 		  else{
 			  if(((Grouping)editpart.getModel()).getParentRolemodel() != null){
