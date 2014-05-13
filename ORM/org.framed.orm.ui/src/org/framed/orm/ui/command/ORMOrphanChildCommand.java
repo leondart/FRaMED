@@ -29,6 +29,10 @@ public class ORMOrphanChildCommand extends Command {
 
   @Override
   public void execute() {
+    redo();
+  }
+
+  public void redo() {
     child.setParentRoleGroup(null);
     child.setParentRolemodel(null);
   }
@@ -36,11 +40,11 @@ public class ORMOrphanChildCommand extends Command {
   @Override
   public void undo() {
     if (parent instanceof RoleGroup) {
+      child.setParentRolemodel(null);
       child.setParentRoleGroup((RoleGroup) parent);
-      // child.setParentRolemodel(null);
     } else {
+      child.setParentRoleGroup(null);
       child.setParentRolemodel((Rolemodel) parent);
-      // child.setParentRoleGroup(null);
     }
   }
 

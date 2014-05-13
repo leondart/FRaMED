@@ -131,7 +131,6 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
 
     figure.getLabel().setText(model.getName());
     parent.setLayoutConstraint(this, figure, model.getConstraints());
-
   }
 
   @Override

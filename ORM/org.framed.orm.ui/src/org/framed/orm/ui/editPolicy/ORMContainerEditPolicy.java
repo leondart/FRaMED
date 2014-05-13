@@ -46,6 +46,7 @@ public class ORMContainerEditPolicy extends ContainerEditPolicy {
       orphan.setChild((AbstractRole) part.getModel());
       orphan.setParent((RelationContainer) this.getHost().getModel());
       orphan.setLabel("Reparenting");
+
       result.add(orphan);
     }
     return result.unwrap();
