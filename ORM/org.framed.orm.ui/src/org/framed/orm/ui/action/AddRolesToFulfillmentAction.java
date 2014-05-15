@@ -58,19 +58,20 @@ public class AddRolesToFulfillmentAction extends SelectionAction {
     Compartment target = (Compartment) ful.getTarget();
 
     // put all abstractroles in a list
+    ArrayList<AbstractRole> tmpRoles = new ArrayList<AbstractRole>();
     ArrayList<AbstractRole> roles = new ArrayList<AbstractRole>();
     roles.addAll(target.getRolemodel().getParticipants());
 
     // filter out the roles, which already are fulfilled/played by the source of the selected
     // fulfillment
-    for (int i=0; i<roles.size(); i++) {
+    for (AbstractRole role : roles) {
       for (String name : ful.getFulfilledRoles()) {
-        AbstractRole role = roles.get(i);
         if (name.equals(((Node) role).getName()))
-          roles.remove(role);
+          tmpRoles.add(role);
       }
     }
 
+    roles.removeAll(tmpRoles);
     // create and setup the popup dialog
     RolesDialog dialog = new RolesDialog(shell);
     dialog.setRoles(roles);
