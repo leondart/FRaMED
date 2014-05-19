@@ -17,7 +17,6 @@ import org.eclipse.gef.ui.views.palette.PaletteViewerPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.framed.orm.ui.editor.ORMFlyoutPaletteComposite.ORMFlyoutPreferences;
 
 /**
  * @author studium
@@ -26,7 +25,7 @@ import org.framed.orm.ui.editor.ORMFlyoutPaletteComposite.ORMFlyoutPreferences;
 public abstract class AbstractGraphicalEditor extends GraphicalEditor{
 
     private ORMPaletteViewerProvider provider;
-    private ORMFlyoutPaletteComposite splitter;
+    private FlyoutPaletteComposite splitter;
     private CustomPalettePage page;
 
     /**
@@ -57,7 +56,7 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * @see GraphicalEditor#createPartControl(Composite)
      */
     public void createPartControl(Composite parent) {
-        splitter = new ORMFlyoutPaletteComposite(parent, SWT.NONE, getSite()
+        splitter = new FlyoutPaletteComposite(parent, SWT.NONE, getSite()
                 .getPage(), getPaletteViewerProvider(), getPalettePreferences());
         super.createPartControl(splitter);
         splitter.setGraphicalControl(getGraphicalControl());
@@ -95,8 +94,8 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * @return the FlyoutPreferences object used to save the flyout palette's
      *         preferences
      */
-    protected ORMFlyoutPreferences getPalettePreferences() {
-        return ORMFlyoutPaletteComposite.createFlyoutPreferences(InternalGEFPlugin
+    protected FlyoutPreferences getPalettePreferences() {
+        return FlyoutPaletteComposite.createFlyoutPreferences(InternalGEFPlugin
                 .getDefault().getPluginPreferences());
     }
 
@@ -141,7 +140,7 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * @author Pratik Shah
      * @since 3.0
      */
-    protected class CustomPalettePage extends ORMPaletteViewerPage {
+    protected class CustomPalettePage extends PaletteViewerPage {
         /**
          * Constructor
          * 

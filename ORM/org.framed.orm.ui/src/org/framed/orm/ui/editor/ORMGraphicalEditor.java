@@ -140,17 +140,13 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
   @Override
   protected PaletteRoot getPaletteRoot() {
     ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette();
-    
-    PaletteViewer viewer = new PaletteViewer();
-    
+        
     changeNotifier.register(tmp);                                       //register the palette for editor changes
     if(getEditorType() == EditorType.ROLES)
       tmp.setRoleEntriesVisibility(true);
     else
       tmp.setRoleEntriesVisibility(false);
-    //TODO: Load the correct palette configuration depending on which state the editor is at creation
-    viewer.setPaletteRoot(tmp);
-    viewer.enableVerticalScrollbar(false);
+    
     return tmp;
   }
 
