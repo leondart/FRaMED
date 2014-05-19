@@ -10,6 +10,7 @@ import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
@@ -135,13 +136,15 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     group = new PaletteGroup("Framed Controls");
     add(group);
   }
-
+  
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
     CreationToolEntry entry =
         new CreationToolEntry("Compartment", "Create a new Compartment",
             new ORMCompartmentFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/compartment.png"));
     drawer.add(entry);
     addEntry("Compartment", entry, true);
 
@@ -149,6 +152,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new CreationToolEntry("NaturalType", "Create a new NaturalType",
             new ORMNaturalTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/naturaltype.png"));
     drawer.add(entry);
     addEntry("NaturalType", entry, true);
 
@@ -156,6 +161,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,
             null);
     entry.setToolClass(CreationAndDirectEditTool.class);
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/roletype.png"));
     drawer.add(entry);
     addEntry("RoleType", entry, false);
 
@@ -163,12 +170,16 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new CreationToolEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(),
             null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/rolegroup.png"));
     drawer.add(entry);
     addEntry("RoleGroup", entry, false);
 
     entry =
         new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/group.png"));
     drawer.add(entry);
     addEntry("Group", entry, true);
 
@@ -185,6 +196,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodeFactory(), null,
             null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
+    entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/methode.png"));
     drawer.add(entry1);
     addEntry("Methode", entry1, true);
 
@@ -192,6 +205,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new CreationToolEntry("Attribute", "Create a new Attribute", new ORMAttributeFactory(),
             null, null);
     entry2.setToolClass(CreationAndDirectEditTool.class);
+    entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/attribute.png"));
     drawer.add(entry2);
     addEntry("Attribute", entry2, true);
 
@@ -204,54 +219,72 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     CreationToolEntry entry1 =
         new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation",
             new ORMFulfilmentFactory(), null, null);
+    entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/fulfilment.png"));
     drawer.add(entry1);
     addEntry("Fulfilment", entry1, true);
 
     CreationToolEntry entry2 =
         new ConnectionCreationToolEntry("Role Implication",
             "Create a new Role Implication Relation", new ORMRoleImplicationFactory(), null, null);
+    entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/roleimplication.png"));
     drawer.add(entry2);
     addEntry("Role Implication", entry2, false);
 
     CreationToolEntry entry3 =
         new ConnectionCreationToolEntry("Role Equivalence",
             "Create a new Role Equivalence Relation", new ORMRoleEquivalenceFactory(), null, null);
+    entry3.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/roleequivalence.png"));
     drawer.add(entry3);
     addEntry("Role Equivalence", entry3, false);
 
     CreationToolEntry entry4 =
         new ConnectionCreationToolEntry("Role Prohibition",
             "Create a new Role Prohibition Relation", new ORMRoleProhibitionFactory(), null, null);
+    entry4.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/roleprohibition.png"));
     drawer.add(entry4);
     addEntry("Role Prohibition", entry4, false);
 
     CreationToolEntry entry5 =
         new ConnectionCreationToolEntry("Inheritance", "Create a new Inheritance Relation",
             new ORMInheritanceFactory(), null, null);
+    entry5.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/inheritance.png"));
     drawer.add(entry5);
     addEntry("Inheritance", entry5, true);
 
     CreationToolEntry entry6 =
         new ConnectionCreationToolEntry("Relationship", "Create a new Relationship Relation",
             new ORMRelationshipFactory(), null, null);
+    entry6.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/relationship.png"));
     drawer.add(entry6);
     addEntry("Relationship", entry6, false);
 
     CreationToolEntry entry7 =
         new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation",
             new ORMIrreflexiveFactory(), null, null);
+    entry7.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/irreflexive.png"));
     drawer.add(entry7);
     addEntry("Irreflexive", entry7, false);
 
     CreationToolEntry entry8 =
         new ConnectionCreationToolEntry("Total", "Create a new Total Relation",
             new ORMTotalFactory(), null, null);
+    entry8.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/total.png"));
     drawer.add(entry8);
     addEntry("Total", entry8, false);
 
     CreationToolEntry entry9 =
         new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
             new ORMAcyclicFactory(), null, null);
+    entry9.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/acyclic.png"));
     drawer.add(entry9);
     addEntry("Acyclic", entry9, false);
 
