@@ -24,7 +24,11 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class AbstractGraphicalEditor extends GraphicalEditor{
 
+<<<<<<< Updated upstream
+    private ORMPaletteViewerProvider provider;
+=======
     private PaletteViewerProvider provider;
+>>>>>>> Stashed changes
     private FlyoutPaletteComposite splitter;
     private CustomPalettePage page;
 

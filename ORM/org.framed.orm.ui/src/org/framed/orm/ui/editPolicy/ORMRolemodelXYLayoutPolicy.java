@@ -24,8 +24,8 @@ import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.types.ORMCompartmentCreateCommand;
 import org.framed.orm.ui.command.types.ORMNaturalTypeCreateCommand;
 import org.framed.orm.ui.command.types.ORMRoleTypeCreateCommand;
-import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.ORMRolemodelFigure;
 
 /**

@@ -25,6 +25,7 @@ import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RoleGroup;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;

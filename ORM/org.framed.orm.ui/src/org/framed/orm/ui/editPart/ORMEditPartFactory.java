@@ -29,6 +29,7 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMRoleEquivalenceEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRoleImplicationEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRoleProhibitionEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMTotalEditPart;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
 

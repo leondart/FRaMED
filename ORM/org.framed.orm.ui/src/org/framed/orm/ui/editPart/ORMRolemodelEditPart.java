@@ -22,6 +22,7 @@ import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRolemodelXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;

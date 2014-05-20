@@ -1,4 +1,4 @@
-package org.framed.orm.ui.editPart;
+package org.framed.orm.ui.editPart.types;
 
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ExpandStateChangeCommand;
-import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
+import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editor.Activator;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;

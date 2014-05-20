@@ -9,8 +9,8 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.ui.actions.SaveAction;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
-import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**

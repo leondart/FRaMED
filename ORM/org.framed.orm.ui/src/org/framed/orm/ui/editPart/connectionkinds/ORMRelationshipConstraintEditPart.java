@@ -12,7 +12,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
-import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 
 
 public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {

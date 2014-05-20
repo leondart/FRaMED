@@ -27,10 +27,10 @@ import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Total;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
-import org.framed.orm.ui.editPart.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMRoleGroupEditPart;
 import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
+import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
 
