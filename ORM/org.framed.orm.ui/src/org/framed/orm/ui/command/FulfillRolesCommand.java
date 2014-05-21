@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Fulfilment;
 
-public class RemoveRolesFromFulCommand extends Command {
+public class FulfillRolesCommand extends Command {
 
-  public RemoveRolesFromFulCommand() {
-    super.setLabel("RemoveRolesFromFulCommand");
+
+  public FulfillRolesCommand() {
+    super.setLabel(" FulfillRolesCommand");
   }
 
 
   private Fulfilment fulfillment;
   private ArrayList<String> roles;
-
+  private ArrayList<String> oldFulfilledRoles = new ArrayList<String>();
 
   /**
    * The command can be executed if all parameters have been set.
@@ -28,18 +29,22 @@ public class RemoveRolesFromFulCommand extends Command {
   @Override
   public void execute() {
 
-    for (String name : roles) {
-      fulfillment.getFulfilledRoles().remove(name);
-    }
+    oldFulfilledRoles.addAll(fulfillment.getFulfilledRoles());
 
+    for (String name : roles) {
+      if (!fulfillment.getFulfilledRoles().contains(name)) {
+        fulfillment.getFulfilledRoles().add(name);
+      }
+    }
+    
+    fulfillment.getFulfilledRoles().retainAll(roles);
   }
 
   @Override
   public void undo() {
 
-    for (String name : roles) {
-      fulfillment.getFulfilledRoles().add(name);
-    }
+    fulfillment.getFulfilledRoles().clear();
+    fulfillment.getFulfilledRoles().addAll(oldFulfilledRoles);
 
   }
 

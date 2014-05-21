@@ -10,23 +10,18 @@ import org.eclipse.ui.PlatformUI;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Fulfilment;
-import org.framed.orm.model.Node;
-import org.framed.orm.ui.command.RemoveRolesFromFulCommand;
+import org.framed.orm.ui.command.FulfillRolesCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfilmentEditPart;
 
-public class RemoveRolesFromFulfillmentAction extends SelectionAction {
 
-  public static final String REMOVE_ROLES_FROM_FUL_ID = "RemoveRolesFromFul";
-  public static final String REMOVE_ROLES_FROM_FUL_REQUEST = "RemoveRolesFromFul";
+public class FulfillRolesAction extends SelectionAction {
 
+  public static final String FULFILL_ROLES_ID = "FulfillRoles";
 
-  // private Request request;
-
-  public RemoveRolesFromFulfillmentAction(IWorkbenchPart part) {
+  public FulfillRolesAction(IWorkbenchPart part) {
     super(part);
-    setId(REMOVE_ROLES_FROM_FUL_ID);
-    setText("Remove Roles");
-    // request = new Request(REMOVE_ROLES_FROM_FUL_REQUEST);
+    setId(FULFILL_ROLES_ID);
+    setText("Fulfill Roles");
   }
 
   @Override
@@ -56,24 +51,20 @@ public class RemoveRolesFromFulfillmentAction extends SelectionAction {
     // get selected fulfillment target compartment
     Compartment target = (Compartment) ful.getTarget();
 
-
+    // put all abstractroles in a list
+ 
     ArrayList<AbstractRole> roles = new ArrayList<AbstractRole>();
-    ArrayList<AbstractRole> targetRoles = new ArrayList<AbstractRole>();
-    targetRoles.addAll(target.getRolemodel().getParticipants());
-    
-    // get the roles, which already are fulfilled/played by the source of the selected
-    // fulfillment
-    for (AbstractRole role : targetRoles) {
-      for (String name : ful.getFulfilledRoles()) {
-        if (name.equals(((Node) role).getName()))
-          roles.add(role);
-      }
-    }
+    roles.addAll(target.getRolemodel().getParticipants());
 
     // create and setup the popup dialog
     RolesDialog dialog = new RolesDialog(shell);
     dialog.setRoles(roles);
-
+    
+    ArrayList<String> fulfilledRoles = new ArrayList<String>();
+    fulfilledRoles.addAll(ful.getFulfilledRoles());
+    
+    dialog.setFulfilledRoles(fulfilledRoles);
+    
     // open the popup dialog
     int returnCode = dialog.open();
     // end the action, when the popup dialog is closed through cancel button
@@ -82,11 +73,13 @@ public class RemoveRolesFromFulfillmentAction extends SelectionAction {
     }
     // add all chosen roles, when the popup dialog is closed through ok button
     else if (returnCode == 1) {
-      RemoveRolesFromFulCommand command = new RemoveRolesFromFulCommand();
+      FulfillRolesCommand command = new FulfillRolesCommand();
       command.setFulfillment(ful);
-      command.setRoles(dialog.getChosenRoles());
+      command.setRoles(dialog.getFulfilledRoles());
       editPart.getViewer().getEditDomain().getCommandStack().execute(command);
     }
   }
+
+
 
 }
