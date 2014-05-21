@@ -197,7 +197,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
             null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/methode.png"));
+        "icons/EOperation.gif"));
     drawer.add(entry1);
     addEntry("Methode", entry1, true);
 
@@ -206,7 +206,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
             null, null);
     entry2.setToolClass(CreationAndDirectEditTool.class);
     entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/attribute.png"));
+        "icons/EAttribute.gif"));
     drawer.add(entry2);
     addEntry("Attribute", entry2, true);
 
