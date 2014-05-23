@@ -133,7 +133,7 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
 //    figure.getLabel().setText(model.getName());
-    ORMLabelFigure lf = new ORMLabelFigure();
+    ORMLabelFigure lf = new ORMLabelFigure(this);
     figure.getLabel().setText(lf.shortenLabel(model.getName(),figure.getLabel(),model.getConstraints()));
     figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
 

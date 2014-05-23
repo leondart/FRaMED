@@ -46,7 +46,7 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected IFigure createFigure() {
-    ORMLabelFigure label = new ORMLabelFigure();
+    ORMLabelFigure label = new ORMLabelFigure(this);
     return label;
   }
 
@@ -79,7 +79,9 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
     final Attribute model = (Attribute) getModel();
 
-    figure.setText(model.getName());
+    IFigure parent = getFigure().getParent().getParent();
+        
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(), parent.getBounds()));
     figure.setToolTip(new Label(model.getName()));
   }
 

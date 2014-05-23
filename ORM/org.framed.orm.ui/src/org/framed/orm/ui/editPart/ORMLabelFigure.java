@@ -6,6 +6,7 @@ package org.framed.orm.ui.editPart;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.text.TextFlow;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Display;
@@ -17,6 +18,8 @@ import org.framed.orm.ui.figure.LabelFigure;
  */
 public class ORMLabelFigure extends LabelFigure {
 
+  private AbstractGraphicalEditPart parentEditPart = null;
+  
   //Hack
   private class TextCalc extends TextFlow{
     public TextCalc(){
@@ -30,10 +33,15 @@ public class ORMLabelFigure extends LabelFigure {
     }
   }
   
-  public ORMLabelFigure() {
+  public ORMLabelFigure(AbstractGraphicalEditPart parent) {
     super();
+    parentEditPart = parent;
   }
 
+  public AbstractGraphicalEditPart getParentEditPart(){
+    return parentEditPart;
+  }
+  
   @Override
   public void setText(String value) {
     super.setText(value);

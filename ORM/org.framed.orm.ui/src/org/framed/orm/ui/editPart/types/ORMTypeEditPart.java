@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editPart.types;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -31,6 +32,7 @@ import org.framed.orm.model.Methode;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMAttributeEditPart;
+import org.framed.orm.ui.editPart.ORMLabelFigure;
 import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
@@ -253,6 +255,16 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     figure.getLabel().setText(model.getName());
     parent.setLayoutConstraint(this, figure, model.getConstraints());
 
+    IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
+    Iterator<ORMLabelFigure> it = contentPane.getChildren().iterator(); 
+    while(it.hasNext())
+    {
+      System.out.println("Refreshing attribute");
+      it.next().getParentEditPart().refresh();
+    }
+    
+//    it=collectionMet.getChildren().iterator();
+//    while(it.hasNext()) it.next().refresh();
   }
 
   @Override

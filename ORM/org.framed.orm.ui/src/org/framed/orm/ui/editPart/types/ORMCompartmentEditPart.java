@@ -87,6 +87,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
   @Override
   public void refreshVisuals() {
     super.refreshVisuals();
+    System.out.println("Refreshing visulas compartment");
     // TODO: implement something better for synchronsation
     // shows all roletypes and rolegroups names, which are in the child rolemodel of this
     // compartment
@@ -123,9 +124,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
             rolePart.add(label);
           else
             collectLabels.add(label);
-        }
-
-        else {
+        }else {
           label.setText(((RoleGroup) role).getName());
           label.setToolTip(label2);
           if (sizeList <= 3)

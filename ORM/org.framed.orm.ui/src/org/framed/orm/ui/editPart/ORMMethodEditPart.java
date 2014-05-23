@@ -44,7 +44,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected IFigure createFigure() {
-    ORMLabelFigure label = new ORMLabelFigure();
+    ORMLabelFigure label = new ORMLabelFigure(this);
     return label;
   }
 
