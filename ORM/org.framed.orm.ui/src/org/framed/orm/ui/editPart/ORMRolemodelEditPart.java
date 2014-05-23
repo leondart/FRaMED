@@ -59,7 +59,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
     ORMRolemodelFigure figure = new ORMRolemodelFigure();
     if (parent.getModel() instanceof Compartment) {
       final Type model = (Type) parent.getModel();
-      // change border of the figure depened on expandStateChange of the parent compartment
+      // change border of the figure depending on expandStateChange of the parent compartment
       if (((ORMCompartmentEditPart) getParent()).getFigure() instanceof ORMCompartmentV2Figure) {
         if (model.isIsExpand()) {
           figure.setBorder(new PartFigureBorderExpand());

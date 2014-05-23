@@ -18,7 +18,6 @@ import org.framed.orm.ui.editPolicy.ORMMethodeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMMethodeDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
-import org.framed.orm.ui.figure.LabelFigure;
 
 /**
  * @author Kay Bierzynski
@@ -45,7 +44,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected IFigure createFigure() {
-    LabelFigure label = new LabelFigure();
+    ORMLabelFigure label = new ORMLabelFigure();
     return label;
   }
 
@@ -64,7 +63,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
   }
 
   private void performDirectEditing() {
-    TextFlow textFlow = ((LabelFigure) getFigure()).getTextFlow();
+    TextFlow textFlow = ((ORMLabelFigure) getFigure()).getTextFlow();
     ORMNodeDirectEditManager manager =
         new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
             textFlow), textFlow);
@@ -73,7 +72,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void refreshVisuals() {
-    final LabelFigure figure = (LabelFigure) getFigure();
+    final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
     final Methode model = (Methode) getModel();
 
     figure.setText(model.getName());
