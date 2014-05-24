@@ -30,8 +30,7 @@ import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Relationship</b></em>'.
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Relationship</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -58,9 +57,9 @@ import org.framed.orm.model.RelationshipConstraint;
  */
 public class RelationshipImpl extends MinimalEObjectImpl.Container implements Relationship {
   /**
-   * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' attribute list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getBendpoints()
    * @generated
    * @ordered
@@ -69,8 +68,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * @see #getTarget()
    * @generated
    * @ordered
@@ -79,8 +78,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * @see #getSource()
    * @generated
    * @ordered
@@ -88,9 +87,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected Node source;
 
   /**
-   * The cached value of the '{@link #getDim1BP() <em>Dim1 BP</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getDim1BP() <em>Dim1 BP</em>}' attribute list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getDim1BP()
    * @generated
    * @ordered
@@ -98,9 +97,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected EList<Point> dim1BP;
 
   /**
-   * The cached value of the '{@link #getDim2BP() <em>Dim2 BP</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getDim2BP() <em>Dim2 BP</em>}' attribute list. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getDim2BP()
    * @generated
    * @ordered
@@ -109,8 +108,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * The default value of the '{@link #getSecondParthood() <em>Second Parthood</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getSecondParthood()
    * @generated
    * @ordered
@@ -118,9 +116,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected static final Parthood SECOND_PARTHOOD_EDEFAULT = Parthood.UNCONSTRAINED;
 
   /**
-   * The cached value of the '{@link #getSecondParthood() <em>Second Parthood</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getSecondParthood() <em>Second Parthood</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getSecondParthood()
    * @generated
    * @ordered
@@ -128,9 +126,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected Parthood secondParthood = SECOND_PARTHOOD_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSecondLower() <em>Second Lower</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getSecondLower() <em>Second Lower</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getSecondLower()
    * @generated
    * @ordered
@@ -138,9 +136,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected static final int SECOND_LOWER_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getSecondLower() <em>Second Lower</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getSecondLower() <em>Second Lower</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getSecondLower()
    * @generated
    * @ordered
@@ -148,9 +146,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected int secondLower = SECOND_LOWER_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getFirstLower() <em>First Lower</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getFirstLower() <em>First Lower</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getFirstLower()
    * @generated
    * @ordered
@@ -158,9 +156,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected static final int FIRST_LOWER_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getFirstLower() <em>First Lower</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getFirstLower() <em>First Lower</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getFirstLower()
    * @generated
    * @ordered
@@ -168,9 +166,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected int firstLower = FIRST_LOWER_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getFirstUpper() <em>First Upper</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getFirstUpper() <em>First Upper</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getFirstUpper()
    * @generated
    * @ordered
@@ -178,9 +176,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected static final int FIRST_UPPER_EDEFAULT = 1;
 
   /**
-   * The cached value of the '{@link #getFirstUpper() <em>First Upper</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getFirstUpper() <em>First Upper</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getFirstUpper()
    * @generated
    * @ordered
@@ -188,9 +186,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected int firstUpper = FIRST_UPPER_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getSecondUpper() <em>Second Upper</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getSecondUpper() <em>Second Upper</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getSecondUpper()
    * @generated
    * @ordered
@@ -198,9 +196,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected static final int SECOND_UPPER_EDEFAULT = 1;
 
   /**
-   * The cached value of the '{@link #getSecondUpper() <em>Second Upper</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getSecondUpper() <em>Second Upper</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getSecondUpper()
    * @generated
    * @ordered
@@ -208,9 +206,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected int secondUpper = SECOND_UPPER_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getFirstParthood() <em>First Parthood</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The default value of the '{@link #getFirstParthood() <em>First Parthood</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getFirstParthood()
    * @generated
    * @ordered
@@ -218,9 +216,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected static final Parthood FIRST_PARTHOOD_EDEFAULT = Parthood.UNCONSTRAINED;
 
   /**
-   * The cached value of the '{@link #getFirstParthood() <em>First Parthood</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * The cached value of the '{@link #getFirstParthood() <em>First Parthood</em>}' attribute. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getFirstParthood()
    * @generated
    * @ordered
@@ -229,18 +227,16 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * The default value of the '{@link #getSourceLabelValue() <em>Source Label Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getSourceLabelValue()
    * @generated
    * @ordered
    */
-  protected static final String SOURCE_LABEL_VALUE_EDEFAULT = "*";
+  protected static final String SOURCE_LABEL_VALUE_EDEFAULT = "0..1";
 
   /**
    * The cached value of the '{@link #getSourceLabelValue() <em>Source Label Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getSourceLabelValue()
    * @generated
    * @ordered
@@ -249,18 +245,16 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * The default value of the '{@link #getTargetLabelValue() <em>Target Label Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getTargetLabelValue()
    * @generated
    * @ordered
    */
-  protected static final String TARGET_LABEL_VALUE_EDEFAULT = "*";
+  protected static final String TARGET_LABEL_VALUE_EDEFAULT = "0..1";
 
   /**
    * The cached value of the '{@link #getTargetLabelValue() <em>Target Label Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getTargetLabelValue()
    * @generated
    * @ordered
@@ -269,8 +263,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * The cached value of the '{@link #getRlshipConstraints() <em>Rlship Constraints</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #getRlshipConstraints()
    * @generated
    * @ordered
@@ -278,8 +271,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   protected EList<RelationshipConstraint> rlshipConstraints;
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected RelationshipImpl() {
@@ -287,8 +279,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -297,8 +288,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public RelationContainer getRelationContainer() {
@@ -307,18 +297,17 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRelationContainer(RelationContainer newRelationContainer, NotificationChain msgs) {
+  public NotificationChain basicSetRelationContainer(RelationContainer newRelationContainer,
+      NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject)newRelationContainer, OrmPackage.RELATIONSHIP__RELATION_CONTAINER, msgs);
     return msgs;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setRelationContainer(RelationContainer newRelationContainer) {
@@ -338,8 +327,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public EList<Point> getBendpoints() {
@@ -350,8 +338,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Node getTarget() {
@@ -367,8 +354,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Node basicGetTarget() {
@@ -376,8 +362,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public NotificationChain basicSetTarget(Node newTarget, NotificationChain msgs) {
@@ -391,8 +376,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setTarget(Node newTarget) {
@@ -410,8 +394,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Node getSource() {
@@ -427,8 +410,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Node basicGetSource() {
@@ -436,8 +418,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public NotificationChain basicSetSource(Node newSource, NotificationChain msgs) {
@@ -451,8 +432,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setSource(Node newSource) {
@@ -470,8 +450,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public EList<Point> getDim1BP() {
@@ -482,8 +461,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public EList<Point> getDim2BP() {
@@ -494,8 +472,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Parthood getSecondParthood() {
@@ -503,8 +480,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setSecondParthood(Parthood newSecondParthood) {
@@ -515,8 +491,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public int getSecondLower() {
@@ -524,20 +499,21 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @author Lars Schuetze
    */
   public void setSecondLower(int newSecondLower) {
     int oldSecondLower = secondLower;
     secondLower = newSecondLower;
+    updateTargetLabel();
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__SECOND_LOWER, oldSecondLower, secondLower));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__SECOND_LOWER,
+          oldSecondLower, secondLower));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public int getFirstLower() {
@@ -545,20 +521,36 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @author Lars Schuetze
    */
   public void setFirstLower(int newFirstLower) {
     int oldFirstLower = firstLower;
     firstLower = newFirstLower;
+    updateSourceLabel();
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__FIRST_LOWER, oldFirstLower, firstLower));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__FIRST_LOWER,
+          oldFirstLower, firstLower));
+  }
+
+  private void updateSourceLabel() {
+    if(firstUpper == -1) {
+      if(firstLower == -1) {
+        //there is an arbitrary multiplicity
+        setSourceLabelValue("*");
+      }
+      else {
+        setSourceLabelValue(firstLower + "..*");
+      }
+    }
+    else {
+      setSourceLabelValue(firstLower + ".." + firstUpper);
+    }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public int getFirstUpper() {
@@ -566,20 +558,21 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @author Lars Schuetze
    */
   public void setFirstUpper(int newFirstUpper) {
     int oldFirstUpper = firstUpper;
     firstUpper = newFirstUpper;
+    updateSourceLabel();
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__FIRST_UPPER, oldFirstUpper, firstUpper));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__FIRST_UPPER,
+          oldFirstUpper, firstUpper));
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public int getSecondUpper() {
@@ -588,19 +581,37 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @param newSecondUpper If the value is -1 it indicates that there is no bound
+   *  <!-- end-user-doc -->
+   * @author Lars Schuetze
    */
   public void setSecondUpper(int newSecondUpper) {
     int oldSecondUpper = secondUpper;
     secondUpper = newSecondUpper;
+    updateTargetLabel();
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__SECOND_UPPER, oldSecondUpper, secondUpper));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__SECOND_UPPER,
+          oldSecondUpper, secondUpper));
+  }
+
+  private void updateTargetLabel() {
+    if(secondUpper == -1) {
+      if(secondLower == -1) {
+        //there is an arbitrary multiplicity
+        setTargetLabelValue("*");
+      }
+      else {
+        setTargetLabelValue(secondLower + "..*");
+      }
+    }
+    else {
+      setTargetLabelValue(secondLower + ".." + secondUpper);
+    }
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Parthood getFirstParthood() {
@@ -608,8 +619,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setFirstParthood(Parthood newFirstParthood) {
@@ -620,8 +630,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public String getSourceLabelValue() {
@@ -629,8 +638,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setSourceLabelValue(String newSourceLabelValue) {
@@ -641,8 +649,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public String getTargetLabelValue() {
@@ -650,8 +657,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void setTargetLabelValue(String newTargetLabelValue) {
@@ -662,8 +668,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public EList<RelationshipConstraint> getRlshipConstraints() {
@@ -674,13 +679,13 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID,
+      NotificationChain msgs) {
     switch (featureID) {
       case OrmPackage.RELATIONSHIP__RELATION_CONTAINER:
         if (eInternalContainer() != null)
@@ -701,12 +706,12 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID,
+      NotificationChain msgs) {
     switch (featureID) {
       case OrmPackage.RELATIONSHIP__RELATION_CONTAINER:
         return basicSetRelationContainer(null, msgs);
@@ -721,8 +726,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -735,8 +739,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -779,8 +782,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -841,8 +843,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -898,8 +899,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -940,8 +940,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -975,4 +974,4 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     return result.toString();
   }
 
-} //RelationshipImpl
+} // RelationshipImpl
