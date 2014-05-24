@@ -54,27 +54,27 @@ public class RelationshipItemProvider
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addBendpointsPropertyDescriptor(object);
+      //addBendpointsPropertyDescriptor(object);
       addTargetPropertyDescriptor(object);
       addSourcePropertyDescriptor(object);
-      addDim1BPPropertyDescriptor(object);
-      addDim2BPPropertyDescriptor(object);
-      addSecondParthoodPropertyDescriptor(object);
+      //addDim1BPPropertyDescriptor(object);
+      //addDim2BPPropertyDescriptor(object);
+      //addSecondParthoodPropertyDescriptor(object);
       addSecondLowerPropertyDescriptor(object);
       addFirstLowerPropertyDescriptor(object);
       addFirstUpperPropertyDescriptor(object);
       addSecondUpperPropertyDescriptor(object);
-      addFirstParthoodPropertyDescriptor(object);
-      addSourceLabelValuePropertyDescriptor(object);
-      addTargetLabelValuePropertyDescriptor(object);
-      addRlshipConstraintsPropertyDescriptor(object);
+      //addFirstParthoodPropertyDescriptor(object);
+      //addSourceLabelValuePropertyDescriptor(object);
+      //addTargetLabelValuePropertyDescriptor(object);
+      //addRlshipConstraintsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
