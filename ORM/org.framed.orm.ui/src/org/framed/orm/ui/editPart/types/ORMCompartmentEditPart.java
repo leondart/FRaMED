@@ -12,6 +12,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Insets;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -28,6 +29,7 @@ import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ExpandStateChangeCommand;
+import org.framed.orm.ui.editPart.ORMLabelFigure;
 import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editor.Activator;
@@ -51,6 +53,12 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
   private PartFigure rolePart = null;
 
   @Override
+  public Rectangle getConstraints(){
+    Compartment model = (Compartment) getModel();
+    return model.getConstraints();
+  }
+  
+  @Override
   protected IFigure createFigure() {
     final Compartment model = (Compartment) getModel();
     ORMGraphicalEditor editorPart =
@@ -62,12 +70,13 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
         || getParent().getModel() instanceof CompartmentDiagram) {
       ORMCompartmentV1Figure figure1 = new ORMCompartmentV1Figure(editorPart.getIsEditorData());
 
-      return figure1;
+      fig = figure1;
     }
     // when this edit part is "opened" use ORMCompartmentV2Figure
     else {
-      return createORMCompartmentV2Figure(model, editorPart.getIsEditorData());
+      fig = createORMCompartmentV2Figure(model, editorPart.getIsEditorData());
     }
+    return fig;
   }
 
   /*
@@ -87,7 +96,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
   @Override
   public void refreshVisuals() {
     super.refreshVisuals();
-    System.out.println("Refreshing visulas compartment");
+
     // TODO: implement something better for synchronsation
     // shows all roletypes and rolegroups names, which are in the child rolemodel of this
     // compartment
@@ -114,24 +123,23 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
       for (AbstractRole role : children) {
         Label label = new Label();
         Label label2 = new Label();
+        String labelText;
+        
         label2.setText("For Editing please go in the Compartment.");
         sizeList = rolePart.getChildren().size();
 
-        if (role instanceof RoleType) {
-          label.setText(((RoleType) role).getName());
+        
+        if (role instanceof RoleType)
+          labelText = ((RoleType) role).getName();
+        else
+          labelText = ((RoleGroup) role).getName();
+          
+          label.setText((new ORMLabelFigure()).shortenLabel(labelText,label.getBounds(),label.getFont(),getConstraints()));
           label.setToolTip(label2);
           if (sizeList <= 3)
             rolePart.add(label);
           else
             collectLabels.add(label);
-        }else {
-          label.setText(((RoleGroup) role).getName());
-          label.setToolTip(label2);
-          if (sizeList <= 3)
-            rolePart.add(label);
-          else
-            collectLabels.add(label);
-        }
       }
 
       if (sizeList > 3) {

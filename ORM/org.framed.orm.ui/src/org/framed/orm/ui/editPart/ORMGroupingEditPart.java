@@ -180,7 +180,8 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
 			final Grouping model = (Grouping) getModel();
 			final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 		
-			figure.getLabel().setText(model.getName());
+			figure.getLabel().setText((new ORMLabelFigure()).shortenLabel(model.getName(), figure.getLabel().getTextFlow(), model.getConstraints()));
+			figure.getLabel().setToolTip(new Label(model.getName()));
 			parent.setLayoutConstraint(this, figure, model.getConstraints());
 		}
 		else{
@@ -188,7 +189,8 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
 			final Grouping model = (Grouping) getModel();
 			final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 		
-			figure.getLabel().setText(model.getName());
+			figure.getLabel().setText((new ORMLabelFigure()).shortenLabel(model.getName(), figure.getLabel().getTextFlow(), model.getConstraints()));
+            figure.getLabel().setToolTip(new Label(model.getName()));
 			parent.setLayoutConstraint(this, figure, model.getConstraints());
 		}
 		 //TODO: implement something better for synchronsation 
@@ -216,20 +218,20 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
 			 for(Node node : children){
 				 Label label = new Label();
 				 Label label2 = new Label();
+                 String labelText;
+                 
 				 label2.setText("For Editing please go in the Grouping.");
 				 sizeList = compartmentPart.getChildren().size();
-				 if(node instanceof Compartment){
-					 label.setText(((Compartment)node).getName());
-					 label.setToolTip(label2);
-					 if(sizeList<=3) compartmentPart.add(label);
-					 else collectLabels.add(label);
-				 }
-				 else{
-					 label.setText(((Grouping)node).getName());
-					 label.setToolTip(label2);
-					 if(sizeList<=3) compartmentPart.add(label);
-					 else collectLabels.add(label);
-				 }
+
+				 if(node instanceof Compartment)
+				   labelText = ((Compartment)node).getName();
+				 else
+				   labelText = ((Grouping)node).getName();
+				 
+				 label.setText((new ORMLabelFigure()).shortenLabel(labelText, label.getBounds(),label.getFont(),((Grouping)getModel()).getConstraints()));
+				 label.setToolTip(label2);
+				 if(sizeList<=3) compartmentPart.add(label);
+				 else collectLabels.add(label);
 			 }
 			 
 			 if(sizeList > 3){

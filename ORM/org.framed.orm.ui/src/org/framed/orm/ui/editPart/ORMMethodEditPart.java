@@ -13,6 +13,7 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Methode;
+import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
 import org.framed.orm.ui.editPolicy.ORMMethodeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMMethodeDirectEditPolicy;
@@ -36,6 +37,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
   }
 
   private ORMMethodAdapter adapter;
+  private ORMTypeEditPart parentEditPart;
 
   public ORMMethodEditPart() {
     super();
@@ -75,7 +77,8 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
     final Methode model = (Methode) getModel();
 
-    figure.setText(model.getName());
+//    System.out.println("Methode: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),parentEditPart.getConstraints()));
     figure.setToolTip(new Label(model.getName()));
   }
 
@@ -118,6 +121,10 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
     public boolean isAdapterForType(Object type) {
       return type.equals(Methode.class);
     }
+  }
+
+  public void setParentEditPart(ORMTypeEditPart pEditPart) {
+    parentEditPart = pEditPart;
   }
 
 

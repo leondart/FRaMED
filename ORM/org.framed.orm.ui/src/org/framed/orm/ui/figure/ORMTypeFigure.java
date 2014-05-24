@@ -1,9 +1,12 @@
 package org.framed.orm.ui.figure;
 
 
+import java.util.List;
+
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.IFigure;
 
 /**
  * @author Kay Bierzynski
@@ -26,6 +29,12 @@ public abstract class ORMTypeFigure extends Figure {
 	
 	public PartFigure getAttributeFigure(){
 		return attributeFigure;
+	}
+	
+	public List<IFigure> getAllFigures(){
+	  List<IFigure> tmp = attributeFigure.getChildren();
+	  tmp.addAll(methodFigure.getChildren());
+	  return tmp;
 	}
 	
 	 @Override

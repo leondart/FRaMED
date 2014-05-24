@@ -33,6 +33,10 @@ public class ORMLabelFigure extends LabelFigure {
     }
   }
   
+  public ORMLabelFigure() {
+    super();
+  }
+  
   public ORMLabelFigure(AbstractGraphicalEditPart parent) {
     super();
     parentEditPart = parent;
@@ -47,13 +51,15 @@ public class ORMLabelFigure extends LabelFigure {
     super.setText(value);
   }
   
-  String shortenLabel(String origText,TextFlow orig,Rectangle parentRect){
-    int textWidth = (new TextCalc()).textWidth(origText, orig.getFont()); 
+  public String shortenLabel(String origText,Rectangle labelRect,Font f,Rectangle parentRect){
+    int textWidth = (new TextCalc()).textWidth(origText, f); 
+    
+    if(labelRect == null || parentRect == null) return origText;
     
     if(parentRect.width() < textWidth)                                             //if the label does not fit -> shrink it
     {
       int avgCharWidth = (textWidth / origText.length()) + 1;                       //calc the average character width 
-      int newTextLength = ((parentRect.width() + orig.getBounds().x()) / avgCharWidth) - 3;    //-3 for the dots ;)
+      int newTextLength = ((parentRect.width() /*+ labelRect.x()*/) / avgCharWidth) - 3;    //-3 for the dots ;)
       
       return (newTextLength > 0) ? (origText.substring(0, newTextLength) + "...") : "<...>";
     }
@@ -61,7 +67,11 @@ public class ORMLabelFigure extends LabelFigure {
     return origText;
   }
   
-  static IFigure createToolTip(IFigure origLabel,String text){
+  public String shortenLabel(String origText,TextFlow orig,Rectangle parentRect){
+    return shortenLabel(origText, orig.getBounds(), orig.getFont(),parentRect);
+  }
+  
+  public static IFigure createToolTip(IFigure origLabel,String text){
     LabelFigure ttLabel = new LabelFigure();
     
     ttLabel.setParent(origLabel.getParent());

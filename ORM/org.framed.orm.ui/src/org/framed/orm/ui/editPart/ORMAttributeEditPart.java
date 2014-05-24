@@ -13,6 +13,7 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Attribute;
+import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 import org.framed.orm.ui.editPolicy.ORMAttributeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMAttributeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
@@ -25,7 +26,8 @@ import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
   private ORMAttributeAdapter adapter;
-
+  private ORMTypeEditPart parentEditPart;
+  
   public ORMAttributeEditPart() {
     super();
     adapter = new ORMAttributeAdapter();
@@ -42,7 +44,9 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     return new ORMDragEditPartsTracker(this);
   }
 
-
+  public void setParentEditPart(ORMTypeEditPart pEditPart){
+    parentEditPart = pEditPart;
+  }
 
   @Override
   protected IFigure createFigure() {
@@ -79,9 +83,8 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
     final Attribute model = (Attribute) getModel();
 
-    IFigure parent = getFigure().getParent().getParent();
-        
-    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(), parent.getBounds()));
+//    System.out.println("Attribute: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),parentEditPart.getConstraints()));
     figure.setToolTip(new Label(model.getName()));
   }
 
