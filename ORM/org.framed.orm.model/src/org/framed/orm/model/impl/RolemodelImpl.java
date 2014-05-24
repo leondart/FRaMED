@@ -35,7 +35,7 @@ import org.framed.orm.model.Rolemodel;
  *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getSubcontexts <em>Subcontexts</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getPlayers <em>Players</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getCt <em>Ct</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getCompartment <em>Compartment</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getParentGroup <em>Parent Group</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RolemodelImpl#getGroups <em>Groups</em>}</li>
  * </ul>
@@ -145,7 +145,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
    * @generated
    */
   public Compartment getCompartment() {
-    if (eContainerFeatureID() != OrmPackage.ROLEMODEL__CT) return null;
+    if (eContainerFeatureID() != OrmPackage.ROLEMODEL__COMPARTMENT) return null;
     return (Compartment)eInternalContainer();
   }
 
@@ -154,8 +154,8 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCt(Compartment newCt, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject)newCt, OrmPackage.ROLEMODEL__CT, msgs);
+  public NotificationChain basicSetCompartment(Compartment newCompartment, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject)newCompartment, OrmPackage.ROLEMODEL__COMPARTMENT, msgs);
     return msgs;
   }
 
@@ -164,20 +164,20 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCt(Compartment newCt) {
-    if (newCt != eInternalContainer() || (eContainerFeatureID() != OrmPackage.ROLEMODEL__CT && newCt != null)) {
-      if (EcoreUtil.isAncestor(this, newCt))
+  public void setCompartment(Compartment newCompartment) {
+    if (newCompartment != eInternalContainer() || (eContainerFeatureID() != OrmPackage.ROLEMODEL__COMPARTMENT && newCompartment != null)) {
+      if (EcoreUtil.isAncestor(this, newCompartment))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newCt != null)
-        msgs = ((InternalEObject)newCt).eInverseAdd(this, OrmPackage.COMPARTMENT__ROLEMODEL, Compartment.class, msgs);
-      msgs = basicSetCt(newCt, msgs);
+      if (newCompartment != null)
+        msgs = ((InternalEObject)newCompartment).eInverseAdd(this, OrmPackage.COMPARTMENT__ROLEMODEL, Compartment.class, msgs);
+      msgs = basicSetCompartment(newCompartment, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.ROLEMODEL__CT, newCt, newCt));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.ROLEMODEL__COMPARTMENT, newCompartment, newCompartment));
   }
 
   /**
@@ -248,10 +248,10 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getParticipants()).basicAdd(otherEnd, msgs);
       case OrmPackage.ROLEMODEL__PLAYERS:
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getPlayers()).basicAdd(otherEnd, msgs);
-      case OrmPackage.ROLEMODEL__CT:
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetCt((Compartment)otherEnd, msgs);
+        return basicSetCompartment((Compartment)otherEnd, msgs);
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
@@ -276,8 +276,8 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
         return ((InternalEList<?>)getParticipants()).basicRemove(otherEnd, msgs);
       case OrmPackage.ROLEMODEL__PLAYERS:
         return ((InternalEList<?>)getPlayers()).basicRemove(otherEnd, msgs);
-      case OrmPackage.ROLEMODEL__CT:
-        return basicSetCt(null, msgs);
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
+        return basicSetCompartment(null, msgs);
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         return basicSetParentGroup(null, msgs);
       case OrmPackage.ROLEMODEL__GROUPS:
@@ -294,7 +294,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
-      case OrmPackage.ROLEMODEL__CT:
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
         return eInternalContainer().eInverseRemove(this, OrmPackage.COMPARTMENT__ROLEMODEL, Compartment.class, msgs);
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         return eInternalContainer().eInverseRemove(this, OrmPackage.GROUPING__ROLEMODEL, Grouping.class, msgs);
@@ -316,7 +316,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
         return getParticipants();
       case OrmPackage.ROLEMODEL__PLAYERS:
         return getPlayers();
-      case OrmPackage.ROLEMODEL__CT:
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
         return getCompartment();
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         return getParentGroup();
@@ -347,8 +347,8 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
         getPlayers().clear();
         getPlayers().addAll((Collection<? extends NaturalType>)newValue);
         return;
-      case OrmPackage.ROLEMODEL__CT:
-        setCt((Compartment)newValue);
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
+        setCompartment((Compartment)newValue);
         return;
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         setParentGroup((Grouping)newValue);
@@ -378,8 +378,8 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
       case OrmPackage.ROLEMODEL__PLAYERS:
         getPlayers().clear();
         return;
-      case OrmPackage.ROLEMODEL__CT:
-        setCt((Compartment)null);
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
+        setCompartment((Compartment)null);
         return;
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         setParentGroup((Grouping)null);
@@ -405,7 +405,7 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
         return participants != null && !participants.isEmpty();
       case OrmPackage.ROLEMODEL__PLAYERS:
         return players != null && !players.isEmpty();
-      case OrmPackage.ROLEMODEL__CT:
+      case OrmPackage.ROLEMODEL__COMPARTMENT:
         return getCompartment() != null;
       case OrmPackage.ROLEMODEL__PARENT_GROUP:
         return getParentGroup() != null;

@@ -26,7 +26,7 @@ public interface CompartmentDiagram extends RelationContainer {
   /**
    * Returns the value of the '<em><b>Compartments</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.Compartment}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Compartment#getCd <em>Cd</em>}'.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Compartment#getCompartmentDiagram <em>Compartment Diagram</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Compartments</em>' containment reference list isn't clear,
@@ -35,8 +35,8 @@ public interface CompartmentDiagram extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Compartments</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getCompartmentDiagram_Compartments()
-   * @see org.framed.orm.model.Compartment#getCd
-   * @model opposite="cd" containment="true"
+   * @see org.framed.orm.model.Compartment#getCompartmentDiagram
+   * @model opposite="compartmentDiagram" containment="true"
    * @generated
    */
   EList<Compartment> getCompartments();
@@ -44,7 +44,7 @@ public interface CompartmentDiagram extends RelationContainer {
   /**
    * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.Grouping}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Grouping#getCd <em>Cd</em>}'.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Groups</em>' containment reference list isn't clear,
@@ -53,8 +53,8 @@ public interface CompartmentDiagram extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Groups</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getCompartmentDiagram_Groups()
-   * @see org.framed.orm.model.Grouping#getCd
-   * @model opposite="cd" containment="true"
+   * @see org.framed.orm.model.Grouping#getCompartmentDiagram
+   * @model opposite="compartmentDiagram" containment="true"
    * @generated
    */
   EList<Grouping> getGroups();

@@ -41,7 +41,7 @@ public class ORMCompartmentCreateCommand extends Command {
 	@Override public void execute() {
 		
 		compartment.setConstraints(constraints);
-		if(cd != null) compartment.setCd(cd);
+		if(cd != null) compartment.setCompartmentDiagram(cd);
 		compartment.setIsExpand(true);
 		compartment.setRolemodel(rm);
 		if(parentrolemodel != null) compartment.setParentRolemodel(parentrolemodel);
@@ -51,7 +51,7 @@ public class ORMCompartmentCreateCommand extends Command {
 	 * Remove the {@link Compartment} from the container {@link CompartmentDiagram} or  {@link Rolemodel}.
 	 */
 	@Override public void undo() {
-		if(cd != null) compartment.setCd(null);
+		if(cd != null) compartment.setCompartmentDiagram(null);
 		if(parentrolemodel != null) compartment.setParentRolemodel(null);
 	}
 

@@ -51,9 +51,12 @@ import org.framed.orm.ui.editPart.ORMEditPartFactory;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/AbstractGraphicalEditor {
-  public enum EditorType{COMPARTMENT,ROLES/*TODO: ,GROUPING*/};    //if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
-  
+public class ORMGraphicalEditor extends
+/* GraphicalEditorWithFlyoutPalette */AbstractGraphicalEditor {
+  public enum EditorType {
+    COMPARTMENT, ROLES/* TODO: ,GROUPING */
+  }; // if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
+
   private Resource cdResource;
   private CompartmentDiagram cd;
 
@@ -62,8 +65,8 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
   private PropertySheetPage propertyPage;
 
   private EditorChangeNotifier changeNotifier = new EditorChangeNotifier(this);
-  private EditorType editorType = EditorType.COMPARTMENT;   //standard is compartment
-  
+  private EditorType editorType = EditorType.COMPARTMENT; // standard is compartment
+
   public GraphicalViewer getOwnViewer() {
     return getGraphicalViewer();
   }
@@ -75,31 +78,32 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
   public boolean getIsEditorData() {
     return isEditorData;
   }
-  
+
   public ActionRegistry getEditorActionRegistry() {
     return getActionRegistry();
   }
-  
+
   public ORMGraphicalEditor(IEditorPart editor, Resource resource, boolean flag) {
 
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
-    
+
     setEditDomain(new DefaultEditDomain(this));
-    
-//    ((ORMMultiPageEditor)parentEditor).setEditorChangeNotifier(changeNotifier);
+
+    // ((ORMMultiPageEditor)parentEditor).setEditorChangeNotifier(changeNotifier);
   }
 
   @Override
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
     getGraphicalViewer().setContents(cd);
-//    this.addListenerObject(changeNotifier);
+    // this.addListenerObject(changeNotifier);
     // add the change notifier as listener
-    getGraphicalViewer().getEditDomain().getCommandStack().addCommandStackEventListener(changeNotifier);
-//    getGraphicalViewer().getContents().addEditPartListener(changeNotifier);
-//    getEditDomain().getEditorPart().addPropertyListener(changeNotifier);
+    getGraphicalViewer().getEditDomain().getCommandStack()
+        .addCommandStackEventListener(changeNotifier);
+    // getGraphicalViewer().getContents().addEditPartListener(changeNotifier);
+    // getEditDomain().getEditorPart().addPropertyListener(changeNotifier);
   }
 
   @Override
@@ -139,13 +143,13 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
   @Override
   protected PaletteRoot getPaletteRoot() {
     ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette();
-        
-    changeNotifier.register(tmp);                                       //register the palette for editor changes
-    if(getEditorType() == EditorType.ROLES)
+
+    changeNotifier.register(tmp); // register the palette for editor changes
+    if (getEditorType() == EditorType.ROLES)
       tmp.setRoleEntriesVisibility(true);
     else
       tmp.setRoleEntriesVisibility(false);
-    
+
     return tmp;
   }
 
@@ -174,7 +178,7 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
     action = new FulfillRolesAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
-    
+
     action = new DeleteRelationshipConstraintsAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
@@ -226,8 +230,9 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
   }
 
   /**
-   * This methods implements adapting to {@link IPropertySheetPage}. All other requests are forwarded
-   * to the {@link GraphicalEditorWithFlyoutPalette#getAdapter(Class) parent} implementation.
+   * This methods implements adapting to {@link IPropertySheetPage}. All other requests are
+   * forwarded to the {@link GraphicalEditorWithFlyoutPalette#getAdapter(Class) parent}
+   * implementation.
    */
   @Override
   public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
@@ -275,14 +280,16 @@ public class ORMGraphicalEditor extends /*GraphicalEditorWithFlyoutPalette*/Abst
   }
 
   public void setEditorType(EditorType editorType) {
-    if(this.editorType.equals(editorType)) return;
-    
+    if (this.editorType.equals(editorType))
+      return;
+
     this.editorType = editorType;
     changeNotifier.editorTypeChanged(editorType);
-    
-    //set behavior and data editor type to the same type (btw: the complete design of this editor hick-hack should be refactored) 
-    ((ORMMultiPageEditor)getParentEditor()).getBehaviorEditor().setEditorType(editorType);
-    ((ORMMultiPageEditor)getParentEditor()).getDataEditor().setEditorType(editorType);
+
+    // set behavior and data editor type to the same type (btw: the complete design of this editor
+    // hick-hack should be refactored)
+    ((ORMMultiPageEditor) getParentEditor()).getBehaviorEditor().setEditorType(editorType);
+    ((ORMMultiPageEditor) getParentEditor()).getDataEditor().setEditorType(editorType);
   }
 
   /**

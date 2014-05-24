@@ -35,14 +35,14 @@ public class ORMGroupingDeleteCommand extends Command {
 	  @Override
 	  public void execute() {
 		detachLinks(); 
-	    grouping.setCd(null);
+	    grouping.setCompartmentDiagram(null);
 	    grouping.setParentRolemodel(null);
 	  }
 	 
 	  @Override
 	  public void undo() {
 		reattachLinks();
-	    grouping.setCd(cd);
+	    grouping.setCompartmentDiagram(cd);
 	    grouping.setParentRolemodel(parentrolemodel);
 	  }
 	 

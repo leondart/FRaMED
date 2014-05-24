@@ -38,7 +38,7 @@ public class ORMGroupingCreateCommand extends Command {
 		@Override public void execute() {
 			
 			grouping.setConstraints(constraints);
-			if(cd != null) grouping.setCd(cd);
+			if(cd != null) grouping.setCompartmentDiagram(cd);
 			grouping.setRolemodel(rm);
 			if(parentrolemodel != null) grouping.setParentRolemodel(parentrolemodel);
 		}
@@ -47,7 +47,7 @@ public class ORMGroupingCreateCommand extends Command {
 		 * Remove the {@link Grouping} from the container {@link CompartmentDiagramDiagram}.
 		 */
 		@Override public void undo() {
-			if(cd != null) grouping.setCd(null);
+			if(cd != null) grouping.setCompartmentDiagram(null);
 			if(parentrolemodel != null) grouping.setParentRolemodel(null);
 		}
 

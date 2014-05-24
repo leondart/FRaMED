@@ -498,7 +498,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCompartment_Cd() {
+  public EReference getCompartment_CompartmentDiagram() {
     return (EReference)compartmentEClass.getEStructuralFeatures().get(0);
   }
 
@@ -534,7 +534,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getGrouping_Cd() {
+  public EReference getGrouping_CompartmentDiagram() {
     return (EReference)groupingEClass.getEStructuralFeatures().get(0);
   }
 
@@ -705,7 +705,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRolemodel_Ct() {
+  public EReference getRolemodel_Compartment() {
     return (EReference)rolemodelEClass.getEStructuralFeatures().get(3);
   }
 
@@ -1210,12 +1210,12 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEReference(naturalTypeEClass, NATURAL_TYPE__CD);
 
     compartmentEClass = createEClass(COMPARTMENT);
-    createEReference(compartmentEClass, COMPARTMENT__CD);
+    createEReference(compartmentEClass, COMPARTMENT__COMPARTMENT_DIAGRAM);
     createEReference(compartmentEClass, COMPARTMENT__ROLEMODEL);
     createEReference(compartmentEClass, COMPARTMENT__PARENT_ROLEMODEL);
 
     groupingEClass = createEClass(GROUPING);
-    createEReference(groupingEClass, GROUPING__CD);
+    createEReference(groupingEClass, GROUPING__COMPARTMENT_DIAGRAM);
     createEReference(groupingEClass, GROUPING__ROLEMODEL);
     createEReference(groupingEClass, GROUPING__PARENT_ROLEMODEL);
 
@@ -1239,7 +1239,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEReference(rolemodelEClass, ROLEMODEL__SUBCONTEXTS);
     createEReference(rolemodelEClass, ROLEMODEL__PARTICIPANTS);
     createEReference(rolemodelEClass, ROLEMODEL__PLAYERS);
-    createEReference(rolemodelEClass, ROLEMODEL__CT);
+    createEReference(rolemodelEClass, ROLEMODEL__COMPARTMENT);
     createEReference(rolemodelEClass, ROLEMODEL__PARENT_GROUP);
     createEReference(rolemodelEClass, ROLEMODEL__GROUPS);
 
@@ -1382,8 +1382,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEAttribute(getType_IsExpand(), ecorePackage.getEBoolean(), "isExpand", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(compartmentDiagramEClass, CompartmentDiagram.class, "CompartmentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompartmentDiagram_Compartments(), this.getCompartment(), this.getCompartment_Cd(), "compartments", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartmentDiagram_Groups(), this.getGrouping(), this.getGrouping_Cd(), "groups", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartmentDiagram_Compartments(), this.getCompartment(), this.getCompartment_CompartmentDiagram(), "compartments", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartmentDiagram_Groups(), this.getGrouping(), this.getGrouping_CompartmentDiagram(), "groups", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompartmentDiagram_Players(), this.getNaturalType(), this.getNaturalType_Cd(), "players", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(naturalTypeEClass, NaturalType.class, "NaturalType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1391,12 +1391,12 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEReference(getNaturalType_Cd(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Players(), "cd", null, 0, 1, NaturalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
     initEClass(compartmentEClass, Compartment.class, "Compartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompartment_Cd(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Compartments(), "cd", null, 0, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartment_Rolemodel(), this.getRolemodel(), this.getRolemodel_Ct(), "rolemodel", null, 1, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartment_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Compartments(), "compartmentDiagram", null, 0, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartment_Rolemodel(), this.getRolemodel(), this.getRolemodel_Compartment(), "rolemodel", null, 1, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompartment_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Subcontexts(), "parentRolemodel", null, 0, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(groupingEClass, Grouping.class, "Grouping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGrouping_Cd(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Groups(), "cd", null, 0, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getGrouping_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Groups(), "compartmentDiagram", null, 0, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
     initEReference(getGrouping_Rolemodel(), this.getRolemodel(), this.getRolemodel_ParentGroup(), "rolemodel", null, 1, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getGrouping_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Groups(), "parentRolemodel", null, 0, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1420,7 +1420,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEReference(getRolemodel_Subcontexts(), this.getCompartment(), this.getCompartment_ParentRolemodel(), "subcontexts", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRolemodel_Participants(), this.getAbstractRole(), this.getAbstractRole_ParentRolemodel(), "participants", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRolemodel_Players(), this.getNaturalType(), this.getNaturalType_ParentRolemodel(), "players", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRolemodel_Ct(), this.getCompartment(), this.getCompartment_Rolemodel(), "ct", null, 0, 1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolemodel_Compartment(), this.getCompartment(), this.getCompartment_Rolemodel(), "compartment", null, 0, 1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRolemodel_ParentGroup(), this.getGrouping(), this.getGrouping_Rolemodel(), "parentGroup", null, 0, 1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRolemodel_Groups(), this.getGrouping(), this.getGrouping_ParentRolemodel(), "groups", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1444,8 +1444,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEAttribute(getRelationship_FirstUpper(), ecorePackage.getEInt(), "firstUpper", "1", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRelationship_SecondUpper(), ecorePackage.getEInt(), "secondUpper", "1", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRelationship_FirstParthood(), this.getParthood(), "firstParthood", "Unconstrained", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_SourceLabelValue(), ecorePackage.getEString(), "sourceLabelValue", "*", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_TargetLabelValue(), ecorePackage.getEString(), "targetLabelValue", "*", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_SourceLabelValue(), ecorePackage.getEString(), "sourceLabelValue", "0..1", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_TargetLabelValue(), ecorePackage.getEString(), "targetLabelValue", "0..1", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelationship_RlshipConstraints(), this.getRelationshipConstraint(), this.getRelationshipConstraint_Relation(), "rlshipConstraints", null, 0, -1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(roleProhibitionEClass, RoleProhibition.class, "RoleProhibition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

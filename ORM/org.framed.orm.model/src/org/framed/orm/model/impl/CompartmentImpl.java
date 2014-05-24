@@ -24,7 +24,7 @@ import org.framed.orm.model.Rolemodel;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.CompartmentImpl#getCd <em>Cd</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.CompartmentImpl#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.CompartmentImpl#getRolemodel <em>Rolemodel</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.CompartmentImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
  * </ul>
@@ -68,7 +68,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
    * @generated
    */
   public CompartmentDiagram getCompartmentDiagram() {
-    if (eContainerFeatureID() != OrmPackage.COMPARTMENT__CD) return null;
+    if (eContainerFeatureID() != OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM) return null;
     return (CompartmentDiagram)eInternalContainer();
   }
 
@@ -77,8 +77,8 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCd(CompartmentDiagram newCd, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject)newCd, OrmPackage.COMPARTMENT__CD, msgs);
+  public NotificationChain basicSetCompartmentDiagram(CompartmentDiagram newCompartmentDiagram, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject)newCompartmentDiagram, OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM, msgs);
     return msgs;
   }
 
@@ -87,20 +87,20 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCd(CompartmentDiagram newCd) {
-    if (newCd != eInternalContainer() || (eContainerFeatureID() != OrmPackage.COMPARTMENT__CD && newCd != null)) {
-      if (EcoreUtil.isAncestor(this, newCd))
+  public void setCompartmentDiagram(CompartmentDiagram newCompartmentDiagram) {
+    if (newCompartmentDiagram != eInternalContainer() || (eContainerFeatureID() != OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM && newCompartmentDiagram != null)) {
+      if (EcoreUtil.isAncestor(this, newCompartmentDiagram))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newCd != null)
-        msgs = ((InternalEObject)newCd).eInverseAdd(this, OrmPackage.COMPARTMENT_DIAGRAM__COMPARTMENTS, CompartmentDiagram.class, msgs);
-      msgs = basicSetCd(newCd, msgs);
+      if (newCompartmentDiagram != null)
+        msgs = ((InternalEObject)newCompartmentDiagram).eInverseAdd(this, OrmPackage.COMPARTMENT_DIAGRAM__COMPARTMENTS, CompartmentDiagram.class, msgs);
+      msgs = basicSetCompartmentDiagram(newCompartmentDiagram, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.COMPARTMENT__CD, newCd, newCd));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM, newCompartmentDiagram, newCompartmentDiagram));
   }
 
   /**
@@ -136,9 +136,9 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
     if (newRolemodel != rolemodel) {
       NotificationChain msgs = null;
       if (rolemodel != null)
-        msgs = ((InternalEObject)rolemodel).eInverseRemove(this, OrmPackage.ROLEMODEL__CT, Rolemodel.class, msgs);
+        msgs = ((InternalEObject)rolemodel).eInverseRemove(this, OrmPackage.ROLEMODEL__COMPARTMENT, Rolemodel.class, msgs);
       if (newRolemodel != null)
-        msgs = ((InternalEObject)newRolemodel).eInverseAdd(this, OrmPackage.ROLEMODEL__CT, Rolemodel.class, msgs);
+        msgs = ((InternalEObject)newRolemodel).eInverseAdd(this, OrmPackage.ROLEMODEL__COMPARTMENT, Rolemodel.class, msgs);
       msgs = basicSetRolemodel(newRolemodel, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -195,10 +195,10 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case OrmPackage.COMPARTMENT__CD:
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetCd((CompartmentDiagram)otherEnd, msgs);
+        return basicSetCompartmentDiagram((CompartmentDiagram)otherEnd, msgs);
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         if (rolemodel != null)
           msgs = ((InternalEObject)rolemodel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrmPackage.COMPARTMENT__ROLEMODEL, null, msgs);
@@ -219,8 +219,8 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-      case OrmPackage.COMPARTMENT__CD:
-        return basicSetCd(null, msgs);
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
+        return basicSetCompartmentDiagram(null, msgs);
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         return basicSetRolemodel(null, msgs);
       case OrmPackage.COMPARTMENT__PARENT_ROLEMODEL:
@@ -237,7 +237,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
-      case OrmPackage.COMPARTMENT__CD:
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
         return eInternalContainer().eInverseRemove(this, OrmPackage.COMPARTMENT_DIAGRAM__COMPARTMENTS, CompartmentDiagram.class, msgs);
       case OrmPackage.COMPARTMENT__PARENT_ROLEMODEL:
         return eInternalContainer().eInverseRemove(this, OrmPackage.ROLEMODEL__SUBCONTEXTS, Rolemodel.class, msgs);
@@ -253,7 +253,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-      case OrmPackage.COMPARTMENT__CD:
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
         return getCompartmentDiagram();
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         return getRolemodel();
@@ -271,8 +271,8 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-      case OrmPackage.COMPARTMENT__CD:
-        setCd((CompartmentDiagram)newValue);
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
+        setCompartmentDiagram((CompartmentDiagram)newValue);
         return;
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         setRolemodel((Rolemodel)newValue);
@@ -292,8 +292,8 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-      case OrmPackage.COMPARTMENT__CD:
-        setCd((CompartmentDiagram)null);
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
+        setCompartmentDiagram((CompartmentDiagram)null);
         return;
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         setRolemodel((Rolemodel)null);
@@ -313,7 +313,7 @@ public class CompartmentImpl extends TypeImpl implements Compartment {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-      case OrmPackage.COMPARTMENT__CD:
+      case OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM:
         return getCompartmentDiagram() != null;
       case OrmPackage.COMPARTMENT__ROLEMODEL:
         return rolemodel != null;

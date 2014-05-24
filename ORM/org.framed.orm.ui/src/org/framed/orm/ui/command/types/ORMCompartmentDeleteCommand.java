@@ -35,14 +35,14 @@ public class ORMCompartmentDeleteCommand extends Command {
 	  @Override
 	  public void execute() {
 		detachLinks();
-	    compartment.setCd(null);
+	    compartment.setCompartmentDiagram(null);
 	    compartment.setParentRolemodel(null);
 	  }
 	 
 	  @Override
 	  public void undo() {
 	    reattachLinks();
-	  if(cd != null)  compartment.setCd(cd);
+	  if(cd != null)  compartment.setCompartmentDiagram(cd);
 	  if(parentrolemodel !=null)   compartment.setParentRolemodel(parentrolemodel);
 	  }
 	 

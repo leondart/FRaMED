@@ -92,7 +92,7 @@ public class CompartmentDiagramImpl extends RelationContainerImpl implements Com
    */
   public EList<Compartment> getCompartments() {
     if (compartments == null) {
-      compartments = new EObjectContainmentWithInverseEList<Compartment>(Compartment.class, this, OrmPackage.COMPARTMENT_DIAGRAM__COMPARTMENTS, OrmPackage.COMPARTMENT__CD);
+      compartments = new EObjectContainmentWithInverseEList<Compartment>(Compartment.class, this, OrmPackage.COMPARTMENT_DIAGRAM__COMPARTMENTS, OrmPackage.COMPARTMENT__COMPARTMENT_DIAGRAM);
     }
     return compartments;
   }
@@ -104,7 +104,7 @@ public class CompartmentDiagramImpl extends RelationContainerImpl implements Com
    */
   public EList<Grouping> getGroups() {
     if (groups == null) {
-      groups = new EObjectContainmentWithInverseEList<Grouping>(Grouping.class, this, OrmPackage.COMPARTMENT_DIAGRAM__GROUPS, OrmPackage.GROUPING__CD);
+      groups = new EObjectContainmentWithInverseEList<Grouping>(Grouping.class, this, OrmPackage.COMPARTMENT_DIAGRAM__GROUPS, OrmPackage.GROUPING__COMPARTMENT_DIAGRAM);
     }
     return groups;
   }

@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.framed.orm.model.Rolemodel#getSubcontexts <em>Subcontexts</em>}</li>
  *   <li>{@link org.framed.orm.model.Rolemodel#getParticipants <em>Participants</em>}</li>
  *   <li>{@link org.framed.orm.model.Rolemodel#getPlayers <em>Players</em>}</li>
- *   <li>{@link org.framed.orm.model.Rolemodel#getCt <em>Ct</em>}</li>
+ *   <li>{@link org.framed.orm.model.Rolemodel#getCompartment <em>Compartment</em>}</li>
  *   <li>{@link org.framed.orm.model.Rolemodel#getParentGroup <em>Parent Group</em>}</li>
  *   <li>{@link org.framed.orm.model.Rolemodel#getGroups <em>Groups</em>}</li>
  * </ul>
@@ -81,17 +81,17 @@ public interface Rolemodel extends RelationContainer {
   EList<NaturalType> getPlayers();
 
   /**
-   * Returns the value of the '<em><b>Ct</b></em>' container reference.
+   * Returns the value of the '<em><b>Compartment</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.framed.orm.model.Compartment#getRolemodel <em>Rolemodel</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Ct</em>' container reference isn't clear,
+   * If the meaning of the '<em>Compartment</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ct</em>' container reference.
-   * @see #setCt(Compartment)
-   * @see org.framed.orm.model.OrmPackage#getRolemodel_Ct()
+   * @return the value of the '<em>Compartment</em>' container reference.
+   * @see #setCompartment(Compartment)
+   * @see org.framed.orm.model.OrmPackage#getRolemodel_Compartment()
    * @see org.framed.orm.model.Compartment#getRolemodel
    * @model opposite="rolemodel" transient="false"
    * @generated
@@ -99,14 +99,14 @@ public interface Rolemodel extends RelationContainer {
   Compartment getCompartment();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Rolemodel#getCt <em>Ct</em>}' container reference.
+   * Sets the value of the '{@link org.framed.orm.model.Rolemodel#getCompartment <em>Compartment</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ct</em>' container reference.
+   * @param value the new value of the '<em>Compartment</em>' container reference.
    * @see #getCompartment()
    * @generated
    */
-  void setCt(Compartment value);
+  void setCompartment(Compartment value);
 
   /**
    * Returns the value of the '<em><b>Parent Group</b></em>' container reference.

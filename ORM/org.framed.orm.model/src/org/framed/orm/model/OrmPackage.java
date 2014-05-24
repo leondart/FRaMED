@@ -589,13 +589,13 @@ public interface OrmPackage extends EPackage {
   int COMPARTMENT__IS_EXPAND = TYPE__IS_EXPAND;
 
   /**
-   * The feature id for the '<em><b>Cd</b></em>' container reference.
+   * The feature id for the '<em><b>Compartment Diagram</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPARTMENT__CD = TYPE_FEATURE_COUNT + 0;
+  int COMPARTMENT__COMPARTMENT_DIAGRAM = TYPE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Rolemodel</b></em>' containment reference.
@@ -680,13 +680,13 @@ public interface OrmPackage extends EPackage {
   int GROUPING__CONSTRAINTS = NODE__CONSTRAINTS;
 
   /**
-   * The feature id for the '<em><b>Cd</b></em>' container reference.
+   * The feature id for the '<em><b>Compartment Diagram</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GROUPING__CD = NODE_FEATURE_COUNT + 0;
+  int GROUPING__COMPARTMENT_DIAGRAM = NODE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Rolemodel</b></em>' containment reference.
@@ -1424,13 +1424,13 @@ public interface OrmPackage extends EPackage {
   int ROLEMODEL__PLAYERS = RELATION_CONTAINER_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Ct</b></em>' container reference.
+   * The feature id for the '<em><b>Compartment</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLEMODEL__CT = RELATION_CONTAINER_FEATURE_COUNT + 3;
+  int ROLEMODEL__COMPARTMENT = RELATION_CONTAINER_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Parent Group</b></em>' container reference.
@@ -3037,15 +3037,15 @@ public interface OrmPackage extends EPackage {
   EClass getCompartment();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Compartment#getCd <em>Cd</em>}'.
+   * Returns the meta object for the container reference '{@link org.framed.orm.model.Compartment#getCompartmentDiagram <em>Compartment Diagram</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Cd</em>'.
+   * @return the meta object for the container reference '<em>Compartment Diagram</em>'.
    * @see org.framed.orm.model.Compartment#getCompartmentDiagram()
    * @see #getCompartment()
    * @generated
    */
-  EReference getCompartment_Cd();
+  EReference getCompartment_CompartmentDiagram();
 
   /**
    * Returns the meta object for the containment reference '{@link org.framed.orm.model.Compartment#getRolemodel <em>Rolemodel</em>}'.
@@ -3080,15 +3080,15 @@ public interface OrmPackage extends EPackage {
   EClass getGrouping();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Grouping#getCd <em>Cd</em>}'.
+   * Returns the meta object for the container reference '{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Cd</em>'.
+   * @return the meta object for the container reference '<em>Compartment Diagram</em>'.
    * @see org.framed.orm.model.Grouping#getCompartmentDiagram()
    * @see #getGrouping()
    * @generated
    */
-  EReference getGrouping_Cd();
+  EReference getGrouping_CompartmentDiagram();
 
   /**
    * Returns the meta object for the containment reference '{@link org.framed.orm.model.Grouping#getRolemodel <em>Rolemodel</em>}'.
@@ -3284,15 +3284,15 @@ public interface OrmPackage extends EPackage {
   EReference getRolemodel_Players();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Rolemodel#getCt <em>Ct</em>}'.
+   * Returns the meta object for the container reference '{@link org.framed.orm.model.Rolemodel#getCompartment <em>Compartment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Ct</em>'.
+   * @return the meta object for the container reference '<em>Compartment</em>'.
    * @see org.framed.orm.model.Rolemodel#getCompartment()
    * @see #getRolemodel()
    * @generated
    */
-  EReference getRolemodel_Ct();
+  EReference getRolemodel_Compartment();
 
   /**
    * Returns the meta object for the container reference '{@link org.framed.orm.model.Rolemodel#getParentGroup <em>Parent Group</em>}'.
@@ -4007,12 +4007,12 @@ public interface OrmPackage extends EPackage {
     EClass COMPARTMENT = eINSTANCE.getCompartment();
 
     /**
-     * The meta object literal for the '<em><b>Cd</b></em>' container reference feature.
+     * The meta object literal for the '<em><b>Compartment Diagram</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMPARTMENT__CD = eINSTANCE.getCompartment_Cd();
+    EReference COMPARTMENT__COMPARTMENT_DIAGRAM = eINSTANCE.getCompartment_CompartmentDiagram();
 
     /**
      * The meta object literal for the '<em><b>Rolemodel</b></em>' containment reference feature.
@@ -4041,12 +4041,12 @@ public interface OrmPackage extends EPackage {
     EClass GROUPING = eINSTANCE.getGrouping();
 
     /**
-     * The meta object literal for the '<em><b>Cd</b></em>' container reference feature.
+     * The meta object literal for the '<em><b>Compartment Diagram</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference GROUPING__CD = eINSTANCE.getGrouping_Cd();
+    EReference GROUPING__COMPARTMENT_DIAGRAM = eINSTANCE.getGrouping_CompartmentDiagram();
 
     /**
      * The meta object literal for the '<em><b>Rolemodel</b></em>' containment reference feature.
@@ -4203,12 +4203,12 @@ public interface OrmPackage extends EPackage {
     EReference ROLEMODEL__PLAYERS = eINSTANCE.getRolemodel_Players();
 
     /**
-     * The meta object literal for the '<em><b>Ct</b></em>' container reference feature.
+     * The meta object literal for the '<em><b>Compartment</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ROLEMODEL__CT = eINSTANCE.getRolemodel_Ct();
+    EReference ROLEMODEL__COMPARTMENT = eINSTANCE.getRolemodel_Compartment();
 
     /**
      * The meta object literal for the '<em><b>Parent Group</b></em>' container reference feature.

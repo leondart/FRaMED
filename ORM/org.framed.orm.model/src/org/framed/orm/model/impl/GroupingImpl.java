@@ -38,7 +38,7 @@ import org.framed.orm.model.Rolemodel;
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getOutgoingLinks <em>Outgoing Links</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getCd <em>Cd</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getRolemodel <em>Rolemodel</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
  * </ul>
@@ -208,7 +208,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * @generated
    */
   public CompartmentDiagram getCompartmentDiagram() {
-    if (eContainerFeatureID() != OrmPackage.GROUPING__CD) return null;
+    if (eContainerFeatureID() != OrmPackage.GROUPING__COMPARTMENT_DIAGRAM) return null;
     return (CompartmentDiagram)eInternalContainer();
   }
 
@@ -217,8 +217,8 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCd(CompartmentDiagram newCd, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject)newCd, OrmPackage.GROUPING__CD, msgs);
+  public NotificationChain basicSetCompartmentDiagram(CompartmentDiagram newCompartmentDiagram, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject)newCompartmentDiagram, OrmPackage.GROUPING__COMPARTMENT_DIAGRAM, msgs);
     return msgs;
   }
 
@@ -227,20 +227,20 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCd(CompartmentDiagram newCd) {
-    if (newCd != eInternalContainer() || (eContainerFeatureID() != OrmPackage.GROUPING__CD && newCd != null)) {
-      if (EcoreUtil.isAncestor(this, newCd))
+  public void setCompartmentDiagram(CompartmentDiagram newCompartmentDiagram) {
+    if (newCompartmentDiagram != eInternalContainer() || (eContainerFeatureID() != OrmPackage.GROUPING__COMPARTMENT_DIAGRAM && newCompartmentDiagram != null)) {
+      if (EcoreUtil.isAncestor(this, newCompartmentDiagram))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newCd != null)
-        msgs = ((InternalEObject)newCd).eInverseAdd(this, OrmPackage.COMPARTMENT_DIAGRAM__GROUPS, CompartmentDiagram.class, msgs);
-      msgs = basicSetCd(newCd, msgs);
+      if (newCompartmentDiagram != null)
+        msgs = ((InternalEObject)newCompartmentDiagram).eInverseAdd(this, OrmPackage.COMPARTMENT_DIAGRAM__GROUPS, CompartmentDiagram.class, msgs);
+      msgs = basicSetCompartmentDiagram(newCompartmentDiagram, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.GROUPING__CD, newCd, newCd));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.GROUPING__COMPARTMENT_DIAGRAM, newCompartmentDiagram, newCompartmentDiagram));
   }
 
   /**
@@ -340,10 +340,10 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingLinks()).basicAdd(otherEnd, msgs);
       case OrmPackage.GROUPING__OUTGOING_LINKS:
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getOutgoingLinks()).basicAdd(otherEnd, msgs);
-      case OrmPackage.GROUPING__CD:
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetCd((CompartmentDiagram)otherEnd, msgs);
+        return basicSetCompartmentDiagram((CompartmentDiagram)otherEnd, msgs);
       case OrmPackage.GROUPING__ROLEMODEL:
         if (rolemodel != null)
           msgs = ((InternalEObject)rolemodel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrmPackage.GROUPING__ROLEMODEL, null, msgs);
@@ -368,8 +368,8 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
         return ((InternalEList<?>)getIncomingLinks()).basicRemove(otherEnd, msgs);
       case OrmPackage.GROUPING__OUTGOING_LINKS:
         return ((InternalEList<?>)getOutgoingLinks()).basicRemove(otherEnd, msgs);
-      case OrmPackage.GROUPING__CD:
-        return basicSetCd(null, msgs);
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
+        return basicSetCompartmentDiagram(null, msgs);
       case OrmPackage.GROUPING__ROLEMODEL:
         return basicSetRolemodel(null, msgs);
       case OrmPackage.GROUPING__PARENT_ROLEMODEL:
@@ -386,7 +386,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
-      case OrmPackage.GROUPING__CD:
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
         return eInternalContainer().eInverseRemove(this, OrmPackage.COMPARTMENT_DIAGRAM__GROUPS, CompartmentDiagram.class, msgs);
       case OrmPackage.GROUPING__PARENT_ROLEMODEL:
         return eInternalContainer().eInverseRemove(this, OrmPackage.ROLEMODEL__GROUPS, Rolemodel.class, msgs);
@@ -410,7 +410,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
         return getName();
       case OrmPackage.GROUPING__CONSTRAINTS:
         return getConstraints();
-      case OrmPackage.GROUPING__CD:
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
         return getCompartmentDiagram();
       case OrmPackage.GROUPING__ROLEMODEL:
         return getRolemodel();
@@ -443,8 +443,8 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
       case OrmPackage.GROUPING__CONSTRAINTS:
         setConstraints((Rectangle)newValue);
         return;
-      case OrmPackage.GROUPING__CD:
-        setCd((CompartmentDiagram)newValue);
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
+        setCompartmentDiagram((CompartmentDiagram)newValue);
         return;
       case OrmPackage.GROUPING__ROLEMODEL:
         setRolemodel((Rolemodel)newValue);
@@ -476,8 +476,8 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
       case OrmPackage.GROUPING__CONSTRAINTS:
         setConstraints(CONSTRAINTS_EDEFAULT);
         return;
-      case OrmPackage.GROUPING__CD:
-        setCd((CompartmentDiagram)null);
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
+        setCompartmentDiagram((CompartmentDiagram)null);
         return;
       case OrmPackage.GROUPING__ROLEMODEL:
         setRolemodel((Rolemodel)null);
@@ -505,7 +505,7 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case OrmPackage.GROUPING__CONSTRAINTS:
         return CONSTRAINTS_EDEFAULT == null ? constraints != null : !CONSTRAINTS_EDEFAULT.equals(constraints);
-      case OrmPackage.GROUPING__CD:
+      case OrmPackage.GROUPING__COMPARTMENT_DIAGRAM:
         return getCompartmentDiagram() != null;
       case OrmPackage.GROUPING__ROLEMODEL:
         return rolemodel != null;

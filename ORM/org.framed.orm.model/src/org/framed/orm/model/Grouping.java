@@ -11,7 +11,7 @@ package org.framed.orm.model;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.framed.orm.model.Grouping#getCd <em>Cd</em>}</li>
+ *   <li>{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
  *   <li>{@link org.framed.orm.model.Grouping#getRolemodel <em>Rolemodel</em>}</li>
  *   <li>{@link org.framed.orm.model.Grouping#getParentRolemodel <em>Parent Rolemodel</em>}</li>
  * </ul>
@@ -23,17 +23,17 @@ package org.framed.orm.model;
  */
 public interface Grouping extends Node {
   /**
-   * Returns the value of the '<em><b>Cd</b></em>' container reference.
+   * Returns the value of the '<em><b>Compartment Diagram</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.framed.orm.model.CompartmentDiagram#getGroups <em>Groups</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Cd</em>' container reference isn't clear,
+   * If the meaning of the '<em>Compartment Diagram</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Cd</em>' container reference.
-   * @see #setCd(CompartmentDiagram)
-   * @see org.framed.orm.model.OrmPackage#getGrouping_Cd()
+   * @return the value of the '<em>Compartment Diagram</em>' container reference.
+   * @see #setCompartmentDiagram(CompartmentDiagram)
+   * @see org.framed.orm.model.OrmPackage#getGrouping_CompartmentDiagram()
    * @see org.framed.orm.model.CompartmentDiagram#getGroups
    * @model opposite="groups" transient="false" derived="true"
    * @generated
@@ -41,14 +41,14 @@ public interface Grouping extends Node {
   CompartmentDiagram getCompartmentDiagram();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Grouping#getCd <em>Cd</em>}' container reference.
+   * Sets the value of the '{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Cd</em>' container reference.
+   * @param value the new value of the '<em>Compartment Diagram</em>' container reference.
    * @see #getCompartmentDiagram()
    * @generated
    */
-  void setCd(CompartmentDiagram value);
+  void setCompartmentDiagram(CompartmentDiagram value);
 
   /**
    * Returns the value of the '<em><b>Rolemodel</b></em>' containment reference.

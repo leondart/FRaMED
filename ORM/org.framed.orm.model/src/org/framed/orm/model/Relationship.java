@@ -200,7 +200,7 @@ public interface Relationship extends Relation {
 
   /**
    * Returns the value of the '<em><b>Source Label Value</b></em>' attribute.
-   * The default value is <code>"*"</code>.
+   * The default value is <code>"0..1"</code>.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Source Label Value</em>' attribute isn't clear,
@@ -210,7 +210,7 @@ public interface Relationship extends Relation {
    * @return the value of the '<em>Source Label Value</em>' attribute.
    * @see #setSourceLabelValue(String)
    * @see org.framed.orm.model.OrmPackage#getRelationship_SourceLabelValue()
-   * @model default="*"
+   * @model default="0..1"
    * @generated
    */
   String getSourceLabelValue();
@@ -227,7 +227,7 @@ public interface Relationship extends Relation {
 
   /**
    * Returns the value of the '<em><b>Target Label Value</b></em>' attribute.
-   * The default value is <code>"*"</code>.
+   * The default value is <code>"0..1"</code>.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Target Label Value</em>' attribute isn't clear,
@@ -237,7 +237,7 @@ public interface Relationship extends Relation {
    * @return the value of the '<em>Target Label Value</em>' attribute.
    * @see #setTargetLabelValue(String)
    * @see org.framed.orm.model.OrmPackage#getRelationship_TargetLabelValue()
-   * @model default="*"
+   * @model default="0..1"
    * @generated
    */
   String getTargetLabelValue();

@@ -20,9 +20,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompartmentDiagram" eSuperTypes="#//RelationContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" upperBound="-1"
-        eType="#//Compartment" containment="true" eOpposite="#//Compartment/cd"/>
+        eType="#//Compartment" containment="true" eOpposite="#//Compartment/compartmentDiagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
-        eType="#//Grouping" containment="true" eOpposite="#//Grouping/cd"/>
+        eType="#//Grouping" containment="true" eOpposite="#//Grouping/compartmentDiagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="-1"
         eType="#//NaturalType" containment="true" eOpposite="#//NaturalType/cd"/>
   </eClassifiers>
@@ -33,15 +33,15 @@
         derived="true" eOpposite="#//CompartmentDiagram/players"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Compartment" eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cd" eType="#//CompartmentDiagram"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartmentDiagram" eType="#//CompartmentDiagram"
         derived="true" eOpposite="#//CompartmentDiagram/compartments"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rolemodel" lowerBound="1"
-        eType="#//Rolemodel" containment="true" eOpposite="#//Rolemodel/ct"/>
+        eType="#//Rolemodel" containment="true" eOpposite="#//Rolemodel/compartment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentRolemodel" eType="#//Rolemodel"
         eOpposite="#//Rolemodel/subcontexts"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Grouping" eSuperTypes="#//Node">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cd" eType="#//CompartmentDiagram"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartmentDiagram" eType="#//CompartmentDiagram"
         derived="true" eOpposite="#//CompartmentDiagram/groups"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rolemodel" lowerBound="1"
         eType="#//Rolemodel" containment="true" eOpposite="#//Rolemodel/parentGroup"/>
@@ -77,7 +77,7 @@
         eType="#//AbstractRole" containment="true" eOpposite="#//AbstractRole/parentRolemodel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="-1"
         eType="#//NaturalType" containment="true" eOpposite="#//NaturalType/parentRolemodel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ct" eType="#//Compartment"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartment" eType="#//Compartment"
         eOpposite="#//Compartment/rolemodel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentGroup" eType="#//Grouping"
         eOpposite="#//Grouping/rolemodel"/>
@@ -111,9 +111,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstParthood" lowerBound="1"
         eType="#//Parthood" defaultValueLiteral="Unconstrained"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceLabelValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="*"/>
+        defaultValueLiteral="0..1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetLabelValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="*"/>
+        defaultValueLiteral="0..1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rlshipConstraints" upperBound="-1"
         eType="#//RelationshipConstraint" eOpposite="#//RelationshipConstraint/relation"/>
   </eClassifiers>
