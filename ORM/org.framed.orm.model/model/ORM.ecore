@@ -24,12 +24,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//Grouping" containment="true" eOpposite="#//Grouping/compartmentDiagram"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="-1"
-        eType="#//NaturalType" containment="true" eOpposite="#//NaturalType/cd"/>
+        eType="#//NaturalType" containment="true" eOpposite="#//NaturalType/compartmentDiagram"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NaturalType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentRolemodel" eType="#//Rolemodel"
         eOpposite="#//Rolemodel/players"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cd" eType="#//CompartmentDiagram"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartmentDiagram" eType="#//CompartmentDiagram"
         derived="true" eOpposite="#//CompartmentDiagram/players"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Compartment" eSuperTypes="#//Type">

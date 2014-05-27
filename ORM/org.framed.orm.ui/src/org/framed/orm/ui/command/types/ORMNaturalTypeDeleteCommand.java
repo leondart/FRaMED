@@ -36,14 +36,14 @@ public class ORMNaturalTypeDeleteCommand extends Command {
 	  public void execute() {
 		detachLinks();
 	    type.setParentRolemodel(null);
-	    type.setCd(null);
+	    type.setCompartmentDiagram(null);
 	  }
 	 
 	  @Override
 	  public void undo() {
 		reattachLinks();  
 	    if(parentrolemodel!=null) type.setParentRolemodel(parentrolemodel);
-	    if(cd!=null) type.setCd(cd);
+	    if(cd!=null) type.setCompartmentDiagram(cd);
 	  }
 	 
 	  /**
@@ -80,7 +80,7 @@ public class ORMNaturalTypeDeleteCommand extends Command {
 	  public void setType(NaturalType type) {
 	    this.type = type;
 	    this.parentrolemodel = type.getParentRolemodel();
-	    this.cd = type.getCd();
+	    this.cd = type.getCompartmentDiagram();
 	  }
 	
 }

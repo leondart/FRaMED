@@ -25,7 +25,7 @@ import org.framed.orm.model.Rolemodel;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.NaturalTypeImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.NaturalTypeImpl#getCd <em>Cd</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.NaturalTypeImpl#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
  * </ul>
  * </p>
  *
@@ -97,8 +97,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompartmentDiagram getCd() {
-    if (eContainerFeatureID() != OrmPackage.NATURAL_TYPE__CD) return null;
+  public CompartmentDiagram getCompartmentDiagram() {
+    if (eContainerFeatureID() != OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM) return null;
     return (CompartmentDiagram)eInternalContainer();
   }
 
@@ -107,8 +107,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCd(CompartmentDiagram newCd, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject)newCd, OrmPackage.NATURAL_TYPE__CD, msgs);
+  public NotificationChain basicSetCompartmentDiagram(CompartmentDiagram newCompartmentDiagram, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject)newCompartmentDiagram, OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM, msgs);
     return msgs;
   }
 
@@ -117,20 +117,20 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCd(CompartmentDiagram newCd) {
-    if (newCd != eInternalContainer() || (eContainerFeatureID() != OrmPackage.NATURAL_TYPE__CD && newCd != null)) {
-      if (EcoreUtil.isAncestor(this, newCd))
+  public void setCompartmentDiagram(CompartmentDiagram newCompartmentDiagram) {
+    if (newCompartmentDiagram != eInternalContainer() || (eContainerFeatureID() != OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM && newCompartmentDiagram != null)) {
+      if (EcoreUtil.isAncestor(this, newCompartmentDiagram))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newCd != null)
-        msgs = ((InternalEObject)newCd).eInverseAdd(this, OrmPackage.COMPARTMENT_DIAGRAM__PLAYERS, CompartmentDiagram.class, msgs);
-      msgs = basicSetCd(newCd, msgs);
+      if (newCompartmentDiagram != null)
+        msgs = ((InternalEObject)newCompartmentDiagram).eInverseAdd(this, OrmPackage.COMPARTMENT_DIAGRAM__PLAYERS, CompartmentDiagram.class, msgs);
+      msgs = basicSetCompartmentDiagram(newCompartmentDiagram, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.NATURAL_TYPE__CD, newCd, newCd));
+      eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM, newCompartmentDiagram, newCompartmentDiagram));
   }
 
   /**
@@ -145,10 +145,10 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
         return basicSetParentRolemodel((Rolemodel)otherEnd, msgs);
-      case OrmPackage.NATURAL_TYPE__CD:
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetCd((CompartmentDiagram)otherEnd, msgs);
+        return basicSetCompartmentDiagram((CompartmentDiagram)otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -163,8 +163,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
     switch (featureID) {
       case OrmPackage.NATURAL_TYPE__PARENT_ROLEMODEL:
         return basicSetParentRolemodel(null, msgs);
-      case OrmPackage.NATURAL_TYPE__CD:
-        return basicSetCd(null, msgs);
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
+        return basicSetCompartmentDiagram(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -179,7 +179,7 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
     switch (eContainerFeatureID()) {
       case OrmPackage.NATURAL_TYPE__PARENT_ROLEMODEL:
         return eInternalContainer().eInverseRemove(this, OrmPackage.ROLEMODEL__PLAYERS, Rolemodel.class, msgs);
-      case OrmPackage.NATURAL_TYPE__CD:
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
         return eInternalContainer().eInverseRemove(this, OrmPackage.COMPARTMENT_DIAGRAM__PLAYERS, CompartmentDiagram.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
@@ -195,8 +195,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
     switch (featureID) {
       case OrmPackage.NATURAL_TYPE__PARENT_ROLEMODEL:
         return getParentRolemodel();
-      case OrmPackage.NATURAL_TYPE__CD:
-        return getCd();
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
+        return getCompartmentDiagram();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -212,8 +212,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
       case OrmPackage.NATURAL_TYPE__PARENT_ROLEMODEL:
         setParentRolemodel((Rolemodel)newValue);
         return;
-      case OrmPackage.NATURAL_TYPE__CD:
-        setCd((CompartmentDiagram)newValue);
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
+        setCompartmentDiagram((CompartmentDiagram)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -230,8 +230,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
       case OrmPackage.NATURAL_TYPE__PARENT_ROLEMODEL:
         setParentRolemodel((Rolemodel)null);
         return;
-      case OrmPackage.NATURAL_TYPE__CD:
-        setCd((CompartmentDiagram)null);
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
+        setCompartmentDiagram((CompartmentDiagram)null);
         return;
     }
     super.eUnset(featureID);
@@ -247,8 +247,8 @@ public class NaturalTypeImpl extends TypeImpl implements NaturalType {
     switch (featureID) {
       case OrmPackage.NATURAL_TYPE__PARENT_ROLEMODEL:
         return getParentRolemodel() != null;
-      case OrmPackage.NATURAL_TYPE__CD:
-        return getCd() != null;
+      case OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM:
+        return getCompartmentDiagram() != null;
     }
     return super.eIsSet(featureID);
   }

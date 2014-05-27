@@ -126,9 +126,9 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           retVal =
               setupConnectionStartCommand(request,
                   ((NaturalType) getHost().getModel()).getParentRolemodel());
-        if (((NaturalType) getHost().getModel()).getCd() != null)
+        if (((NaturalType) getHost().getModel()).getCompartmentDiagram() != null)
           retVal =
-              setupConnectionStartCommand(request, ((NaturalType) getHost().getModel()).getCd());
+              setupConnectionStartCommand(request, ((NaturalType) getHost().getModel()).getCompartmentDiagram());
       } else {
         if (((Compartment) getHost().getModel()).getParentRolemodel() != null)
           retVal =
@@ -195,9 +195,9 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           retVal =
               setupConnectionStartCommand(request,
                   ((NaturalType) getHost().getModel()).getParentRolemodel());
-        if (((NaturalType) getHost().getModel()).getCd() != null)
+        if (((NaturalType) getHost().getModel()).getCompartmentDiagram() != null)
           retVal =
-              setupConnectionStartCommand(request, ((NaturalType) getHost().getModel()).getCd());
+              setupConnectionStartCommand(request, ((NaturalType) getHost().getModel()).getCompartmentDiagram());
       } else if (request.getTargetEditPart() instanceof ORMCompartmentEditPart) {
         if (((Compartment) getHost().getModel()).getParentRolemodel() != null)
           retVal =

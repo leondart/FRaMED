@@ -477,7 +477,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNaturalType_Cd() {
+  public EReference getNaturalType_CompartmentDiagram() {
     return (EReference)naturalTypeEClass.getEStructuralFeatures().get(1);
   }
 
@@ -1177,7 +1177,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     naturalTypeEClass = createEClass(NATURAL_TYPE);
     createEReference(naturalTypeEClass, NATURAL_TYPE__PARENT_ROLEMODEL);
-    createEReference(naturalTypeEClass, NATURAL_TYPE__CD);
+    createEReference(naturalTypeEClass, NATURAL_TYPE__COMPARTMENT_DIAGRAM);
 
     compartmentEClass = createEClass(COMPARTMENT);
     createEReference(compartmentEClass, COMPARTMENT__COMPARTMENT_DIAGRAM);
@@ -1351,11 +1351,11 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEClass(compartmentDiagramEClass, CompartmentDiagram.class, "CompartmentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCompartmentDiagram_Compartments(), this.getCompartment(), this.getCompartment_CompartmentDiagram(), "compartments", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCompartmentDiagram_Groups(), this.getGrouping(), this.getGrouping_CompartmentDiagram(), "groups", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartmentDiagram_Players(), this.getNaturalType(), this.getNaturalType_Cd(), "players", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartmentDiagram_Players(), this.getNaturalType(), this.getNaturalType_CompartmentDiagram(), "players", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(naturalTypeEClass, NaturalType.class, "NaturalType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNaturalType_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Players(), "parentRolemodel", null, 0, 1, NaturalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNaturalType_Cd(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Players(), "cd", null, 0, 1, NaturalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getNaturalType_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Players(), "compartmentDiagram", null, 0, 1, NaturalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
     initEClass(compartmentEClass, Compartment.class, "Compartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCompartment_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Compartments(), "compartmentDiagram", null, 0, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);

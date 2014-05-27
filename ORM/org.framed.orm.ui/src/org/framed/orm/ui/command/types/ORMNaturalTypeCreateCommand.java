@@ -40,7 +40,7 @@ public class ORMNaturalTypeCreateCommand extends Command {
 			// for Attribute/Methode list expanding 
 			naturalType.setIsExpand(true);
 		   if(parentrolemodel != null) naturalType.setParentRolemodel(parentrolemodel);
-		   if(cd != null) naturalType.setCd(cd);
+		   if(cd != null) naturalType.setCompartmentDiagram(cd);
 		}
 		
 		/**
@@ -48,7 +48,7 @@ public class ORMNaturalTypeCreateCommand extends Command {
 		 */
 		@Override public void undo() {
 			naturalType.setParentRolemodel(null);
-			naturalType.setCd(null);
+			naturalType.setCompartmentDiagram(null);
 		}
 
 	

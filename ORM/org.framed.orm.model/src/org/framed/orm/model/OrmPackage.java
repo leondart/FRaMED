@@ -489,13 +489,13 @@ public interface OrmPackage extends EPackage {
   int NATURAL_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Cd</b></em>' container reference.
+   * The feature id for the '<em><b>Compartment Diagram</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NATURAL_TYPE__CD = TYPE_FEATURE_COUNT + 1;
+  int NATURAL_TYPE__COMPARTMENT_DIAGRAM = TYPE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Natural Type</em>' class.
@@ -2836,15 +2836,15 @@ public interface OrmPackage extends EPackage {
   EReference getNaturalType_ParentRolemodel();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.NaturalType#getCd <em>Cd</em>}'.
+   * Returns the meta object for the container reference '{@link org.framed.orm.model.NaturalType#getCompartmentDiagram <em>Compartment Diagram</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Cd</em>'.
-   * @see org.framed.orm.model.NaturalType#getCd()
+   * @return the meta object for the container reference '<em>Compartment Diagram</em>'.
+   * @see org.framed.orm.model.NaturalType#getCompartmentDiagram()
    * @see #getNaturalType()
    * @generated
    */
-  EReference getNaturalType_Cd();
+  EReference getNaturalType_CompartmentDiagram();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.Compartment <em>Compartment</em>}'.
@@ -3776,12 +3776,12 @@ public interface OrmPackage extends EPackage {
     EReference NATURAL_TYPE__PARENT_ROLEMODEL = eINSTANCE.getNaturalType_ParentRolemodel();
 
     /**
-     * The meta object literal for the '<em><b>Cd</b></em>' container reference feature.
+     * The meta object literal for the '<em><b>Compartment Diagram</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference NATURAL_TYPE__CD = eINSTANCE.getNaturalType_Cd();
+    EReference NATURAL_TYPE__COMPARTMENT_DIAGRAM = eINSTANCE.getNaturalType_CompartmentDiagram();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.CompartmentImpl <em>Compartment</em>}' class.

@@ -62,7 +62,7 @@ public interface CompartmentDiagram extends RelationContainer {
   /**
    * Returns the value of the '<em><b>Players</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.NaturalType}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.NaturalType#getCd <em>Cd</em>}'.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.NaturalType#getCompartmentDiagram <em>Compartment Diagram</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Players</em>' containment reference list isn't clear,
@@ -71,8 +71,8 @@ public interface CompartmentDiagram extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Players</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getCompartmentDiagram_Players()
-   * @see org.framed.orm.model.NaturalType#getCd
-   * @model opposite="cd" containment="true"
+   * @see org.framed.orm.model.NaturalType#getCompartmentDiagram
+   * @model opposite="compartmentDiagram" containment="true"
    * @generated
    */
   EList<NaturalType> getPlayers();

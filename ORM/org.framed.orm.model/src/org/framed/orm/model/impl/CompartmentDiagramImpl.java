@@ -116,7 +116,7 @@ public class CompartmentDiagramImpl extends RelationContainerImpl implements Com
    */
   public EList<NaturalType> getPlayers() {
     if (players == null) {
-      players = new EObjectContainmentWithInverseEList<NaturalType>(NaturalType.class, this, OrmPackage.COMPARTMENT_DIAGRAM__PLAYERS, OrmPackage.NATURAL_TYPE__CD);
+      players = new EObjectContainmentWithInverseEList<NaturalType>(NaturalType.class, this, OrmPackage.COMPARTMENT_DIAGRAM__PLAYERS, OrmPackage.NATURAL_TYPE__COMPARTMENT_DIAGRAM);
     }
     return players;
   }

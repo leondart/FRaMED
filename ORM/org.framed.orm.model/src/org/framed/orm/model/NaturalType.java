@@ -12,7 +12,7 @@ package org.framed.orm.model;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.framed.orm.model.NaturalType#getParentRolemodel <em>Parent Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.NaturalType#getCd <em>Cd</em>}</li>
+ *   <li>{@link org.framed.orm.model.NaturalType#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,31 +50,31 @@ public interface NaturalType extends Type {
   void setParentRolemodel(Rolemodel value);
 
   /**
-   * Returns the value of the '<em><b>Cd</b></em>' container reference.
+   * Returns the value of the '<em><b>Compartment Diagram</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.framed.orm.model.CompartmentDiagram#getPlayers <em>Players</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Cd</em>' container reference isn't clear,
+   * If the meaning of the '<em>Compartment Diagram</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Cd</em>' container reference.
-   * @see #setCd(CompartmentDiagram)
-   * @see org.framed.orm.model.OrmPackage#getNaturalType_Cd()
+   * @return the value of the '<em>Compartment Diagram</em>' container reference.
+   * @see #setCompartmentDiagram(CompartmentDiagram)
+   * @see org.framed.orm.model.OrmPackage#getNaturalType_CompartmentDiagram()
    * @see org.framed.orm.model.CompartmentDiagram#getPlayers
    * @model opposite="players" transient="false" derived="true"
    * @generated
    */
-  CompartmentDiagram getCd();
+  CompartmentDiagram getCompartmentDiagram();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.NaturalType#getCd <em>Cd</em>}' container reference.
+   * Sets the value of the '{@link org.framed.orm.model.NaturalType#getCompartmentDiagram <em>Compartment Diagram</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Cd</em>' container reference.
-   * @see #getCd()
+   * @param value the new value of the '<em>Compartment Diagram</em>' container reference.
+   * @see #getCompartmentDiagram()
    * @generated
    */
-  void setCd(CompartmentDiagram value);
+  void setCompartmentDiagram(CompartmentDiagram value);
 
 } // NaturalType
