@@ -4,103 +4,82 @@ package org.framed.orm.ui.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.edit.provider.ItemProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Node;
+import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 
+/**
+ * @author Kay Bierzynski (initial development)
+ * @author Lars Schuetze (use EMF adapters)
+ * 
+ */
 public class RolesDialog extends Dialog {
 
   private final static int SIZING_SELECTION_WIDGET_HEIGHT = 250;
-
   private final static int SIZING_SELECTION_WIDGET_WIDTH = 300;
 
   private List<AbstractRole> roles;
-  private List<Button> roleButtons;
   private List<String> fulfilledRoles;
+  private CheckboxTableViewer viewer;
 
   protected RolesDialog(Shell shell) {
     super(shell);
-    roleButtons = new ArrayList<Button>();
+    fulfilledRoles = new ArrayList<>();
+    roles = new ArrayList<>();
   }
 
+  @Override
   protected void cancelPressed() {
     setReturnCode(-1);
     close();
   }
 
+  @Override
   protected void configureShell(Shell newShell) {
-    newShell.setText("Choose roles");
     super.configureShell(newShell);
+    newShell.setText("Choose roles");
+    newShell.setSize(SIZING_SELECTION_WIDGET_WIDTH, SIZING_SELECTION_WIDGET_HEIGHT);
   }
 
   protected Control createDialogArea(Composite parent) {
     Composite composite = (Composite) super.createDialogArea(parent);
 
-    GridData data = new GridData(GridData.FILL_BOTH);
-    data.heightHint = SIZING_SELECTION_WIDGET_HEIGHT;
-    data.widthHint = SIZING_SELECTION_WIDGET_WIDTH;
+    viewer = CheckboxTableViewer.newCheckList(composite, SWT.CHECK);
+    viewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-    // Create a table
-    Table table = new Table(composite, SWT.HIDE_SELECTION | SWT.BORDER);
-    table.setLayoutData(data);
+    AdapterFactoryLabelProvider labelProvider =
+        new AdapterFactoryLabelProvider(new OrmItemProviderAdapterFactory());
+    AdapterFactoryContentProvider contentProvider =
+        new AdapterFactoryContentProvider(new OrmItemProviderAdapterFactory());
 
-
-    table.setHeaderVisible(false);
-
-    // Create a column and show
-    TableColumn one = new TableColumn(table, SWT.LEFT);
-
+    viewer.setLabelProvider(labelProvider);
+    viewer.setContentProvider(contentProvider);
+    viewer.setInput(new ItemProvider(new OrmItemProviderAdapterFactory(), roles));
 
     for (AbstractRole role : roles) {
-      TableItem item = new TableItem(table, SWT.NONE);
-      TableEditor editor = new TableEditor(table);
-
-      String roleName = ((Node) role).getName();
-      Button checkbox = new Button(table, SWT.CHECK);
-      checkbox.setText(roleName);
-      checkbox.setToolTipText(roleName);
-      checkbox.setData(role);
-      if (fulfilledRoles.contains(roleName)) {
-        checkbox.setSelection(true);
+      if (fulfilledRoles.contains(((Node) role).getName())) {
+        viewer.setChecked(role, true);
       }
-      checkbox.pack();
-
-      // TODO: this variant is extremely bad --> implement a better variant
-      while (SIZING_SELECTION_WIDGET_WIDTH < checkbox.getSize().x) {
-        checkbox.setText(checkbox.getText().substring(0, checkbox.getText().length() - 4) + "...");
-        checkbox.pack();
-      }
-
-      one.setWidth(table.getBounds().width);
-      editor.minimumWidth = checkbox.getSize().x;
-      editor.horizontalAlignment = SWT.LEFT;
-      editor.setEditor(checkbox, item, 0);
-
-      roleButtons.add(checkbox);
     }
 
     addSelectionButtons(composite);
-
-    composite.pack();
-
     return composite;
   }
-
 
   /**
    * Add the selection and deselection buttons to the dialog.
@@ -119,41 +98,36 @@ public class RolesDialog extends Dialog {
     buttonComposite.setLayout(layout);
     buttonComposite.setLayoutData(new GridData(SWT.END, SWT.TOP, true, false));
 
+
     Button selectButton =
         createButton(buttonComposite, IDialogConstants.SELECT_ALL_ID, "Select All", false);
 
-    SelectionListener listener = new SelectionAdapter() {
-      public void widgetSelected(SelectionEvent e) {
-        for (Button but : roleButtons) {
-          but.setSelection(true);
-        }
+    selectButton.addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        viewer.setAllChecked(true);
       }
-    };
-    selectButton.addSelectionListener(listener);
+    });
 
     Button deselectButton =
         createButton(buttonComposite, IDialogConstants.DESELECT_ALL_ID, "Deselect All", false);
 
-    listener = new SelectionAdapter() {
-      public void widgetSelected(SelectionEvent e) {
-        for (Button but : roleButtons) {
-          but.setSelection(false);
-        }
+    deselectButton.addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        viewer.setAllChecked(false);
       }
-    };
-    deselectButton.addSelectionListener(listener);
+    });
   }
 
   @Override
   protected void okPressed() {
-    int returnCode = 1;
     fulfilledRoles.clear();
-    setReturnCode(returnCode);
-    for (Button button : roleButtons) {
-      if (button.getSelection()) {
-        fulfilledRoles.add(button.getToolTipText());
-      }
+
+    for (Object object : viewer.getCheckedElements()) {
+      fulfilledRoles.add(((Node) object).getName());
     }
+    setReturnCode(1);
     close();
   }
 

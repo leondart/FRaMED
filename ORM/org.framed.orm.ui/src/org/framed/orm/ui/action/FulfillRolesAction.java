@@ -7,7 +7,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
-import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Fulfilment;
 import org.framed.orm.ui.command.FulfillRolesCommand;
@@ -51,20 +50,15 @@ public class FulfillRolesAction extends SelectionAction {
     // get selected fulfillment target compartment
     Compartment target = (Compartment) ful.getTarget();
 
-    // put all abstractroles in a list
- 
-    ArrayList<AbstractRole> roles = new ArrayList<AbstractRole>();
-    roles.addAll(target.getRolemodel().getParticipants());
-
     // create and setup the popup dialog
     RolesDialog dialog = new RolesDialog(shell);
-    dialog.setRoles(roles);
-    
+    dialog.setRoles(target.getRolemodel().getParticipants());
+
     ArrayList<String> fulfilledRoles = new ArrayList<String>();
     fulfilledRoles.addAll(ful.getFulfilledRoles());
-    
+
     dialog.setFulfilledRoles(fulfilledRoles);
-    
+
     // open the popup dialog
     int returnCode = dialog.open();
     // end the action, when the popup dialog is closed through cancel button
