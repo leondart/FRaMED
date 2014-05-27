@@ -36,7 +36,6 @@ import org.framed.orm.model.RelationshipConstraint;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRelationContainer <em>Relation Container</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim1BP <em>Dim1 BP</em>}</li>
@@ -56,16 +55,6 @@ import org.framed.orm.model.RelationshipConstraint;
  * @generated
  */
 public class RelationshipImpl extends MinimalEObjectImpl.Container implements Relationship {
-  /**
-   * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' attribute list. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @see #getBendpoints()
-   * @generated
-   * @ordered
-   */
-  protected EList<Point> bendpoints;
-
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc
@@ -324,17 +313,6 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.RELATIONSHIP__RELATION_CONTAINER, newRelationContainer, newRelationContainer));
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Point> getBendpoints() {
-    if (bendpoints == null) {
-      bendpoints = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.RELATIONSHIP__BENDPOINTS);
-    }
-    return bendpoints;
   }
 
   /**
@@ -747,8 +725,6 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     switch (featureID) {
       case OrmPackage.RELATIONSHIP__RELATION_CONTAINER:
         return getRelationContainer();
-      case OrmPackage.RELATIONSHIP__BENDPOINTS:
-        return getBendpoints();
       case OrmPackage.RELATIONSHIP__TARGET:
         if (resolve) return getTarget();
         return basicGetTarget();
@@ -791,10 +767,6 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     switch (featureID) {
       case OrmPackage.RELATIONSHIP__RELATION_CONTAINER:
         setRelationContainer((RelationContainer)newValue);
-        return;
-      case OrmPackage.RELATIONSHIP__BENDPOINTS:
-        getBendpoints().clear();
-        getBendpoints().addAll((Collection<? extends Point>)newValue);
         return;
       case OrmPackage.RELATIONSHIP__TARGET:
         setTarget((Node)newValue);
@@ -852,9 +824,6 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
       case OrmPackage.RELATIONSHIP__RELATION_CONTAINER:
         setRelationContainer((RelationContainer)null);
         return;
-      case OrmPackage.RELATIONSHIP__BENDPOINTS:
-        getBendpoints().clear();
-        return;
       case OrmPackage.RELATIONSHIP__TARGET:
         setTarget((Node)null);
         return;
@@ -907,8 +876,6 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     switch (featureID) {
       case OrmPackage.RELATIONSHIP__RELATION_CONTAINER:
         return getRelationContainer() != null;
-      case OrmPackage.RELATIONSHIP__BENDPOINTS:
-        return bendpoints != null && !bendpoints.isEmpty();
       case OrmPackage.RELATIONSHIP__TARGET:
         return target != null;
       case OrmPackage.RELATIONSHIP__SOURCE:
@@ -948,9 +915,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (bendpoints: ");
-    result.append(bendpoints);
-    result.append(", dim1BP: ");
+    result.append(" (dim1BP: ");
     result.append(dim1BP);
     result.append(", dim2BP: ");
     result.append(dim2BP);

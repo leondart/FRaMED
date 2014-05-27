@@ -271,7 +271,7 @@ public class TypeItemProvider
     newChildDescriptors.add
       (createChildParameter
         (OrmPackage.Literals.TYPE__OPERATIONS,
-         OrmFactory.eINSTANCE.createMethode()));
+         OrmFactory.eINSTANCE.createMethod()));
   }
 
   /**

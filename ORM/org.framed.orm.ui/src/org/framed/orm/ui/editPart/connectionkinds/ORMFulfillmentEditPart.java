@@ -9,17 +9,17 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Fulfillment;
 import org.framed.orm.ui.figure.LabelFigure;
 
 
 /**
  * @author Kay Bierzynski
  * */
-public class ORMFulfilmentEditPart extends ORMRelationEditPart {
+public class ORMFulfillmentEditPart extends ORMRelationEditPart {
 		private final LabelFigure  targetLabel;
 	
-		public  ORMFulfilmentEditPart() {
+		public  ORMFulfillmentEditPart() {
 		    super();  
 		    targetLabel = new LabelFigure();
 		  }
@@ -44,7 +44,7 @@ public class ORMFulfilmentEditPart extends ORMRelationEditPart {
         targetEndL.setVDistance(-1);
         targetEndL.setUDistance(1);
         String text = "<...>";
-        for(String name : ((Fulfilment)getModel()).getFulfilledRoles()){
+        for(String name : ((Fulfillment)getModel()).getFulfilledRoles()){
           if(text.equals("<...>")){
             text = name;
           }
@@ -64,7 +64,7 @@ public class ORMFulfilmentEditPart extends ORMRelationEditPart {
 	 protected void refreshVisuals() {
 		super.refreshVisuals();
 		
-		final Fulfilment model = (Fulfilment) getModel();
+		final Fulfillment model = (Fulfillment) getModel();
 		
 		String text = "<...>";
         for(String name : model.getFulfilledRoles()){

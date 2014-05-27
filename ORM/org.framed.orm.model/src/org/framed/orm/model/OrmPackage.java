@@ -105,14 +105,14 @@ public interface OrmPackage extends EPackage {
   int ATTRIBUTE_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.framed.orm.model.impl.MethodeImpl <em>Methode</em>}' class.
+   * The meta object id for the '{@link org.framed.orm.model.impl.MethodImpl <em>Method</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.framed.orm.model.impl.MethodeImpl
-   * @see org.framed.orm.model.impl.OrmPackageImpl#getMethode()
+   * @see org.framed.orm.model.impl.MethodImpl
+   * @see org.framed.orm.model.impl.OrmPackageImpl#getMethod()
    * @generated
    */
-  int METHODE = 1;
+  int METHOD = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' container reference.
@@ -121,7 +121,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int METHODE__TYPE = 0;
+  int METHOD__TYPE = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -130,25 +130,25 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int METHODE__NAME = 1;
+  int METHOD__NAME = 1;
 
   /**
-   * The number of structural features of the '<em>Methode</em>' class.
+   * The number of structural features of the '<em>Method</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METHODE_FEATURE_COUNT = 2;
+  int METHOD_FEATURE_COUNT = 2;
 
   /**
-   * The number of operations of the '<em>Methode</em>' class.
+   * The number of operations of the '<em>Method</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int METHODE_OPERATION_COUNT = 0;
+  int METHOD_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.framed.orm.model.Node <em>Node</em>}' class.
@@ -807,22 +807,13 @@ public interface OrmPackage extends EPackage {
   int ROLE_TYPE__RELATION_CONTAINER = TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_TYPE__BENDPOINTS = TYPE_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__TARGET = TYPE_FEATURE_COUNT + 2;
+  int ROLE_TYPE__TARGET = TYPE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -831,7 +822,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__SOURCE = TYPE_FEATURE_COUNT + 3;
+  int ROLE_TYPE__SOURCE = TYPE_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
@@ -840,7 +831,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__DIM1_BP = TYPE_FEATURE_COUNT + 4;
+  int ROLE_TYPE__DIM1_BP = TYPE_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
@@ -849,7 +840,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__DIM2_BP = TYPE_FEATURE_COUNT + 5;
+  int ROLE_TYPE__DIM2_BP = TYPE_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>First</b></em>' reference.
@@ -858,7 +849,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__FIRST = TYPE_FEATURE_COUNT + 6;
+  int ROLE_TYPE__FIRST = TYPE_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>Second</b></em>' reference.
@@ -867,7 +858,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__SECOND = TYPE_FEATURE_COUNT + 7;
+  int ROLE_TYPE__SECOND = TYPE_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
@@ -876,7 +867,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 8;
+  int ROLE_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 7;
 
   /**
    * The feature id for the '<em><b>Parent Role Group</b></em>' container reference.
@@ -885,7 +876,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE__PARENT_ROLE_GROUP = TYPE_FEATURE_COUNT + 9;
+  int ROLE_TYPE__PARENT_ROLE_GROUP = TYPE_FEATURE_COUNT + 8;
 
   /**
    * The number of structural features of the '<em>Role Type</em>' class.
@@ -894,7 +885,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 10;
+  int ROLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 9;
 
   /**
    * The number of operations of the '<em>Role Type</em>' class.
@@ -925,22 +916,13 @@ public interface OrmPackage extends EPackage {
   int RELATION__RELATION_CONTAINER = 0;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATION__BENDPOINTS = 1;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATION__TARGET = 2;
+  int RELATION__TARGET = 1;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -949,7 +931,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATION__SOURCE = 3;
+  int RELATION__SOURCE = 2;
 
   /**
    * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
@@ -958,7 +940,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATION__DIM1_BP = 4;
+  int RELATION__DIM1_BP = 3;
 
   /**
    * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
@@ -967,7 +949,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATION__DIM2_BP = 5;
+  int RELATION__DIM2_BP = 4;
 
   /**
    * The number of structural features of the '<em>Relation</em>' class.
@@ -976,7 +958,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATION_FEATURE_COUNT = 6;
+  int RELATION_FEATURE_COUNT = 5;
 
   /**
    * The number of operations of the '<em>Relation</em>' class.
@@ -1005,15 +987,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int CONSTRAINT__RELATION_CONTAINER = RELATION__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONSTRAINT__BENDPOINTS = RELATION__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1087,15 +1060,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ABSTRACT_ROLE__RELATION_CONTAINER = CONSTRAINT__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABSTRACT_ROLE__BENDPOINTS = CONSTRAINT__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1205,15 +1169,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_GROUP__RELATION_CONTAINER = ABSTRACT_ROLE__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_GROUP__BENDPOINTS = ABSTRACT_ROLE__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1488,15 +1443,6 @@ public interface OrmPackage extends EPackage {
   int RELATIONSHIP_CONSTRAINT__RELATION_CONTAINER = CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONSHIP_CONSTRAINT__BENDPOINTS = CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1579,15 +1525,6 @@ public interface OrmPackage extends EPackage {
   int TOTAL__RELATION_CONTAINER = RELATIONSHIP_CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TOTAL__BENDPOINTS = RELATIONSHIP_CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1633,22 +1570,13 @@ public interface OrmPackage extends EPackage {
   int TOTAL__RELATION = RELATIONSHIP_CONSTRAINT__RELATION;
 
   /**
-   * The feature id for the '<em><b>Groups</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TOTAL__GROUPS = RELATIONSHIP_CONSTRAINT_FEATURE_COUNT + 0;
-
-  /**
    * The number of structural features of the '<em>Total</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TOTAL_FEATURE_COUNT = RELATIONSHIP_CONSTRAINT_FEATURE_COUNT + 1;
+  int TOTAL_FEATURE_COUNT = RELATIONSHIP_CONSTRAINT_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Total</em>' class.
@@ -1660,14 +1588,14 @@ public interface OrmPackage extends EPackage {
   int TOTAL_OPERATION_COUNT = RELATIONSHIP_CONSTRAINT_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.framed.orm.model.impl.FulfilmentImpl <em>Fulfilment</em>}' class.
+   * The meta object id for the '{@link org.framed.orm.model.impl.FulfillmentImpl <em>Fulfillment</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.framed.orm.model.impl.FulfilmentImpl
-   * @see org.framed.orm.model.impl.OrmPackageImpl#getFulfilment()
+   * @see org.framed.orm.model.impl.FulfillmentImpl
+   * @see org.framed.orm.model.impl.OrmPackageImpl#getFulfillment()
    * @generated
    */
-  int FULFILMENT = 13;
+  int FULFILLMENT = 13;
 
   /**
    * The feature id for the '<em><b>Relation Container</b></em>' container reference.
@@ -1676,16 +1604,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FULFILMENT__RELATION_CONTAINER = RELATION__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FULFILMENT__BENDPOINTS = RELATION__BENDPOINTS;
+  int FULFILLMENT__RELATION_CONTAINER = RELATION__RELATION_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1694,7 +1613,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FULFILMENT__TARGET = RELATION__TARGET;
+  int FULFILLMENT__TARGET = RELATION__TARGET;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1703,7 +1622,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FULFILMENT__SOURCE = RELATION__SOURCE;
+  int FULFILLMENT__SOURCE = RELATION__SOURCE;
 
   /**
    * The feature id for the '<em><b>Dim1 BP</b></em>' attribute list.
@@ -1712,7 +1631,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FULFILMENT__DIM1_BP = RELATION__DIM1_BP;
+  int FULFILLMENT__DIM1_BP = RELATION__DIM1_BP;
 
   /**
    * The feature id for the '<em><b>Dim2 BP</b></em>' attribute list.
@@ -1721,16 +1640,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FULFILMENT__DIM2_BP = RELATION__DIM2_BP;
-
-  /**
-   * The feature id for the '<em><b>Fufilled Role</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FULFILMENT__FUFILLED_ROLE = RELATION_FEATURE_COUNT + 0;
+  int FULFILLMENT__DIM2_BP = RELATION__DIM2_BP;
 
   /**
    * The feature id for the '<em><b>Fulfilled Roles</b></em>' attribute list.
@@ -1739,25 +1649,25 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FULFILMENT__FULFILLED_ROLES = RELATION_FEATURE_COUNT + 1;
+  int FULFILLMENT__FULFILLED_ROLES = RELATION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Fulfilment</em>' class.
+   * The number of structural features of the '<em>Fulfillment</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FULFILMENT_FEATURE_COUNT = RELATION_FEATURE_COUNT + 2;
+  int FULFILLMENT_FEATURE_COUNT = RELATION_FEATURE_COUNT + 1;
 
   /**
-   * The number of operations of the '<em>Fulfilment</em>' class.
+   * The number of operations of the '<em>Fulfillment</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FULFILMENT_OPERATION_COUNT = RELATION_OPERATION_COUNT + 0;
+  int FULFILLMENT_OPERATION_COUNT = RELATION_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.framed.orm.model.impl.RoleConstraintImpl <em>Role Constraint</em>}' class.
@@ -1777,15 +1687,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_CONSTRAINT__RELATION_CONTAINER = CONSTRAINT__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_CONSTRAINT__BENDPOINTS = CONSTRAINT__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1888,15 +1789,6 @@ public interface OrmPackage extends EPackage {
   int ROLE_EQUIVALENCE__RELATION_CONTAINER = ROLE_CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_EQUIVALENCE__BENDPOINTS = ROLE_CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1997,15 +1889,6 @@ public interface OrmPackage extends EPackage {
   int ACYCLIC__RELATION_CONTAINER = RELATIONSHIP_CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACYCLIC__BENDPOINTS = RELATIONSHIP_CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2088,15 +1971,6 @@ public interface OrmPackage extends EPackage {
   int INHERITANCE__RELATION_CONTAINER = RELATION__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INHERITANCE__BENDPOINTS = RELATION__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2168,15 +2042,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int RELATIONSHIP__RELATION_CONTAINER = RELATION__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONSHIP__BENDPOINTS = RELATION__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2333,15 +2198,6 @@ public interface OrmPackage extends EPackage {
   int ROLE_PROHIBITION__RELATION_CONTAINER = ROLE_CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_PROHIBITION__BENDPOINTS = ROLE_CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2442,15 +2298,6 @@ public interface OrmPackage extends EPackage {
   int IRREFLEXIVE__RELATION_CONTAINER = RELATIONSHIP_CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int IRREFLEXIVE__BENDPOINTS = RELATIONSHIP_CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2531,15 +2378,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_IMPLICATION__RELATION_CONTAINER = ROLE_CONSTRAINT__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_IMPLICATION__BENDPOINTS = ROLE_CONSTRAINT__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2642,15 +2480,6 @@ public interface OrmPackage extends EPackage {
   int ROLE_INVARIANT__RELATION_CONTAINER = CONSTRAINT__RELATION_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_INVARIANT__BENDPOINTS = CONSTRAINT__BENDPOINTS;
-
-  /**
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2731,15 +2560,6 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int COMPLEX_CONSTRAINT__RELATION_CONTAINER = CONSTRAINT__RELATION_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Bendpoints</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPLEX_CONSTRAINT__BENDPOINTS = CONSTRAINT__BENDPOINTS;
 
   /**
    * The feature id for the '<em><b>Target</b></em>' reference.
@@ -2877,36 +2697,36 @@ public interface OrmPackage extends EPackage {
   EAttribute getAttribute_Name();
 
   /**
-   * Returns the meta object for class '{@link org.framed.orm.model.Methode <em>Methode</em>}'.
+   * Returns the meta object for class '{@link org.framed.orm.model.Method <em>Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Methode</em>'.
-   * @see org.framed.orm.model.Methode
+   * @return the meta object for class '<em>Method</em>'.
+   * @see org.framed.orm.model.Method
    * @generated
    */
-  EClass getMethode();
+  EClass getMethod();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Methode#getType <em>Type</em>}'.
+   * Returns the meta object for the container reference '{@link org.framed.orm.model.Method#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the container reference '<em>Type</em>'.
-   * @see org.framed.orm.model.Methode#getType()
-   * @see #getMethode()
+   * @see org.framed.orm.model.Method#getType()
+   * @see #getMethod()
    * @generated
    */
-  EReference getMethode_Type();
+  EReference getMethod_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link org.framed.orm.model.Methode#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.framed.orm.model.Method#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.framed.orm.model.Methode#getName()
-   * @see #getMethode()
+   * @see org.framed.orm.model.Method#getName()
+   * @see #getMethod()
    * @generated
    */
-  EAttribute getMethode_Name();
+  EAttribute getMethod_Name();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.Type <em>Type</em>}'.
@@ -3327,47 +3147,25 @@ public interface OrmPackage extends EPackage {
   EClass getTotal();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.framed.orm.model.Total#getGroups <em>Groups</em>}'.
+   * Returns the meta object for class '{@link org.framed.orm.model.Fulfillment <em>Fulfillment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Groups</em>'.
-   * @see org.framed.orm.model.Total#getGroups()
-   * @see #getTotal()
+   * @return the meta object for class '<em>Fulfillment</em>'.
+   * @see org.framed.orm.model.Fulfillment
    * @generated
    */
-  EReference getTotal_Groups();
+  EClass getFulfillment();
 
   /**
-   * Returns the meta object for class '{@link org.framed.orm.model.Fulfilment <em>Fulfilment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Fulfilment</em>'.
-   * @see org.framed.orm.model.Fulfilment
-   * @generated
-   */
-  EClass getFulfilment();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.framed.orm.model.Fulfilment#getFufilledRole <em>Fufilled Role</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Fufilled Role</em>'.
-   * @see org.framed.orm.model.Fulfilment#getFufilledRole()
-   * @see #getFulfilment()
-   * @generated
-   */
-  EAttribute getFulfilment_FufilledRole();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.framed.orm.model.Fulfilment#getFulfilledRoles <em>Fulfilled Roles</em>}'.
+   * Returns the meta object for the attribute list '{@link org.framed.orm.model.Fulfillment#getFulfilledRoles <em>Fulfilled Roles</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute list '<em>Fulfilled Roles</em>'.
-   * @see org.framed.orm.model.Fulfilment#getFulfilledRoles()
-   * @see #getFulfilment()
+   * @see org.framed.orm.model.Fulfillment#getFulfilledRoles()
+   * @see #getFulfillment()
    * @generated
    */
-  EAttribute getFulfilment_FulfilledRoles();
+  EAttribute getFulfillment_FulfilledRoles();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleEquivalence <em>Role Equivalence</em>}'.
@@ -3579,17 +3377,6 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EReference getRelation_RelationContainer();
-
-  /**
-   * Returns the meta object for the attribute list '{@link org.framed.orm.model.Relation#getBendpoints <em>Bendpoints</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Bendpoints</em>'.
-   * @see org.framed.orm.model.Relation#getBendpoints()
-   * @see #getRelation()
-   * @generated
-   */
-  EAttribute getRelation_Bendpoints();
 
   /**
    * Returns the meta object for the reference '{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}'.
@@ -3877,14 +3664,14 @@ public interface OrmPackage extends EPackage {
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
-     * The meta object literal for the '{@link org.framed.orm.model.impl.MethodeImpl <em>Methode</em>}' class.
+     * The meta object literal for the '{@link org.framed.orm.model.impl.MethodImpl <em>Method</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.framed.orm.model.impl.MethodeImpl
-     * @see org.framed.orm.model.impl.OrmPackageImpl#getMethode()
+     * @see org.framed.orm.model.impl.MethodImpl
+     * @see org.framed.orm.model.impl.OrmPackageImpl#getMethod()
      * @generated
      */
-    EClass METHODE = eINSTANCE.getMethode();
+    EClass METHOD = eINSTANCE.getMethod();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' container reference feature.
@@ -3892,7 +3679,7 @@ public interface OrmPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference METHODE__TYPE = eINSTANCE.getMethode_Type();
+    EReference METHOD__TYPE = eINSTANCE.getMethod_Type();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -3900,7 +3687,7 @@ public interface OrmPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute METHODE__NAME = eINSTANCE.getMethode_Name();
+    EAttribute METHOD__NAME = eINSTANCE.getMethod_Name();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.TypeImpl <em>Type</em>}' class.
@@ -4237,30 +4024,14 @@ public interface OrmPackage extends EPackage {
     EClass TOTAL = eINSTANCE.getTotal();
 
     /**
-     * The meta object literal for the '<em><b>Groups</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link org.framed.orm.model.impl.FulfillmentImpl <em>Fulfillment</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.framed.orm.model.impl.FulfillmentImpl
+     * @see org.framed.orm.model.impl.OrmPackageImpl#getFulfillment()
      * @generated
      */
-    EReference TOTAL__GROUPS = eINSTANCE.getTotal_Groups();
-
-    /**
-     * The meta object literal for the '{@link org.framed.orm.model.impl.FulfilmentImpl <em>Fulfilment</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.framed.orm.model.impl.FulfilmentImpl
-     * @see org.framed.orm.model.impl.OrmPackageImpl#getFulfilment()
-     * @generated
-     */
-    EClass FULFILMENT = eINSTANCE.getFulfilment();
-
-    /**
-     * The meta object literal for the '<em><b>Fufilled Role</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FULFILMENT__FUFILLED_ROLE = eINSTANCE.getFulfilment_FufilledRole();
+    EClass FULFILLMENT = eINSTANCE.getFulfillment();
 
     /**
      * The meta object literal for the '<em><b>Fulfilled Roles</b></em>' attribute list feature.
@@ -4268,7 +4039,7 @@ public interface OrmPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FULFILMENT__FULFILLED_ROLES = eINSTANCE.getFulfilment_FulfilledRoles();
+    EAttribute FULFILLMENT__FULFILLED_ROLES = eINSTANCE.getFulfillment_FulfilledRoles();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleEquivalenceImpl <em>Role Equivalence</em>}' class.
@@ -4447,14 +4218,6 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EReference RELATION__RELATION_CONTAINER = eINSTANCE.getRelation_RelationContainer();
-
-    /**
-     * The meta object literal for the '<em><b>Bendpoints</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RELATION__BENDPOINTS = eINSTANCE.getRelation_Bendpoints();
 
     /**
      * The meta object literal for the '<em><b>Target</b></em>' reference feature.

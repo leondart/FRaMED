@@ -8,9 +8,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Fulfillment;
 import org.framed.orm.ui.command.FulfillRolesCommand;
-import org.framed.orm.ui.editPart.connectionkinds.ORMFulfilmentEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 
 
 public class FulfillRolesAction extends SelectionAction {
@@ -31,7 +31,7 @@ public class FulfillRolesAction extends SelectionAction {
     }
 
     for (Object selectedObject : getSelectedObjects()) {
-      if (selectedObject instanceof ORMFulfilmentEditPart) {
+      if (selectedObject instanceof ORMFulfillmentEditPart) {
         return true;
       }
     }
@@ -44,9 +44,9 @@ public class FulfillRolesAction extends SelectionAction {
     Shell shell = new Shell((style & SWT.MIRRORED) != 0 ? SWT.RIGHT_TO_LEFT : SWT.NONE);
 
     // get selected fulfillment editpart
-    ORMFulfilmentEditPart editPart = (ORMFulfilmentEditPart) getSelectedObjects().get(0);
+    ORMFulfillmentEditPart editPart = (ORMFulfillmentEditPart) getSelectedObjects().get(0);
     // get selected fulfillment model
-    Fulfilment ful = (Fulfilment) editPart.getModel();
+    Fulfillment ful = (Fulfillment) editPart.getModel();
     // get selected fulfillment target compartment
     Compartment target = (Compartment) ful.getTarget();
 

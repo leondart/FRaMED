@@ -30,9 +30,9 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
     IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
     IItemPropertySource {
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public RoleTypeItemProvider(AdapterFactory adapterFactory) {
@@ -40,9 +40,9 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -50,7 +50,6 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addBendpointsPropertyDescriptor(object);
       addTargetPropertyDescriptor(object);
       addSourcePropertyDescriptor(object);
       addDim1BPPropertyDescriptor(object);
@@ -62,120 +61,140 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
   }
 
   /**
-   * This adds a property descriptor for the Bendpoints feature. <!-- begin-user-doc --> <!--
+   * This adds a property descriptor for the Target feature.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
-   * @generated
-   */
-  protected void addBendpointsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_bendpoints_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_bendpoints_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__BENDPOINTS, true, false, false,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!--
-   * end-user-doc -->
-   * 
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_target_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__TARGET, true, false, true, null,
-        null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relation_target_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature", "_UI_Relation_type"),
+         OrmPackage.Literals.RELATION__TARGET,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!--
+   * This adds a property descriptor for the Source feature.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_source_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__SOURCE, true, false, true, null,
-        null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relation_source_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature", "_UI_Relation_type"),
+         OrmPackage.Literals.RELATION__SOURCE,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the Dim1 BP feature. <!-- begin-user-doc --> <!--
+   * This adds a property descriptor for the Dim1 BP feature.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected void addDim1BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_dim1BP_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM1_BP, true, false, false,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relation_dim1BP_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature", "_UI_Relation_type"),
+         OrmPackage.Literals.RELATION__DIM1_BP,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the Dim2 BP feature. <!-- begin-user-doc --> <!--
+   * This adds a property descriptor for the Dim2 BP feature.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected void addDim2BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_dim2BP_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM2_BP, true, false, false,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_Relation_dim2BP_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature", "_UI_Relation_type"),
+         OrmPackage.Literals.RELATION__DIM2_BP,
+         true,
+         false,
+         false,
+         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the First feature. <!-- begin-user-doc --> <!--
+   * This adds a property descriptor for the First feature.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected void addFirstPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_AbstractRole_first_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_first_feature",
-            "_UI_AbstractRole_type"), OrmPackage.Literals.ABSTRACT_ROLE__FIRST, true, false, true,
-        null, null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_AbstractRole_first_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_first_feature", "_UI_AbstractRole_type"),
+         OrmPackage.Literals.ABSTRACT_ROLE__FIRST,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
-   * This adds a property descriptor for the Second feature. <!-- begin-user-doc --> <!--
+   * This adds a property descriptor for the Second feature.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected void addSecondPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_AbstractRole_second_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_second_feature",
-            "_UI_AbstractRole_type"), OrmPackage.Literals.ABSTRACT_ROLE__SECOND, true, false, true,
-        null, null, null));
+    itemPropertyDescriptors.add
+      (createItemPropertyDescriptor
+        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+         getResourceLocator(),
+         getString("_UI_AbstractRole_second_feature"),
+         getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_second_feature", "_UI_AbstractRole_type"),
+         OrmPackage.Literals.ABSTRACT_ROLE__SECOND,
+         true,
+         false,
+         true,
+         null,
+         null,
+         null));
   }
 
   /**
-   * This returns RoleType.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns RoleType.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -202,7 +221,6 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -210,20 +228,18 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
     updateChildren(notification);
 
     switch (notification.getFeatureID(RoleType.class)) {
-      case OrmPackage.ROLE_TYPE__BENDPOINTS:
       case OrmPackage.ROLE_TYPE__DIM1_BP:
       case OrmPackage.ROLE_TYPE__DIM2_BP:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-            true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
         return;
     }
     super.notifyChanged(notification);
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
-   * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

@@ -11,7 +11,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.Inheritance;
 import org.framed.orm.model.Irreflexive;
 import org.framed.orm.model.NaturalType;
@@ -45,8 +45,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   @Override
   protected void showCreationFeedback(CreateConnectionRequest request) {
-      if (!parentTest(request.getTargetEditPart(), request.getSourceEditPart())) {
-        super.showCreationFeedback(request);
+    if (!parentTest(request.getTargetEditPart(), request.getSourceEditPart())) {
+      super.showCreationFeedback(request);
     }
 
   }
@@ -54,10 +54,10 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
     Command retVal = null;
-    // Fulfilment End
-    if (oSTCheck(request, Fulfilment.class, ORMNaturalTypeEditPart.class,
+    // Fulfillment End
+    if (oSTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class,
         ORMCompartmentEditPart.class)
-        || oSTCheck(request, Fulfilment.class, ORMCompartmentEditPart.class,
+        || oSTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class,
             ORMCompartmentEditPart.class)) {
       retVal = setupConnectionCompleteCommand(request);
     }
@@ -119,8 +119,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
     Command retVal = null;
     // Fufillment start
-    if (oTCheck(request, Fulfilment.class, ORMNaturalTypeEditPart.class)
-        || oTCheck(request, Fulfilment.class, ORMCompartmentEditPart.class)) {
+    if (oTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class)
+        || oTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class)) {
       if (getHost().getModel() instanceof NaturalType) {
         if (((NaturalType) getHost().getModel()).getParentRolemodel() != null)
           retVal =
@@ -136,7 +136,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
                   ((Compartment) getHost().getModel()).getParentRolemodel());
         if (((Compartment) getHost().getModel()).getCompartmentDiagram() != null)
           retVal =
-              setupConnectionStartCommand(request, ((Compartment) getHost().getModel()).getCompartmentDiagram());
+              setupConnectionStartCommand(request,
+                  ((Compartment) getHost().getModel()).getCompartmentDiagram());
       }
     }
     // Role Implication start
@@ -204,7 +205,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
                   ((Compartment) getHost().getModel()).getParentRolemodel());
         if (((Compartment) getHost().getModel()).getCompartmentDiagram() != null)
           retVal =
-              setupConnectionStartCommand(request, ((Compartment) getHost().getModel()).getCompartmentDiagram());
+              setupConnectionStartCommand(request,
+                  ((Compartment) getHost().getModel()).getCompartmentDiagram());
       }
 
     }
@@ -311,7 +313,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   public boolean parentTest(EditPart target, EditPart source) {
     boolean flag;
     flag = false;
-    
+
     if (target != null && source != null) {
       if (target.equals(source.getParent())) {
         return true;
@@ -323,13 +325,13 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         }
       }
     }
-    
+
     return flag;
   }
 
   public boolean childrenTest(EditPart target, EditPart source) {
-    boolean flag ;
-    flag= false;
+    boolean flag;
+    flag = false;
     ArrayList<EditPart> children = new ArrayList<EditPart>();
     ArrayList<EditPart> roleGroups = new ArrayList<EditPart>();
     children.addAll(source.getChildren());

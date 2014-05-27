@@ -2,19 +2,19 @@ package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.OrmFactory;
 
 /**
  * @author Kay Bierzynski
  * */
-public class ORMFulfilmentFactory implements CreationFactory{
+public class ORMFulfillmentFactory implements CreationFactory{
 	
 	@Override public Object getNewObject() {
-	    return OrmFactory.eINSTANCE.createFulfilment();
+	    return OrmFactory.eINSTANCE.createFulfillment();
 	  }
 	 
 	  @Override public Object getObjectType() {
-	    return Fulfilment.class;
+	    return Fulfillment.class;
 	  }
 }

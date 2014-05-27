@@ -72,8 +72,8 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
         return createAttributeAdapter();
       }
       @Override
-      public Adapter caseMethode(Methode object) {
-        return createMethodeAdapter();
+      public Adapter caseMethod(Method object) {
+        return createMethodAdapter();
       }
       @Override
       public Adapter caseType(Type object) {
@@ -120,8 +120,8 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
         return createTotalAdapter();
       }
       @Override
-      public Adapter caseFulfilment(Fulfilment object) {
-        return createFulfilmentAdapter();
+      public Adapter caseFulfillment(Fulfillment object) {
+        return createFulfillmentAdapter();
       }
       @Override
       public Adapter caseRoleEquivalence(RoleEquivalence object) {
@@ -214,16 +214,16 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.framed.orm.model.Methode <em>Methode</em>}'.
+   * Creates a new adapter for an object of class '{@link org.framed.orm.model.Method <em>Method</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.framed.orm.model.Methode
+   * @see org.framed.orm.model.Method
    * @generated
    */
-  public Adapter createMethodeAdapter() {
+  public Adapter createMethodAdapter() {
     return null;
   }
 
@@ -382,16 +382,16 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.framed.orm.model.Fulfilment <em>Fulfilment</em>}'.
+   * Creates a new adapter for an object of class '{@link org.framed.orm.model.Fulfillment <em>Fulfillment</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.framed.orm.model.Fulfilment
+   * @see org.framed.orm.model.Fulfillment
    * @generated
    */
-  public Adapter createFulfilmentAdapter() {
+  public Adapter createFulfillmentAdapter() {
     return null;
   }
 

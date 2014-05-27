@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.framed.orm.model.Relation#getRelationContainer <em>Relation Container</em>}</li>
- *   <li>{@link org.framed.orm.model.Relation#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getSource <em>Source</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getDim1BP <em>Dim1 BP</em>}</li>
@@ -57,22 +56,6 @@ public interface Relation extends EObject {
    * @generated
    */
   void setRelationContainer(RelationContainer value);
-
-  /**
-   * Returns the value of the '<em><b>Bendpoints</b></em>' attribute list.
-   * The list contents are of type {@link org.eclipse.draw2d.geometry.Point}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Bendpoints</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Bendpoints</em>' attribute list.
-   * @see org.framed.orm.model.OrmPackage#getRelation_Bendpoints()
-   * @model dataType="org.framed.orm.model.Point"
-   * @generated
-   */
-  EList<Point> getBendpoints();
 
   /**
    * Returns the value of the '<em><b>Target</b></em>' reference.

@@ -4,16 +4,13 @@ package org.framed.orm.model.impl;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.Attribute;
@@ -21,11 +18,11 @@ import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.ComplexConstraint;
 import org.framed.orm.model.Constraint;
-import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Inheritance;
 import org.framed.orm.model.Irreflexive;
-import org.framed.orm.model.Methode;
+import org.framed.orm.model.Method;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmFactory;
@@ -65,7 +62,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass methodeEClass = null;
+  private EClass methodEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -149,7 +146,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass fulfilmentEClass = null;
+  private EClass fulfillmentEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -363,8 +360,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getMethode() {
-    return methodeEClass;
+  public EClass getMethod() {
+    return methodEClass;
   }
 
   /**
@@ -372,8 +369,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMethode_Type() {
-    return (EReference)methodeEClass.getEStructuralFeatures().get(0);
+  public EReference getMethod_Type() {
+    return (EReference)methodEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -381,8 +378,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMethode_Name() {
-    return (EAttribute)methodeEClass.getEStructuralFeatures().get(1);
+  public EAttribute getMethod_Name() {
+    return (EAttribute)methodEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -741,8 +738,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTotal_Groups() {
-    return (EReference)totalEClass.getEStructuralFeatures().get(0);
+  public EClass getFulfillment() {
+    return fulfillmentEClass;
   }
 
   /**
@@ -750,26 +747,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFulfilment() {
-    return fulfilmentEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getFulfilment_FufilledRole() {
-    return (EAttribute)fulfilmentEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getFulfilment_FulfilledRoles() {
-    return (EAttribute)fulfilmentEClass.getEStructuralFeatures().get(1);
+  public EAttribute getFulfillment_FulfilledRoles() {
+    return (EAttribute)fulfillmentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -957,17 +936,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRelation_Bendpoints() {
-    return (EAttribute)relationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getRelation_Target() {
-    return (EReference)relationEClass.getEStructuralFeatures().get(2);
+    return (EReference)relationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -976,7 +946,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelation_Source() {
-    return (EReference)relationEClass.getEStructuralFeatures().get(3);
+    return (EReference)relationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -985,7 +955,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelation_Dim1BP() {
-    return (EAttribute)relationEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)relationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -994,7 +964,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelation_Dim2BP() {
-    return (EAttribute)relationEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)relationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1191,9 +1161,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEReference(attributeEClass, ATTRIBUTE__TYPE);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
 
-    methodeEClass = createEClass(METHODE);
-    createEReference(methodeEClass, METHODE__TYPE);
-    createEAttribute(methodeEClass, METHODE__NAME);
+    methodEClass = createEClass(METHOD);
+    createEReference(methodEClass, METHOD__TYPE);
+    createEAttribute(methodEClass, METHOD__NAME);
 
     typeEClass = createEClass(TYPE);
     createEReference(typeEClass, TYPE__ATTRIBUTES);
@@ -1244,11 +1214,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEReference(rolemodelEClass, ROLEMODEL__GROUPS);
 
     totalEClass = createEClass(TOTAL);
-    createEReference(totalEClass, TOTAL__GROUPS);
 
-    fulfilmentEClass = createEClass(FULFILMENT);
-    createEAttribute(fulfilmentEClass, FULFILMENT__FUFILLED_ROLE);
-    createEAttribute(fulfilmentEClass, FULFILMENT__FULFILLED_ROLES);
+    fulfillmentEClass = createEClass(FULFILLMENT);
+    createEAttribute(fulfillmentEClass, FULFILLMENT__FULFILLED_ROLES);
 
     roleEquivalenceEClass = createEClass(ROLE_EQUIVALENCE);
 
@@ -1278,7 +1246,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     relationEClass = createEClass(RELATION);
     createEReference(relationEClass, RELATION__RELATION_CONTAINER);
-    createEAttribute(relationEClass, RELATION__BENDPOINTS);
     createEReference(relationEClass, RELATION__TARGET);
     createEReference(relationEClass, RELATION__SOURCE);
     createEAttribute(relationEClass, RELATION__DIM1_BP);
@@ -1352,7 +1319,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     roleGroupEClass.getESuperTypes().add(this.getRelationContainer());
     rolemodelEClass.getESuperTypes().add(this.getRelationContainer());
     totalEClass.getESuperTypes().add(this.getRelationshipConstraint());
-    fulfilmentEClass.getESuperTypes().add(this.getRelation());
+    fulfillmentEClass.getESuperTypes().add(this.getRelation());
     roleEquivalenceEClass.getESuperTypes().add(this.getRoleConstraint());
     acyclicEClass.getESuperTypes().add(this.getRelationshipConstraint());
     inheritanceEClass.getESuperTypes().add(this.getRelation());
@@ -1372,13 +1339,13 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEReference(getAttribute_Type(), this.getType(), this.getType_Attributes(), "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(methodeEClass, Methode.class, "Methode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMethode_Type(), this.getType(), this.getType_Operations(), "type", null, 0, 1, Methode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMethode_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Methode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMethod_Type(), this.getType(), this.getType_Operations(), "type", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMethod_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getType_Attributes(), this.getAttribute(), this.getAttribute_Type(), "attributes", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getType_Operations(), this.getMethode(), this.getMethode_Type(), "operations", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getType_Operations(), this.getMethod(), this.getMethod_Type(), "operations", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getType_IsExpand(), ecorePackage.getEBoolean(), "isExpand", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(compartmentDiagramEClass, CompartmentDiagram.class, "CompartmentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1425,11 +1392,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEReference(getRolemodel_Groups(), this.getGrouping(), this.getGrouping_ParentRolemodel(), "groups", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(totalEClass, Total.class, "Total", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTotal_Groups(), this.getGrouping(), null, "groups", null, 0, -1, Total.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(fulfilmentEClass, Fulfilment.class, "Fulfilment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFulfilment_FufilledRole(), ecorePackage.getEString(), "fufilledRole", "<...>", 0, 1, Fulfilment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFulfilment_FulfilledRoles(), ecorePackage.getEString(), "fulfilledRoles", null, 0, -1, Fulfilment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(fulfillmentEClass, Fulfillment.class, "Fulfillment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFulfillment_FulfilledRoles(), ecorePackage.getEString(), "fulfilledRoles", null, 0, -1, Fulfillment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(roleEquivalenceEClass, RoleEquivalence.class, "RoleEquivalence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1459,7 +1424,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     initEClass(relationEClass, Relation.class, "Relation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRelation_RelationContainer(), this.getRelationContainer(), this.getRelationContainer_Relations(), "relationContainer", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelation_Bendpoints(), this.getPoint(), "bendpoints", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelation_Target(), this.getNode(), this.getNode_IncomingLinks(), "target", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelation_Source(), this.getNode(), this.getNode_OutgoingLinks(), "source", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRelation_Dim1BP(), this.getPoint(), "dim1BP", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

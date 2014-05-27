@@ -72,9 +72,9 @@ public class OrmSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case OrmPackage.METHODE: {
-        Methode methode = (Methode)theEObject;
-        T result = caseMethode(methode);
+      case OrmPackage.METHOD: {
+        Method method = (Method)theEObject;
+        T result = caseMethod(method);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -165,10 +165,10 @@ public class OrmSwitch<T> extends Switch<T> {
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case OrmPackage.FULFILMENT: {
-        Fulfilment fulfilment = (Fulfilment)theEObject;
-        T result = caseFulfilment(fulfilment);
-        if (result == null) result = caseRelation(fulfilment);
+      case OrmPackage.FULFILLMENT: {
+        Fulfillment fulfillment = (Fulfillment)theEObject;
+        T result = caseFulfillment(fulfillment);
+        if (result == null) result = caseRelation(fulfillment);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -304,17 +304,17 @@ public class OrmSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Methode</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Method</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Methode</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Method</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseMethode(Methode object) {
+  public T caseMethod(Method object) {
     return null;
   }
 
@@ -484,17 +484,17 @@ public class OrmSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Fulfilment</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Fulfillment</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Fulfilment</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Fulfillment</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFulfilment(Fulfilment object) {
+  public T caseFulfillment(Fulfillment object) {
     return null;
   }
 

@@ -15,11 +15,11 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMCompartmentFactory;
-import org.framed.orm.ui.factory.ORMFulfilmentFactory;
+import org.framed.orm.ui.factory.ORMFulfillmentFactory;
 import org.framed.orm.ui.factory.ORMGroupingFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
-import org.framed.orm.ui.factory.ORMMethodeFactory;
+import org.framed.orm.ui.factory.ORMMethodFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
@@ -193,7 +193,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodeFactory(), null,
+        new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodFactory(), null,
             null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -218,7 +218,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Connections");
     CreationToolEntry entry1 =
         new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation",
-            new ORMFulfilmentFactory(), null, null);
+            new ORMFulfillmentFactory(), null, null);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/fulfilment.png"));
     drawer.add(entry1);

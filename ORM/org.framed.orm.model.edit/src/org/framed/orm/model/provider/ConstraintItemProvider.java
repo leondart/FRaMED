@@ -60,35 +60,12 @@ public class ConstraintItemProvider
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addBendpointsPropertyDescriptor(object);
       addTargetPropertyDescriptor(object);
       addSourcePropertyDescriptor(object);
       addDim1BPPropertyDescriptor(object);
       addDim2BPPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Bendpoints feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addBendpointsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_bendpoints_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_bendpoints_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__BENDPOINTS,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
   }
 
   /**
@@ -202,7 +179,6 @@ public class ConstraintItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(Constraint.class)) {
-      case OrmPackage.CONSTRAINT__BENDPOINTS:
       case OrmPackage.CONSTRAINT__DIM1_BP:
       case OrmPackage.CONSTRAINT__DIM2_BP:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

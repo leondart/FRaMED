@@ -165,7 +165,7 @@ public class RelationContainerItemProvider
     newChildDescriptors.add
       (createChildParameter
         (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createFulfilment()));
+         OrmFactory.eINSTANCE.createFulfillment()));
 
     newChildDescriptors.add
       (createChildParameter

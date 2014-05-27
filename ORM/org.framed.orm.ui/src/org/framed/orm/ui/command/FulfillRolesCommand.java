@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Fulfilment;
+import org.framed.orm.model.Fulfillment;
 
 public class FulfillRolesCommand extends Command {
 
@@ -14,7 +14,7 @@ public class FulfillRolesCommand extends Command {
   }
 
 
-  private Fulfilment fulfillment;
+  private Fulfillment fulfillment;
   private List<String> roles;
   private List<String> oldFulfilledRoles = new ArrayList<String>();
 
@@ -53,7 +53,7 @@ public class FulfillRolesCommand extends Command {
     this.roles = roles;
   }
 
-  public void setFulfillment(Fulfilment fulfillment) {
+  public void setFulfillment(Fulfillment fulfillment) {
     this.fulfillment = fulfillment;
   }
 }

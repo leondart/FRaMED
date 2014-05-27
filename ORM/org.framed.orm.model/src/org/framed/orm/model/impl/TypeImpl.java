@@ -3,26 +3,19 @@
 package org.framed.orm.model.impl;
 
 import java.util.Collection;
-
 import org.eclipse.draw2d.geometry.Rectangle;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Methode;
+import org.framed.orm.model.Method;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
@@ -125,7 +118,7 @@ public abstract class TypeImpl extends MinimalEObjectImpl.Container implements T
    * @generated
    * @ordered
    */
-  protected EList<Methode> operations;
+  protected EList<Method> operations;
 
   /**
    * The default value of the '{@link #isIsExpand() <em>Is Expand</em>}' attribute.
@@ -249,9 +242,9 @@ public abstract class TypeImpl extends MinimalEObjectImpl.Container implements T
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Methode> getOperations() {
+  public EList<Method> getOperations() {
     if (operations == null) {
-      operations = new EObjectContainmentWithInverseEList<Methode>(Methode.class, this, OrmPackage.TYPE__OPERATIONS, OrmPackage.METHODE__TYPE);
+      operations = new EObjectContainmentWithInverseEList<Method>(Method.class, this, OrmPackage.TYPE__OPERATIONS, OrmPackage.METHOD__TYPE);
     }
     return operations;
   }
@@ -373,7 +366,7 @@ public abstract class TypeImpl extends MinimalEObjectImpl.Container implements T
         return;
       case OrmPackage.TYPE__OPERATIONS:
         getOperations().clear();
-        getOperations().addAll((Collection<? extends Methode>)newValue);
+        getOperations().addAll((Collection<? extends Method>)newValue);
         return;
       case OrmPackage.TYPE__IS_EXPAND:
         setIsExpand((Boolean)newValue);

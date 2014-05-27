@@ -61,7 +61,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
       case OrmPackage.ATTRIBUTE: return createAttribute();
-      case OrmPackage.METHODE: return createMethode();
+      case OrmPackage.METHOD: return createMethod();
       case OrmPackage.COMPARTMENT_DIAGRAM: return createCompartmentDiagram();
       case OrmPackage.NATURAL_TYPE: return createNaturalType();
       case OrmPackage.COMPARTMENT: return createCompartment();
@@ -71,7 +71,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
       case OrmPackage.ROLE_GROUP: return createRoleGroup();
       case OrmPackage.ROLEMODEL: return createRolemodel();
       case OrmPackage.TOTAL: return createTotal();
-      case OrmPackage.FULFILMENT: return createFulfilment();
+      case OrmPackage.FULFILLMENT: return createFulfillment();
       case OrmPackage.ROLE_EQUIVALENCE: return createRoleEquivalence();
       case OrmPackage.ACYCLIC: return createAcyclic();
       case OrmPackage.INHERITANCE: return createInheritance();
@@ -138,9 +138,9 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Methode createMethode() {
-    MethodeImpl methode = new MethodeImpl();
-    return methode;
+  public Method createMethod() {
+    MethodImpl method = new MethodImpl();
+    return method;
   }
 
   /**
@@ -238,9 +238,9 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Fulfilment createFulfilment() {
-    FulfilmentImpl fulfilment = new FulfilmentImpl();
-    return fulfilment;
+  public Fulfillment createFulfillment() {
+    FulfillmentImpl fulfillment = new FulfillmentImpl();
+    return fulfillment;
   }
 
   /**

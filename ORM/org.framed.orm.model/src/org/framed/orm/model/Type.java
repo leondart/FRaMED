@@ -43,8 +43,8 @@ public interface Type extends Node {
 
   /**
    * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
-   * The list contents are of type {@link org.framed.orm.model.Methode}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Methode#getType <em>Type</em>}'.
+   * The list contents are of type {@link org.framed.orm.model.Method}.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Method#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Operations</em>' containment reference list isn't clear,
@@ -53,11 +53,11 @@ public interface Type extends Node {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operations</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getType_Operations()
-   * @see org.framed.orm.model.Methode#getType
+   * @see org.framed.orm.model.Method#getType
    * @model opposite="type" containment="true"
    * @generated
    */
-  EList<Methode> getOperations();
+  EList<Method> getOperations();
 
   /**
    * Returns the value of the '<em><b>Is Expand</b></em>' attribute.

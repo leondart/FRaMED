@@ -2,20 +2,20 @@ package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import org.framed.orm.model.Methode;
+import org.framed.orm.model.Method;
 import org.framed.orm.model.OrmFactory;
 
 /**
  * @author Kay Bierzynski
  * */
-public class ORMMethodeFactory implements CreationFactory {
+public class ORMMethodFactory implements CreationFactory {
 	
 	@Override public Object getNewObject() {		
-	    return OrmFactory.eINSTANCE.createMethode();
+	    return OrmFactory.eINSTANCE.createMethod();
 	  }
 	 
 	  @Override public Object getObjectType() {
-	    return Methode.class;
+	    return Method.class;
 	  }
 	
 }

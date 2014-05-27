@@ -29,7 +29,7 @@ import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Methode;
+import org.framed.orm.model.Method;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMAttributeEditPart;
@@ -116,7 +116,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
       }
     }
 
-    if (childEditPart.getModel() instanceof Methode) {
+    if (childEditPart.getModel() instanceof Method) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
       ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart; 
       methodEditPart.setParentEditPart(this);
@@ -131,7 +131,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
         collectMethode.setToolTip(collectionMet);
       } else {
         // add method to right position determined by the model
-        Methode method = (Methode) childEditPart.getModel();
+        Method method = (Method) childEditPart.getModel();
         int methodIndex = method.getType().getOperations().indexOf(method);
         contentPane.add(methodEditPart.getFigure(), methodIndex);
       }
@@ -167,7 +167,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     }
 
 
-    if (childEditPart.getModel() instanceof Methode) {
+    if (childEditPart.getModel() instanceof Method) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
 
       if (contentPane.getChildren().contains(((ORMMethodEditPart) childEditPart).getFigure())) {

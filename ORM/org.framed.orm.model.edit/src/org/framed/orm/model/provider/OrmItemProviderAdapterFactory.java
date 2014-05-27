@@ -95,26 +95,26 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Methode} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Method} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MethodeItemProvider methodeItemProvider;
+  protected MethodItemProvider methodItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Methode}.
+   * This creates an adapter for a {@link org.framed.orm.model.Method}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createMethodeAdapter() {
-    if (methodeItemProvider == null) {
-      methodeItemProvider = new MethodeItemProvider(this);
+  public Adapter createMethodAdapter() {
+    if (methodItemProvider == null) {
+      methodItemProvider = new MethodItemProvider(this);
     }
 
-    return methodeItemProvider;
+    return methodItemProvider;
   }
 
   /**
@@ -325,26 +325,26 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Fulfilment} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Fulfillment} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FulfilmentItemProvider fulfilmentItemProvider;
+  protected FulfillmentItemProvider fulfillmentItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Fulfilment}.
+   * This creates an adapter for a {@link org.framed.orm.model.Fulfillment}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createFulfilmentAdapter() {
-    if (fulfilmentItemProvider == null) {
-      fulfilmentItemProvider = new FulfilmentItemProvider(this);
+  public Adapter createFulfillmentAdapter() {
+    if (fulfillmentItemProvider == null) {
+      fulfillmentItemProvider = new FulfillmentItemProvider(this);
     }
 
-    return fulfilmentItemProvider;
+    return fulfillmentItemProvider;
   }
 
   /**
@@ -631,7 +631,7 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
    */
   public void dispose() {
     if (attributeItemProvider != null) attributeItemProvider.dispose();
-    if (methodeItemProvider != null) methodeItemProvider.dispose();
+    if (methodItemProvider != null) methodItemProvider.dispose();
     if (compartmentDiagramItemProvider != null) compartmentDiagramItemProvider.dispose();
     if (naturalTypeItemProvider != null) naturalTypeItemProvider.dispose();
     if (compartmentItemProvider != null) compartmentItemProvider.dispose();
@@ -641,7 +641,7 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
     if (roleGroupItemProvider != null) roleGroupItemProvider.dispose();
     if (rolemodelItemProvider != null) rolemodelItemProvider.dispose();
     if (totalItemProvider != null) totalItemProvider.dispose();
-    if (fulfilmentItemProvider != null) fulfilmentItemProvider.dispose();
+    if (fulfillmentItemProvider != null) fulfillmentItemProvider.dispose();
     if (roleEquivalenceItemProvider != null) roleEquivalenceItemProvider.dispose();
     if (acyclicItemProvider != null) acyclicItemProvider.dispose();
     if (inheritanceItemProvider != null) inheritanceItemProvider.dispose();

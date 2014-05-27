@@ -6,7 +6,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="&lt;...>"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Methode">
+  <eClassifiers xsi:type="ecore:EClass" name="Method">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" eOpposite="#//Type/operations"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="&lt;...>"/>
@@ -15,7 +15,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
         eType="#//Attribute" containment="true" eOpposite="#//Attribute/type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
-        eType="#//Methode" containment="true" eOpposite="#//Methode/type"/>
+        eType="#//Method" containment="true" eOpposite="#//Method/type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExpand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompartmentDiagram" eSuperTypes="#//RelationContainer">
@@ -84,13 +84,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
         eType="#//Grouping" containment="true" eOpposite="#//Grouping/parentRolemodel"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Total" eSuperTypes="#//RelationshipConstraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="groups" upperBound="-1"
-        eType="#//Grouping" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Fulfilment" eSuperTypes="#//Relation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fufilledRole" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="&lt;...>"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Total" eSuperTypes="#//RelationshipConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fulfillment" eSuperTypes="#//Relation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fulfilledRoles" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -128,8 +123,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Relation" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relationContainer" eType="#//RelationContainer"
         eOpposite="#//RelationContainer/relations"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bendpoints" upperBound="-1"
-        eType="#//Point"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Node"
         eOpposite="#//Node/incomingLinks"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Node"

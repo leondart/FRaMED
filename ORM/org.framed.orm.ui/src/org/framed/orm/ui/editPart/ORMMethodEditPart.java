@@ -12,11 +12,11 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.framed.orm.model.Methode;
+import org.framed.orm.model.Method;
 import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
-import org.framed.orm.ui.editPolicy.ORMMethodeComponentEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMMethodeDirectEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMMethodComponentEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMMethodDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 
@@ -52,8 +52,8 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void createEditPolicies() {
-    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMMethodeDirectEditPolicy());
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMMethodeComponentEditPolicy());
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMMethodDirectEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMMethodComponentEditPolicy());
   }
 
   @Override
@@ -75,17 +75,18 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
   @Override
   protected void refreshVisuals() {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
-    final Methode model = (Methode) getModel();
+    final Method model = (Method) getModel();
 
-//    System.out.println("Methode: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
-    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),parentEditPart.getConstraints()));
+    // System.out.println("Method: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),
+        parentEditPart.getConstraints()));
     figure.setToolTip(new Label(model.getName()));
   }
 
   @Override
   public void activate() {
     if (!isActive()) {
-      ((Methode) getModel()).eAdapters().add(adapter);
+      ((Method) getModel()).eAdapters().add(adapter);
     }
     super.activate();
   }
@@ -93,7 +94,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
   @Override
   public void deactivate() {
     if (isActive()) {
-      ((Methode) getModel()).eAdapters().remove(adapter);
+      ((Method) getModel()).eAdapters().remove(adapter);
     }
 
     super.deactivate();
@@ -109,7 +110,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public Notifier getTarget() {
-      return (Methode) getModel();
+      return (Method) getModel();
     }
 
     @Override
@@ -119,7 +120,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(Methode.class);
+      return type.equals(Method.class);
     }
   }
 

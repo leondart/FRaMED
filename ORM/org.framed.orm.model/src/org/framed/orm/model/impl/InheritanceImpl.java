@@ -33,7 +33,6 @@ import org.framed.orm.model.RelationContainer;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getRelationContainer <em>Relation Container</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.InheritanceImpl#getDim1BP <em>Dim1 BP</em>}</li>
@@ -44,16 +43,6 @@ import org.framed.orm.model.RelationContainer;
  * @generated
  */
 public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inheritance {
-  /**
-   * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBendpoints()
-   * @generated
-   * @ordered
-   */
-  protected EList<Point> bendpoints;
-
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
@@ -152,18 +141,6 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.INHERITANCE__RELATION_CONTAINER, newRelationContainer, newRelationContainer));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Point> getBendpoints() {
-    if (bendpoints == null) {
-      bendpoints = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.INHERITANCE__BENDPOINTS);
-    }
-    return bendpoints;
   }
 
   /**
@@ -376,8 +353,6 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
     switch (featureID) {
       case OrmPackage.INHERITANCE__RELATION_CONTAINER:
         return getRelationContainer();
-      case OrmPackage.INHERITANCE__BENDPOINTS:
-        return getBendpoints();
       case OrmPackage.INHERITANCE__TARGET:
         if (resolve) return getTarget();
         return basicGetTarget();
@@ -403,10 +378,6 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
     switch (featureID) {
       case OrmPackage.INHERITANCE__RELATION_CONTAINER:
         setRelationContainer((RelationContainer)newValue);
-        return;
-      case OrmPackage.INHERITANCE__BENDPOINTS:
-        getBendpoints().clear();
-        getBendpoints().addAll((Collection<? extends Point>)newValue);
         return;
       case OrmPackage.INHERITANCE__TARGET:
         setTarget((Node)newValue);
@@ -437,9 +408,6 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
       case OrmPackage.INHERITANCE__RELATION_CONTAINER:
         setRelationContainer((RelationContainer)null);
         return;
-      case OrmPackage.INHERITANCE__BENDPOINTS:
-        getBendpoints().clear();
-        return;
       case OrmPackage.INHERITANCE__TARGET:
         setTarget((Node)null);
         return;
@@ -466,8 +434,6 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
     switch (featureID) {
       case OrmPackage.INHERITANCE__RELATION_CONTAINER:
         return getRelationContainer() != null;
-      case OrmPackage.INHERITANCE__BENDPOINTS:
-        return bendpoints != null && !bendpoints.isEmpty();
       case OrmPackage.INHERITANCE__TARGET:
         return target != null;
       case OrmPackage.INHERITANCE__SOURCE:
@@ -490,9 +456,7 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (bendpoints: ");
-    result.append(bendpoints);
-    result.append(", dim1BP: ");
+    result.append(" (dim1BP: ");
     result.append(dim1BP);
     result.append(", dim2BP: ");
     result.append(dim2BP);

@@ -31,13 +31,13 @@ public interface OrmFactory extends EFactory {
   Attribute createAttribute();
 
   /**
-   * Returns a new object of class '<em>Methode</em>'.
+   * Returns a new object of class '<em>Method</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Methode</em>'.
+   * @return a new object of class '<em>Method</em>'.
    * @generated
    */
-  Methode createMethode();
+  Method createMethod();
 
   /**
    * Returns a new object of class '<em>Compartment Diagram</em>'.
@@ -121,13 +121,13 @@ public interface OrmFactory extends EFactory {
   Total createTotal();
 
   /**
-   * Returns a new object of class '<em>Fulfilment</em>'.
+   * Returns a new object of class '<em>Fulfillment</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Fulfilment</em>'.
+   * @return a new object of class '<em>Fulfillment</em>'.
    * @generated
    */
-  Fulfilment createFulfilment();
+  Fulfillment createFulfillment();
 
   /**
    * Returns a new object of class '<em>Role Equivalence</em>'.

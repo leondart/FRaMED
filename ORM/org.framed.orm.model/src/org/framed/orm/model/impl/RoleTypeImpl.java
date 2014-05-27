@@ -37,7 +37,6 @@ import org.framed.orm.model.Rolemodel;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getRelationContainer <em>Relation Container</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getBendpoints <em>Bendpoints</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getDim1BP <em>Dim1 BP</em>}</li>
@@ -52,16 +51,6 @@ import org.framed.orm.model.Rolemodel;
  * @generated
  */
 public class RoleTypeImpl extends TypeImpl implements RoleType {
-  /**
-   * The cached value of the '{@link #getBendpoints() <em>Bendpoints</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBendpoints()
-   * @generated
-   * @ordered
-   */
-  protected EList<Point> bendpoints;
-
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
@@ -180,18 +169,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, OrmPackage.ROLE_TYPE__RELATION_CONTAINER, newRelationContainer, newRelationContainer));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Point> getBendpoints() {
-    if (bendpoints == null) {
-      bendpoints = new EDataTypeUniqueEList<Point>(Point.class, this, OrmPackage.ROLE_TYPE__BENDPOINTS);
-    }
-    return bendpoints;
   }
 
   /**
@@ -578,8 +555,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     switch (featureID) {
       case OrmPackage.ROLE_TYPE__RELATION_CONTAINER:
         return getRelationContainer();
-      case OrmPackage.ROLE_TYPE__BENDPOINTS:
-        return getBendpoints();
       case OrmPackage.ROLE_TYPE__TARGET:
         if (resolve) return getTarget();
         return basicGetTarget();
@@ -615,10 +590,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     switch (featureID) {
       case OrmPackage.ROLE_TYPE__RELATION_CONTAINER:
         setRelationContainer((RelationContainer)newValue);
-        return;
-      case OrmPackage.ROLE_TYPE__BENDPOINTS:
-        getBendpoints().clear();
-        getBendpoints().addAll((Collection<? extends Point>)newValue);
         return;
       case OrmPackage.ROLE_TYPE__TARGET:
         setTarget((Node)newValue);
@@ -661,9 +632,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
       case OrmPackage.ROLE_TYPE__RELATION_CONTAINER:
         setRelationContainer((RelationContainer)null);
         return;
-      case OrmPackage.ROLE_TYPE__BENDPOINTS:
-        getBendpoints().clear();
-        return;
       case OrmPackage.ROLE_TYPE__TARGET:
         setTarget((Node)null);
         return;
@@ -702,8 +670,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     switch (featureID) {
       case OrmPackage.ROLE_TYPE__RELATION_CONTAINER:
         return getRelationContainer() != null;
-      case OrmPackage.ROLE_TYPE__BENDPOINTS:
-        return bendpoints != null && !bendpoints.isEmpty();
       case OrmPackage.ROLE_TYPE__TARGET:
         return target != null;
       case OrmPackage.ROLE_TYPE__SOURCE:
@@ -734,7 +700,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     if (baseClass == Relation.class) {
       switch (derivedFeatureID) {
         case OrmPackage.ROLE_TYPE__RELATION_CONTAINER: return OrmPackage.RELATION__RELATION_CONTAINER;
-        case OrmPackage.ROLE_TYPE__BENDPOINTS: return OrmPackage.RELATION__BENDPOINTS;
         case OrmPackage.ROLE_TYPE__TARGET: return OrmPackage.RELATION__TARGET;
         case OrmPackage.ROLE_TYPE__SOURCE: return OrmPackage.RELATION__SOURCE;
         case OrmPackage.ROLE_TYPE__DIM1_BP: return OrmPackage.RELATION__DIM1_BP;
@@ -769,7 +734,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     if (baseClass == Relation.class) {
       switch (baseFeatureID) {
         case OrmPackage.RELATION__RELATION_CONTAINER: return OrmPackage.ROLE_TYPE__RELATION_CONTAINER;
-        case OrmPackage.RELATION__BENDPOINTS: return OrmPackage.ROLE_TYPE__BENDPOINTS;
         case OrmPackage.RELATION__TARGET: return OrmPackage.ROLE_TYPE__TARGET;
         case OrmPackage.RELATION__SOURCE: return OrmPackage.ROLE_TYPE__SOURCE;
         case OrmPackage.RELATION__DIM1_BP: return OrmPackage.ROLE_TYPE__DIM1_BP;
@@ -804,9 +768,7 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (bendpoints: ");
-    result.append(bendpoints);
-    result.append(", dim1BP: ");
+    result.append(" (dim1BP: ");
     result.append(dim1BP);
     result.append(", dim2BP: ");
     result.append(dim2BP);

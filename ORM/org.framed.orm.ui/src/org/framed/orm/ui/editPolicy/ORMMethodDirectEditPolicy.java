@@ -3,20 +3,20 @@ package org.framed.orm.ui.editPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
-import org.framed.orm.model.Methode;
-import org.framed.orm.ui.command.AttributeMethodeCommands.ORMMethodeRenameCommand;
+import org.framed.orm.model.Method;
+import org.framed.orm.ui.command.AttributeMethodCommands.ORMMethodRenameCommand;
 import org.framed.orm.ui.figure.LabelFigure;
 
 /**
  * @author Kay Bierzynski
  * */
-public class ORMMethodeDirectEditPolicy extends DirectEditPolicy {
+public class ORMMethodDirectEditPolicy extends DirectEditPolicy {
 
 	@Override
 	protected Command getDirectEditCommand(DirectEditRequest request) {
 		
-		ORMMethodeRenameCommand command = new ORMMethodeRenameCommand();
-		command.setMethode((Methode) getHost().getModel());
+		ORMMethodRenameCommand command = new ORMMethodRenameCommand();
+		command.setMethod((Method) getHost().getModel());
 		command.setNewName((String) request.getCellEditor().getValue());
 			
 		return command;

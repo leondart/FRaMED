@@ -80,28 +80,6 @@ public class RelationshipItemProvider
   }
 
   /**
-   * This adds a property descriptor for the Bendpoints feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addBendpointsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_bendpoints_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_bendpoints_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__BENDPOINTS,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
-  }
-
-  /**
    * This adds a property descriptor for the Target feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -425,7 +403,6 @@ public class RelationshipItemProvider
     updateChildren(notification);
 
     switch (notification.getFeatureID(Relationship.class)) {
-      case OrmPackage.RELATIONSHIP__BENDPOINTS:
       case OrmPackage.RELATIONSHIP__DIM1_BP:
       case OrmPackage.RELATIONSHIP__DIM2_BP:
       case OrmPackage.RELATIONSHIP__SECOND_PARTHOOD:
