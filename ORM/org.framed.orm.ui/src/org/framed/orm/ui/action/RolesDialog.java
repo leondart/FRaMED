@@ -2,6 +2,7 @@ package org.framed.orm.ui.action;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -12,10 +13,10 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -28,9 +29,9 @@ public class RolesDialog extends Dialog {
 
   private final static int SIZING_SELECTION_WIDGET_WIDTH = 300;
 
-  private ArrayList<AbstractRole> roles;
-  private ArrayList<Button> roleButtons;
-  private ArrayList<String> fulfilledRoles;
+  private List<AbstractRole> roles;
+  private List<Button> roleButtons;
+  private List<String> fulfilledRoles;
 
   protected RolesDialog(Shell shell) {
     super(shell);
@@ -49,7 +50,6 @@ public class RolesDialog extends Dialog {
 
   protected Control createDialogArea(Composite parent) {
     Composite composite = (Composite) super.createDialogArea(parent);
-
 
     GridData data = new GridData(GridData.FILL_BOTH);
     data.heightHint = SIZING_SELECTION_WIDGET_HEIGHT;
@@ -71,33 +71,32 @@ public class RolesDialog extends Dialog {
       TableEditor editor = new TableEditor(table);
 
       String roleName = ((Node) role).getName();
-      Button button = new Button(table, SWT.CHECK);
-      button.setText(roleName);
-      button.setToolTipText(roleName);
-      button.setData(role);
+      Button checkbox = new Button(table, SWT.CHECK);
+      checkbox.setText(roleName);
+      checkbox.setToolTipText(roleName);
+      checkbox.setData(role);
       if (fulfilledRoles.contains(roleName)) {
-        button.setSelection(true);
+        checkbox.setSelection(true);
       }
-      button.pack();
+      checkbox.pack();
 
       // TODO: this variant is extremely bad --> implement a better variant
-      while (SIZING_SELECTION_WIDGET_WIDTH < button.getSize().x) {
-        button.setText(button.getText().substring(0, button.getText().length() - 4) + "...");
-        button.pack();
-
+      while (SIZING_SELECTION_WIDGET_WIDTH < checkbox.getSize().x) {
+        checkbox.setText(checkbox.getText().substring(0, checkbox.getText().length() - 4) + "...");
+        checkbox.pack();
       }
 
       one.setWidth(table.getBounds().width);
-      editor.minimumWidth = button.getSize().x;
+      editor.minimumWidth = checkbox.getSize().x;
       editor.horizontalAlignment = SWT.LEFT;
-      editor.setEditor(button, item, 0);
+      editor.setEditor(checkbox, item, 0);
 
-      roleButtons.add(button);
-
-
+      roleButtons.add(checkbox);
     }
 
     addSelectionButtons(composite);
+
+    composite.pack();
 
     return composite;
   }
@@ -109,6 +108,8 @@ public class RolesDialog extends Dialog {
    * @param composite org.eclipse.swt.widgets.Composite
    */
   private void addSelectionButtons(Composite composite) {
+
+    initializeDialogUnits(composite);
 
     Composite buttonComposite = new Composite(composite, SWT.NONE);
     GridLayout layout = new GridLayout();
@@ -143,6 +144,7 @@ public class RolesDialog extends Dialog {
     deselectButton.addSelectionListener(listener);
   }
 
+  @Override
   protected void okPressed() {
     int returnCode = 1;
     fulfilledRoles.clear();
@@ -155,15 +157,15 @@ public class RolesDialog extends Dialog {
     close();
   }
 
-  public void setRoles(ArrayList<AbstractRole> roles) {
+  public void setRoles(List<AbstractRole> roles) {
     this.roles = roles;
   }
 
-  public void setFulfilledRoles(ArrayList<String> fullfilledRoles) {
-    this.fulfilledRoles = fullfilledRoles;
+  public void setFulfilledRoles(List<String> fulfilledRoles) {
+    this.fulfilledRoles = fulfilledRoles;
   }
 
-  public ArrayList<String> getFulfilledRoles() {
+  public List<String> getFulfilledRoles() {
     return fulfilledRoles;
   }
 }

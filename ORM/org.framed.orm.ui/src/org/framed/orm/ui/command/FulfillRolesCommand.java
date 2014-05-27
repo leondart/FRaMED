@@ -1,6 +1,7 @@
 package org.framed.orm.ui.command;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Fulfilment;
@@ -14,8 +15,8 @@ public class FulfillRolesCommand extends Command {
 
 
   private Fulfilment fulfillment;
-  private ArrayList<String> roles;
-  private ArrayList<String> oldFulfilledRoles = new ArrayList<String>();
+  private List<String> roles;
+  private List<String> oldFulfilledRoles = new ArrayList<String>();
 
   /**
    * The command can be executed if all parameters have been set.
@@ -36,7 +37,7 @@ public class FulfillRolesCommand extends Command {
         fulfillment.getFulfilledRoles().add(name);
       }
     }
-    
+
     fulfillment.getFulfilledRoles().retainAll(roles);
   }
 
@@ -48,7 +49,7 @@ public class FulfillRolesCommand extends Command {
 
   }
 
-  public void setRoles(ArrayList<String> roles) {
+  public void setRoles(List<String> roles) {
     this.roles = roles;
   }
 
