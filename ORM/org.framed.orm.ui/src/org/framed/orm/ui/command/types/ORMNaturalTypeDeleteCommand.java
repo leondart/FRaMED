@@ -73,7 +73,8 @@ public class ORMNaturalTypeDeleteCommand extends Command {
 	    for (Relation link : relations) {
 	      link.setSource(sourceLinks.get(link));
 	      link.setTarget(targetLinks.get(link));
-	      link.setRelationContainer(parentrolemodel);
+	      if(parentrolemodel != null) link.setRelationContainer(parentrolemodel);
+          if(cd != null) link.setRelationContainer(cd);
 	    }
 	  }
 	  
