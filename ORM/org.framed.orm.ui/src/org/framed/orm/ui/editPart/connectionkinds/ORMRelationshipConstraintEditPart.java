@@ -19,7 +19,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
 
   private Label lab = new Label();
   private String textInitial;
-  
+
   public Label getLabel() {
     return lab;
   }
@@ -46,36 +46,36 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
     }
     return conn;
   }
-  
+
   /***/
   @Override
   public void refreshVisuals() {
     super.refreshVisuals();
     Relationship rlship = ((RelationshipConstraint) getModel()).getRelation();
     if (getTarget() != null && getSource() != null && rlship != null) {
-   
+
       List<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
-   
+
       relCList.addAll(rlship.getRlshipConstraints());
 
       if (relCList.size() != 0) {
 
         ORMRelationshipConstraintEditPart rep =
-            (ORMRelationshipConstraintEditPart) getViewer().getEditPartRegistry().get(relCList.get(0));
+            (ORMRelationshipConstraintEditPart) getViewer().getEditPartRegistry().get(
+                relCList.get(0));
+        if (rep != null) {
+          if (!rep.equals(this) && !rep.getLabel().getText().contains(lab.getText())) {
+            String oldText = rep.getLabel().getText();
+            rep.getLabel().setText(lab.getText() + " , " + oldText);
 
-        if (!rep.equals(this) && !rep.getLabel().getText().contains(lab.getText()) ) {
-          String oldText = rep.getLabel().getText();
-          rep.getLabel().setText( lab.getText()+  " , " + oldText );
-          
-          getConnectionFigure().setVisible(false);
+            getConnectionFigure().setVisible(false);
+          }
+          if (rep.equals(this)) {
+            lab.setText(textInitial);
+            getConnectionFigure().setVisible(true);
+          }
         }
-        if(rep.equals(this)){
-          lab.setText(textInitial);
-          getConnectionFigure().setVisible(true);
-        }
-      
       }
     }
   }
 }
-
