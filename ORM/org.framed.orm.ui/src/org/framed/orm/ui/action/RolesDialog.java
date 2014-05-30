@@ -44,18 +44,13 @@ public class RolesDialog extends Dialog {
   }
 
   @Override
-  protected void cancelPressed() {
-    setReturnCode(-1);
-    close();
-  }
-
-  @Override
   protected void configureShell(Shell newShell) {
     super.configureShell(newShell);
     newShell.setText("Choose roles");
     newShell.setSize(SIZING_SELECTION_WIDGET_WIDTH, SIZING_SELECTION_WIDGET_HEIGHT);
   }
 
+  @Override
   protected Control createDialogArea(Composite parent) {
     Composite composite = (Composite) super.createDialogArea(parent);
 
@@ -127,7 +122,7 @@ public class RolesDialog extends Dialog {
     for (Object object : viewer.getCheckedElements()) {
       fulfilledRoles.add(((Node) object).getName());
     }
-    setReturnCode(1);
+    setReturnCode(OK);
     close();
   }
 

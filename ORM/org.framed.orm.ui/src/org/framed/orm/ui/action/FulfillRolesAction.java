@@ -3,6 +3,7 @@ package org.framed.orm.ui.action;
 import java.util.ArrayList;
 
 import org.eclipse.gef.ui.actions.SelectionAction;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
@@ -11,7 +12,6 @@ import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Fulfillment;
 import org.framed.orm.ui.command.FulfillRolesCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
-
 
 public class FulfillRolesAction extends SelectionAction {
 
@@ -54,26 +54,24 @@ public class FulfillRolesAction extends SelectionAction {
     RolesDialog dialog = new RolesDialog(shell);
     dialog.setRoles(target.getRolemodel().getParticipants());
 
-    ArrayList<String> fulfilledRoles = new ArrayList<String>();
-    fulfilledRoles.addAll(ful.getFulfilledRoles());
+    ArrayList<String> fulfilledRoles = new ArrayList<String>(ful.getFulfilledRoles());
 
     dialog.setFulfilledRoles(fulfilledRoles);
 
     // open the popup dialog
     int returnCode = dialog.open();
     // end the action, when the popup dialog is closed through cancel button
-    if (returnCode == -1) {
+    if (returnCode == Window.CANCEL) {
       return;
     }
-    // add all chosen roles, when the popup dialog is closed through ok button
-    else if (returnCode == 1) {
+    // add all chosen roles, when the popup dialog is closed through ok
+    // button
+    else if (returnCode == Window.OK) {
       FulfillRolesCommand command = new FulfillRolesCommand();
       command.setFulfillment(ful);
       command.setRoles(dialog.getFulfilledRoles());
       editPart.getViewer().getEditDomain().getCommandStack().execute(command);
     }
   }
-
-
 
 }
