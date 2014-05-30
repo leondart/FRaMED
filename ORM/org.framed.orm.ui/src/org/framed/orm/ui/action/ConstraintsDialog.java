@@ -1,6 +1,8 @@
 package org.framed.orm.ui.action;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
@@ -13,36 +15,41 @@ import org.framed.orm.model.Irreflexive;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.model.Total;
 
+/**
+ * @author Kay Bierzynski (intial development)
+ * @author Lars Schuetze
+ * 
+ */
 public class ConstraintsDialog extends Dialog {
 
-  private ArrayList<RelationshipConstraint> constraints;
-  private ArrayList<Button> constraintButtons;
-  private ArrayList<RelationshipConstraint> chosenConstraints;
+  private List<RelationshipConstraint> constraints;
+  private final List<Button> constraintButtons;
+  private final List<RelationshipConstraint> chosenConstraints;
 
   protected ConstraintsDialog(Shell shell) {
     super(shell);
-    constraintButtons = new ArrayList<Button>();
-    chosenConstraints = new ArrayList<RelationshipConstraint>();
+    constraintButtons = new ArrayList<>();
+    chosenConstraints = new LinkedList<>();
   }
 
-  protected void cancelPressed() {
-    setReturnCode(-1);
-    close();
-  }
-
+  @Override
   protected void configureShell(Shell newShell) {
-    newShell.setText("Choose constraints");
     super.configureShell(newShell);
+    newShell.setText("Choose constraints");
   }
 
+  @Override
   protected Control createDialogArea(Composite parent) {
     Composite composite = (Composite) super.createDialogArea(parent);
 
     for (RelationshipConstraint constraint : constraints) {
       Button button = new Button(composite, SWT.CHECK);
-      if(constraint instanceof Total)button.setText("total");
-      if(constraint instanceof Acyclic)button.setText("acyclic");
-      if(constraint instanceof Irreflexive)button.setText("irreflexive");
+      if (constraint instanceof Total)
+        button.setText("total");
+      if (constraint instanceof Acyclic)
+        button.setText("acyclic");
+      if (constraint instanceof Irreflexive)
+        button.setText("irreflexive");
       button.setData(constraint);
       constraintButtons.add(button);
     }
@@ -50,22 +57,22 @@ public class ConstraintsDialog extends Dialog {
     return composite;
   }
 
+  @Override
   protected void okPressed() {
-    int returnCode = 1;
-    setReturnCode(returnCode);
     for (Button button : constraintButtons) {
       if (button.getSelection()) {
-        chosenConstraints.add((RelationshipConstraint)button.getData());
+        chosenConstraints.add((RelationshipConstraint) button.getData());
       }
     }
+    setReturnCode(OK);
     close();
   }
 
-  public void setConstraints(ArrayList<RelationshipConstraint> constraints) {
+  public void setConstraints(List<RelationshipConstraint> constraints) {
     this.constraints = constraints;
   }
 
-  public ArrayList<RelationshipConstraint> getChosenConstraints() {
+  public List<RelationshipConstraint> getChosenConstraints() {
     return chosenConstraints;
   }
 }
