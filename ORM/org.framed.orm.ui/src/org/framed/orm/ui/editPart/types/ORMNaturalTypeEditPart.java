@@ -4,6 +4,7 @@ package org.framed.orm.ui.editPart.types;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPolicy;
+import org.framed.orm.model.Node;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.ORMNaturalTypeFigure;
@@ -30,7 +31,7 @@ public class ORMNaturalTypeEditPart extends ORMTypeEditPart {
   protected IFigure createFigure() {
     ORMGraphicalEditor editorPart =
         (ORMGraphicalEditor) ((DefaultEditDomain) getViewer().getEditDomain()).getEditorPart();
-    ORMNaturalTypeFigure figure = new ORMNaturalTypeFigure(editorPart.getIsEditorData());
+    ORMNaturalTypeFigure figure = new ORMNaturalTypeFigure(editorPart.getIsEditorData(),(Node) getModel());
 
     return figure;
   }

@@ -92,9 +92,13 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
     final Attribute model = (Attribute) getModel();
 
-
+<<<<<<< HEAD
+    // System.out.println("Attribute: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),
+        parentEditPart.getConstraints()));
+=======
     figure.setText(model.getName());
-
+>>>>>>> Label shortening fixed
     figure.setToolTip(new Label(model.getName()));
   }
 

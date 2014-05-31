@@ -8,6 +8,7 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
+import org.framed.orm.model.Node;
 
 /**
  * @author Kay Bierzynski
@@ -19,9 +20,9 @@ public class ORMCompartmentV1Figure extends ORMTypeFigure {
   private ConnectionAnchor connectionAnchor;
 
   // figure for subcompartments
-  public ORMCompartmentV1Figure(boolean isEditorData) {
+  public ORMCompartmentV1Figure(boolean isEditorData,Node parent) {
 
-    super();
+    super(parent);
 
     rectangle = new ShadowRectangle();
 

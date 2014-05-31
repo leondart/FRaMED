@@ -266,16 +266,30 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     final Type model = (Type) getModel();
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
+<<<<<<< HEAD
+    figure.getLabel().setText(
+        (new ORMLabelFigure()).shortenLabel(model.getName(), figure.getLabel().getTextFlow(),
+            model.getConstraints()));
+=======
     figure.getLabel().setText(model.getName());
+>>>>>>> Label shortening fixed
     figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
     parent.setLayoutConstraint(this, figure, model.getConstraints());
 
     /*refresh the attributes*/
     IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
+<<<<<<< HEAD
+    Iterator<ORMLabelFigure> it = contentPane.getChildren().iterator();
+    while (it.hasNext()) {
+      it.next().getParentEditPart().refresh();
+    }
+
+=======
     Iterator<ORMLabelFigure> it = contentPane.getChildren().iterator(); 
     while(it.hasNext()) it.next().getParentEditPart().refresh();
 
     /*refresh the methods*/
+>>>>>>> Label shortening fixed
     contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
     it = contentPane.getChildren().iterator();
     while (it.hasNext()) {

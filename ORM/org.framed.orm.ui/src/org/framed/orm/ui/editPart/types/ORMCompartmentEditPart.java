@@ -24,6 +24,7 @@ import org.eclipse.swt.graphics.Image;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
@@ -68,7 +69,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
     // when this compartment editpart is not "opened" use as figure ORMCompartmentV1Figure
     if (getParent().getModel() instanceof Rolemodel
         || getParent().getModel() instanceof CompartmentDiagram) {
-      ORMCompartmentV1Figure figure1 = new ORMCompartmentV1Figure(editorPart.getIsEditorData());
+      ORMCompartmentV1Figure figure1 = new ORMCompartmentV1Figure(editorPart.getIsEditorData(),(Node) getModel());
 
       fig = figure1;
     }
@@ -121,7 +122,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
       children.addAll(rm.getParticipants());
 
       for (AbstractRole role : children) {
-        Label label = new Label();
+        ORMLabelFigure label = new ORMLabelFigure((Node)getModel());
         Label label2 = new Label();
         String labelText;
         
@@ -134,7 +135,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
         else
           labelText = ((RoleGroup) role).getName();
           
-          label.setText((new ORMLabelFigure()).shortenLabel(labelText,label.getBounds(),label.getFont(),getConstraints()));
+          label.setText(labelText);
           label.setToolTip(label2);
           if (sizeList <= 3)
             rolePart.add(label);

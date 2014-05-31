@@ -33,6 +33,7 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMTotalEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
+import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 
 
 /**

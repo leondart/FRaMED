@@ -10,6 +10,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.framed.orm.model.Node;
 
 /**
  * @author Kay Bierzynski
@@ -24,7 +25,7 @@ public class ORMCompartmentV2Figure extends  ORMTypeFigure {
 	//figure for maincompartments
 	public ORMCompartmentV2Figure(boolean  isEditorData) {
 
-		super();
+		super(null);
 
 	    rectangle = new ShadowRectangle();
 	    rectangle2 = new PartFigure();

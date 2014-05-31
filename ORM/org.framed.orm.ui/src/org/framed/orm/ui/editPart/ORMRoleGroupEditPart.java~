@@ -132,11 +132,16 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     final RoleGroup model = (RoleGroup) getModel();
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
-
+<<<<<<< HEAD
+    // figure.getLabel().setText(model.getName());
+    ORMLabelFigure lf = new ORMLabelFigure(this);
+    figure.getLabel().setText(
+        lf.shortenLabel(model.getName(), figure.getLabel(), model.getConstraints()));
+=======
 //    figure.getLabel().setText(model.getName());
     ORMLabelFigure lf = new ORMLabelFigure((Node) getModel());
     figure.getLabel().setText(lf.shortenLabel(model.getName(),figure.getLabel(),model.getConstraints()));
-
+>>>>>>> Label shortening fixed
     figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
 
     parent.setLayoutConstraint(this, figure, model.getConstraints());

@@ -5,6 +5,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPolicy;
+import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
@@ -33,7 +34,7 @@ public class ORMRoleTypeEditPart extends ORMTypeEditPart {
 
     ORMGraphicalEditor editorPart =
         (ORMGraphicalEditor) ((DefaultEditDomain) getViewer().getEditDomain()).getEditorPart();
-    ORMRoleTypeFigure figure = new ORMRoleTypeFigure(editorPart.getIsEditorData());
+    ORMRoleTypeFigure figure = new ORMRoleTypeFigure(editorPart.getIsEditorData(),(Node) getModel());
     this.figure = figure;
     return figure;
   }

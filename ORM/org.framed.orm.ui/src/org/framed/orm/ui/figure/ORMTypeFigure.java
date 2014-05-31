@@ -7,6 +7,9 @@ import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.framed.orm.model.Node;
+import org.framed.orm.ui.editPart.ORMLabelFigure;
 
 /**
  * @author Kay Bierzynski
@@ -14,16 +17,22 @@ import org.eclipse.draw2d.IFigure;
 public abstract class ORMTypeFigure extends Figure {
 	private PartFigure attributeFigure; 
 	private PartFigure methodFigure; 
- 	private LabelFigure label;
+ 	private ORMLabelFigure label;
 	private ConnectionAnchor connectionAnchor;
 	
-	public ORMTypeFigure() {
-	 label = new LabelFigure();
-	 attributeFigure = new PartFigure();
-	 methodFigure = new PartFigure();
-    }
+	public ORMTypeFigure(Node parent){
+	  label = new ORMLabelFigure(parent);
+	  attributeFigure = new PartFigure();
+	  methodFigure = new PartFigure();
+	}
 	
-	public LabelFigure getLabel(){
+//	public ORMTypeFigure(AbstractGraphicalEditPart parent) {
+//	 label = new ORMLabelFigure((Node) parent);
+//	 attributeFigure = new PartFigure();
+//	 methodFigure = new PartFigure();
+//    }
+	
+	public ORMLabelFigure getLabel(){
 		return label;
 	}
 	

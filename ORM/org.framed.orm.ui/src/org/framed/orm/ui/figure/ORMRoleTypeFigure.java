@@ -8,6 +8,7 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
+import org.framed.orm.model.Node;
 
 
 /**
@@ -20,9 +21,9 @@ public class ORMRoleTypeFigure extends  ORMTypeFigure {
 	private ConnectionAnchor connectionAnchor;
 
   
-	public ORMRoleTypeFigure(boolean isEditorData) {
+	public ORMRoleTypeFigure(boolean isEditorData,Node parent) {
 
-		super();
+		super(parent);
 
 	    rectangle = new ShadowRoundedRectangle();
 	    

@@ -12,29 +12,19 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Methode;
 import org.framed.orm.model.Node;
-import org.framed.orm.model.RoleType;
 import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
-import org.framed.orm.ui.editPolicy.ORMAttributeComponentEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMAttributeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
+import org.framed.orm.ui.editPolicy.ORMMethodComponentEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMMethodDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 
 /**
  * @author Kay Bierzynski
  * */
-public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
-
-  private final ORMAttributeAdapter adapter;
-  private ORMTypeEditPart parentEditPart;
-
-  public ORMAttributeEditPart() {
-    super();
-    adapter = new ORMAttributeAdapter();
-  }
+public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
   /*
    * (non-Javadoc)
@@ -47,8 +37,12 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     return new ORMDragEditPartsTracker(this);
   }
 
-  public void setParentEditPart(ORMTypeEditPart pEditPart) {
-    parentEditPart = pEditPart;
+  private final ORMMethodAdapter adapter;
+  private ORMTypeEditPart parentEditPart;
+
+  public ORMMethodEditPart() {
+    super();
+    adapter = new ORMMethodAdapter();
   }
 
   @Override
@@ -65,9 +59,8 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void createEditPolicies() {
-    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMAttributeDirectEditPolicy());
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeComponentEditPolicy());
-
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMMethodDirectEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMMethodComponentEditPolicy());
   }
 
   @Override
@@ -86,22 +79,25 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     manager.show(); // refresh view
   }
 
-
   @Override
   protected void refreshVisuals() {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
-    final Attribute model = (Attribute) getModel();
+    final Method model = (Method) getModel();
 
-
+<<<<<<< HEAD
+    // System.out.println("Method: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),
+        parentEditPart.getConstraints()));
+=======
     figure.setText(model.getName());
-
+>>>>>>> Label shortening fixed
     figure.setToolTip(new Label(model.getName()));
   }
 
   @Override
   public void activate() {
     if (!isActive()) {
-      ((Attribute) getModel()).eAdapters().add(adapter);
+      ((Method) getModel()).eAdapters().add(adapter);
     }
     super.activate();
   }
@@ -109,24 +105,23 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
   @Override
   public void deactivate() {
     if (isActive()) {
-      ((Attribute) getModel()).eAdapters().remove(adapter);
+      ((Method) getModel()).eAdapters().remove(adapter);
     }
 
     super.deactivate();
   }
 
-  public class ORMAttributeAdapter implements Adapter {
+  public class ORMMethodAdapter implements Adapter {
 
     // Adapter interface
     @Override
     public void notifyChanged(Notification notification) {
       refreshVisuals();
-
     }
 
     @Override
     public Notifier getTarget() {
-      return (Attribute) getModel();
+      return (Method) getModel();
     }
 
     @Override
@@ -136,7 +131,13 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.getClass().equals(Attribute.class);
+      return type.getClass().equals(Method.class);
     }
   }
+
+  public void setParentEditPart(ORMTypeEditPart pEditPart) {
+    parentEditPart = pEditPart;
+  }
+
+
 }

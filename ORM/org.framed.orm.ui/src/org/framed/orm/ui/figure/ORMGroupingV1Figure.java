@@ -8,7 +8,11 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.SWT;
+import org.framed.orm.model.Node;
+import org.framed.orm.ui.editPart.ORMGroupingEditPart;
+import org.framed.orm.ui.editPart.ORMLabelFigure;
 
 /**
  * @author Kay Bierzynski
@@ -17,10 +21,10 @@ public class ORMGroupingV1Figure extends Figure {
 	
 	private final ShadowRoundedRectangle rectangle;
 	private ConnectionAnchor connectionAnchor;
-	private LabelFigure label;
+	private ORMLabelFigure label;
   
 	//figure for subgroupings 
-	public ORMGroupingV1Figure(){
+	public ORMGroupingV1Figure(Node node){
 
 		super();
 
@@ -35,7 +39,7 @@ public class ORMGroupingV1Figure extends Figure {
 	    rectangle.setLayoutManager(layout);
 	    rectangle.setOpaque(true);
 	    
-	    label = new LabelFigure();
+	    label = new ORMLabelFigure(node);
 	    rectangle.add(label);
 	    setOpaque(true);
 
@@ -49,7 +53,7 @@ public class ORMGroupingV1Figure extends Figure {
 		    return rectangle;
 	 }
 	 
-	 public LabelFigure getLabel(){
+	 public ORMLabelFigure getLabel(){
 		 return label;
 	 }
 	 
