@@ -4,14 +4,15 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.Attribute;
-import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Inheritance;
 import org.framed.orm.model.Irreflexive;
 import org.framed.orm.model.Method;
 import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.RelationLabel;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RoleEquivalence;
 import org.framed.orm.model.RoleGroup;
@@ -79,6 +80,8 @@ public class ORMEditPartFactory implements EditPartFactory {
       part = new ORMAcyclicEditPart();
     } else if (model instanceof Grouping) {
       part = new ORMGroupingEditPart();
+    } else if (model instanceof RelationLabel) {
+      part = new ORMRelationLabelEditPart();
     }
     if (part != null) {
       part.setModel(model);
@@ -86,5 +89,4 @@ public class ORMEditPartFactory implements EditPartFactory {
 
     return part;
   }
-
 }
