@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.framed.orm.model.Relationship#getSecondUpper <em>Second Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getFirstParthood <em>First Parthood</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
- *   <li>{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}</li>
- *   <li>{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getSourceLabel <em>Source Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getTargetLabel <em>Target Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -199,58 +199,6 @@ public interface Relationship extends Relation {
   void setFirstParthood(Parthood value);
 
   /**
-   * Returns the value of the '<em><b>Source Label Value</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Source Label Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Source Label Value</em>' reference.
-   * @see #setSourceLabelValue(RelationLabel)
-   * @see org.framed.orm.model.OrmPackage#getRelationship_SourceLabelValue()
-   * @model
-   * @generated
-   */
-  RelationLabel getSourceLabelValue();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source Label Value</em>' reference.
-   * @see #getSourceLabelValue()
-   * @generated
-   */
-  void setSourceLabelValue(RelationLabel value);
-
-  /**
-   * Returns the value of the '<em><b>Target Label Value</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Target Label Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Target Label Value</em>' reference.
-   * @see #setTargetLabelValue(RelationLabel)
-   * @see org.framed.orm.model.OrmPackage#getRelationship_TargetLabelValue()
-   * @model
-   * @generated
-   */
-  RelationLabel getTargetLabelValue();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target Label Value</em>' reference.
-   * @see #getTargetLabelValue()
-   * @generated
-   */
-  void setTargetLabelValue(RelationLabel value);
-
-  /**
    * Returns the value of the '<em><b>Rlship Constraints</b></em>' reference list.
    * The list contents are of type {@link org.framed.orm.model.RelationshipConstraint}.
    * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationshipConstraint#getRelation <em>Relation</em>}'.
@@ -267,5 +215,57 @@ public interface Relationship extends Relation {
    * @generated
    */
   EList<RelationshipConstraint> getRlshipConstraints();
+
+  /**
+   * Returns the value of the '<em><b>Source Label</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Source Label</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Source Label</em>' containment reference.
+   * @see #setSourceLabel(RelationLabel)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_SourceLabel()
+   * @model containment="true" required="true"
+   * @generated
+   */
+  RelationLabel getSourceLabel();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getSourceLabel <em>Source Label</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Source Label</em>' containment reference.
+   * @see #getSourceLabel()
+   * @generated
+   */
+  void setSourceLabel(RelationLabel value);
+
+  /**
+   * Returns the value of the '<em><b>Target Label</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Target Label</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Target Label</em>' containment reference.
+   * @see #setTargetLabel(RelationLabel)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_TargetLabel()
+   * @model containment="true" required="true"
+   * @generated
+   */
+  RelationLabel getTargetLabel();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getTargetLabel <em>Target Label</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Target Label</em>' containment reference.
+   * @see #getTargetLabel()
+   * @generated
+   */
+  void setTargetLabel(RelationLabel value);
 
 } // Relationship

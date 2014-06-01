@@ -15,6 +15,7 @@ import org.framed.orm.model.RelationLabel;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.RelationLabelImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationLabelImpl#isIsRelationEnd <em>Is Relation End</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +67,24 @@ public class RelationLabelImpl extends MinimalEObjectImpl.Container implements R
    */
   public void setLabel(String newLabel) {
     eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, newLabel);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isIsRelationEnd() {
+    return (Boolean) eGet(OrmPackage.Literals.RELATION_LABEL__IS_RELATION_END, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIsRelationEnd(boolean newIsRelationEnd) {
+    eSet(OrmPackage.Literals.RELATION_LABEL__IS_RELATION_END, newIsRelationEnd);
   }
 
 } //RelationLabelImpl

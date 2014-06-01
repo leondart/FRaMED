@@ -4,29 +4,45 @@ package org.framed.orm.model.impl;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.framed.orm.model.*;
+import org.framed.orm.model.Acyclic;
+import org.framed.orm.model.Attribute;
+import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.ComplexConstraint;
+import org.framed.orm.model.Fulfillment;
+import org.framed.orm.model.Grouping;
+import org.framed.orm.model.Inheritance;
+import org.framed.orm.model.Irreflexive;
+import org.framed.orm.model.Method;
+import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.OrmPackage;
+import org.framed.orm.model.Parthood;
+import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.RelationLabel;
+import org.framed.orm.model.Relationship;
+import org.framed.orm.model.RoleEquivalence;
+import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.RoleImplication;
+import org.framed.orm.model.RoleProhibition;
+import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Total;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Factory</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */
 public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   /**
    * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static OrmFactory init() {
@@ -44,8 +60,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public OrmFactoryImpl() {
@@ -53,8 +68,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -109,8 +123,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -129,8 +142,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -149,218 +161,217 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Attribute createAttribute() {
     AttributeImpl attribute = new AttributeImpl();
     return attribute;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Method createMethod() {
     MethodImpl method = new MethodImpl();
     return method;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public CompartmentDiagram createCompartmentDiagram() {
     CompartmentDiagramImpl compartmentDiagram = new CompartmentDiagramImpl();
     return compartmentDiagram;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public NaturalType createNaturalType() {
     NaturalTypeImpl naturalType = new NaturalTypeImpl();
     return naturalType;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Compartment createCompartment() {
     CompartmentImpl compartment = new CompartmentImpl();
     return compartment;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Grouping createGrouping() {
     GroupingImpl grouping = new GroupingImpl();
     return grouping;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RoleType createRoleType() {
     RoleTypeImpl roleType = new RoleTypeImpl();
     return roleType;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RelationContainer createRelationContainer() {
     RelationContainerImpl relationContainer = new RelationContainerImpl();
     return relationContainer;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RoleGroup createRoleGroup() {
     RoleGroupImpl roleGroup = new RoleGroupImpl();
     return roleGroup;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Rolemodel createRolemodel() {
     RolemodelImpl rolemodel = new RolemodelImpl();
     return rolemodel;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Total createTotal() {
     TotalImpl total = new TotalImpl();
     return total;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Fulfillment createFulfillment() {
     FulfillmentImpl fulfillment = new FulfillmentImpl();
     return fulfillment;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RoleEquivalence createRoleEquivalence() {
     RoleEquivalenceImpl roleEquivalence = new RoleEquivalenceImpl();
     return roleEquivalence;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Acyclic createAcyclic() {
     AcyclicImpl acyclic = new AcyclicImpl();
     return acyclic;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Inheritance createInheritance() {
     InheritanceImpl inheritance = new InheritanceImpl();
     return inheritance;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Relationship createRelationship() {
     RelationshipImpl relationship = new RelationshipImpl();
     return relationship;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RoleProhibition createRoleProhibition() {
     RoleProhibitionImpl roleProhibition = new RoleProhibitionImpl();
     return roleProhibition;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Irreflexive createIrreflexive() {
     IrreflexiveImpl irreflexive = new IrreflexiveImpl();
     return irreflexive;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RoleImplication createRoleImplication() {
     RoleImplicationImpl roleImplication = new RoleImplicationImpl();
     return roleImplication;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ComplexConstraint createComplexConstraint() {
     ComplexConstraintImpl complexConstraint = new ComplexConstraintImpl();
     return complexConstraint;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public RelationLabel createRelationLabel() {
     RelationLabelImpl relationLabel = new RelationLabelImpl();
     return relationLabel;
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public Parthood createParthoodFromString(EDataType eDataType, String initialValue) {
@@ -372,8 +383,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public String convertParthoodToString(EDataType eDataType, Object instanceValue) {
@@ -381,11 +391,10 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * Create a <code>Rectangle</code> instance from a <code>String</code>. The expected
-   * representation is "x,y,width,height". Illegal representations will return a null
-   * value.
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Create a <code>Rectangle</code> instance from a <code>String</code>.
+   * The expected representation is "x,y,width,height". Illegal representations will return a null
+   * value. <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Rectangle createRectangleFromString(EDataType eDataType, String initialValue) {
@@ -410,10 +419,10 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * Convert a <code>Rectangle</code> to a <code>String</code> representation. The
-   * <code>Rectangle</code> is represented as "x,y,width,heigth".
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Convert a <code>Rectangle</code> to a <code>String</code>
+   * representation. The <code>Rectangle</code> is represented as "x,y,width,heigth". <!--
+   * end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertRectangleToString(EDataType eDataType, Object instanceValue) {
@@ -425,8 +434,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public Point createPointFromString(EDataType eDataType, String initialValue) {
@@ -450,8 +459,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String convertPointToString(EDataType eDataType, Object instanceValue) {
@@ -463,17 +472,16 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public OrmPackage getOrmPackage() {
     return (OrmPackage) getEPackage();
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @deprecated
    * @generated
    */
@@ -482,4 +490,4 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
     return OrmPackage.eINSTANCE;
   }
 
-} //OrmFactoryImpl
+} // OrmFactoryImpl

@@ -32,8 +32,8 @@ import org.framed.orm.model.RelationshipConstraint;
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondUpper <em>Second Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstParthood <em>First Parthood</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRlshipConstraints <em>Rlship Constraints</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSourceLabelValue <em>Source Label Value</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTargetLabelValue <em>Target Label Value</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSourceLabel <em>Source Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTargetLabel <em>Target Label</em>}</li>
  * </ul>
  * </p>
  *
@@ -285,47 +285,47 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public RelationLabel getSourceLabelValue() {
-    return (RelationLabel) eGet(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL_VALUE, true);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setSourceLabelValue(RelationLabel newSourceLabelValue) {
-    eSet(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL_VALUE, newSourceLabelValue);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public RelationLabel getTargetLabelValue() {
-    return (RelationLabel) eGet(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL_VALUE, true);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setTargetLabelValue(RelationLabel newTargetLabelValue) {
-    eSet(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL_VALUE, newTargetLabelValue);
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
   @SuppressWarnings("unchecked")
   @Override
   public EList<RelationshipConstraint> getRlshipConstraints() {
     return (EList<RelationshipConstraint>) eGet(
         OrmPackage.Literals.RELATIONSHIP__RLSHIP_CONSTRAINTS, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RelationLabel getSourceLabel() {
+    return (RelationLabel) eGet(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSourceLabel(RelationLabel newSourceLabel) {
+    eSet(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL, newSourceLabel);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RelationLabel getTargetLabel() {
+    return (RelationLabel) eGet(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTargetLabel(RelationLabel newTargetLabel) {
+    eSet(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL, newTargetLabel);
   }
 
 } // RelationshipImpl

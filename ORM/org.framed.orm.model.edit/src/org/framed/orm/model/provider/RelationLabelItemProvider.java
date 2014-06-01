@@ -56,6 +56,7 @@ public class RelationLabelItemProvider extends ItemProviderAdapter implements
       super.getPropertyDescriptors(object);
 
       addLabelPropertyDescriptor(object);
+      addIsRelationEndPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -74,6 +75,22 @@ public class RelationLabelItemProvider extends ItemProviderAdapter implements
         getString("_UI_PropertyDescriptor_description", "_UI_RelationLabel_label_feature",
             "_UI_RelationLabel_type"), OrmPackage.Literals.RELATION_LABEL__LABEL, true, false,
         false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Is Relation End feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addIsRelationEndPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_RelationLabel_isRelationEnd_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_RelationLabel_isRelationEnd_feature",
+            "_UI_RelationLabel_type"), OrmPackage.Literals.RELATION_LABEL__IS_RELATION_END, true,
+        false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -113,6 +130,7 @@ public class RelationLabelItemProvider extends ItemProviderAdapter implements
 
     switch (notification.getFeatureID(RelationLabel.class)) {
       case OrmPackage.RELATION_LABEL__LABEL:
+      case OrmPackage.RELATION_LABEL__IS_RELATION_END:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
             true));
         return;

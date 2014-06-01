@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Parthood;
 import org.framed.orm.model.Relationship;
@@ -49,27 +51,24 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      //addBendpointsPropertyDescriptor(object);
       addTargetPropertyDescriptor(object);
       addSourcePropertyDescriptor(object);
-      //addDim1BPPropertyDescriptor(object);
-      //addDim2BPPropertyDescriptor(object);
-      //addSecondParthoodPropertyDescriptor(object);
+      addDim1BPPropertyDescriptor(object);
+      addDim2BPPropertyDescriptor(object);
+      addSecondParthoodPropertyDescriptor(object);
       addSecondLowerPropertyDescriptor(object);
       addFirstLowerPropertyDescriptor(object);
       addFirstUpperPropertyDescriptor(object);
       addSecondUpperPropertyDescriptor(object);
-      //addFirstParthoodPropertyDescriptor(object);
-      //addSourceLabelValuePropertyDescriptor(object);
-      //addTargetLabelValuePropertyDescriptor(object);
-      //addRlshipConstraintsPropertyDescriptor(object);
+      addFirstParthoodPropertyDescriptor(object);
+      addRlshipConstraintsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -235,42 +234,6 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
   }
 
   /**
-   * This adds a property descriptor for the Source Label Value feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addSourceLabelValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(),
-            getString("_UI_Relationship_sourceLabelValue_feature"),
-            getString("_UI_PropertyDescriptor_description",
-                "_UI_Relationship_sourceLabelValue_feature", "_UI_Relationship_type"),
-            OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL_VALUE, true, false, false, null, null,
-            null));
-  }
-
-  /**
-   * This adds a property descriptor for the Target Label Value feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addTargetLabelValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(
-            ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(),
-            getString("_UI_Relationship_targetLabelValue_feature"),
-            getString("_UI_PropertyDescriptor_description",
-                "_UI_Relationship_targetLabelValue_feature", "_UI_Relationship_type"),
-            OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL_VALUE, true, false, false, null, null,
-            null));
-  }
-
-  /**
    * This adds a property descriptor for the Rlship Constraints feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -284,6 +247,37 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
         getString("_UI_PropertyDescriptor_description",
             "_UI_Relationship_rlshipConstraints_feature", "_UI_Relationship_type"),
         OrmPackage.Literals.RELATIONSHIP__RLSHIP_CONSTRAINTS, true, false, true, null, null, null));
+  }
+
+  /**
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+    if (childrenFeatures == null) {
+      super.getChildrenFeatures(object);
+      childrenFeatures.add(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL);
+      childrenFeatures.add(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL);
+    }
+    return childrenFeatures;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EStructuralFeature getChildFeature(Object object, Object child) {
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
+
+    return super.getChildFeature(object, child);
   }
 
   /**
@@ -331,10 +325,13 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       case OrmPackage.RELATIONSHIP__FIRST_UPPER:
       case OrmPackage.RELATIONSHIP__SECOND_UPPER:
       case OrmPackage.RELATIONSHIP__FIRST_PARTHOOD:
-      case OrmPackage.RELATIONSHIP__SOURCE_LABEL_VALUE:
-      case OrmPackage.RELATIONSHIP__TARGET_LABEL_VALUE:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
             true));
+        return;
+      case OrmPackage.RELATIONSHIP__SOURCE_LABEL:
+      case OrmPackage.RELATIONSHIP__TARGET_LABEL:
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -350,6 +347,35 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL,
+        OrmFactory.eINSTANCE.createRelationLabel()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL,
+        OrmFactory.eINSTANCE.createRelationLabel()));
+  }
+
+  /**
+   * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getCreateChildText(Object owner, Object feature, Object child,
+      Collection<?> selection) {
+    Object childFeature = feature;
+    Object childObject = child;
+
+    boolean qualify =
+        childFeature == OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL
+            || childFeature == OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL;
+
+    if (qualify) {
+      return getString("_UI_CreateChild_text2", new Object[] {getTypeText(childObject),
+          getFeatureText(childFeature), getTypeText(owner)});
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
   }
 
   /**

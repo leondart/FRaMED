@@ -90,8 +90,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondUpper"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstParthood"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/rlshipConstraints"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/sourceLabelValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/targetLabelValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/sourceLabel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/targetLabel"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//RoleProhibition"/>
     <genClasses ecoreClass="ORM.ecore#//Irreflexive"/>

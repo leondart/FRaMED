@@ -857,7 +857,16 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRelationship_SourceLabelValue() {
+  public EReference getRelationship_RlshipConstraints() {
+    return (EReference) relationshipEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRelationship_SourceLabel() {
     return (EReference) relationshipEClass.getEStructuralFeatures().get(7);
   }
 
@@ -866,17 +875,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRelationship_TargetLabelValue() {
+  public EReference getRelationship_TargetLabel() {
     return (EReference) relationshipEClass.getEStructuralFeatures().get(8);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getRelationship_RlshipConstraints() {
-    return (EReference) relationshipEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1136,6 +1136,15 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRelationLabel_IsRelationEnd() {
+    return (EAttribute) relationLabelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EEnum getParthood() {
     return parthoodEEnum;
   }
@@ -1262,8 +1271,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEAttribute(relationshipEClass, RELATIONSHIP__SECOND_UPPER);
     createEAttribute(relationshipEClass, RELATIONSHIP__FIRST_PARTHOOD);
     createEReference(relationshipEClass, RELATIONSHIP__RLSHIP_CONSTRAINTS);
-    createEReference(relationshipEClass, RELATIONSHIP__SOURCE_LABEL_VALUE);
-    createEReference(relationshipEClass, RELATIONSHIP__TARGET_LABEL_VALUE);
+    createEReference(relationshipEClass, RELATIONSHIP__SOURCE_LABEL);
+    createEReference(relationshipEClass, RELATIONSHIP__TARGET_LABEL);
 
     roleProhibitionEClass = createEClass(ROLE_PROHIBITION);
 
@@ -1303,6 +1312,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     relationLabelEClass = createEClass(RELATION_LABEL);
     createEAttribute(relationLabelEClass, RELATION_LABEL__LABEL);
+    createEAttribute(relationLabelEClass, RELATION_LABEL__IS_RELATION_END);
 
     // Create enums
     parthoodEEnum = createEEnum(PARTHOOD);
@@ -1558,14 +1568,12 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
         this.getRelationshipConstraint_Relation(), "rlshipConstraints", null, 0, -1,
         Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
         IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelationship_SourceLabelValue(), this.getRelationLabel(), null,
-        "sourceLabelValue", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE,
-        IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-        IS_ORDERED);
-    initEReference(getRelationship_TargetLabelValue(), this.getRelationLabel(), null,
-        "targetLabelValue", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE,
-        IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-        IS_ORDERED);
+    initEReference(getRelationship_SourceLabel(), this.getRelationLabel(), null, "sourceLabel",
+        null, 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationship_TargetLabel(), this.getRelationLabel(), null, "targetLabel",
+        null, 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(roleProhibitionEClass, RoleProhibition.class, "RoleProhibition", !IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1651,9 +1659,12 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
     initEClass(relationLabelEClass, RelationLabel.class, "RelationLabel", !IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRelationLabel_Label(), ecorePackage.getEString(), "label", "0..1", 0, 1,
+    initEAttribute(getRelationLabel_Label(), ecorePackage.getEString(), "label", "0..1", 1, 1,
         RelationLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
         IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationLabel_IsRelationEnd(), ecorePackage.getEBoolean(), "isRelationEnd",
+        null, 1, 1, RelationLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(parthoodEEnum, Parthood.class, "Parthood");

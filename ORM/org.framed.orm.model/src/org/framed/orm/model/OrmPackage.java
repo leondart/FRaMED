@@ -2143,22 +2143,22 @@ public interface OrmPackage extends EPackage {
   int RELATIONSHIP__RLSHIP_CONSTRAINTS = RELATION_FEATURE_COUNT + 6;
 
   /**
-   * The feature id for the '<em><b>Source Label Value</b></em>' reference.
+   * The feature id for the '<em><b>Source Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__SOURCE_LABEL_VALUE = RELATION_FEATURE_COUNT + 7;
+  int RELATIONSHIP__SOURCE_LABEL = RELATION_FEATURE_COUNT + 7;
 
   /**
-   * The feature id for the '<em><b>Target Label Value</b></em>' reference.
+   * The feature id for the '<em><b>Target Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__TARGET_LABEL_VALUE = RELATION_FEATURE_COUNT + 8;
+  int RELATIONSHIP__TARGET_LABEL = RELATION_FEATURE_COUNT + 8;
 
   /**
    * The number of structural features of the '<em>Relationship</em>' class.
@@ -2653,13 +2653,22 @@ public interface OrmPackage extends EPackage {
   int RELATION_LABEL__LABEL = 0;
 
   /**
+   * The feature id for the '<em><b>Is Relation End</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_LABEL__IS_RELATION_END = 1;
+
+  /**
    * The number of structural features of the '<em>Relation Label</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATION_LABEL_FEATURE_COUNT = 1;
+  int RELATION_LABEL_FEATURE_COUNT = 2;
 
   /**
    * The number of operations of the '<em>Relation Label</em>' class.
@@ -3311,28 +3320,6 @@ public interface OrmPackage extends EPackage {
   EAttribute getRelationship_FirstParthood();
 
   /**
-   * Returns the meta object for the reference '{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Source Label Value</em>'.
-   * @see org.framed.orm.model.Relationship#getSourceLabelValue()
-   * @see #getRelationship()
-   * @generated
-   */
-  EReference getRelationship_SourceLabelValue();
-
-  /**
-   * Returns the meta object for the reference '{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Target Label Value</em>'.
-   * @see org.framed.orm.model.Relationship#getTargetLabelValue()
-   * @see #getRelationship()
-   * @generated
-   */
-  EReference getRelationship_TargetLabelValue();
-
-  /**
    * Returns the meta object for the reference list '{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3342,6 +3329,28 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EReference getRelationship_RlshipConstraints();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.framed.orm.model.Relationship#getSourceLabel <em>Source Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Source Label</em>'.
+   * @see org.framed.orm.model.Relationship#getSourceLabel()
+   * @see #getRelationship()
+   * @generated
+   */
+  EReference getRelationship_SourceLabel();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.framed.orm.model.Relationship#getTargetLabel <em>Target Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Target Label</em>'.
+   * @see org.framed.orm.model.Relationship#getTargetLabel()
+   * @see #getRelationship()
+   * @generated
+   */
+  EReference getRelationship_TargetLabel();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleProhibition <em>Role Prohibition</em>}'.
@@ -3639,6 +3648,17 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EAttribute getRelationLabel_Label();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.framed.orm.model.RelationLabel#isIsRelationEnd <em>Is Relation End</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Relation End</em>'.
+   * @see org.framed.orm.model.RelationLabel#isIsRelationEnd()
+   * @see #getRelationLabel()
+   * @generated
+   */
+  EAttribute getRelationLabel_IsRelationEnd();
 
   /**
    * Returns the meta object for enum '{@link org.framed.orm.model.Parthood <em>Parthood</em>}'.
@@ -4188,28 +4208,28 @@ public interface OrmPackage extends EPackage {
     EAttribute RELATIONSHIP__FIRST_PARTHOOD = eINSTANCE.getRelationship_FirstParthood();
 
     /**
-     * The meta object literal for the '<em><b>Source Label Value</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIONSHIP__SOURCE_LABEL_VALUE = eINSTANCE.getRelationship_SourceLabelValue();
-
-    /**
-     * The meta object literal for the '<em><b>Target Label Value</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIONSHIP__TARGET_LABEL_VALUE = eINSTANCE.getRelationship_TargetLabelValue();
-
-    /**
      * The meta object literal for the '<em><b>Rlship Constraints</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference RELATIONSHIP__RLSHIP_CONSTRAINTS = eINSTANCE.getRelationship_RlshipConstraints();
+
+    /**
+     * The meta object literal for the '<em><b>Source Label</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIONSHIP__SOURCE_LABEL = eINSTANCE.getRelationship_SourceLabel();
+
+    /**
+     * The meta object literal for the '<em><b>Target Label</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIONSHIP__TARGET_LABEL = eINSTANCE.getRelationship_TargetLabel();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleProhibitionImpl <em>Role Prohibition</em>}' class.
@@ -4456,6 +4476,14 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EAttribute RELATION_LABEL__LABEL = eINSTANCE.getRelationLabel_Label();
+
+    /**
+     * The meta object literal for the '<em><b>Is Relation End</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION_LABEL__IS_RELATION_END = eINSTANCE.getRelationLabel_IsRelationEnd();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.Parthood <em>Parthood</em>}' enum.

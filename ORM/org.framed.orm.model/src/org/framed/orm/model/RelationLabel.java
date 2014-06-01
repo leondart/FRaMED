@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.framed.orm.model.RelationLabel#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.RelationLabel#isIsRelationEnd <em>Is Relation End</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +34,7 @@ public interface RelationLabel extends EObject {
    * @return the value of the '<em>Label</em>' attribute.
    * @see #setLabel(String)
    * @see org.framed.orm.model.OrmPackage#getRelationLabel_Label()
-   * @model default="0..1"
+   * @model default="0..1" required="true"
    * @generated
    */
   String getLabel();
@@ -47,5 +48,31 @@ public interface RelationLabel extends EObject {
    * @generated
    */
   void setLabel(String value);
+
+  /**
+   * Returns the value of the '<em><b>Is Relation End</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Is Relation End</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is Relation End</em>' attribute.
+   * @see #setIsRelationEnd(boolean)
+   * @see org.framed.orm.model.OrmPackage#getRelationLabel_IsRelationEnd()
+   * @model required="true"
+   * @generated
+   */
+  boolean isIsRelationEnd();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.RelationLabel#isIsRelationEnd <em>Is Relation End</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is Relation End</em>' attribute.
+   * @see #isIsRelationEnd()
+   * @generated
+   */
+  void setIsRelationEnd(boolean value);
 
 } // RelationLabel

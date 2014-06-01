@@ -107,8 +107,10 @@
         eType="#//Parthood" defaultValueLiteral="Unconstrained"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rlshipConstraints" upperBound="-1"
         eType="#//RelationshipConstraint" eOpposite="#//RelationshipConstraint/relation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLabelValue" eType="#//RelationLabel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLabelValue" eType="#//RelationLabel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLabel" lowerBound="1"
+        eType="#//RelationLabel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLabel" lowerBound="1"
+        eType="#//RelationLabel" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoleProhibition" eSuperTypes="#//RoleConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="Irreflexive" eSuperTypes="#//RelationshipConstraint"/>
@@ -168,7 +170,9 @@
   <eClassifiers xsi:type="ecore:EDataType" name="Rectangle" instanceClassName="org.eclipse.draw2d.geometry.Rectangle"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Point" instanceClassName="org.eclipse.draw2d.geometry.Point"/>
   <eClassifiers xsi:type="ecore:EClass" name="RelationLabel">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="0..1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRelationEnd" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>
