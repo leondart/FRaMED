@@ -127,7 +127,7 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(Attribute.class);
+      return type.getClass().equals(Attribute.class);
     }
   }
 }

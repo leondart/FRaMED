@@ -36,7 +36,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
     return new ORMDragEditPartsTracker(this);
   }
 
-  private ORMMethodAdapter adapter;
+  private final ORMMethodAdapter adapter;
   private ORMTypeEditPart parentEditPart;
 
   public ORMMethodEditPart() {
@@ -120,7 +120,7 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(Method.class);
+      return type.getClass().equals(Method.class);
     }
   }
 

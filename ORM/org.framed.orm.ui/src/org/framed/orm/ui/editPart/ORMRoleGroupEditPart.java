@@ -23,7 +23,6 @@ import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.swt.widgets.Display;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
@@ -35,7 +34,6 @@ import org.framed.orm.ui.editPolicy.ORMRoleGroupComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRoleGroupXYLayoutEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
-import org.framed.orm.ui.figure.LabelFigure;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
 /**
@@ -43,7 +41,7 @@ import org.framed.orm.ui.figure.ORMRoleGroupFigure;
  * */
 public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements NodeEditPart {
 
-  private ORMRoleGroupAdapter adapter;
+  private final ORMRoleGroupAdapter adapter;
 
   public ORMRoleGroupEditPart() {
     super();
@@ -132,9 +130,10 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     final RoleGroup model = (RoleGroup) getModel();
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
-//    figure.getLabel().setText(model.getName());
+    // figure.getLabel().setText(model.getName());
     ORMLabelFigure lf = new ORMLabelFigure(this);
-    figure.getLabel().setText(lf.shortenLabel(model.getName(),figure.getLabel(),model.getConstraints()));
+    figure.getLabel().setText(
+        lf.shortenLabel(model.getName(), figure.getLabel(), model.getConstraints()));
     figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
 
     parent.setLayoutConstraint(this, figure, model.getConstraints());
@@ -227,7 +226,7 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(RoleGroup.class);
+      return type.getClass().equals(RoleGroup.class);
     }
   }
 }

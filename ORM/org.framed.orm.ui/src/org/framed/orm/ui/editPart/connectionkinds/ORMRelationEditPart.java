@@ -26,7 +26,7 @@ import org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy;
  * */
 public class ORMRelationEditPart extends AbstractConnectionEditPart {
 
-  private RelationAdapter adapter;
+  private final RelationAdapter adapter;
 
   public ORMRelationEditPart() {
     super();
@@ -119,7 +119,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(Relation.class);
+      return type.getClass().equals(Relation.class);
     }
   }
 }

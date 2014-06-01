@@ -33,7 +33,7 @@ import org.framed.orm.ui.figure.ORMRolemodelFigure;
  * */
 public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
 
-  private ORMRolemodelAdapter adapter;
+  private final ORMRolemodelAdapter adapter;
 
 
   public ORMRolemodelEditPart() {
@@ -118,10 +118,12 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
 
   // draws border on top side and left side
   public class PartFigureBorderExpand extends AbstractBorder {
+    @Override
     public Insets getInsets(IFigure figure) {
       return new Insets(1, 0, 0, 0);
     }
 
+    @Override
     public void paint(IFigure figure, Graphics graphics, Insets insets) {
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getBottomLeft());
@@ -129,10 +131,12 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
   }
   // draws border on top side
   public class PartFigureBorderNotExpand extends AbstractBorder {
+    @Override
     public Insets getInsets(IFigure figure) {
       return new Insets(1, 0, 0, 0);
     }
 
+    @Override
     public void paint(IFigure figure, Graphics graphics, Insets insets) {
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
 
@@ -202,7 +206,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(Rolemodel.class);
+      return type.getClass().equals(Rolemodel.class);
     }
   }
 }

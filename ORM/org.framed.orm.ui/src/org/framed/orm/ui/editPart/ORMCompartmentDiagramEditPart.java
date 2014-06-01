@@ -26,8 +26,8 @@ import org.framed.orm.ui.editPolicy.ORMCompartmentDiagramXYLayoutPolicy;
  * */
 public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
 
-  
-  private ORMContextDiagramAdapter adapter;
+
+  private final ORMContextDiagramAdapter adapter;
 
   public ORMCompartmentDiagramEditPart() {
     super();
@@ -124,7 +124,7 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public boolean isAdapterForType(Object type) {
-      return type.equals(CompartmentDiagram.class);
+      return type.getClass().equals(CompartmentDiagram.class);
     }
   }
 }
