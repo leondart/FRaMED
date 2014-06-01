@@ -48,13 +48,13 @@ import org.framed.orm.ui.figure.PartFigure;
  * */
 public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implements NodeEditPart {
 
-  private ORMTypeAdapter adapter;
+  private final ORMTypeAdapter adapter;
 
   // TODO: find better names
-  private Label collectAttribute;
-  private Label collectMethode;
-  private PartFigure collectionAtt;
-  private PartFigure collectionMet;
+  private final Label collectAttribute;
+  private final Label collectMethode;
+  private final PartFigure collectionAtt;
+  private final PartFigure collectionMet;
 
   public ORMTypeEditPart() {
     super();
@@ -99,8 +99,9 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     if (childEditPart.getModel() instanceof Attribute) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
       ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
-      attrEditPart.setParentEditPart(this);         //set the parent editpart so that the attribute can access the current bounds of the editpart
-      
+      attrEditPart.setParentEditPart(this); // set the parent editpart so that the attribute can
+                                            // access the current bounds of the editpart
+
       if (contentPane.getChildren().size() >= 3) {
 
         if (!(contentPane.getChildren().contains(collectAttribute))) {
@@ -118,9 +119,9 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
     if (childEditPart.getModel() instanceof Method) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
-      ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart; 
+      ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart;
       methodEditPart.setParentEditPart(this);
-      
+
       if (contentPane.getChildren().size() >= 3) {
 
         if (!(contentPane.getChildren().contains(collectMethode))) {
@@ -260,17 +261,23 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     final Type model = (Type) getModel();
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
-    figure.getLabel().setText((new ORMLabelFigure()).shortenLabel(model.getName(), figure.getLabel().getTextFlow(), model.getConstraints()));
+    figure.getLabel().setText(
+        (new ORMLabelFigure()).shortenLabel(model.getName(), figure.getLabel().getTextFlow(),
+            model.getConstraints()));
     figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
     parent.setLayoutConstraint(this, figure, model.getConstraints());
 
     IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-    Iterator<ORMLabelFigure> it = contentPane.getChildren().iterator(); 
-    while(it.hasNext()) it.next().getParentEditPart().refresh();
-    
+    Iterator<ORMLabelFigure> it = contentPane.getChildren().iterator();
+    while (it.hasNext()) {
+      it.next().getParentEditPart().refresh();
+    }
+
     contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
     it = contentPane.getChildren().iterator();
-    while(it.hasNext()) it.next().getParentEditPart().refresh();
+    while (it.hasNext()) {
+      it.next().getParentEditPart().refresh();
+    }
   }
 
   @Override
@@ -353,7 +360,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     }
   }
 
-  //!   Returns the bounds of the parent figure
+  // ! Returns the bounds of the parent figure
   public Rectangle getConstraints() {
     return null;
   }

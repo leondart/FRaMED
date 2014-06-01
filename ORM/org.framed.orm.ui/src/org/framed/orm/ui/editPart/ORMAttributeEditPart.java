@@ -25,9 +25,9 @@ import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
  * */
 public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
-  private ORMAttributeAdapter adapter;
+  private final ORMAttributeAdapter adapter;
   private ORMTypeEditPart parentEditPart;
-  
+
   public ORMAttributeEditPart() {
     super();
     adapter = new ORMAttributeAdapter();
@@ -44,7 +44,7 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     return new ORMDragEditPartsTracker(this);
   }
 
-  public void setParentEditPart(ORMTypeEditPart pEditPart){
+  public void setParentEditPart(ORMTypeEditPart pEditPart) {
     parentEditPart = pEditPart;
   }
 
@@ -83,8 +83,9 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
     final Attribute model = (Attribute) getModel();
 
-//    System.out.println("Attribute: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
-    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),parentEditPart.getConstraints()));
+    // System.out.println("Attribute: parent: "+parentEditPart.getConstraints()+" :: "+model.getName());
+    figure.setText((new ORMLabelFigure(this)).shortenLabel(model.getName(), figure.getTextFlow(),
+        parentEditPart.getConstraints()));
     figure.setToolTip(new Label(model.getName()));
   }
 

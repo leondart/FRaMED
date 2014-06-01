@@ -12,21 +12,20 @@ import org.framed.orm.ui.figure.LabelFigure;
  * */
 public class ORMMethodDirectEditPolicy extends DirectEditPolicy {
 
-	@Override
-	protected Command getDirectEditCommand(DirectEditRequest request) {
-		
-		ORMMethodRenameCommand command = new ORMMethodRenameCommand();
-		command.setMethod((Method) getHost().getModel());
-		command.setNewName((String) request.getCellEditor().getValue());
-			
-		return command;
-	}
+  @Override
+  protected Command getDirectEditCommand(DirectEditRequest request) {
 
-	@Override
-	protected void showCurrentEditValue(DirectEditRequest request) {
-		String value = (String) request.getCellEditor().getValue();  
-		((LabelFigure)getHostFigure()).setText(value);
+    ORMMethodRenameCommand command = new ORMMethodRenameCommand();
+    command.setMethod((Method) getHost().getModel());
+    command.setNewName((String) request.getCellEditor().getValue());
 
-	}
+    return command;
+  }
+
+  @Override
+  protected void showCurrentEditValue(DirectEditRequest request) {
+    String value = (String) request.getCellEditor().getValue();
+    ((LabelFigure) getHostFigure()).setText(value);
+  }
 
 }

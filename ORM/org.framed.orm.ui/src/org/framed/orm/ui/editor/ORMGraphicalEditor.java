@@ -18,7 +18,6 @@ import org.eclipse.gef.ui.actions.DirectEditAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
 import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
-import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
@@ -38,11 +37,11 @@ import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
-import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.DeleteRelationshipConstraintsAction;
+import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.StepInAction;
-import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
+import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepOutNewPageAction;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 
@@ -57,14 +56,14 @@ public class ORMGraphicalEditor extends
     COMPARTMENT, ROLES/* TODO: ,GROUPING */
   }; // if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
 
-  private Resource cdResource;
+  private final Resource cdResource;
   private CompartmentDiagram cd;
 
-  private IEditorPart parentEditor; // the multipageditor
-  private boolean isEditorData;
+  private final IEditorPart parentEditor; // the multipageditor
+  private final boolean isEditorData;
   private PropertySheetPage propertyPage;
 
-  private EditorChangeNotifier changeNotifier = new EditorChangeNotifier(this);
+  private final EditorChangeNotifier changeNotifier = new EditorChangeNotifier(this);
   private EditorType editorType = EditorType.COMPARTMENT; // standard is compartment
 
   public GraphicalViewer getOwnViewer() {
@@ -130,7 +129,6 @@ public class ORMGraphicalEditor extends
   public void selectionChanged(IWorkbenchPart part, ISelection selection) {
     updateActions(getSelectionActions());
   }
-
 
   private void configureKeyboardShortcuts() {
     getGraphicalViewer().getKeyHandler();
@@ -298,7 +296,7 @@ public class ORMGraphicalEditor extends
    * 
    */
   public class UnwrappingPropertySource implements IPropertySource {
-    private IPropertySource source;
+    private final IPropertySource source;
 
     public UnwrappingPropertySource(final IPropertySource source) {
       this.source = source;
