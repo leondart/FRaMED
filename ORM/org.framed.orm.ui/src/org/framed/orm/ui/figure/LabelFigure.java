@@ -10,42 +10,43 @@ import org.eclipse.draw2d.text.TextFlow;
 
 /**
  * Class for Labels in different figures
- * @author Kay Bierzynski
+ * 
+ * @author Kay Bierzynski (initial development)
+ * @author Lars Schuetze (refactoring)
  * */
 public class LabelFigure extends Figure {
-	
-	private final TextFlow textFlow;
-	private final IFigure textFigure;
-	
-	 public LabelFigure() {
 
-		 	FlowLayout layout = new FlowLayout();
-		    layout.setMinorAlignment(FlowLayout.ALIGN_CENTER);
-		    layout.setStretchMinorAxis(false);
-		    setLayoutManager(layout);
-		    
-		    textFlow = new TextFlow();
-		    FlowPage flowPage = new FlowPage();
-		    flowPage.setHorizontalAligment(PositionConstants.CENTER);
-		    flowPage.add(textFlow);
-		    textFigure = flowPage;
-		    add(flowPage);
-		  }
+  private final TextFlow textFlow;
+  private final IFigure textFigure;
 
-		  public Label getNameLabel() {
-		    return null;
-		  }
+  public LabelFigure() {
+    FlowLayout layout = new FlowLayout();
+    layout.setMinorAlignment(FlowLayout.ALIGN_CENTER);
+    layout.setStretchMinorAxis(false);
+    setLayoutManager(layout);
 
-		  public TextFlow getTextFlow() {
-		    return textFlow;
-		  }
-		  
-		  public void setText(String value) {
-			    textFlow.setText(value);
-			  }
+    textFlow = new TextFlow();
+    FlowPage flowPage = new FlowPage();
+    flowPage.setHorizontalAligment(PositionConstants.CENTER);
+    flowPage.add(textFlow);
+    textFigure = flowPage;
+    add(flowPage);
+  }
 
-		  public IFigure getTextFigure() {
-		    return textFigure;
-		  }
-		  
+  public Label getNameLabel() {
+    return null;
+  }
+
+  public TextFlow getTextFlow() {
+    return textFlow;
+  }
+
+  public void setText(String value) {
+    textFlow.setText(value);
+  }
+
+  public IFigure getTextFigure() {
+    return textFigure;
+  }
+
 }
