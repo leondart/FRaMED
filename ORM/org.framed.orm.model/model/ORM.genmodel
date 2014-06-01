@@ -2,9 +2,9 @@
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.framed.orm.model/src" modelPluginID="org.framed.orm.model"
     modelName="ORM" modelPluginClass="" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
-    editPluginID="org.framed.orm.model.edit" editorPluginID="org.framed.orm.model.editor"
-    operationReflection="true" importOrganizing="true">
+    reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    featureDelegation="Reflective" complianceLevel="7.0" copyrightFields="false" editPluginID="org.framed.orm.model.edit"
+    editorPluginID="org.framed.orm.model.editor" operationReflection="true" importOrganizing="true">
   <foreignModel>ORM.ecore</foreignModel>
   <genPackages prefix="Orm" basePackage="org.framed" disposableProviderFactory="true"
       interfacePackageSuffix="model" metaDataPackageSuffix="model" classPackageSuffix="model.impl"
@@ -24,9 +24,9 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Attribute/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Attribute/Name"/>
     </genClasses>
-    <genClasses ecoreClass="ORM.ecore#//Methode">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Methode/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Methode/Name"/>
+    <genClasses ecoreClass="ORM.ecore#//Method">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Method/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Method/Name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="ORM.ecore#//Type">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Type/attributes"/>
@@ -40,15 +40,15 @@
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//NaturalType">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//NaturalType/parentRolemodel"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//NaturalType/cd"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//NaturalType/compartmentDiagram"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//Compartment">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Compartment/cd"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Compartment/compartmentDiagram"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Compartment/rolemodel"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Compartment/parentRolemodel"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//Grouping">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Grouping/cd"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Grouping/compartmentDiagram"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Grouping/rolemodel"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Grouping/parentRolemodel"/>
     </genClasses>
@@ -71,16 +71,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/subcontexts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/participants"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/players"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/ct"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/compartment"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/parentGroup"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/groups"/>
     </genClasses>
-    <genClasses ecoreClass="ORM.ecore#//Total">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Total/groups"/>
-    </genClasses>
-    <genClasses ecoreClass="ORM.ecore#//Fulfilment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Fulfilment/fufilledRole"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Fulfilment/fulfilledRoles"/>
+    <genClasses ecoreClass="ORM.ecore#//Total"/>
+    <genClasses ecoreClass="ORM.ecore#//Fulfillment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Fulfillment/fulfilledRoles"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//RoleEquivalence"/>
     <genClasses ecoreClass="ORM.ecore#//Acyclic"/>
@@ -92,9 +89,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstUpper"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondUpper"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstParthood"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/sourceLabelValue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/targetLabelValue"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/rlshipConstraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/sourceLabelValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/targetLabelValue"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//RoleProhibition"/>
     <genClasses ecoreClass="ORM.ecore#//Irreflexive"/>
@@ -104,7 +101,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="ORM.ecore#//Relation">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Relation/relationContainer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relation/bendpoints"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/target"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/source"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relation/dim1BP"/>
@@ -128,6 +124,9 @@
     <genClasses ecoreClass="ORM.ecore#//ComplexConstraint">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//ComplexConstraint/groups"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//ComplexConstraint/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//RelationLabel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//RelationLabel/label"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
