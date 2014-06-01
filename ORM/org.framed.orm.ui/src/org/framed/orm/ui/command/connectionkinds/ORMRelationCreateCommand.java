@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Relation;
 import org.framed.orm.model.Node;
+import org.framed.orm.model.Relation;
 import org.framed.orm.model.RelationContainer;
 
 /**
@@ -41,7 +41,7 @@ public class ORMRelationCreateCommand extends Command {
     relation.setSource(source);
     relation.setTarget(target);
     relation.setRelationContainer(relcon);
-    
+
     // for self-loop
     if (source.equals(target)) {
       insertSelfLoopBPs();
@@ -51,7 +51,7 @@ public class ORMRelationCreateCommand extends Command {
       adaptRelationCreation(ps, pt);
     }
 
-   
+
 
   }
 
@@ -78,9 +78,9 @@ public class ORMRelationCreateCommand extends Command {
     rels.addAll(target.getOutgoingLinks());
     rels.retainAll(source.getIncomingLinks());
     rels.addAll(relsIn);
-    
+
     int relCount = rels.size();
-    
+
     if (relCount > 1) {
 
       final Point p = new Point((ps.x() + pt.x()) / 2, (ps.y() + pt.y()) / 2);
@@ -89,8 +89,8 @@ public class ORMRelationCreateCommand extends Command {
 
       Point dim1P = new Point(d1.width(), d1.height());
       Point dim2P = new Point(d2.width(), d2.height());
-      
-      
+
+
       if (relCount % 2 == 0) {
         relCount = relCount / 2;
         if (Math.abs(dim1P.y()) > Math.abs(dim1P.x())) {
