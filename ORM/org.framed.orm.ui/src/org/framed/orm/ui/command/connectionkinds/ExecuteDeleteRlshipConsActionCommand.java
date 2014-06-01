@@ -13,6 +13,7 @@ public class ExecuteDeleteRlshipConsActionCommand extends Command {
     super.setLabel("ExecuteDeleteRlshipConsActionCommand");
   }
 
+  private DeleteRelationshipConstraintsAction action;
   private ORMRelationshipConstraintEditPart editPart;
 
   /**
@@ -25,12 +26,17 @@ public class ExecuteDeleteRlshipConsActionCommand extends Command {
 
 
   @Override
+  public void redo() {
+    action.actionRedo();
+  }
+
+  @Override
   public void execute() {
 
     ORMGraphicalEditor editorPart =
         (ORMGraphicalEditor) ((DefaultEditDomain) editPart.getViewer().getEditDomain())
             .getEditorPart();
-    DeleteRelationshipConstraintsAction action =
+    action =
         (DeleteRelationshipConstraintsAction) editorPart.getEditorActionRegistry().getAction(
             DeleteRelationshipConstraintsAction.DELTE_RLSHIP_CONSTRAINTS_ID);
     action.setEditPart(editPart);
@@ -40,16 +46,9 @@ public class ExecuteDeleteRlshipConsActionCommand extends Command {
 
   @Override
   public void undo() {
-    
+    action.actionUndo();
   }
 
-  /**
-   * This command can for now not be undone.
-   */
-  @Override
-  public boolean canUndo() {
-    return false;
-  }
 
   public void setEditPart(final ORMRelationshipConstraintEditPart editPart) {
     this.editPart = editPart;

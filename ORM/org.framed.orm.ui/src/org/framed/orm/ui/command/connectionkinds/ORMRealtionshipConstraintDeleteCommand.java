@@ -44,6 +44,7 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
    */
   @Override
   public void execute() {
+
     relationCon = relation.getRelationContainer();
     source = relation.getSource();
     target = relation.getTarget();
@@ -61,11 +62,15 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
     final List<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
 
     relCList.addAll(rlship.getRlshipConstraints());
+    relCList.remove(relation);
 
     for (final RelationshipConstraint relC : relCList) {
-      ((ORMRelationshipConstraintEditPart) epViewer.getEditPartRegistry().get(relC))
-          .refreshVisuals();
+      ORMRelationshipConstraintEditPart editPart =
+          (ORMRelationshipConstraintEditPart) epViewer.getEditPartRegistry().get(relC);
+      editPart.getLabel().setText("");
+      editPart.refreshVisuals();
     }
+
   }
 
   /**

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.ui.actions.SelectionAction;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
@@ -16,7 +17,6 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditP
 public class DeleteRelationshipConstraintsAction extends SelectionAction {
 
   public static final String DELTE_RLSHIP_CONSTRAINTS_ID = " DeleteRelationshipConstraints";
-  public static final String DELTE_RLSHIP_CONSTRAINTS_REQUEST = "DeleteRelationshipConstraints";
   private ORMRelationshipConstraintEditPart editPart;
 
   // private Request request;
@@ -25,10 +25,10 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
     super(part);
     setId(DELTE_RLSHIP_CONSTRAINTS_ID);
     setText("Delete  RelationshipConstraints");
-    // request = new Request(DELTE_RLSHIP_CONSTRAINTS_REQUEST);
   }
-  
-  public void setEditPart(ORMRelationshipConstraintEditPart editPart){
+
+  // this set method is for embedding this delete action in the delete button in the actionbar
+  public void setEditPart(ORMRelationshipConstraintEditPart editPart) {
     this.editPart = editPart;
   }
 
@@ -47,15 +47,17 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
     return false;
   }
 
+
   @Override
   public void run() {
     int style = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell().getStyle();
     Shell shell = new Shell((style & SWT.MIRRORED) != 0 ? SWT.RIGHT_TO_LEFT : SWT.NONE);
 
     // get selected constraint editpart
-    if(editPart == null){
+    if (editPart == null) {
       editPart = (ORMRelationshipConstraintEditPart) getSelectedObjects().get(0);
     }
+
     // get selected constraint model
     RelationshipConstraint constraint = (RelationshipConstraint) editPart.getModel();
     // get selected constraint relationship
@@ -73,11 +75,13 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
     // open the popup dialog
     int returnCode = dialog.open();
     // end the action, when the popup dialog is closed through cancel button
-    if (returnCode == -1) {
+    if (returnCode == Window.CANCEL) {
       return;
     }
+
+
     // delete all chosen constraints, when the popup dialog is closed through ok button
-    else if (returnCode == 1) {
+    else if (returnCode == Window.OK) {
       CompoundCommand compoundCommand = new CompoundCommand();
       for (RelationshipConstraint rc : dialog.getChosenConstraints()) {
         ORMRealtionshipConstraintDeleteCommand command =
@@ -86,9 +90,20 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
         command.setEPViewer(editPart.getViewer());
         compoundCommand.add(command);
       }
-      editPart.getViewer().getEditDomain().getCommandStack().execute(compoundCommand);
+
+      getCommandStack().execute(compoundCommand);
+
+      // after every run of the action the editPart must be reset, because actions are not
+      // initialized new every time when you call tham
+      editPart = null;
     }
   }
 
+  public void actionUndo() {
+    getCommandStack().undo();
+  }
 
+  public void actionRedo() {
+    getCommandStack().redo();
+  }
 }

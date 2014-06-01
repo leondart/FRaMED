@@ -20,6 +20,10 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
   private Label lab = new Label();
   private String textInitial;
 
+  public ORMRelationshipConstraintEditPart() {
+    super();
+  }
+
   public Label getLabel() {
     return lab;
   }
@@ -69,8 +73,9 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
             rep.getLabel().setText(lab.getText() + " , " + oldText);
 
             getConnectionFigure().setVisible(false);
+
           }
-          if (rep.equals(this)) {
+          if (rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
             lab.setText(textInitial);
             getConnectionFigure().setVisible(true);
           }
