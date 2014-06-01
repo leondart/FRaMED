@@ -30,7 +30,7 @@ public abstract class RoleInvariantTest extends ConstraintTest {
    */
   @Override
   protected RoleInvariant getFixture() {
-    return (RoleInvariant)fixture;
+    return (RoleInvariant) fixture;
   }
 
 } //RoleInvariantTest

@@ -42,7 +42,7 @@ public class RoleImplicationTest extends RoleConstraintTest {
    */
   @Override
   protected RoleImplication getFixture() {
-    return (RoleImplication)fixture;
+    return (RoleImplication) fixture;
   }
 
   /**

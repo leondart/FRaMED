@@ -42,7 +42,7 @@ public class AcyclicTest extends RelationshipConstraintTest {
    */
   @Override
   protected Acyclic getFixture() {
-    return (Acyclic)fixture;
+    return (Acyclic) fixture;
   }
 
   /**

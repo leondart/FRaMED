@@ -54,7 +54,7 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
       return true;
     }
     if (object instanceof EObject) {
-      return ((EObject)object).eClass().getEPackage() == modelPackage;
+      return ((EObject) object).eClass().getEPackage() == modelPackage;
     }
     return false;
   }
@@ -65,125 +65,157 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
    * <!-- end-user-doc -->
    * @generated
    */
-  protected OrmSwitch<Adapter> modelSwitch =
-    new OrmSwitch<Adapter>() {
-      @Override
-      public Adapter caseAttribute(Attribute object) {
-        return createAttributeAdapter();
-      }
-      @Override
-      public Adapter caseMethod(Method object) {
-        return createMethodAdapter();
-      }
-      @Override
-      public Adapter caseType(Type object) {
-        return createTypeAdapter();
-      }
-      @Override
-      public Adapter caseCompartmentDiagram(CompartmentDiagram object) {
-        return createCompartmentDiagramAdapter();
-      }
-      @Override
-      public Adapter caseNaturalType(NaturalType object) {
-        return createNaturalTypeAdapter();
-      }
-      @Override
-      public Adapter caseCompartment(Compartment object) {
-        return createCompartmentAdapter();
-      }
-      @Override
-      public Adapter caseGrouping(Grouping object) {
-        return createGroupingAdapter();
-      }
-      @Override
-      public Adapter caseNode(Node object) {
-        return createNodeAdapter();
-      }
-      @Override
-      public Adapter caseRoleType(RoleType object) {
-        return createRoleTypeAdapter();
-      }
-      @Override
-      public Adapter caseRelationContainer(RelationContainer object) {
-        return createRelationContainerAdapter();
-      }
-      @Override
-      public Adapter caseRoleGroup(RoleGroup object) {
-        return createRoleGroupAdapter();
-      }
-      @Override
-      public Adapter caseRolemodel(Rolemodel object) {
-        return createRolemodelAdapter();
-      }
-      @Override
-      public Adapter caseTotal(Total object) {
-        return createTotalAdapter();
-      }
-      @Override
-      public Adapter caseFulfillment(Fulfillment object) {
-        return createFulfillmentAdapter();
-      }
-      @Override
-      public Adapter caseRoleEquivalence(RoleEquivalence object) {
-        return createRoleEquivalenceAdapter();
-      }
-      @Override
-      public Adapter caseAcyclic(Acyclic object) {
-        return createAcyclicAdapter();
-      }
-      @Override
-      public Adapter caseInheritance(Inheritance object) {
-        return createInheritanceAdapter();
-      }
-      @Override
-      public Adapter caseRelationship(Relationship object) {
-        return createRelationshipAdapter();
-      }
-      @Override
-      public Adapter caseRoleProhibition(RoleProhibition object) {
-        return createRoleProhibitionAdapter();
-      }
-      @Override
-      public Adapter caseIrreflexive(Irreflexive object) {
-        return createIrreflexiveAdapter();
-      }
-      @Override
-      public Adapter caseRoleImplication(RoleImplication object) {
-        return createRoleImplicationAdapter();
-      }
-      @Override
-      public Adapter caseRelationshipConstraint(RelationshipConstraint object) {
-        return createRelationshipConstraintAdapter();
-      }
-      @Override
-      public Adapter caseRelation(Relation object) {
-        return createRelationAdapter();
-      }
-      @Override
-      public Adapter caseConstraint(Constraint object) {
-        return createConstraintAdapter();
-      }
-      @Override
-      public Adapter caseRoleConstraint(RoleConstraint object) {
-        return createRoleConstraintAdapter();
-      }
-      @Override
-      public Adapter caseRoleInvariant(RoleInvariant object) {
-        return createRoleInvariantAdapter();
-      }
-      @Override
-      public Adapter caseAbstractRole(AbstractRole object) {
-        return createAbstractRoleAdapter();
-      }
-      @Override
-      public Adapter caseComplexConstraint(ComplexConstraint object) {
-        return createComplexConstraintAdapter();
-      }
-      @Override
-      public Adapter defaultCase(EObject object) {
-        return createEObjectAdapter();
-      }
-    };
+  protected OrmSwitch<Adapter> modelSwitch = new OrmSwitch<Adapter>() {
+    @Override
+    public Adapter caseAttribute(Attribute object) {
+      return createAttributeAdapter();
+    }
+
+    @Override
+    public Adapter caseMethod(Method object) {
+      return createMethodAdapter();
+    }
+
+    @Override
+    public Adapter caseType(Type object) {
+      return createTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseCompartmentDiagram(CompartmentDiagram object) {
+      return createCompartmentDiagramAdapter();
+    }
+
+    @Override
+    public Adapter caseNaturalType(NaturalType object) {
+      return createNaturalTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseCompartment(Compartment object) {
+      return createCompartmentAdapter();
+    }
+
+    @Override
+    public Adapter caseGrouping(Grouping object) {
+      return createGroupingAdapter();
+    }
+
+    @Override
+    public Adapter caseNode(Node object) {
+      return createNodeAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleType(RoleType object) {
+      return createRoleTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseRelationContainer(RelationContainer object) {
+      return createRelationContainerAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleGroup(RoleGroup object) {
+      return createRoleGroupAdapter();
+    }
+
+    @Override
+    public Adapter caseRolemodel(Rolemodel object) {
+      return createRolemodelAdapter();
+    }
+
+    @Override
+    public Adapter caseTotal(Total object) {
+      return createTotalAdapter();
+    }
+
+    @Override
+    public Adapter caseFulfillment(Fulfillment object) {
+      return createFulfillmentAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleEquivalence(RoleEquivalence object) {
+      return createRoleEquivalenceAdapter();
+    }
+
+    @Override
+    public Adapter caseAcyclic(Acyclic object) {
+      return createAcyclicAdapter();
+    }
+
+    @Override
+    public Adapter caseInheritance(Inheritance object) {
+      return createInheritanceAdapter();
+    }
+
+    @Override
+    public Adapter caseRelationship(Relationship object) {
+      return createRelationshipAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleProhibition(RoleProhibition object) {
+      return createRoleProhibitionAdapter();
+    }
+
+    @Override
+    public Adapter caseIrreflexive(Irreflexive object) {
+      return createIrreflexiveAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleImplication(RoleImplication object) {
+      return createRoleImplicationAdapter();
+    }
+
+    @Override
+    public Adapter caseRelationshipConstraint(RelationshipConstraint object) {
+      return createRelationshipConstraintAdapter();
+    }
+
+    @Override
+    public Adapter caseRelation(Relation object) {
+      return createRelationAdapter();
+    }
+
+    @Override
+    public Adapter caseConstraint(Constraint object) {
+      return createConstraintAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleConstraint(RoleConstraint object) {
+      return createRoleConstraintAdapter();
+    }
+
+    @Override
+    public Adapter caseRoleInvariant(RoleInvariant object) {
+      return createRoleInvariantAdapter();
+    }
+
+    @Override
+    public Adapter caseAbstractRole(AbstractRole object) {
+      return createAbstractRoleAdapter();
+    }
+
+    @Override
+    public Adapter caseComplexConstraint(ComplexConstraint object) {
+      return createComplexConstraintAdapter();
+    }
+
+    @Override
+    public Adapter caseRelationLabel(RelationLabel object) {
+      return createRelationLabelAdapter();
+    }
+
+    @Override
+    public Adapter defaultCase(EObject object) {
+      return createEObjectAdapter();
+    }
+  };
 
   /**
    * Creates an adapter for the <code>target</code>.
@@ -195,7 +227,7 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
    */
   @Override
   public Adapter createAdapter(Notifier target) {
-    return modelSwitch.doSwitch((EObject)target);
+    return modelSwitch.doSwitch((EObject) target);
   }
 
 
@@ -588,6 +620,20 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createComplexConstraintAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.framed.orm.model.RelationLabel <em>Relation Label</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.framed.orm.model.RelationLabel
+   * @generated
+   */
+  public Adapter createRelationLabelAdapter() {
     return null;
   }
 

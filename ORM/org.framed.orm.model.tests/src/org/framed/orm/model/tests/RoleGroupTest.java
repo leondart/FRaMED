@@ -42,7 +42,7 @@ public class RoleGroupTest extends ConstraintTest {
    */
   @Override
   protected RoleGroup getFixture() {
-    return (RoleGroup)fixture;
+    return (RoleGroup) fixture;
   }
 
   /**

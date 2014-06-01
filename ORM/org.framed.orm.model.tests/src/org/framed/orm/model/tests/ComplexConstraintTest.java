@@ -42,7 +42,7 @@ public class ComplexConstraintTest extends ConstraintTest {
    */
   @Override
   protected ComplexConstraint getFixture() {
-    return (ComplexConstraint)fixture;
+    return (ComplexConstraint) fixture;
   }
 
   /**

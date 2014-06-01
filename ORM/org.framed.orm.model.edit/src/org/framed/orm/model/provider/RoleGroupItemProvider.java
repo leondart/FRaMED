@@ -72,19 +72,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addFirstPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_AbstractRole_first_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_first_feature", "_UI_AbstractRole_type"),
-         OrmPackage.Literals.ABSTRACT_ROLE__FIRST,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_AbstractRole_first_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_first_feature",
+            "_UI_AbstractRole_type"), OrmPackage.Literals.ABSTRACT_ROLE__FIRST, true, false, true,
+        null, null, null));
   }
 
   /**
@@ -94,19 +88,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addSecondPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_AbstractRole_second_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_second_feature", "_UI_AbstractRole_type"),
-         OrmPackage.Literals.ABSTRACT_ROLE__SECOND,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_AbstractRole_second_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_second_feature",
+            "_UI_AbstractRole_type"), OrmPackage.Literals.ABSTRACT_ROLE__SECOND, true, false, true,
+        null, null, null));
   }
 
   /**
@@ -116,19 +104,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addIncomingLinksPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_incomingLinks_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_incomingLinks_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__INCOMING_LINKS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Node_incomingLinks_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_incomingLinks_feature",
+            "_UI_Node_type"), OrmPackage.Literals.NODE__INCOMING_LINKS, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -138,19 +120,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addOutgoingLinksPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_outgoingLinks_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_outgoingLinks_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__OUTGOING_LINKS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Node_outgoingLinks_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_outgoingLinks_feature",
+            "_UI_Node_type"), OrmPackage.Literals.NODE__OUTGOING_LINKS, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -160,19 +136,12 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_Name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_Name_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__NAME,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Node_Name_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_Name_feature", "_UI_Node_type"),
+        OrmPackage.Literals.NODE__NAME, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -182,19 +151,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addConstraintsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_constraints_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_constraints_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__CONSTRAINTS,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Node_constraints_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_constraints_feature",
+            "_UI_Node_type"), OrmPackage.Literals.NODE__CONSTRAINTS, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -204,19 +167,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addLowerPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_RoleGroup_lower_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_RoleGroup_lower_feature", "_UI_RoleGroup_type"),
-         OrmPackage.Literals.ROLE_GROUP__LOWER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_RoleGroup_lower_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_RoleGroup_lower_feature",
+            "_UI_RoleGroup_type"), OrmPackage.Literals.ROLE_GROUP__LOWER, true, false, false,
+        ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -226,19 +183,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addItemsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_RoleGroup_items_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_RoleGroup_items_feature", "_UI_RoleGroup_type"),
-         OrmPackage.Literals.ROLE_GROUP__ITEMS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_RoleGroup_items_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_RoleGroup_items_feature",
+            "_UI_RoleGroup_type"), OrmPackage.Literals.ROLE_GROUP__ITEMS, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -248,19 +199,13 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
    * @generated
    */
   protected void addUpperPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_RoleGroup_upper_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_RoleGroup_upper_feature", "_UI_RoleGroup_type"),
-         OrmPackage.Literals.ROLE_GROUP__UPPER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_RoleGroup_upper_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_RoleGroup_upper_feature",
+            "_UI_RoleGroup_type"), OrmPackage.Literals.ROLE_GROUP__UPPER, true, false, false,
+        ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -331,10 +276,12 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
       case OrmPackage.ROLE_GROUP__CONSTRAINTS:
       case OrmPackage.ROLE_GROUP__LOWER:
       case OrmPackage.ROLE_GROUP__UPPER:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
         return;
       case OrmPackage.ROLE_GROUP__RELATIONS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -350,65 +297,41 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleType()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleType()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleGroup()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleGroup()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createTotal()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createTotal()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createFulfillment()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createFulfillment()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleEquivalence()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleEquivalence()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createAcyclic()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createAcyclic()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createInheritance()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createInheritance()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRelationship()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRelationship()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleProhibition()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleProhibition()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createIrreflexive()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createIrreflexive()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleImplication()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleImplication()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createComplexConstraint()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createComplexConstraint()));
   }
 
 }

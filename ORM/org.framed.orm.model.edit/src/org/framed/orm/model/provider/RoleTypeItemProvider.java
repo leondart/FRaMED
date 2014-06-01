@@ -67,19 +67,13 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_target_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__TARGET,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_target_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__TARGET, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -89,19 +83,13 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * @generated
    */
   protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_source_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__SOURCE,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_source_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__SOURCE, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -111,19 +99,13 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * @generated
    */
   protected void addDim1BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_dim1BP_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__DIM1_BP,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_dim1BP_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM1_BP, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -133,19 +115,13 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * @generated
    */
   protected void addDim2BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_dim2BP_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__DIM2_BP,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_dim2BP_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM2_BP, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -155,19 +131,13 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * @generated
    */
   protected void addFirstPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_AbstractRole_first_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_first_feature", "_UI_AbstractRole_type"),
-         OrmPackage.Literals.ABSTRACT_ROLE__FIRST,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_AbstractRole_first_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_first_feature",
+            "_UI_AbstractRole_type"), OrmPackage.Literals.ABSTRACT_ROLE__FIRST, true, false, true,
+        null, null, null));
   }
 
   /**
@@ -177,19 +147,13 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
    * @generated
    */
   protected void addSecondPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_AbstractRole_second_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_second_feature", "_UI_AbstractRole_type"),
-         OrmPackage.Literals.ABSTRACT_ROLE__SECOND,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_AbstractRole_second_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_AbstractRole_second_feature",
+            "_UI_AbstractRole_type"), OrmPackage.Literals.ABSTRACT_ROLE__SECOND, true, false, true,
+        null, null, null));
   }
 
   /**
@@ -230,7 +194,8 @@ public class RoleTypeItemProvider extends TypeItemProvider implements IEditingDo
     switch (notification.getFeatureID(RoleType.class)) {
       case OrmPackage.ROLE_TYPE__DIM1_BP:
       case OrmPackage.ROLE_TYPE__DIM2_BP:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
         return;
     }
     super.notifyChanged(notification);

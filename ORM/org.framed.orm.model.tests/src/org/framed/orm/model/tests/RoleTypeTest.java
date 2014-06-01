@@ -42,7 +42,7 @@ public class RoleTypeTest extends TypeTest {
    */
   @Override
   protected RoleType getFixture() {
-    return (RoleType)fixture;
+    return (RoleType) fixture;
   }
 
   /**

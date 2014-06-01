@@ -29,14 +29,9 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompartmentDiagramItemProvider
-  extends RelationContainerItemProvider
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class CompartmentDiagramItemProvider extends RelationContainerItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -131,7 +126,8 @@ public class CompartmentDiagramItemProvider
       case OrmPackage.COMPARTMENT_DIAGRAM__COMPARTMENTS:
       case OrmPackage.COMPARTMENT_DIAGRAM__GROUPS:
       case OrmPackage.COMPARTMENT_DIAGRAM__PLAYERS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -148,20 +144,15 @@ public class CompartmentDiagramItemProvider
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.COMPARTMENT_DIAGRAM__COMPARTMENTS,
-         OrmFactory.eINSTANCE.createCompartment()));
+    newChildDescriptors.add(createChildParameter(
+        OrmPackage.Literals.COMPARTMENT_DIAGRAM__COMPARTMENTS,
+        OrmFactory.eINSTANCE.createCompartment()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.COMPARTMENT_DIAGRAM__GROUPS,
-         OrmFactory.eINSTANCE.createGrouping()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.COMPARTMENT_DIAGRAM__GROUPS,
+        OrmFactory.eINSTANCE.createGrouping()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.COMPARTMENT_DIAGRAM__PLAYERS,
-         OrmFactory.eINSTANCE.createNaturalType()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.COMPARTMENT_DIAGRAM__PLAYERS,
+        OrmFactory.eINSTANCE.createNaturalType()));
   }
 
 }

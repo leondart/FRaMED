@@ -42,7 +42,7 @@ public class IrreflexiveTest extends RelationshipConstraintTest {
    */
   @Override
   protected Irreflexive getFixture() {
-    return (Irreflexive)fixture;
+    return (Irreflexive) fixture;
   }
 
   /**

@@ -67,224 +67,310 @@ public class OrmSwitch<T> extends Switch<T> {
   protected T doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
       case OrmPackage.ATTRIBUTE: {
-        Attribute attribute = (Attribute)theEObject;
+        Attribute attribute = (Attribute) theEObject;
         T result = caseAttribute(attribute);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.METHOD: {
-        Method method = (Method)theEObject;
+        Method method = (Method) theEObject;
         T result = caseMethod(method);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.TYPE: {
-        Type type = (Type)theEObject;
+        Type type = (Type) theEObject;
         T result = caseType(type);
-        if (result == null) result = caseNode(type);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseNode(type);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.COMPARTMENT_DIAGRAM: {
-        CompartmentDiagram compartmentDiagram = (CompartmentDiagram)theEObject;
+        CompartmentDiagram compartmentDiagram = (CompartmentDiagram) theEObject;
         T result = caseCompartmentDiagram(compartmentDiagram);
-        if (result == null) result = caseRelationContainer(compartmentDiagram);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelationContainer(compartmentDiagram);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.NATURAL_TYPE: {
-        NaturalType naturalType = (NaturalType)theEObject;
+        NaturalType naturalType = (NaturalType) theEObject;
         T result = caseNaturalType(naturalType);
-        if (result == null) result = caseType(naturalType);
-        if (result == null) result = caseNode(naturalType);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseType(naturalType);
+        if (result == null)
+          result = caseNode(naturalType);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.COMPARTMENT: {
-        Compartment compartment = (Compartment)theEObject;
+        Compartment compartment = (Compartment) theEObject;
         T result = caseCompartment(compartment);
-        if (result == null) result = caseType(compartment);
-        if (result == null) result = caseNode(compartment);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseType(compartment);
+        if (result == null)
+          result = caseNode(compartment);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.GROUPING: {
-        Grouping grouping = (Grouping)theEObject;
+        Grouping grouping = (Grouping) theEObject;
         T result = caseGrouping(grouping);
-        if (result == null) result = caseNode(grouping);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseNode(grouping);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.NODE: {
-        Node node = (Node)theEObject;
+        Node node = (Node) theEObject;
         T result = caseNode(node);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_TYPE: {
-        RoleType roleType = (RoleType)theEObject;
+        RoleType roleType = (RoleType) theEObject;
         T result = caseRoleType(roleType);
-        if (result == null) result = caseType(roleType);
-        if (result == null) result = caseAbstractRole(roleType);
-        if (result == null) result = caseNode(roleType);
-        if (result == null) result = caseConstraint(roleType);
-        if (result == null) result = caseRelation(roleType);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseType(roleType);
+        if (result == null)
+          result = caseAbstractRole(roleType);
+        if (result == null)
+          result = caseNode(roleType);
+        if (result == null)
+          result = caseConstraint(roleType);
+        if (result == null)
+          result = caseRelation(roleType);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.RELATION_CONTAINER: {
-        RelationContainer relationContainer = (RelationContainer)theEObject;
+        RelationContainer relationContainer = (RelationContainer) theEObject;
         T result = caseRelationContainer(relationContainer);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_GROUP: {
-        RoleGroup roleGroup = (RoleGroup)theEObject;
+        RoleGroup roleGroup = (RoleGroup) theEObject;
         T result = caseRoleGroup(roleGroup);
-        if (result == null) result = caseAbstractRole(roleGroup);
-        if (result == null) result = caseNode(roleGroup);
-        if (result == null) result = caseRelationContainer(roleGroup);
-        if (result == null) result = caseConstraint(roleGroup);
-        if (result == null) result = caseRelation(roleGroup);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseAbstractRole(roleGroup);
+        if (result == null)
+          result = caseNode(roleGroup);
+        if (result == null)
+          result = caseRelationContainer(roleGroup);
+        if (result == null)
+          result = caseConstraint(roleGroup);
+        if (result == null)
+          result = caseRelation(roleGroup);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLEMODEL: {
-        Rolemodel rolemodel = (Rolemodel)theEObject;
+        Rolemodel rolemodel = (Rolemodel) theEObject;
         T result = caseRolemodel(rolemodel);
-        if (result == null) result = caseRelationContainer(rolemodel);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelationContainer(rolemodel);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.TOTAL: {
-        Total total = (Total)theEObject;
+        Total total = (Total) theEObject;
         T result = caseTotal(total);
-        if (result == null) result = caseRelationshipConstraint(total);
-        if (result == null) result = caseConstraint(total);
-        if (result == null) result = caseRelation(total);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelationshipConstraint(total);
+        if (result == null)
+          result = caseConstraint(total);
+        if (result == null)
+          result = caseRelation(total);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.FULFILLMENT: {
-        Fulfillment fulfillment = (Fulfillment)theEObject;
+        Fulfillment fulfillment = (Fulfillment) theEObject;
         T result = caseFulfillment(fulfillment);
-        if (result == null) result = caseRelation(fulfillment);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelation(fulfillment);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_EQUIVALENCE: {
-        RoleEquivalence roleEquivalence = (RoleEquivalence)theEObject;
+        RoleEquivalence roleEquivalence = (RoleEquivalence) theEObject;
         T result = caseRoleEquivalence(roleEquivalence);
-        if (result == null) result = caseRoleConstraint(roleEquivalence);
-        if (result == null) result = caseConstraint(roleEquivalence);
-        if (result == null) result = caseRelation(roleEquivalence);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRoleConstraint(roleEquivalence);
+        if (result == null)
+          result = caseConstraint(roleEquivalence);
+        if (result == null)
+          result = caseRelation(roleEquivalence);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ACYCLIC: {
-        Acyclic acyclic = (Acyclic)theEObject;
+        Acyclic acyclic = (Acyclic) theEObject;
         T result = caseAcyclic(acyclic);
-        if (result == null) result = caseRelationshipConstraint(acyclic);
-        if (result == null) result = caseConstraint(acyclic);
-        if (result == null) result = caseRelation(acyclic);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelationshipConstraint(acyclic);
+        if (result == null)
+          result = caseConstraint(acyclic);
+        if (result == null)
+          result = caseRelation(acyclic);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.INHERITANCE: {
-        Inheritance inheritance = (Inheritance)theEObject;
+        Inheritance inheritance = (Inheritance) theEObject;
         T result = caseInheritance(inheritance);
-        if (result == null) result = caseRelation(inheritance);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelation(inheritance);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.RELATIONSHIP: {
-        Relationship relationship = (Relationship)theEObject;
+        Relationship relationship = (Relationship) theEObject;
         T result = caseRelationship(relationship);
-        if (result == null) result = caseRelation(relationship);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelation(relationship);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_PROHIBITION: {
-        RoleProhibition roleProhibition = (RoleProhibition)theEObject;
+        RoleProhibition roleProhibition = (RoleProhibition) theEObject;
         T result = caseRoleProhibition(roleProhibition);
-        if (result == null) result = caseRoleConstraint(roleProhibition);
-        if (result == null) result = caseConstraint(roleProhibition);
-        if (result == null) result = caseRelation(roleProhibition);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRoleConstraint(roleProhibition);
+        if (result == null)
+          result = caseConstraint(roleProhibition);
+        if (result == null)
+          result = caseRelation(roleProhibition);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.IRREFLEXIVE: {
-        Irreflexive irreflexive = (Irreflexive)theEObject;
+        Irreflexive irreflexive = (Irreflexive) theEObject;
         T result = caseIrreflexive(irreflexive);
-        if (result == null) result = caseRelationshipConstraint(irreflexive);
-        if (result == null) result = caseConstraint(irreflexive);
-        if (result == null) result = caseRelation(irreflexive);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelationshipConstraint(irreflexive);
+        if (result == null)
+          result = caseConstraint(irreflexive);
+        if (result == null)
+          result = caseRelation(irreflexive);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_IMPLICATION: {
-        RoleImplication roleImplication = (RoleImplication)theEObject;
+        RoleImplication roleImplication = (RoleImplication) theEObject;
         T result = caseRoleImplication(roleImplication);
-        if (result == null) result = caseRoleConstraint(roleImplication);
-        if (result == null) result = caseConstraint(roleImplication);
-        if (result == null) result = caseRelation(roleImplication);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRoleConstraint(roleImplication);
+        if (result == null)
+          result = caseConstraint(roleImplication);
+        if (result == null)
+          result = caseRelation(roleImplication);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.RELATIONSHIP_CONSTRAINT: {
-        RelationshipConstraint relationshipConstraint = (RelationshipConstraint)theEObject;
+        RelationshipConstraint relationshipConstraint = (RelationshipConstraint) theEObject;
         T result = caseRelationshipConstraint(relationshipConstraint);
-        if (result == null) result = caseConstraint(relationshipConstraint);
-        if (result == null) result = caseRelation(relationshipConstraint);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseConstraint(relationshipConstraint);
+        if (result == null)
+          result = caseRelation(relationshipConstraint);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.RELATION: {
-        Relation relation = (Relation)theEObject;
+        Relation relation = (Relation) theEObject;
         T result = caseRelation(relation);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.CONSTRAINT: {
-        Constraint constraint = (Constraint)theEObject;
+        Constraint constraint = (Constraint) theEObject;
         T result = caseConstraint(constraint);
-        if (result == null) result = caseRelation(constraint);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseRelation(constraint);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_CONSTRAINT: {
-        RoleConstraint roleConstraint = (RoleConstraint)theEObject;
+        RoleConstraint roleConstraint = (RoleConstraint) theEObject;
         T result = caseRoleConstraint(roleConstraint);
-        if (result == null) result = caseConstraint(roleConstraint);
-        if (result == null) result = caseRelation(roleConstraint);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseConstraint(roleConstraint);
+        if (result == null)
+          result = caseRelation(roleConstraint);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ROLE_INVARIANT: {
-        RoleInvariant roleInvariant = (RoleInvariant)theEObject;
+        RoleInvariant roleInvariant = (RoleInvariant) theEObject;
         T result = caseRoleInvariant(roleInvariant);
-        if (result == null) result = caseConstraint(roleInvariant);
-        if (result == null) result = caseRelation(roleInvariant);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseConstraint(roleInvariant);
+        if (result == null)
+          result = caseRelation(roleInvariant);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.ABSTRACT_ROLE: {
-        AbstractRole abstractRole = (AbstractRole)theEObject;
+        AbstractRole abstractRole = (AbstractRole) theEObject;
         T result = caseAbstractRole(abstractRole);
-        if (result == null) result = caseConstraint(abstractRole);
-        if (result == null) result = caseRelation(abstractRole);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseConstraint(abstractRole);
+        if (result == null)
+          result = caseRelation(abstractRole);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
       case OrmPackage.COMPLEX_CONSTRAINT: {
-        ComplexConstraint complexConstraint = (ComplexConstraint)theEObject;
+        ComplexConstraint complexConstraint = (ComplexConstraint) theEObject;
         T result = caseComplexConstraint(complexConstraint);
-        if (result == null) result = caseConstraint(complexConstraint);
-        if (result == null) result = caseRelation(complexConstraint);
-        if (result == null) result = defaultCase(theEObject);
+        if (result == null)
+          result = caseConstraint(complexConstraint);
+        if (result == null)
+          result = caseRelation(complexConstraint);
+        if (result == null)
+          result = defaultCase(theEObject);
         return result;
       }
-      default: return defaultCase(theEObject);
+      case OrmPackage.RELATION_LABEL: {
+        RelationLabel relationLabel = (RelationLabel) theEObject;
+        T result = caseRelationLabel(relationLabel);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      default:
+        return defaultCase(theEObject);
     }
   }
 
@@ -705,6 +791,21 @@ public class OrmSwitch<T> extends Switch<T> {
    * @generated
    */
   public T caseComplexConstraint(ComplexConstraint object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relation Label</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relation Label</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelationLabel(RelationLabel object) {
     return null;
   }
 

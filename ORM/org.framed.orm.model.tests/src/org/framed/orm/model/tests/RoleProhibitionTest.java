@@ -42,7 +42,7 @@ public class RoleProhibitionTest extends RoleConstraintTest {
    */
   @Override
   protected RoleProhibition getFixture() {
-    return (RoleProhibition)fixture;
+    return (RoleProhibition) fixture;
   }
 
   /**

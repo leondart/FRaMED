@@ -174,15 +174,8 @@ public enum Parthood implements Enumerator {
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final Parthood[] VALUES_ARRAY =
-    new Parthood[] {
-      UNCONSTRAINED,
-      SHARABLE_PART,
-      MANDATORY_PART,
-      ESSENTIAL_PART,
-      EXCLUSIVE_PART,
-      INSEPERABLE_PART,
-    };
+  private static final Parthood[] VALUES_ARRAY = new Parthood[] {UNCONSTRAINED, SHARABLE_PART,
+      MANDATORY_PART, ESSENTIAL_PART, EXCLUSIVE_PART, INSEPERABLE_PART,};
 
   /**
    * A public read-only list of all the '<em><b>Parthood</b></em>' enumerators.
@@ -190,7 +183,8 @@ public enum Parthood implements Enumerator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<Parthood> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<Parthood> VALUES = Collections.unmodifiableList(Arrays
+      .asList(VALUES_ARRAY));
 
   /**
    * Returns the '<em><b>Parthood</b></em>' literal with the specified literal value.
@@ -232,12 +226,18 @@ public enum Parthood implements Enumerator {
    */
   public static Parthood get(int value) {
     switch (value) {
-      case UNCONSTRAINED_VALUE: return UNCONSTRAINED;
-      case SHARABLE_PART_VALUE: return SHARABLE_PART;
-      case MANDATORY_PART_VALUE: return MANDATORY_PART;
-      case ESSENTIAL_PART_VALUE: return ESSENTIAL_PART;
-      case EXCLUSIVE_PART_VALUE: return EXCLUSIVE_PART;
-      case INSEPERABLE_PART_VALUE: return INSEPERABLE_PART;
+      case UNCONSTRAINED_VALUE:
+        return UNCONSTRAINED;
+      case SHARABLE_PART_VALUE:
+        return SHARABLE_PART;
+      case MANDATORY_PART_VALUE:
+        return MANDATORY_PART;
+      case ESSENTIAL_PART_VALUE:
+        return ESSENTIAL_PART;
+      case EXCLUSIVE_PART_VALUE:
+        return EXCLUSIVE_PART;
+      case INSEPERABLE_PART_VALUE:
+        return INSEPERABLE_PART;
     }
     return null;
   }
@@ -312,5 +312,5 @@ public enum Parthood implements Enumerator {
   public String toString() {
     return literal;
   }
-  
+
 } //Parthood

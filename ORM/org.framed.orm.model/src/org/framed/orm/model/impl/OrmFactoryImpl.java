@@ -31,12 +31,12 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    */
   public static OrmFactory init() {
     try {
-      OrmFactory theOrmFactory = (OrmFactory)EPackage.Registry.INSTANCE.getEFactory(OrmPackage.eNS_URI);
+      OrmFactory theOrmFactory =
+          (OrmFactory) EPackage.Registry.INSTANCE.getEFactory(OrmPackage.eNS_URI);
       if (theOrmFactory != null) {
         return theOrmFactory;
       }
-    }
-    catch (Exception exception) {
+    } catch (Exception exception) {
       EcorePlugin.INSTANCE.log(exception);
     }
     return new OrmFactoryImpl();
@@ -60,28 +60,51 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
-      case OrmPackage.ATTRIBUTE: return createAttribute();
-      case OrmPackage.METHOD: return createMethod();
-      case OrmPackage.COMPARTMENT_DIAGRAM: return createCompartmentDiagram();
-      case OrmPackage.NATURAL_TYPE: return createNaturalType();
-      case OrmPackage.COMPARTMENT: return createCompartment();
-      case OrmPackage.GROUPING: return createGrouping();
-      case OrmPackage.ROLE_TYPE: return createRoleType();
-      case OrmPackage.RELATION_CONTAINER: return createRelationContainer();
-      case OrmPackage.ROLE_GROUP: return createRoleGroup();
-      case OrmPackage.ROLEMODEL: return createRolemodel();
-      case OrmPackage.TOTAL: return createTotal();
-      case OrmPackage.FULFILLMENT: return createFulfillment();
-      case OrmPackage.ROLE_EQUIVALENCE: return createRoleEquivalence();
-      case OrmPackage.ACYCLIC: return createAcyclic();
-      case OrmPackage.INHERITANCE: return createInheritance();
-      case OrmPackage.RELATIONSHIP: return createRelationship();
-      case OrmPackage.ROLE_PROHIBITION: return createRoleProhibition();
-      case OrmPackage.IRREFLEXIVE: return createIrreflexive();
-      case OrmPackage.ROLE_IMPLICATION: return createRoleImplication();
-      case OrmPackage.COMPLEX_CONSTRAINT: return createComplexConstraint();
+      case OrmPackage.ATTRIBUTE:
+        return createAttribute();
+      case OrmPackage.METHOD:
+        return createMethod();
+      case OrmPackage.COMPARTMENT_DIAGRAM:
+        return createCompartmentDiagram();
+      case OrmPackage.NATURAL_TYPE:
+        return createNaturalType();
+      case OrmPackage.COMPARTMENT:
+        return createCompartment();
+      case OrmPackage.GROUPING:
+        return createGrouping();
+      case OrmPackage.ROLE_TYPE:
+        return createRoleType();
+      case OrmPackage.RELATION_CONTAINER:
+        return createRelationContainer();
+      case OrmPackage.ROLE_GROUP:
+        return createRoleGroup();
+      case OrmPackage.ROLEMODEL:
+        return createRolemodel();
+      case OrmPackage.TOTAL:
+        return createTotal();
+      case OrmPackage.FULFILLMENT:
+        return createFulfillment();
+      case OrmPackage.ROLE_EQUIVALENCE:
+        return createRoleEquivalence();
+      case OrmPackage.ACYCLIC:
+        return createAcyclic();
+      case OrmPackage.INHERITANCE:
+        return createInheritance();
+      case OrmPackage.RELATIONSHIP:
+        return createRelationship();
+      case OrmPackage.ROLE_PROHIBITION:
+        return createRoleProhibition();
+      case OrmPackage.IRREFLEXIVE:
+        return createIrreflexive();
+      case OrmPackage.ROLE_IMPLICATION:
+        return createRoleImplication();
+      case OrmPackage.COMPLEX_CONSTRAINT:
+        return createComplexConstraint();
+      case OrmPackage.RELATION_LABEL:
+        return createRelationLabel();
       default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        throw new IllegalArgumentException("The class '" + eClass.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -100,7 +123,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
       case OrmPackage.POINT:
         return createPointFromString(eDataType, initialValue);
       default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -119,7 +143,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
       case OrmPackage.POINT:
         return convertPointToString(eDataType, instanceValue);
       default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName()
+            + "' is not a valid classifier");
     }
   }
 
@@ -328,9 +353,21 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * <!-- end-user-doc -->
    * @generated
    */
+  public RelationLabel createRelationLabel() {
+    RelationLabelImpl relationLabel = new RelationLabelImpl();
+    return relationLabel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Parthood createParthoodFromString(EDataType eDataType, String initialValue) {
     Parthood result = Parthood.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    if (result == null)
+      throw new IllegalArgumentException("The value '" + initialValue
+          + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
 
@@ -352,12 +389,12 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * @generated NOT
    */
   public Rectangle createRectangleFromString(EDataType eDataType, String initialValue) {
-    if(initialValue == null) {
+    if (initialValue == null) {
       return null;
     }
     initialValue.replaceAll("\\s", "");
     String[] values = initialValue.split(",");
-    if(values.length != 4) {
+    if (values.length != 4) {
       return null;
     }
 
@@ -365,7 +402,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
     try {
       rect.setLocation(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
       rect.setSize(Integer.parseInt(values[2]), Integer.parseInt(values[3]));
-    } catch(NumberFormatException e) {
+    } catch (NumberFormatException e) {
       EcorePlugin.INSTANCE.log(e);
       rect = null;
     }
@@ -380,35 +417,36 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * @generated NOT
    */
   public String convertRectangleToString(EDataType eDataType, Object instanceValue) {
-    if(instanceValue == null) {
+    if (instanceValue == null) {
       return null;
     }
     Rectangle rect = (Rectangle) instanceValue;
-    return rect.x+","+rect.y+","+rect.width+","+rect.height;
+    return rect.x + "," + rect.y + "," + rect.width + "," + rect.height;
   }
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
    */
   public Point createPointFromString(EDataType eDataType, String initialValue) {
-      if(initialValue == null) {
-          return null;
-      }
-      initialValue.replaceAll("\\s", "");
-      String[] values = initialValue.split(",");
-      if(values.length != 2) {
-          return null;
-      }
+    if (initialValue == null) {
+      return null;
+    }
+    initialValue.replaceAll("\\s", "");
+    String[] values = initialValue.split(",");
+    if (values.length != 2) {
+      return null;
+    }
 
-      Point point = new Point();
-      try { 
-          point.setLocation(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
-      } catch(NumberFormatException e) {
-          EcorePlugin.INSTANCE.log(e);
-          point = null;       
-      }
-      return point;
+    Point point = new Point();
+    try {
+      point.setLocation(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+    } catch (NumberFormatException e) {
+      EcorePlugin.INSTANCE.log(e);
+      point = null;
+    }
+    return point;
   }
 
   /**
@@ -417,11 +455,11 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * @generated NOT
    */
   public String convertPointToString(EDataType eDataType, Object instanceValue) {
-      if(instanceValue == null) {
-          return null;
-      }
-      Point p = (Point)instanceValue;
-      return p.x+","+p.y;
+    if (instanceValue == null) {
+      return null;
+    }
+    Point p = (Point) instanceValue;
+    return p.x + "," + p.y;
   }
 
   /**
@@ -430,7 +468,7 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
    * @generated
    */
   public OrmPackage getOrmPackage() {
-    return (OrmPackage)getEPackage();
+    return (OrmPackage) getEPackage();
   }
 
   /**

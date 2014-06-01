@@ -42,7 +42,7 @@ public class TotalTest extends RelationshipConstraintTest {
    */
   @Override
   protected Total getFixture() {
-    return (Total)fixture;
+    return (Total) fixture;
   }
 
   /**

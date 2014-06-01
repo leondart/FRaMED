@@ -32,7 +32,8 @@ import org.framed.orm.model.util.OrmAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
+    ComposeableAdapterFactory, IChangeNotifier, IDisposable {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -532,6 +533,29 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RelationLabel} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RelationLabelItemProvider relationLabelItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RelationLabel}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRelationLabelAdapter() {
+    if (relationLabelItemProvider == null) {
+      relationLabelItemProvider = new RelationLabelItemProvider(this);
+    }
+
+    return relationLabelItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -581,7 +605,7 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
   public Object adapt(Object object, Object type) {
     if (isFactoryForType(type)) {
       Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+      if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
         return adapter;
       }
     }
@@ -630,26 +654,48 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements 
    * @generated
    */
   public void dispose() {
-    if (attributeItemProvider != null) attributeItemProvider.dispose();
-    if (methodItemProvider != null) methodItemProvider.dispose();
-    if (compartmentDiagramItemProvider != null) compartmentDiagramItemProvider.dispose();
-    if (naturalTypeItemProvider != null) naturalTypeItemProvider.dispose();
-    if (compartmentItemProvider != null) compartmentItemProvider.dispose();
-    if (groupingItemProvider != null) groupingItemProvider.dispose();
-    if (roleTypeItemProvider != null) roleTypeItemProvider.dispose();
-    if (relationContainerItemProvider != null) relationContainerItemProvider.dispose();
-    if (roleGroupItemProvider != null) roleGroupItemProvider.dispose();
-    if (rolemodelItemProvider != null) rolemodelItemProvider.dispose();
-    if (totalItemProvider != null) totalItemProvider.dispose();
-    if (fulfillmentItemProvider != null) fulfillmentItemProvider.dispose();
-    if (roleEquivalenceItemProvider != null) roleEquivalenceItemProvider.dispose();
-    if (acyclicItemProvider != null) acyclicItemProvider.dispose();
-    if (inheritanceItemProvider != null) inheritanceItemProvider.dispose();
-    if (relationshipItemProvider != null) relationshipItemProvider.dispose();
-    if (roleProhibitionItemProvider != null) roleProhibitionItemProvider.dispose();
-    if (irreflexiveItemProvider != null) irreflexiveItemProvider.dispose();
-    if (roleImplicationItemProvider != null) roleImplicationItemProvider.dispose();
-    if (complexConstraintItemProvider != null) complexConstraintItemProvider.dispose();
+    if (attributeItemProvider != null)
+      attributeItemProvider.dispose();
+    if (methodItemProvider != null)
+      methodItemProvider.dispose();
+    if (compartmentDiagramItemProvider != null)
+      compartmentDiagramItemProvider.dispose();
+    if (naturalTypeItemProvider != null)
+      naturalTypeItemProvider.dispose();
+    if (compartmentItemProvider != null)
+      compartmentItemProvider.dispose();
+    if (groupingItemProvider != null)
+      groupingItemProvider.dispose();
+    if (roleTypeItemProvider != null)
+      roleTypeItemProvider.dispose();
+    if (relationContainerItemProvider != null)
+      relationContainerItemProvider.dispose();
+    if (roleGroupItemProvider != null)
+      roleGroupItemProvider.dispose();
+    if (rolemodelItemProvider != null)
+      rolemodelItemProvider.dispose();
+    if (totalItemProvider != null)
+      totalItemProvider.dispose();
+    if (fulfillmentItemProvider != null)
+      fulfillmentItemProvider.dispose();
+    if (roleEquivalenceItemProvider != null)
+      roleEquivalenceItemProvider.dispose();
+    if (acyclicItemProvider != null)
+      acyclicItemProvider.dispose();
+    if (inheritanceItemProvider != null)
+      inheritanceItemProvider.dispose();
+    if (relationshipItemProvider != null)
+      relationshipItemProvider.dispose();
+    if (roleProhibitionItemProvider != null)
+      roleProhibitionItemProvider.dispose();
+    if (irreflexiveItemProvider != null)
+      irreflexiveItemProvider.dispose();
+    if (roleImplicationItemProvider != null)
+      roleImplicationItemProvider.dispose();
+    if (complexConstraintItemProvider != null)
+      complexConstraintItemProvider.dispose();
+    if (relationLabelItemProvider != null)
+      relationLabelItemProvider.dispose();
   }
 
 }

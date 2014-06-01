@@ -42,7 +42,7 @@ public class RolemodelTest extends RelationContainerTest {
    */
   @Override
   protected Rolemodel getFixture() {
-    return (Rolemodel)fixture;
+    return (Rolemodel) fixture;
   }
 
   /**

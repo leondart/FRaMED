@@ -25,14 +25,9 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RoleInvariantItemProvider
-  extends ConstraintItemProvider
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class RoleInvariantItemProvider extends ConstraintItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -66,19 +61,13 @@ public class RoleInvariantItemProvider
    * @generated
    */
   protected void addSubjectPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_RoleInvariant_subject_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_RoleInvariant_subject_feature", "_UI_RoleInvariant_type"),
-         OrmPackage.Literals.ROLE_INVARIANT__SUBJECT,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_RoleInvariant_subject_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_RoleInvariant_subject_feature",
+            "_UI_RoleInvariant_type"), OrmPackage.Literals.ROLE_INVARIANT__SUBJECT, true, false,
+        true, null, null, null));
   }
 
   /**

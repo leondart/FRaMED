@@ -32,14 +32,9 @@ import org.framed.orm.model.Relationship;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationshipItemProvider
-  extends ItemProviderAdapter
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class RelationshipItemProvider extends ItemProviderAdapter implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -86,19 +81,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_target_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__TARGET,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_target_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__TARGET, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -108,19 +97,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_source_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__SOURCE,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_source_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__SOURCE, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -130,19 +113,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addDim1BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_dim1BP_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__DIM1_BP,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_dim1BP_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM1_BP, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -152,19 +129,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addDim2BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relation_dim2BP_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature", "_UI_Relation_type"),
-         OrmPackage.Literals.RELATION__DIM2_BP,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_dim2BP_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM2_BP, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -174,19 +145,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addSecondParthoodPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_secondParthood_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondParthood_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__SECOND_PARTHOOD,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_secondParthood_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondParthood_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__SECOND_PARTHOOD, true,
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -196,19 +161,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addSecondLowerPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_secondLower_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondLower_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_secondLower_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondLower_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER, true, false,
+        false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -218,19 +177,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addFirstLowerPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_firstLower_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLower_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_firstLower_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLower_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER, true, false,
+        false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -240,19 +193,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addFirstUpperPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_firstUpper_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstUpper_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__FIRST_UPPER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_firstUpper_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstUpper_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_UPPER, true, false,
+        false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -262,19 +209,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addSecondUpperPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_secondUpper_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondUpper_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__SECOND_UPPER,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_secondUpper_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondUpper_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__SECOND_UPPER, true, false,
+        false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -284,19 +225,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addFirstParthoodPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_firstParthood_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstParthood_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__FIRST_PARTHOOD,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_firstParthood_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstParthood_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_PARTHOOD, true,
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -306,19 +241,15 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addSourceLabelValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_sourceLabelValue_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_sourceLabelValue_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL_VALUE,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors
+        .add(createItemPropertyDescriptor(
+            ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+            getResourceLocator(),
+            getString("_UI_Relationship_sourceLabelValue_feature"),
+            getString("_UI_PropertyDescriptor_description",
+                "_UI_Relationship_sourceLabelValue_feature", "_UI_Relationship_type"),
+            OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL_VALUE, true, false, false, null, null,
+            null));
   }
 
   /**
@@ -328,19 +259,15 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addTargetLabelValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_targetLabelValue_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_targetLabelValue_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL_VALUE,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors
+        .add(createItemPropertyDescriptor(
+            ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+            getResourceLocator(),
+            getString("_UI_Relationship_targetLabelValue_feature"),
+            getString("_UI_PropertyDescriptor_description",
+                "_UI_Relationship_targetLabelValue_feature", "_UI_Relationship_type"),
+            OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL_VALUE, true, false, false, null, null,
+            null));
   }
 
   /**
@@ -350,19 +277,13 @@ public class RelationshipItemProvider
    * @generated
    */
   protected void addRlshipConstraintsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Relationship_rlshipConstraints_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_rlshipConstraints_feature", "_UI_Relationship_type"),
-         OrmPackage.Literals.RELATIONSHIP__RLSHIP_CONSTRAINTS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_rlshipConstraints_feature"),
+        getString("_UI_PropertyDescriptor_description",
+            "_UI_Relationship_rlshipConstraints_feature", "_UI_Relationship_type"),
+        OrmPackage.Literals.RELATIONSHIP__RLSHIP_CONSTRAINTS, true, false, true, null, null, null));
   }
 
   /**
@@ -384,11 +305,10 @@ public class RelationshipItemProvider
    */
   @Override
   public String getText(Object object) {
-    Parthood labelValue = ((Relationship)object).getSecondParthood();
+    Parthood labelValue = ((Relationship) object).getSecondParthood();
     String label = labelValue == null ? null : labelValue.toString();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Relationship_type") :
-      getString("_UI_Relationship_type") + " " + label;
+    return label == null || label.length() == 0 ? getString("_UI_Relationship_type")
+        : getString("_UI_Relationship_type") + " " + label;
   }
 
   /**
@@ -413,7 +333,8 @@ public class RelationshipItemProvider
       case OrmPackage.RELATIONSHIP__FIRST_PARTHOOD:
       case OrmPackage.RELATIONSHIP__SOURCE_LABEL_VALUE:
       case OrmPackage.RELATIONSHIP__TARGET_LABEL_VALUE:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
         return;
     }
     super.notifyChanged(notification);

@@ -2134,31 +2134,31 @@ public interface OrmPackage extends EPackage {
   int RELATIONSHIP__FIRST_PARTHOOD = RELATION_FEATURE_COUNT + 5;
 
   /**
-   * The feature id for the '<em><b>Source Label Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONSHIP__SOURCE_LABEL_VALUE = RELATION_FEATURE_COUNT + 6;
-
-  /**
-   * The feature id for the '<em><b>Target Label Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RELATIONSHIP__TARGET_LABEL_VALUE = RELATION_FEATURE_COUNT + 7;
-
-  /**
    * The feature id for the '<em><b>Rlship Constraints</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP__RLSHIP_CONSTRAINTS = RELATION_FEATURE_COUNT + 8;
+  int RELATIONSHIP__RLSHIP_CONSTRAINTS = RELATION_FEATURE_COUNT + 6;
+
+  /**
+   * The feature id for the '<em><b>Source Label Value</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__SOURCE_LABEL_VALUE = RELATION_FEATURE_COUNT + 7;
+
+  /**
+   * The feature id for the '<em><b>Target Label Value</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__TARGET_LABEL_VALUE = RELATION_FEATURE_COUNT + 8;
 
   /**
    * The number of structural features of the '<em>Relationship</em>' class.
@@ -2634,6 +2634,43 @@ public interface OrmPackage extends EPackage {
   int COMPLEX_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link org.framed.orm.model.impl.RelationLabelImpl <em>Relation Label</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.framed.orm.model.impl.RelationLabelImpl
+   * @see org.framed.orm.model.impl.OrmPackageImpl#getRelationLabel()
+   * @generated
+   */
+  int RELATION_LABEL = 28;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_LABEL__LABEL = 0;
+
+  /**
+   * The number of structural features of the '<em>Relation Label</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_LABEL_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Relation Label</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_LABEL_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.framed.orm.model.Parthood <em>Parthood</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2641,7 +2678,7 @@ public interface OrmPackage extends EPackage {
    * @see org.framed.orm.model.impl.OrmPackageImpl#getParthood()
    * @generated
    */
-  int PARTHOOD = 28;
+  int PARTHOOD = 29;
 
   /**
    * The meta object id for the '<em>Rectangle</em>' data type.
@@ -2651,7 +2688,7 @@ public interface OrmPackage extends EPackage {
    * @see org.framed.orm.model.impl.OrmPackageImpl#getRectangle()
    * @generated
    */
-  int RECTANGLE = 29;
+  int RECTANGLE = 30;
 
   /**
    * The meta object id for the '<em>Point</em>' data type.
@@ -2661,7 +2698,7 @@ public interface OrmPackage extends EPackage {
    * @see org.framed.orm.model.impl.OrmPackageImpl#getPoint()
    * @generated
    */
-  int POINT = 30;
+  int POINT = 31;
 
 
   /**
@@ -3274,26 +3311,26 @@ public interface OrmPackage extends EPackage {
   EAttribute getRelationship_FirstParthood();
 
   /**
-   * Returns the meta object for the attribute '{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}'.
+   * Returns the meta object for the reference '{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Source Label Value</em>'.
+   * @return the meta object for the reference '<em>Source Label Value</em>'.
    * @see org.framed.orm.model.Relationship#getSourceLabelValue()
    * @see #getRelationship()
    * @generated
    */
-  EAttribute getRelationship_SourceLabelValue();
+  EReference getRelationship_SourceLabelValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}'.
+   * Returns the meta object for the reference '{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Target Label Value</em>'.
+   * @return the meta object for the reference '<em>Target Label Value</em>'.
    * @see org.framed.orm.model.Relationship#getTargetLabelValue()
    * @see #getRelationship()
    * @generated
    */
-  EAttribute getRelationship_TargetLabelValue();
+  EReference getRelationship_TargetLabelValue();
 
   /**
    * Returns the meta object for the reference list '{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}'.
@@ -3581,6 +3618,27 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EAttribute getComplexConstraint_Expression();
+
+  /**
+   * Returns the meta object for class '{@link org.framed.orm.model.RelationLabel <em>Relation Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relation Label</em>'.
+   * @see org.framed.orm.model.RelationLabel
+   * @generated
+   */
+  EClass getRelationLabel();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.framed.orm.model.RelationLabel#getLabel <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Label</em>'.
+   * @see org.framed.orm.model.RelationLabel#getLabel()
+   * @see #getRelationLabel()
+   * @generated
+   */
+  EAttribute getRelationLabel_Label();
 
   /**
    * Returns the meta object for enum '{@link org.framed.orm.model.Parthood <em>Parthood</em>}'.
@@ -4130,20 +4188,20 @@ public interface OrmPackage extends EPackage {
     EAttribute RELATIONSHIP__FIRST_PARTHOOD = eINSTANCE.getRelationship_FirstParthood();
 
     /**
-     * The meta object literal for the '<em><b>Source Label Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Source Label Value</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RELATIONSHIP__SOURCE_LABEL_VALUE = eINSTANCE.getRelationship_SourceLabelValue();
+    EReference RELATIONSHIP__SOURCE_LABEL_VALUE = eINSTANCE.getRelationship_SourceLabelValue();
 
     /**
-     * The meta object literal for the '<em><b>Target Label Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Target Label Value</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RELATIONSHIP__TARGET_LABEL_VALUE = eINSTANCE.getRelationship_TargetLabelValue();
+    EReference RELATIONSHIP__TARGET_LABEL_VALUE = eINSTANCE.getRelationship_TargetLabelValue();
 
     /**
      * The meta object literal for the '<em><b>Rlship Constraints</b></em>' reference list feature.
@@ -4380,6 +4438,24 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EAttribute COMPLEX_CONSTRAINT__EXPRESSION = eINSTANCE.getComplexConstraint_Expression();
+
+    /**
+     * The meta object literal for the '{@link org.framed.orm.model.impl.RelationLabelImpl <em>Relation Label</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.framed.orm.model.impl.RelationLabelImpl
+     * @see org.framed.orm.model.impl.OrmPackageImpl#getRelationLabel()
+     * @generated
+     */
+    EClass RELATION_LABEL = eINSTANCE.getRelationLabel();
+
+    /**
+     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION_LABEL__LABEL = eINSTANCE.getRelationLabel_Label();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.Parthood <em>Parthood</em>}' enum.

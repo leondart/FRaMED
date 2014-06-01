@@ -48,7 +48,7 @@ public class CompartmentTest extends TypeTest {
    */
   @Override
   protected Compartment getFixture() {
-    return (Compartment)fixture;
+    return (Compartment) fixture;
   }
 
   /**

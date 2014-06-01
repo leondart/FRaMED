@@ -34,13 +34,8 @@ import org.framed.orm.model.Type;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeItemProvider
-  extends ItemProviderAdapter
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
+public class TypeItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
     IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -79,19 +74,13 @@ public class TypeItemProvider
    * @generated
    */
   protected void addIncomingLinksPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_incomingLinks_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_incomingLinks_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__INCOMING_LINKS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Node_incomingLinks_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_incomingLinks_feature",
+            "_UI_Node_type"), OrmPackage.Literals.NODE__INCOMING_LINKS, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -101,19 +90,13 @@ public class TypeItemProvider
    * @generated
    */
   protected void addOutgoingLinksPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_outgoingLinks_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_outgoingLinks_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__OUTGOING_LINKS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Node_outgoingLinks_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_outgoingLinks_feature",
+            "_UI_Node_type"), OrmPackage.Literals.NODE__OUTGOING_LINKS, true, false, true, null,
+        null, null));
   }
 
   /**
@@ -123,19 +106,12 @@ public class TypeItemProvider
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_Name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_Name_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__NAME,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+        getString("_UI_Node_Name_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_Name_feature", "_UI_Node_type"),
+        OrmPackage.Literals.NODE__NAME, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -145,19 +121,13 @@ public class TypeItemProvider
    * @generated
    */
   protected void addConstraintsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Node_constraints_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Node_constraints_feature", "_UI_Node_type"),
-         OrmPackage.Literals.NODE__CONSTRAINTS,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Node_constraints_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Node_constraints_feature",
+            "_UI_Node_type"), OrmPackage.Literals.NODE__CONSTRAINTS, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -167,19 +137,13 @@ public class TypeItemProvider
    * @generated
    */
   protected void addIsExpandPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Type_isExpand_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Type_isExpand_feature", "_UI_Type_type"),
-         OrmPackage.Literals.TYPE__IS_EXPAND,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Type_isExpand_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Type_isExpand_feature",
+            "_UI_Type_type"), OrmPackage.Literals.TYPE__IS_EXPAND, true, false, false,
+        ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -221,10 +185,9 @@ public class TypeItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((Type)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Type_type") :
-      getString("_UI_Type_type") + " " + label;
+    String label = ((Type) object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_Type_type")
+        : getString("_UI_Type_type") + " " + label;
   }
 
   /**
@@ -242,11 +205,13 @@ public class TypeItemProvider
       case OrmPackage.TYPE__NAME:
       case OrmPackage.TYPE__CONSTRAINTS:
       case OrmPackage.TYPE__IS_EXPAND:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
         return;
       case OrmPackage.TYPE__ATTRIBUTES:
       case OrmPackage.TYPE__OPERATIONS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -263,15 +228,11 @@ public class TypeItemProvider
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.TYPE__ATTRIBUTES,
-         OrmFactory.eINSTANCE.createAttribute()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.TYPE__ATTRIBUTES,
+        OrmFactory.eINSTANCE.createAttribute()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.TYPE__OPERATIONS,
-         OrmFactory.eINSTANCE.createMethod()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.TYPE__OPERATIONS,
+        OrmFactory.eINSTANCE.createMethod()));
   }
 
   /**

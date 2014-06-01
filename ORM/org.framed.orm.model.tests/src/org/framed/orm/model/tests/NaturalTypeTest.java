@@ -48,7 +48,7 @@ public class NaturalTypeTest extends TypeTest {
    */
   @Override
   protected NaturalType getFixture() {
-    return (NaturalType)fixture;
+    return (NaturalType) fixture;
   }
 
   /**

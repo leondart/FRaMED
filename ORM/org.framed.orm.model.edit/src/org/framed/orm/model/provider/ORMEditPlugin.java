@@ -36,9 +36,7 @@ public final class ORMEditPlugin extends EMFPlugin {
    * @generated
    */
   public ORMEditPlugin() {
-    super
-      (new ResourceLocator [] {
-       });
+    super(new ResourceLocator[] {});
   }
 
   /**

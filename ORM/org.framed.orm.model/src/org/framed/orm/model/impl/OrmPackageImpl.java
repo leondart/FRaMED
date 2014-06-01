@@ -30,6 +30,7 @@ import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Parthood;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.RelationLabel;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.model.RoleConstraint;
@@ -251,6 +252,13 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass relationLabelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EEnum parthoodEEnum = null;
 
   /**
@@ -306,10 +314,13 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public static OrmPackage init() {
-    if (isInited) return (OrmPackage)EPackage.Registry.INSTANCE.getEPackage(OrmPackage.eNS_URI);
+    if (isInited)
+      return (OrmPackage) EPackage.Registry.INSTANCE.getEPackage(OrmPackage.eNS_URI);
 
     // Obtain or create and register package
-    OrmPackageImpl theOrmPackage = (OrmPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OrmPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OrmPackageImpl());
+    OrmPackageImpl theOrmPackage =
+        (OrmPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OrmPackageImpl ? EPackage.Registry.INSTANCE
+            .get(eNS_URI) : new OrmPackageImpl());
 
     isInited = true;
 
@@ -322,7 +333,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     // Mark meta-data to indicate it can't be changed
     theOrmPackage.freeze();
 
-  
+
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(OrmPackage.eNS_URI, theOrmPackage);
     return theOrmPackage;
@@ -343,7 +354,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getAttribute_Type() {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(0);
+    return (EReference) attributeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -352,7 +363,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getAttribute_Name() {
-    return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) attributeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -370,7 +381,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getMethod_Type() {
-    return (EReference)methodEClass.getEStructuralFeatures().get(0);
+    return (EReference) methodEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -379,7 +390,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getMethod_Name() {
-    return (EAttribute)methodEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) methodEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -397,7 +408,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getType_Attributes() {
-    return (EReference)typeEClass.getEStructuralFeatures().get(0);
+    return (EReference) typeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -406,7 +417,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getType_Operations() {
-    return (EReference)typeEClass.getEStructuralFeatures().get(1);
+    return (EReference) typeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -415,7 +426,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getType_IsExpand() {
-    return (EAttribute)typeEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) typeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -433,7 +444,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getCompartmentDiagram_Compartments() {
-    return (EReference)compartmentDiagramEClass.getEStructuralFeatures().get(0);
+    return (EReference) compartmentDiagramEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -442,7 +453,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getCompartmentDiagram_Groups() {
-    return (EReference)compartmentDiagramEClass.getEStructuralFeatures().get(1);
+    return (EReference) compartmentDiagramEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -451,7 +462,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getCompartmentDiagram_Players() {
-    return (EReference)compartmentDiagramEClass.getEStructuralFeatures().get(2);
+    return (EReference) compartmentDiagramEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -469,7 +480,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getNaturalType_ParentRolemodel() {
-    return (EReference)naturalTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference) naturalTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -478,7 +489,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getNaturalType_CompartmentDiagram() {
-    return (EReference)naturalTypeEClass.getEStructuralFeatures().get(1);
+    return (EReference) naturalTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -496,7 +507,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getCompartment_CompartmentDiagram() {
-    return (EReference)compartmentEClass.getEStructuralFeatures().get(0);
+    return (EReference) compartmentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -505,7 +516,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getCompartment_Rolemodel() {
-    return (EReference)compartmentEClass.getEStructuralFeatures().get(1);
+    return (EReference) compartmentEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -514,7 +525,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getCompartment_ParentRolemodel() {
-    return (EReference)compartmentEClass.getEStructuralFeatures().get(2);
+    return (EReference) compartmentEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -532,7 +543,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getGrouping_CompartmentDiagram() {
-    return (EReference)groupingEClass.getEStructuralFeatures().get(0);
+    return (EReference) groupingEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -541,7 +552,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getGrouping_Rolemodel() {
-    return (EReference)groupingEClass.getEStructuralFeatures().get(1);
+    return (EReference) groupingEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -550,7 +561,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getGrouping_ParentRolemodel() {
-    return (EReference)groupingEClass.getEStructuralFeatures().get(2);
+    return (EReference) groupingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -568,7 +579,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getNode_IncomingLinks() {
-    return (EReference)nodeEClass.getEStructuralFeatures().get(0);
+    return (EReference) nodeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -577,7 +588,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getNode_OutgoingLinks() {
-    return (EReference)nodeEClass.getEStructuralFeatures().get(1);
+    return (EReference) nodeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -586,7 +597,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getNode_Name() {
-    return (EAttribute)nodeEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) nodeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -595,7 +606,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getNode_Constraints() {
-    return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
+    return (EAttribute) nodeEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -622,7 +633,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelationContainer_Relations() {
-    return (EReference)relationContainerEClass.getEStructuralFeatures().get(0);
+    return (EReference) relationContainerEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -640,7 +651,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRoleGroup_Lower() {
-    return (EAttribute)roleGroupEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) roleGroupEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -649,7 +660,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRoleGroup_Items() {
-    return (EReference)roleGroupEClass.getEStructuralFeatures().get(1);
+    return (EReference) roleGroupEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -658,7 +669,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRoleGroup_Upper() {
-    return (EAttribute)roleGroupEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) roleGroupEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -676,7 +687,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRolemodel_Subcontexts() {
-    return (EReference)rolemodelEClass.getEStructuralFeatures().get(0);
+    return (EReference) rolemodelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -685,7 +696,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRolemodel_Participants() {
-    return (EReference)rolemodelEClass.getEStructuralFeatures().get(1);
+    return (EReference) rolemodelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -694,7 +705,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRolemodel_Players() {
-    return (EReference)rolemodelEClass.getEStructuralFeatures().get(2);
+    return (EReference) rolemodelEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -703,7 +714,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRolemodel_Compartment() {
-    return (EReference)rolemodelEClass.getEStructuralFeatures().get(3);
+    return (EReference) rolemodelEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -712,7 +723,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRolemodel_ParentGroup() {
-    return (EReference)rolemodelEClass.getEStructuralFeatures().get(4);
+    return (EReference) rolemodelEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -721,7 +732,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRolemodel_Groups() {
-    return (EReference)rolemodelEClass.getEStructuralFeatures().get(5);
+    return (EReference) rolemodelEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -748,7 +759,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getFulfillment_FulfilledRoles() {
-    return (EAttribute)fulfillmentEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) fulfillmentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -793,7 +804,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelationship_SecondParthood() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) relationshipEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -802,7 +813,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelationship_SecondLower() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) relationshipEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -811,7 +822,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelationship_FirstLower() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) relationshipEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -820,7 +831,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelationship_FirstUpper() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(3);
+    return (EAttribute) relationshipEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -829,7 +840,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelationship_SecondUpper() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(4);
+    return (EAttribute) relationshipEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -838,7 +849,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelationship_FirstParthood() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(5);
+    return (EAttribute) relationshipEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -846,8 +857,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRelationship_SourceLabelValue() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(6);
+  public EReference getRelationship_SourceLabelValue() {
+    return (EReference) relationshipEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -855,8 +866,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRelationship_TargetLabelValue() {
-    return (EAttribute)relationshipEClass.getEStructuralFeatures().get(7);
+  public EReference getRelationship_TargetLabelValue() {
+    return (EReference) relationshipEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -865,7 +876,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelationship_RlshipConstraints() {
-    return (EReference)relationshipEClass.getEStructuralFeatures().get(8);
+    return (EReference) relationshipEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -910,7 +921,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelationshipConstraint_Relation() {
-    return (EReference)relationshipConstraintEClass.getEStructuralFeatures().get(0);
+    return (EReference) relationshipConstraintEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -928,7 +939,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelation_RelationContainer() {
-    return (EReference)relationEClass.getEStructuralFeatures().get(0);
+    return (EReference) relationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -937,7 +948,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelation_Target() {
-    return (EReference)relationEClass.getEStructuralFeatures().get(1);
+    return (EReference) relationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -946,7 +957,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRelation_Source() {
-    return (EReference)relationEClass.getEStructuralFeatures().get(2);
+    return (EReference) relationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -955,7 +966,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelation_Dim1BP() {
-    return (EAttribute)relationEClass.getEStructuralFeatures().get(3);
+    return (EAttribute) relationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -964,7 +975,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getRelation_Dim2BP() {
-    return (EAttribute)relationEClass.getEStructuralFeatures().get(4);
+    return (EAttribute) relationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -991,7 +1002,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRoleConstraint_Ends() {
-    return (EReference)roleConstraintEClass.getEStructuralFeatures().get(0);
+    return (EReference) roleConstraintEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1000,7 +1011,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRoleConstraint_Second() {
-    return (EReference)roleConstraintEClass.getEStructuralFeatures().get(1);
+    return (EReference) roleConstraintEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1009,7 +1020,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRoleConstraint_First() {
-    return (EReference)roleConstraintEClass.getEStructuralFeatures().get(2);
+    return (EReference) roleConstraintEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1027,7 +1038,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getRoleInvariant_Subject() {
-    return (EReference)roleInvariantEClass.getEStructuralFeatures().get(0);
+    return (EReference) roleInvariantEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1045,7 +1056,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getAbstractRole_First() {
-    return (EReference)abstractRoleEClass.getEStructuralFeatures().get(0);
+    return (EReference) abstractRoleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1054,7 +1065,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getAbstractRole_Second() {
-    return (EReference)abstractRoleEClass.getEStructuralFeatures().get(1);
+    return (EReference) abstractRoleEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1063,7 +1074,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getAbstractRole_ParentRolemodel() {
-    return (EReference)abstractRoleEClass.getEStructuralFeatures().get(2);
+    return (EReference) abstractRoleEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1072,7 +1083,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getAbstractRole_ParentRoleGroup() {
-    return (EReference)abstractRoleEClass.getEStructuralFeatures().get(3);
+    return (EReference) abstractRoleEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1090,7 +1101,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EReference getComplexConstraint_Groups() {
-    return (EReference)complexConstraintEClass.getEStructuralFeatures().get(0);
+    return (EReference) complexConstraintEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1099,7 +1110,25 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public EAttribute getComplexConstraint_Expression() {
-    return (EAttribute)complexConstraintEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) complexConstraintEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRelationLabel() {
+    return relationLabelEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRelationLabel_Label() {
+    return (EAttribute) relationLabelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1135,7 +1164,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public OrmFactory getOrmFactory() {
-    return (OrmFactory)getEFactoryInstance();
+    return (OrmFactory) getEFactoryInstance();
   }
 
   /**
@@ -1153,7 +1182,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public void createPackageContents() {
-    if (isCreated) return;
+    if (isCreated)
+      return;
     isCreated = true;
 
     // Create classes and their features
@@ -1231,9 +1261,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEAttribute(relationshipEClass, RELATIONSHIP__FIRST_UPPER);
     createEAttribute(relationshipEClass, RELATIONSHIP__SECOND_UPPER);
     createEAttribute(relationshipEClass, RELATIONSHIP__FIRST_PARTHOOD);
-    createEAttribute(relationshipEClass, RELATIONSHIP__SOURCE_LABEL_VALUE);
-    createEAttribute(relationshipEClass, RELATIONSHIP__TARGET_LABEL_VALUE);
     createEReference(relationshipEClass, RELATIONSHIP__RLSHIP_CONSTRAINTS);
+    createEReference(relationshipEClass, RELATIONSHIP__SOURCE_LABEL_VALUE);
+    createEReference(relationshipEClass, RELATIONSHIP__TARGET_LABEL_VALUE);
 
     roleProhibitionEClass = createEClass(ROLE_PROHIBITION);
 
@@ -1271,6 +1301,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEReference(complexConstraintEClass, COMPLEX_CONSTRAINT__GROUPS);
     createEAttribute(complexConstraintEClass, COMPLEX_CONSTRAINT__EXPRESSION);
 
+    relationLabelEClass = createEClass(RELATION_LABEL);
+    createEAttribute(relationLabelEClass, RELATION_LABEL__LABEL);
+
     // Create enums
     parthoodEEnum = createEEnum(PARTHOOD);
 
@@ -1294,7 +1327,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * @generated
    */
   public void initializePackageContents() {
-    if (isInitialized) return;
+    if (isInitialized)
+      return;
     isInitialized = true;
 
     // Initialize package
@@ -1335,119 +1369,291 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     complexConstraintEClass.getESuperTypes().add(this.getConstraint());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAttribute_Type(), this.getType(), this.getType_Attributes(), "type", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAttribute_Type(), this.getType(), this.getType_Attributes(), "type", null, 0,
+        1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1,
+        Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMethod_Type(), this.getType(), this.getType_Operations(), "type", null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMethod_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMethod_Type(), this.getType(), this.getType_Operations(), "type", null, 0, 1,
+        Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMethod_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1,
+        Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getType_Attributes(), this.getAttribute(), this.getAttribute_Type(), "attributes", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getType_Operations(), this.getMethod(), this.getMethod_Type(), "operations", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getType_IsExpand(), ecorePackage.getEBoolean(), "isExpand", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getType_Attributes(), this.getAttribute(), this.getAttribute_Type(),
+        "attributes", null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getType_Operations(), this.getMethod(), this.getMethod_Type(), "operations",
+        null, 0, -1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getType_IsExpand(), ecorePackage.getEBoolean(), "isExpand", null, 0, 1,
+        Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+        !IS_DERIVED, IS_ORDERED);
 
-    initEClass(compartmentDiagramEClass, CompartmentDiagram.class, "CompartmentDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompartmentDiagram_Compartments(), this.getCompartment(), this.getCompartment_CompartmentDiagram(), "compartments", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartmentDiagram_Groups(), this.getGrouping(), this.getGrouping_CompartmentDiagram(), "groups", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartmentDiagram_Players(), this.getNaturalType(), this.getNaturalType_CompartmentDiagram(), "players", null, 0, -1, CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(compartmentDiagramEClass, CompartmentDiagram.class, "CompartmentDiagram",
+        !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCompartmentDiagram_Compartments(), this.getCompartment(),
+        this.getCompartment_CompartmentDiagram(), "compartments", null, 0, -1,
+        CompartmentDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartmentDiagram_Groups(), this.getGrouping(),
+        this.getGrouping_CompartmentDiagram(), "groups", null, 0, -1, CompartmentDiagram.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartmentDiagram_Players(), this.getNaturalType(),
+        this.getNaturalType_CompartmentDiagram(), "players", null, 0, -1, CompartmentDiagram.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(naturalTypeEClass, NaturalType.class, "NaturalType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNaturalType_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Players(), "parentRolemodel", null, 0, 1, NaturalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNaturalType_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Players(), "compartmentDiagram", null, 0, 1, NaturalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEClass(naturalTypeEClass, NaturalType.class, "NaturalType", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNaturalType_ParentRolemodel(), this.getRolemodel(),
+        this.getRolemodel_Players(), "parentRolemodel", null, 0, 1, NaturalType.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNaturalType_CompartmentDiagram(), this.getCompartmentDiagram(),
+        this.getCompartmentDiagram_Players(), "compartmentDiagram", null, 0, 1, NaturalType.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-    initEClass(compartmentEClass, Compartment.class, "Compartment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCompartment_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Compartments(), "compartmentDiagram", null, 0, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartment_Rolemodel(), this.getRolemodel(), this.getRolemodel_Compartment(), "rolemodel", null, 1, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompartment_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Subcontexts(), "parentRolemodel", null, 0, 1, Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(compartmentEClass, Compartment.class, "Compartment", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCompartment_CompartmentDiagram(), this.getCompartmentDiagram(),
+        this.getCompartmentDiagram_Compartments(), "compartmentDiagram", null, 0, 1,
+        Compartment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartment_Rolemodel(), this.getRolemodel(),
+        this.getRolemodel_Compartment(), "rolemodel", null, 1, 1, Compartment.class, !IS_TRANSIENT,
+        !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+        !IS_DERIVED, IS_ORDERED);
+    initEReference(getCompartment_ParentRolemodel(), this.getRolemodel(),
+        this.getRolemodel_Subcontexts(), "parentRolemodel", null, 0, 1, Compartment.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(groupingEClass, Grouping.class, "Grouping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGrouping_CompartmentDiagram(), this.getCompartmentDiagram(), this.getCompartmentDiagram_Groups(), "compartmentDiagram", null, 0, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-    initEReference(getGrouping_Rolemodel(), this.getRolemodel(), this.getRolemodel_ParentGroup(), "rolemodel", null, 1, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGrouping_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Groups(), "parentRolemodel", null, 0, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(groupingEClass, Grouping.class, "Grouping", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getGrouping_CompartmentDiagram(), this.getCompartmentDiagram(),
+        this.getCompartmentDiagram_Groups(), "compartmentDiagram", null, 0, 1, Grouping.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+    initEReference(getGrouping_Rolemodel(), this.getRolemodel(), this.getRolemodel_ParentGroup(),
+        "rolemodel", null, 1, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getGrouping_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Groups(),
+        "parentRolemodel", null, 0, 1, Grouping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNode_IncomingLinks(), this.getRelation(), this.getRelation_Target(), "incomingLinks", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNode_OutgoingLinks(), this.getRelation(), this.getRelation_Source(), "outgoingLinks", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNode_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNode_Constraints(), this.getRectangle(), "constraints", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNode_IncomingLinks(), this.getRelation(), this.getRelation_Target(),
+        "incomingLinks", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNode_OutgoingLinks(), this.getRelation(), this.getRelation_Source(),
+        "outgoingLinks", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNode_Name(), ecorePackage.getEString(), "Name", "<...>", 0, 1, Node.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
+    initEAttribute(getNode_Constraints(), this.getRectangle(), "constraints", null, 0, 1,
+        Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+        !IS_DERIVED, IS_ORDERED);
 
-    initEClass(roleTypeEClass, RoleType.class, "RoleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(roleTypeEClass, RoleType.class, "RoleType", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(relationContainerEClass, RelationContainer.class, "RelationContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelationContainer_Relations(), this.getRelation(), this.getRelation_RelationContainer(), "relations", null, 0, -1, RelationContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(relationContainerEClass, RelationContainer.class, "RelationContainer", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRelationContainer_Relations(), this.getRelation(),
+        this.getRelation_RelationContainer(), "relations", null, 0, -1, RelationContainer.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(roleGroupEClass, RoleGroup.class, "RoleGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRoleGroup_Lower(), ecorePackage.getEInt(), "lower", "0", 1, 1, RoleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRoleGroup_Items(), this.getAbstractRole(), this.getAbstractRole_ParentRoleGroup(), "items", null, 0, -1, RoleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRoleGroup_Upper(), ecorePackage.getEInt(), "upper", "-1", 1, 1, RoleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(roleGroupEClass, RoleGroup.class, "RoleGroup", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRoleGroup_Lower(), ecorePackage.getEInt(), "lower", "0", 1, 1,
+        RoleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRoleGroup_Items(), this.getAbstractRole(),
+        this.getAbstractRole_ParentRoleGroup(), "items", null, 0, -1, RoleGroup.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRoleGroup_Upper(), ecorePackage.getEInt(), "upper", "-1", 1, 1,
+        RoleGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(rolemodelEClass, Rolemodel.class, "Rolemodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRolemodel_Subcontexts(), this.getCompartment(), this.getCompartment_ParentRolemodel(), "subcontexts", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRolemodel_Participants(), this.getAbstractRole(), this.getAbstractRole_ParentRolemodel(), "participants", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRolemodel_Players(), this.getNaturalType(), this.getNaturalType_ParentRolemodel(), "players", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRolemodel_Compartment(), this.getCompartment(), this.getCompartment_Rolemodel(), "compartment", null, 0, 1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRolemodel_ParentGroup(), this.getGrouping(), this.getGrouping_Rolemodel(), "parentGroup", null, 0, 1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRolemodel_Groups(), this.getGrouping(), this.getGrouping_ParentRolemodel(), "groups", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rolemodelEClass, Rolemodel.class, "Rolemodel", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRolemodel_Subcontexts(), this.getCompartment(),
+        this.getCompartment_ParentRolemodel(), "subcontexts", null, 0, -1, Rolemodel.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolemodel_Participants(), this.getAbstractRole(),
+        this.getAbstractRole_ParentRolemodel(), "participants", null, 0, -1, Rolemodel.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolemodel_Players(), this.getNaturalType(),
+        this.getNaturalType_ParentRolemodel(), "players", null, 0, -1, Rolemodel.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolemodel_Compartment(), this.getCompartment(),
+        this.getCompartment_Rolemodel(), "compartment", null, 0, 1, Rolemodel.class, !IS_TRANSIENT,
+        !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+        !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolemodel_ParentGroup(), this.getGrouping(), this.getGrouping_Rolemodel(),
+        "parentGroup", null, 0, 1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolemodel_Groups(), this.getGrouping(), this.getGrouping_ParentRolemodel(),
+        "groups", null, 0, -1, Rolemodel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(totalEClass, Total.class, "Total", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(totalEClass, Total.class, "Total", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(fulfillmentEClass, Fulfillment.class, "Fulfillment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFulfillment_FulfilledRoles(), ecorePackage.getEString(), "fulfilledRoles", null, 0, -1, Fulfillment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(fulfillmentEClass, Fulfillment.class, "Fulfillment", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFulfillment_FulfilledRoles(), ecorePackage.getEString(), "fulfilledRoles",
+        null, 0, -1, Fulfillment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+        !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(roleEquivalenceEClass, RoleEquivalence.class, "RoleEquivalence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(roleEquivalenceEClass, RoleEquivalence.class, "RoleEquivalence", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(acyclicEClass, Acyclic.class, "Acyclic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(acyclicEClass, Acyclic.class, "Acyclic", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(inheritanceEClass, Inheritance.class, "Inheritance", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRelationship_SecondParthood(), this.getParthood(), "secondParthood", "Unconstrained", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_SecondLower(), ecorePackage.getEInt(), "secondLower", "0", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_FirstLower(), ecorePackage.getEInt(), "firstLower", "0", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_FirstUpper(), ecorePackage.getEInt(), "firstUpper", "1", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_SecondUpper(), ecorePackage.getEInt(), "secondUpper", "1", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_FirstParthood(), this.getParthood(), "firstParthood", "Unconstrained", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_SourceLabelValue(), ecorePackage.getEString(), "sourceLabelValue", "0..1", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelationship_TargetLabelValue(), ecorePackage.getEString(), "targetLabelValue", "0..1", 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelationship_RlshipConstraints(), this.getRelationshipConstraint(), this.getRelationshipConstraint_Relation(), "rlshipConstraints", null, 0, -1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(relationshipEClass, Relationship.class, "Relationship", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRelationship_SecondParthood(), this.getParthood(), "secondParthood",
+        "Unconstrained", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_SecondLower(), ecorePackage.getEInt(), "secondLower", "0", 1, 1,
+        Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_FirstLower(), ecorePackage.getEInt(), "firstLower", "0", 1, 1,
+        Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_FirstUpper(), ecorePackage.getEInt(), "firstUpper", "1", 1, 1,
+        Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_SecondUpper(), ecorePackage.getEInt(), "secondUpper", "1", 1, 1,
+        Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelationship_FirstParthood(), this.getParthood(), "firstParthood",
+        "Unconstrained", 1, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationship_RlshipConstraints(), this.getRelationshipConstraint(),
+        this.getRelationshipConstraint_Relation(), "rlshipConstraints", null, 0, -1,
+        Relationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelationship_SourceLabelValue(), this.getRelationLabel(), null,
+        "sourceLabelValue", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE,
+        IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
+    initEReference(getRelationship_TargetLabelValue(), this.getRelationLabel(), null,
+        "targetLabelValue", null, 0, 1, Relationship.class, !IS_TRANSIENT, !IS_VOLATILE,
+        IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
 
-    initEClass(roleProhibitionEClass, RoleProhibition.class, "RoleProhibition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(roleProhibitionEClass, RoleProhibition.class, "RoleProhibition", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(irreflexiveEClass, Irreflexive.class, "Irreflexive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(irreflexiveEClass, Irreflexive.class, "Irreflexive", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(roleImplicationEClass, RoleImplication.class, "RoleImplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(roleImplicationEClass, RoleImplication.class, "RoleImplication", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(relationshipConstraintEClass, RelationshipConstraint.class, "RelationshipConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelationshipConstraint_Relation(), this.getRelationship(), this.getRelationship_RlshipConstraints(), "relation", null, 1, 1, RelationshipConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(relationshipConstraintEClass, RelationshipConstraint.class,
+        "RelationshipConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRelationshipConstraint_Relation(), this.getRelationship(),
+        this.getRelationship_RlshipConstraints(), "relation", null, 1, 1,
+        RelationshipConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(relationEClass, Relation.class, "Relation", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRelation_RelationContainer(), this.getRelationContainer(), this.getRelationContainer_Relations(), "relationContainer", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelation_Target(), this.getNode(), this.getNode_IncomingLinks(), "target", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelation_Source(), this.getNode(), this.getNode_OutgoingLinks(), "source", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelation_Dim1BP(), this.getPoint(), "dim1BP", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRelation_Dim2BP(), this.getPoint(), "dim2BP", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(relationEClass, Relation.class, "Relation", IS_ABSTRACT, IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRelation_RelationContainer(), this.getRelationContainer(),
+        this.getRelationContainer_Relations(), "relationContainer", null, 0, 1, Relation.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelation_Target(), this.getNode(), this.getNode_IncomingLinks(), "target",
+        null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelation_Source(), this.getNode(), this.getNode_OutgoingLinks(), "source",
+        null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelation_Dim1BP(), this.getPoint(), "dim1BP", null, 0, -1, Relation.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
+    initEAttribute(getRelation_Dim2BP(), this.getPoint(), "dim2BP", null, 0, -1, Relation.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
 
-    initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(roleConstraintEClass, RoleConstraint.class, "RoleConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRoleConstraint_Ends(), this.getRoleType(), null, "ends", null, 2, 2, RoleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRoleConstraint_Second(), this.getAbstractRole(), null, "second", null, 1, 1, RoleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRoleConstraint_First(), this.getAbstractRole(), null, "first", null, 1, 1, RoleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(roleConstraintEClass, RoleConstraint.class, "RoleConstraint", IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRoleConstraint_Ends(), this.getRoleType(), null, "ends", null, 2, 2,
+        RoleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRoleConstraint_Second(), this.getAbstractRole(), null, "second", null, 1, 1,
+        RoleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRoleConstraint_First(), this.getAbstractRole(), null, "first", null, 1, 1,
+        RoleConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(roleInvariantEClass, RoleInvariant.class, "RoleInvariant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRoleInvariant_Subject(), this.getAbstractRole(), null, "subject", null, 1, 1, RoleInvariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(roleInvariantEClass, RoleInvariant.class, "RoleInvariant", IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRoleInvariant_Subject(), this.getAbstractRole(), null, "subject", null, 1, 1,
+        RoleInvariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(abstractRoleEClass, AbstractRole.class, "AbstractRole", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAbstractRole_First(), this.getRoleType(), null, "first", null, 1, 1, AbstractRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAbstractRole_Second(), this.getRoleType(), null, "second", null, 1, 1, AbstractRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAbstractRole_ParentRolemodel(), this.getRolemodel(), this.getRolemodel_Participants(), "parentRolemodel", null, 0, 1, AbstractRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAbstractRole_ParentRoleGroup(), this.getRoleGroup(), this.getRoleGroup_Items(), "parentRoleGroup", null, 0, 1, AbstractRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(abstractRoleEClass, AbstractRole.class, "AbstractRole", IS_ABSTRACT, IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAbstractRole_First(), this.getRoleType(), null, "first", null, 1, 1,
+        AbstractRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractRole_Second(), this.getRoleType(), null, "second", null, 1, 1,
+        AbstractRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractRole_ParentRolemodel(), this.getRolemodel(),
+        this.getRolemodel_Participants(), "parentRolemodel", null, 0, 1, AbstractRole.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractRole_ParentRoleGroup(), this.getRoleGroup(),
+        this.getRoleGroup_Items(), "parentRoleGroup", null, 0, 1, AbstractRole.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+        !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(complexConstraintEClass, ComplexConstraint.class, "ComplexConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getComplexConstraint_Groups(), this.getRoleGroup(), null, "groups", null, 1, -1, ComplexConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getComplexConstraint_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, ComplexConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(complexConstraintEClass, ComplexConstraint.class, "ComplexConstraint", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getComplexConstraint_Groups(), this.getRoleGroup(), null, "groups", null, 1, -1,
+        ComplexConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getComplexConstraint_Expression(), ecorePackage.getEString(), "expression",
+        null, 0, 1, ComplexConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+        !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(relationLabelEClass, RelationLabel.class, "RelationLabel", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRelationLabel_Label(), ecorePackage.getEString(), "label", "0..1", 0, 1,
+        RelationLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+        IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(parthoodEEnum, Parthood.class, "Parthood");
@@ -1459,8 +1665,10 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     addEEnumLiteral(parthoodEEnum, Parthood.INSEPERABLE_PART);
 
     // Initialize data types
-    initEDataType(rectangleEDataType, Rectangle.class, "Rectangle", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-    initEDataType(pointEDataType, Point.class, "Point", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(rectangleEDataType, Rectangle.class, "Rectangle", IS_SERIALIZABLE,
+        !IS_GENERATED_INSTANCE_CLASS);
+    initEDataType(pointEDataType, Point.class, "Point", IS_SERIALIZABLE,
+        !IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

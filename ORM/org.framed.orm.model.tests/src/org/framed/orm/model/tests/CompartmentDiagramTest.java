@@ -42,7 +42,7 @@ public class CompartmentDiagramTest extends RelationContainerTest {
    */
   @Override
   protected CompartmentDiagram getFixture() {
-    return (CompartmentDiagram)fixture;
+    return (CompartmentDiagram) fixture;
   }
 
   /**

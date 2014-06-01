@@ -29,14 +29,9 @@ import org.framed.orm.model.Rolemodel;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RolemodelItemProvider
-  extends RelationContainerItemProvider
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class RolemodelItemProvider extends RelationContainerItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -133,7 +128,8 @@ public class RolemodelItemProvider
       case OrmPackage.ROLEMODEL__PARTICIPANTS:
       case OrmPackage.ROLEMODEL__PLAYERS:
       case OrmPackage.ROLEMODEL__GROUPS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -150,30 +146,20 @@ public class RolemodelItemProvider
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.ROLEMODEL__SUBCONTEXTS,
-         OrmFactory.eINSTANCE.createCompartment()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.ROLEMODEL__SUBCONTEXTS,
+        OrmFactory.eINSTANCE.createCompartment()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.ROLEMODEL__PARTICIPANTS,
-         OrmFactory.eINSTANCE.createRoleType()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.ROLEMODEL__PARTICIPANTS,
+        OrmFactory.eINSTANCE.createRoleType()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.ROLEMODEL__PARTICIPANTS,
-         OrmFactory.eINSTANCE.createRoleGroup()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.ROLEMODEL__PARTICIPANTS,
+        OrmFactory.eINSTANCE.createRoleGroup()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.ROLEMODEL__PLAYERS,
-         OrmFactory.eINSTANCE.createNaturalType()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.ROLEMODEL__PLAYERS,
+        OrmFactory.eINSTANCE.createNaturalType()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.ROLEMODEL__GROUPS,
-         OrmFactory.eINSTANCE.createGrouping()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.ROLEMODEL__GROUPS,
+        OrmFactory.eINSTANCE.createGrouping()));
   }
 
   /**
@@ -183,18 +169,18 @@ public class RolemodelItemProvider
    * @generated
    */
   @Override
-  public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+  public String getCreateChildText(Object owner, Object feature, Object child,
+      Collection<?> selection) {
     Object childFeature = feature;
     Object childObject = child;
 
     boolean qualify =
-      childFeature == OrmPackage.Literals.RELATION_CONTAINER__RELATIONS ||
-      childFeature == OrmPackage.Literals.ROLEMODEL__PARTICIPANTS;
+        childFeature == OrmPackage.Literals.RELATION_CONTAINER__RELATIONS
+            || childFeature == OrmPackage.Literals.ROLEMODEL__PARTICIPANTS;
 
     if (qualify) {
-      return getString
-        ("_UI_CreateChild_text2",
-         new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+      return getString("_UI_CreateChild_text2", new Object[] {getTypeText(childObject),
+          getFeatureText(childFeature), getTypeText(owner)});
     }
     return super.getCreateChildText(owner, feature, child, selection);
   }

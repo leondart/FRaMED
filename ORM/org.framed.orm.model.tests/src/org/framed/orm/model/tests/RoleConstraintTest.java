@@ -30,7 +30,7 @@ public abstract class RoleConstraintTest extends ConstraintTest {
    */
   @Override
   protected RoleConstraint getFixture() {
-    return (RoleConstraint)fixture;
+    return (RoleConstraint) fixture;
   }
 
 } //RoleConstraintTest

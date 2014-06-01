@@ -28,14 +28,9 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComplexConstraintItemProvider
-  extends ConstraintItemProvider
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class ComplexConstraintItemProvider extends ConstraintItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -70,19 +65,13 @@ public class ComplexConstraintItemProvider
    * @generated
    */
   protected void addGroupsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ComplexConstraint_groups_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ComplexConstraint_groups_feature", "_UI_ComplexConstraint_type"),
-         OrmPackage.Literals.COMPLEX_CONSTRAINT__GROUPS,
-         true,
-         false,
-         true,
-         null,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_ComplexConstraint_groups_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_ComplexConstraint_groups_feature",
+            "_UI_ComplexConstraint_type"), OrmPackage.Literals.COMPLEX_CONSTRAINT__GROUPS, true,
+        false, true, null, null, null));
   }
 
   /**
@@ -92,19 +81,13 @@ public class ComplexConstraintItemProvider
    * @generated
    */
   protected void addExpressionPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_ComplexConstraint_expression_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_ComplexConstraint_expression_feature", "_UI_ComplexConstraint_type"),
-         OrmPackage.Literals.COMPLEX_CONSTRAINT__EXPRESSION,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_ComplexConstraint_expression_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_ComplexConstraint_expression_feature",
+            "_UI_ComplexConstraint_type"), OrmPackage.Literals.COMPLEX_CONSTRAINT__EXPRESSION,
+        true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -126,10 +109,9 @@ public class ComplexConstraintItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((ComplexConstraint)object).getExpression();
-    return label == null || label.length() == 0 ?
-      getString("_UI_ComplexConstraint_type") :
-      getString("_UI_ComplexConstraint_type") + " " + label;
+    String label = ((ComplexConstraint) object).getExpression();
+    return label == null || label.length() == 0 ? getString("_UI_ComplexConstraint_type")
+        : getString("_UI_ComplexConstraint_type") + " " + label;
   }
 
   /**
@@ -145,7 +127,8 @@ public class ComplexConstraintItemProvider
 
     switch (notification.getFeatureID(ComplexConstraint.class)) {
       case OrmPackage.COMPLEX_CONSTRAINT__EXPRESSION:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
         return;
     }
     super.notifyChanged(notification);

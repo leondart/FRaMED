@@ -24,14 +24,9 @@ import org.framed.orm.model.NaturalType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NaturalTypeItemProvider
-  extends TypeItemProvider
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class NaturalTypeItemProvider extends TypeItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -76,10 +71,9 @@ public class NaturalTypeItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((NaturalType)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_NaturalType_type") :
-      getString("_UI_NaturalType_type") + " " + label;
+    String label = ((NaturalType) object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_NaturalType_type")
+        : getString("_UI_NaturalType_type") + " " + label;
   }
 
   /**

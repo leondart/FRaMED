@@ -32,14 +32,9 @@ import org.framed.orm.model.RelationContainer;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationContainerItemProvider
-  extends ItemProviderAdapter
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class RelationContainerItemProvider extends ItemProviderAdapter implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -130,7 +125,8 @@ public class RelationContainerItemProvider
 
     switch (notification.getFeatureID(RelationContainer.class)) {
       case OrmPackage.RELATION_CONTAINER__RELATIONS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -147,65 +143,41 @@ public class RelationContainerItemProvider
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleType()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleType()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleGroup()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleGroup()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createTotal()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createTotal()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createFulfillment()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createFulfillment()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleEquivalence()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleEquivalence()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createAcyclic()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createAcyclic()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createInheritance()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createInheritance()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRelationship()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRelationship()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleProhibition()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleProhibition()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createIrreflexive()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createIrreflexive()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createRoleImplication()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createRoleImplication()));
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
-         OrmFactory.eINSTANCE.createComplexConstraint()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+        OrmFactory.eINSTANCE.createComplexConstraint()));
   }
 
   /**

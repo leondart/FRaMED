@@ -30,7 +30,7 @@ public abstract class RelationshipConstraintTest extends ConstraintTest {
    */
   @Override
   protected RelationshipConstraint getFixture() {
-    return (RelationshipConstraint)fixture;
+    return (RelationshipConstraint) fixture;
   }
 
 } //RelationshipConstraintTest

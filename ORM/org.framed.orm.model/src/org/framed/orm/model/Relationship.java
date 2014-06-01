@@ -19,9 +19,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.framed.orm.model.Relationship#getFirstUpper <em>First Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSecondUpper <em>Second Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getFirstParthood <em>First Parthood</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}</li>
- *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
  * </ul>
  * </p>
  *
@@ -199,58 +199,56 @@ public interface Relationship extends Relation {
   void setFirstParthood(Parthood value);
 
   /**
-   * Returns the value of the '<em><b>Source Label Value</b></em>' attribute.
-   * The default value is <code>"0..1"</code>.
+   * Returns the value of the '<em><b>Source Label Value</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Source Label Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Source Label Value</em>' attribute.
-   * @see #setSourceLabelValue(String)
+   * @return the value of the '<em>Source Label Value</em>' reference.
+   * @see #setSourceLabelValue(RelationLabel)
    * @see org.framed.orm.model.OrmPackage#getRelationship_SourceLabelValue()
-   * @model default="0..1"
+   * @model
    * @generated
    */
-  String getSourceLabelValue();
+  RelationLabel getSourceLabelValue();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}' attribute.
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getSourceLabelValue <em>Source Label Value</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source Label Value</em>' attribute.
+   * @param value the new value of the '<em>Source Label Value</em>' reference.
    * @see #getSourceLabelValue()
    * @generated
    */
-  void setSourceLabelValue(String value);
+  void setSourceLabelValue(RelationLabel value);
 
   /**
-   * Returns the value of the '<em><b>Target Label Value</b></em>' attribute.
-   * The default value is <code>"0..1"</code>.
+   * Returns the value of the '<em><b>Target Label Value</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Target Label Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Target Label Value</em>' attribute.
-   * @see #setTargetLabelValue(String)
+   * @return the value of the '<em>Target Label Value</em>' reference.
+   * @see #setTargetLabelValue(RelationLabel)
    * @see org.framed.orm.model.OrmPackage#getRelationship_TargetLabelValue()
-   * @model default="0..1"
+   * @model
    * @generated
    */
-  String getTargetLabelValue();
+  RelationLabel getTargetLabelValue();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}' attribute.
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getTargetLabelValue <em>Target Label Value</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target Label Value</em>' attribute.
+   * @param value the new value of the '<em>Target Label Value</em>' reference.
    * @see #getTargetLabelValue()
    * @generated
    */
-  void setTargetLabelValue(String value);
+  void setTargetLabelValue(RelationLabel value);
 
   /**
    * Returns the value of the '<em><b>Rlship Constraints</b></em>' reference list.

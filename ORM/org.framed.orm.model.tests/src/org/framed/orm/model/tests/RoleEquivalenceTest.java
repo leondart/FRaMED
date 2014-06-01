@@ -42,7 +42,7 @@ public class RoleEquivalenceTest extends RoleConstraintTest {
    */
   @Override
   protected RoleEquivalence getFixture() {
-    return (RoleEquivalence)fixture;
+    return (RoleEquivalence) fixture;
   }
 
   /**

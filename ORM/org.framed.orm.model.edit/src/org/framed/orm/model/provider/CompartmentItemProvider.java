@@ -29,14 +29,9 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompartmentItemProvider
-  extends TypeItemProvider
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
-    IItemPropertySource {
+public class CompartmentItemProvider extends TypeItemProvider implements
+    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
+    IItemLabelProvider, IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -111,10 +106,9 @@ public class CompartmentItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((Compartment)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Compartment_type") :
-      getString("_UI_Compartment_type") + " " + label;
+    String label = ((Compartment) object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_Compartment_type")
+        : getString("_UI_Compartment_type") + " " + label;
   }
 
   /**
@@ -130,7 +124,8 @@ public class CompartmentItemProvider
 
     switch (notification.getFeatureID(Compartment.class)) {
       case OrmPackage.COMPARTMENT__ROLEMODEL:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
+            false));
         return;
     }
     super.notifyChanged(notification);
@@ -147,10 +142,8 @@ public class CompartmentItemProvider
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add
-      (createChildParameter
-        (OrmPackage.Literals.COMPARTMENT__ROLEMODEL,
-         OrmFactory.eINSTANCE.createRolemodel()));
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.COMPARTMENT__ROLEMODEL,
+        OrmFactory.eINSTANCE.createRolemodel()));
   }
 
 }

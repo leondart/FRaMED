@@ -31,13 +31,8 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MethodItemProvider
-  extends ItemProviderAdapter
-  implements
-    IEditingDomainItemProvider,
-    IStructuredItemContentProvider,
-    ITreeItemContentProvider,
-    IItemLabelProvider,
+public class MethodItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
     IItemPropertySource {
   /**
    * This constructs an instance from a factory and a notifier.
@@ -72,19 +67,13 @@ public class MethodItemProvider
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add
-      (createItemPropertyDescriptor
-        (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-         getResourceLocator(),
-         getString("_UI_Method_Name_feature"),
-         getString("_UI_PropertyDescriptor_description", "_UI_Method_Name_feature", "_UI_Method_type"),
-         OrmPackage.Literals.METHOD__NAME,
-         true,
-         false,
-         false,
-         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-         null,
-         null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Method_Name_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Method_Name_feature",
+            "_UI_Method_type"), OrmPackage.Literals.METHOD__NAME, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -106,10 +95,9 @@ public class MethodItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((Method)object).getName();
-    return label == null || label.length() == 0 ?
-      getString("_UI_Method_type") :
-      getString("_UI_Method_type") + " " + label;
+    String label = ((Method) object).getName();
+    return label == null || label.length() == 0 ? getString("_UI_Method_type")
+        : getString("_UI_Method_type") + " " + label;
   }
 
   /**
@@ -125,7 +113,8 @@ public class MethodItemProvider
 
     switch (notification.getFeatureID(Method.class)) {
       case OrmPackage.METHOD__NAME:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
+            true));
         return;
     }
     super.notifyChanged(notification);
