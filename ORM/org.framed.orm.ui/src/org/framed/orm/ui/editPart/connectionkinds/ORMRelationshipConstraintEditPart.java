@@ -68,9 +68,9 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
             (ORMRelationshipConstraintEditPart) getViewer().getEditPartRegistry().get(
                 relCList.get(0));
         if (rep != null) {
-          if (!rep.equals(this) && !rep.getLabel().getText().contains(lab.getText())) {
+          if (!rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
             String oldText = rep.getLabel().getText();
-            rep.getLabel().setText(lab.getText() + " , " + oldText);
+            rep.getLabel().setText(textInitial + " , " + oldText);
 
             getConnectionFigure().setVisible(false);
 
