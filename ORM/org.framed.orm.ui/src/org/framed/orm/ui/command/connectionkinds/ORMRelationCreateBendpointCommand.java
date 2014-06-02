@@ -40,6 +40,7 @@ public class ORMRelationCreateBendpointCommand extends Command {
 
       rlship = ((RelationshipConstraint) relation).getRelation();
       relCList.addAll(rlship.getRlshipConstraints());
+      relCList.remove(relation);
 
       for (RelationshipConstraint relC : relCList) {
         if (!relC.equals(relation)) {

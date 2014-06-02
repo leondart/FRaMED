@@ -83,7 +83,8 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
     relation.setRelationContainer(relationCon);
     relation.setRelation(rlship);
 
-    if (rlship.getRlshipConstraints().size() != 0) {
+    if (rlship.getRlshipConstraints().size() != 0
+        && rlship.getRlshipConstraints().get(0).getDim1BP().size() != 0) {
       relation.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
       relation.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
     } else {
