@@ -83,14 +83,15 @@
     <genClasses ecoreClass="ORM.ecore#//Acyclic"/>
     <genClasses image="false" ecoreClass="ORM.ecore#//Inheritance"/>
     <genClasses ecoreClass="ORM.ecore#//Relationship">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondParthood"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondParthood"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondLower"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstLower"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstUpper"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondUpper"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstParthood"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstParthood"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/rlshipConstraints"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/sourceLabel"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription=""
+          ecoreFeature="ecore:EReference ORM.ecore#//Relationship/sourceLabel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/targetLabel"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//RoleProhibition"/>
@@ -126,7 +127,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//ComplexConstraint/expression"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//RelationLabel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//RelationLabel/label"/>
+      <genFeatures createChild="false" propertyDescription="" ecoreFeature="ecore:EAttribute ORM.ecore#//RelationLabel/label"/>
+      <genFeatures property="None" createChild="false" propertyCategory="" propertyDescription=""
+          ecoreFeature="ecore:EAttribute ORM.ecore#//RelationLabel/isRelationEnd"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
