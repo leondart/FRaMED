@@ -15,7 +15,8 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
 
   @Override
   public boolean canExecute() {
-    return target != null && source != null && relationCons != null && relcon != null && rlship != null;
+    return target != null && source != null && relationCons != null && relcon != null
+        && rlship != null;
   }
 
   @Override
@@ -24,18 +25,16 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
     relationCons.setTarget(target);
     relationCons.setRelationContainer(relcon);
     relationCons.setRelation(rlship);
-    
-    if (rlship.getRlshipConstraints().size() != 0) {
+
+    if (rlship.getRlshipConstraints().size() > 1) {
       relationCons.getDim1BP().addAll(rlship.getRlshipConstraints().get(0).getDim1BP());
       relationCons.getDim2BP().addAll(rlship.getRlshipConstraints().get(0).getDim2BP());
-    }
-    
-    if (relationCons.getDim1BP().isEmpty()) {
+    } else {
       Point ps = new Point(source.getConstraints().x(), source.getConstraints().y());
       Point pt = new Point(target.getConstraints().x(), target.getConstraints().y());
       adaptRelationCreation(ps, pt);
     }
-    
+
   }
 
   @Override
@@ -61,6 +60,5 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
   }
 
 
-  
 
 }
