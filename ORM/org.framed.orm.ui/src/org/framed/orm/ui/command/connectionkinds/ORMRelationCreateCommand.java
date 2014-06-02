@@ -90,10 +90,11 @@ public class ORMRelationCreateCommand extends Command {
       Point dim1P = new Point(d1.width(), d1.height());
       Point dim2P = new Point(d2.width(), d2.height());
 
-
+      int xAbst = Math.abs(Math.abs(dim2P.x()) - Math.abs(dim1P.x()));
+      int yAbst = Math.abs(Math.abs(dim2P.y()) - Math.abs(dim1P.y()));
       if (relCount % 2 == 0) {
         relCount = relCount / 2;
-        if (Math.abs(dim1P.y()) > Math.abs(dim1P.x())) {
+        if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xAbst == yAbst ) {
           dim1P.setX(-(dim1P.x() + relCount * 20));
           dim2P.setX(-(dim2P.x() + relCount * 20));
         } else {
@@ -102,7 +103,7 @@ public class ORMRelationCreateCommand extends Command {
         }
       } else {
         relCount = (relCount + 1) / 2;
-        if (Math.abs(dim1P.y()) > Math.abs(dim1P.x())) {
+        if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xAbst == yAbst) {
           dim1P.setX(dim1P.x() + relCount * 20);
           dim2P.setX(dim2P.x() + relCount * 20);
         } else {
