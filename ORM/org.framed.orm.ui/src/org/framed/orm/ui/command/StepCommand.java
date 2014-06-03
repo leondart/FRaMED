@@ -58,6 +58,7 @@ public class StepCommand extends Command {
         }
       }
     } else {
+//      System.out.println("New Window");
       try {
         // open new editor instance with old content edipart model
         ORMMultiPageEditor newPart =

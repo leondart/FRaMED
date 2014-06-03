@@ -20,7 +20,7 @@ public class StepInCommand extends StepCommand {
 
   @Override
   public void execute() {
-
+    super.execute();
 //    System.out.println("Execute stepin");
     // set the two editors on same level
     final ORMMultiPageEditor ormMultiPageEditor = (ORMMultiPageEditor) editorPart.getParentEditor();

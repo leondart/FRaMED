@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class AbstractGraphicalEditor extends GraphicalEditor{
 
-    private PaletteViewerProvider provider;
+    private ORMPaletteViewerProvider provider;
     private FlyoutPaletteComposite splitter;
     private CustomPalettePage page;
 
@@ -41,8 +41,8 @@ public abstract class AbstractGraphicalEditor extends GraphicalEditor{
      * 
      * @return the palette provider
      */
-    protected PaletteViewerProvider createPaletteViewerProvider() {
-        return new PaletteViewerProvider(getEditDomain());
+    protected ORMPaletteViewerProvider createPaletteViewerProvider() {
+        return new ORMPaletteViewerProvider(getEditDomain());
     }
 
     /**
