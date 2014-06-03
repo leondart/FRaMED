@@ -214,6 +214,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
   private void performDirectEditing() {
     TextFlow textFlow = ((ORMTypeFigure) getFigure()).getLabel().getTextFlow();
+    
     ORMNodeDirectEditManager manager =
         new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
             textFlow), textFlow);
