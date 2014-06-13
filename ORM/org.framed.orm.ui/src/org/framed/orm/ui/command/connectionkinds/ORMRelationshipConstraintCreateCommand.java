@@ -15,7 +15,7 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
 
   @Override
   public boolean canExecute() {
-    return target != null && source != null && relationCons != null && relcon != null
+    return target != null && source != null && relationCons != null && parent != null
         && rlship != null;
   }
 
@@ -23,7 +23,7 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
   public void execute() {
     relationCons.setSource(source);
     relationCons.setTarget(target);
-    relationCons.setRelationContainer(relcon);
+    relationCons.setRelationContainer(parent);
     relationCons.setRelation(rlship);
 
     if (rlship.getRlshipConstraints().size() > 1) {

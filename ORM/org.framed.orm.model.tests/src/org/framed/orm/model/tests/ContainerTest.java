@@ -6,24 +6,24 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
+import org.framed.orm.model.Container;
 import org.framed.orm.model.OrmFactory;
-import org.framed.orm.model.RelationContainer;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Relation Container</b></em>'.
+ * A test case for the model object '<em><b>Container</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationContainerTest extends TestCase {
+public class ContainerTest extends TestCase {
 
   /**
-   * The fixture for this Relation Container test case.
+   * The fixture for this Container test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RelationContainer fixture = null;
+  protected Container fixture = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -31,36 +31,36 @@ public class RelationContainerTest extends TestCase {
    * @generated
    */
   public static void main(String[] args) {
-    TestRunner.run(RelationContainerTest.class);
+    TestRunner.run(ContainerTest.class);
   }
 
   /**
-   * Constructs a new Relation Container test case with the given name.
+   * Constructs a new Container test case with the given name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public RelationContainerTest(String name) {
+  public ContainerTest(String name) {
     super(name);
   }
 
   /**
-   * Sets the fixture for this Relation Container test case.
+   * Sets the fixture for this Container test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void setFixture(RelationContainer fixture) {
+  protected void setFixture(Container fixture) {
     this.fixture = fixture;
   }
 
   /**
-   * Returns the fixture for this Relation Container test case.
+   * Returns the fixture for this Container test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RelationContainer getFixture() {
+  protected Container getFixture() {
     return fixture;
   }
 
@@ -72,7 +72,7 @@ public class RelationContainerTest extends TestCase {
    */
   @Override
   protected void setUp() throws Exception {
-    setFixture(OrmFactory.eINSTANCE.createRelationContainer());
+    setFixture(OrmFactory.eINSTANCE.createContainer());
   }
 
   /**
@@ -86,4 +86,4 @@ public class RelationContainerTest extends TestCase {
     setFixture(null);
   }
 
-} //RelationContainerTest
+} //ContainerTest

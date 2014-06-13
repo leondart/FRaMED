@@ -85,13 +85,13 @@ public interface OrmFactory extends EFactory {
   RoleType createRoleType();
 
   /**
-   * Returns a new object of class '<em>Relation Container</em>'.
+   * Returns a new object of class '<em>Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Relation Container</em>'.
+   * @return a new object of class '<em>Container</em>'.
    * @generated
    */
-  RelationContainer createRelationContainer();
+  Container createContainer();
 
   /**
    * Returns a new object of class '<em>Role Group</em>'.

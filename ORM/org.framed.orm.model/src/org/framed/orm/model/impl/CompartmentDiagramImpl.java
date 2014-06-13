@@ -25,7 +25,7 @@ import org.framed.orm.model.OrmPackage;
  *
  * @generated
  */
-public class CompartmentDiagramImpl extends RelationContainerImpl implements CompartmentDiagram {
+public class CompartmentDiagramImpl extends ContainerImpl implements CompartmentDiagram {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -7,7 +7,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
-import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
@@ -17,7 +17,7 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
   /** Relation to be deleted. */
   private RelationshipConstraint relation;
   /** RelationContainer that owns the relation. */
-  private RelationContainer relationCon;
+  private Container parent;
   /** Source of the relation. */
   private Node source;
   /** Target of the relation. */
@@ -45,7 +45,7 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
   @Override
   public void execute() {
 
-    relationCon = relation.getRelationContainer();
+    parent = relation.getRelationContainer();
     source = relation.getSource();
     target = relation.getTarget();
     rlship = relation.getRelation();
@@ -80,7 +80,7 @@ public class ORMRealtionshipConstraintDeleteCommand extends Command {
   public void undo() {
     relation.setSource(source);
     relation.setTarget(target);
-    relation.setRelationContainer(relationCon);
+    relation.setRelationContainer(parent);
     relation.setRelation(rlship);
 
     if (rlship.getRlshipConstraints().size() != 0

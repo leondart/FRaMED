@@ -6,7 +6,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
@@ -23,9 +22,8 @@ import org.framed.orm.model.Rolemodel;
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getOutgoingLinks <em>Outgoing Links</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getRolemodel <em>Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.GroupingImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
  * </ul>
  * </p>
  *
@@ -122,8 +120,8 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompartmentDiagram getCompartmentDiagram() {
-    return (CompartmentDiagram) eGet(OrmPackage.Literals.GROUPING__COMPARTMENT_DIAGRAM, true);
+  public org.framed.orm.model.Container getContainer() {
+    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.NODE__CONTAINER, true);
   }
 
   /**
@@ -131,8 +129,8 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCompartmentDiagram(CompartmentDiagram newCompartmentDiagram) {
-    eSet(OrmPackage.Literals.GROUPING__COMPARTMENT_DIAGRAM, newCompartmentDiagram);
+  public void setContainer(org.framed.orm.model.Container newContainer) {
+    eSet(OrmPackage.Literals.NODE__CONTAINER, newContainer);
   }
 
   /**
@@ -151,24 +149,6 @@ public class GroupingImpl extends MinimalEObjectImpl.Container implements Groupi
    */
   public void setRolemodel(Rolemodel newRolemodel) {
     eSet(OrmPackage.Literals.GROUPING__ROLEMODEL, newRolemodel);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Rolemodel getParentRolemodel() {
-    return (Rolemodel) eGet(OrmPackage.Literals.GROUPING__PARENT_ROLEMODEL, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentRolemodel(Rolemodel newParentRolemodel) {
-    eSet(OrmPackage.Literals.GROUPING__PARENT_ROLEMODEL, newParentRolemodel);
   }
 
 } //GroupingImpl

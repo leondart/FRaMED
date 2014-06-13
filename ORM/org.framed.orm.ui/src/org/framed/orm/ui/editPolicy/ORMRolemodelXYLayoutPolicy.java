@@ -10,6 +10,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
@@ -69,7 +70,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(),
             DEFAULT_TYPE_DIMENSION_ROLEGROUP));
-        command.setParentRolemodel((Rolemodel) getHost().getModel());
+        command.setContainer((Container) getHost().getModel());
 
         retVal = command;
       }
@@ -82,7 +83,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
         command.setConstraints(new Rectangle(constraints.getLocation(),
             DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));
-        command.setParentRolemodel((Rolemodel) getHost().getModel());
+        command.setContainer((Container) getHost().getModel());
 
         retVal = command;
       }
@@ -100,7 +101,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(),
             DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));
-        command.setParentRolemodel((Rolemodel) getHost().getModel());
+        command.setContainer((Container) getHost().getModel());
         retVal = command;
       }
 
@@ -123,7 +124,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         command.setCompartment(ct);
         command.setRolemodel(rm);
         compoundcommand.add(command);
-        command.setParentRolemodel((Rolemodel) getHost().getModel());
+        command.setContainer((Container) getHost().getModel());
         retVal = compoundcommand;
       }
 
@@ -147,7 +148,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         command.setGrouping(group);
         command.setRolemodel(rm);
         compoundcommand.add(command);
-        command.setParentRolemodel((Rolemodel) getHost().getModel());
+        command.setContainer((Container) getHost().getModel());
         retVal = compoundcommand;
       }
     }

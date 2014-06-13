@@ -3,9 +3,8 @@ package org.framed.orm.ui.command.types;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski
@@ -14,8 +13,7 @@ public class ORMNaturalTypeCreateCommand extends Command {
 	
 		private NaturalType naturalType;
 		private Rectangle   constraints;
-		private Rolemodel   parentrolemodel;
-		private CompartmentDiagram   cd;
+		private Container   parent;
 		
 		public ORMNaturalTypeCreateCommand(){
 		  super.setLabel("ORMNaturalTypeCreate");
@@ -39,16 +37,14 @@ public class ORMNaturalTypeCreateCommand extends Command {
 			naturalType.setConstraints(constraints);
 			// for Attribute/Methode list expanding 
 			naturalType.setIsExpand(true);
-		   if(parentrolemodel != null) naturalType.setParentRolemodel(parentrolemodel);
-		   if(cd != null) naturalType.setCompartmentDiagram(cd);
+			naturalType.setContainer(parent);
 		}
 		
 		/**
 		 * Remove the {@link NaturalType} from the container {@link CompartmentDiagram} or Rolemodel.
 		 */
 		@Override public void undo() {
-			naturalType.setParentRolemodel(null);
-			naturalType.setCompartmentDiagram(null);
+			naturalType.setContainer(null);
 		}
 
 	
@@ -62,13 +58,8 @@ public class ORMNaturalTypeCreateCommand extends Command {
 			this.naturalType = node;
 		}
 		
-		
-		public void setParentRolemodel(final Rolemodel rm) {
-			this.parentrolemodel = rm;
-		}
-		
-		public void setCd(final CompartmentDiagram cd) {
-			this.cd = cd;
+		public void setContainer(final Container parent) {
+			this.parent = parent;
 		}
 	
 }

@@ -10,10 +10,7 @@ import org.framed.orm.model.Constraint;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.RelationContainer;
-import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.model.Rolemodel;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,8 +26,6 @@ import org.framed.orm.model.Rolemodel;
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getDim2BP <em>Dim2 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getFirst <em>First</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getSecond <em>Second</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleTypeImpl#getParentRoleGroup <em>Parent Role Group</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,8 +56,9 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
    * <!-- end-user-doc -->
    * @generated
    */
-  public RelationContainer getRelationContainer() {
-    return (RelationContainer) eGet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, true);
+  public org.framed.orm.model.Container getRelationContainer() {
+    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.RELATION__RELATION_CONTAINER,
+        true);
   }
 
   /**
@@ -70,7 +66,7 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRelationContainer(RelationContainer newRelationContainer) {
+  public void setRelationContainer(org.framed.orm.model.Container newRelationContainer) {
     eSet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, newRelationContainer);
   }
 
@@ -171,42 +167,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Rolemodel getParentRolemodel() {
-    return (Rolemodel) eGet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLEMODEL, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentRolemodel(Rolemodel newParentRolemodel) {
-    eSet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLEMODEL, newParentRolemodel);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RoleGroup getParentRoleGroup() {
-    return (RoleGroup) eGet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLE_GROUP, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentRoleGroup(RoleGroup newParentRoleGroup) {
-    eSet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLE_GROUP, newParentRoleGroup);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
     if (baseClass == Relation.class) {
@@ -237,10 +197,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
           return OrmPackage.ABSTRACT_ROLE__FIRST;
         case OrmPackage.ROLE_TYPE__SECOND:
           return OrmPackage.ABSTRACT_ROLE__SECOND;
-        case OrmPackage.ROLE_TYPE__PARENT_ROLEMODEL:
-          return OrmPackage.ABSTRACT_ROLE__PARENT_ROLEMODEL;
-        case OrmPackage.ROLE_TYPE__PARENT_ROLE_GROUP:
-          return OrmPackage.ABSTRACT_ROLE__PARENT_ROLE_GROUP;
         default:
           return -1;
       }
@@ -283,10 +239,6 @@ public class RoleTypeImpl extends TypeImpl implements RoleType {
           return OrmPackage.ROLE_TYPE__FIRST;
         case OrmPackage.ABSTRACT_ROLE__SECOND:
           return OrmPackage.ROLE_TYPE__SECOND;
-        case OrmPackage.ABSTRACT_ROLE__PARENT_ROLEMODEL:
-          return OrmPackage.ROLE_TYPE__PARENT_ROLEMODEL;
-        case OrmPackage.ABSTRACT_ROLE__PARENT_ROLE_GROUP:
-          return OrmPackage.ROLE_TYPE__PARENT_ROLE_GROUP;
         default:
           return -1;
       }

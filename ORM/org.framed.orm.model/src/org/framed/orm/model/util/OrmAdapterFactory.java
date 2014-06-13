@@ -112,8 +112,8 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseRelationContainer(RelationContainer object) {
-      return createRelationContainerAdapter();
+    public Adapter caseContainer(Container object) {
+      return createContainerAdapter();
     }
 
     @Override
@@ -358,16 +358,16 @@ public class OrmAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.framed.orm.model.RelationContainer <em>Relation Container</em>}'.
+   * Creates a new adapter for an object of class '{@link org.framed.orm.model.Container <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.framed.orm.model.RelationContainer
+   * @see org.framed.orm.model.Container
    * @generated
    */
-  public Adapter createRelationContainerAdapter() {
+  public Adapter createContainerAdapter() {
     return null;
   }
 

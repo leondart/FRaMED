@@ -220,7 +220,8 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS);
+      childrenFeatures.add(OrmPackage.Literals.CONTAINER__RELATIONS);
+      childrenFeatures.add(OrmPackage.Literals.CONTAINER__NODES);
     }
     return childrenFeatures;
   }
@@ -279,6 +280,7 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
             true));
         return;
       case OrmPackage.ROLE_GROUP__RELATIONS:
+      case OrmPackage.ROLE_GROUP__NODES:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
             false));
         return;
@@ -296,41 +298,79 @@ public class RoleGroupItemProvider extends ConstraintItemProvider implements
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleType()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleGroup()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createTotal()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createFulfillment()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleEquivalence()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createAcyclic()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createInheritance()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRelationship()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleProhibition()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createIrreflexive()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleImplication()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createComplexConstraint()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createNaturalType()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createCompartment()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createGrouping()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createRoleType()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createRoleGroup()));
+  }
+
+  /**
+   * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getCreateChildText(Object owner, Object feature, Object child,
+      Collection<?> selection) {
+    Object childFeature = feature;
+    Object childObject = child;
+
+    boolean qualify =
+        childFeature == OrmPackage.Literals.CONTAINER__RELATIONS
+            || childFeature == OrmPackage.Literals.CONTAINER__NODES;
+
+    if (qualify) {
+      return getString("_UI_CreateChild_text2", new Object[] {getTypeText(childObject),
+          getFeatureText(childFeature), getTypeText(owner)});
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
   }
 
 }

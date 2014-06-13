@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.framed.orm.model.Inheritance;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.RelationContainer;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,8 +62,9 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
    * <!-- end-user-doc -->
    * @generated
    */
-  public RelationContainer getRelationContainer() {
-    return (RelationContainer) eGet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, true);
+  public org.framed.orm.model.Container getRelationContainer() {
+    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.RELATION__RELATION_CONTAINER,
+        true);
   }
 
   /**
@@ -72,7 +72,7 @@ public class InheritanceImpl extends MinimalEObjectImpl.Container implements Inh
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRelationContainer(RelationContainer newRelationContainer) {
+  public void setRelationContainer(org.framed.orm.model.Container newRelationContainer) {
     eSet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, newRelationContainer);
   }
 

@@ -9,6 +9,7 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.AbstractRole;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
@@ -45,7 +46,7 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
 
       command.setConstraints(new Rectangle(constraints.getLocation(),
           DEFAULT_TYPE_DIMENSION_ROLE_Natural));
-      command.setParentRoleGroup((RoleGroup) getHost().getModel());
+      command.setContainer((Container) getHost().getModel());
       retVal = command;
     }
 
@@ -57,7 +58,7 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
 
       command.setConstraints(new Rectangle(constraints.getLocation(),
           DEFAULT_TYPE_DIMENSION_ROLE_Natural));
-      command.setParentRoleGroup((RoleGroup) getHost().getModel());
+      command.setContainer((Container) getHost().getModel());
       retVal = command;
     }
     return retVal;

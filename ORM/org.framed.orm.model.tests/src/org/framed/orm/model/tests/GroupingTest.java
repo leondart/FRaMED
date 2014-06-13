@@ -13,12 +13,6 @@ import org.framed.orm.model.OrmFactory;
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Grouping</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are tested:
- * <ul>
- *   <li>{@link org.framed.orm.model.Grouping#getCompartmentDiagram() <em>Compartment Diagram</em>}</li>
- * </ul>
- * </p>
  * @generated
  */
 public class GroupingTest extends TestCase {
@@ -90,32 +84,6 @@ public class GroupingTest extends TestCase {
   @Override
   protected void tearDown() throws Exception {
     setFixture(null);
-  }
-
-  /**
-   * Tests the '{@link org.framed.orm.model.Grouping#getCompartmentDiagram() <em>Compartment Diagram</em>}' feature getter.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.framed.orm.model.Grouping#getCompartmentDiagram()
-   * @generated
-   */
-  public void testGetCompartmentDiagram() {
-    // TODO: implement this feature getter test method
-    // Ensure that you remove @generated or mark it @generated NOT
-    fail();
-  }
-
-  /**
-   * Tests the '{@link org.framed.orm.model.Grouping#setCompartmentDiagram(org.framed.orm.model.CompartmentDiagram) <em>Compartment Diagram</em>}' feature setter.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.framed.orm.model.Grouping#setCompartmentDiagram(org.framed.orm.model.CompartmentDiagram)
-   * @generated
-   */
-  public void testSetCompartmentDiagram() {
-    // TODO: implement this feature setter test method
-    // Ensure that you remove @generated or mark it @generated NOT
-    fail();
   }
 
 } //GroupingTest

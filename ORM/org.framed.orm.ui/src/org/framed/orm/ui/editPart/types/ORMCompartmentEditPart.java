@@ -18,7 +18,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.ui.actions.SaveAction;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.framed.orm.model.AbstractRole;
@@ -54,11 +53,11 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
   private PartFigure rolePart = null;
 
   @Override
-  public Rectangle getConstraints(){
+  public Rectangle getConstraints() {
     Compartment model = (Compartment) getModel();
     return model.getConstraints();
   }
-  
+
   @Override
   protected IFigure createFigure() {
     final Compartment model = (Compartment) getModel();
@@ -69,7 +68,8 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
     // when this compartment editpart is not "opened" use as figure ORMCompartmentV1Figure
     if (getParent().getModel() instanceof Rolemodel
         || getParent().getModel() instanceof CompartmentDiagram) {
-      ORMCompartmentV1Figure figure1 = new ORMCompartmentV1Figure(editorPart.getIsEditorData(),(Node) getModel());
+      ORMCompartmentV1Figure figure1 =
+          new ORMCompartmentV1Figure(editorPart.getIsEditorData(), (Node) getModel());
 
       fig = figure1;
     }
@@ -122,25 +122,21 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
       children.addAll(rm.getParticipants());
 
       for (AbstractRole role : children) {
-        ORMLabelFigure label = new ORMLabelFigure((Node)getModel());
+        ORMLabelFigure label = new ORMLabelFigure((Node) getModel());
         Label label2 = new Label();
         String labelText;
-        
+
         label2.setText("For Editing please go in the Compartment.");
         sizeList = rolePart.getChildren().size();
 
-        
-        if (role instanceof RoleType)
-          labelText = ((RoleType) role).getName();
+        labelText = ((Node) role).getName();
+
+        label.setText(labelText);
+        label.setToolTip(label2);
+        if (sizeList <= 3)
+          rolePart.add(label);
         else
-          labelText = ((RoleGroup) role).getName();
-          
-          label.setText(labelText);
-          label.setToolTip(label2);
-          if (sizeList <= 3)
-            rolePart.add(label);
-          else
-            collectLabels.add(label);
+          collectLabels.add(label);
       }
 
       if (sizeList > 3) {
@@ -200,21 +196,12 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
           Label label2 = new Label();
           label2.setText("For Editing please go in the Compartment.");
           sizeList = rolePart.getChildren().size();
-          if (role instanceof RoleType) {
-            label.setText(((RoleType) role).getName());
-            label.setToolTip(label2);
-            if (sizeList <= 3)
-              rolePart.add(label);
-            else
-              collectLabels.add(label);
-          } else {
-            label.setText(((RoleGroup) role).getName());
-            label.setToolTip(label2);
-            if (sizeList <= 3)
-              rolePart.add(label);
-            else
-              collectLabels.add(label);
-          }
+          label.setText(((Node) role).getName());
+          label.setToolTip(label2);
+          if (sizeList <= 3)
+            rolePart.add(label);
+          else
+            collectLabels.add(label);
         }
 
         if (sizeList > 3) {
@@ -237,10 +224,10 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
 
     ORMCompartmentV2Figure figure = (ORMCompartmentV2Figure) getFigure();
     Type model = (Type) getModel();
-    
+
     ExpandStateChangeCommand command = new ExpandStateChangeCommand();
     command.setContainer(model);
-    
+
     SaveAction save = new SaveAction(editorPart);
     Image imageExpand =
         new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -248,13 +235,13 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
     Image imageCollapse =
         new Image(null, Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/collapseArrow3.png").createImage(), SWT.IMAGE_COPY);
-    
+
     if (model.isIsExpand()) {
       figure.getListAttMet().remove(figure.getAttributeFigure());
-      
+
       if (!isEditorData)
         figure.getListAttMet().remove(figure.getMethodeFigure());
-      
+
       ((Label) figure.getButton().getChildren().get(0)).setIcon(imageExpand);
       getViewer().getEditDomain().getCommandStack().execute(command);
 

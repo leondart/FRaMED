@@ -2,12 +2,14 @@
  */
 package org.framed.orm.model.impl;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Rolemodel;
 
@@ -29,7 +31,7 @@ import org.framed.orm.model.Rolemodel;
  *
  * @generated
  */
-public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
+public class RolemodelImpl extends ContainerImpl implements Rolemodel {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -52,31 +54,46 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
-  @SuppressWarnings("unchecked")
   public EList<Compartment> getSubcontexts() {
-    return (EList<Compartment>) eGet(OrmPackage.Literals.ROLEMODEL__SUBCONTEXTS, true);
+    EList<Compartment> subcontexts = new BasicEList<Compartment>();
+    for (Node node : getNodes()) {
+      if (node instanceof Compartment) {
+        subcontexts.add((Compartment) node);
+      }
+    }
+    return subcontexts;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
-  @SuppressWarnings("unchecked")
   public EList<AbstractRole> getParticipants() {
-    return (EList<AbstractRole>) eGet(OrmPackage.Literals.ROLEMODEL__PARTICIPANTS, true);
+    EList<AbstractRole> participants = new BasicEList<AbstractRole>();
+    for (Node node : getNodes()) {
+      if (node instanceof AbstractRole) {
+        participants.add((AbstractRole) node);
+      }
+    }
+    return participants;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
-  @SuppressWarnings("unchecked")
   public EList<NaturalType> getPlayers() {
-    return (EList<NaturalType>) eGet(OrmPackage.Literals.ROLEMODEL__PLAYERS, true);
+    EList<NaturalType> players = new BasicEList<NaturalType>();
+    for (Node node : getNodes()) {
+      if (node instanceof NaturalType) {
+        players.add((NaturalType) node);
+      }
+    }
+    return players;
   }
 
   /**
@@ -118,11 +135,16 @@ public class RolemodelImpl extends RelationContainerImpl implements Rolemodel {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
-  @SuppressWarnings("unchecked")
   public EList<Grouping> getGroups() {
-    return (EList<Grouping>) eGet(OrmPackage.Literals.ROLEMODEL__GROUPS, true);
+    EList<Grouping> groups = new BasicEList<Grouping>();
+    for (Node node : getNodes()) {
+      if (node instanceof Grouping) {
+        groups.add((Grouping) node);
+      }
+    }
+    return groups;
   }
 
 } //RolemodelImpl

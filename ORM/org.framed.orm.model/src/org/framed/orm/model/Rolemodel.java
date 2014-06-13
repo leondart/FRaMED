@@ -25,11 +25,10 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Rolemodel extends RelationContainer {
+public interface Rolemodel extends Container {
   /**
    * Returns the value of the '<em><b>Subcontexts</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.Compartment}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Compartment#getParentRolemodel <em>Parent Rolemodel</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Subcontexts</em>' containment reference list isn't clear,
@@ -38,8 +37,7 @@ public interface Rolemodel extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Subcontexts</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getRolemodel_Subcontexts()
-   * @see org.framed.orm.model.Compartment#getParentRolemodel
-   * @model opposite="parentRolemodel" containment="true"
+   * @model containment="true"
    * @generated
    */
   EList<Compartment> getSubcontexts();
@@ -47,7 +45,6 @@ public interface Rolemodel extends RelationContainer {
   /**
    * Returns the value of the '<em><b>Participants</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.AbstractRole}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.AbstractRole#getParentRolemodel <em>Parent Rolemodel</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Participants</em>' containment reference list isn't clear,
@@ -56,8 +53,7 @@ public interface Rolemodel extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Participants</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getRolemodel_Participants()
-   * @see org.framed.orm.model.AbstractRole#getParentRolemodel
-   * @model opposite="parentRolemodel" containment="true"
+   * @model containment="true"
    * @generated
    */
   EList<AbstractRole> getParticipants();
@@ -65,7 +61,6 @@ public interface Rolemodel extends RelationContainer {
   /**
    * Returns the value of the '<em><b>Players</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.NaturalType}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.NaturalType#getParentRolemodel <em>Parent Rolemodel</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Players</em>' containment reference list isn't clear,
@@ -74,8 +69,7 @@ public interface Rolemodel extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Players</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getRolemodel_Players()
-   * @see org.framed.orm.model.NaturalType#getParentRolemodel
-   * @model opposite="parentRolemodel" containment="true"
+   * @model containment="true"
    * @generated
    */
   EList<NaturalType> getPlayers();
@@ -139,7 +133,6 @@ public interface Rolemodel extends RelationContainer {
   /**
    * Returns the value of the '<em><b>Groups</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.Grouping}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Grouping#getParentRolemodel <em>Parent Rolemodel</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Groups</em>' containment reference list isn't clear,
@@ -148,8 +141,7 @@ public interface Rolemodel extends RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Groups</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getRolemodel_Groups()
-   * @see org.framed.orm.model.Grouping#getParentRolemodel
-   * @model opposite="parentRolemodel" containment="true"
+   * @model containment="true"
    * @generated
    */
   EList<Grouping> getGroups();

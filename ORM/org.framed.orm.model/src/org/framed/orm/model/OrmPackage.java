@@ -197,13 +197,22 @@ public interface OrmPackage extends EPackage {
   int NODE__CONSTRAINTS = 3;
 
   /**
+   * The feature id for the '<em><b>Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NODE__CONTAINER = 4;
+
+  /**
    * The number of structural features of the '<em>Node</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NODE_FEATURE_COUNT = 4;
+  int NODE_FEATURE_COUNT = 5;
 
   /**
    * The number of operations of the '<em>Node</em>' class.
@@ -261,6 +270,15 @@ public interface OrmPackage extends EPackage {
   int TYPE__CONSTRAINTS = NODE__CONSTRAINTS;
 
   /**
+   * The feature id for the '<em><b>Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE__CONTAINER = NODE__CONTAINER;
+
+  /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -306,14 +324,14 @@ public interface OrmPackage extends EPackage {
   int TYPE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.framed.orm.model.impl.RelationContainerImpl <em>Relation Container</em>}' class.
+   * The meta object id for the '{@link org.framed.orm.model.impl.ContainerImpl <em>Container</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.framed.orm.model.impl.RelationContainerImpl
-   * @see org.framed.orm.model.impl.OrmPackageImpl#getRelationContainer()
+   * @see org.framed.orm.model.impl.ContainerImpl
+   * @see org.framed.orm.model.impl.OrmPackageImpl#getContainer()
    * @generated
    */
-  int RELATION_CONTAINER = 9;
+  int CONTAINER = 9;
 
   /**
    * The feature id for the '<em><b>Relations</b></em>' containment reference list.
@@ -322,25 +340,34 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int RELATION_CONTAINER__RELATIONS = 0;
+  int CONTAINER__RELATIONS = 0;
 
   /**
-   * The number of structural features of the '<em>Relation Container</em>' class.
+   * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATION_CONTAINER_FEATURE_COUNT = 1;
+  int CONTAINER__NODES = 1;
 
   /**
-   * The number of operations of the '<em>Relation Container</em>' class.
+   * The number of structural features of the '<em>Container</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATION_CONTAINER_OPERATION_COUNT = 0;
+  int CONTAINER_FEATURE_COUNT = 2;
+
+  /**
+   * The number of operations of the '<em>Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTAINER_OPERATION_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.framed.orm.model.impl.CompartmentDiagramImpl <em>Compartment Diagram</em>}' class.
@@ -359,7 +386,16 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_DIAGRAM__RELATIONS = RELATION_CONTAINER__RELATIONS;
+  int COMPARTMENT_DIAGRAM__RELATIONS = CONTAINER__RELATIONS;
+
+  /**
+   * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARTMENT_DIAGRAM__NODES = CONTAINER__NODES;
 
   /**
    * The feature id for the '<em><b>Compartments</b></em>' containment reference list.
@@ -368,7 +404,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_DIAGRAM__COMPARTMENTS = RELATION_CONTAINER_FEATURE_COUNT + 0;
+  int COMPARTMENT_DIAGRAM__COMPARTMENTS = CONTAINER_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Groups</b></em>' containment reference list.
@@ -377,7 +413,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_DIAGRAM__GROUPS = RELATION_CONTAINER_FEATURE_COUNT + 1;
+  int COMPARTMENT_DIAGRAM__GROUPS = CONTAINER_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Players</b></em>' containment reference list.
@@ -386,7 +422,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_DIAGRAM__PLAYERS = RELATION_CONTAINER_FEATURE_COUNT + 2;
+  int COMPARTMENT_DIAGRAM__PLAYERS = CONTAINER_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Compartment Diagram</em>' class.
@@ -395,7 +431,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_DIAGRAM_FEATURE_COUNT = RELATION_CONTAINER_FEATURE_COUNT + 3;
+  int COMPARTMENT_DIAGRAM_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 3;
 
   /**
    * The number of operations of the '<em>Compartment Diagram</em>' class.
@@ -404,7 +440,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_DIAGRAM_OPERATION_COUNT = RELATION_CONTAINER_OPERATION_COUNT + 0;
+  int COMPARTMENT_DIAGRAM_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.framed.orm.model.impl.NaturalTypeImpl <em>Natural Type</em>}' class.
@@ -453,6 +489,15 @@ public interface OrmPackage extends EPackage {
   int NATURAL_TYPE__CONSTRAINTS = TYPE__CONSTRAINTS;
 
   /**
+   * The feature id for the '<em><b>Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NATURAL_TYPE__CONTAINER = TYPE__CONTAINER;
+
+  /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -480,31 +525,13 @@ public interface OrmPackage extends EPackage {
   int NATURAL_TYPE__IS_EXPAND = TYPE__IS_EXPAND;
 
   /**
-   * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NATURAL_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Compartment Diagram</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NATURAL_TYPE__COMPARTMENT_DIAGRAM = TYPE_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Natural Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NATURAL_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+  int NATURAL_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
 
   /**
    * The number of operations of the '<em>Natural Type</em>' class.
@@ -562,6 +589,15 @@ public interface OrmPackage extends EPackage {
   int COMPARTMENT__CONSTRAINTS = TYPE__CONSTRAINTS;
 
   /**
+   * The feature id for the '<em><b>Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMPARTMENT__CONTAINER = TYPE__CONTAINER;
+
+  /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -589,31 +625,13 @@ public interface OrmPackage extends EPackage {
   int COMPARTMENT__IS_EXPAND = TYPE__IS_EXPAND;
 
   /**
-   * The feature id for the '<em><b>Compartment Diagram</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARTMENT__COMPARTMENT_DIAGRAM = TYPE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Rolemodel</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPARTMENT__ROLEMODEL = TYPE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPARTMENT__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 2;
+  int COMPARTMENT__ROLEMODEL = TYPE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Compartment</em>' class.
@@ -622,7 +640,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int COMPARTMENT_FEATURE_COUNT = TYPE_FEATURE_COUNT + 3;
+  int COMPARTMENT_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Compartment</em>' class.
@@ -680,13 +698,13 @@ public interface OrmPackage extends EPackage {
   int GROUPING__CONSTRAINTS = NODE__CONSTRAINTS;
 
   /**
-   * The feature id for the '<em><b>Compartment Diagram</b></em>' container reference.
+   * The feature id for the '<em><b>Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GROUPING__COMPARTMENT_DIAGRAM = NODE_FEATURE_COUNT + 0;
+  int GROUPING__CONTAINER = NODE__CONTAINER;
 
   /**
    * The feature id for the '<em><b>Rolemodel</b></em>' containment reference.
@@ -695,16 +713,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GROUPING__ROLEMODEL = NODE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GROUPING__PARENT_ROLEMODEL = NODE_FEATURE_COUNT + 2;
+  int GROUPING__ROLEMODEL = NODE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Grouping</em>' class.
@@ -713,7 +722,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int GROUPING_FEATURE_COUNT = NODE_FEATURE_COUNT + 3;
+  int GROUPING_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Grouping</em>' class.
@@ -769,6 +778,15 @@ public interface OrmPackage extends EPackage {
    * @ordered
    */
   int ROLE_TYPE__CONSTRAINTS = TYPE__CONSTRAINTS;
+
+  /**
+   * The feature id for the '<em><b>Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_TYPE__CONTAINER = TYPE__CONTAINER;
 
   /**
    * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
@@ -861,31 +879,13 @@ public interface OrmPackage extends EPackage {
   int ROLE_TYPE__SECOND = TYPE_FEATURE_COUNT + 6;
 
   /**
-   * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_TYPE__PARENT_ROLEMODEL = TYPE_FEATURE_COUNT + 7;
-
-  /**
-   * The feature id for the '<em><b>Parent Role Group</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_TYPE__PARENT_ROLE_GROUP = TYPE_FEATURE_COUNT + 8;
-
-  /**
    * The number of structural features of the '<em>Role Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 9;
+  int ROLE_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 7;
 
   /**
    * The number of operations of the '<em>Role Type</em>' class.
@@ -1116,31 +1116,13 @@ public interface OrmPackage extends EPackage {
   int ABSTRACT_ROLE__SECOND = CONSTRAINT_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABSTRACT_ROLE__PARENT_ROLEMODEL = CONSTRAINT_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Parent Role Group</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABSTRACT_ROLE__PARENT_ROLE_GROUP = CONSTRAINT_FEATURE_COUNT + 3;
-
-  /**
    * The number of structural features of the '<em>Abstract Role</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABSTRACT_ROLE_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 4;
+  int ABSTRACT_ROLE_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Abstract Role</em>' class.
@@ -1225,24 +1207,6 @@ public interface OrmPackage extends EPackage {
   int ROLE_GROUP__SECOND = ABSTRACT_ROLE__SECOND;
 
   /**
-   * The feature id for the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_GROUP__PARENT_ROLEMODEL = ABSTRACT_ROLE__PARENT_ROLEMODEL;
-
-  /**
-   * The feature id for the '<em><b>Parent Role Group</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ROLE_GROUP__PARENT_ROLE_GROUP = ABSTRACT_ROLE__PARENT_ROLE_GROUP;
-
-  /**
    * The feature id for the '<em><b>Incoming Links</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1279,13 +1243,31 @@ public interface OrmPackage extends EPackage {
   int ROLE_GROUP__CONSTRAINTS = ABSTRACT_ROLE_FEATURE_COUNT + 3;
 
   /**
+   * The feature id for the '<em><b>Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_GROUP__CONTAINER = ABSTRACT_ROLE_FEATURE_COUNT + 4;
+
+  /**
    * The feature id for the '<em><b>Relations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROLE_GROUP__RELATIONS = ABSTRACT_ROLE_FEATURE_COUNT + 4;
+  int ROLE_GROUP__RELATIONS = ABSTRACT_ROLE_FEATURE_COUNT + 5;
+
+  /**
+   * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLE_GROUP__NODES = ABSTRACT_ROLE_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>Lower</b></em>' attribute.
@@ -1294,7 +1276,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_GROUP__LOWER = ABSTRACT_ROLE_FEATURE_COUNT + 5;
+  int ROLE_GROUP__LOWER = ABSTRACT_ROLE_FEATURE_COUNT + 7;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -1303,7 +1285,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_GROUP__ITEMS = ABSTRACT_ROLE_FEATURE_COUNT + 6;
+  int ROLE_GROUP__ITEMS = ABSTRACT_ROLE_FEATURE_COUNT + 8;
 
   /**
    * The feature id for the '<em><b>Upper</b></em>' attribute.
@@ -1312,7 +1294,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_GROUP__UPPER = ABSTRACT_ROLE_FEATURE_COUNT + 7;
+  int ROLE_GROUP__UPPER = ABSTRACT_ROLE_FEATURE_COUNT + 9;
 
   /**
    * The number of structural features of the '<em>Role Group</em>' class.
@@ -1321,7 +1303,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLE_GROUP_FEATURE_COUNT = ABSTRACT_ROLE_FEATURE_COUNT + 8;
+  int ROLE_GROUP_FEATURE_COUNT = ABSTRACT_ROLE_FEATURE_COUNT + 10;
 
   /**
    * The number of operations of the '<em>Role Group</em>' class.
@@ -1349,7 +1331,16 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__RELATIONS = RELATION_CONTAINER__RELATIONS;
+  int ROLEMODEL__RELATIONS = CONTAINER__RELATIONS;
+
+  /**
+   * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROLEMODEL__NODES = CONTAINER__NODES;
 
   /**
    * The feature id for the '<em><b>Subcontexts</b></em>' containment reference list.
@@ -1358,7 +1349,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__SUBCONTEXTS = RELATION_CONTAINER_FEATURE_COUNT + 0;
+  int ROLEMODEL__SUBCONTEXTS = CONTAINER_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Participants</b></em>' containment reference list.
@@ -1367,7 +1358,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__PARTICIPANTS = RELATION_CONTAINER_FEATURE_COUNT + 1;
+  int ROLEMODEL__PARTICIPANTS = CONTAINER_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Players</b></em>' containment reference list.
@@ -1376,7 +1367,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__PLAYERS = RELATION_CONTAINER_FEATURE_COUNT + 2;
+  int ROLEMODEL__PLAYERS = CONTAINER_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Compartment</b></em>' container reference.
@@ -1385,7 +1376,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__COMPARTMENT = RELATION_CONTAINER_FEATURE_COUNT + 3;
+  int ROLEMODEL__COMPARTMENT = CONTAINER_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Parent Group</b></em>' container reference.
@@ -1394,7 +1385,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__PARENT_GROUP = RELATION_CONTAINER_FEATURE_COUNT + 4;
+  int ROLEMODEL__PARENT_GROUP = CONTAINER_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Groups</b></em>' containment reference list.
@@ -1403,7 +1394,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL__GROUPS = RELATION_CONTAINER_FEATURE_COUNT + 5;
+  int ROLEMODEL__GROUPS = CONTAINER_FEATURE_COUNT + 5;
 
   /**
    * The number of structural features of the '<em>Rolemodel</em>' class.
@@ -1412,7 +1403,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL_FEATURE_COUNT = RELATION_CONTAINER_FEATURE_COUNT + 6;
+  int ROLEMODEL_FEATURE_COUNT = CONTAINER_FEATURE_COUNT + 6;
 
   /**
    * The number of operations of the '<em>Rolemodel</em>' class.
@@ -1421,7 +1412,7 @@ public interface OrmPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ROLEMODEL_OPERATION_COUNT = RELATION_CONTAINER_OPERATION_COUNT + 0;
+  int ROLEMODEL_OPERATION_COUNT = CONTAINER_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.framed.orm.model.impl.RelationshipConstraintImpl <em>Relationship Constraint</em>}' class.
@@ -2871,28 +2862,6 @@ public interface OrmPackage extends EPackage {
   EClass getNaturalType();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.NaturalType#getParentRolemodel <em>Parent Rolemodel</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Parent Rolemodel</em>'.
-   * @see org.framed.orm.model.NaturalType#getParentRolemodel()
-   * @see #getNaturalType()
-   * @generated
-   */
-  EReference getNaturalType_ParentRolemodel();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.NaturalType#getCompartmentDiagram <em>Compartment Diagram</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Compartment Diagram</em>'.
-   * @see org.framed.orm.model.NaturalType#getCompartmentDiagram()
-   * @see #getNaturalType()
-   * @generated
-   */
-  EReference getNaturalType_CompartmentDiagram();
-
-  /**
    * Returns the meta object for class '{@link org.framed.orm.model.Compartment <em>Compartment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2901,17 +2870,6 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EClass getCompartment();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Compartment#getCompartmentDiagram <em>Compartment Diagram</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Compartment Diagram</em>'.
-   * @see org.framed.orm.model.Compartment#getCompartmentDiagram()
-   * @see #getCompartment()
-   * @generated
-   */
-  EReference getCompartment_CompartmentDiagram();
 
   /**
    * Returns the meta object for the containment reference '{@link org.framed.orm.model.Compartment#getRolemodel <em>Rolemodel</em>}'.
@@ -2925,17 +2883,6 @@ public interface OrmPackage extends EPackage {
   EReference getCompartment_Rolemodel();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Compartment#getParentRolemodel <em>Parent Rolemodel</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Parent Rolemodel</em>'.
-   * @see org.framed.orm.model.Compartment#getParentRolemodel()
-   * @see #getCompartment()
-   * @generated
-   */
-  EReference getCompartment_ParentRolemodel();
-
-  /**
    * Returns the meta object for class '{@link org.framed.orm.model.Grouping <em>Grouping</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2944,17 +2891,6 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EClass getGrouping();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Compartment Diagram</em>'.
-   * @see org.framed.orm.model.Grouping#getCompartmentDiagram()
-   * @see #getGrouping()
-   * @generated
-   */
-  EReference getGrouping_CompartmentDiagram();
 
   /**
    * Returns the meta object for the containment reference '{@link org.framed.orm.model.Grouping#getRolemodel <em>Rolemodel</em>}'.
@@ -2966,17 +2902,6 @@ public interface OrmPackage extends EPackage {
    * @generated
    */
   EReference getGrouping_Rolemodel();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.Grouping#getParentRolemodel <em>Parent Rolemodel</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Parent Rolemodel</em>'.
-   * @see org.framed.orm.model.Grouping#getParentRolemodel()
-   * @see #getGrouping()
-   * @generated
-   */
-  EReference getGrouping_ParentRolemodel();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.Node <em>Node</em>}'.
@@ -3033,6 +2958,17 @@ public interface OrmPackage extends EPackage {
   EAttribute getNode_Constraints();
 
   /**
+   * Returns the meta object for the container reference '{@link org.framed.orm.model.Node#getContainer <em>Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Container</em>'.
+   * @see org.framed.orm.model.Node#getContainer()
+   * @see #getNode()
+   * @generated
+   */
+  EReference getNode_Container();
+
+  /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleType <em>Role Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3043,25 +2979,36 @@ public interface OrmPackage extends EPackage {
   EClass getRoleType();
 
   /**
-   * Returns the meta object for class '{@link org.framed.orm.model.RelationContainer <em>Relation Container</em>}'.
+   * Returns the meta object for class '{@link org.framed.orm.model.Container <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Relation Container</em>'.
-   * @see org.framed.orm.model.RelationContainer
+   * @return the meta object for class '<em>Container</em>'.
+   * @see org.framed.orm.model.Container
    * @generated
    */
-  EClass getRelationContainer();
+  EClass getContainer();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.framed.orm.model.RelationContainer#getRelations <em>Relations</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.framed.orm.model.Container#getRelations <em>Relations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Relations</em>'.
-   * @see org.framed.orm.model.RelationContainer#getRelations()
-   * @see #getRelationContainer()
+   * @see org.framed.orm.model.Container#getRelations()
+   * @see #getContainer()
    * @generated
    */
-  EReference getRelationContainer_Relations();
+  EReference getContainer_Relations();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.framed.orm.model.Container#getNodes <em>Nodes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Nodes</em>'.
+   * @see org.framed.orm.model.Container#getNodes()
+   * @see #getContainer()
+   * @generated
+   */
+  EReference getContainer_Nodes();
 
   /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleGroup <em>Role Group</em>}'.
@@ -3575,28 +3522,6 @@ public interface OrmPackage extends EPackage {
   EReference getAbstractRole_Second();
 
   /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.AbstractRole#getParentRolemodel <em>Parent Rolemodel</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Parent Rolemodel</em>'.
-   * @see org.framed.orm.model.AbstractRole#getParentRolemodel()
-   * @see #getAbstractRole()
-   * @generated
-   */
-  EReference getAbstractRole_ParentRolemodel();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.framed.orm.model.AbstractRole#getParentRoleGroup <em>Parent Role Group</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Parent Role Group</em>'.
-   * @see org.framed.orm.model.AbstractRole#getParentRoleGroup()
-   * @see #getAbstractRole()
-   * @generated
-   */
-  EReference getAbstractRole_ParentRoleGroup();
-
-  /**
    * Returns the meta object for class '{@link org.framed.orm.model.ComplexConstraint <em>Complex Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3846,22 +3771,6 @@ public interface OrmPackage extends EPackage {
     EClass NATURAL_TYPE = eINSTANCE.getNaturalType();
 
     /**
-     * The meta object literal for the '<em><b>Parent Rolemodel</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NATURAL_TYPE__PARENT_ROLEMODEL = eINSTANCE.getNaturalType_ParentRolemodel();
-
-    /**
-     * The meta object literal for the '<em><b>Compartment Diagram</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NATURAL_TYPE__COMPARTMENT_DIAGRAM = eINSTANCE.getNaturalType_CompartmentDiagram();
-
-    /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.CompartmentImpl <em>Compartment</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3872,28 +3781,12 @@ public interface OrmPackage extends EPackage {
     EClass COMPARTMENT = eINSTANCE.getCompartment();
 
     /**
-     * The meta object literal for the '<em><b>Compartment Diagram</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMPARTMENT__COMPARTMENT_DIAGRAM = eINSTANCE.getCompartment_CompartmentDiagram();
-
-    /**
      * The meta object literal for the '<em><b>Rolemodel</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference COMPARTMENT__ROLEMODEL = eINSTANCE.getCompartment_Rolemodel();
-
-    /**
-     * The meta object literal for the '<em><b>Parent Rolemodel</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMPARTMENT__PARENT_ROLEMODEL = eINSTANCE.getCompartment_ParentRolemodel();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.GroupingImpl <em>Grouping</em>}' class.
@@ -3906,28 +3799,12 @@ public interface OrmPackage extends EPackage {
     EClass GROUPING = eINSTANCE.getGrouping();
 
     /**
-     * The meta object literal for the '<em><b>Compartment Diagram</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference GROUPING__COMPARTMENT_DIAGRAM = eINSTANCE.getGrouping_CompartmentDiagram();
-
-    /**
      * The meta object literal for the '<em><b>Rolemodel</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference GROUPING__ROLEMODEL = eINSTANCE.getGrouping_Rolemodel();
-
-    /**
-     * The meta object literal for the '<em><b>Parent Rolemodel</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference GROUPING__PARENT_ROLEMODEL = eINSTANCE.getGrouping_ParentRolemodel();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.Node <em>Node</em>}' class.
@@ -3972,6 +3849,14 @@ public interface OrmPackage extends EPackage {
     EAttribute NODE__CONSTRAINTS = eINSTANCE.getNode_Constraints();
 
     /**
+     * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NODE__CONTAINER = eINSTANCE.getNode_Container();
+
+    /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleTypeImpl <em>Role Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3982,14 +3867,14 @@ public interface OrmPackage extends EPackage {
     EClass ROLE_TYPE = eINSTANCE.getRoleType();
 
     /**
-     * The meta object literal for the '{@link org.framed.orm.model.impl.RelationContainerImpl <em>Relation Container</em>}' class.
+     * The meta object literal for the '{@link org.framed.orm.model.impl.ContainerImpl <em>Container</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.framed.orm.model.impl.RelationContainerImpl
-     * @see org.framed.orm.model.impl.OrmPackageImpl#getRelationContainer()
+     * @see org.framed.orm.model.impl.ContainerImpl
+     * @see org.framed.orm.model.impl.OrmPackageImpl#getContainer()
      * @generated
      */
-    EClass RELATION_CONTAINER = eINSTANCE.getRelationContainer();
+    EClass CONTAINER = eINSTANCE.getContainer();
 
     /**
      * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
@@ -3997,7 +3882,15 @@ public interface OrmPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RELATION_CONTAINER__RELATIONS = eINSTANCE.getRelationContainer_Relations();
+    EReference CONTAINER__RELATIONS = eINSTANCE.getContainer_Relations();
+
+    /**
+     * The meta object literal for the '<em><b>Nodes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTAINER__NODES = eINSTANCE.getContainer_Nodes();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleGroupImpl <em>Role Group</em>}' class.
@@ -4416,22 +4309,6 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EReference ABSTRACT_ROLE__SECOND = eINSTANCE.getAbstractRole_Second();
-
-    /**
-     * The meta object literal for the '<em><b>Parent Rolemodel</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ABSTRACT_ROLE__PARENT_ROLEMODEL = eINSTANCE.getAbstractRole_ParentRolemodel();
-
-    /**
-     * The meta object literal for the '<em><b>Parent Role Group</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ABSTRACT_ROLE__PARENT_ROLE_GROUP = eINSTANCE.getAbstractRole_ParentRoleGroup();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.ComplexConstraintImpl <em>Complex Constraint</em>}' class.

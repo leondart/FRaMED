@@ -13,8 +13,6 @@ package org.framed.orm.model;
  * <ul>
  *   <li>{@link org.framed.orm.model.AbstractRole#getFirst <em>First</em>}</li>
  *   <li>{@link org.framed.orm.model.AbstractRole#getSecond <em>Second</em>}</li>
- *   <li>{@link org.framed.orm.model.AbstractRole#getParentRolemodel <em>Parent Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.AbstractRole#getParentRoleGroup <em>Parent Role Group</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,61 +72,5 @@ public interface AbstractRole extends Constraint {
    * @generated
    */
   void setSecond(RoleType value);
-
-  /**
-   * Returns the value of the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Rolemodel#getParticipants <em>Participants</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Parent Rolemodel</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Parent Rolemodel</em>' container reference.
-   * @see #setParentRolemodel(Rolemodel)
-   * @see org.framed.orm.model.OrmPackage#getAbstractRole_ParentRolemodel()
-   * @see org.framed.orm.model.Rolemodel#getParticipants
-   * @model opposite="participants" transient="false"
-   * @generated
-   */
-  Rolemodel getParentRolemodel();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.AbstractRole#getParentRolemodel <em>Parent Rolemodel</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parent Rolemodel</em>' container reference.
-   * @see #getParentRolemodel()
-   * @generated
-   */
-  void setParentRolemodel(Rolemodel value);
-
-  /**
-   * Returns the value of the '<em><b>Parent Role Group</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RoleGroup#getItems <em>Items</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Parent Role Group</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Parent Role Group</em>' container reference.
-   * @see #setParentRoleGroup(RoleGroup)
-   * @see org.framed.orm.model.OrmPackage#getAbstractRole_ParentRoleGroup()
-   * @see org.framed.orm.model.RoleGroup#getItems
-   * @model opposite="items" transient="false"
-   * @generated
-   */
-  RoleGroup getParentRoleGroup();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.AbstractRole#getParentRoleGroup <em>Parent Role Group</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parent Role Group</em>' container reference.
-   * @see #getParentRoleGroup()
-   * @generated
-   */
-  void setParentRoleGroup(RoleGroup value);
 
 } // AbstractRole

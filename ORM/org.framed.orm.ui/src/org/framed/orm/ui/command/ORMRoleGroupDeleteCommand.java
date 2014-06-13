@@ -10,16 +10,15 @@ import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Container;
 
 /**
  * @author Kay Bierzynski
  * */
 public class ORMRoleGroupDeleteCommand extends Command {
 
-
-  private RoleGroup roleGroup, parentRoleGroup;
-  private Rolemodel parentrolemodel;
+  private Container parent;
+  private RoleGroup roleGroup;
 
   private List<Relation> relations;
   /** List which contains all roletypes and rolegroups that are in this rolegroup */
@@ -29,24 +28,20 @@ public class ORMRoleGroupDeleteCommand extends Command {
   /** Targets for the relations that start or end at this node. */
   private Map<Relation, Node> targetLinks;
 
-  public ORMRoleGroupDeleteCommand(){
+  public ORMRoleGroupDeleteCommand() {
     super.setLabel("ORMRoleGroupDelete");
   }
 
   @Override
   public void execute() {
     detachLinks();
-    roleGroup.setParentRolemodel(null);
-    roleGroup.setParentRoleGroup(null);
+    roleGroup.setContainer(null);
   }
 
   @Override
   public void undo() {
     reattachLinks();
-    if (parentrolemodel != null)
-      roleGroup.setParentRolemodel(parentrolemodel);
-    if (parentRoleGroup != null)
-      roleGroup.setParentRoleGroup(parentRoleGroup);
+    roleGroup.setContainer(parent);
   }
 
   /**
@@ -107,16 +102,12 @@ public class ORMRoleGroupDeleteCommand extends Command {
     for (Relation link : relations) {
       link.setSource(sourceLinks.get(link));
       link.setTarget(targetLinks.get(link));
-      if (parentrolemodel != null)
-        link.setRelationContainer(parentrolemodel);
-      if (parentRoleGroup != null)
-        link.setRelationContainer(parentRoleGroup);
+      link.setRelationContainer(parent);
     }
   }
 
   public void setRoleGroup(RoleGroup roleGroup) {
     this.roleGroup = roleGroup;
-    this.parentrolemodel = roleGroup.getParentRolemodel();
-    this.parentRoleGroup = roleGroup.getParentRoleGroup();
+    this.parent = roleGroup.getContainer();
   }
 }

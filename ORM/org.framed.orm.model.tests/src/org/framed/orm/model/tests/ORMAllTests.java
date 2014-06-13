@@ -31,7 +31,6 @@ public class ORMAllTests extends TestSuite {
    */
   public static Test suite() {
     TestSuite suite = new ORMAllTests("ORM Tests");
-    suite.addTest(OrmTests.suite());
     return suite;
   }
 

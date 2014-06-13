@@ -31,9 +31,6 @@ public class OrmTests extends TestSuite {
    */
   public static Test suite() {
     TestSuite suite = new OrmTests("orm Tests");
-    suite.addTestSuite(NaturalTypeTest.class);
-    suite.addTestSuite(CompartmentTest.class);
-    suite.addTestSuite(GroupingTest.class);
     return suite;
   }
 

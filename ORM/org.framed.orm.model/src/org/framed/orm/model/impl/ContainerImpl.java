@@ -3,33 +3,37 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.RelationContainer;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Relation Container</b></em>'.
+ * An implementation of the model object '<em><b>Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.RelationContainerImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ContainerImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ContainerImpl#getNodes <em>Nodes</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RelationContainerImpl extends MinimalEObjectImpl.Container implements
-    RelationContainer {
+public class ContainerImpl extends MinimalEObjectImpl.Container implements
+    org.framed.orm.model.Container {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RelationContainerImpl() {
+  protected ContainerImpl() {
     super();
   }
 
@@ -40,7 +44,7 @@ public class RelationContainerImpl extends MinimalEObjectImpl.Container implemen
    */
   @Override
   protected EClass eStaticClass() {
-    return OrmPackage.Literals.RELATION_CONTAINER;
+    return OrmPackage.Literals.CONTAINER;
   }
 
   /**
@@ -60,7 +64,17 @@ public class RelationContainerImpl extends MinimalEObjectImpl.Container implemen
    */
   @SuppressWarnings("unchecked")
   public EList<Relation> getRelations() {
-    return (EList<Relation>) eGet(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS, true);
+    return (EList<Relation>) eGet(OrmPackage.Literals.CONTAINER__RELATIONS, true);
   }
 
-} //RelationContainerImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  public EList<Node> getNodes() {
+    return (EList<Node>) eGet(OrmPackage.Literals.CONTAINER__NODES, true);
+  }
+
+} //ContainerImpl

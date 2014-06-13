@@ -23,6 +23,7 @@ import org.framed.orm.model.Type;
  *   <li>{@link org.framed.orm.model.impl.TypeImpl#getOutgoingLinks <em>Outgoing Links</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.TypeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.TypeImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.TypeImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.TypeImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.TypeImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.TypeImpl#isIsExpand <em>Is Expand</em>}</li>
@@ -115,6 +116,24 @@ public abstract class TypeImpl extends MinimalEObjectImpl.Container implements T
    */
   public void setConstraints(Rectangle newConstraints) {
     eSet(OrmPackage.Literals.NODE__CONSTRAINTS, newConstraints);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public org.framed.orm.model.Container getContainer() {
+    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.NODE__CONTAINER, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContainer(org.framed.orm.model.Container newContainer) {
+    eSet(OrmPackage.Literals.NODE__CONTAINER, newContainer);
   }
 
   /**

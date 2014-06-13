@@ -4,10 +4,8 @@
 package org.framed.orm.ui.command;
 
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.AbstractRole;
-import org.framed.orm.model.RelationContainer;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Node;
+import org.framed.orm.model.Container;
 
 /**
  * @author Lars Schuetze
@@ -15,8 +13,8 @@ import org.framed.orm.model.Rolemodel;
  */
 public class ORMOrphanChildCommand extends Command {
 
-  private RelationContainer parent;
-  private AbstractRole child;
+  private Container parent;
+  private Node child;
 
   public ORMOrphanChildCommand() {
     super("ORMOrphanChildCommand");
@@ -33,26 +31,20 @@ public class ORMOrphanChildCommand extends Command {
   }
 
   public void redo() {
-    child.setParentRoleGroup(null);
-    child.setParentRolemodel(null);
+    child.setContainer(null);
   }
 
   @Override
   public void undo() {
-    if (parent instanceof RoleGroup) {
-      child.setParentRolemodel(null);
-      child.setParentRoleGroup((RoleGroup) parent);
-    } else {
-      child.setParentRoleGroup(null);
-      child.setParentRolemodel((Rolemodel) parent);
-    }
+    
+      child.setContainer(parent);
   }
 
-  public void setChild(AbstractRole child) {
+  public void setChild(Node child) {
     this.child = child;
   }
 
-  public void setParent(RelationContainer parent) {
+  public void setParent(Container parent) {
     this.parent = parent;
   }
 }

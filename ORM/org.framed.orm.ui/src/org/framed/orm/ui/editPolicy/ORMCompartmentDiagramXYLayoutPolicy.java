@@ -11,8 +11,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
@@ -68,7 +68,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
       command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
-      command.setContainer((CompartmentDiagram) getHost().getModel());
+      command.setContainer((Container) getHost().getModel());
       command.setCompartment(ct);
       command.setRolemodel(rm);
 
@@ -95,7 +95,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
       command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
-      command.setContainer((CompartmentDiagram) getHost().getModel());
+      command.setContainer((Container) getHost().getModel());
       command.setGrouping(group);
       command.setRolemodel(rm);
 
@@ -113,7 +113,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       command.setNaturalType((NaturalType) (request.getNewObject()));
       command.setConstraints(new Rectangle(constraints.getLocation(),
           DEFAULT_TYPE_DIMENSION_ROLE_Natural));
-      command.setCd((CompartmentDiagram) getHost().getModel());
+      command.setContainer((Container) getHost().getModel());
 
       retVal = command;
     }

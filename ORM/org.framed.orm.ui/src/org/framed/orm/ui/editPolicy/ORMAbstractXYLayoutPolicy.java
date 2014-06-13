@@ -13,9 +13,8 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
-import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Node;
-import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Container;
 import org.framed.orm.ui.command.ORMAddCommand;
 
 /**
@@ -34,8 +33,8 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
     for (AbstractGraphicalEditPart part : parts) {
       Rectangle newConstraint = r;
       ORMAddCommand addCommand = new ORMAddCommand();
-      addCommand.setParent((RelationContainer) getHost().getModel());
-      addCommand.setChild((AbstractRole) part.getModel());
+      addCommand.setParent((Container) getHost().getModel());
+      addCommand.setChild((Node) part.getModel());
       if (part.getModel() instanceof Node) {
         Node n = (Node) part.getModel();
         newConstraint = new Rectangle(r.getLocation(), n.getConstraints().getSize());

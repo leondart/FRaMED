@@ -29,7 +29,7 @@ import org.framed.orm.model.Rolemodel;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RolemodelItemProvider extends RelationContainerItemProvider implements
+public class RolemodelItemProvider extends ContainerItemProvider implements
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
     IItemLabelProvider, IItemPropertySource {
   /**
@@ -175,8 +175,12 @@ public class RolemodelItemProvider extends RelationContainerItemProvider impleme
     Object childObject = child;
 
     boolean qualify =
-        childFeature == OrmPackage.Literals.RELATION_CONTAINER__RELATIONS
-            || childFeature == OrmPackage.Literals.ROLEMODEL__PARTICIPANTS;
+        childFeature == OrmPackage.Literals.CONTAINER__RELATIONS
+            || childFeature == OrmPackage.Literals.CONTAINER__NODES
+            || childFeature == OrmPackage.Literals.ROLEMODEL__PARTICIPANTS
+            || childFeature == OrmPackage.Literals.ROLEMODEL__PLAYERS
+            || childFeature == OrmPackage.Literals.ROLEMODEL__SUBCONTEXTS
+            || childFeature == OrmPackage.Literals.ROLEMODEL__GROUPS;
 
     if (qualify) {
       return getString("_UI_CreateChild_text2", new Object[] {getTypeText(childObject),

@@ -7,11 +7,11 @@ import java.util.Map;
 
 import org.eclipse.gef.commands.Command;
 
-import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Rolemodel;
+
 
 /**
  * @author Kay Bierzynski
@@ -19,8 +19,7 @@ import org.framed.orm.model.Rolemodel;
 public class ORMNaturalTypeDeleteCommand extends Command {
 	
 	  private NaturalType type;
-	  private Rolemodel parentrolemodel;
-	  private CompartmentDiagram cd;
+	  private Container parent;
 	  /** relations */
 	  private List<Relation> relations;
 	  /** Sources for the realtions that start or end at this node. */
@@ -35,15 +34,13 @@ public class ORMNaturalTypeDeleteCommand extends Command {
 	  @Override
 	  public void execute() {
 		detachLinks();
-	    type.setParentRolemodel(null);
-	    type.setCompartmentDiagram(null);
+	    type.setContainer(null);
 	  }
 	 
 	  @Override
 	  public void undo() {
 		reattachLinks();  
-	    if(parentrolemodel!=null) type.setParentRolemodel(parentrolemodel);
-	    if(cd!=null) type.setCompartmentDiagram(cd);
+	    type.setContainer(parent);
 	  }
 	 
 	  /**
@@ -73,15 +70,13 @@ public class ORMNaturalTypeDeleteCommand extends Command {
 	    for (Relation link : relations) {
 	      link.setSource(sourceLinks.get(link));
 	      link.setTarget(targetLinks.get(link));
-	      if(parentrolemodel != null) link.setRelationContainer(parentrolemodel);
-          if(cd != null) link.setRelationContainer(cd);
+	      link.setRelationContainer(parent);
 	    }
 	  }
 	  
 	  public void setType(NaturalType type) {
 	    this.type = type;
-	    this.parentrolemodel = type.getParentRolemodel();
-	    this.cd = type.getCompartmentDiagram();
+	    this.parent = type.getContainer();
 	  }
 	
 }

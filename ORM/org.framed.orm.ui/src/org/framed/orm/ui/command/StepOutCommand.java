@@ -4,6 +4,7 @@ package org.framed.orm.ui.command;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
+import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
@@ -36,9 +37,9 @@ public class StepOutCommand extends StepCommand {
       
       editorPart.setEditorType(EditorType.COMPARTMENT);
       
-      if (compartment.getParentRolemodel() != null) {
-        Compartment ct = compartment.getParentRolemodel().getCompartment();
-        Grouping group = compartment.getParentRolemodel().getParentGroup();
+      if (compartment.getContainer() instanceof Rolemodel) {
+        Compartment ct = ((Rolemodel)compartment.getContainer()).getCompartment();
+        Grouping group = ((Rolemodel)compartment.getContainer()).getParentGroup();
         // set the two editors on the same level
         if (ct != null) {
           ormMultiPageEditor.setContents(ct);
@@ -46,18 +47,19 @@ public class StepOutCommand extends StepCommand {
           ormMultiPageEditor.setContents(group);
         }
       } else {
-        CompartmentDiagram cd = compartment.getCompartmentDiagram();
+        CompartmentDiagram cd = (CompartmentDiagram)compartment.getContainer();
         // set tabs on the same level
         ormMultiPageEditor.setContents(cd);
       }
     } else {
-      if (((Grouping) editpart.getModel()).getParentRolemodel() != null) {
-        Grouping group = ((Grouping) editpart.getModel()).getParentRolemodel().getParentGroup();
+      final Grouping group = (Grouping) editpart.getModel();
+      if (group.getContainer() instanceof Rolemodel) {
+        Grouping parentgroup = ((Rolemodel)group.getContainer()).getParentGroup();
         // set tabs on the same level
-        ormMultiPageEditor.setContents(group);
+        ormMultiPageEditor.setContents(parentgroup);
         editorPart.setEditorType(EditorType.ROLES);
       } else {
-        CompartmentDiagram cd = ((Grouping) editpart.getModel()).getCompartmentDiagram();
+        CompartmentDiagram cd = (CompartmentDiagram)group.getContainer();
         // set tabs on the same level
         ormMultiPageEditor.setContents(cd);
         editorPart.setEditorType(EditorType.COMPARTMENT);

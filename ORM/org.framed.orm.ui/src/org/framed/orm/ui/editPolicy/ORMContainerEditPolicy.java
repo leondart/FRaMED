@@ -11,8 +11,8 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.ContainerEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.GroupRequest;
-import org.framed.orm.model.AbstractRole;
-import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Container;
+import org.framed.orm.model.Node;
 import org.framed.orm.ui.command.ORMOrphanChildCommand;
 
 /**
@@ -43,8 +43,8 @@ public class ORMContainerEditPolicy extends ContainerEditPolicy {
 
     for (EditPart part : list) {
       ORMOrphanChildCommand orphan = new ORMOrphanChildCommand();
-      orphan.setChild((AbstractRole) part.getModel());
-      orphan.setParent((RelationContainer) this.getHost().getModel());
+      orphan.setChild((Node) part.getModel());
+      orphan.setParent((Container) this.getHost().getModel());
       orphan.setLabel("Reparenting");
 
       result.add(orphan);

@@ -9,10 +9,8 @@ import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.RelationContainer;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.model.Rolemodel;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,13 +21,13 @@ import org.framed.orm.model.Rolemodel;
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getFirst <em>First</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getSecond <em>Second</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getParentRolemodel <em>Parent Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getParentRoleGroup <em>Parent Role Group</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getIncomingLinks <em>Incoming Links</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getOutgoingLinks <em>Outgoing Links</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getRelations <em>Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getNodes <em>Nodes</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getLower <em>Lower</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getItems <em>Items</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getUpper <em>Upper</em>}</li>
@@ -99,42 +97,6 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Rolemodel getParentRolemodel() {
-    return (Rolemodel) eGet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLEMODEL, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentRolemodel(Rolemodel newParentRolemodel) {
-    eSet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLEMODEL, newParentRolemodel);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RoleGroup getParentRoleGroup() {
-    return (RoleGroup) eGet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLE_GROUP, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentRoleGroup(RoleGroup newParentRoleGroup) {
-    eSet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT_ROLE_GROUP, newParentRoleGroup);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @SuppressWarnings("unchecked")
   public EList<Relation> getIncomingLinks() {
     return (EList<Relation>) eGet(OrmPackage.Literals.NODE__INCOMING_LINKS, true);
@@ -191,9 +153,37 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
+  public org.framed.orm.model.Container getContainer() {
+    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.NODE__CONTAINER, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContainer(org.framed.orm.model.Container newContainer) {
+    eSet(OrmPackage.Literals.NODE__CONTAINER, newContainer);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   public EList<Relation> getRelations() {
-    return (EList<Relation>) eGet(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS, true);
+    return (EList<Relation>) eGet(OrmPackage.Literals.CONTAINER__RELATIONS, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  public EList<Node> getNodes() {
+    return (EList<Node>) eGet(OrmPackage.Literals.CONTAINER__NODES, true);
   }
 
   /**
@@ -259,14 +249,18 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
           return OrmPackage.NODE__NAME;
         case OrmPackage.ROLE_GROUP__CONSTRAINTS:
           return OrmPackage.NODE__CONSTRAINTS;
+        case OrmPackage.ROLE_GROUP__CONTAINER:
+          return OrmPackage.NODE__CONTAINER;
         default:
           return -1;
       }
     }
-    if (baseClass == RelationContainer.class) {
+    if (baseClass == org.framed.orm.model.Container.class) {
       switch (derivedFeatureID) {
         case OrmPackage.ROLE_GROUP__RELATIONS:
-          return OrmPackage.RELATION_CONTAINER__RELATIONS;
+          return OrmPackage.CONTAINER__RELATIONS;
+        case OrmPackage.ROLE_GROUP__NODES:
+          return OrmPackage.CONTAINER__NODES;
         default:
           return -1;
       }
@@ -291,14 +285,18 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
           return OrmPackage.ROLE_GROUP__NAME;
         case OrmPackage.NODE__CONSTRAINTS:
           return OrmPackage.ROLE_GROUP__CONSTRAINTS;
+        case OrmPackage.NODE__CONTAINER:
+          return OrmPackage.ROLE_GROUP__CONTAINER;
         default:
           return -1;
       }
     }
-    if (baseClass == RelationContainer.class) {
+    if (baseClass == org.framed.orm.model.Container.class) {
       switch (baseFeatureID) {
-        case OrmPackage.RELATION_CONTAINER__RELATIONS:
+        case OrmPackage.CONTAINER__RELATIONS:
           return OrmPackage.ROLE_GROUP__RELATIONS;
+        case OrmPackage.CONTAINER__NODES:
+          return OrmPackage.ROLE_GROUP__NODES;
         default:
           return -1;
       }

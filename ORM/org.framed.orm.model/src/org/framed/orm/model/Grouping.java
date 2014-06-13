@@ -11,9 +11,7 @@ package org.framed.orm.model;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}</li>
  *   <li>{@link org.framed.orm.model.Grouping#getRolemodel <em>Rolemodel</em>}</li>
- *   <li>{@link org.framed.orm.model.Grouping#getParentRolemodel <em>Parent Rolemodel</em>}</li>
  * </ul>
  * </p>
  *
@@ -22,34 +20,6 @@ package org.framed.orm.model;
  * @generated
  */
 public interface Grouping extends Node {
-  /**
-   * Returns the value of the '<em><b>Compartment Diagram</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.CompartmentDiagram#getGroups <em>Groups</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Compartment Diagram</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Compartment Diagram</em>' container reference.
-   * @see #setCompartmentDiagram(CompartmentDiagram)
-   * @see org.framed.orm.model.OrmPackage#getGrouping_CompartmentDiagram()
-   * @see org.framed.orm.model.CompartmentDiagram#getGroups
-   * @model opposite="groups" transient="false" derived="true"
-   * @generated
-   */
-  CompartmentDiagram getCompartmentDiagram();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Grouping#getCompartmentDiagram <em>Compartment Diagram</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Compartment Diagram</em>' container reference.
-   * @see #getCompartmentDiagram()
-   * @generated
-   */
-  void setCompartmentDiagram(CompartmentDiagram value);
-
   /**
    * Returns the value of the '<em><b>Rolemodel</b></em>' containment reference.
    * It is bidirectional and its opposite is '{@link org.framed.orm.model.Rolemodel#getParentGroup <em>Parent Group</em>}'.
@@ -77,33 +47,5 @@ public interface Grouping extends Node {
    * @generated
    */
   void setRolemodel(Rolemodel value);
-
-  /**
-   * Returns the value of the '<em><b>Parent Rolemodel</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Rolemodel#getGroups <em>Groups</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Parent Rolemodel</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Parent Rolemodel</em>' container reference.
-   * @see #setParentRolemodel(Rolemodel)
-   * @see org.framed.orm.model.OrmPackage#getGrouping_ParentRolemodel()
-   * @see org.framed.orm.model.Rolemodel#getGroups
-   * @model opposite="groups" transient="false"
-   * @generated
-   */
-  Rolemodel getParentRolemodel();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Grouping#getParentRolemodel <em>Parent Rolemodel</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parent Rolemodel</em>' container reference.
-   * @see #getParentRolemodel()
-   * @generated
-   */
-  void setParentRolemodel(Rolemodel value);
 
 } // Grouping

@@ -93,7 +93,7 @@ public class OrmSwitch<T> extends Switch<T> {
         CompartmentDiagram compartmentDiagram = (CompartmentDiagram) theEObject;
         T result = caseCompartmentDiagram(compartmentDiagram);
         if (result == null)
-          result = caseRelationContainer(compartmentDiagram);
+          result = caseContainer(compartmentDiagram);
         if (result == null)
           result = defaultCase(theEObject);
         return result;
@@ -153,9 +153,9 @@ public class OrmSwitch<T> extends Switch<T> {
           result = defaultCase(theEObject);
         return result;
       }
-      case OrmPackage.RELATION_CONTAINER: {
-        RelationContainer relationContainer = (RelationContainer) theEObject;
-        T result = caseRelationContainer(relationContainer);
+      case OrmPackage.CONTAINER: {
+        Container container = (Container) theEObject;
+        T result = caseContainer(container);
         if (result == null)
           result = defaultCase(theEObject);
         return result;
@@ -168,7 +168,7 @@ public class OrmSwitch<T> extends Switch<T> {
         if (result == null)
           result = caseNode(roleGroup);
         if (result == null)
-          result = caseRelationContainer(roleGroup);
+          result = caseContainer(roleGroup);
         if (result == null)
           result = caseConstraint(roleGroup);
         if (result == null)
@@ -181,7 +181,7 @@ public class OrmSwitch<T> extends Switch<T> {
         Rolemodel rolemodel = (Rolemodel) theEObject;
         T result = caseRolemodel(rolemodel);
         if (result == null)
-          result = caseRelationContainer(rolemodel);
+          result = caseContainer(rolemodel);
         if (result == null)
           result = defaultCase(theEObject);
         return result;
@@ -510,17 +510,17 @@ public class OrmSwitch<T> extends Switch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Relation Container</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Relation Container</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Container</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRelationContainer(RelationContainer object) {
+  public T caseContainer(Container object) {
     return null;
   }
 

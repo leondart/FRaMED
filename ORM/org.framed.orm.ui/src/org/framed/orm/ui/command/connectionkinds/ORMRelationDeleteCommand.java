@@ -6,7 +6,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Container;
 
 /**
  * @author Kay Bierzynski
@@ -16,7 +16,7 @@ public class ORMRelationDeleteCommand extends Command {
   /** Relation to be deleted. */
   private Relation relation;
   /** RelationContainer that owns the relatiob. */
-  private RelationContainer relationCon;
+  private Container parent;
   /** Source of the relation. */
   private Node source;
   /** Target of the relation. */
@@ -43,7 +43,7 @@ public class ORMRelationDeleteCommand extends Command {
    */
   @Override
   public void execute() {
-    relationCon = relation.getRelationContainer();
+    parent = relation.getRelationContainer();
     source = relation.getSource();
     target = relation.getTarget();
     dim1BPList.addAll(relation.getDim1BP());
@@ -63,7 +63,7 @@ public class ORMRelationDeleteCommand extends Command {
   public void undo() {
     relation.setSource(source);
     relation.setTarget(target);
-    relation.setRelationContainer(relationCon);
+    relation.setRelationContainer(parent);
     relation.getDim1BP().addAll(dim1BPList);
     relation.getDim2BP().addAll(dim2BPList);
     

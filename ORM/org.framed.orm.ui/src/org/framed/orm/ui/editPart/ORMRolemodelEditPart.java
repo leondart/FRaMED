@@ -91,10 +91,8 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
   protected List getModelChildren() {
     List children = new ArrayList();
     Rolemodel rm = (Rolemodel) getModel();
-    children.addAll(rm.getSubcontexts());
-    children.addAll(rm.getPlayers());
-    children.addAll(rm.getParticipants());
-    children.addAll(rm.getGroups());
+    children.addAll(rm.getNodes());
+
     return children;
   }
 

@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Parthood;
-import org.framed.orm.model.RelationContainer;
 import org.framed.orm.model.RelationLabel;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
@@ -72,16 +71,17 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public RelationContainer getRelationContainer() {
-    return (RelationContainer) eGet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, true);
+  public org.framed.orm.model.Container getRelationContainer() {
+    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.RELATION__RELATION_CONTAINER,
+        true);
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setRelationContainer(RelationContainer newRelationContainer) {
+  public void setRelationContainer(org.framed.orm.model.Container newRelationContainer) {
     eSet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, newRelationContainer);
   }
 

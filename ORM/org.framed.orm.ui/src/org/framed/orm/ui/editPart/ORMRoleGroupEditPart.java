@@ -23,7 +23,6 @@ import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.swt.widgets.Display;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RoleGroup;
@@ -121,7 +120,7 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     List children = new ArrayList();
 
     RoleGroup roleGroup = (RoleGroup) getModel();
-    children.addAll(roleGroup.getItems());
+    children.addAll(roleGroup.getNodes());
 
     return children;
   }

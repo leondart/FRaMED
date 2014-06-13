@@ -57,9 +57,8 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
   protected List getModelChildren() {
     List contexts = new ArrayList();
     CompartmentDiagram cd = (CompartmentDiagram) getModel();
-    contexts.addAll(cd.getCompartments());
-    contexts.addAll(cd.getGroups());
-    contexts.addAll(cd.getPlayers());
+    contexts.addAll(cd.getNodes());
+
     return contexts;
   }
 

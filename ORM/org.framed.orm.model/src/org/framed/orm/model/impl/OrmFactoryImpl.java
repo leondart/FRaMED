@@ -10,30 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.framed.orm.model.Acyclic;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.ComplexConstraint;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.Inheritance;
-import org.framed.orm.model.Irreflexive;
-import org.framed.orm.model.Method;
-import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.OrmFactory;
-import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.Parthood;
-import org.framed.orm.model.RelationContainer;
-import org.framed.orm.model.RelationLabel;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RoleEquivalence;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleImplication;
-import org.framed.orm.model.RoleProhibition;
-import org.framed.orm.model.RoleType;
-import org.framed.orm.model.Rolemodel;
-import org.framed.orm.model.Total;
+import org.framed.orm.model.*;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -88,8 +65,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
         return createGrouping();
       case OrmPackage.ROLE_TYPE:
         return createRoleType();
-      case OrmPackage.RELATION_CONTAINER:
-        return createRelationContainer();
+      case OrmPackage.CONTAINER:
+        return createContainer();
       case OrmPackage.ROLE_GROUP:
         return createRoleGroup();
       case OrmPackage.ROLEMODEL:
@@ -231,13 +208,13 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public RelationContainer createRelationContainer() {
-    RelationContainerImpl relationContainer = new RelationContainerImpl();
-    return relationContainer;
+  public org.framed.orm.model.Container createContainer() {
+    ContainerImpl container = new ContainerImpl();
+    return container;
   }
 
   /**

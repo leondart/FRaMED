@@ -13,7 +13,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompartmentDiagramTest extends RelationContainerTest {
+public class CompartmentDiagramTest extends ContainerTest {
 
   /**
    * <!-- begin-user-doc -->

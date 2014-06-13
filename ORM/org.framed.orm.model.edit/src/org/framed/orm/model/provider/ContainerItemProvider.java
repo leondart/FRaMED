@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -21,18 +20,17 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
+import org.framed.orm.model.Container;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.RelationContainer;
 
 /**
- * This is the item provider adapter for a {@link org.framed.orm.model.RelationContainer} object.
+ * This is the item provider adapter for a {@link org.framed.orm.model.Container} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationContainerItemProvider extends ItemProviderAdapter implements
+public class ContainerItemProvider extends ItemProviderAdapter implements
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
     IItemLabelProvider, IItemPropertySource {
   /**
@@ -41,7 +39,7 @@ public class RelationContainerItemProvider extends ItemProviderAdapter implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public RelationContainerItemProvider(AdapterFactory adapterFactory) {
+  public ContainerItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -72,7 +70,8 @@ public class RelationContainerItemProvider extends ItemProviderAdapter implement
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS);
+      childrenFeatures.add(OrmPackage.Literals.CONTAINER__RELATIONS);
+      childrenFeatures.add(OrmPackage.Literals.CONTAINER__NODES);
     }
     return childrenFeatures;
   }
@@ -91,14 +90,14 @@ public class RelationContainerItemProvider extends ItemProviderAdapter implement
   }
 
   /**
-   * This returns RelationContainer.gif.
+   * This returns Container.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/RelationContainer"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Container"));
   }
 
   /**
@@ -109,7 +108,7 @@ public class RelationContainerItemProvider extends ItemProviderAdapter implement
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_RelationContainer_type");
+    return getString("_UI_Container_type");
   }
 
   /**
@@ -123,8 +122,9 @@ public class RelationContainerItemProvider extends ItemProviderAdapter implement
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(RelationContainer.class)) {
-      case OrmPackage.RELATION_CONTAINER__RELATIONS:
+    switch (notification.getFeatureID(Container.class)) {
+      case OrmPackage.CONTAINER__RELATIONS:
+      case OrmPackage.CONTAINER__NODES:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
             false));
         return;
@@ -143,41 +143,79 @@ public class RelationContainerItemProvider extends ItemProviderAdapter implement
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleType()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleGroup()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createTotal()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createFulfillment()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleEquivalence()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createAcyclic()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createInheritance()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRelationship()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleProhibition()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createIrreflexive()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createRoleImplication()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.RELATION_CONTAINER__RELATIONS,
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__RELATIONS,
         OrmFactory.eINSTANCE.createComplexConstraint()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createNaturalType()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createCompartment()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createGrouping()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createRoleType()));
+
+    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.CONTAINER__NODES,
+        OrmFactory.eINSTANCE.createRoleGroup()));
+  }
+
+  /**
+   * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getCreateChildText(Object owner, Object feature, Object child,
+      Collection<?> selection) {
+    Object childFeature = feature;
+    Object childObject = child;
+
+    boolean qualify =
+        childFeature == OrmPackage.Literals.CONTAINER__RELATIONS
+            || childFeature == OrmPackage.Literals.CONTAINER__NODES;
+
+    if (qualify) {
+      return getString("_UI_CreateChild_text2", new Object[] {getTypeText(childObject),
+          getFeatureText(childFeature), getTypeText(owner)});
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
   }
 
   /**

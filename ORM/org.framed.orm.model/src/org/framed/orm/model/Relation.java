@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Relation extends EObject {
   /**
    * Returns the value of the '<em><b>Relation Container</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationContainer#getRelations <em>Relations</em>}'.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Container#getRelations <em>Relations</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Relation Container</em>' container reference isn't clear,
@@ -39,13 +39,13 @@ public interface Relation extends EObject {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Relation Container</em>' container reference.
-   * @see #setRelationContainer(RelationContainer)
+   * @see #setRelationContainer(Container)
    * @see org.framed.orm.model.OrmPackage#getRelation_RelationContainer()
-   * @see org.framed.orm.model.RelationContainer#getRelations
+   * @see org.framed.orm.model.Container#getRelations
    * @model opposite="relations" transient="false"
    * @generated
    */
-  RelationContainer getRelationContainer();
+  Container getRelationContainer();
 
   /**
    * Sets the value of the '{@link org.framed.orm.model.Relation#getRelationContainer <em>Relation Container</em>}' container reference.
@@ -55,7 +55,7 @@ public interface Relation extends EObject {
    * @see #getRelationContainer()
    * @generated
    */
-  void setRelationContainer(RelationContainer value);
+  void setRelationContainer(Container value);
 
   /**
    * Returns the value of the '<em><b>Target</b></em>' reference.

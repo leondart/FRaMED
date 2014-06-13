@@ -17,7 +17,7 @@ import org.framed.orm.model.Irreflexive;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.model.RoleEquivalence;
@@ -121,57 +121,22 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     // Fufillment start
     if (oTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class)
         || oTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class)) {
-      if (getHost().getModel() instanceof NaturalType) {
-        if (((NaturalType) getHost().getModel()).getParentRolemodel() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((NaturalType) getHost().getModel()).getParentRolemodel());
-        if (((NaturalType) getHost().getModel()).getCompartmentDiagram() != null)
-          retVal =
-              setupConnectionStartCommand(request, ((NaturalType) getHost().getModel()).getCompartmentDiagram());
-      } else {
-        if (((Compartment) getHost().getModel()).getParentRolemodel() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((Compartment) getHost().getModel()).getParentRolemodel());
-        if (((Compartment) getHost().getModel()).getCompartmentDiagram() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((Compartment) getHost().getModel()).getCompartmentDiagram());
-      }
+
+      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
+
     }
     // Role Implication start
     if (oTMCheck(request, RoleImplication.class, AbstractRole.class)) {
-      if (((AbstractRole) getHost().getModel()).getParentRolemodel() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRolemodel());
-      if (((AbstractRole) getHost().getModel()).getParentRoleGroup() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRoleGroup());
+      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
     }
     // Role Equivalence start
     if (oTMCheck(request, RoleEquivalence.class, AbstractRole.class)) {
-      if (((AbstractRole) getHost().getModel()).getParentRolemodel() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRolemodel());
-      if (((AbstractRole) getHost().getModel()).getParentRoleGroup() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRoleGroup());
+
+      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
     }
     // Role Prohibition start
     if (oTMCheck(request, RoleProhibition.class, AbstractRole.class)) {
-      if (((AbstractRole) getHost().getModel()).getParentRolemodel() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRolemodel());
-      if (((AbstractRole) getHost().getModel()).getParentRoleGroup() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRoleGroup());
+      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
     }
 
     // Inheritance start
@@ -181,45 +146,12 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         && !(request.getTargetEditPart() instanceof ORMGroupingEditPart)
         && !(request.getTargetEditPart().getParent() instanceof ORMRoleGroupEditPart)) {
 
-      if (request.getTargetEditPart().getModel() instanceof AbstractRole) {
-        if (((RoleType) getHost().getModel()).getParentRolemodel() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((AbstractRole) getHost().getModel()).getParentRolemodel());
-        if (((RoleType) getHost().getModel()).getParentRoleGroup() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((AbstractRole) getHost().getModel()).getParentRoleGroup());
-      } else if (request.getTargetEditPart() instanceof ORMNaturalTypeEditPart) {
-        if (((NaturalType) getHost().getModel()).getParentRolemodel() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((NaturalType) getHost().getModel()).getParentRolemodel());
-        if (((NaturalType) getHost().getModel()).getCompartmentDiagram() != null)
-          retVal =
-              setupConnectionStartCommand(request, ((NaturalType) getHost().getModel()).getCompartmentDiagram());
-      } else if (request.getTargetEditPart() instanceof ORMCompartmentEditPart) {
-        if (((Compartment) getHost().getModel()).getParentRolemodel() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((Compartment) getHost().getModel()).getParentRolemodel());
-        if (((Compartment) getHost().getModel()).getCompartmentDiagram() != null)
-          retVal =
-              setupConnectionStartCommand(request,
-                  ((Compartment) getHost().getModel()).getCompartmentDiagram());
-      }
+      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
 
     }
     // Relationship start
     if (oTCheck(request, Relationship.class, ORMRoleTypeEditPart.class)) {
-      if (((RoleType) getHost().getModel()).getParentRolemodel() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRolemodel());
-      if (((RoleType) getHost().getModel()).getParentRoleGroup() != null)
-        retVal =
-            setupConnectionStartCommand(request,
-                ((AbstractRole) getHost().getModel()).getParentRoleGroup());
+      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
     }
 
     // Irreflexive Acyclic Total start
@@ -232,10 +164,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       result.setRelation((RelationshipConstraint) request.getNewObject());
       request.setStartCommand(result);
 
-      if (((RoleType) getHost().getModel()).getParentRolemodel() != null)
-        result.setRelationContainer(((AbstractRole) getHost().getModel()).getParentRolemodel());
-      if (((RoleType) getHost().getModel()).getParentRoleGroup() != null)
-        result.setRelationContainer(((AbstractRole) getHost().getModel()).getParentRoleGroup());
+      result.setRelationContainer(((Node) getHost().getModel()).getContainer());
 
       retVal = result;
     }
@@ -301,11 +230,11 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   }
 
   private ORMRelationCreateCommand setupConnectionStartCommand(CreateConnectionRequest request,
-      RelationContainer rm) {
+      Container container) {
     ORMRelationCreateCommand result = new ORMRelationCreateCommand();
     result.setSourceNode((Node) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
-    result.setRelationContainer(rm);
+    result.setRelationContainer(container);
     request.setStartCommand(result);
     return result;
   }

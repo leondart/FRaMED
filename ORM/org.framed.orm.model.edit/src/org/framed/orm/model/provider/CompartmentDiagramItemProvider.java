@@ -29,7 +29,7 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CompartmentDiagramItemProvider extends RelationContainerItemProvider implements
+public class CompartmentDiagramItemProvider extends ContainerItemProvider implements
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
     IItemLabelProvider, IItemPropertySource {
   /**
@@ -153,6 +153,32 @@ public class CompartmentDiagramItemProvider extends RelationContainerItemProvide
 
     newChildDescriptors.add(createChildParameter(OrmPackage.Literals.COMPARTMENT_DIAGRAM__PLAYERS,
         OrmFactory.eINSTANCE.createNaturalType()));
+  }
+
+  /**
+   * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getCreateChildText(Object owner, Object feature, Object child,
+      Collection<?> selection) {
+    Object childFeature = feature;
+    Object childObject = child;
+
+    boolean qualify =
+        childFeature == OrmPackage.Literals.CONTAINER__RELATIONS
+            || childFeature == OrmPackage.Literals.CONTAINER__NODES
+            || childFeature == OrmPackage.Literals.COMPARTMENT_DIAGRAM__PLAYERS
+            || childFeature == OrmPackage.Literals.COMPARTMENT_DIAGRAM__COMPARTMENTS
+            || childFeature == OrmPackage.Literals.COMPARTMENT_DIAGRAM__GROUPS;
+
+    if (qualify) {
+      return getString("_UI_CreateChild_text2", new Object[] {getTypeText(childObject),
+          getFeatureText(childFeature), getTypeText(owner)});
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
   }
 
 }

@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RoleGroup extends AbstractRole, Node, RelationContainer {
+public interface RoleGroup extends AbstractRole, Node, Container {
   /**
    * Returns the value of the '<em><b>Lower</b></em>' attribute.
    * The default value is <code>"0"</code>.
@@ -53,7 +53,6 @@ public interface RoleGroup extends AbstractRole, Node, RelationContainer {
   /**
    * Returns the value of the '<em><b>Items</b></em>' containment reference list.
    * The list contents are of type {@link org.framed.orm.model.AbstractRole}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.AbstractRole#getParentRoleGroup <em>Parent Role Group</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Items</em>' containment reference list isn't clear,
@@ -62,8 +61,7 @@ public interface RoleGroup extends AbstractRole, Node, RelationContainer {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Items</em>' containment reference list.
    * @see org.framed.orm.model.OrmPackage#getRoleGroup_Items()
-   * @see org.framed.orm.model.AbstractRole#getParentRoleGroup
-   * @model opposite="parentRoleGroup" containment="true"
+   * @model containment="true"
    * @generated
    */
   EList<AbstractRole> getItems();

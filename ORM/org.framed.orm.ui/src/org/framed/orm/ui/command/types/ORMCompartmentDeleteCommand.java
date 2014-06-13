@@ -7,11 +7,10 @@ import java.util.Map;
 
 import org.eclipse.gef.commands.Command;
 
-import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Container;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Rolemodel;
 
 /**
  * @author Kay Bierzynski
@@ -19,8 +18,7 @@ import org.framed.orm.model.Rolemodel;
 public class ORMCompartmentDeleteCommand extends Command {
 	
 	  private Compartment compartment;
-	  private CompartmentDiagram cd;
-	  private Rolemodel parentrolemodel;
+	  private Container parent;
 	  
 	  private List<Relation> relations;
 	  /** Sources for the relations that start or end  at this node. */
@@ -35,21 +33,18 @@ public class ORMCompartmentDeleteCommand extends Command {
 	  @Override
 	  public void execute() {
 		detachLinks();
-	    compartment.setCompartmentDiagram(null);
-	    compartment.setParentRolemodel(null);
+	    compartment.setContainer(null);
 	  }
 	 
 	  @Override
 	  public void undo() {
 	    reattachLinks();
-	  if(cd != null)  compartment.setCompartmentDiagram(cd);
-	  if(parentrolemodel !=null)   compartment.setParentRolemodel(parentrolemodel);
+	    compartment.setContainer(parent);
 	  }
 	 
 	  public void setCompartment(Compartment type) {
 	    this.compartment = type;
-	    this.cd = type.getCompartmentDiagram();
-	    this.parentrolemodel = type.getParentRolemodel();
+	    this.parent = type.getContainer();
 	  }
 	
 	  /**
@@ -79,8 +74,7 @@ public class ORMCompartmentDeleteCommand extends Command {
 	    for (Relation link : relations) {
 	      link.setSource(sourceLinks.get(link));
 	      link.setTarget(targetLinks.get(link));
-	      if(parentrolemodel != null) link.setRelationContainer(parentrolemodel);
-	      if(cd != null) link.setRelationContainer(cd);
+	      link.setRelationContainer(parent);
 	    }
 	  }
 }

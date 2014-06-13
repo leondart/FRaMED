@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.framed.orm.model.Node#getOutgoingLinks <em>Outgoing Links</em>}</li>
  *   <li>{@link org.framed.orm.model.Node#getName <em>Name</em>}</li>
  *   <li>{@link org.framed.orm.model.Node#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.framed.orm.model.Node#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -116,5 +117,33 @@ public interface Node extends EObject {
    * @generated
    */
   void setConstraints(Rectangle value);
+
+  /**
+   * Returns the value of the '<em><b>Container</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Container#getNodes <em>Nodes</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Container</em>' container reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Container</em>' container reference.
+   * @see #setContainer(Container)
+   * @see org.framed.orm.model.OrmPackage#getNode_Container()
+   * @see org.framed.orm.model.Container#getNodes
+   * @model opposite="nodes" transient="false"
+   * @generated
+   */
+  Container getContainer();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Node#getContainer <em>Container</em>}' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Container</em>' container reference.
+   * @see #getContainer()
+   * @generated
+   */
+  void setContainer(Container value);
 
 } // Node

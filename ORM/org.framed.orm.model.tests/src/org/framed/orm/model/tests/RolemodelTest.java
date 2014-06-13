@@ -13,7 +13,7 @@ import org.framed.orm.model.Rolemodel;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RolemodelTest extends RelationContainerTest {
+public class RolemodelTest extends ContainerTest {
 
   /**
    * <!-- begin-user-doc -->

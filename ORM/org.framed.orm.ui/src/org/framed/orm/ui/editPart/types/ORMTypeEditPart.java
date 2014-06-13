@@ -202,8 +202,8 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
   protected List getModelChildren() {
     List children = new ArrayList();
     Type type = (Type) getModel();
-    children.addAll(type.getOperations());
     children.addAll(type.getAttributes());
+    children.addAll(type.getOperations());
     if (getModel() instanceof Compartment) {
       Compartment type2 = (Compartment) getModel();
       children.add(type2.getRolemodel());

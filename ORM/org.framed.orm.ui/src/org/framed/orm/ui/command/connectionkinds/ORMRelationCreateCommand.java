@@ -7,7 +7,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.RelationContainer;
+import org.framed.orm.model.Container;
 
 /**
  * @author Kay Bierzynski
@@ -21,7 +21,7 @@ public class ORMRelationCreateCommand extends Command {
   /***/
   protected Relation relation;
   /***/
-  protected RelationContainer relcon;
+  protected Container parent;
 
   /***/
   public ORMRelationCreateCommand() {
@@ -31,7 +31,7 @@ public class ORMRelationCreateCommand extends Command {
   /***/
   @Override
   public boolean canExecute() {
-    return target != null && source != null && relation != null && relcon != null;
+    return target != null && source != null && relation != null && parent != null;
   }
 
   /***/
@@ -40,7 +40,7 @@ public class ORMRelationCreateCommand extends Command {
 
     relation.setSource(source);
     relation.setTarget(target);
-    relation.setRelationContainer(relcon);
+    relation.setRelationContainer(parent);
 
     // for self-loop
     if (source.equals(target)) {
@@ -94,7 +94,7 @@ public class ORMRelationCreateCommand extends Command {
       int yAbst = Math.abs(Math.abs(dim2P.y()) - Math.abs(dim1P.y()));
       if (relCount % 2 == 0) {
         relCount = relCount / 2;
-        if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xAbst == yAbst ) {
+        if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xAbst == yAbst) {
           dim1P.setX(-(dim1P.x() + relCount * 20));
           dim2P.setX(-(dim2P.x() + relCount * 20));
         } else {
@@ -146,7 +146,7 @@ public class ORMRelationCreateCommand extends Command {
   }
 
   /***/
-  public void setRelationContainer(final RelationContainer relcon) {
-    this.relcon = relcon;
+  public void setRelationContainer(final Container relcon) {
+    this.parent = relcon;
   }
 }

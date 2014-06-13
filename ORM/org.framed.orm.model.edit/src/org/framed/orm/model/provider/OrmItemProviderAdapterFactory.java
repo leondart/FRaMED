@@ -234,26 +234,26 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RelationContainer} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Container} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RelationContainerItemProvider relationContainerItemProvider;
+  protected ContainerItemProvider containerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.RelationContainer}.
+   * This creates an adapter for a {@link org.framed.orm.model.Container}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createRelationContainerAdapter() {
-    if (relationContainerItemProvider == null) {
-      relationContainerItemProvider = new RelationContainerItemProvider(this);
+  public Adapter createContainerAdapter() {
+    if (containerItemProvider == null) {
+      containerItemProvider = new ContainerItemProvider(this);
     }
 
-    return relationContainerItemProvider;
+    return containerItemProvider;
   }
 
   /**
@@ -668,8 +668,8 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
       groupingItemProvider.dispose();
     if (roleTypeItemProvider != null)
       roleTypeItemProvider.dispose();
-    if (relationContainerItemProvider != null)
-      relationContainerItemProvider.dispose();
+    if (containerItemProvider != null)
+      containerItemProvider.dispose();
     if (roleGroupItemProvider != null)
       roleGroupItemProvider.dispose();
     if (rolemodelItemProvider != null)
