@@ -10,19 +10,19 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepOutNewPageAction;
+import org.framed.orm.ui.command.ORMNodeDeleteCommand;
 import org.framed.orm.ui.command.StepInCommand;
 import org.framed.orm.ui.command.StepOutCommand;
 import org.framed.orm.ui.command.ORMGroupingDeleteCommand;
 import org.framed.orm.ui.command.StepInNewPageCommand;
 import org.framed.orm.ui.command.StepOutNewPageCommand;
 import org.framed.orm.ui.command.types.ORMCompartmentDeleteCommand;
-import org.framed.orm.ui.command.types.ORMNaturalTypeDeleteCommand;
-import org.framed.orm.ui.command.types.ORMRoleTypeDeleteCommand;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
@@ -44,16 +44,13 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
 				retVal = typeDeleteCommand;
 			}
 		}
-		if(getHost().getModel() instanceof NaturalType){
-			ORMNaturalTypeDeleteCommand typeDeleteCommand = new ORMNaturalTypeDeleteCommand();
-	    	typeDeleteCommand.setType((NaturalType) getHost().getModel());
+		if(getHost().getModel() instanceof NaturalType || 
+		    getHost().getModel() instanceof RoleType){
+			ORMNodeDeleteCommand typeDeleteCommand = new ORMNodeDeleteCommand();
+	    	typeDeleteCommand.setNode((Node) getHost().getModel());
 	    	retVal = typeDeleteCommand;
 		}
-		if(getHost().getModel() instanceof RoleType){
-			ORMRoleTypeDeleteCommand typeDeleteCommand = new ORMRoleTypeDeleteCommand();
-	    	typeDeleteCommand.setType((RoleType) getHost().getModel());
-	    	retVal = typeDeleteCommand;
-		}
+
 		if(getHost().getModel() instanceof Grouping){
 			if(((ORMGroupingEditPart)getHost()).getFigure() instanceof ORMGroupingV1Figure ){
 				ORMGroupingDeleteCommand groupingDeleteCommand = new ORMGroupingDeleteCommand();
