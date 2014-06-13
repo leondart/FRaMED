@@ -2,21 +2,21 @@ package org.framed.orm.ui.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-
 import org.framed.orm.model.Container;
-import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.Node;
 
 /**
+ * This command is for creating roletype, natrualtype and rolegroup. 
  * @author Kay Bierzynski
  * */
-public class ORMRoleGroupCreateCommand extends Command {
+public class ORMNodeCreateCommand extends Command {
 
   private Container parent;
-  private RoleGroup roleGroup;
+  private Node node;
   private Rectangle constraints;
 
-  public ORMRoleGroupCreateCommand() {
-    super.setLabel("ORMRoleGroupCreate");
+  public ORMNodeCreateCommand() {
+    super.setLabel("ORMNodeCreate");
   }
 
   /**
@@ -29,23 +29,23 @@ public class ORMRoleGroupCreateCommand extends Command {
   }
 
   /**
-   * Set the constraints for the {@link RoleGroup} and add it to the container {@link RoleModel}.
+   * Set the constraints for the {@link Node} and add it to the container {@link Container}.
    */
   @Override
   public void execute() {
 
-    roleGroup.setConstraints(constraints);
-    roleGroup.setContainer(parent);
+    node.setConstraints(constraints);
+    node.setContainer(parent);
   }
 
   /**
-   * Remove the {@link RoleGroup} from the container {@link RoleModel}.
+   * Remove the {@link Node} from the container {@link Container}.
    */
   @Override
   public void undo() {
 
-    roleGroup.setConstraints(null);
-    roleGroup.setContainer(null);
+    node.setConstraints(null);
+    node.setContainer(null);
   }
 
 
@@ -55,8 +55,8 @@ public class ORMRoleGroupCreateCommand extends Command {
 
 
 
-  public void setRoleGroup(final RoleGroup node) {
-    this.roleGroup = node;
+  public void setNode(final Node node) {
+    this.node = node;
   }
 
   public void setContainer(final Container parent) {

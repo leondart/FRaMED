@@ -20,11 +20,9 @@ import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.command.ORMGroupingCreateCommand;
 import org.framed.orm.ui.command.ORMNodeChangeConstraintsCommand;
-import org.framed.orm.ui.command.ORMRoleGroupCreateCommand;
+import org.framed.orm.ui.command.ORMNodeCreateCommand;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.types.ORMCompartmentCreateCommand;
-import org.framed.orm.ui.command.types.ORMNaturalTypeCreateCommand;
-import org.framed.orm.ui.command.types.ORMRoleTypeCreateCommand;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.ORMRolemodelFigure;
@@ -62,42 +60,28 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     // when the parent of the rolemodel is a compartment only roletype and rolegroup instances can
     // be added
     if (!(getHost().getParent() instanceof ORMGroupingEditPart)) {
-      if (request.getNewObjectType().equals(RoleGroup.class)) {
-        ORMRoleGroupCreateCommand command = new ORMRoleGroupCreateCommand();
+      if (request.getNewObjectType().equals(RoleType.class)
+          || request.getNewObjectType().equals(RoleGroup.class)) {
+        ORMNodeCreateCommand command = new ORMNodeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
-
-        command.setRoleGroup((RoleGroup) (request.getNewObject()));
         // here are init size set
+        command.setNode((Node) (request.getNewObject()));
+
         command.setConstraints(new Rectangle(constraints.getLocation(),
             DEFAULT_TYPE_DIMENSION_ROLEGROUP));
         command.setContainer((Container) getHost().getModel());
-
         retVal = command;
       }
-
-      if (request.getNewObjectType().equals(RoleType.class)) {
-        ORMRoleTypeCreateCommand command = new ORMRoleTypeCreateCommand();
-        Rectangle constraints = (Rectangle) getConstraintFor(request);
-        // here are init size set
-        command.setRoleType((RoleType) (request.getNewObject()));
-
-        command.setConstraints(new Rectangle(constraints.getLocation(),
-            DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));
-        command.setContainer((Container) getHost().getModel());
-
-        retVal = command;
-      }
-
-
     }
+    
     // when the parent of the rolemodel is a grouping only naturaltype, compartment and grouping
     // instances can be added
     if (!(getHost().getParent() instanceof ORMCompartmentEditPart)) {
       if (request.getNewObjectType().equals(NaturalType.class)) {
-        ORMNaturalTypeCreateCommand command = new ORMNaturalTypeCreateCommand();
+        ORMNodeCreateCommand command = new ORMNodeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
 
-        command.setNaturalType((NaturalType) (request.getNewObject()));
+        command.setNode((Node) (request.getNewObject()));
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(),
             DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));

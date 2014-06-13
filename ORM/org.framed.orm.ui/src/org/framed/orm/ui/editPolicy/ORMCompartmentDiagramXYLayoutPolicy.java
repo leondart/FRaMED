@@ -20,9 +20,9 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.command.ORMGroupingCreateCommand;
 import org.framed.orm.ui.command.ORMNodeChangeConstraintsCommand;
+import org.framed.orm.ui.command.ORMNodeCreateCommand;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.types.ORMCompartmentCreateCommand;
-import org.framed.orm.ui.command.types.ORMNaturalTypeCreateCommand;
 
 /**
  * @author Kay Bierzynski
@@ -106,11 +106,11 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
 
 
     if (request.getNewObjectType().equals(NaturalType.class)) {
-      ORMNaturalTypeCreateCommand command = new ORMNaturalTypeCreateCommand();
+      ORMNodeCreateCommand command = new ORMNodeCreateCommand();
       Rectangle constraints = (Rectangle) getConstraintFor(request);
 
       // here are init size set
-      command.setNaturalType((NaturalType) (request.getNewObject()));
+      command.setNode((Node) (request.getNewObject()));
       command.setConstraints(new Rectangle(constraints.getLocation(),
           DEFAULT_TYPE_DIMENSION_ROLE_Natural));
       command.setContainer((Container) getHost().getModel());

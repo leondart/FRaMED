@@ -14,8 +14,7 @@ import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.ui.command.ORMNodeChangeConstraintsCommand;
-import org.framed.orm.ui.command.ORMRoleGroupCreateCommand;
-import org.framed.orm.ui.command.types.ORMRoleTypeCreateCommand;
+import org.framed.orm.ui.command.ORMNodeCreateCommand;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
 /**
@@ -23,7 +22,7 @@ import org.framed.orm.ui.figure.ORMRoleGroupFigure;
  * */
 public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
 
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_Natural = new Dimension(50, 50);
+  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(200, 100);
 
   @Override
   protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
@@ -37,31 +36,21 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
 
   @Override
   protected Command getCreateCommand(CreateRequest request) {
-    Command retVal = null;
-    if (request.getNewObjectType().equals(RoleType.class)) {
-      ORMRoleTypeCreateCommand command = new ORMRoleTypeCreateCommand();
+
+    if (request.getNewObjectType().equals(RoleType.class)
+        || request.getNewObjectType().equals(RoleGroup.class)) {
+      ORMNodeCreateCommand command = new ORMNodeCreateCommand();
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
-      command.setRoleType((RoleType) (request.getNewObject()));
+      command.setNode((Node) (request.getNewObject()));
 
       command.setConstraints(new Rectangle(constraints.getLocation(),
-          DEFAULT_TYPE_DIMENSION_ROLE_Natural));
+          DEFAULT_TYPE_DIMENSION_ROLEGROUP));
       command.setContainer((Container) getHost().getModel());
-      retVal = command;
+      return command;
     }
 
-    if (request.getNewObjectType().equals(RoleGroup.class)) {
-      ORMRoleGroupCreateCommand command = new ORMRoleGroupCreateCommand();
-      Rectangle constraints = (Rectangle) getConstraintFor(request);
-      // here are init size set
-      command.setRoleGroup((RoleGroup) (request.getNewObject()));
-
-      command.setConstraints(new Rectangle(constraints.getLocation(),
-          DEFAULT_TYPE_DIMENSION_ROLE_Natural));
-      command.setContainer((Container) getHost().getModel());
-      retVal = command;
-    }
-    return retVal;
+    return null;
   }
 
   // Feedback
