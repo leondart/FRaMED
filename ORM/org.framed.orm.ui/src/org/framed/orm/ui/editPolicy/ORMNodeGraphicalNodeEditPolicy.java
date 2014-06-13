@@ -10,11 +10,9 @@ import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.Acyclic;
-import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.Inheritance;
 import org.framed.orm.model.Irreflexive;
-import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Container;
@@ -23,7 +21,6 @@ import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.model.RoleEquivalence;
 import org.framed.orm.model.RoleImplication;
 import org.framed.orm.model.RoleProhibition;
-import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Total;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
@@ -54,49 +51,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
     Command retVal = null;
-    // Fulfillment End
-    if (oSTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class,
-        ORMCompartmentEditPart.class)
-        || oSTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class,
-            ORMCompartmentEditPart.class)) {
-      retVal = setupConnectionCompleteCommand(request);
-    }
-
-    // Role Implication End
-    if (oSMTMCheck(request, RoleImplication.class, AbstractRole.class, AbstractRole.class)
-        && tNotEqualSCheck(request)
-        && !parentTest(request.getTargetEditPart(), request.getSourceEditPart())
-        && !childrenTest(request.getTargetEditPart(), request.getSourceEditPart())) {
-      retVal = setupConnectionCompleteCommand(request);
-    }
-    // Role Equilvalence End
-    if (oSMTMCheck(request, RoleEquivalence.class, AbstractRole.class, AbstractRole.class)
-        && tNotEqualSCheck(request)
-        && !parentTest(request.getTargetEditPart(), request.getSourceEditPart())
-        && !childrenTest(request.getTargetEditPart(), request.getSourceEditPart())) {
-      retVal = setupConnectionCompleteCommand(request);
-    }
-    // Role Prohibition End
-    if (oSMTMCheck(request, RoleProhibition.class, AbstractRole.class, AbstractRole.class)
-        && tNotEqualSCheck(request)
-        && !parentTest(request.getTargetEditPart(), request.getSourceEditPart())
-        && !childrenTest(request.getTargetEditPart(), request.getSourceEditPart())) {
-      retVal = setupConnectionCompleteCommand(request);
-    }
-
-    // Inheritance End
-    if (oSTCheck(request, Inheritance.class, ORMRoleTypeEditPart.class, ORMRoleTypeEditPart.class)
-        && tNotEqualSCheck(request)
-        || oSTCheck(request, Inheritance.class, ORMNaturalTypeEditPart.class,
-            ORMNaturalTypeEditPart.class)
-        && tNotEqualSCheck(request)
-        || oSTCheck(request, Inheritance.class, ORMCompartmentEditPart.class,
-            ORMCompartmentEditPart.class) && tNotEqualSCheck(request)) {
-      retVal = setupConnectionCompleteCommand(request);
-    }
-    // Relationship End
-    if (oSTCheck(request, Relationship.class, ORMRoleTypeEditPart.class, ORMRoleTypeEditPart.class)
-        && tNotEqualSCheck(request) && !hasARelationship(request, true)) {
+    if (isCompleteOK(request)) {
       retVal = setupConnectionCompleteCommand(request);
     }
 
@@ -118,39 +73,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   @Override
   protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
     Command retVal = null;
-    // Fufillment start
-    if (oTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class)
-        || oTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class)) {
 
-      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
-
-    }
-    // Role Implication start
-    if (oTMCheck(request, RoleImplication.class, AbstractRole.class)) {
-      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
-    }
-    // Role Equivalence start
-    if (oTMCheck(request, RoleEquivalence.class, AbstractRole.class)) {
-
-      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
-    }
-    // Role Prohibition start
-    if (oTMCheck(request, RoleProhibition.class, AbstractRole.class)) {
-      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
-    }
-
-    // Inheritance start
-    // TODO: check if RoleGroup can inherited from RoleType
-    if (request.getNewObjectType().equals(Inheritance.class)
-        && !(request.getTargetEditPart() instanceof ORMRoleGroupEditPart)
-        && !(request.getTargetEditPart() instanceof ORMGroupingEditPart)
-        && !(request.getTargetEditPart().getParent() instanceof ORMRoleGroupEditPart)) {
-
-      retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
-
-    }
-    // Relationship start
-    if (oTCheck(request, Relationship.class, ORMRoleTypeEditPart.class)) {
+    if (isStartOK(request)) {
       retVal = setupConnectionStartCommand(request, ((Node) getHost().getModel()).getContainer());
     }
 
@@ -256,6 +180,59 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     }
 
     return flag;
+  }
+
+  public boolean isCompleteOK(CreateConnectionRequest request) {
+    // Fulfillment Test End
+    return oSTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class,
+        ORMCompartmentEditPart.class)
+        || oSTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class,
+            ORMCompartmentEditPart.class)
+        // Role Implication TesT End
+        || (oSMTMCheck(request, RoleImplication.class, AbstractRole.class, AbstractRole.class)
+            && tNotEqualSCheck(request)
+            && !parentTest(request.getTargetEditPart(), request.getSourceEditPart()) && !childrenTest(
+              request.getTargetEditPart(), request.getSourceEditPart()))
+        // Role Equilvalence Test End
+        || (oSMTMCheck(request, RoleEquivalence.class, AbstractRole.class, AbstractRole.class)
+            && tNotEqualSCheck(request)
+            && !parentTest(request.getTargetEditPart(), request.getSourceEditPart()) && !childrenTest(
+              request.getTargetEditPart(), request.getSourceEditPart()))
+        // Role Prohibition Test End
+        || (oSMTMCheck(request, RoleProhibition.class, AbstractRole.class, AbstractRole.class)
+            && tNotEqualSCheck(request)
+            && !parentTest(request.getTargetEditPart(), request.getSourceEditPart()) && !childrenTest(
+              request.getTargetEditPart(), request.getSourceEditPart()))
+        // Inheritance Test End
+        || (oSTCheck(request, Inheritance.class, ORMRoleTypeEditPart.class,
+            ORMRoleTypeEditPart.class) && tNotEqualSCheck(request))
+        || (oSTCheck(request, Inheritance.class, ORMNaturalTypeEditPart.class,
+            ORMNaturalTypeEditPart.class) && tNotEqualSCheck(request))
+        || (oSTCheck(request, Inheritance.class, ORMCompartmentEditPart.class,
+            ORMCompartmentEditPart.class) && tNotEqualSCheck(request))
+        // Relationship Test End
+        || (oSTCheck(request, Relationship.class, ORMRoleTypeEditPart.class,
+            ORMRoleTypeEditPart.class) && tNotEqualSCheck(request) && !hasARelationship(request,
+              true));
+  }
+
+  public boolean isStartOK(CreateConnectionRequest request) {
+    // Fufillment start
+    return oTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class)
+        || oTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class)
+        // Role Implication start
+        || oTMCheck(request, RoleImplication.class, AbstractRole.class)
+        // Role Equivalence start
+        || oTMCheck(request, RoleEquivalence.class, AbstractRole.class)
+        // Role Prohibition start
+        || oTMCheck(request, RoleProhibition.class, AbstractRole.class)
+        // Inheritance start
+        || (request.getNewObjectType().equals(Inheritance.class)
+            && !(request.getTargetEditPart() instanceof ORMRoleGroupEditPart)
+            && !(request.getTargetEditPart() instanceof ORMGroupingEditPart) && !(request
+            .getTargetEditPart().getParent() instanceof ORMRoleGroupEditPart))
+        // Relationship start
+        || oTCheck(request, Relationship.class, ORMRoleTypeEditPart.class);
   }
 
   public boolean childrenTest(EditPart target, EditPart source) {
