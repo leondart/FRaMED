@@ -18,15 +18,6 @@ public class ORMCompartmentCreateCommand extends ORMNodeCreateCommand {
   }
 
   /**
-   * The command can be executed if all parameters have been set.
-   */
-  @Override
-  public boolean canExecute() {
-
-    return true;
-  }
-
-  /**
    * Set the constraints for the {@link Compartment} and add it to the container
    * {@link CompartmenDiagram} or {@link Rolemodel}.
    */
