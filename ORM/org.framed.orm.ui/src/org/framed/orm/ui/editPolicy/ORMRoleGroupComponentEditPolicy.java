@@ -4,7 +4,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Node;
-import org.framed.orm.ui.command.ORMRoleGroupDeleteCommand;
+import org.framed.orm.ui.command.nodes.ORMRoleGroupDeleteCommand;
 
 
 /**

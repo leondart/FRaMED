@@ -1,4 +1,4 @@
-package org.framed.orm.ui.command;
+package org.framed.orm.ui.command.nodes;
 
 import java.util.ArrayList;
 import java.util.HashMap;

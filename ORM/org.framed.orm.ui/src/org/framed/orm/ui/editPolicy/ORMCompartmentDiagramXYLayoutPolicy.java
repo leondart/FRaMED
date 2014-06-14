@@ -18,11 +18,11 @@ import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Rolemodel;
-import org.framed.orm.ui.command.ORMGroupingCreateCommand;
-import org.framed.orm.ui.command.ORMNodeChangeConstraintsCommand;
-import org.framed.orm.ui.command.ORMNodeCreateCommand;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
-import org.framed.orm.ui.command.types.ORMCompartmentCreateCommand;
+import org.framed.orm.ui.command.nodes.ORMCompartmentCreateCommand;
+import org.framed.orm.ui.command.nodes.ORMGroupingCreateCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeChangeConstraintsCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 
 /**
  * @author Kay Bierzynski

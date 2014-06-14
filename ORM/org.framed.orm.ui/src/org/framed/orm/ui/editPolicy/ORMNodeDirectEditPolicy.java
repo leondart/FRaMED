@@ -5,7 +5,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.framed.orm.model.Node;
-import org.framed.orm.ui.command.ORMNodeRenameCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeRenameCommand;
 import org.framed.orm.ui.figure.ORMGroupingV1Figure;
 import org.framed.orm.ui.figure.ORMGroupingV2Figure;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;

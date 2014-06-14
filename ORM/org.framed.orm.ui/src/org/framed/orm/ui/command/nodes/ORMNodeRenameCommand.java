@@ -1,4 +1,4 @@
-package org.framed.orm.ui.command;
+package org.framed.orm.ui.command.nodes;
 
 import org.eclipse.gef.commands.Command;
 

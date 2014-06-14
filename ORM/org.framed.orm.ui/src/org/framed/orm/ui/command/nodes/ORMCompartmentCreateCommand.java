@@ -1,8 +1,7 @@
-package org.framed.orm.ui.command.types;
+package org.framed.orm.ui.command.nodes;
 
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Rolemodel;
-import org.framed.orm.ui.command.ORMNodeCreateCommand;
 
 
 

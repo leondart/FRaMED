@@ -1,4 +1,4 @@
-package org.framed.orm.ui.command;
+package org.framed.orm.ui.command.nodes;
 
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Rolemodel;

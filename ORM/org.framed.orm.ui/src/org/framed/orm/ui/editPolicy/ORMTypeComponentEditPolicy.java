@@ -7,20 +7,16 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
-import org.framed.orm.model.RoleType;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepOutNewPageAction;
-import org.framed.orm.ui.command.ORMNodeDeleteCommand;
 import org.framed.orm.ui.command.StepInCommand;
 import org.framed.orm.ui.command.StepOutCommand;
 import org.framed.orm.ui.command.StepInNewPageCommand;
 import org.framed.orm.ui.command.StepOutNewPageCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeDeleteCommand;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 
@@ -32,15 +28,9 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
   @Override
   protected Command createDeleteCommand(GroupRequest deleteRequest) {
 
-    if (getHost().getModel() instanceof NaturalType || getHost().getModel() instanceof RoleType
-        || getHost().getModel() instanceof Compartment || getHost().getModel() instanceof Grouping) {
       ORMNodeDeleteCommand typeDeleteCommand = new ORMNodeDeleteCommand();
       typeDeleteCommand.setNode((Node) getHost().getModel());
       return typeDeleteCommand;
-    }
-
-
-    return null;
   }
 
   private StepInCommand createStepInCommand() {

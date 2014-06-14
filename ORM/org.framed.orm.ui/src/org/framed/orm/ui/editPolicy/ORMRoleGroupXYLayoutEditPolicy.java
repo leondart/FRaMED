@@ -13,8 +13,8 @@ import org.framed.orm.model.Container;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.ui.command.ORMNodeChangeConstraintsCommand;
-import org.framed.orm.ui.command.ORMNodeCreateCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeChangeConstraintsCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
 /**
