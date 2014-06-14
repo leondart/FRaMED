@@ -11,7 +11,7 @@ import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 
 /**
- * This the delete command for natrualtypes and roletypes.
+ * This the delete command for groupings, compartments, natrualtypes and roletypes.
  * @author Kay Bierzynski
  * */
 public class ORMNodeDeleteCommand extends Command {
