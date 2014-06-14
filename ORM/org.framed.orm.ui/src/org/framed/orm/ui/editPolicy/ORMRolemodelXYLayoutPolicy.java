@@ -73,7 +73,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         retVal = command;
       }
     }
-    
+
     // when the parent of the rolemodel is a grouping only naturaltype, compartment and grouping
     // instances can be added
     if (!(getHost().getParent() instanceof ORMCompartmentEditPart)) {
@@ -105,7 +105,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
-        command.setCompartment(ct);
+        command.setNode(ct);
         command.setRolemodel(rm);
         compoundcommand.add(command);
         command.setContainer((Container) getHost().getModel());
@@ -128,8 +128,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
-        // command.setContainer(null);
-        command.setGrouping(group);
+        command.setNode(group);
         command.setRolemodel(rm);
         compoundcommand.add(command);
         command.setContainer((Container) getHost().getModel());

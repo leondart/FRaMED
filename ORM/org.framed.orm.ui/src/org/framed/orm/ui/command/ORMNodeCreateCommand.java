@@ -6,13 +6,14 @@ import org.framed.orm.model.Container;
 import org.framed.orm.model.Node;
 
 /**
- * This command is for creating roletype, natrualtype and rolegroup. 
+ * This command is for creating roletype, natrualtype and rolegroup.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMNodeCreateCommand extends Command {
 
   private Container parent;
-  private Node node;
+  protected Node node;
   private Rectangle constraints;
 
   public ORMNodeCreateCommand() {
@@ -25,7 +26,7 @@ public class ORMNodeCreateCommand extends Command {
   @Override
   public boolean canExecute() {
 
-    return constraints != null && parent != null;
+    return constraints != null && parent != null && node != null;
   }
 
   /**

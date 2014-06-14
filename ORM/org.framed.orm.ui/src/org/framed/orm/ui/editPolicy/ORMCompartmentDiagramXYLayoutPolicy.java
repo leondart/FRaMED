@@ -30,7 +30,7 @@ import org.framed.orm.ui.command.types.ORMCompartmentCreateCommand;
 public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
 
   private static final Dimension DEFAULT_TYPE_DIMENSION = new Dimension(200, 200);
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_Natural = new Dimension(50, 50);
+  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATURAL = new Dimension(50, 50);
 
   /**
    * Command created top change the constraints of a {@link Node} instance.
@@ -69,7 +69,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       // here are init size set
       command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
       command.setContainer((Container) getHost().getModel());
-      command.setCompartment(ct);
+      command.setNode(ct);
       command.setRolemodel(rm);
 
       compoundcommand.add(command);
@@ -96,7 +96,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       // here are init size set
       command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
       command.setContainer((Container) getHost().getModel());
-      command.setGrouping(group);
+      command.setNode(group);
       command.setRolemodel(rm);
 
       compoundcommand.add(command);
@@ -112,7 +112,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       // here are init size set
       command.setNode((Node) (request.getNewObject()));
       command.setConstraints(new Rectangle(constraints.getLocation(),
-          DEFAULT_TYPE_DIMENSION_ROLE_Natural));
+          DEFAULT_TYPE_DIMENSION_ROLE_NATURAL));
       command.setContainer((Container) getHost().getModel());
 
       retVal = command;

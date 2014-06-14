@@ -1,24 +1,17 @@
 package org.framed.orm.ui.command.types;
 
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.commands.Command;
-
-import org.framed.orm.model.Container;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Rolemodel;
+import org.framed.orm.ui.command.ORMNodeCreateCommand;
 
 
 
 /**
  * @author Kay Bierzynski
  * */
-public class ORMCompartmentCreateCommand extends Command {
+public class ORMCompartmentCreateCommand extends ORMNodeCreateCommand {
 
 
-  private Compartment compartment;
-  private Rectangle constraints;
-
-  private Container parent;
   private Rolemodel rm;
 
   public ORMCompartmentCreateCommand() {
@@ -41,10 +34,8 @@ public class ORMCompartmentCreateCommand extends Command {
   @Override
   public void execute() {
 
-    compartment.setConstraints(constraints);
-    compartment.setContainer(parent);
-    compartment.setIsExpand(true);
-    compartment.setRolemodel(rm);
+    super.execute();
+    ((Compartment)node).setRolemodel(rm);
   }
 
   /**
@@ -54,22 +45,8 @@ public class ORMCompartmentCreateCommand extends Command {
   @Override
   public void undo() {
 
-    compartment.setConstraints(null);
-    compartment.setContainer(null);
-    compartment.setRolemodel(null);
-  }
-
-
-  public void setConstraints(final Rectangle constraints) {
-    this.constraints = constraints;
-  }
-
-  public void setContainer(final Container parent) {
-    this.parent = parent;
-  }
-
-  public void setCompartment(final Compartment node) {
-    this.compartment = node;
+    super.undo();
+    ((Compartment)node).setRolemodel(null);
   }
 
   public void setRolemodel(final Rolemodel rm) {

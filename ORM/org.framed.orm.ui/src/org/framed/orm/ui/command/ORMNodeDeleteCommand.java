@@ -16,10 +16,10 @@ import org.framed.orm.model.Relation;
  * */
 public class ORMNodeDeleteCommand extends Command {
   
-  private Node node;
-  private Container parent;
+  protected Node node;
+  protected Container parent;
   /** relations */
-  private List<Relation> relations;
+  protected List<Relation> relations;
   /** Sources for the realtions that start or end at this node. */
   private Map<Relation, Node> sourceLinks;
   /** Targets for the relations that start or end at this node. */
@@ -27,6 +27,7 @@ public class ORMNodeDeleteCommand extends Command {
   
   public ORMNodeDeleteCommand(){
     super.setLabel("ORMNodeDelete");
+    relations = new ArrayList<Relation>();
   }
   
   @Override
@@ -46,8 +47,7 @@ public class ORMNodeDeleteCommand extends Command {
    * connecting types, storing the connection information in local
    * data structures.
    */
-  private void detachLinks() {
-    relations = new ArrayList<Relation>();
+  protected void detachLinks() {
     sourceLinks = new HashMap<Relation,Node>();
     targetLinks = new HashMap<Relation,Node>();
     relations.addAll(node.getIncomingLinks());
