@@ -26,7 +26,6 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.jface.viewers.TextCellEditor;
-import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Node;
@@ -79,7 +78,7 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
   @Override
   public void createEditPolicies() {
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNodeDirectEditPolicy());
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy(this));
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
     if (!(getParent() instanceof ScalableRootEditPart)) {
       installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
@@ -246,7 +245,6 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
   }
 
   // for adding rolemodel
-  @SuppressWarnings("unchecked")
   @Override
   protected void addChildVisual(EditPart childEditPart, int index) {
     IFigure contentPane = null;

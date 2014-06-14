@@ -1,7 +1,9 @@
 package org.framed.orm.ui.editor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -27,11 +29,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Grouping;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
+
 
 /**
  * 
@@ -45,6 +44,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private ORMGraphicalEditor editorData;
   private EditorChangeNotifier changeNotifier = null;
   private Resource resource;
+  private List<Object> oldViewerContents;
 
   public void setEditorChangeNotifier(EditorChangeNotifier changeNotifier){
     this.changeNotifier = changeNotifier;
@@ -57,10 +57,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   public ORMGraphicalEditor getEditorData() {
     return editorData;
   }
+  
+  public List<Object> getOldViewerContents(){
+    return oldViewerContents;
+  }
 
   public ORMMultiPageEditor() {
     super();
     ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+    oldViewerContents = new ArrayList<Object>();
   }
 
 

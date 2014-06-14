@@ -8,31 +8,48 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.ui.editor.ORMGraphicalEditor;
+import org.eclipse.ui.WorkbenchException;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
-import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
+/**
+ * 
+ * @author Kay Bierzynski
+ * 
+ */
 public class StepCommand extends Command {
 
-  protected AbstractGraphicalEditPart editpart;
-  protected ORMGraphicalEditor editorPart;
+  private AbstractGraphicalEditPart editpart;
+  private ORMMultiPageEditor editorPart;
+  private Object newContent;
+  private boolean isNewWindowCommand;
 
   @Override
   public boolean canExecute() {
 
-    return editpart != null && editorPart != null;
+    return editpart != null && editorPart != null && newContent != null;
   }
 
   @Override
   public void execute() {
 
-    IWorkbenchPage activePage = editorPart.getSite().getWorkbenchWindow().getActivePage();
-    
+    IWorkbenchPage page = null;
+
+    if (isNewWindowCommand) {
+
+      try {
+        page = editorPart.getSite().getWorkbenchWindow().openPage(editorPart.getSite());
+      } catch (WorkbenchException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+    } else {
+      page = editorPart.getSite().getWorkbenchWindow().getActivePage();
+    }
+
     IEditorInput input = editorPart.getEditorInput();
-    
-    IEditorPart[] editorlist = activePage.getEditors();
+
+    IEditorPart[] editorlist = page.getEditors();
     ArrayList<IEditorPart> editors = new ArrayList<IEditorPart>();
 
     // get all editor instances with specific input
@@ -44,45 +61,44 @@ public class StepCommand extends Command {
 
     }
 
-//    System.out.println("Editor.size: "+editors.size());
-    
-    if (editors.size() > 1) {
+    if (editors.size() > 1 && !isNewWindowCommand) {
       for (IEditorPart part : editors) {
-        if (!part.equals(editorPart.getParentEditor())) {
+        if (!part.equals(editorPart)) {
           ORMMultiPageEditor multiPart = (ORMMultiPageEditor) part;
           multiPart.setContents(editpart.getViewer().getContents().getModel());
-          if(editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram || editpart.getViewer().getContents().getModel() instanceof Grouping)
-            multiPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
-          else
-            multiPart.getEditorBeh().setEditorType(EditorType.ROLES);
+
+          multiPart.getOldViewerContents().clear();
+          multiPart.getOldViewerContents().addAll(editorPart.getOldViewerContents());
         }
       }
     } else {
-//      System.out.println("New Window");
+
       try {
         // open new editor instance with old content edipart model
         ORMMultiPageEditor newPart =
-            (ORMMultiPageEditor) activePage.openEditor(input, "ORMEditor.editorID", false,
+            (ORMMultiPageEditor) page.openEditor(input, "ORMEditor.editorID", false,
                 IWorkbenchPage.MATCH_NONE);
 
-        if(editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram || editpart.getViewer().getContents().getModel() instanceof Grouping)
-          newPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
-        else
-          newPart.getEditorBeh().setEditorType(EditorType.ROLES);    
-//        editorPart.setEditorType(EditorType.ROLES);
+        if (isNewWindowCommand) {
+          newPart.setContents(newContent);
+        } else {
+          newPart.setContents(editpart.getViewer().getContents().getModel());
+          // set focus on the editor instance with new content
+          page.activate(editorPart);
+        }
 
-        newPart.setContents(editpart.getViewer().getContents().getModel());
-        // set focus on the editor instance with new content
-        activePage.activate(editorPart.getParentEditor());
+        newPart.getOldViewerContents().addAll(editorPart.getOldViewerContents());
       } catch (PartInitException e1) {
         // TODO Auto-generated catch block
         e1.printStackTrace();
       }
     }
-  }
 
-  @Override
-  public void undo() {
+    if (!isNewWindowCommand) {
+      editorPart.setContents(newContent);
+    } else {
+      editorPart.setContents(editpart.getViewer().getContents().getModel());
+    }
 
   }
 
@@ -97,9 +113,17 @@ public class StepCommand extends Command {
   public void setEditPart(AbstractGraphicalEditPart editpart) {
     this.editpart = editpart;
   }
-  
-  public void setEditorPart(ORMGraphicalEditor editorPart) {
+
+  public void setEditorPart(ORMMultiPageEditor editorPart) {
     this.editorPart = editorPart;
+  }
+
+  public void setNewContent(Object content) {
+    this.newContent = content;
+  }
+
+  public void setIsNewWindowCommand(boolean isNewWindowCommand) {
+    this.isNewWindowCommand = isNewWindowCommand;
   }
 
 }

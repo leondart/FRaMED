@@ -78,7 +78,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNodeDirectEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMTypeXYLayoutPolicy());
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy(this));
 
   }
 
