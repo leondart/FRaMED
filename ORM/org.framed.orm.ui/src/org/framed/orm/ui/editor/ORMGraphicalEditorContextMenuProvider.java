@@ -8,7 +8,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.ui.actions.ActionFactory;
 import org.framed.orm.ui.action.FulfillRolesAction;
-import org.framed.orm.ui.action.DeleteRelationshipConstraintsAction;
+import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
@@ -48,7 +48,7 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
     action = getActionRegistry().getAction(FulfillRolesAction.FULFILL_ROLES_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
-    action = getActionRegistry().getAction(DeleteRelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
+    action = getActionRegistry().getAction(RelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
   }
 

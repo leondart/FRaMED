@@ -38,7 +38,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
-import org.framed.orm.ui.action.DeleteRelationshipConstraintsAction;
+import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
@@ -178,7 +178,7 @@ public class ORMGraphicalEditor extends
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 
-    action = new DeleteRelationshipConstraintsAction(this);
+    action = new RelationshipConstraintsAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 

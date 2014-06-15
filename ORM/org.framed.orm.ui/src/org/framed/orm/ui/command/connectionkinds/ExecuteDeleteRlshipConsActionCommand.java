@@ -2,7 +2,7 @@ package org.framed.orm.ui.command.connectionkinds;
 
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.ui.action.DeleteRelationshipConstraintsAction;
+import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
@@ -13,7 +13,7 @@ public class ExecuteDeleteRlshipConsActionCommand extends Command {
     super.setLabel("ExecuteDeleteRlshipConsActionCommand");
   }
 
-  private DeleteRelationshipConstraintsAction action;
+  private RelationshipConstraintsAction action;
   private ORMRelationshipConstraintEditPart editPart;
 
   /**
@@ -37,8 +37,8 @@ public class ExecuteDeleteRlshipConsActionCommand extends Command {
         (ORMGraphicalEditor) ((DefaultEditDomain) editPart.getViewer().getEditDomain())
             .getEditorPart();
     action =
-        (DeleteRelationshipConstraintsAction) editorPart.getEditorActionRegistry().getAction(
-            DeleteRelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
+        (RelationshipConstraintsAction) editorPart.getEditorActionRegistry().getAction(
+            RelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
     action.setEditPart(editPart);
     action.run();
 

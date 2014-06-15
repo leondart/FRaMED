@@ -17,14 +17,14 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 
-public class DeleteRelationshipConstraintsAction extends SelectionAction {
+public class RelationshipConstraintsAction extends SelectionAction {
 
   public static final String RLSHIP_CONSTRAINTS_ID = "RelationshipConstraints";
   private ORMRelationEditPart editPart;
 
   // private Request request;
 
-  public DeleteRelationshipConstraintsAction(IWorkbenchPart part) {
+  public RelationshipConstraintsAction(IWorkbenchPart part) {
     super(part);
     setId(RLSHIP_CONSTRAINTS_ID);
     setText("RelationshipConstraints...");
@@ -81,6 +81,7 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
     int returnCode = dialog.open();
     // end the action, when the popup dialog is closed through cancel button
     if (returnCode == Window.CANCEL) {
+      editPart = null;
       return;
     }
 
