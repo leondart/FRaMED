@@ -36,6 +36,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 import org.framed.orm.ui.action.DeleteRelationshipConstraintsAction;
 import org.framed.orm.ui.action.FulfillRolesAction;
@@ -288,6 +289,16 @@ public class ORMGraphicalEditor extends
     // hick-hack should be refactored)
     ((ORMMultiPageEditor) getParentEditor()).getBehaviorEditor().setEditorType(editorType);
     ((ORMMultiPageEditor) getParentEditor()).getDataEditor().setEditorType(editorType);
+  }
+
+  public void updateEditorType() {
+
+    if (getGraphicalViewer().getContents().getModel() instanceof CompartmentDiagram
+        || getGraphicalViewer().getContents().getModel() instanceof Grouping)
+      this.setEditorType(EditorType.COMPARTMENT);
+    else
+      this.setEditorType(EditorType.ROLES);
+
   }
 
   /**
