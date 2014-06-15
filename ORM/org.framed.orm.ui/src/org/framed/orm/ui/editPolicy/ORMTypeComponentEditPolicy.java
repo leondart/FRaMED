@@ -8,7 +8,9 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Node;
+import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
@@ -47,45 +49,42 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
 
   private StepCommand createStepInCommand(boolean isNewWindowCommand) {
 
-    Object oldContent = hostEditPart.getViewer().getContents().getModel();
-    if (!editorPart.getOldViewerContents().contains(oldContent)) {
-      editorPart.getOldViewerContents().add(oldContent);
-    }
-    
     StepCommand command = new StepCommand();
     command.setEditPart(hostEditPart);
     command.setEditorPart(editorPart);
     command.setNewContent(hostModel);
     command.setIsNewWindowCommand(isNewWindowCommand);
-    
+
     return command;
   }
 
 
   private StepCommand createStepOutCommand(boolean isNewWindowCommand) {
 
-    int index =  editorPart.getOldViewerContents().size() - 1;
-    Object content = null;
-
-    if (editorPart.getOldViewerContents().contains(hostModel)) {
-      content = editorPart.getOldViewerContents().get(index - 1);
-      // node of the model tree needs to be removed from the list, 
-      // when the node is visted again through stepping out of it's children 
-      // and user wants to step out of this as well
-      editorPart.getOldViewerContents().remove(index);
-    } else {
-      content = editorPart.getOldViewerContents().get(index);
-    }
+    Object container = ((Node) hostModel).getContainer();
 
     StepCommand command = new StepCommand();
     command.setEditPart(hostEditPart);
     command.setEditorPart(editorPart);
-    command.setNewContent(content);
+
+    if (container instanceof CompartmentDiagram) {
+      command.setNewContent(container);
+    } else if (container instanceof Rolemodel) {
+
+      Rolemodel rm = (Rolemodel) ((Node) hostModel).getContainer();
+
+      if (rm.getParentGroup() != null) {
+        command.setNewContent(rm.getParentGroup());
+      } else {
+        command.setNewContent(rm.getCompartment());
+      }
+    }
+
     command.setIsNewWindowCommand(isNewWindowCommand);
-    
+
     return command;
   }
-  
+
   /**
    * <p>
    * Extends the parent implementation by handling incoming GO_DOWN_TREE, GO_UP_TREE,
@@ -95,7 +94,7 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
    * The parent implementation {@inheritDoc}
    * </p>
    */
-  
+
   @Override
   public Command getCommand(Request request) {
     if (request.getType().equals(StepInAction.STEP_IN_REQUEST)) {

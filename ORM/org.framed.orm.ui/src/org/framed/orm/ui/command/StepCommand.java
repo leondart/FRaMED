@@ -66,9 +66,6 @@ public class StepCommand extends Command {
         if (!part.equals(editorPart)) {
           ORMMultiPageEditor multiPart = (ORMMultiPageEditor) part;
           multiPart.setContents(editpart.getViewer().getContents().getModel());
-
-          multiPart.getOldViewerContents().clear();
-          multiPart.getOldViewerContents().addAll(editorPart.getOldViewerContents());
         }
       }
     } else {
@@ -87,7 +84,6 @@ public class StepCommand extends Command {
           page.activate(editorPart);
         }
 
-        newPart.getOldViewerContents().addAll(editorPart.getOldViewerContents());
       } catch (PartInitException e1) {
         // TODO Auto-generated catch block
         e1.printStackTrace();
