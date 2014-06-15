@@ -1,10 +1,7 @@
 package org.framed.orm.ui.action;
 
-import java.util.List;
-
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.ui.actions.SaveAction;
 import org.eclipse.gef.ui.actions.SelectionAction;
@@ -18,65 +15,66 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
  * */
 public class StepOutNewPageAction extends SelectionAction {
 
-	public static final String STEP_OUT_NEW_PAGE_ID = "StepOutNewPage";
-	 public static final String STEP_OUT_NEW_PAGE_REQUEST = "StepOutNewPage";
+  public static final String STEP_OUT_NEW_PAGE_ID = "StepOutNewPage";
+  public static final String STEP_OUT_NEW_PAGE_REQUEST = "StepOutNewPage";
 
-  Request request;
+  private Request request;
+  private AbstractGraphicalEditPart editPart;
 
   /**
    * Create a new instance of the class.
+   * 
    * @param part
    */
-  public  StepOutNewPageAction(IWorkbenchPart part) {
-      super(part);
-      setId( STEP_OUT_NEW_PAGE_ID);
-      setText("Step out new Window");
-      request = new Request(STEP_OUT_NEW_PAGE_REQUEST);
+  public StepOutNewPageAction(IWorkbenchPart part) {
+    super(part);
+    setId(STEP_OUT_NEW_PAGE_ID);
+    setText("Step out new Window");
+    request = new Request(STEP_OUT_NEW_PAGE_REQUEST);
   }
 
   /**
-   * Execute the commands that perform the {@link StepOutNewPageAction#STEP_OUT_NEW_PAGE_REQUEST STEP_OUT_NEW_PAGE_REQUEST}.
-   *
+   * Execute the commands that perform the {@link StepInAction#STEP_IN_REQUEST GO_DOWN_TREE_REQUEST}
+   * .
+   * 
    * It is assumed that this method is executed directly after
-   * {@link StepOutNewPageAction#calculateEnabled() calculateEnabled()}
+   * {@link StepInAction#calculateEnabled() calculateEnabled()}
    */
   @Override
   public void run() {
-	  ORMGraphicalEditor editorPart = null;
-	// selected objects must be compartemne or grouping editpart because the action is enabled.
-      @SuppressWarnings("unchecked") List<AbstractGraphicalEditPart> editParts = getSelectedObjects();
-      CompoundCommand compoundCommand = new CompoundCommand();
-      for(AbstractGraphicalEditPart editPart : editParts) {
-          compoundCommand.add(editPart.getCommand(request));
-          if(editorPart==null) editorPart = (ORMGraphicalEditor) ((DefaultEditDomain)editPart.getViewer().getEditDomain()).getEditorPart();
-      }
-      SaveAction save = new SaveAction(editorPart);
-      execute(compoundCommand);
-      save.run();
-      editorPart.getOwnViewer().getSelectionManager().deselectAll();
-  }
 
+    ORMGraphicalEditor editorPart =
+        (ORMGraphicalEditor) ((DefaultEditDomain) editPart.getViewer().getEditDomain())
+            .getEditorPart();
+
+    SaveAction save = new SaveAction(editorPart);
+    execute(editPart.getCommand(request));
+    save.run();
+    editorPart.getOwnViewer().getSelectionManager().deselectAll();
+  }
 
   /**
-	* {@inheritDoc}
-	* <p>The action is enabled if all the selected entities on the
-	* editor are {@link ORMCompartmentEditPart} or  {@link ORMGroupingEditPart} instances</p>
+   * {@inheritDoc}
+   * <p>
+   * The action is enabled if the selected entitie on the editor is a {@link ORMCompartmentEditPart}
+   * or {@link ORMGroupingEditPart} instance
+   * </p>
    */
-	@Override
-	protected boolean calculateEnabled() {
+  @Override
+  protected boolean calculateEnabled() {
+    if (getSelectedObjects().isEmpty() || getSelectedObjects().size() > 1) {
+      return false;
+    } else if (getSelectedObjects().get(0) instanceof ORMCompartmentEditPart
+        || getSelectedObjects().get(0) instanceof ORMGroupingEditPart) {
+      editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
+      if (editPart.equals(editPart.getViewer().getRootEditPart().getContents())) {
+        return true;
+      }
+    }
 
-   for(Object selectedObject : getSelectedObjects()) {
-	   if(selectedObject instanceof ORMCompartmentEditPart) {
-		   if(((ORMCompartmentEditPart) selectedObject).equals(((ORMCompartmentEditPart) selectedObject).getViewer().getRootEditPart().getContents()))
-           return true;
-       }
-	   if(selectedObject instanceof ORMGroupingEditPart) {
-		   if(((ORMGroupingEditPart) selectedObject).equals(((ORMGroupingEditPart) selectedObject).getViewer().getRootEditPart().getContents()))
-         return true;
-     }
-   }
-   return false;
+    return false;
   }
+
 
 
 }
