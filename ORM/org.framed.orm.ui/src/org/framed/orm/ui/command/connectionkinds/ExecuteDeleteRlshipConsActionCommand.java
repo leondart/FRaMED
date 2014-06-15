@@ -38,7 +38,7 @@ public class ExecuteDeleteRlshipConsActionCommand extends Command {
             .getEditorPart();
     action =
         (DeleteRelationshipConstraintsAction) editorPart.getEditorActionRegistry().getAction(
-            DeleteRelationshipConstraintsAction.DELTE_RLSHIP_CONSTRAINTS_ID);
+            DeleteRelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
     action.setEditPart(editPart);
     action.run();
 

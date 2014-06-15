@@ -1,5 +1,6 @@
 package org.framed.orm.ui.action;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,7 +19,11 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.framed.orm.model.Acyclic;
+import org.framed.orm.model.Irreflexive;
+import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.Total;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 
 /**
@@ -32,12 +37,14 @@ public class ConstraintsDialog extends Dialog {
   private final static int SIZING_SELECTION_WIDGET_WIDTH = 300;
 
   private List<RelationshipConstraint> constraints;
-  private final List<RelationshipConstraint> chosenConstraints;
+  private final List<RelationshipConstraint> chosenDeleteConstraints;
+  private final List<RelationshipConstraint> chosenCreateConstraints;
   private CheckboxTableViewer viewer;
 
   protected ConstraintsDialog(Shell shell) {
     super(shell);
-    chosenConstraints = new LinkedList<>();
+    chosenDeleteConstraints = new LinkedList<>();
+    chosenCreateConstraints = new LinkedList<>();
   }
 
   @Override
@@ -51,6 +58,14 @@ public class ConstraintsDialog extends Dialog {
   protected Control createDialogArea(Composite parent) {
     Composite composite = (Composite) super.createDialogArea(parent);
 
+    List<RelationshipConstraint> viewerContent = new ArrayList<RelationshipConstraint>();
+    viewerContent.addAll(constraints);
+    if (viewerContent.size() < 3) {
+      addMissingConstraints(viewerContent);
+    }
+
+    chosenDeleteConstraints.addAll(viewerContent);
+
     viewer = CheckboxTableViewer.newCheckList(composite, SWT.CHECK);
     viewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -61,7 +76,13 @@ public class ConstraintsDialog extends Dialog {
 
     viewer.setLabelProvider(labelProvider);
     viewer.setContentProvider(contentProvider);
-    viewer.setInput(new ItemProvider(new OrmItemProviderAdapterFactory(), constraints));
+    viewer.setInput(new ItemProvider(new OrmItemProviderAdapterFactory(), viewerContent));
+
+    for (RelationshipConstraint constraint : viewerContent) {
+      if (constraints.contains(constraint)) {
+        viewer.setChecked(constraint, true);
+      }
+    }
 
     addSelectionButtons(composite);
 
@@ -107,13 +128,51 @@ public class ConstraintsDialog extends Dialog {
     });
   }
 
+  public void addMissingConstraints(List<RelationshipConstraint> viewerContent) {
+    for (int i = 0; i < 3; i++) {
+
+      boolean isInList = false;
+      for (RelationshipConstraint constraint : constraints) {
+
+
+        if (i == 0) {
+          if (constraint instanceof Irreflexive) {
+            isInList = true;
+          }
+        } else if (i == 1) {
+          if (constraint instanceof Total) {
+            isInList = true;
+          }
+        } else if (i == 2) {
+          if (constraint instanceof Acyclic) {
+            isInList = true;
+          }
+        }
+
+      }
+
+      if (!isInList) {
+        if (i == 0) {
+          viewerContent.add(OrmFactory.eINSTANCE.createIrreflexive());
+        } else if (i == 1) {
+          viewerContent.add(OrmFactory.eINSTANCE.createTotal());
+        } else if (i == 2) {
+          viewerContent.add(OrmFactory.eINSTANCE.createAcyclic());
+        }
+
+      }
+    }
+
+  }
 
   @Override
   protected void okPressed() {
 
     for (Object object : viewer.getCheckedElements()) {
-      chosenConstraints.add((RelationshipConstraint) object);
+      chosenCreateConstraints.add((RelationshipConstraint) object);
     }
+
+    chosenDeleteConstraints.removeAll(chosenCreateConstraints);
 
     setReturnCode(OK);
     close();
@@ -123,7 +182,12 @@ public class ConstraintsDialog extends Dialog {
     this.constraints = constraints;
   }
 
-  public List<RelationshipConstraint> getChosenConstraints() {
-    return chosenConstraints;
+  public List<RelationshipConstraint> getChosenCreateConstraints() {
+    return chosenCreateConstraints;
   }
+
+  public List<RelationshipConstraint> getChosenDeleteConstraints() {
+    return chosenDeleteConstraints;
+  }
+
 }

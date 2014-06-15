@@ -11,20 +11,23 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
-import org.framed.orm.ui.command.connectionkinds.ORMRealtionshipConstraintDeleteCommand;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 
 public class DeleteRelationshipConstraintsAction extends SelectionAction {
 
-  public static final String DELTE_RLSHIP_CONSTRAINTS_ID = " DeleteRelationshipConstraints";
-  private ORMRelationshipConstraintEditPart editPart;
+  public static final String RLSHIP_CONSTRAINTS_ID = "RelationshipConstraints";
+  private ORMRelationEditPart editPart;
 
   // private Request request;
 
   public DeleteRelationshipConstraintsAction(IWorkbenchPart part) {
     super(part);
-    setId(DELTE_RLSHIP_CONSTRAINTS_ID);
-    setText("Delete  RelationshipConstraints");
+    setId(RLSHIP_CONSTRAINTS_ID);
+    setText("RelationshipConstraints...");
   }
 
   // this set method is for embedding this delete action in the delete button in the actionbar
@@ -40,7 +43,7 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
     }
 
     for (Object selectedObject : getSelectedObjects()) {
-      if (selectedObject instanceof ORMRelationshipConstraintEditPart) {
+      if (selectedObject instanceof ORMRelationshipEditPart) {
         return true;
       }
     }
@@ -55,18 +58,20 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
 
     // get selected constraint editpart
     if (editPart == null) {
-      editPart = (ORMRelationshipConstraintEditPart) getSelectedObjects().get(0);
+      editPart = (ORMRelationEditPart) getSelectedObjects().get(0);
     }
 
-    // get selected constraint model
-    RelationshipConstraint constraint = (RelationshipConstraint) editPart.getModel();
-    // get selected constraint relationship
-    Relationship rlship = constraint.getRelation();
+    // get constraint relationship
+    Relationship rlship;
 
+    if (editPart instanceof ORMRelationshipEditPart) {
+      rlship = (Relationship) editPart.getModel();
+    } else {
+      rlship = ((RelationshipConstraint) editPart.getModel()).getRelation();
+    }
     // put all RelationshipConstraints in a list
     ArrayList<RelationshipConstraint> constraints = new ArrayList<RelationshipConstraint>();
     constraints.addAll(rlship.getRlshipConstraints());
-
 
     // create and setup the popup dialog
     ConstraintsDialog dialog = new ConstraintsDialog(shell);
@@ -83,12 +88,30 @@ public class DeleteRelationshipConstraintsAction extends SelectionAction {
     // delete all chosen constraints, when the popup dialog is closed through ok button
     else if (returnCode == Window.OK) {
       CompoundCommand compoundCommand = new CompoundCommand();
-      for (RelationshipConstraint rc : dialog.getChosenConstraints()) {
-        ORMRealtionshipConstraintDeleteCommand command =
-            new ORMRealtionshipConstraintDeleteCommand();
-        command.setRelationshipConstraint(rc);
-        command.setEPViewer(editPart.getViewer());
-        compoundCommand.add(command);
+
+      for (RelationshipConstraint rc : dialog.getChosenCreateConstraints()) {
+        if (!constraints.contains(rc)) {
+          ORMRelationshipConstraintCreateCommand command =
+              new ORMRelationshipConstraintCreateCommand();
+
+          command.setRelation(rc);
+          command.setRelationship(rlship);
+          command.setRelationContainer(rlship.getRelationContainer());
+          command.setSourceNode(rlship.getSource());
+          command.setTargetNode(rlship.getTarget());
+
+          compoundCommand.add(command);
+        }
+      }
+
+      for (RelationshipConstraint rc : dialog.getChosenDeleteConstraints()) {
+        if (constraints.contains(rc)) {
+          ORMRelationshipConstraintDeleteCommand command =
+              new ORMRelationshipConstraintDeleteCommand();
+          command.setRelationshipConstraint(rc);
+          command.setEPViewer(editPart.getViewer());
+          compoundCommand.add(command);
+        }
       }
 
       getCommandStack().execute(compoundCommand);

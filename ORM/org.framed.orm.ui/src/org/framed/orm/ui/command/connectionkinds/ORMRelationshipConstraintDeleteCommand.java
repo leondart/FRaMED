@@ -12,7 +12,7 @@ import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
-public class ORMRealtionshipConstraintDeleteCommand extends Command {
+public class ORMRelationshipConstraintDeleteCommand extends Command {
 
   /** Relation to be deleted. */
   private RelationshipConstraint relation;

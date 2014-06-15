@@ -48,7 +48,7 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
     action = getActionRegistry().getAction(FulfillRolesAction.FULFILL_ROLES_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
-    action = getActionRegistry().getAction(DeleteRelationshipConstraintsAction.DELTE_RLSHIP_CONSTRAINTS_ID);
+    action = getActionRegistry().getAction(DeleteRelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
   }
 

@@ -9,7 +9,7 @@ import org.framed.orm.model.Relation;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.command.connectionkinds.ExecuteDeleteRlshipConsActionCommand;
-import org.framed.orm.ui.command.connectionkinds.ORMRealtionshipConstraintDeleteCommand;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationDeleteCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
@@ -51,9 +51,9 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
     return command;
   }
 
-  private ORMRealtionshipConstraintDeleteCommand setupRelationshipConstraintDelete(
+  private ORMRelationshipConstraintDeleteCommand setupRelationshipConstraintDelete(
       RelationshipConstraint rc, EditPartViewer epv) {
-    ORMRealtionshipConstraintDeleteCommand command = new ORMRealtionshipConstraintDeleteCommand();
+    ORMRelationshipConstraintDeleteCommand command = new ORMRelationshipConstraintDeleteCommand();
     command.setRelationshipConstraint(rc);
     command.setEPViewer(epv);
     return command;
