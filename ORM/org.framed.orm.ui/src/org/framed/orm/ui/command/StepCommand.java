@@ -9,6 +9,9 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.WorkbenchException;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Grouping;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 
 /**
@@ -66,6 +69,13 @@ public class StepCommand extends Command {
         if (!part.equals(editorPart)) {
           ORMMultiPageEditor multiPart = (ORMMultiPageEditor) part;
           multiPart.setContents(editpart.getViewer().getContents().getModel());
+
+          if (editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram
+              || editpart.getViewer().getContents().getModel() instanceof Grouping)
+            multiPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+          else
+            multiPart.getEditorBeh().setEditorType(EditorType.ROLES);
+
         }
       }
     } else {
@@ -78,11 +88,27 @@ public class StepCommand extends Command {
 
         if (isNewWindowCommand) {
           newPart.setContents(newContent);
+
+          if (editpart.getViewer().getContents().getModel() instanceof CompartmentDiagram
+              || editpart.getViewer().getContents().getModel() instanceof Grouping)
+            newPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+          else
+            newPart.getEditorBeh().setEditorType(EditorType.ROLES);
+
         } else {
           newPart.setContents(editpart.getViewer().getContents().getModel());
+
+          if (newContent instanceof CompartmentDiagram || newContent instanceof Grouping)
+            newPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+          else
+            newPart.getEditorBeh().setEditorType(EditorType.ROLES);
+
           // set focus on the editor instance with new content
           page.activate(editorPart);
+
         }
+
+
 
       } catch (PartInitException e1) {
         // TODO Auto-generated catch block
@@ -92,6 +118,10 @@ public class StepCommand extends Command {
 
     if (!isNewWindowCommand) {
       editorPart.setContents(newContent);
+      if (newContent instanceof CompartmentDiagram || newContent instanceof Grouping)
+        editorPart.getEditorBeh().setEditorType(EditorType.COMPARTMENT);
+      else
+        editorPart.getEditorBeh().setEditorType(EditorType.ROLES);
     } else {
       editorPart.setContents(editpart.getViewer().getContents().getModel());
     }
