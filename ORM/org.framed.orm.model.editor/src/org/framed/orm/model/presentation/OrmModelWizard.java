@@ -189,15 +189,15 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   protected Collection<String> getInitialObjectNames() {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
-      for (EClassifier eClassifier : ormPackage.getEClassifiers()) {
-        if (eClassifier instanceof EClass) {
-          EClass eClass = (EClass) eClassifier;
-          if (!eClass.isAbstract()) {
-            initialObjectNames.add(eClass.getName());
-          }
-        }
-      }
-      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+//      for (EClassifier eClassifier : ormPackage.getEClassifiers()) {
+//        if (eClassifier instanceof EClass) {
+//          EClass eClass = (EClass) eClassifier;
+//          if (!eClass.isAbstract()) {
+            initialObjectNames.add(/*eClass.getName()*/ormPackage.getCompartmentDiagram().getName());
+//          }
+//        }
+//      }
+//      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
   }

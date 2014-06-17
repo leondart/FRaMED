@@ -22,11 +22,11 @@ public class ORMNaturalTypeFigure extends ORMTypeFigure {
 	public ORMNaturalTypeFigure(boolean isEditorData,Node parent) {
 
 		super(parent);
-
+		
 	    rectangle = new ShadowRectangle();
 	    
 	    ToolbarLayout layout = new ToolbarLayout();
-	    layout.setSpacing(4); // setzt initial höhe der Kind Elemente
+	    layout.setSpacing(4);                          // setzt initial höhe der Kind Elemente
 	    setLayoutManager(new XYLayout());
 	    setBackgroundColor(ColorConstants.white);
 	    

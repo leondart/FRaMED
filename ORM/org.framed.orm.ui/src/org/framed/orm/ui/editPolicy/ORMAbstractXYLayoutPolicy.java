@@ -5,6 +5,7 @@ package org.framed.orm.ui.editPolicy;
 
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -13,9 +14,11 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.swt.widgets.Display;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Container;
 import org.framed.orm.ui.command.ORMAddCommand;
+import org.framed.orm.ui.editPart.ORMLabelFigure;
 
 /**
  * @author Lars Schuetze
@@ -23,6 +26,17 @@ import org.framed.orm.ui.command.ORMAddCommand;
  */
 public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
+  static Dimension dynamicDimensions() {
+    Dimension d = new Dimension();
+    
+//    System.out.println("charHeight: " + ORMLabelFigure.charHeight(null));
+    
+    d.setHeight(ORMLabelFigure.charHeight(null) * 10);   //charHeight * 10: title + 3 attributes + 3 methods + 3 dots
+    d.setWidth(200);
+    
+    return d;
+  }
+  
   @Override
   protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
     CompoundCommand result = new CompoundCommand();

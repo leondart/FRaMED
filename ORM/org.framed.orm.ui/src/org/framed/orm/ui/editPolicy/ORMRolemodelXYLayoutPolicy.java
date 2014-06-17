@@ -33,7 +33,7 @@ import org.framed.orm.ui.figure.ORMRolemodelFigure;
 public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
   private static final Dimension DEFAULT_TYPE_DIMENSION = new Dimension(200, 200);
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL = new Dimension(50, 50);
+  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL = ORMAbstractXYLayoutPolicy.dynamicDimensions();//new Dimension(200, 200);
   private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(200, 100);
 
   /**
@@ -81,6 +81,8 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         ORMNodeCreateCommand command = new ORMNodeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
 
+        System.out.println("Creating natural type");
+        
         command.setNode((Node) (request.getNewObject()));
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(),

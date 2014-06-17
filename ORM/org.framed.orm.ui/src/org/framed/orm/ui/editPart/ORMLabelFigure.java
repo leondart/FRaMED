@@ -29,8 +29,16 @@ public class ORMLabelFigure extends LabelFigure {
   private Figure figure = null;
   
   //Hack
-  private class TextCalc extends TextFlow{
-    public TextCalc(){
+  private static class TextCalc extends TextFlow{
+    
+    static TextCalc tc = null;
+    
+    public static TextCalc instance() {
+      if(tc == null) tc = new TextCalc();
+      return tc;
+    }
+    
+    private TextCalc(){
       super();
     }
     
@@ -38,6 +46,12 @@ public class ORMLabelFigure extends LabelFigure {
       return (f == null) ? 
              getTextUtilities().getStringExtents(text, Display.getCurrent().getSystemFont()).width() : 
              getTextUtilities().getStringExtents(text, f).width();
+    }
+    
+    int textHeight(String text,Font f){
+      return (f == null) ? 
+             getTextUtilities().getStringExtents(text, Display.getCurrent().getSystemFont()).height() : 
+             getTextUtilities().getStringExtents(text, f).height();
     }
   }
    
@@ -72,6 +86,14 @@ public class ORMLabelFigure extends LabelFigure {
     return parentEditPart;
   }
   
+  public static int charWidth(Font f) {
+    return TextCalc.instance().textWidth("A", f);
+  }
+  
+  public static int charHeight(Font f) {
+    return TextCalc.instance().textHeight("A", f);
+  }
+  
   @Override
   public void setText(String value) {
     if(parent != null) super.setText(shortenLabel(value, super.getTextFlow(), parent.getConstraints()));
@@ -80,7 +102,7 @@ public class ORMLabelFigure extends LabelFigure {
   }
   
   public String shortenLabel(String origText,Rectangle labelRect,Font f,Rectangle parentRect){
-    int textWidth = (new TextCalc()).textWidth(origText, f); 
+    int textWidth = TextCalc.instance().textWidth(origText, f); 
     
     if(labelRect == null || parentRect == null) return origText;
     
