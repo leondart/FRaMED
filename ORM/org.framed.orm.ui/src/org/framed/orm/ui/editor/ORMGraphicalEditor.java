@@ -278,27 +278,27 @@ public class ORMGraphicalEditor extends
     return editorType;
   }
 
-  public void setEditorType(EditorType editorType) {
-    if (this.editorType.equals(editorType))
-      return;
-
-    this.editorType = editorType;
-    changeNotifier.editorTypeChanged(editorType);
-
-    // set behavior and data editor type to the same type (btw: the complete design of this editor
-    // hick-hack should be refactored)
-    ((ORMMultiPageEditor) getParentEditor()).getBehaviorEditor().setEditorType(editorType);
-    ((ORMMultiPageEditor) getParentEditor()).getDataEditor().setEditorType(editorType);
-  }
-
   public void updateEditorType() {
+    EditorType temptype;
 
     if (getGraphicalViewer().getContents().getModel() instanceof CompartmentDiagram
-        || getGraphicalViewer().getContents().getModel() instanceof Grouping)
-      this.setEditorType(EditorType.COMPARTMENT);
-    else
-      this.setEditorType(EditorType.ROLES);
+        || getGraphicalViewer().getContents().getModel() instanceof Grouping) {
+      temptype = EditorType.COMPARTMENT;
+    } else {
+      temptype = EditorType.ROLES;
+    }
 
+    if (this.editorType.equals(temptype)) {
+      return;
+    }
+
+    this.editorType = temptype;
+    changeNotifier.editorTypeChanged(editorType);
+
+    // set data editor type to the same type as the behaviour editor type (btw: the complete design
+    // of this editor
+    // hick-hack should be refactored)
+    ((ORMMultiPageEditor) getParentEditor()).getDataEditor().updateEditorType();;
   }
 
   /**
