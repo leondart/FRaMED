@@ -32,9 +32,9 @@ import org.framed.orm.ui.figure.ORMRolemodelFigure;
  * */
 public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
-  private static final Dimension DEFAULT_TYPE_DIMENSION = new Dimension(200, 200);
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL = ORMAbstractXYLayoutPolicy.dynamicDimensions();//new Dimension(200, 200);
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(200, 100);
+//  private static final Dimension DEFAULT_TYPE_DIMENSION = ORMAbstractXYLayoutPolicy.dynamicDimensions(null);
+//  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL = ORMAbstractXYLayoutPolicy.dynamicDimensions(NaturalType.class);
+//  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = ORMAbstractXYLayoutPolicy.dynamicDimensions(RoleGroup.class);
 
   /**
    * Command created top change the constraints of a {@link Node} instance.
@@ -68,7 +68,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         command.setNode((Node) (request.getNewObject()));
 
         command.setConstraints(new Rectangle(constraints.getLocation(),
-            DEFAULT_TYPE_DIMENSION_ROLEGROUP));
+            ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
         command.setContainer((Container) getHost().getModel());
         retVal = command;
       }
@@ -86,7 +86,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         command.setNode((Node) (request.getNewObject()));
         // here are init size set
         command.setConstraints(new Rectangle(constraints.getLocation(),
-            DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL));
+            ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
         command.setContainer((Container) getHost().getModel());
         retVal = command;
       }
@@ -106,7 +106,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         ORMCompartmentCreateCommand command = new ORMCompartmentCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
-        command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
+        command.setConstraints(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
         command.setNode(ct);
         command.setRolemodel(rm);
         compoundcommand.add(command);
@@ -129,7 +129,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         ORMGroupingCreateCommand command = new ORMGroupingCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
-        command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
+        command.setConstraints(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
         command.setNode(group);
         command.setRolemodel(rm);
         compoundcommand.add(command);

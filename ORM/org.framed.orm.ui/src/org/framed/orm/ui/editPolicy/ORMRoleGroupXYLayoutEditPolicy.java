@@ -22,7 +22,7 @@ import org.framed.orm.ui.figure.ORMRoleGroupFigure;
  * */
 public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
 
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = new Dimension(200, 100);
+//  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = ORMAbstractXYLayoutPolicy.dynamicDimensions(RoleGroup.class);
 
   @Override
   protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
@@ -45,7 +45,7 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
       command.setNode((Node) (request.getNewObject()));
 
       command.setConstraints(new Rectangle(constraints.getLocation(),
-          DEFAULT_TYPE_DIMENSION_ROLEGROUP));
+          ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
       command.setContainer((Container) getHost().getModel());
       return command;
     }

@@ -29,8 +29,8 @@ import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
  * */
 public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
 
-  private static final Dimension DEFAULT_TYPE_DIMENSION = new Dimension(200, 200);
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATURAL = ORMAbstractXYLayoutPolicy.dynamicDimensions();//new Dimension(200,200);
+  private static final Dimension DEFAULT_TYPE_DIMENSION = ORMAbstractXYLayoutPolicy.dynamicDimensions(null);
+  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATURAL = ORMAbstractXYLayoutPolicy.dynamicDimensions(NaturalType.class);
 
   /**
    * Command created top change the constraints of a {@link Node} instance.

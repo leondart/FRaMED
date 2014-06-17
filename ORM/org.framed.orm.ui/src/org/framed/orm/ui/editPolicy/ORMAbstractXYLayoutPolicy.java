@@ -17,6 +17,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.swt.widgets.Display;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Container;
+import org.framed.orm.model.RoleGroup;
 import org.framed.orm.ui.command.ORMAddCommand;
 import org.framed.orm.ui.editPart.ORMLabelFigure;
 
@@ -26,13 +27,22 @@ import org.framed.orm.ui.editPart.ORMLabelFigure;
  */
 public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
-  static Dimension dynamicDimensions() {
+  static Dimension dynamicDimensions(Object obj) {
     Dimension d = new Dimension();
     
-//    System.out.println("charHeight: " + ORMLabelFigure.charHeight(null));
-    
-    d.setHeight(ORMLabelFigure.charHeight(null) * 10);   //charHeight * 10: title + 3 attributes + 3 methods + 3 dots
     d.setWidth(200);
+    
+    if(obj == null) {
+      d.setHeight(ORMLabelFigure.charHeight(null) * 10);   //charHeight * 10: title + 3 attributes + 3 methods + 3 dots
+      return d;
+    }
+    
+    if(obj.equals(RoleGroup.class)) {
+      d.setHeight(2 * ORMLabelFigure.charHeight(null) + dynamicDimensions(null).height());   //offset + title + role height
+      d.setWidth(250);
+    }else {
+      d.setHeight(ORMLabelFigure.charHeight(null) * 10);   //charHeight * 10: title + 3 attributes + 3 methods + 3 dots
+    }
     
     return d;
   }

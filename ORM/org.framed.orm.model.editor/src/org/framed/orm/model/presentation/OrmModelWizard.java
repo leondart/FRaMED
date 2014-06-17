@@ -91,6 +91,9 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class OrmModelWizard extends Wizard implements INewWizard {
+  
+  private static final String ENCODING = "UTF-8";
+  
   /**
    * The supported extensions for created files.
    * <!-- begin-user-doc -->
@@ -210,7 +213,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
    */
   protected EObject createInitialModel() {
     EClass eClass =
-        (EClass) ormPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+        (EClass) ormPackage.getCompartmentDiagram();//getEClassifier(initialObjectCreationPage.getInitialObjectName());
     EObject rootObject = ormFactory.create(eClass);
     return rootObject;
   }
@@ -256,7 +259,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
             // Save the contents of the resource to the file system.
             //
             Map<Object, Object> options = new HashMap<Object, Object>();
-            options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+            options.put(XMLResource.OPTION_ENCODING, ENCODING);
             resource.save(options);
           } catch (Exception exception) {
             ORMEditorPlugin.INSTANCE.log(exception);
@@ -612,12 +615,12 @@ public class OrmModelWizard extends Wizard implements INewWizard {
         }
       }
     }
-    initialObjectCreationPage = new OrmModelWizardInitialObjectCreationPage("Whatever2");
-    initialObjectCreationPage.setTitle(ORMEditorPlugin.INSTANCE
-        .getString("_UI_OrmModelWizard_label"));
-    initialObjectCreationPage.setDescription(ORMEditorPlugin.INSTANCE
-        .getString("_UI_Wizard_initial_object_description"));
-    addPage(initialObjectCreationPage);
+//    initialObjectCreationPage = new OrmModelWizardInitialObjectCreationPage("Whatever2");
+//    initialObjectCreationPage.setTitle(ORMEditorPlugin.INSTANCE
+//        .getString("_UI_OrmModelWizard_label"));
+//    initialObjectCreationPage.setDescription(ORMEditorPlugin.INSTANCE
+//        .getString("_UI_Wizard_initial_object_description"));
+//    addPage(initialObjectCreationPage);
   }
 
   /**
