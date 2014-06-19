@@ -98,6 +98,7 @@ public class ORMGraphicalEditor extends
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
     getGraphicalViewer().setContents(cd);
+    ((ORMMultiPageEditor) parentEditor).createCustomTitleForEditor(cd);
     // this.addListenerObject(changeNotifier);
     // add the change notifier as listener
     getGraphicalViewer().getEditDomain().getCommandStack()
@@ -212,8 +213,9 @@ public class ORMGraphicalEditor extends
   @Override
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     super.init(site, input);
-    if (cdResource != null)
+    if (cdResource != null) {
       cd = (CompartmentDiagram) cdResource.getContents().get(0);
+    }
   }
 
   // TODO: anpassen an multiPageEditor --> bug wenn man im Behavior Editor etwas veraendert enabled

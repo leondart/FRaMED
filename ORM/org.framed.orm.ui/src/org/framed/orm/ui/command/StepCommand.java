@@ -66,6 +66,7 @@ public class StepCommand extends Command {
         if (!part.equals(editorPart)) {
           ORMMultiPageEditor multiPart = (ORMMultiPageEditor) part;
           multiPart.setContents(editpart.getViewer().getContents().getModel());
+          multiPart.createCustomTitleForEditor(editpart.getViewer().getContents().getModel());
 
           multiPart.getEditorBeh().updateEditorType();
         }
@@ -80,8 +81,10 @@ public class StepCommand extends Command {
 
         if (isNewWindowCommand) {
           newPart.setContents(newContent);
+          newPart.createCustomTitleForEditor(newContent);
         } else {
           newPart.setContents(editpart.getViewer().getContents().getModel());
+          newPart.createCustomTitleForEditor(editpart.getViewer().getContents().getModel());
           // set focus on the editor instance with new content
           page.activate(editorPart);
         }
@@ -96,8 +99,10 @@ public class StepCommand extends Command {
 
     if (!isNewWindowCommand) {
       editorPart.setContents(newContent);
+      editorPart.createCustomTitleForEditor(newContent);
     } else {
       editorPart.setContents(editpart.getViewer().getContents().getModel());
+      editorPart.createCustomTitleForEditor(editpart.getViewer().getContents().getModel());
     }
 
     editorPart.getEditorBeh().updateEditorType();

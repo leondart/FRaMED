@@ -27,6 +27,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 
 
@@ -38,16 +40,26 @@ import org.framed.orm.model.OrmPackage;
 public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectionListener,
     CommandStackListener, IResourceChangeListener {
 
+
   private ORMGraphicalEditor editorBeh;
   private ORMGraphicalEditor editorData;
   private EditorChangeNotifier changeNotifier = null;
   private Resource resource;
+  private String inputFilename = "";
 
-
-  public void setEditorChangeNotifier(EditorChangeNotifier changeNotifier){
+  public void setEditorChangeNotifier(EditorChangeNotifier changeNotifier) {
     this.changeNotifier = changeNotifier;
   }
-  
+
+  public void createCustomTitleForEditor(Object model) {
+    
+    String modelClassName = model.getClass().getSimpleName();
+    setTitle(inputFilename + " " + modelClassName.substring(0, modelClassName.length()-4));
+    if(model instanceof Node){
+      setTitle(getTitle()+ " " + ((Node)model).getName());
+    }
+  }
+
   public ORMGraphicalEditor getEditorBeh() {
     return editorBeh;
   }
@@ -56,11 +68,14 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     return editorData;
   }
 
+  public String getInputFileName() {
+    return inputFilename;
+  }
+
   public ORMMultiPageEditor() {
     super();
     ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
   }
-
 
   // create/adds the beahvioreditor to the multipageeditor
   void createPage0() {
@@ -111,6 +126,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     if (editorInput instanceof IFileEditorInput) {
       IFileEditorInput fileInput = (IFileEditorInput) editorInput;
       IFile file = fileInput.getFile();
+      inputFilename = file.getName();
       resource = resourceSet.createResource(URI.createURI(file.getLocationURI().toString()));
       try {
         resource.load(null);
@@ -186,7 +202,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
     }
 
-    if(changeNotifier != null) changeNotifier.pageChanged(newPageIndex);
+    if (changeNotifier != null)
+      changeNotifier.pageChanged(newPageIndex);
   }
 
 
@@ -212,7 +229,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   public void resourceChanged(final IResourceChangeEvent event) {
     if (event.getType() == IResourceChangeEvent.PRE_CLOSE) {
       Display.getDefault().asyncExec(new Runnable() {
-        
+
         public void run() {
           IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
           for (int i = 0; i < pages.length; i++) {
@@ -223,27 +240,30 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
             }
           }
         }
-        
+
       });
     }
   }
-  
-  public ORMGraphicalEditor getBehaviorEditor(){
+
+  public ORMGraphicalEditor getBehaviorEditor() {
     return editorBeh;
   }
-  
-  public ORMGraphicalEditor getDataEditor(){
+
+  public ORMGraphicalEditor getDataEditor() {
     return editorData;
   }
 
   public void setContents(Object obj) {
-//    System.out.println("setContents: "+obj);
-    /*first, check which editor type we will get when setting the object as content. The palette will be updated*/
-//    if(!editorBeh.getEditorType().equals(editorData.getEditorType()))
-//      editorData.setEditorType(editorBeh.getEditorType());
-//    else
-//      editorBeh.setEditorType(EditorType.ROLES);
-    
+    // System.out.println("setContents: "+obj);
+    /*
+     * first, check which editor type we will get when setting the object as content. The palette
+     * will be updated
+     */
+    // if(!editorBeh.getEditorType().equals(editorData.getEditorType()))
+    // editorData.setEditorType(editorBeh.getEditorType());
+    // else
+    // editorBeh.setEditorType(EditorType.ROLES);
+
     editorBeh.getOwnViewer().setContents(obj);
     editorData.getOwnViewer().setContents(obj);
   }
