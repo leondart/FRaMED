@@ -62,12 +62,10 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       addSourcePropertyDescriptor(object);
       addDim1BPPropertyDescriptor(object);
       addDim2BPPropertyDescriptor(object);
-      addSecondParthoodPropertyDescriptor(object);
       addSecondLowerPropertyDescriptor(object);
       addFirstLowerPropertyDescriptor(object);
       addFirstUpperPropertyDescriptor(object);
       addSecondUpperPropertyDescriptor(object);
-      addFirstParthoodPropertyDescriptor(object);
       addRlshipConstraintsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
@@ -138,22 +136,6 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
   }
 
   /**
-   * This adds a property descriptor for the Second Parthood feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addSecondParthoodPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relationship_secondParthood_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondParthood_feature",
-            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__SECOND_PARTHOOD, true,
-        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-  }
-
-  /**
    * This adds a property descriptor for the Second Lower feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -215,22 +197,6 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_secondUpper_feature",
             "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__SECOND_UPPER, true, false,
         false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the First Parthood feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addFirstParthoodPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relationship_firstParthood_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstParthood_feature",
-            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_PARTHOOD, true,
-        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

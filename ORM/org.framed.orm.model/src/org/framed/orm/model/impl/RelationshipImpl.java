@@ -3,6 +3,7 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -19,28 +20,32 @@ import org.framed.orm.model.RelationshipConstraint;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRelationContainer <em>Relation Container</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim1BP <em>Dim1 BP</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim2BP <em>Dim2 BP</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondParthood <em>Second Parthood</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondLower <em>Second Lower</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstLower <em>First Lower</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstUpper <em>First Upper</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondUpper <em>Second Upper</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstParthood <em>First Parthood</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRlshipConstraints <em>Rlship Constraints</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSourceLabel <em>Source Label</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTargetLabel <em>Target Label</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRelationContainer <em>Relation Container
+ * </em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim1BP <em>Dim1 BP</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getDim2BP <em>Dim2 BP</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondParthood <em>Second Parthood</em>}
+ * </li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondLower <em>Second Lower</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstLower <em>First Lower</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstUpper <em>First Upper</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondUpper <em>Second Upper</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstParthood <em>First Parthood</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getRlshipConstraints <em>Rlship Constraints
+ * </em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSourceLabel <em>Source Label</em>}</li>
+ * <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTargetLabel <em>Target Label</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class RelationshipImpl extends MinimalEObjectImpl.Container implements Relationship {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected RelationshipImpl() {
@@ -49,6 +54,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -57,8 +63,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,6 +74,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -77,16 +84,18 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public void setRelationContainer(org.framed.orm.model.Container newRelationContainer) {
     eSet(OrmPackage.Literals.RELATION__RELATION_CONTAINER, newRelationContainer);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -96,6 +105,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -105,6 +115,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -114,6 +125,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -123,6 +135,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -133,6 +146,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -143,6 +157,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -152,6 +167,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -161,6 +177,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -170,6 +187,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -179,6 +197,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -188,6 +207,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -195,23 +215,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     eSet(OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER, newFirstLower);
   }
 
-  // private void updateSourceLabel() {
-  // if(firstUpper == -1) {
-  // if(firstLower == -1) {
-  // //there is an arbitrary multiplicity
-  // setSourceLabelValue("*");
-  // }
-  // else {
-  // setSourceLabelValue(firstLower + "..*");
-  // }
-  // }
-  // else {
-  // setSourceLabelValue(firstLower + ".." + firstUpper);
-  // }
-  // }
-
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -221,6 +227,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -230,6 +237,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -238,11 +246,8 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
-   * @param newSecondUpper If the value is -1 it indicates that there is no bound <!-- end-user-doc
-   *        -->
-   * @author Lars Schuetze
    * @generated
    */
   @Override
@@ -250,21 +255,9 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     eSet(OrmPackage.Literals.RELATIONSHIP__SECOND_UPPER, newSecondUpper);
   }
 
-  // private void updateTargetLabel() {
-  // if (secondUpper == -1) {
-  // if (secondLower == -1) {
-  // // there is an arbitrary multiplicity
-  // setTargetLabelValue("*");
-  // } else {
-  // setTargetLabelValue(secondLower + "..*");
-  // }
-  // } else {
-  // setTargetLabelValue(secondLower + ".." + secondUpper);
-  // }
-  // }
-
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -274,6 +267,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -283,6 +277,7 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -293,39 +288,96 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public RelationLabel getSourceLabel() {
     return (RelationLabel) eGet(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL, true);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public void setSourceLabel(RelationLabel newSourceLabel) {
     eSet(OrmPackage.Literals.RELATIONSHIP__SOURCE_LABEL, newSourceLabel);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public RelationLabel getTargetLabel() {
     return (RelationLabel) eGet(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL, true);
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @generated NOT
    */
+  @Override
   public void setTargetLabel(RelationLabel newTargetLabel) {
     eSet(OrmPackage.Literals.RELATIONSHIP__TARGET_LABEL, newTargetLabel);
   }
 
+  private void updateCardinalityLabel(int FeatureID, int cardinality) {
+    String newLabel = null;
+
+    switch (FeatureID) {
+      case OrmPackage.RELATIONSHIP__FIRST_LOWER:
+        if (getFirstUpper() == -1 && cardinality == -1) {
+          newLabel = "*";
+        } else {
+          newLabel = cardinality + ".." + getFirstUpper();
+        }
+        break;
+      case OrmPackage.RELATIONSHIP__SECOND_LOWER:
+        if (getSecondUpper() == -1 && cardinality == -1) {
+          newLabel = "*";
+        } else {
+          newLabel = cardinality + ".." + getSecondUpper();
+        }
+        break;
+      case OrmPackage.RELATIONSHIP__FIRST_UPPER:
+        if (getFirstLower() == -1 && cardinality == -1) {
+          newLabel = "*";
+        } else {
+          newLabel = getFirstLower() + ".." + cardinality;
+        }
+        break;
+      case OrmPackage.RELATIONSHIP__SECOND_UPPER:
+        if (getSecondLower() == -1 && cardinality == -1) {
+          newLabel = "*";
+        } else {
+          newLabel = getSecondLower() + ".." + cardinality;
+        }
+        break;
+    }
+
+    // to group the setting
+    switch (FeatureID) {
+      case OrmPackage.RELATIONSHIP__SECOND_LOWER:
+      case OrmPackage.RELATIONSHIP__SECOND_UPPER:
+        getTargetLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, newLabel);
+        break;
+      case OrmPackage.RELATIONSHIP__FIRST_LOWER:
+      case OrmPackage.RELATIONSHIP__FIRST_UPPER:
+        getSourceLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, newLabel);
+        break;
+    }
+  }
+
+  @Override
+  public void eNotify(Notification notification) {
+    super.eNotify(notification);
+    updateCardinalityLabel(notification.getFeatureID(Relationship.class),
+        notification.getNewIntValue());
+  }
 } // RelationshipImpl
