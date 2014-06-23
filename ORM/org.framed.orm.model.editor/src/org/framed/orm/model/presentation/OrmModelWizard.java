@@ -187,7 +187,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
    * Returns the names of the types that can be created as the root object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   protected Collection<String> getInitialObjectNames() {
     if (initialObjectNames == null) {
@@ -209,7 +209,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
    * Create a new model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   protected EObject createInitialModel() {
     EClass eClass =
@@ -222,7 +222,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
    * Do the work after everything is specified.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public boolean performFinish() {
@@ -567,7 +567,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
    * The framework calls this to create the contents of the wizard.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public void addPages() {
