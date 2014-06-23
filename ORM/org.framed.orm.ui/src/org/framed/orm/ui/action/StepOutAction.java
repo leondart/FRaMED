@@ -58,7 +58,7 @@ public class StepOutAction extends SelectionAction {
   /**
    * {@inheritDoc}
    * <p>
-   * The action is enabled if the selected entitie on the editor is a {@link ORMCompartmentEditPart}
+   * The action is enabled if the selected entity on the editor is a {@link ORMCompartmentEditPart}
    * or {@link ORMGroupingEditPart} instance
    * </p>
    */
@@ -69,9 +69,8 @@ public class StepOutAction extends SelectionAction {
     } else if (getSelectedObjects().get(0) instanceof ORMCompartmentEditPart
         || getSelectedObjects().get(0) instanceof ORMGroupingEditPart) {
       editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
-      if (editPart.equals(editPart.getViewer().getRootEditPart().getContents())) {
-        return true;
-      }
+      System.out.println("ParentEditPart: " + editPart.getViewer().getRootEditPart().getParent());
+      return editPart.equals(editPart.getViewer().getRootEditPart().getContents());
     }
 
     return false;

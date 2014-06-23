@@ -57,7 +57,7 @@ public class StepInAction extends SelectionAction {
   /**
    * {@inheritDoc}
    * <p>
-   * The action is enabled if the selected entitie on the editor is {@link ORMCompartmentEditPart}
+   * The action is enabled if the selected entity on the editor is {@link ORMCompartmentEditPart}
    * or {@link ORMGroupingEditPart} instance
    * </p>
    */
@@ -68,11 +68,8 @@ public class StepInAction extends SelectionAction {
     } else if (getSelectedObjects().get(0) instanceof ORMCompartmentEditPart
         || getSelectedObjects().get(0) instanceof ORMGroupingEditPart) {
       editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
-      if (!editPart.equals(editPart.getViewer().getRootEditPart().getContents())) {
-        return true;
-      }
+      return !editPart.equals(editPart.getViewer().getRootEditPart().getContents());
     }
-
     return false;
   }
 
