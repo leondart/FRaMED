@@ -69,7 +69,7 @@ public class StepOutAction extends SelectionAction {
     } else if (getSelectedObjects().get(0) instanceof ORMCompartmentEditPart
         || getSelectedObjects().get(0) instanceof ORMGroupingEditPart) {
       editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
-      System.out.println("ParentEditPart: " + editPart.getViewer().getRootEditPart().getParent());
+//      System.out.println("ParentEditPart: " + editPart.getViewer().getRootEditPart().getParent());
       return editPart.equals(editPart.getViewer().getRootEditPart().getContents());
     }
 

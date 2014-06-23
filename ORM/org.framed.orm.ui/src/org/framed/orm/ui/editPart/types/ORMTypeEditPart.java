@@ -272,14 +272,20 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
     /*refresh the attributes*/
     IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-    Iterator<ORMLabelFigure> it = contentPane.getChildren().iterator(); 
-    while(it.hasNext()) it.next().getParentEditPart().refresh();
+    Iterator<Object> it = contentPane.getChildren().iterator(); 
+    while(it.hasNext()) {
+      Object ep = it.next();
+      if(ep instanceof ORMLabelFigure)
+        ((ORMLabelFigure)ep).getParentEditPart().refresh();
+    }
 
     /*refresh the methods*/
     contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
     it = contentPane.getChildren().iterator();
-    while (it.hasNext()) {
-      it.next().getParentEditPart().refresh();
+    while(it.hasNext()) {
+      Object ep = it.next();
+      if(ep instanceof ORMLabelFigure)
+        ((ORMLabelFigure)ep).getParentEditPart().refresh();
     }
   }
 
