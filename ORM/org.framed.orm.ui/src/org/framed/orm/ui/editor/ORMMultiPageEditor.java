@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
@@ -52,11 +53,11 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   }
 
   public void createCustomTitleForEditor(Object model) {
-    
+
     String modelClassName = model.getClass().getSimpleName();
-    setTitle(inputFilename + " " + modelClassName.substring(0, modelClassName.length()-4));
-    if(model instanceof Node){
-      setTitle(getTitle()+ " " + ((Node)model).getName());
+    setTitle(inputFilename + " " + modelClassName.substring(0, modelClassName.length() - 4));
+    if (model instanceof Node) {
+      setTitle(getTitle() + " " + ((Node) model).getName());
     }
   }
 
@@ -75,6 +76,12 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   public ORMMultiPageEditor() {
     super();
     ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+  }
+
+  @Override
+  public void setTitleImage(Image titleImage) {
+    // TODO Auto-generated method stub
+    super.setTitleImage(titleImage);
   }
 
   // create/adds the beahvioreditor to the multipageeditor
@@ -105,6 +112,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   protected void createPages() {
     createPage0();
     createPage1();
+
+    // set TitleImage of this ORMMultiPageEditor with backgorundcolor of the viewer of the editorBeh
+    Image img =
+        Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/rosi-icon-smaller.gif")
+            .createImage();
+    img.setBackground(editorBeh.getGraphicalControl().getBackground());
+    setTitleImage(img);
   }
 
   /**
