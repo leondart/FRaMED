@@ -13,6 +13,7 @@ import org.framed.orm.model.Fulfillment;
 import org.framed.orm.ui.command.FulfillRolesCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 
+
 public class FulfillRolesAction extends SelectionAction {
 
   public static final String FULFILL_ROLES_ID = "FulfillRoles";
@@ -32,7 +33,11 @@ public class FulfillRolesAction extends SelectionAction {
 
     for (Object selectedObject : getSelectedObjects()) {
       if (selectedObject instanceof ORMFulfillmentEditPart) {
-        return true;
+        Compartment targetCompartment =
+            (Compartment) ((ORMFulfillmentEditPart) selectedObject).getTarget().getModel();
+        if (targetCompartment.getRolemodel().getParticipants().size() != 0) {
+          return true;
+        }
       }
     }
     return false;
