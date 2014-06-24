@@ -34,8 +34,8 @@ public class ORMRoleGroupFigure extends Figure {
     textFlow = new TextFlow();
     label = new Label();
 
-//    label.setHorizontalAligment(PositionConstants.CENTER);
-//    label.setOpaque(false);
+    label.setLabelAlignment(PositionConstants.CENTER);
+    label.setOpaque(false);
     label.add(textFlow);
 
 
