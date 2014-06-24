@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editPart.types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
   // TODO: find better names
   private final Label collectAttribute;
-  private final Label collectMethode;
+  private final Label collectMethod;
   private final PartFigure collectionAtt;
   private final PartFigure collectionMet;
 
@@ -62,15 +63,15 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     adapter = new ORMTypeAdapter();
     collectAttribute = new Label();
     collectAttribute.setText("...");
-    collectMethode = new Label();
-    collectMethode.setText("...");
+    collectMethod = new Label();
+    collectMethod.setText("...");
     collectionAtt = new PartFigure();
     collectionMet = new PartFigure();
   }
 
-  //return node for ORMLabelFigure to get the bounding rectangle
-  public Node getNode(){
-    return (Node)getModel();
+  // return node for ORMLabelFigure to get the bounding rectangle
+  public Node getNode() {
+    return (Node) getModel();
   }
 
   @Override
@@ -105,20 +106,17 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
       ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
       attrEditPart.setParentEditPart(this); // set the parent editpart so that the attribute can
                                             // access the current bounds of the editpart
+      
+      Attribute attribute = (Attribute) childEditPart.getModel();
 
-      if (contentPane.getChildren().size() >= 3) {
+      List<Attribute> temp = new ArrayList<Attribute>();
+      temp.addAll(attribute.getType().getAttributes());
+      Collections.reverse(temp);
 
-        if (!(contentPane.getChildren().contains(collectAttribute))) {
-          contentPane.add(collectAttribute);
-        }
+      int attributeIndex = temp.indexOf(attribute);
 
-        collectionAtt.add(attrEditPart.getFigure());
-        collectAttribute.setToolTip(collectionAtt);
-      } else {
-        Attribute attribute = (Attribute) childEditPart.getModel();
-        int attributeIndex = attribute.getType().getAttributes().indexOf(attribute);
-        contentPane.add(attrEditPart.getFigure(), attributeIndex);
-      }
+      addChildToRightPosition(attributeIndex, attrEditPart, contentPane,
+          collectAttribute,  collectionAtt);
     }
 
     if (childEditPart.getModel() instanceof Method) {
@@ -126,20 +124,58 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
       ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart;
       methodEditPart.setParentEditPart(this);
 
-      if (contentPane.getChildren().size() >= 3) {
+      // add method to right position determined by the model
+      Method method = (Method) childEditPart.getModel();
 
-        if (!(contentPane.getChildren().contains(collectMethode))) {
-          contentPane.add(collectMethode);
+      List<Method> temp = new ArrayList<Method>();
+      temp.addAll(method.getType().getOperations());
+      Collections.reverse(temp);
+
+      int methodIndex = temp.indexOf(method);
+
+      addChildToRightPosition(methodIndex, methodEditPart, contentPane,
+          collectMethod,  collectionMet);
+
+    }
+  }
+
+  public void addChildToRightPosition(int index, GraphicalEditPart childEditPart, IFigure contentPane,
+      Label collect, PartFigure collection) {
+
+    if (index < 3) {
+
+      if (contentPane.getChildren().size() <= index +1 && contentPane.getChildren().size() != 3) {
+        contentPane.add(childEditPart.getFigure(), 0);
+      } else {
+        contentPane.add(childEditPart.getFigure(), index);
+      }
+
+      if (contentPane.getChildren().size() >= 4
+          && !contentPane.getChildren().get(3).equals(collect)) {
+        if (!(contentPane.getChildren().contains(collectMethod))) {
+          contentPane.add(collect);
+          collect.setToolTip(collection);
         }
 
-        collectionMet.add(methodEditPart.getFigure());
-        collectMethode.setToolTip(collectionMet);
-      } else {
-        // add method to right position determined by the model
-        Method method = (Method) childEditPart.getModel();
-        int methodIndex = method.getType().getOperations().indexOf(method);
-        contentPane.add(methodEditPart.getFigure(), methodIndex);
+        IFigure childfig =
+            (IFigure) contentPane.getChildren().get(contentPane.getChildren().size() - 2);
+        contentPane.getChildren().remove(childfig);
+        collection.add(childfig, 0);
       }
+    } else {
+
+      if (!(contentPane.getChildren().contains(collect))) {
+        contentPane.add(collect);
+        collect.setToolTip(collection);
+      }
+
+      int collectionSize = collection.getChildren().size();
+      if (collectionSize <= index - collectionSize) {
+        collection.add(childEditPart.getFigure(), 0);
+      } else {
+        collection.add(childEditPart.getFigure(), index - collectionSize);
+      }
+
     }
   }
 
@@ -181,17 +217,17 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
         collectionMet.remove(((ORMMethodEditPart) childEditPart).getFigure());
       }
 
-      if (contentPane.getChildren().contains(collectMethode)) {
+      if (contentPane.getChildren().contains(collectMethod)) {
 
         if (contentPane.getChildren().size() < 4) {
           IFigure child = (IFigure) collectionMet.getChildren().get(0);
-          contentPane.remove(collectMethode);
+          contentPane.remove(collectMethod);
           contentPane.add(child);
-          contentPane.add(collectMethode);
+          contentPane.add(collectMethod);
         }
 
         if (collectionMet.getChildren().size() == 0) {
-          contentPane.remove(collectMethode);
+          contentPane.remove(collectMethod);
         }
       }
     }
@@ -214,7 +250,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
   private void performDirectEditing() {
     TextFlow textFlow = ((ORMTypeFigure) getFigure()).getLabel().getTextFlow();
-    
+
     ORMNodeDirectEditManager manager =
         new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
             textFlow), textFlow);
@@ -270,22 +306,22 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
     parent.setLayoutConstraint(this, figure, model.getConstraints());
 
-    /*refresh the attributes*/
+    /* refresh the attributes */
     IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-    Iterator<Object> it = contentPane.getChildren().iterator(); 
-    while(it.hasNext()) {
+    Iterator<Object> it = contentPane.getChildren().iterator();
+    while (it.hasNext()) {
       Object ep = it.next();
-      if(ep instanceof ORMLabelFigure)
-        ((ORMLabelFigure)ep).getParentEditPart().refresh();
+      if (ep instanceof ORMLabelFigure)
+        ((ORMLabelFigure) ep).getParentEditPart().refresh();
     }
 
-    /*refresh the methods*/
+    /* refresh the methods */
     contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
     it = contentPane.getChildren().iterator();
-    while(it.hasNext()) {
+    while (it.hasNext()) {
       Object ep = it.next();
-      if(ep instanceof ORMLabelFigure)
-        ((ORMLabelFigure)ep).getParentEditPart().refresh();
+      if (ep instanceof ORMLabelFigure)
+        ((ORMLabelFigure) ep).getParentEditPart().refresh();
     }
   }
 
