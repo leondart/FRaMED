@@ -1,5 +1,6 @@
 package org.framed.orm.ui.editPart;
 
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.text.TextFlow;
@@ -53,14 +54,15 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected IFigure createFigure() {
-    ORMLabelFigure label = null;
-
-    if(!(parentEditPart.getModel() instanceof ORMTypeEditPart))
-      label = new ORMLabelFigure(this,parentEditPart.getNode());
-    else
-      label = new ORMLabelFigure(this,(ORMTypeEditPart)parentEditPart.getModel());
-
-    return label;
+//    ORMLabelFigure label = null;
+//
+//    if(!(parentEditPart.getModel() instanceof ORMTypeEditPart))
+//      label = new ORMLabelFigure(this,parentEditPart.getNode());
+//    else
+//      label = new ORMLabelFigure(this,(ORMTypeEditPart)parentEditPart.getModel());
+//
+//    return label;
+    return new Label();
   }
 
   @Override
@@ -79,23 +81,21 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
   }
 
   private void performDirectEditing() {
-    TextFlow textFlow = ((ORMLabelFigure) getFigure()).getTextFlow();
+    Label label = (Label) (getFigure());
     ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
-            textFlow), textFlow);
+        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
 
   @Override
   protected void refreshVisuals() {
-    final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
+    final Label label = (Label) getFigure();
     final Attribute model = (Attribute) getModel();
 
 
-    figure.setText(model.getName());
-
-    figure.setToolTip(new Label(model.getName()));
+    label.setText(model.getName());
+    label.setToolTip(new Label(model.getName()));
   }
 
   @Override

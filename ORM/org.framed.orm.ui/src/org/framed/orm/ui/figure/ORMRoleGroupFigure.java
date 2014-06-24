@@ -5,6 +5,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.XYLayout;
@@ -21,7 +22,7 @@ public class ORMRoleGroupFigure extends Figure {
 
   private final RoundedRectangle rectangle;
   private ConnectionAnchor connectionAnchor;
-  private final FlowPage label;
+  private final Label label;
   private final TextFlow textFlow;
 
   public ORMRoleGroupFigure() {
@@ -31,10 +32,10 @@ public class ORMRoleGroupFigure extends Figure {
 
     rectangle = new RoundedRectangle();
     textFlow = new TextFlow();
-    label = new FlowPage();
+    label = new Label();
 
-    label.setHorizontalAligment(PositionConstants.CENTER);
-    label.setOpaque(false);
+//    label.setHorizontalAligment(PositionConstants.CENTER);
+//    label.setOpaque(false);
     label.add(textFlow);
 
 
@@ -60,8 +61,8 @@ public class ORMRoleGroupFigure extends Figure {
     return rectangle;
   }
 
-  public TextFlow getLabel() {
-    return textFlow;
+  public Label getLabel() {
+    return label;
   }
 
   @Override

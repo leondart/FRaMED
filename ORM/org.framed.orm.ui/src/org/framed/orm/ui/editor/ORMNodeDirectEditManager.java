@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editor;
 
 
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.tools.CellEditorLocator;
@@ -16,12 +17,12 @@ import org.framed.orm.model.Node;
  * */
 public class ORMNodeDirectEditManager extends DirectEditManager {
 
-  private final TextFlow label;
+  private final Label label;
 
   // private static int maxLength = 10;
 
   public ORMNodeDirectEditManager(GraphicalEditPart source, Class editorType,
-      CellEditorLocator locator, TextFlow label) {
+      CellEditorLocator locator, Label label) {
     super(source, editorType, locator/*,label*/);
     this.label = label;
     String name = label.getText();

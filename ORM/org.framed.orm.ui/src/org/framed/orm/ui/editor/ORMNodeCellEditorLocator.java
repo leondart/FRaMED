@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editor;
 
 
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.gef.tools.CellEditorLocator;
@@ -16,9 +17,9 @@ import org.eclipse.swt.widgets.Text;
 public class ORMNodeCellEditorLocator implements CellEditorLocator {
 
 
-  private final TextFlow nameLabel;
+  private final Label  nameLabel;
 
-  public ORMNodeCellEditorLocator(TextFlow label) {
+  public ORMNodeCellEditorLocator(Label label) {
     this.nameLabel = label;
   }
 
@@ -27,7 +28,7 @@ public class ORMNodeCellEditorLocator implements CellEditorLocator {
   public void relocate(CellEditor celleditor) {
     Text text = (Text) celleditor.getControl();
     Point pref = text.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-    Rectangle rect = nameLabel.getBounds().getCopy();
+    Rectangle rect = (nameLabel.getBounds().isEmpty()) ? new Rectangle() : nameLabel.getTextBounds().getCopy();
     nameLabel.translateToAbsolute(rect);
     text.setBounds(rect.x - 1, rect.y - 1, pref.x + 1, pref.y + 1);
   }

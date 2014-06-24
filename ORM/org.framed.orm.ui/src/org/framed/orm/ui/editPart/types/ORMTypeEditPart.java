@@ -249,11 +249,9 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
 
   private void performDirectEditing() {
-    TextFlow textFlow = ((ORMTypeFigure) getFigure()).getLabel().getTextFlow();
-
+    Label label = ((ORMTypeFigure) getFigure()).getLabel();
     ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
-            textFlow), textFlow);
+        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
@@ -303,26 +301,8 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
     figure.getLabel().setText(model.getName());
-    figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
+    figure.getLabel().setToolTip(new Label(model.getName()));
     parent.setLayoutConstraint(this, figure, model.getConstraints());
-
-    /* refresh the attributes */
-    IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-    Iterator<Object> it = contentPane.getChildren().iterator();
-    while (it.hasNext()) {
-      Object ep = it.next();
-      if (ep instanceof ORMLabelFigure)
-        ((ORMLabelFigure) ep).getParentEditPart().refresh();
-    }
-
-    /* refresh the methods */
-    contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
-    it = contentPane.getChildren().iterator();
-    while (it.hasNext()) {
-      Object ep = it.next();
-      if (ep instanceof ORMLabelFigure)
-        ((ORMLabelFigure) ep).getParentEditPart().refresh();
-    }
   }
 
   @Override

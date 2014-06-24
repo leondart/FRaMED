@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -75,10 +76,9 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
   }
 
   private void performDirectEditing() {
-    TextFlow textFlow = ((ORMRoleGroupFigure) getFigure()).getLabel();
+    Label label = ((ORMRoleGroupFigure) getFigure()).getLabel();
     ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
-            textFlow), textFlow);
+        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
@@ -132,11 +132,11 @@ public class ORMRoleGroupEditPart extends AbstractGraphicalEditPart implements N
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
 
-//    figure.getLabel().setText(model.getName());
-    ORMLabelFigure lf = new ORMLabelFigure((Node) getModel());
-    figure.getLabel().setText(lf.shortenLabel(model.getName(),figure.getLabel(),model.getConstraints()));
+    figure.getLabel().setText(model.getName());
+//    ORMLabelFigure lf = new ORMLabelFigure((Node) getModel());
+//    figure.getLabel().setText(lf.shortenLabel(model.getName(),figure.getLabel(),model.getConstraints()));
 
-    figure.getLabel().setToolTip(ORMLabelFigure.createToolTip(figure.getLabel(), model.getName()));
+    figure.getLabel().setToolTip(new Label(model.getName()));
 
     parent.setLayoutConstraint(this, figure, model.getConstraints());
   }

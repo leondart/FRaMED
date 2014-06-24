@@ -47,14 +47,15 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected IFigure createFigure() {
-    ORMLabelFigure label = null;
-
-    if(!(parentEditPart.getModel() instanceof ORMTypeEditPart))
-      label = new ORMLabelFigure(this,parentEditPart.getNode());
-    else
-      label = new ORMLabelFigure(this,(ORMTypeEditPart)parentEditPart.getModel());
-
-    return label;
+//    ORMLabelFigure label = null;
+//
+//    if(!(parentEditPart.getModel() instanceof ORMTypeEditPart))
+//      label = new ORMLabelFigure(this,parentEditPart.getNode());
+//    else
+//      label = new ORMLabelFigure(this,(ORMTypeEditPart)parentEditPart.getModel());
+//
+//    return label;
+    return new Label();
   }
 
   @Override
@@ -72,21 +73,19 @@ public class ORMMethodEditPart extends AbstractGraphicalEditPart {
   }
 
   private void performDirectEditing() {
-    TextFlow textFlow = ((ORMLabelFigure) getFigure()).getTextFlow();
+    Label label = ((Label) getFigure());
     ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
-            textFlow), textFlow);
+        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
   @Override
   protected void refreshVisuals() {
-    final ORMLabelFigure figure = (ORMLabelFigure) getFigure();
+    final Label figure = (Label) getFigure();
     final Method model = (Method) getModel();
 
 
     figure.setText(model.getName());
-
     figure.setToolTip(new Label(model.getName()));
   }
 

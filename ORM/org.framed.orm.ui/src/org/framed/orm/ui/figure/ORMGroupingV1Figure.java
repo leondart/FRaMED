@@ -5,6 +5,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -21,7 +22,7 @@ public class ORMGroupingV1Figure extends Figure {
 	
 	private final ShadowRoundedRectangle rectangle;
 	private ConnectionAnchor connectionAnchor;
-	private ORMLabelFigure label;
+	private Label label;
   
 	//figure for subgroupings 
 	public ORMGroupingV1Figure(Node node){
@@ -39,7 +40,7 @@ public class ORMGroupingV1Figure extends Figure {
 	    rectangle.setLayoutManager(layout);
 	    rectangle.setOpaque(true);
 	    
-	    label = new ORMLabelFigure(node);
+	    label = new Label();
 	    rectangle.add(label);
 	    setOpaque(true);
 
@@ -53,7 +54,7 @@ public class ORMGroupingV1Figure extends Figure {
 		    return rectangle;
 	 }
 	 
-	 public ORMLabelFigure getLabel(){
+	 public Label getLabel(){
 		 return label;
 	 }
 	 

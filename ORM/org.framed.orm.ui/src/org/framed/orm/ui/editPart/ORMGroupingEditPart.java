@@ -106,15 +106,14 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
 
 
   private void performDirectEditing() {
-    TextFlow textFlow;
+    Label label;
     if (getFigure() instanceof ORMGroupingV1Figure) {
-      textFlow = ((ORMGroupingV1Figure) getFigure()).getLabel().getTextFlow();
+      label = ((ORMGroupingV1Figure) getFigure()).getLabel();
     } else {
-      textFlow = ((ORMGroupingV2Figure) getFigure()).getLabel().getTextFlow();
+      label = ((ORMGroupingV2Figure) getFigure()).getLabel();
     }
     ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
-            textFlow), textFlow);
+        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 

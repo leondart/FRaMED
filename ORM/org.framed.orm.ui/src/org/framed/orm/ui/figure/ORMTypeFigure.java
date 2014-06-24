@@ -7,6 +7,7 @@ import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.framed.orm.model.Node;
 import org.framed.orm.ui.editPart.ORMLabelFigure;
@@ -17,11 +18,11 @@ import org.framed.orm.ui.editPart.ORMLabelFigure;
 public abstract class ORMTypeFigure extends Figure {
 	private PartFigure attributeFigure; 
 	private PartFigure methodFigure; 
- 	private ORMLabelFigure label;
+ 	private Label label;
 	private ConnectionAnchor connectionAnchor;
 	
 	public ORMTypeFigure(Node parent){
-	  label = new ORMLabelFigure(parent);
+	  label = new Label();
 	  attributeFigure = new PartFigure();
 	  methodFigure = new PartFigure();
 	}
@@ -32,7 +33,7 @@ public abstract class ORMTypeFigure extends Figure {
 //	 methodFigure = new PartFigure();
 //    }
 	
-	public ORMLabelFigure getLabel(){
+	public Label getLabel(){
 		return label;
 	}
 	

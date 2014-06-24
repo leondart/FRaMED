@@ -10,18 +10,16 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.Fulfillment;
-import org.framed.orm.ui.figure.LabelFigure;
-
 
 /**
  * @author Kay Bierzynski
  * */
 public class ORMFulfillmentEditPart extends ORMRelationEditPart {
-		private final LabelFigure  targetLabel;
+		private final Label  targetLabel;
 	
 		public  ORMFulfillmentEditPart() {
 		    super();  
-		    targetLabel = new LabelFigure();
+		    targetLabel = new Label();
 		  }
 		
 	@Override protected IFigure createFigure() {

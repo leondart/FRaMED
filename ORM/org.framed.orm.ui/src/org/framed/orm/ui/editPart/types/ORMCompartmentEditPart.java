@@ -122,7 +122,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
       children.addAll(rm.getParticipants());
 
       for (AbstractRole role : children) {
-        ORMLabelFigure label = new ORMLabelFigure((Node) getModel());
+        Label label = new Label();
         Label label2 = new Label();
         String labelText;
 

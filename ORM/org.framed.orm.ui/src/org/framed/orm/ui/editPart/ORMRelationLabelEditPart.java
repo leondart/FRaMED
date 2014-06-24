@@ -4,6 +4,7 @@
 package org.framed.orm.ui.editPart;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,7 +17,6 @@ import org.framed.orm.model.RelationLabel;
 import org.framed.orm.ui.editPolicy.ORMRelationLabelEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
-import org.framed.orm.ui.figure.LabelFigure;
 
 /**
  * @author Lars Schuetze
@@ -33,11 +33,11 @@ public class ORMRelationLabelEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected IFigure createFigure() {
-    return new LabelFigure();
+    return new Label();
   }
 
-  protected LabelFigure getRelationLabelFigure() {
-    return (LabelFigure) getFigure();
+  protected Label getRelationLabelFigure() {
+    return (Label) getFigure();
   }
 
   @Override
@@ -55,7 +55,7 @@ public class ORMRelationLabelEditPart extends AbstractGraphicalEditPart {
   private void performDirectEditing() {
     ORMNodeDirectEditManager manager =
         new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
-            getRelationLabelFigure().getTextFlow()), getRelationLabelFigure().getTextFlow());
+            getRelationLabelFigure()), getRelationLabelFigure());
     manager.show();
   }
 
