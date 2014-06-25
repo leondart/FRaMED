@@ -377,7 +377,15 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
   @Override
   public void eNotify(Notification notification) {
     super.eNotify(notification);
-    updateCardinalityLabel(notification.getFeatureID(Relationship.class),
-        notification.getNewIntValue());
+    if (notification.getEventType() == Notification.SET) {
+      int feature = notification.getFeatureID(Relationship.class);
+      if (feature != Notification.NO_FEATURE_ID) {
+        try {
+          updateCardinalityLabel(feature, notification.getNewIntValue());
+        } catch (IllegalStateException e) {
+          // do nothing
+        }
+      }
+    }
   }
 } // RelationshipImpl
