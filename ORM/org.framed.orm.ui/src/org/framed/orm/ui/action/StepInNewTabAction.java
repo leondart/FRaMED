@@ -13,10 +13,10 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
 /**
  * @author Kay Bierzynski
  * */
-public class StepOutNewPageAction extends SelectionAction {
+public class StepInNewTabAction extends SelectionAction {
 
-  public static final String STEP_OUT_NEW_PAGE_ID = "StepOutNewPage";
-  public static final String STEP_OUT_NEW_PAGE_REQUEST = "StepOutNewPage";
+  public static final String STEP_IN_NEW_TAB_ID = "StepInNewTab";
+  public static final String STEP_IN_NEW_TAB_REQUEST = "StepInNewTab";
 
   private Request request;
   private AbstractGraphicalEditPart editPart;
@@ -26,11 +26,11 @@ public class StepOutNewPageAction extends SelectionAction {
    * 
    * @param part
    */
-  public StepOutNewPageAction(IWorkbenchPart part) {
+  public StepInNewTabAction(IWorkbenchPart part) {
     super(part);
-    setId(STEP_OUT_NEW_PAGE_ID);
-    setText("Step out new Window");
-    request = new Request(STEP_OUT_NEW_PAGE_REQUEST);
+    setId(STEP_IN_NEW_TAB_ID);
+    setText("Step in new tab");
+    request = new Request(STEP_IN_NEW_TAB_REQUEST);
   }
 
   /**
@@ -67,7 +67,7 @@ public class StepOutNewPageAction extends SelectionAction {
     } else if (getSelectedObjects().get(0) instanceof ORMCompartmentEditPart
         || getSelectedObjects().get(0) instanceof ORMGroupingEditPart) {
       editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
-      if (editPart.equals(editPart.getViewer().getRootEditPart().getContents())) {
+      if (!editPart.equals(editPart.getViewer().getRootEditPart().getContents())) {
         return true;
       }
     }

@@ -43,7 +43,7 @@ import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepOutAction;
-import org.framed.orm.ui.action.StepOutNewPageAction;
+import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 
 /**
@@ -171,7 +171,7 @@ public class ORMGraphicalEditor extends
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 
-    action = new StepOutNewPageAction(this);
+    action = new StepInNewTabAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 

@@ -12,7 +12,7 @@ import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
-import org.framed.orm.ui.action.StepOutNewPageAction;
+import org.framed.orm.ui.action.StepInNewTabAction;
 
 /**
  * @author Kay Bierzynski
@@ -40,11 +40,11 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
     menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
     action = getActionRegistry().getAction(StepInAction.STEP_IN_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
-    action = getActionRegistry().getAction(StepOutAction.STEP_OUT_ID);
+    action = getActionRegistry().getAction(StepInNewTabAction.STEP_IN_NEW_TAB_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
     action = getActionRegistry().getAction(StepInNewPageAction.STEP_IN_NEW_PAGE_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
-    action = getActionRegistry().getAction(StepOutNewPageAction.STEP_OUT_NEW_PAGE_ID);
+    action = getActionRegistry().getAction(StepOutAction.STEP_OUT_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
     action = getActionRegistry().getAction(FulfillRolesAction.FULFILL_ROLES_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);

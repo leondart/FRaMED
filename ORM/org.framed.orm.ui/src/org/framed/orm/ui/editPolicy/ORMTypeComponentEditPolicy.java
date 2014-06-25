@@ -14,7 +14,7 @@ import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
-import org.framed.orm.ui.action.StepOutNewPageAction;
+import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.command.StepCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeDeleteCommand;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
@@ -47,19 +47,20 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
     return typeDeleteCommand;
   }
 
-  private StepCommand createStepInCommand(boolean isNewWindowCommand) {
+  private StepCommand createStepInCommand(boolean isNewWindowCommand, boolean isNewTabCommand) {
 
     StepCommand command = new StepCommand();
     command.setEditPart(hostEditPart);
     command.setEditorPart(editorPart);
     command.setNewContent(hostModel);
     command.setIsNewWindowCommand(isNewWindowCommand);
+    command.setIsNewTabCommand(isNewTabCommand);
 
     return command;
   }
 
 
-  private StepCommand createStepOutCommand(boolean isNewWindowCommand) {
+  private StepCommand createStepOutCommand() {
 
     Object container = ((Node) hostModel).getContainer();
 
@@ -80,8 +81,8 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
       }
     }
 
-    command.setIsNewWindowCommand(isNewWindowCommand);
-
+    command.setIsNewWindowCommand(false);
+    command.setIsNewTabCommand(false);
     return command;
   }
 
@@ -98,16 +99,16 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
   @Override
   public Command getCommand(Request request) {
     if (request.getType().equals(StepInAction.STEP_IN_REQUEST)) {
-      return createStepInCommand(false);
+      return createStepInCommand(false, false);
     }
     if (request.getType().equals(StepOutAction.STEP_OUT_REQUEST)) {
-      return createStepOutCommand(false);
+      return createStepOutCommand();
     }
     if (request.getType().equals(StepInNewPageAction.STEP_IN_NEW_PAGE_REQUEST)) {
-      return createStepInCommand(true);
+      return createStepInCommand(true, false);
     }
-    if (request.getType().equals(StepOutNewPageAction.STEP_OUT_NEW_PAGE_REQUEST)) {
-      return createStepOutCommand(true);
+    if (request.getType().equals(StepInNewTabAction.STEP_IN_NEW_TAB_REQUEST)) {
+      return createStepInCommand(false, true);
     }
     return super.getCommand(request);
   }
