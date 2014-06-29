@@ -10,7 +10,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.framed.orm.model.Node;
-import org.framed.orm.ui.editPart.ORMLabelFigure;
+import org.framed.orm.ui.utilities.ORMTextUtilities;
 
 /**
  * @author Kay Bierzynski

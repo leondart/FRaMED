@@ -35,7 +35,6 @@ import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMAttributeEditPart;
-import org.framed.orm.ui.editPart.ORMLabelFigure;
 import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
@@ -44,6 +43,7 @@ import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 import org.framed.orm.ui.figure.ORMTypeFigure;
 import org.framed.orm.ui.figure.PartFigure;
+import org.framed.orm.ui.utilities.ORMTextUtilities;
 
 /**
  * @author Kay Bierzynski

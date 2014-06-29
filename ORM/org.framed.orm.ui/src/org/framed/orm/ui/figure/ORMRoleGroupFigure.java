@@ -11,8 +11,6 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.draw2d.text.FlowPage;
-import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.swt.SWT;
 
 /**
@@ -23,25 +21,18 @@ public class ORMRoleGroupFigure extends Figure {
   private final RoundedRectangle rectangle;
   private ConnectionAnchor connectionAnchor;
   private final Label label;
-  private final TextFlow textFlow;
 
   public ORMRoleGroupFigure() {
-
     super();
-
-
     rectangle = new RoundedRectangle();
-    textFlow = new TextFlow();
     label = new Label();
 
-    label.setLabelAlignment(PositionConstants.CENTER);
+    label.setLabelAlignment(PositionConstants.TOP);
+    label.setTextAlignment(PositionConstants.TOP);
     label.setOpaque(false);
-    label.add(textFlow);
-
 
     setLayoutManager(new XYLayout());
     setBackgroundColor(ColorConstants.white);
-
 
     rectangle.setAntialias(SWT.ON);
     rectangle.setLayoutManager(new XYLayout());

@@ -29,7 +29,6 @@ import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ExpandStateChangeCommand;
-import org.framed.orm.ui.editPart.ORMLabelFigure;
 import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editor.Activator;
@@ -38,6 +37,7 @@ import org.framed.orm.ui.editor.ORMMultiPageEditor;
 import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.PartFigure;
+import org.framed.orm.ui.utilities.ORMTextUtilities;
 
 /**
  * EditPart for Compartments -(this Comment related to a older version) it is in the package

@@ -14,7 +14,7 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.Node;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.ORMLabelFigure;
+import org.framed.orm.ui.utilities.ORMTextUtilities;
 
 /**
  * @author Kay Bierzynski
