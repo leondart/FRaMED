@@ -51,7 +51,7 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
@@ -62,10 +62,10 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       addSourcePropertyDescriptor(object);
       addDim1BPPropertyDescriptor(object);
       addDim2BPPropertyDescriptor(object);
-      addSecondLowerPropertyDescriptor(object);
-      addFirstLowerPropertyDescriptor(object);
-      addFirstUpperPropertyDescriptor(object);
-      addSecondUpperPropertyDescriptor(object);
+//      addSecondLowerPropertyDescriptor(object);
+//      addFirstLowerPropertyDescriptor(object);
+//      addFirstUpperPropertyDescriptor(object);
+//      addSecondUpperPropertyDescriptor(object);
       addRlshipConstraintsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;

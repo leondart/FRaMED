@@ -1,11 +1,16 @@
 package org.framed.orm.ui.command;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.ui.actions.WorkbenchPartAction;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.WorkbenchException;
+import org.eclipse.ui.internal.WorkbenchPartReference;
+import org.eclipse.ui.part.WorkbenchPart;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 
 /**
@@ -69,7 +74,20 @@ public class StepCommand extends Command {
     } else {
       editorPart.setContents(newContent);
       editorPart.createCustomTitleForEditor(newContent);
-
+      editorPart.setFocus();
+      editorPart.getBehaviorEditor().setFocus();
+      editorPart.setActiveEditor(editorPart);
+//      editorPart.getSite().getWorkbenchWindow().
+      editorPart.getBehaviorEditor().getOwnViewer().getContents().deactivate();
+      editorPart.getBehaviorEditor().getOwnViewer().getContents().activate();
+//      editorPart.getBehaviorEditor().getOwnViewer().getContents().setFocus(true);
+//      editorPart.getBehaviorEditor().getOwnViewer().getContents().setSelected(0);
+          //      System.out.println(editorPart.getSelectedPage());
+//      editorPart.getSite().getWorkbenchWindow().setActivePage((IWorkbenchPage) ((ORMGraphicalEditor)editorPart.getSelectedPage()).getSite().getPage());
+      System.out.println("Focus set");
+      editpart.setSelected(1);
+      editpart.setFocus(true);
+      editpart.setSelected(0);
       editorPart.getEditorBeh().updateEditorType();
     }
   }
@@ -83,6 +101,7 @@ public class StepCommand extends Command {
   }
 
   public void setEditPart(AbstractGraphicalEditPart editpart) {
+    System.out.println("EditPart: " + editpart);
     this.editpart = editpart;
   }
 
