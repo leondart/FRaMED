@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPart.connectionkinds;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
@@ -23,7 +24,8 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   protected IFigure createFigure() {
     PolylineConnection connection = new PolylineConnection();
     connection.setAntialias(SWT.ON);
-
+    connection.setConnectionRouter(new BendpointConnectionRouter());
+    
     return connection;
   }
 
