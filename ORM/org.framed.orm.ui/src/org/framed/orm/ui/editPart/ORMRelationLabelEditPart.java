@@ -3,6 +3,7 @@
  */
 package org.framed.orm.ui.editPart;
 
+import org.eclipse.core.internal.runtime.PrintStackUtil;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Adapter;
@@ -14,6 +15,8 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.RelationLabel;
+import org.framed.orm.model.impl.RelationLabelImpl;
+import org.framed.orm.model.impl.RelationLabelImpl.LabelInfo;
 import org.framed.orm.ui.editPolicy.ORMRelationLabelEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
@@ -61,6 +64,8 @@ public class ORMRelationLabelEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void refreshVisuals() {
+//    System.out.println("Refreshing after property update: " + getRelationLabel().getLabel());
+//    LabelInfo labelInfo = RelationLabelImpl.preProcessLabelText(getRelationLabel().getLabel());
     getRelationLabelFigure().setText(getRelationLabel().getLabel());
     super.refreshVisuals();
   }

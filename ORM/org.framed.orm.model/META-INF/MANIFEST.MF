@@ -14,3 +14,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.framed.orm.model,
  org.framed.orm.model.impl,
  org.framed.orm.model.util
+Import-Package: org.eclipse.emf.edit.provider

@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.framed.orm.model.Relationship#getSourceLabel <em>Source Label</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getTargetLabel <em>Target Label</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getFirstLowerUpper <em>First Lower Upper</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getSecondLowerUpper <em>Second Lower Upper</em>}</li>
  * </ul>
  * </p>
  *
@@ -294,5 +295,31 @@ public interface Relationship extends Relation {
    * @generated
    */
   void setFirstLowerUpper(String value);
+
+  /**
+   * Returns the value of the '<em><b>Second Lower Upper</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Second Lower Upper</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Second Lower Upper</em>' attribute.
+   * @see #setSecondLowerUpper(String)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_SecondLowerUpper()
+   * @model required="true"
+   * @generated
+   */
+  String getSecondLowerUpper();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getSecondLowerUpper <em>Second Lower Upper</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Second Lower Upper</em>' attribute.
+   * @see #getSecondLowerUpper()
+   * @generated
+   */
+  void setSecondLowerUpper(String value);
 
 } // Relationship

@@ -35,6 +35,7 @@ import org.framed.orm.model.RelationshipConstraint;
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSourceLabel <em>Source Label</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getTargetLabel <em>Target Label</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getFirstLowerUpper <em>First Lower Upper</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationshipImpl#getSecondLowerUpper <em>Second Lower Upper</em>}</li>
  * </ul>
  * </p>
  *
@@ -316,60 +317,77 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
     eSet(OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, newFirstLowerUpper);
   }
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getSecondLowerUpper() {
+    return (String) eGet(OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER_UPPER, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSecondLowerUpper(String newSecondLowerUpper) {
+    eSet(OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER_UPPER, newSecondLowerUpper);
+  }
+
   private void updateCardinalityLabel(int featureID, String label) {
-    
-    if(featureID == OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER) {
-//      System.out.println("Setting source label to " + label);
+
+    if (featureID == OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER) {
+//            System.out.println("Setting source label to " + label);
       getSourceLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, label);
     }
-    
-    //TODO:
-//    if(featureID == OrmPackage.RELATIONSHIP__SECOND_LOWER_UPPER) {
-//      getTargetLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, label);
-//    }
-    
+
+    if(featureID == OrmPackage.RELATIONSHIP__SECOND_LOWER_UPPER) {
+      getTargetLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, label);
+    }
+
   }
-  
+
   private void updateCardinality(int FeatureID, int cardinality) {
     String newLabel = null;
 
-//    switch (FeatureID) {
-//      case OrmPackage.RELATIONSHIP__FIRST_LOWER:
-//        System.out.println("FIRST_LOWER");
-//        if (getFirstUpper() == -1 && cardinality == -1) {
-//          newLabel = "*";
-//        } else {
-//          newLabel = cardinality + ".." + getFirstUpper();
-//        }
-//        break;
-//      case OrmPackage.RELATIONSHIP__SECOND_LOWER:
-//        System.out.println("SECOND_LOWER");
-//        if (getSecondUpper() == -1 && cardinality == -1) {
-//          newLabel = "*";
-//        } else {
-//          newLabel = cardinality + ".." + getSecondUpper();
-//        }
-//        break;
-//      case OrmPackage.RELATIONSHIP__FIRST_UPPER:
-//        if (getFirstLower() == -1 && cardinality == -1) {
-//          newLabel = "*";
-//        } else {
-//          newLabel = getFirstLower() + ".." + cardinality;
-//        }
-//        break;
-//      case OrmPackage.RELATIONSHIP__SECOND_UPPER:
-//        if (getSecondLower() == -1 && cardinality == -1) {
-//          newLabel = "*";
-//        } else {
-//          newLabel = getSecondLower() + ".." + cardinality;
-//        }
-//        break;
-//      case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
-////        System.out.println("FIRST_LOWER_UPPER: " + getFirstLowerUpper());
-////        String cards[] = getFirstLowerUpper().split("[\\s.]+");
-////        if(cards.length != 2) System.out.println("ERROR: " + cards + " has not enough cardinality values.");
-//        break;
-//    }
+    //    switch (FeatureID) {
+    //      case OrmPackage.RELATIONSHIP__FIRST_LOWER:
+    //        System.out.println("FIRST_LOWER");
+    //        if (getFirstUpper() == -1 && cardinality == -1) {
+    //          newLabel = "*";
+    //        } else {
+    //          newLabel = cardinality + ".." + getFirstUpper();
+    //        }
+    //        break;
+    //      case OrmPackage.RELATIONSHIP__SECOND_LOWER:
+    //        System.out.println("SECOND_LOWER");
+    //        if (getSecondUpper() == -1 && cardinality == -1) {
+    //          newLabel = "*";
+    //        } else {
+    //          newLabel = cardinality + ".." + getSecondUpper();
+    //        }
+    //        break;
+    //      case OrmPackage.RELATIONSHIP__FIRST_UPPER:
+    //        if (getFirstLower() == -1 && cardinality == -1) {
+    //          newLabel = "*";
+    //        } else {
+    //          newLabel = getFirstLower() + ".." + cardinality;
+    //        }
+    //        break;
+    //      case OrmPackage.RELATIONSHIP__SECOND_UPPER:
+    //        if (getSecondLower() == -1 && cardinality == -1) {
+    //          newLabel = "*";
+    //        } else {
+    //          newLabel = getSecondLower() + ".." + cardinality;
+    //        }
+    //        break;
+    //      case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
+    ////        System.out.println("FIRST_LOWER_UPPER: " + getFirstLowerUpper());
+    ////        String cards[] = getFirstLowerUpper().split("[\\s.]+");
+    ////        if(cards.length != 2) System.out.println("ERROR: " + cards + " has not enough cardinality values.");
+    //        break;
+    //    }
 
     // to group the setting
     switch (FeatureID) {

@@ -78,16 +78,16 @@ public class StepCommand extends Command {
       editorPart.getBehaviorEditor().setFocus();
       editorPart.setActiveEditor(editorPart);
 //      editorPart.getSite().getWorkbenchWindow().
-      editorPart.getBehaviorEditor().getOwnViewer().getContents().deactivate();
-      editorPart.getBehaviorEditor().getOwnViewer().getContents().activate();
+//      editorPart.getBehaviorEditor().getOwnViewer().getContents().deactivate();
+//      editorPart.getBehaviorEditor().getOwnViewer().getContents().activate();
 //      editorPart.getBehaviorEditor().getOwnViewer().getContents().setFocus(true);
 //      editorPart.getBehaviorEditor().getOwnViewer().getContents().setSelected(0);
           //      System.out.println(editorPart.getSelectedPage());
 //      editorPart.getSite().getWorkbenchWindow().setActivePage((IWorkbenchPage) ((ORMGraphicalEditor)editorPart.getSelectedPage()).getSite().getPage());
-      System.out.println("Focus set");
-      editpart.setSelected(1);
-      editpart.setFocus(true);
-      editpart.setSelected(0);
+//      System.out.println("Focus set");
+//      editpart.setSelected(1);
+//      editpart.setFocus(true);
+//      editpart.setSelected(0);
       editorPart.getEditorBeh().updateEditorType();
     }
   }
@@ -101,7 +101,7 @@ public class StepCommand extends Command {
   }
 
   public void setEditPart(AbstractGraphicalEditPart editpart) {
-    System.out.println("EditPart: " + editpart);
+//    System.out.println("EditPart: " + editpart);
     this.editpart = editpart;
   }
 

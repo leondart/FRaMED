@@ -15,6 +15,7 @@ import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
@@ -24,6 +25,7 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Parthood;
 import org.framed.orm.model.Relationship;
+import org.framed.orm.model.impl.RelationLabelImpl;
 
 /**
  * This is the item provider adapter for a {@link org.framed.orm.model.Relationship} object.
@@ -34,6 +36,7 @@ import org.framed.orm.model.Relationship;
 public class RelationshipItemProvider extends ItemProviderAdapter implements
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
     IItemLabelProvider, IItemPropertySource {
+  
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -60,6 +63,7 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       addDim1BPPropertyDescriptor(object);
       addDim2BPPropertyDescriptor(object);
       addFirstLowerUpperPropertyDescriptor(object);
+      addSecondLowerUpperPropertyDescriptor(object);
       //      addSecondLowerPropertyDescriptor(object);
       //      addFirstLowerPropertyDescriptor(object);
       //      addFirstUpperPropertyDescriptor(object);
@@ -68,15 +72,34 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
     }
     return itemPropertyDescriptors;
   }
-
+  
   private void addFirstLowerUpperPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+    ItemPropertyDescriptor propDesc = createItemPropertyDescriptor(
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
         getResourceLocator(),
         getString("_UI_Relationship_firstLowerUpper_feature"),
         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLowerUpper_feature",
-            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, true, false,
-        false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, true,
+        false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null);
+    
+    itemPropertyDescriptors.add(propDesc);
+  }
+
+  /**
+   * This adds a property descriptor for the Second Lower Upper feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addSecondLowerUpperPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_secondLowerUpper_feature"),
+        getString("_UI_PropertyDescriptor_description",
+            "_UI_Relationship_secondLowerUpper_feature", "_UI_Relationship_type"),
+        OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER_UPPER, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -300,8 +323,9 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       case OrmPackage.RELATIONSHIP__SECOND_UPPER:
       case OrmPackage.RELATIONSHIP__FIRST_PARTHOOD:
       case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
+      case OrmPackage.RELATIONSHIP__SECOND_LOWER_UPPER:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-            true));
+            true));        
         return;
       case OrmPackage.RELATIONSHIP__SOURCE_LABEL:
       case OrmPackage.RELATIONSHIP__TARGET_LABEL:
