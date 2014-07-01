@@ -38,6 +38,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
+import org.framed.orm.ui.action.CreateActionMethodAction;
 import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.StepInAction;
@@ -137,6 +138,8 @@ public class ORMGraphicalEditor extends
     GraphicalViewerKeyHandler keyHandler = new GraphicalViewerKeyHandler(getGraphicalViewer());
     keyHandler.put(KeyStroke.getPressed(SWT.F2, 0),
         getActionRegistry().getAction(GEFActionConstants.DIRECT_EDIT));
+    keyHandler.put(KeyStroke.getPressed(SWT.CR, '\r', 0),
+        getActionRegistry().getAction(CreateActionMethodAction.CREATE_A_M_ID));
     getGraphicalViewer().setKeyHandler(keyHandler);
   }
 
@@ -182,7 +185,10 @@ public class ORMGraphicalEditor extends
     action = new RelationshipConstraintsAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
-
+    
+    action = new CreateActionMethodAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
 
     // create direct editing action for shortcuts
     action = new DirectEditAction(this);
