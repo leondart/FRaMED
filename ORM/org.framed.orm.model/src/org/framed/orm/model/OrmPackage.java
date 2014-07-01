@@ -2152,13 +2152,22 @@ public interface OrmPackage extends EPackage {
   int RELATIONSHIP__TARGET_LABEL = RELATION_FEATURE_COUNT + 8;
 
   /**
+   * The feature id for the '<em><b>First Lower Upper</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIONSHIP__FIRST_LOWER_UPPER = RELATION_FEATURE_COUNT + 9;
+
+  /**
    * The number of structural features of the '<em>Relationship</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIONSHIP_FEATURE_COUNT = RELATION_FEATURE_COUNT + 9;
+  int RELATIONSHIP_FEATURE_COUNT = RELATION_FEATURE_COUNT + 10;
 
   /**
    * The number of operations of the '<em>Relationship</em>' class.
@@ -3300,6 +3309,17 @@ public interface OrmPackage extends EPackage {
   EReference getRelationship_TargetLabel();
 
   /**
+   * Returns the meta object for the attribute '{@link org.framed.orm.model.Relationship#getFirstLowerUpper <em>First Lower Upper</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>First Lower Upper</em>'.
+   * @see org.framed.orm.model.Relationship#getFirstLowerUpper()
+   * @see #getRelationship()
+   * @generated
+   */
+  EAttribute getRelationship_FirstLowerUpper();
+
+  /**
    * Returns the meta object for class '{@link org.framed.orm.model.RoleProhibition <em>Role Prohibition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4123,6 +4143,14 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EReference RELATIONSHIP__TARGET_LABEL = eINSTANCE.getRelationship_TargetLabel();
+
+    /**
+     * The meta object literal for the '<em><b>First Lower Upper</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATIONSHIP__FIRST_LOWER_UPPER = eINSTANCE.getRelationship_FirstLowerUpper();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.RoleProhibitionImpl <em>Role Prohibition</em>}' class.

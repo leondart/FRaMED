@@ -8,9 +8,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -22,7 +20,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Parthood;
@@ -62,13 +59,24 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       addSourcePropertyDescriptor(object);
       addDim1BPPropertyDescriptor(object);
       addDim2BPPropertyDescriptor(object);
-//      addSecondLowerPropertyDescriptor(object);
-//      addFirstLowerPropertyDescriptor(object);
-//      addFirstUpperPropertyDescriptor(object);
-//      addSecondUpperPropertyDescriptor(object);
+      addFirstLowerUpperPropertyDescriptor(object);
+      //      addSecondLowerPropertyDescriptor(object);
+      //      addFirstLowerPropertyDescriptor(object);
+      //      addFirstUpperPropertyDescriptor(object);
+      //      addSecondUpperPropertyDescriptor(object);
       addRlshipConstraintsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  private void addFirstLowerUpperPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_firstLowerUpper_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLowerUpper_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, true, false,
+        false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -291,6 +299,7 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       case OrmPackage.RELATIONSHIP__FIRST_UPPER:
       case OrmPackage.RELATIONSHIP__SECOND_UPPER:
       case OrmPackage.RELATIONSHIP__FIRST_PARTHOOD:
+      case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
             true));
         return;

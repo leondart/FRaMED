@@ -17,7 +17,7 @@ import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 
 public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
 
-  private Label lab = new Label();
+  private Label label = new Label();
   private String textInitial;
 
   public ORMRelationshipConstraintEditPart() {
@@ -25,12 +25,12 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
   }
 
   public Label getLabel() {
-    return lab;
+    return label;
   }
 
   public IFigure creatRelationshipConstraint(String text) {
 
-    lab.setText(text);
+    label.setText(text);
     textInitial = text;
     PolylineConnection conn = new PolylineConnection();
     conn.setAntialias(SWT.ON);
@@ -46,7 +46,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
     // this is needed, because when the label would be just added the label can be seen in the
     // compartmentdiagram
     if (getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      conn.add(lab, midL);
+      conn.add(label, midL);
     }
     return conn;
   }
@@ -76,7 +76,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
 
           }
           if (rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
-            lab.setText(textInitial);
+            label.setText(textInitial);
             getConnectionFigure().setVisible(true);
           }
         }

@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSourceLabel <em>Source Label</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getTargetLabel <em>Target Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getFirstLowerUpper <em>First Lower Upper</em>}</li>
  * </ul>
  * </p>
  *
@@ -267,5 +268,31 @@ public interface Relationship extends Relation {
    * @generated
    */
   void setTargetLabel(RelationLabel value);
+
+  /**
+   * Returns the value of the '<em><b>First Lower Upper</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>First Lower Upper</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>First Lower Upper</em>' attribute.
+   * @see #setFirstLowerUpper(String)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_FirstLowerUpper()
+   * @model required="true"
+   * @generated
+   */
+  String getFirstLowerUpper();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getFirstLowerUpper <em>First Lower Upper</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>First Lower Upper</em>' attribute.
+   * @see #getFirstLowerUpper()
+   * @generated
+   */
+  void setFirstLowerUpper(String value);
 
 } // Relationship
