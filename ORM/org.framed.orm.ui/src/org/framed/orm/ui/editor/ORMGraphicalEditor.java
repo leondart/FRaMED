@@ -48,14 +48,16 @@ import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 
 /**
- * 
+ * The editor you can see. Interacts with the user and shows the contents.
  * 
  * @author Kay Bierzynski
+ * @author Paul Peschel
  * */
-public class ORMGraphicalEditor extends
-/* GraphicalEditorWithFlyoutPalette */AbstractGraphicalEditor {
+public class ORMGraphicalEditor extends AbstractGraphicalEditor {
+  
   public enum EditorType {
-    COMPARTMENT, ROLES/* TODO: ,GROUPING */
+    COMPARTMENT,    /*the editor shows compartments at the moment*/ 
+    ROLES           /*the editor shows roles at the moment (e.g. after step in)*/
   }; // if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
 
   private final Resource cdResource;
@@ -91,23 +93,33 @@ public class ORMGraphicalEditor extends
     cdResource = resource;
 
     setEditDomain(new DefaultEditDomain(this));
-
-    // ((ORMMultiPageEditor)parentEditor).setEditorChangeNotifier(changeNotifier);
   }
 
+  /**
+   * Initializes the graphical viewer responsible for the contents of the editor.
+   */
   @Override
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
     getGraphicalViewer().setContents(cd);
     ((ORMMultiPageEditor) parentEditor).createCustomTitleForEditor(cd);
-    // this.addListenerObject(changeNotifier);
+
     // add the change notifier as listener
     getGraphicalViewer().getEditDomain().getCommandStack()
         .addCommandStackEventListener(changeNotifier);
-    // getGraphicalViewer().getContents().addEditPartListener(changeNotifier);
-    // getEditDomain().getEditorPart().addPropertyListener(changeNotifier);
   }
 
+  /**
+   * Configures the graphical viewer. 
+   * 
+   * Sets org.framed.orm.ui.editPart.ORMEditPartFactory.ORMEditPartFactory(), 
+   * org.framed.orm.ui.editor.ORMGraphicalEditorContextMenuProvider.ORMGraphicalEditorContextMenuProvider(EditPartViewer, ActionRegistry).
+   * 
+   * Registers button actions of grid (org.eclipse.gef.ui.actions.ToggleGridAction.ToggleGridAction(GraphicalViewer) )
+   * and snap to geometry (org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction.ToggleSnapToGeometryAction(GraphicalViewer) )
+   * 
+   * Configures the keyboard shortcuts @see org.framed.orm.ui.editor.ORMGraphicalEditor.configureKeyboardShortcuts()
+   */
   @Override
   protected void configureGraphicalViewer() {
     super.configureGraphicalViewer();
@@ -147,11 +159,11 @@ public class ORMGraphicalEditor extends
   protected PaletteRoot getPaletteRoot() {
     ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette();
 
-    changeNotifier.register(tmp); // register the palette for editor changes
-    if (getEditorType() == EditorType.ROLES)
-      tmp.setRoleEntriesVisibility(true);
-    else
-      tmp.setRoleEntriesVisibility(false);
+    changeNotifier.register(tmp);               // register the palette for editor changes
+    if (getEditorType() == EditorType.ROLES)    //if we show only roles
+      tmp.setRoleEntriesVisibility(true);       //show only palette entries belonging to roles
+    else                                        //compartments 
+      tmp.setRoleEntriesVisibility(false);      //show only palette entries belonging to compartment
 
     return tmp;
   }

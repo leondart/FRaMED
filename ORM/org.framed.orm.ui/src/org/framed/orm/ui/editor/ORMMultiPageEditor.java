@@ -34,6 +34,7 @@ import org.framed.orm.model.OrmPackage;
 
 
 /**
+ * The multi-page editor handles the behaviour editor and the data editor.
  * 
  * @author Kay Bierzynski
  * @author Lars Schütze
@@ -61,14 +62,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
-  public ORMGraphicalEditor getEditorBeh() {
-    return editorBeh;
-  }
-
-  public ORMGraphicalEditor getEditorData() {
-    return editorData;
-  }
-
   public String getInputFileName() {
     return inputFilename;
   }
@@ -80,12 +73,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   @Override
   public void setTitleImage(Image titleImage) {
-    // TODO Auto-generated method stub
     super.setTitleImage(titleImage);
   }
 
-  // create/adds the beahvioreditor to the multipageeditor
-  void createPage0() {
+  /**
+   *  creates the beahvior editor and adds it to the multipage editor
+   */
+  void createBehaviorEditorPage() {
     try {
       editorBeh = new ORMGraphicalEditor(this, resource, false);
       int index = addPage(editorBeh, getEditorInput());
@@ -96,8 +90,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
-  // create/adds the dataeditor to the multipageeditor
-  void createPage1() {
+  /**
+   *  creates the data editor and adds it to the multipageeditor
+   */
+  void createDataEditorPage() {
     try {
       editorData = new ORMGraphicalEditor(this, resource, true);
       int index = addPage(editorData, getEditorInput());
@@ -108,12 +104,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
+  /**
+   * Creates the behavior and data editor pages and initializes them
+   */
   @Override
   protected void createPages() {
-    createPage0();
-    createPage1();
+    createBehaviorEditorPage();
+    createDataEditorPage();
 
-    // set TitleImage of this ORMMultiPageEditor with backgorundcolor of the viewer of the editorBeh
+    // set TitleImage of this ORMMultiPageEditor with background color of the viewer of the behaivorEditor
     Image img =
         Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/rosi-icon-smaller.gif")
             .createImage();
@@ -130,12 +129,12 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       throw new PartInitException("Invalid Input: Must be IFileEditorInput");
     super.init(site, editorInput);
     getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
-    // getSite().getWorkbenchWindow().getSelectionService().;
+    
     initializeResource(editorInput);
   }
 
   private void initializeResource(IEditorInput editorInput) {
-    OrmPackage.eINSTANCE.eClass(); // This initializes the OrmPackage singleton implementation.
+    OrmPackage.eINSTANCE.eClass();                      // This initializes the OrmPackage singleton implementation.
     ResourceSet resourceSet = new ResourceSetImpl();
     if (editorInput instanceof IFileEditorInput) {
       IFileEditorInput fileInput = (IFileEditorInput) editorInput;
@@ -152,8 +151,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
-  // TODO: testen ob save all richtig funktioniert
-  // save for the active editor and synchronisation between the two editors
+  // TODO: test whether "save all" works correct
+  // save for the active editor and synchronization between the two editors
   @Override
   public void doSave(IProgressMonitor monitor) {
     for (int i = 0; i < getPageCount(); i++) {
@@ -166,10 +165,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   @Override
   public void doSaveAs() {
-    // IEditorPart editor = getSite().getPage().getActiveEditor();
-
-    // editorData.doSaveAs();
-    // setPageText(0, editor.getTitle());
 
     if (editorBeh.equals(getActiveEditor())) {
       editorBeh.doSaveAs();
@@ -184,13 +179,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
-  // TODO: anpassen nicht alles ist erlaubt
+  // TODO: adapt it, because not everything is allowed
   @Override
   public boolean isSaveAsAllowed() {
     return true;
   }
 
-  // enabled select action for the active editor
+  // enables select action for the active editor
   @Override
   public void selectionChanged(IWorkbenchPart part, ISelection selection) {
     if (this.equals(getSite().getPage().getActiveEditor())) {
@@ -207,7 +202,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   // take the actionregistry/graphicalViewer/CommandStack from the active editor
   @Override
   protected void pageChange(int newPageIndex) {
-    // TODO Auto-generated method stub
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
 
@@ -215,21 +209,18 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
       ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
     }
-
-    if (changeNotifier != null)
-      changeNotifier.pageChanged(newPageIndex);
   }
-
 
   @Override
   public void commandStackChanged(EventObject event) {
     if (this.equals(getSite().getPage().getActiveEditor())) {
-      if (editorBeh.equals(getActiveEditor()))
+      if (editorBeh.equals(getActiveEditor())) {
         editorBeh.commandStackChanged(event);
+      }
 
-
-      if (editorData.equals(getActiveEditor()))
+      if (editorData.equals(getActiveEditor())) {
         editorData.commandStackChanged(event);
+      }
     }
 
   }
@@ -267,18 +258,18 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     return editorData;
   }
 
+  /**
+   * Sets the object obj as content in the behavior editor and data editor
+   * 
+   * @param obj The object which will be set as content
+   */
   public void setContents(Object obj) {
-    // System.out.println("setContents: "+obj);
     /*
      * first, check which editor type we will get when setting the object as content. The palette
      * will be updated
      */
-    // if(!editorBeh.getEditorType().equals(editorData.getEditorType()))
-    // editorData.setEditorType(editorBeh.getEditorType());
-    // else
-    // editorBeh.setEditorType(EditorType.ROLES);
 
-    editorBeh.getOwnViewer().setContents(obj);
-    editorData.getOwnViewer().setContents(obj);
+    getBehaviorEditor().getOwnViewer().setContents(obj);
+    getDataEditor().getOwnViewer().setContents(obj);
   }
 }

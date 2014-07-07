@@ -248,12 +248,12 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
       rmed.refreshVisuals();
       // synchronize between the two Editor of the MultiPageEditor
       if (!(isEditorData)) {
-        parent.getEditorData().getOwnViewer()
-            .setContents(parent.getEditorData().getOwnViewer().getContents().getModel());
+        parent.getDataEditor().getOwnViewer()
+            .setContents(parent.getDataEditor().getOwnViewer().getContents().getModel());
 
       } else {
-        parent.getEditorBeh().getOwnViewer()
-            .setContents(parent.getEditorBeh().getOwnViewer().getContents().getModel());
+        parent.getBehaviorEditor().getOwnViewer()
+            .setContents(parent.getBehaviorEditor().getOwnViewer().getContents().getModel());
       }
       // save the state of the editor(ExpandState) so that user does not get confused when he tries
       // to hit the save button
@@ -271,11 +271,11 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
       rmed.refreshVisuals();
       // synchronize between the two Editor of the MultiPageEditor
       if (!(isEditorData)) {
-        parent.getEditorData().getOwnViewer()
-            .setContents(parent.getEditorData().getOwnViewer().getContents().getModel());
+        parent.getDataEditor().getOwnViewer()
+            .setContents(parent.getDataEditor().getOwnViewer().getContents().getModel());
       } else {
-        parent.getEditorBeh().getOwnViewer()
-            .setContents(parent.getEditorBeh().getOwnViewer().getContents().getModel());
+        parent.getBehaviorEditor().getOwnViewer()
+            .setContents(parent.getBehaviorEditor().getOwnViewer().getContents().getModel());
       }
       // save the state of the editor(ExpandState) so that user does not get confused when he tries
       // to hit the save button

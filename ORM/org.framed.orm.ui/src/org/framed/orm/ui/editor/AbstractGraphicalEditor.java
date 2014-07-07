@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * @author studium
+ * @author Paul Peschel
  *
  */
 public abstract class AbstractGraphicalEditor extends GraphicalEditor{

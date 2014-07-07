@@ -26,11 +26,10 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
  *         CommandStackEventListener use that one instead of this helper class
  * 
  */
-public class EditorChangeNotifier implements /*EditPartListener,*/ CommandStackEventListener/*, IPropertyListener, IWindowListener*/ {
+public class EditorChangeNotifier implements CommandStackEventListener {
 
   static int id = 0;
   private List<ORMGraphicalEditorPalette> observers = new ArrayList<ORMGraphicalEditorPalette>();
-//  private static EditorChangeNotifier inst = null;
   private ORMGraphicalEditor parentEditor;
   
   public EditorChangeNotifier(ORMGraphicalEditor parent) {
@@ -38,15 +37,6 @@ public class EditorChangeNotifier implements /*EditPartListener,*/ CommandStackE
     setParentEditor(parent);
   }
 
-  public void pageChanged(int pageIndex){
-//    System.out.println("Page changed: "+pageIndex);
-  }
-  
-//  public static EditorChangeNotifier instance() {
-//    if (inst == null)
-//      inst = new EditorChangeNotifier();
-//    return inst;
-//  }
 
   /*
    * (non-Javadoc)
@@ -58,13 +48,8 @@ public class EditorChangeNotifier implements /*EditPartListener,*/ CommandStackE
   public void stackChanged(CommandStackEvent event) {
     if (event.getCommand().getLabel() == null)
       return;
-//     System.out.println("Stack changed: "+event.getCommand().getLabel());
     String type = event.getCommand().getLabel();
     
-//    if (type.equals("StepIn") || type.equals("GoDownTree") || type.equals("StepInNewPage"))
-//      getParentEditor().setEditorType(EditorType.ROLES);
-//    else
-//      getParentEditor().setEditorType(EditorType.COMPARTMENT);
     /* notify all registered observers */
     Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
 

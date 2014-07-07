@@ -12,10 +12,11 @@ import org.eclipse.swt.widgets.Text;
 
 
 /**
+ * Creates a small editor for label editing and locates it correctly
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMNodeCellEditorLocator implements CellEditorLocator {
-
 
   private final Label  nameLabel;
 
@@ -23,10 +24,12 @@ public class ORMNodeCellEditorLocator implements CellEditorLocator {
     this.nameLabel = label;
   }
 
-  // create a cell on the position of the textflow
+  /**
+   *  Creates a cell on the position of the textflow
+   */
   @Override
   public void relocate(CellEditor celleditor) {
-    Text text = (Text) celleditor.getControl();
+    Text text = (Text) celleditor.getControl();     //get the default editor cell 
     Point pref = text.computeSize(SWT.DEFAULT, SWT.DEFAULT);
     Rectangle rect = (nameLabel.getBounds().isEmpty()) ? new Rectangle() : nameLabel.getTextBounds().getCopy();
     nameLabel.translateToAbsolute(rect);

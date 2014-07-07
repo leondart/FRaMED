@@ -19,11 +19,9 @@ public class ORMNodeDirectEditManager extends DirectEditManager {
 
   private final Label label;
 
-  // private static int maxLength = 10;
-
   public ORMNodeDirectEditManager(GraphicalEditPart source, Class editorType,
       CellEditorLocator locator, Label label) {
-    super(source, editorType, locator/*,label*/);
+    super(source, editorType, locator);
     this.label = label;
     String name = label.getText();
     
@@ -34,26 +32,13 @@ public class ORMNodeDirectEditManager extends DirectEditManager {
     this.label.setText(name);
   }
 
+  /**
+   * Sets the initial text in the cell editor. Usually it's the text of the label.
+   */
   @Override
   protected void initCellEditor() {
     String initialLabelText = label.getText();
     getCellEditor().setValue(initialLabelText);
   }
 
-  // @Override
-  // protected void commit(){
-  // TextFlow tmpLabel = (TextFlow)super.getDirectEditFeature();
-  // String newLabelStr = tmpLabel.getText();
-  // if(tmpLabel.getText().length() > maxLength)
-  // {
-  // LabelFigure tooltip = new LabelFigure();
-  // tooltip.setParent(getCellEditorFrame());
-  // tooltip.setText(tmpLabel.getText());
-  // newLabelStr = tmpLabel.getText().substring(0, maxLength) + "...";
-  // tmpLabel.setToolTip(tooltip);
-  // }
-  // super.getCellEditor().setValue(newLabelStr);
-  // label.setText(tmpLabel.getText());
-  // super.commit();
-  // }
 }

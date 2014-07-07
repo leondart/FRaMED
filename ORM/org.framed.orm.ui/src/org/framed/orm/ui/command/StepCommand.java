@@ -65,7 +65,7 @@ public class StepCommand extends Command {
         newPart.createCustomTitleForEditor(newContent);
 
 
-        newPart.getEditorBeh().updateEditorType();
+        newPart.getBehaviorEditor().updateEditorType();
 
       } catch (PartInitException e1) {
         // TODO Auto-generated catch block
@@ -88,7 +88,7 @@ public class StepCommand extends Command {
 //      editpart.setSelected(1);
 //      editpart.setFocus(true);
 //      editpart.setSelected(0);
-      editorPart.getEditorBeh().updateEditorType();
+      editorPart.getBehaviorEditor().updateEditorType();
     }
   }
 
