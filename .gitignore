@@ -1,6 +1,7 @@
 *.class
 .metadata/
 target/
+doc/
 
 *.orig
 *.*~
