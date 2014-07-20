@@ -19,8 +19,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
+ * 
+ * This class have to be inherited by the ORMGraphicalEditor. It provides standard editor functions and
+ * uses a palette with a global enabeld vertical scrollbar. This is needed to avoid a bug of the standard scroll bar,
+ * which does not allow the user to scroll to the last palette item.
+ * 
  * @author Paul Peschel
- *
+ * 
  */
 public abstract class AbstractGraphicalEditor extends GraphicalEditor{
 

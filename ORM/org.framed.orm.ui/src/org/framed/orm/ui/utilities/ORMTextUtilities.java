@@ -17,7 +17,7 @@ import org.framed.orm.model.Node;
 import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 
 /**
- * This class is for accessing the TextFlow utilities to calculated text sizes
+ * This class is for accessing the TextFlow utilities to calculate text sizes.
  * 
  * @author paul
  *
