@@ -226,7 +226,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
     Type model = (Type) getModel();
 
     ExpandStateChangeCommand command = new ExpandStateChangeCommand();
-    command.setContainer(model);
+    command.setType(model);
 
     SaveAction save = new SaveAction(editorPart);
     Image imageExpand =
