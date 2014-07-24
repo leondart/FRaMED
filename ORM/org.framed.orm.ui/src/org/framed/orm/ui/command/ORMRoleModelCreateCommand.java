@@ -7,7 +7,8 @@ import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Rolemodel;
 
 /**
- * Through this command the model element {@link Rolemodel} can be created(invoked into the model tree).
+ * Through this command the model element {@link Rolemodel} can be created(invoked into the model
+ * tree).
  * 
  * @author Kay Bierzynski
  * */
@@ -68,7 +69,8 @@ public class ORMRoleModelCreateCommand extends Command {
   /**
    * {@inheritDoc} To undo this command the parent compartment reference or parent grouping refence
    * of the {@link Rolemodel} is set on null depended on which parent variable( compartment or
-   * grouping) was set.
+   * grouping) was set. Through setting the parent reference on null the {@link Rolemodel} is
+   * removed from the model tree.
    * 
    * */
   @Override
@@ -82,8 +84,8 @@ public class ORMRoleModelCreateCommand extends Command {
   }
 
   /**
-   * Setter of the {@link Rolemodel}, which should be created/invoked.
-   * The basis {@link Rolemodel} is given by the OrmFactory.eINSTANCE.createRolemodel().
+   * Setter of the {@link Rolemodel}, which should be created/invoked. The basis {@link Rolemodel}
+   * is given by the OrmFactory.eINSTANCE.createRolemodel().
    * 
    * @param rm org.framed.orm.model.Rolemodel
    * */
@@ -94,7 +96,7 @@ public class ORMRoleModelCreateCommand extends Command {
   /**
    * Setter of the parent {@link Compartment}.
    * 
-   * @param ct  org.framed.orm.model.Compartment
+   * @param ct org.framed.orm.model.Compartment
    * */
   public void setCompartment(final Compartment ct) {
     this.compartment = ct;
@@ -103,7 +105,7 @@ public class ORMRoleModelCreateCommand extends Command {
   /**
    * Setter of the parent {@link Grouping}.
    * 
-   * @param group  org.framed.orm.model.Grouping
+   * @param group org.framed.orm.model.Grouping
    * */
   public void setGroup(final Grouping group) {
     this.group = group;
