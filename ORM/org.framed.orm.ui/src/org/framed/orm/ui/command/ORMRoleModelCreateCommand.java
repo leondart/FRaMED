@@ -28,8 +28,7 @@ public class ORMRoleModelCreateCommand extends Command {
   private Rolemodel rm;
 
   /**
-   * Constructor of this command, where the label is set, which describes this command to the user,
-   * and initialize the oldFulfilledRoles list.
+   * Constructor of this command, where the label is set, which describes this command to the user.
    * 
    * */
   public ORMRoleModelCreateCommand() {
@@ -85,7 +84,7 @@ public class ORMRoleModelCreateCommand extends Command {
 
   /**
    * Setter of the {@link Rolemodel}, which should be created/invoked. The basis {@link Rolemodel}
-   * is given by the OrmFactory.eINSTANCE.createRolemodel().
+   * class is given by the OrmFactory.eINSTANCE.createRolemodel().
    * 
    * @param rm org.framed.orm.model.Rolemodel
    * */
