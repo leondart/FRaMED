@@ -8,7 +8,7 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
-import org.framed.orm.ui.command.connectionkinds.ExecuteDeleteRlshipConsActionCommand;
+import org.framed.orm.ui.command.connectionkinds.CallRelationshipConstraintsActionCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationDeleteCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
@@ -23,7 +23,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
     Command retVal = null;
 
     if (getHost().getModel() instanceof RelationshipConstraint && getHost() instanceof ORMRelationshipConstraintEditPart) {
-        ExecuteDeleteRlshipConsActionCommand command = new ExecuteDeleteRlshipConsActionCommand();
+        CallRelationshipConstraintsActionCommand command = new CallRelationshipConstraintsActionCommand();
         command.setEditPart((ORMRelationshipConstraintEditPart) getHost());
         
         retVal = command;
