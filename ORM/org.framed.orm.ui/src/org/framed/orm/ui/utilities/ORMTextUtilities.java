@@ -3,18 +3,9 @@
  */
 package org.framed.orm.ui.utilities;
 
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.text.TextFlow;
-import org.eclipse.gef.editparts.AbstractEditPart;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Display;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Node;
-import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
 
 /**
  * This class is for accessing the TextFlow utilities to calculate text sizes.
