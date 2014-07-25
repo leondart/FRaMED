@@ -6,15 +6,19 @@ import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.OrmFactory;
 
 /**
+ * The ORMNaturalTypeFactory creates a Natural Type object.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMNaturalTypeFactory implements CreationFactory {
-	
-	@Override public Object getNewObject() {		
-	    return OrmFactory.eINSTANCE.createNaturalType();
-	  }
-	 
-	  @Override public Object getObjectType() {
-	    return NaturalType.class;
-	  }
+
+  @Override 
+  public Object getNewObject() {		
+    return OrmFactory.eINSTANCE.createNaturalType();
+  }
+
+  @Override 
+  public Object getObjectType() {
+    return NaturalType.class;
+  }
 }

@@ -6,6 +6,8 @@ import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.OrmFactory;
 
 /**
+ * This factory creates an Acyclic Object. This is a relationship object.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMAcyclicFactory implements CreationFactory {

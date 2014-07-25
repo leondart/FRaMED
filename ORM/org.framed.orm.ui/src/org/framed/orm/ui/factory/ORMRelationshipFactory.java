@@ -6,10 +6,17 @@ import org.framed.orm.model.RelationLabel;
 import org.framed.orm.model.Relationship;
 
 /**
+ * The ORMRelationshipFactory creates a Relationship object.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMRelationshipFactory implements CreationFactory {
 
+  /**
+   * Returns a new relationship object.
+   * A relationship consists of the relationship itself, 
+   * a label at the source and a label at the target indicating the cardinalities.
+   */
   @Override
   public Object getNewObject() {
     Relationship relationship = OrmFactory.eINSTANCE.createRelationship();
