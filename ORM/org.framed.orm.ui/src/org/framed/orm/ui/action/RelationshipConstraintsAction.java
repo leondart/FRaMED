@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.ui.command.connectionkinds.CallRelationshipConstraintsActionCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
@@ -174,7 +175,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
   /**
    * Method for undoing the action. This method is called when the call of the run method through
-   * the delete button should be undone.
+   * the {@link CallRelationshipConstraintsActionCommand}/delete button(red X in the actionbar) should be undone.
    * */
   public void actionUndo() {
     getCommandStack().undo();
@@ -182,7 +183,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
   /**
    * Method for redoing the action. This method is called when the call of the run method through
-   * the delete button should be redone.
+   * the {@link CallRelationshipConstraintsActionCommand}/delete button(red X in the actionbar)  should be redone.
    * */
   public void actionRedo() {
     getCommandStack().redo();
