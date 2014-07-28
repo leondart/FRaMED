@@ -33,7 +33,7 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
   }
 
   /**
-   * {@inheritDoc} In this method the {@link RelationshipConstrain} is created/ invoked into the
+   * In this method the {@link RelationshipConstrain} is created/ invoked into the
    * model tree through setting it's parameter. After that when a {@link RelationshipConstrain}
    * already exist beside the {@link RelationshipConstrain} to be invoked all {@link Bendpoint}s
    * from this {@link RelationshipConstrain} are added to the created {@link RelationshipConstrain}
@@ -64,7 +64,7 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
   }
 
   /**
-   * {@inheritDoc} This command is undone through removing the created {@link RelationshipConstrain}
+   * This command is undone through removing the created {@link RelationshipConstrain}
    * from the source, the {@link Container}, the {@link Relationship} and the target and through
    * deleting all the {@link Bendpoint}s of the {@link RelationshipConstrain}.
    * 
