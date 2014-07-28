@@ -8,11 +8,16 @@ import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Container;
+import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
  * Through this command all {@link Relation}s except the {@link RelationshipConstraint}s can be
- * deleted(removed from the model tree).
+ * deleted(removed from the model tree). The {@link RelationshipConstraint}s need an extra command,
+ * because after every deletion of a {@link RelationshipConstraint} the
+ * {@link ORMRelationshipConstraintEditPart} of the other {@link RelationshipConstraint}s from the
+ * same {@link Relationship} muste be refreshed.
  * 
  * @author Kay Bierzynski
  * */
