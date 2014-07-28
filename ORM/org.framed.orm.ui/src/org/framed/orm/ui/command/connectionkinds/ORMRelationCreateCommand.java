@@ -8,11 +8,13 @@ import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Container;
+import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 
 /**
  * Through this command all {@link Relation}s except the {@link RelationshipConstraint}s can be
- * created(invoked into the model tree).
+ * created(invoked into the model tree). The {@link RelationshipConstraint}s need a extra command,
+ * because for their creation the {@link Relationship}s to which they belong must be setted as well.
  * 
  * @author Kay Bierzynski
  * */
