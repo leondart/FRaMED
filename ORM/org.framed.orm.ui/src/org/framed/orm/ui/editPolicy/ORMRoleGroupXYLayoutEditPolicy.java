@@ -13,7 +13,7 @@ import org.framed.orm.model.Container;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.ui.command.nodes.ORMNodeChangeConstraintsCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
@@ -27,9 +27,9 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
   @Override
   protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
 
-    ORMNodeChangeConstraintsCommand command = new ORMNodeChangeConstraintsCommand();
+    ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
     command.setNode((Node) child.getModel());
-    command.setNewConstraint((Rectangle) constraint);
+    command.setNewBoundaries((Rectangle) constraint);
 
     return command;
   }
@@ -44,7 +44,7 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
       // here are init size set
       command.setNode((Node) (request.getNewObject()));
 
-      command.setConstraints(new Rectangle(constraints.getLocation(),
+      command.setBoundaries(new Rectangle(constraints.getLocation(),
           ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
       command.setContainer((Container) getHost().getModel());
       return command;

@@ -20,7 +20,7 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand;
-import org.framed.orm.ui.command.nodes.ORMNodeChangeConstraintsCommand;
+import org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 
 /**
@@ -36,9 +36,9 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
    */
   @Override
   protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
-    ORMNodeChangeConstraintsCommand command = new ORMNodeChangeConstraintsCommand();
+    ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
     command.setNode((Node) child.getModel());
-    command.setNewConstraint((Rectangle) constraint);
+    command.setNewBoundaries((Rectangle) constraint);
     return command;
   }
 
@@ -66,7 +66,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       ORMCompartmentGroupingCreateCommand command = new ORMCompartmentGroupingCreateCommand();
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
-      command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
+      command.setBoundaries(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
       command.setContainer((Container) getHost().getModel());
       command.setNode(ct);
       command.setRolemodel(rm);
@@ -93,7 +93,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
       ORMCompartmentGroupingCreateCommand command = new ORMCompartmentGroupingCreateCommand();
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
-      command.setConstraints(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
+      command.setBoundaries(new Rectangle(constraints.getLocation(), DEFAULT_TYPE_DIMENSION));
       command.setContainer((Container) getHost().getModel());
       command.setNode(group);
       command.setRolemodel(rm);
@@ -110,7 +110,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
 
       // here are init size set
       command.setNode((Node) (request.getNewObject()));
-      command.setConstraints(new Rectangle(constraints.getLocation(),
+      command.setBoundaries(new Rectangle(constraints.getLocation(),
           DEFAULT_TYPE_DIMENSION_ROLE_NATURAL));
       command.setContainer((Container) getHost().getModel());
 
