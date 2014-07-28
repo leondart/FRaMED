@@ -2,36 +2,53 @@ package org.framed.orm.ui.command.connectionkinds;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Container;
+import org.framed.orm.model.RelationshipConstraint;
 
 /**
+ * Through this command all {@link Relation}s except the {@link RelationshipConstraint}s can be
+ * deleted(removed from the model tree).
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMRelationDeleteCommand extends Command {
 
-  /** Relation to be deleted. */
+  /** The {@link Relation} to be removed. */
   private Relation relation;
-  /** RelationContainer that owns the relatiob. */
+  /** The {@link Container} from which the {@link Relation} should be removed. */
   private Container parent;
-  /** Source of the relation. */
+  /** The source/start {@link Node} of the {@link Relation} to be created. */
   private Node source;
-  /** Target of the relation. */
+  /** The target/end {@link Node} of the {@link Relation} to be created. */
   private Node target;
-  
+  /**
+   * A list, which stores the first part of the {@link Bendpoint}s positions for the case that the
+   * user wants to undone this command.
+   */
   private ArrayList<Point> dim1BPList = new ArrayList<Point>();
-  
+  /**
+   * A list, which stores the second part of the {@link Bendpoint}s positions for the case that the
+   * user wants to undone this command.
+   */
   private ArrayList<Point> dim2BPList = new ArrayList<Point>();
-  
+
+  /**
+   * Constructor of this command, where the label is set, which describes this command to the user.
+   * 
+   */
   public ORMRelationDeleteCommand() {
     super.setLabel("ORMRelationDelete");
   }
 
   /**
-   * {@inheritDoc}
+   * This method tests if the conditions for executing this command are fulfilled,
+   * 
+   * @return true if the parameter relation is set.
    */
   @Override
   public boolean canExecute() {
@@ -39,7 +56,11 @@ public class ORMRelationDeleteCommand extends Command {
   }
 
   /**
-   * Disconnect Relation from source and target things and remove from owner RelationConatiner.
+   * {@inheritDoc} In this method all the attributes of the {@link Relation} to be removed are
+   * stored in variables in case that the user wants to undone this command. After this part the
+   * {@link Relation} is removed from the source, the {@link Container} and the target and all of
+   * it's {@link Bendpoint}s are deleted.
+   * 
    */
   @Override
   public void execute() {
@@ -48,7 +69,7 @@ public class ORMRelationDeleteCommand extends Command {
     target = relation.getTarget();
     dim1BPList.addAll(relation.getDim1BP());
     dim2BPList.addAll(relation.getDim2BP());
-    
+
     relation.setSource(null);
     relation.setTarget(null);
     relation.setRelationContainer(null);
@@ -57,7 +78,8 @@ public class ORMRelationDeleteCommand extends Command {
   }
 
   /**
-   * Reconnect the relation to the source and target and add it to the owner RelationContainer.
+   * {@inheritDoc} This command is undone through the recreation/ invoking of the {@link Relation}
+   * into the model tree through setting it's attributes.
    */
   @Override
   public void undo() {
@@ -66,16 +88,16 @@ public class ORMRelationDeleteCommand extends Command {
     relation.setRelationContainer(parent);
     relation.getDim1BP().addAll(dim1BPList);
     relation.getDim2BP().addAll(dim2BPList);
-    
+
   }
 
   /**
-   * Set the relation that will be delete from the diagram.
+   * Setter for the {@link Relation}, which is deleted/removed in this command.
    * 
-   * @param relaiton the relation to delete from the diagram.
-   */
+   * @param relation org.framed.orm.model.Relation
+   * */
   public void setRelation(final Relation relaiton) {
     relation = relaiton;
   }
-  
+
 }
