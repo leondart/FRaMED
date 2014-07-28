@@ -6,30 +6,44 @@ import java.util.List;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.RoleGroup;
+import org.framed.orm.model.RoleType;
 
 /**
  * @author Kay Bierzynski
  * */
 public class ORMRoleGroupDeleteCommand extends ORMNodeDeleteCommand {
 
-  /** List which contains all roletypes and rolegroups that are in this rolegroup */
+  /**
+   * A list which contains all {@link RoleType}s and {@link RoleGroup}s that are in this
+   * {@link RoleGroup}.
+   */
   private List<Node> items;
 
+
+  /**
+   * Constructor of this command, where the label is set, which describes this command to the user.
+   */
   public ORMRoleGroupDeleteCommand() {
     super.setLabel("ORMRoleGroupDelete");
   }
 
 
   /**
-   * Detach all links from the node and from other connecting types, storing the connection
-   * information in local data structures.
+   * Because a {@link RoleGroup} is a {@link Container} not only the {@link Relation}s connected to
+   * this {@link RoleGroup} must be detached/deleted the {@link Relation}s connected to the children
+   * and their children of this {@link RoleGroup} must be detached/deleted as well. For that reason
+   * the first thing, which is done in this method is to gather all children and their children of
+   * this {@link RoleGroup} in a single list. After that the {@link Relation}s connected to children
+   * are added to relations list.
+   * 
+   * {@inheritDoc}
    */
   @Override
   protected void detachLinks() {
 
     items = new ArrayList<Node>();
 
-    items.addAll(((RoleGroup)node).getNodes());
+    items.addAll(((RoleGroup) node).getNodes());
 
     gatherRoleGroupsItems(items);
 
@@ -40,7 +54,7 @@ public class ORMRoleGroupDeleteCommand extends ORMNodeDeleteCommand {
           relations.add(rel);
       }
       // add all relations with the source in the RG and the target not in the RG
-      for (Relation rel :  item.getOutgoingLinks()) {
+      for (Relation rel : item.getOutgoingLinks()) {
         if (!items.contains(rel.getTarget()))
           relations.add(rel);
       }
@@ -49,7 +63,11 @@ public class ORMRoleGroupDeleteCommand extends ORMNodeDeleteCommand {
     super.detachLinks();
   }
 
-  private void gatherRoleGroupsItems(List<Node> items) {
+  /**
+   * This method puts adds the children of the children and so on of the {@link RoleGroup} to the
+   * list, which was given initaily.
+   * */
+  private void gatherRoleGroupsItems(final List<Node> items) {
     List<Node> items2 = new ArrayList<Node>();
     for (Node item : items) {
       if (item instanceof RoleGroup) {

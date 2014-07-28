@@ -20,7 +20,7 @@ public class ORMNodeDirectEditPolicy extends DirectEditPolicy {
   @Override
   protected Command getDirectEditCommand(DirectEditRequest request) {
     ORMNodeRenameCommand command = new ORMNodeRenameCommand();
-    command.setModel((Node) getHost().getModel());
+    command.setNode((Node) getHost().getModel());
     command.setNewName((String) request.getCellEditor().getValue());
     return command;
   }
