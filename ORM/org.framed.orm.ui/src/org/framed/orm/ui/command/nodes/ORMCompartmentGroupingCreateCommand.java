@@ -2,6 +2,7 @@ package org.framed.orm.ui.command.nodes;
 
 
 import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Rolemodel;
 
 /**
@@ -33,7 +34,13 @@ public class ORMCompartmentGroupingCreateCommand extends ORMNodeCreateCommand {
   public void execute() {
 
     super.execute();
-    ((Compartment) node).setRolemodel(rm);
+    if (node instanceof Compartment) {
+      ((Compartment) node).setRolemodel(rm);
+    }
+    if (node instanceof Grouping) {
+      ((Grouping) node).setRolemodel(rm);
+    }
+    
   }
 
   /**
