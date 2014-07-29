@@ -5,17 +5,26 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
+import org.framed.orm.model.RoleImplication;
 
 /**
+ * This {@link EditPart} is the controller for the model element {@link RoleImplication}.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMRoleImplicationEditPart extends ORMRelationEditPart {
 	
 	
-	
-	@Override protected IFigure createFigure() {
+  /**
+   * {@inheritDoc} {@link RoleImplication}s have as figure a dashed line with a white arrow tip
+   * at target end of this connection.
+   */
+	@Override 
+	protected IFigure createFigure() {
 	    
+	    //create white arrow tip
 	    PolygonDecoration poly = new PolygonDecoration();
 	    poly.setAntialias(SWT.ON);
 	    poly.setBackgroundColor(ColorConstants.white);
