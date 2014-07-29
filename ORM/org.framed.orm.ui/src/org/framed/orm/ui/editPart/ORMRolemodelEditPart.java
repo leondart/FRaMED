@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.CompoundSnapToHelper;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.SnapToGeometry;
@@ -20,6 +21,7 @@ import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.framed.orm.model.Compartment;
+import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
@@ -29,28 +31,43 @@ import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMRolemodelFigure;
 
 /**
+ * This {@link EditPart} is the controller for the model element {@link Rolemodel}.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
 
+  /**
+   * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
+   * This {@link EditPart} reacts on the notifications
+   */
   private final ORMRolemodelAdapter adapter;
 
-
+  /**
+   * Constructor of this class. In which the class is initialized through calling the constructor of
+   * it's parent and initializing it's {@link Adapter}.
+   */
   public ORMRolemodelEditPart() {
     super();
     adapter = new ORMRolemodelAdapter();
 
   }
 
-  /*
-   * The Rolemodel shouldn´t be selectable, becauce of that we need to override the isSelectable
-   * function.
+  /**
+   * {@inheritDoc} The Rolemodel shouldn't be selectable, because for that reason we need to
+   * override the isSelectable function.
    */
   @Override
   public boolean isSelectable() {
     return false;
   }
 
+  /**
+   * {@inheritDoc} {@link Rolemodel}s have as a figure a {@link ORMRolemodelFigure}. The border of
+   * the figure is differs dependingon if the parent is a {@link Grouping} or a {@link Compartment}
+   * and on the expandstate of {@link Compartment} if the role model has as a parent a
+   * {@link Compartment}.
+   */
   @Override
   protected IFigure createFigure() {
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
@@ -70,23 +87,29 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
       }
     }
     // set border of th figure,when the parent is a grouping
-    else
+    else {
       figure.setBorder(new PartFigureBorderNotExpand());
+    }
     return figure;
   }
 
+  /** {@inheritDoc} */
   @Override
   public IFigure getContentPane() {
     return getFigure();
   }
 
+  /** {@inheritDoc} */
   @Override
   protected void createEditPolicies() {
+    // edit policy, which handles the creation of the children of the role model and the
+    // adding of the children to the rolemodel
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMRolemodelXYLayoutPolicy());
     installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
   }
 
+  /** {@inheritDoc} */
   @Override
   protected List getModelChildren() {
     List children = new ArrayList();
@@ -96,6 +119,11 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
     return children;
   }
 
+  /**
+   * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the borders of the
+   * {@link ORMRolemodelFigure} depended on the the expandstate of {@link Compartment} is the role
+   * model has as a parent a {@link Compartment}.
+   * */
   @Override
   public void refreshVisuals() {
     final Figure figure = (Figure) getFigure();
@@ -114,34 +142,48 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
     }
   }
 
-  // draws border on top side and left side
+  /**
+   * A border class where a border is drawn at top side of the figure and on the left side of the
+   * figure.
+   * */
   public class PartFigureBorderExpand extends AbstractBorder {
+
+    /** {@inheritDoc} */
     @Override
     public Insets getInsets(IFigure figure) {
       return new Insets(1, 0, 0, 0);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void paint(IFigure figure, Graphics graphics, Insets insets) {
+      // draw border at the top side of the figure
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
+      // draw border at the left side of the figure
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getBottomLeft());
     }
   }
-  // draws border on top side
+
+  /**
+   * A border class where a border is drawn at top side of the figure.
+   * */
   public class PartFigureBorderNotExpand extends AbstractBorder {
+
+    /** {@inheritDoc} */
     @Override
     public Insets getInsets(IFigure figure) {
       return new Insets(1, 0, 0, 0);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void paint(IFigure figure, Graphics graphics, Insets insets) {
+      // draw border at the top side of the figure
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
-
     }
   }
 
-
+  /** {@inheritDoc} */
   @Override
   public void activate() {
     if (!isActive()) {
@@ -150,6 +192,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
     super.activate();
   }
 
+  /** {@inheritDoc} */
   @Override
   public void deactivate() {
     if (isActive()) {
@@ -160,11 +203,11 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
   }
 
   /**
-   * Currently the class only adapts to create a {@link SnapToHelper} when the editor is in snapping
-   * mode (either to grid or to shapes).
+   * {@inheritDoc} In this {@link EditPart} this method add adapter types for creating a
+   * {@link SnapToHelper} when the editor is in snapping mode (either to grid or to shapes).
    */
   @Override
-  public Object getAdapter(Class key) {
+  public Object getAdapter(final Class key) {
     if (key == SnapToHelper.class) {
       List<SnapToHelper> helpers = new ArrayList<SnapToHelper>();
       if (Boolean.TRUE.equals(getViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED))) {
@@ -182,9 +225,15 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
     return super.getAdapter(key);
   }
 
+  /**
+   * The {@link Adapter} of this {@link EditPart}. An adapter is a receiver of notifications and is
+   * typically associated with a Notifier via an AdapterFactory. This {@link Adapter} calls the
+   * refreshVisuals() and the refreshChildren() method when it gets a change notification.
+   * 
+   * */
   public class ORMRolemodelAdapter implements Adapter {
 
-    // Adapter interface
+    /** {@inheritDoc} */
     @Override
     public void notifyChanged(Notification notification) {
       refreshChildren();
@@ -192,16 +241,19 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
 
     }
 
+    /** {@inheritDoc} */
     @Override
     public Notifier getTarget() {
       return (Rolemodel) getModel();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setTarget(Notifier newTarget) {
       // Do nothing.
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isAdapterForType(Object type) {
       return type.getClass().equals(Rolemodel.class);

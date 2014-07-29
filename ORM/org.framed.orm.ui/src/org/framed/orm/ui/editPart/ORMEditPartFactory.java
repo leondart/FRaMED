@@ -2,20 +2,18 @@ package org.framed.orm.ui.editPart;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
+import org.eclipse.gef.EditPartViewer;
 import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Fulfillment;
-//import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Inheritance;
 import org.framed.orm.model.Irreflexive;
 import org.framed.orm.model.Method;
-//import org.framed.orm.model.Method;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.RelationLabel;
-//import org.framed.orm.model.RelationLabel;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RoleEquivalence;
 import org.framed.orm.model.RoleGroup;
@@ -36,16 +34,22 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMTotalEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
-import org.framed.orm.ui.editPart.types.ORMTypeEditPart;
+
 
 
 /**
+ * A factory for creating new {@link EditPart}s. {@link EditPartViewer}s can be configured with an
+ * EditPartFactory. Whenever an EditPart in that viewer needs to create another EditPart, it can use
+ * the Viewer's factory. The factory is also used by the viewer whenever
+ * {@link EditPartViewer#setContents(Object)} is called.(Comment taken from {@link EditPartFactory}.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMEditPartFactory implements EditPartFactory {
 
+  /** {@inheritDoc} */
   @Override
-  public EditPart createEditPart(EditPart context, Object model) {
+  public EditPart createEditPart(final EditPart context,final Object model) {
     EditPart part = null;
 
     if (model instanceof CompartmentDiagram) {

@@ -104,8 +104,6 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     if (childEditPart.getModel() instanceof Attribute) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
       ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
-      attrEditPart.setParentEditPart(this); // set the parent editpart so that the attribute can
-                                            // access the current bounds of the editpart
       
       Attribute attribute = (Attribute) childEditPart.getModel();
 
@@ -122,7 +120,6 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     if (childEditPart.getModel() instanceof Method) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
       ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart;
-      methodEditPart.setParentEditPart(this);
 
       // add method to right position determined by the model
       Method method = (Method) childEditPart.getModel();
