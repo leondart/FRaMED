@@ -19,6 +19,7 @@ import org.framed.orm.model.Container;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.model.RoleEquivalence;
+import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleImplication;
 import org.framed.orm.model.RoleProhibition;
 import org.framed.orm.model.Total;
@@ -32,24 +33,40 @@ import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
 
 /**
- * This class handles the create logic of relations. For the specification of the logic look up the
- * model description. NewObject = O/o SourceEditPart = S/s TargetEditPart = T/t Model = M/m
+ * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
+ * {@link Relation}s and creates and returns the necessary commands for that purpose. NewObject =
+ * O/o SourceEditPart = S/s TargetEditPart = T/t Model = M/m
  * 
  * @author Kay Bierzynski
  * */
 public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
+  /**
+   * A {@link Relationship} that exist between source edit part and target edit part.
+   * */
   private Relationship testedRelationship = null;
 
+  /**
+   * {@inheritDoc} The feedback is only shown when the target edit part model is not the model
+   * parent of the source edit part model. (this restriction is important for the creation of
+   * {@link Relation}s in a {@link RoleGroup})
+   */
   @Override
-  protected void showCreationFeedback(CreateConnectionRequest request) {
+  protected void showCreationFeedback(final CreateConnectionRequest request) {
     if (!parentTest(request.getTargetEditPart(), request.getSourceEditPart())) {
       super.showCreationFeedback(request);
     }
 
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return {@link ORMRelationshipConstraintCreateCommand}( in case a
+   *         {@link RelationshipConstraint} should be created) or {@link ORMRelationCreateCommand}(
+   *         in case any other Relation should be created)
+   * */
   @Override
-  protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
+  protected Command getConnectionCompleteCommand(final CreateConnectionRequest request) {
     Command retVal = null;
     if (isCompleteOK(request)) {
       retVal = setupConnectionCompleteCommand(request);
@@ -59,8 +76,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     if (request.getNewObject() instanceof RelationshipConstraint
         && request.getSourceEditPart() instanceof ORMRoleTypeEditPart
         && request.getTargetEditPart() instanceof ORMRoleTypeEditPart && tNotEqualSCheck(request)
-        && hasARelationship(request, true) && !hasConstrainKind(request)) {
-      ORMRelationshipConstraintCreateCommand result =
+        && hasARelationship(request, true) && !hasConstraintsKind(request)) {
+      final ORMRelationshipConstraintCreateCommand result =
           (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
       result.setTargetNode((Node) getHost().getModel());
       result.setRelationship(testedRelationship);
@@ -70,8 +87,15 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return retVal;
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return {@link ORMRelationshipConstraintCreateCommand}( in case a
+   *         {@link RelationshipConstraint} should be created) or {@link ORMRelationCreateCommand}(
+   *         in case any other Relation should be created)
+   * */
   @Override
-  protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+  protected Command getConnectionCreateCommand(final CreateConnectionRequest request) {
     Command retVal = null;
 
     if (isStartOK(request)) {
@@ -83,7 +107,8 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         && request.getTargetEditPart() instanceof ORMRoleTypeEditPart
         && hasARelationship(request, false)) {
 
-      ORMRelationshipConstraintCreateCommand result = new ORMRelationshipConstraintCreateCommand();
+      final ORMRelationshipConstraintCreateCommand result =
+          new ORMRelationshipConstraintCreateCommand();
       result.setSourceNode((Node) getHost().getModel());
       result.setRelation((RelationshipConstraint) request.getNewObject());
       request.setStartCommand(result);
@@ -96,66 +121,119 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return retVal;
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return null
+   * */
   @Override
   protected Command getReconnectTargetCommand(ReconnectRequest request) {
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return null
+   * */
   @Override
   protected Command getReconnectSourceCommand(ReconnectRequest request) {
     return null;
   }
 
-
-  private boolean oSTCheck(CreateConnectionRequest request, Class object, Class source, Class target) {
+  /**
+   * This method tests if the new object given by the request equals object, the source edit part
+   * given by the request is instance of source and the target edit part given by the request is
+   * instance of target.
+   * 
+   * @fullname newObjectSourceEditPartTargetEditPartCheck
+   * @return boolean
+   * */
+  private boolean oSTCheck(final CreateConnectionRequest request, final Class object,
+      final Class source, final Class target) {
 
     return request.getNewObjectType().equals(object)
         && target.isInstance(request.getTargetEditPart())
         && source.isInstance(request.getSourceEditPart());
   }
 
-  private boolean oSMTMCheck(CreateConnectionRequest request, Class object, Class source,
-      Class target) {
+  /**
+   * This method tests if the new object given by the request equals object, the source edit part
+   * model given by the request is instance of source and the target edit part model given by the
+   * request is instance of target.
+   * 
+   * @fullname newObjectSourceEditPartModelTargetEditPartModelCheck
+   * @return boolean
+   * */
+  private boolean oSMTMCheck(final CreateConnectionRequest request, final Class object,
+      final Class source, final Class target) {
 
     return request.getNewObjectType().equals(object)
         && target.isInstance(request.getTargetEditPart().getModel())
         && source.isInstance(request.getSourceEditPart().getModel());
   }
 
-  // the methods is for future adaption of the logic
-  private boolean oSTMCheck(CreateConnectionRequest request, Class object, Class source,
-      Class target) {
 
-    return request.getNewObjectType().equals(object)
-        && target.isInstance(request.getTargetEditPart().getModel())
-        && source.isInstance(request.getSourceEditPart());
-  }
-
-  private boolean oTCheck(CreateConnectionRequest request, Class object, Class target) {
+  /**
+   * This method tests if the new object given by the request equals object and the target edit part
+   * given by the request is instance of target.
+   * 
+   * @fullname newObjectTargetEditPartCheck
+   * @return boolean
+   * */
+  private boolean oTCheck(final CreateConnectionRequest request, final Class object,
+      final Class target) {
 
     return request.getNewObjectType().equals(object)
         && target.isInstance(request.getTargetEditPart());
   }
 
+  /**
+   * This method tests if the new object given by the request equals object and the target edit part
+   * model given by the request is instance of target.
+   * 
+   * @fullname newObjectTargetEditPartModelCheck
+   * @return boolean
+   * */
   private boolean oTMCheck(CreateConnectionRequest request, Class object, Class target) {
 
     return request.getNewObjectType().equals(object)
         && target.isInstance(request.getTargetEditPart().getModel());
   }
 
-  private boolean tNotEqualSCheck(CreateConnectionRequest request) {
+  /**
+   * This method tests if the source edit part given by the request doesn't equals the target edit
+   * part given by the request.
+   * 
+   * @fullname targetEditPartNotEqualSourceEditPartCheck
+   * @return boolean
+   * */
+  private boolean tNotEqualSCheck(final CreateConnectionRequest request) {
     return !(request.getTargetEditPart().equals(request.getSourceEditPart()));
   }
 
-  private ORMRelationCreateCommand setupConnectionCompleteCommand(CreateConnectionRequest request) {
-    ORMRelationCreateCommand result = (ORMRelationCreateCommand) request.getStartCommand();
+  /**
+   * This method creates and return the creation commands for all {@link Relation}s except for
+   * {@link RelationshipConstraint}s.
+   * 
+   * @return {@link ORMRelationCreateCommand}
+   * */
+  private ORMRelationCreateCommand setupConnectionCompleteCommand(
+      final CreateConnectionRequest request) {
+    final ORMRelationCreateCommand result = (ORMRelationCreateCommand) request.getStartCommand();
     result.setTargetNode((Node) getHost().getModel());
     return result;
   }
 
-  private ORMRelationCreateCommand setupConnectionStartCommand(CreateConnectionRequest request,
-      Container container) {
-    ORMRelationCreateCommand result = new ORMRelationCreateCommand();
+
+  /**
+   * This method creates and return the creation command for all {@link RelationshipConstraint}s.
+   * 
+   * @return {@link ORMRelationshipConstraintCreateCommand}
+   * */
+  private ORMRelationCreateCommand setupConnectionStartCommand(
+      final CreateConnectionRequest request, final Container container) {
+    final ORMRelationCreateCommand result = new ORMRelationCreateCommand();
     result.setSourceNode((Node) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
@@ -163,9 +241,14 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return result;
   }
 
-  public boolean parentTest(EditPart target, EditPart source) {
-    boolean flag;
-    flag = false;
+
+  /**
+   * This method tests if target edit part model is the parent model of the source edit part model.
+   * 
+   * @return boolean
+   * */
+  public boolean parentTest(final EditPart target, final EditPart source) {
+    boolean flag = false;
 
     if (target != null && source != null) {
       if (target.equals(source.getParent())) {
@@ -182,7 +265,13 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return flag;
   }
 
-  public boolean isCompleteOK(CreateConnectionRequest request) {
+  /**
+   * This method tests if the conditions for the creation completion of a {@link Relation}
+   * kind(except {@link RelationshipConstraint}s) are fulfilled.
+   * 
+   * @return boolean
+   * */
+  public boolean isCompleteOK(final CreateConnectionRequest request) {
     // Fulfillment Test End
     return oSTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class,
         ORMCompartmentEditPart.class)
@@ -216,7 +305,13 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
               true));
   }
 
-  public boolean isStartOK(CreateConnectionRequest request) {
+  /**
+   * This method tests if the conditions for the creation start of a {@link Relation} kind(except
+   * {@link RelationshipConstraint}s) are fulfilled.
+   * 
+   * @return boolean
+   * */
+  public boolean isStartOK(final CreateConnectionRequest request) {
     // Fufillment start
     return oTCheck(request, Fulfillment.class, ORMNaturalTypeEditPart.class)
         || oTCheck(request, Fulfillment.class, ORMCompartmentEditPart.class)
@@ -235,11 +330,16 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         || oTCheck(request, Relationship.class, ORMRoleTypeEditPart.class);
   }
 
-  public boolean childrenTest(EditPart target, EditPart source) {
+  /**
+   * This method tests if target edit part model is a child model of the source edit part model.
+   * 
+   * @return boolean
+   * */
+  public boolean childrenTest(final EditPart target, final EditPart source) {
     boolean flag;
     flag = false;
-    ArrayList<EditPart> children = new ArrayList<EditPart>();
-    ArrayList<EditPart> roleGroups = new ArrayList<EditPart>();
+    final ArrayList<EditPart> children = new ArrayList<EditPart>();
+    final ArrayList<EditPart> roleGroups = new ArrayList<EditPart>();
     children.addAll(source.getChildren());
 
     for (EditPart child : children) {
@@ -262,7 +362,13 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return flag;
   }
 
-  private boolean hasConstrainKind(CreateConnectionRequest request) {
+  /**
+   * This method tests if between source edit part and traget edit part already exist a
+   * {@link RelationshipConstraint} kind of the requested {@link RelationshipConstraint} kind.
+   * 
+   * @return boolean
+   * */
+  private boolean hasConstraintsKind(final CreateConnectionRequest request) {
 
     if (testedRelationship != null) {
       for (RelationshipConstraint rel : testedRelationship.getRlshipConstraints()) {
@@ -277,10 +383,16 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     return false;
   }
 
-  private boolean hasARelationship(CreateConnectionRequest request, boolean isTargetTest) {
-    List<Relation> relList = new ArrayList<Relation>();
-    List<Relation> relSourceList = new ArrayList<Relation>();
-    // false source true target
+  /**
+   * This method tests if between source edit part and traget edit part already exist a
+   * {@link Relationship}.
+   * 
+   * @return boolean
+   * */
+  private boolean hasARelationship(final CreateConnectionRequest request, final boolean isTargetTest) {
+    final List<Relation> relList = new ArrayList<Relation>();
+    final List<Relation> relSourceList = new ArrayList<Relation>();
+    // false source edit part(else) true target edit part(if)
     if (isTargetTest) {
       relList.addAll(((ORMRoleTypeEditPart) request.getTargetEditPart())
           .getModelTargetConnections());
@@ -290,6 +402,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           .getModelTargetConnections());
       relSourceList.addAll(((ORMRoleTypeEditPart) request.getSourceEditPart())
           .getModelSourceConnections());
+      // test: has the target editpart the relationship connection as the source connection?
       for (Relation rel : relList) {
         if (rel instanceof Relationship) {
           for (Relation rel2 : relSourceList) {
@@ -302,7 +415,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         }
       }
     } else {
-      // test: has the focused editpart a relationship as connection?
+      // test: has the source editpart a relationship as connection?
       relList.addAll(((ORMRoleTypeEditPart) request.getTargetEditPart())
           .getModelSourceConnections());
       relList.addAll(((ORMRoleTypeEditPart) request.getTargetEditPart())
