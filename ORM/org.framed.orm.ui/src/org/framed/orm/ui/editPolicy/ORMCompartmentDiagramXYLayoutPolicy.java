@@ -12,30 +12,43 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Compartment;
+import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Container;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 
 /**
+ * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of
+ * {@link Compartment}s, {@link Grouping}s and {@link NaturalType}s in a {@link CompartmentDiagram}
+ * and returns and creates the nessecary commands for the creation and boundarie change.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
 
-  private static final Dimension DEFAULT_TYPE_DIMENSION = ORMAbstractXYLayoutPolicy.dynamicDimensions(null);
-  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATURAL = ORMAbstractXYLayoutPolicy.dynamicDimensions(NaturalType.class);
+  /** Default dimesnion of a {@link Type}. */
+  private static final Dimension DEFAULT_TYPE_DIMENSION = ORMAbstractXYLayoutPolicy
+      .dynamicDimensions(null);
+  /** Default dimesnion of a {@link NaturalType}s and {@link RoleType}s. */
+  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATURAL = ORMAbstractXYLayoutPolicy
+      .dynamicDimensions(NaturalType.class);
 
   /**
-   * Command created top change the constraints of a {@link Node} instance.
-   */
+   * {@inheritDoc} Constraints means here boundaries.
+   * 
+   * @return {@link ORMNodeChangeBoundariesCommand}
+   * */
   @Override
-  protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
+  protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
     ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
     command.setNode((Node) child.getModel());
     command.setNewBoundaries((Rectangle) constraint);
@@ -43,14 +56,16 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
   }
 
   /**
-   * Command created to add new compartment, grouping or natural type instances .
-   */
+   * {@inheritDoc} Specifically the create commands for {@link Compartment}s, {@link Grouping}s and
+   * {@link NaturalType}s.
+   * */
   @Override
-  protected Command getCreateCommand(CreateRequest request) {
+  protected Command getCreateCommand(final CreateRequest request) {
     Command retVal = null;
 
     // if the request object is a compartment create the creatcommand for the compartment
-    // and the creatcommand for the rolemodel, which belong to the compartment
+    // and the creatcommand for the rolemodel, which belong to the compartment, and add them to a
+    // compund command
     if (request.getNewObjectType().equals(Compartment.class)) {
       Rolemodel rm = OrmFactory.eINSTANCE.createRolemodel();
       Compartment ct = (Compartment) (request.getNewObject());
@@ -79,7 +94,8 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
     }
 
     // if the request object is a grouping create the creatcommand for the grouping
-    // and the creatcommand for the rolemodel, which belong to the grouping
+    // and the creatcommand for the rolemodel, which belong to the grouping, and add them to a
+    // compund command
     if (request.getNewObjectType().equals(Grouping.class)) {
       Rolemodel rm = OrmFactory.eINSTANCE.createRolemodel();
       Grouping group = (Grouping) (request.getNewObject());
@@ -119,8 +135,13 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
     return retVal;
   }
 
-  // Feedback
+
+
   // TODO: an den neusten Stand anpassen
+  /**
+   * {@inheritDoc} In this case the backround color changes to blue when the user is about to
+   * execute a possible command.
+   */
   @Override
   protected void showLayoutTargetFeedback(Request request) {
     // the background color of the compartmentdiagram switch to blue when the request object is
@@ -135,6 +156,7 @@ public class ORMCompartmentDiagramXYLayoutPolicy extends XYLayoutEditPolicy {
     }
   }
 
+  /** {@inheritDoc} */
   @Override
   protected void eraseLayoutTargetFeedback(Request request) {
     Figure figure = (Figure) getHostFigure();
