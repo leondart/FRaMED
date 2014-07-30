@@ -246,7 +246,7 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
   /**
    * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Rolemodel}.
    * If the figure of the {@link Rolemodel} or the compartmentPart is added to this {@link Grouping}
-   * depends on which version of grouping figure is used also id the user has steped in the grouping
+   * depends on which version of grouping figure is used also if the user has steped in the grouping
    * or not.
    */
   @Override
