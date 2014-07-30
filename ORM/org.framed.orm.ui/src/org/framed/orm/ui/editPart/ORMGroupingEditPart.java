@@ -72,7 +72,7 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
 
   /**
    * {@inheritDoc} A {@link Grouping} has as a figure a {@link ORMGroupingV1Figure}, when the user
-   * didn't step in it, and a {@link ORMGroupingV2Figure}, when the user didn't step in it.
+   * didn't step in it, and a {@link ORMGroupingV2Figure}, when the user did step in it.
    */
   @Override
   protected IFigure createFigure() {
