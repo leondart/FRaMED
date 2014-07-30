@@ -1,13 +1,13 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Container;
@@ -27,33 +27,35 @@ import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.ORMRolemodelFigure;
 
 /**
+ * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of
+ * all kinds {@link Node}s in a {@link Rolemodel} and returns and creates the
+ * nessecary commands for the creation and boundarie change.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
-//  private static final Dimension DEFAULT_TYPE_DIMENSION = ORMAbstractXYLayoutPolicy.dynamicDimensions(null);
-//  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLE_NATRUAL = ORMAbstractXYLayoutPolicy.dynamicDimensions(NaturalType.class);
-//  private static final Dimension DEFAULT_TYPE_DIMENSION_ROLEGROUP = ORMAbstractXYLayoutPolicy.dynamicDimensions(RoleGroup.class);
 
   /**
-   * Command created top change the constraints of a {@link Node} instance.
-   */
+   * {@inheritDoc} Constraints means here boundaries.
+   * 
+   * @return {@link ORMNodeChangeBoundariesCommand}
+   * */
   @Override
-  protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
+  protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
 
-    ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
+    final ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
     command.setNode((Node) child.getModel());
     command.setNewBoundaries((Rectangle) constraint);
 
     return command;
   }
-
+ 
   /**
-   * Command created to add new nodes to the Rolemodel. In future versions of the rolemodel only
-   * roletype and rolegroup instances will be addebale.
-   */
+   * {@inheritDoc} Specifically the create commands for all kinds of {@link Node}s.
+   * */
   @Override
-  protected Command getCreateCommand(CreateRequest request) {
+  protected Command getCreateCommand(final CreateRequest request) {
     Command retVal = null;
 
     // when the parent of the rolemodel is a compartment only roletype and rolegroup instances can
@@ -79,8 +81,6 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
       if (request.getNewObjectType().equals(NaturalType.class)) {
         ORMNodeCreateCommand command = new ORMNodeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
-
-        System.out.println("Creating natural type");
         
         command.setNode((Node) (request.getNewObject()));
         // here are init size set
@@ -91,7 +91,9 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
       }
 
       // if the request object is a compartment create the creatcommand for the compartment
-      // and the creatcommand for the rolemodel, which belong to the compartment
+      // and the creatcommand for the rolemodel, which belong to the compartment and add them to a
+      // compund command
+      
       if (request.getNewObjectType().equals(Compartment.class)) {
         Rolemodel rm = OrmFactory.eINSTANCE.createRolemodel();
         Compartment ct = (Compartment) (request.getNewObject());
@@ -114,7 +116,8 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
       }
 
       // if the request object is a grouping create the creatcommand for the grouping
-      // and the creatcommand for the rolemodel, which belong to the grouping
+      // and the creatcommand for the rolemodel, which belong to the grouping and add them to a
+      // compund command
       if (request.getNewObjectType().equals(Grouping.class)) {
         Rolemodel rm = OrmFactory.eINSTANCE.createRolemodel();
         Grouping group = (Grouping) (request.getNewObject());
@@ -139,10 +142,13 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     return retVal;
   }
 
-  // Feedback
-  // TODO: an den neusten Stand anpassem
+  // TODO: an den neusten Stand anpassen
+  /**
+   * {@inheritDoc} In this case the backround color changes to blue when the user is about to
+   * execute a possible command.
+   */
   @Override
-  protected void showLayoutTargetFeedback(Request request) {
+  protected void showLayoutTargetFeedback(final Request request) {
     if (request.getType() == RequestConstants.REQ_CREATE) {
       if (((CreateRequest) request).getNewObjectType().equals(RoleType.class)
           || ((CreateRequest) request).getNewObjectType().equals(Compartment.class)
@@ -150,16 +156,17 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
           || ((CreateRequest) request).getNewObjectType().equals(NaturalType.class)
           && getHost().getParent() instanceof ORMGroupingEditPart
           || ((CreateRequest) request).getNewObjectType().equals(RoleGroup.class)) {
-        ORMRolemodelFigure figure = (ORMRolemodelFigure) getHostFigure();
+        final ORMRolemodelFigure figure = (ORMRolemodelFigure) getHostFigure();
         figure.setBackgroundColor(ColorConstants.lightBlue);
         figure.setOpaque(true);
       }
     }
   }
 
+  /** {@inheritDoc} */
   @Override
-  protected void eraseLayoutTargetFeedback(Request request) {
-    ORMRolemodelFigure figure = (ORMRolemodelFigure) getHostFigure();
+  protected void eraseLayoutTargetFeedback(final Request request) {
+    final ORMRolemodelFigure figure = (ORMRolemodelFigure) getHostFigure();
     figure.setBackgroundColor(ColorConstants.white);
     figure.setOpaque(false);
   }
