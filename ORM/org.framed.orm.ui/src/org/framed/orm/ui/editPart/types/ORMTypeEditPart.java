@@ -2,14 +2,12 @@ package org.framed.orm.ui.editPart.types;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -31,10 +29,11 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Method;
-import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMAttributeEditPart;
+import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
@@ -43,21 +42,54 @@ import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 import org.framed.orm.ui.figure.ORMTypeFigure;
 import org.framed.orm.ui.figure.PartFigure;
-import org.framed.orm.ui.utilities.ORMTextUtilities;
 
 /**
+ * This {@link EditPart} is the super/parent {@link EditPart} also super/parent controller of all
+ * {@link Type}s.
+ * 
  * @author Kay Bierzynski
  * */
 public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implements NodeEditPart {
 
+  /**
+   * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
+   * This {@link EditPart} reacts on the notifications
+   */
   private final ORMTypeAdapter adapter;
 
   // TODO: find better names
+  /**
+   * A {@link Label} which will contain collectionAtt as tooltip and has a text ... . A global
+   * variablie is nessecary, because this variable is used in methods addChildVisual and
+   * removeChildVisual.
+   * */
   private final Label collectAttribute;
+  /**
+   * A {@link Label} which contains collection Met as tooltip and has as a text ... . A global
+   * variablie is nessecary, because this variable is used in methods addChildVisual and
+   * removeChildVisual.
+   * */
   private final Label collectMethod;
+  /**
+   * A {@link PartFigure} which contains the names of all {@link Attribute}s that doesn't fit in the
+   * attribute list of the type figure, when the attribute list already contains three
+   * {@link Attribute}s. A global variable is nessecary, because this variable is used in methods
+   * addChildVisual and removeChildVisual.
+   */
   private final PartFigure collectionAtt;
+  /**
+   * A {@link PartFigure} which contains the names of all {@link Method}s that doesn't fit in the
+   * method list of the type figure, when the method list already contains three {@link Methods}s. A
+   * global variable is helpful, because this {@link PartFigure} is used in the methods
+   * removeChildVisual() and addChildVisual().
+   */
   private final PartFigure collectionMet;
 
+  /**
+   * Constructor of this class. In which the class is initialized through calling the constructor of
+   * it's parent, initializing it's {@link Adapter} and initializing the global variables
+   * collectMethod, collectAttribure, collectionAtt and collectionMet.
+   */
   public ORMTypeEditPart() {
     super();
     adapter = new ORMTypeAdapter();
@@ -69,21 +101,21 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     collectionMet = new PartFigure();
   }
 
-  // return node for ORMLabelFigure to get the bounding rectangle
-  public Node getNode() {
-    return (Node) getModel();
-  }
-
+  /** {@inheritDoc} */
   @Override
   public void createEditPolicies() {
+    // edit policy for handling requests of editing the type name
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNodeDirectEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
+    // edit policy, which handles the creation of the children of the tyoe and the
+    // adding of the children to the type
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMTypeXYLayoutPolicy());
+    // edit policy, which handels requests for deleting the type, which is controlled
+    // through this edit part
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy(this));
-
   }
 
-
+  /** {@inheritDoc} */
   @Override
   public void performRequest(Request req) {
 
@@ -92,67 +124,85 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     }
   }
 
-  // for adding of Attribute and Methode
+  /**
+   * {@inheritDoc} In case of this {@link EditPart} that would be the figure of {@link Attribute}s
+   * and {@link Method}s. When more than 3 Attributes/Methodes are added to this Type, than the
+   * label collectAttribute/collectMethod( they have as a text ...) are added and the names of the
+   * Attributes/Methodes with index >2 are collected and shown in the tooltip(collectionAtt/
+   * collectionMet) of the label collectAttribute/collectMethod.
+   * 
+   * */
   @Override
-  protected void addChildVisual(EditPart childEditPart, int index) {
-    // TODO: find better solution
-    /*
-     * when more than 3 Attributes/Methodes are added to this Type, than the label
-     * collectAttribute/collectMethode are added and the names of the Attributes/Methodes with index
-     * >2 are collectet in the tooltip of the label collectAttribute/collectMethode
-     */
-    if (childEditPart.getModel() instanceof Attribute) {
-      IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
-      ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
-      
-      Attribute attribute = (Attribute) childEditPart.getModel();
+  protected void addChildVisual(final EditPart childEditPart, final int index) {
 
-      List<Attribute> temp = new ArrayList<Attribute>();
+    if (childEditPart.getModel() instanceof Attribute) {
+      final IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
+      final ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
+
+      final Attribute attribute = (Attribute) childEditPart.getModel();
+
+      final List<Attribute> temp = new ArrayList<Attribute>();
       temp.addAll(attribute.getType().getAttributes());
+      // the attrbutes should be added to the collectionAtt and the collectAttribute in reversed
+      // order
       Collections.reverse(temp);
 
-      int attributeIndex = temp.indexOf(attribute);
+      final int attributeIndex = temp.indexOf(attribute);
 
-      addChildToRightPosition(attributeIndex, attrEditPart, contentPane,
-          collectAttribute,  collectionAtt);
+      addChildToCorrectPosition(attributeIndex, attrEditPart, contentPane, collectAttribute,
+          collectionAtt);
     }
 
     if (childEditPart.getModel() instanceof Method) {
-      IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
-      ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart;
+      final IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
+      final ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart;
 
-      // add method to right position determined by the model
-      Method method = (Method) childEditPart.getModel();
+      final Method method = (Method) childEditPart.getModel();
 
-      List<Method> temp = new ArrayList<Method>();
+      final List<Method> temp = new ArrayList<Method>();
       temp.addAll(method.getType().getOperations());
+      // the method should be added to the collectionMet and the collectMethod in reversed
+      // order
       Collections.reverse(temp);
 
-      int methodIndex = temp.indexOf(method);
+      final int methodIndex = temp.indexOf(method);
 
-      addChildToRightPosition(methodIndex, methodEditPart, contentPane,
-          collectMethod,  collectionMet);
+      addChildToCorrectPosition(methodIndex, methodEditPart, contentPane, collectMethod,
+          collectionMet);
 
     }
   }
 
-  public void addChildToRightPosition(int index, GraphicalEditPart childEditPart, IFigure contentPane,
-      Label collect, PartFigure collection) {
+  /**
+   * This method adds a {@link Attribute}/{@link Method} to the attibute/ method list of the type
+   * figure and when attibute/ method list contains more than three {@link Attribute}s/
+   * {@link Method}s the latest added {@link Attribute}/{@link Method} is removed from attibute/
+   * method list and added to collectionAtt/collectionMet and the label collectAttribute/collectMet
+   * is added.
+   * */
+  private void addChildToCorrectPosition(final int index, final GraphicalEditPart childEditPart,
+      final IFigure contentPane, final Label collect, final PartFigure collection) {
 
     if (index < 3) {
-
-      if (contentPane.getChildren().size() <= index +1 && contentPane.getChildren().size() != 3) {
+      // if the contentPane contains not more than index+1 children not more than three children
+      // than total than the atttribute/method should be added at top of the attribute/method
+      // list(contentPane) else the child is added on it's index
+      if (contentPane.getChildren().size() <= index + 1 && contentPane.getChildren().size() != 3) {
         contentPane.add(childEditPart.getFigure(), 0);
       } else {
         contentPane.add(childEditPart.getFigure(), index);
       }
 
+      // if the contentPane has more than four children and thhe contentPane doesn't contain collect
+      // label that the collect label is added at the end of the contentPane, the collection is
+      // added to the collect label as tootltip and the first added(to the contentPan) child figure
+      // is removed from contentPane an added to the collection
       if (contentPane.getChildren().size() >= 4
           && !contentPane.getChildren().get(3).equals(collect)) {
-        if (!(contentPane.getChildren().contains(collectMethod))) {
-          contentPane.add(collect);
-          collect.setToolTip(collection);
-        }
+
+        contentPane.add(collect);
+        collect.setToolTip(collection);
+
 
         IFigure childfig =
             (IFigure) contentPane.getChildren().get(contentPane.getChildren().size() - 2);
@@ -161,12 +211,13 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
       }
     } else {
 
-      if (!(contentPane.getChildren().contains(collect))) {
+      if (!contentPane.getChildren().contains(collect)) {
         contentPane.add(collect);
         collect.setToolTip(collection);
       }
 
       int collectionSize = collection.getChildren().size();
+
       if (collectionSize <= index - collectionSize) {
         collection.add(childEditPart.getFigure(), 0);
       } else {
@@ -176,9 +227,19 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     }
   }
 
-  // for delete of Attribute and Methode
+  /**
+   * {@inheritDoc} In case of this {@link EditPart} that would be the figures of {@link Attribute}s
+   * and {@link Method}s. Depending on the index of the {@link Attribute}/{@link Method} is the
+   * child removed from the contentPane or the collectionAtt/collectionMet. When after the removing
+   * the contentPane has less than four children and has a collectAttribute/collectMethod, which has
+   * at least one children, than a children is taken from collectionAttribute/collectionMethod and
+   * added before the collectAttribute/collectMethod. At end this method tests if the
+   * collectionAttribute/collectionMethod contains ate least one children when not thatn the the
+   * collectAttribute/collectMethod is removed from the conetntPane.
+   * 
+   * */
   @Override
-  protected void removeChildVisual(EditPart childEditPart) {
+  protected void removeChildVisual(final EditPart childEditPart) {
 
     if (childEditPart.getModel() instanceof Attribute) {
       IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
@@ -231,6 +292,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
   }
 
+  /** {@inheritDoc} */
   @Override
   protected List getModelChildren() {
     List children = new ArrayList();
@@ -244,14 +306,19 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     return children;
   }
 
-
+  /**
+   * This method initializes and starts the {@link ORMNodeDirectEditManager} for direct editing the
+   * type name.
+   */
   private void performDirectEditing() {
     Label label = ((ORMTypeFigure) getFigure()).getLabel();
     ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(label), label);
+        new ORMNodeDirectEditManager(this, TextCellEditor.class,
+            new ORMNodeCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
+  /** {@inheritDoc} */
   @Override
   public List<Relation> getModelSourceConnections() {
     if (!(getParent() instanceof ScalableRootEditPart)) {
@@ -261,6 +328,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     return new ArrayList<Relation>();
   }
 
+  /** {@inheritDoc} */
   @Override
   public List<Relation> getModelTargetConnections() {
     if (!(getParent() instanceof ScalableRootEditPart)) {
@@ -270,27 +338,35 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     return new ArrayList<Relation>();
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
     return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
     return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getSourceConnectionAnchor(Request request) {
     return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getTargetConnectionAnchor(Request request) {
     return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
   }
 
-  @SuppressWarnings("unchecked")
+  /**
+   * {@inheritDoc} The refreshVisuals of this {@link EditPart}(all type editparts) updates the
+   * text(shorten type name), the boundaries(constraints) and the tooltip(complete type name) of the
+   * {@link Type} figure.
+   * */
   @Override
   public void refreshVisuals() {
     final ORMTypeFigure figure = (ORMTypeFigure) getFigure();
@@ -302,6 +378,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     parent.setLayoutConstraint(this, figure, model.getConstraints());
   }
 
+  /** {@inheritDoc} */
   @Override
   public void setLayoutConstraint(EditPart child, IFigure childFigure, Object constraint) {
     if (constraint != null) {
@@ -309,6 +386,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     }
   }
 
+  /** {@inheritDoc} */
   @Override
   public void activate() {
     if (!isActive()) {
@@ -317,6 +395,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     super.activate();
   }
 
+  /** {@inheritDoc} */
   @Override
   public void deactivate() {
     if (isActive()) {
@@ -327,11 +406,11 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
   }
 
   /**
-   * Currently the class only adapts to create a {@link SnapToHelper} when the editor is in snapping
-   * mode (either to grid or to shapes).
+   * {@inheritDoc} In this {@link EditPart} this method add adapter types for creating a
+   * {@link SnapToHelper} when the editor is in snapping mode (either to grid or to shapes).
    */
   @Override
-  public Object getAdapter(Class key) {
+  public Object getAdapter(final Class key) {
     if (key == SnapToHelper.class) {
       List<SnapToHelper> helpers = new ArrayList<SnapToHelper>();
       if (Boolean.TRUE.equals(getViewer().getProperty(SnapToGeometry.PROPERTY_SNAP_ENABLED))) {
@@ -349,41 +428,67 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     return super.getAdapter(key);
   }
 
+  /**
+   * The {@link Adapter} of this {@link EditPart}. An adapter is a receiver of notifications and is
+   * typically associated with a Notifier via an AdapterFactory. This {@link Adapter} calls the
+   * refreshVisuals(), refreshChildren(), refreshSourceConnections() and refreshTargetConnections()
+   * method when it gets a change notification. RefreshSourceConnections() and
+   * refreshTargetConnections() are only called when the user didn't stepped in the {@link Type}
+   * also when the type isn't a {@link Compartment} or is a {@link Compartment}, where the user
+   * didn't step into. When a {@link Type} is created as child of a {@link Rolemodel} or the name of
+   * a type in a rolemodel is changed than the role/ compartment list of the
+   * parent(compartem/grouping) must be updated for that reason the refreshVisuals() of the parent
+   * of the rolemodel is called on a change notification.
+   * 
+   * */
   public class ORMTypeAdapter implements Adapter {
 
-    // Adapter interface
+    /** {@inheritDoc} */
     @Override
-    public void notifyChanged(Notification notification) {
+    public void notifyChanged(final Notification notification) {
 
       refreshChildren();
       refreshVisuals();
+
       // for synchronsation with role list of the Compartement in above layer of the tree
-      if (getParent().getParent() instanceof ORMCompartmentEditPart)
+      if (getParent().getParent() instanceof ORMCompartmentEditPart) {
         ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
+      }
+
+      // for synchronsation with compartment list of the Grouping in above layer of the tree
+      if (getParent().getParent() instanceof ORMGroupingEditPart) {
+        ((ORMGroupingEditPart) getParent().getParent()).refreshVisuals();
+      }
+
       if (!(getParent() instanceof ScalableRootEditPart)) {
         refreshSourceConnections();
         refreshTargetConnections();
       }
     }
 
+    /** {@inheritDoc} */
     @Override
     public Notifier getTarget() {
       return (Type) getModel();
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void setTarget(Notifier newTarget) {
+    public void setTarget(final Notifier newTarget) {
       // Do nothing.
     }
 
+    /** {@inheritDoc} */
     @Override
-    public boolean isAdapterForType(Object type) {
+    public boolean isAdapterForType(final Object type) {
       return type.equals(Type.class);
     }
   }
 
-  // ! Returns the bounds of the parent figure
-  public Rectangle getConstraints() {
-    return null;
-  }
+  /**
+   * A getter for the boundaries of this {@link Type}.
+   * 
+   * @return type boundaries
+   * */
+  public abstract Rectangle getConstraints();
 }
