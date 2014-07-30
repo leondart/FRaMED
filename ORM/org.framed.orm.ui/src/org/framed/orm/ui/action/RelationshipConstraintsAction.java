@@ -20,7 +20,7 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 
 
 /**
- * This action is for adding {@link RelationshipConstraint}s to a {@link Relationship} through a
+ * This action is for adding/removing {@link RelationshipConstraint}s to/from a {@link Relationship} through a
  * {@link ConstraintsDialog}.
  * 
  * @author Kay Bierzynski
