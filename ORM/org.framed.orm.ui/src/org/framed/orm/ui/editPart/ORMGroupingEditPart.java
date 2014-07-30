@@ -272,7 +272,7 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
   }
 
   /**
-   * The first thing, which is done in thismethod is that a {@link Label} with the text Compartments is added
+   * The first thing, which is done in this method is that a {@link Label} with the text Compartments is added
    * to the compartmentPart. After that all {@link Grouping} and {@link Compartment} names, which
    * are in the child {@link Rolemodel} (this will change in later version of the model) of this
    * grouping, are added to the compartmentPart. When are more then three names in the
