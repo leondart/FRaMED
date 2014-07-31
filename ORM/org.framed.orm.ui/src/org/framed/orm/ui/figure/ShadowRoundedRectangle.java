@@ -9,32 +9,44 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * RoundRectangle with a border shadow.
+ * {@link RoundRectangle} with a border shadow.
  * 
  * @author Kay Bierzynski
  * */
 public class ShadowRoundedRectangle extends RoundedRectangle {
 
-  private static int arcWidth = 20;
-  private static int arcHeight = 20;
+  /** The width of the rectangle corners. */
+  private static final int ARC_WIDTH = 20;
+  /** The heigth of the rectangle corners. */
+  private static final int ARC_HEIGTH = 20;
+  /** Variable, which containts the value for the shadow inset. */
+  public static final int SHADOW_INSET = 4;
 
+  /**
+   * The constructor of this class, where the {@link Dimension} of the rectangle corners is set.
+   * */
   public ShadowRoundedRectangle() {
     super();
-    setCornerDimensions(new Dimension(arcWidth, arcHeight));
+    setCornerDimensions(new Dimension(ARC_WIDTH, ARC_HEIGTH));
   }
 
   /**
    * 
    * @see Shape#fillShape(Graphics)
    */
-  protected void fillShape(Graphics graphics) {
-    Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
-    Insets shadowInset = new Insets(0, 0, SHADOW_INSET, SHADOW_INSET);
+  protected void fillShape(final Graphics graphics) {
+    final Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
+    final Insets shadowInset = new Insets(0, 0, SHADOW_INSET, SHADOW_INSET);
     f.crop(shadowInset);
     this.drawShadow(f, graphics);
     graphics.fillRoundRectangle(f, corner.width, corner.height);
   }
 
+  /**
+   * A getter for the inset of this {@link RoundedRectangle}.
+   * 
+   * @return {@link Insets}
+   * */
   public Insets getInsets() {
     return new Insets(1, 1, SHADOW_INSET + 1, SHADOW_INSET + 1);
   }
@@ -42,24 +54,9 @@ public class ShadowRoundedRectangle extends RoundedRectangle {
   /**
    * @see Shape#outlineShape(Graphics)
    */
-
-  protected void outlineShape(Graphics graphics) {
-    // float lineInset = Math.max(1.0f, getLineWidthFloat()) / 2.0f;
-    // int inset1 = (int) Math.floor(lineInset);
-    // int inset2 = (int) Math.ceil(lineInset);
-
-    /*
-     * Rectangle r = Rectangle.SINGLETON.setBounds(getBounds()); r.x += inset1; r.y += inset1;
-     * r.width -= inset1 + inset2; r.height -= inset1 + inset2;
-     */
-
-    /*
-     * graphics.drawRoundRectangle(r, Math.max(0, corner.width - (int) lineInset), Math.max(0,
-     * corner.height - (int) lineInset));
-     */
-
-    Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
-    Insets shadowInset =
+  protected void outlineShape(final Graphics graphics) {
+    final Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
+    final Insets shadowInset =
         new Insets(lineWidth / 2, lineWidth / 2, lineWidth + SHADOW_INSET, lineWidth + SHADOW_INSET);
 
     f.crop(shadowInset);
@@ -67,17 +64,21 @@ public class ShadowRoundedRectangle extends RoundedRectangle {
         Math.max(0, corner.height - SHADOW_INSET));
   }
 
-
-
-  private void drawShadow(Rectangle rectangle, Graphics graphics) {
+  /**
+   * This method draws the border shadow.
+   * */
+  private void drawShadow(final Rectangle rectangle, final Graphics graphics) {
     this.drawShadowLayer(rectangle, graphics, 3, ColorConstants.lightGray);
     this.drawShadowLayer(rectangle, graphics, 2, ColorConstants.gray);
     this.drawShadowLayer(rectangle, graphics, 1, ColorConstants.darkGray);
   }
 
 
-
-  private void drawShadowLayer(Rectangle rectangle, Graphics graphics, int offset, Color color) {
+  /**
+   * This method draws the border shadow layers.
+   * */
+  private void drawShadowLayer(final Rectangle rectangle, final Graphics graphics,
+      final int offset, final Color color) {
     // Save the state of the graphics object
     graphics.pushState();
     graphics.setLineWidth(0);
@@ -85,12 +86,9 @@ public class ShadowRoundedRectangle extends RoundedRectangle {
     Rectangle shadowLayer = new Rectangle(rectangle);
     shadowLayer.x += offset;
     shadowLayer.y += offset;
-    graphics.fillRoundRectangle(shadowLayer, arcWidth, arcHeight);
+    graphics.fillRoundRectangle(shadowLayer, ARC_WIDTH, ARC_HEIGTH);
     // Restore the start of the graphics object
     graphics.popState();
   }
-
-
-  public static int SHADOW_INSET = 4;
 
 }
