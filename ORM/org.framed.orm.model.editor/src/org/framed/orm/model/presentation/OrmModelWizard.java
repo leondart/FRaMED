@@ -157,7 +157,8 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * Returns the names of the types that can be created as the root object.
+   * Returns the names of the types that can be created as the root object. Actually there is only one type CompartmentDiagram.
+   * Uncommenting the commented lines will return all types, but only CompartmentDiagram will work.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
@@ -179,7 +180,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * Create a new model.
+   * Create a new model. Since we only use one type, we can throw a dialog page for the type selection away.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
@@ -536,7 +537,8 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * The framework calls this to create the contents of the wizard.
+   * The framework calls this to create the contents of the wizard. We have thrown the type selection page away. Uncomment the last lines
+   * to enable it again.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated NOT
