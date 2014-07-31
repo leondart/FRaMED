@@ -8,71 +8,76 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * Rectangle with a border shadow.
+ * {@link RectangleFigure} with a border shadow.
+ * 
  * @author Kay Bierzynski
  * */
 public class ShadowRectangle extends RectangleFigure {
-	
 
-/**
+  /** Variable, which containts the value for the shadow inset. */
+  public static final int SHADOW_INSET = 4;
 
-* @see Shape#fillShape(Graphics)
+  /**
+   * 
+   * @see Shape#fillShape(Graphics)
+   */
+  protected void fillShape(final Graphics graphics) {
+    final Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
+    Insets shadowInset = new Insets(0, 0, SHADOW_INSET, SHADOW_INSET);
+    f.crop(shadowInset);
+    this.drawShadow(f, graphics);
+    graphics.fillRectangle(f);
+  }
 
-*/
+  /**
+   * A getter for the inset of this {@link RectangleFigure}.
+   * 
+   * @return {@link Insets}
+   * */
+  public Insets getInsets() {
+    return new Insets(1, 1, SHADOW_INSET + 1, SHADOW_INSET + 1);
+  }
 
-	protected void fillShape(Graphics graphics){
-		Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
-		Insets shadowInset = new Insets(0, 0, SHADOW_INSET, SHADOW_INSET);
-		f.crop(shadowInset);
-		this.drawShadow(f, graphics);
-		graphics.fillRectangle(f);
-	}
+  /**
+   * @see Shape#outlineShape(Graphics)
+   */
+  protected void outlineShape(final Graphics graphics) {
+    final Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
+    final Insets shadowInset =
+        new Insets(lineWidth / 2, lineWidth / 2, lineWidth + SHADOW_INSET, lineWidth + SHADOW_INSET);
 
-	public Insets getInsets(){
-		return new Insets(1, 1, SHADOW_INSET + 1, SHADOW_INSET + 1);
-	}
-
-/**
-* @see Shape#outlineShape(Graphics)
-*/
-
-	protected void outlineShape(Graphics graphics){
-		Rectangle f = Rectangle.SINGLETON.setBounds(getBounds());
-		Insets shadowInset = new Insets(lineWidth / 2,
-										lineWidth / 2,
-										lineWidth + SHADOW_INSET,	
-										lineWidth + SHADOW_INSET);
-
-		f.crop(shadowInset);
-		graphics.drawRectangle(f);
-	}
-
-
-
-	private void drawShadow(Rectangle rectangle, Graphics graphics){
-		this.drawShadowLayer(rectangle, graphics, 3, ColorConstants.lightGray);
-		this.drawShadowLayer(rectangle, graphics, 2, ColorConstants.gray);
-		this.drawShadowLayer(rectangle, graphics, 1, ColorConstants.darkGray);
-	}
+    f.crop(shadowInset);
+    graphics.drawRectangle(f);
+  }
 
 
 
-	private void drawShadowLayer(Rectangle rectangle, Graphics graphics, int offset, Color color){
-		// Save the state of the graphics object
-		graphics.pushState();
-		graphics.setLineWidth(0);
-		graphics.setBackgroundColor(color);
-		Rectangle shadowLayer = new Rectangle(rectangle);
-		shadowLayer.x += offset;
-		shadowLayer.y += offset;
-		graphics.fillRectangle(shadowLayer);
-		// Restore the start of the graphics object
-		graphics.popState();
-	}
+  /**
+   * This method draws the border shadow.
+   * */
+  private void drawShadow(final Rectangle rectangle, final Graphics graphics) {
+    this.drawShadowLayer(rectangle, graphics, 3, ColorConstants.lightGray);
+    this.drawShadowLayer(rectangle, graphics, 2, ColorConstants.gray);
+    this.drawShadowLayer(rectangle, graphics, 1, ColorConstants.darkGray);
+  }
 
 
-
-	public static int SHADOW_INSET = 4;
+  /**
+   * This method draws the border shadow layers.
+   * */
+  private void drawShadowLayer(final Rectangle rectangle, final Graphics graphics,
+      final int offset, final Color color) {
+    // Save the state of the graphics object
+    graphics.pushState();
+    graphics.setLineWidth(0);
+    graphics.setBackgroundColor(color);
+    Rectangle shadowLayer = new Rectangle(rectangle);
+    shadowLayer.x += offset;
+    shadowLayer.y += offset;
+    graphics.fillRectangle(shadowLayer);
+    // Restore the start of the graphics object
+    graphics.popState();
+  }
 
 
 }

@@ -9,14 +9,17 @@ import org.eclipse.draw2d.geometry.Insets;
 
 
 /**
- * Figure for attribute, methode, roles and compartment lists.
+ * Figure for listing child figures.
  * 
  * @author Kay Bierzynski
  * */
 public class PartFigure extends Figure {
 
+  /** The constructor of this class. */
   public PartFigure() {
-    ToolbarLayout layout = new ToolbarLayout();
+    super();
+
+    final ToolbarLayout layout = new ToolbarLayout();
     layout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
     layout.setStretchMinorAxis(false);
     layout.setSpacing(1);
@@ -24,12 +27,17 @@ public class PartFigure extends Figure {
     setBorder(new PartFigureBorder());
   }
 
-  public class PartFigureBorder extends AbstractBorder {
-    public Insets getInsets(IFigure figure) {
+  /**
+   * A border class where a border is drawn at top side of the figure.
+   * */
+  class PartFigureBorder extends AbstractBorder {
+    /** {@inheritDoc} */
+    public Insets getInsets(final IFigure figure) {
       return new Insets(1, 0, 0, 0);
     }
 
-    public void paint(IFigure figure, Graphics graphics, Insets insets) {
+    /** {@inheritDoc} */
+    public void paint(final IFigure figure,final Graphics graphics,final  Insets insets) {
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
     }
   }

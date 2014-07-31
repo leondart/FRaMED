@@ -6,33 +6,44 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.CreationTool;
 import org.eclipse.swt.widgets.Display;
+import org.framed.orm.model.Node;
 
 /**
- * This enables direct editing of a nodes name after the creating of the node.
+ * This {@link CreationTool} enables direct editing of a {@link Node}s name after the creating of
+ * the {@link Node}.
+ * 
  * @author Kay Bierzynski
  * */
 public class CreationAndDirectEditTool extends CreationTool {
-	
-	@Override protected void performCreation(int button) {
-	    super.performCreation(button);
-	     
-	    EditPartViewer viewer = getCurrentViewer();
-	    final Object model = getCreateRequest().getNewObject();
-	    if (model == null || viewer == null) {
-	      return;
-	    }
-	     
-	    final Object o = getCurrentViewer().getEditPartRegistry().get(model);
-	    if(o instanceof EditPart) {
-	      Display.getCurrent().asyncExec(new Runnable() {
-	         
-	        @Override public void run() {
-	          EditPart part = (EditPart)o;
-	          Request request = new DirectEditRequest();
-	          part.performRequest(request);
-	        }
-	      });
-	    }
-	  }
-	
+
+  /**
+   * After the creation of a {@link Node} through a pallet entry this method is called. This method
+   * send a {@link DirectEditRequest} to the edit part of the just created {@link Node}. Through the
+   * request can the user edit the name of the node direct after the creation of the node.
+   * 
+   * */
+  @Override
+  protected void performCreation(final int button) {
+    super.performCreation(button);
+
+    final EditPartViewer viewer = getCurrentViewer();
+    final Object model = getCreateRequest().getNewObject();
+    if (model == null || viewer == null) {
+      return;
+    }
+
+    final Object o = getCurrentViewer().getEditPartRegistry().get(model);
+    if (o instanceof EditPart) {
+      Display.getCurrent().asyncExec(new Runnable() {
+
+        @Override
+        public void run() {
+          final EditPart part = (EditPart) o;
+          final Request request = new DirectEditRequest();
+          part.performRequest(request);
+        }
+      });
+    }
+  }
+
 }
