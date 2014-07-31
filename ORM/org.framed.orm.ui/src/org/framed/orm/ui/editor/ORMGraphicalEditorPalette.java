@@ -10,7 +10,9 @@ import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.gef.tools.SelectionTool;
+import org.framed.orm.model.Attribute;
+import org.framed.orm.model.Node;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
@@ -32,50 +34,62 @@ import org.framed.orm.ui.tool.CreationAndDirectEditTool;
 
 
 /**
+ * This class provides the palett and it's entrys for the {@link ORMGraphicalEditor}.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMGraphicalEditorPalette extends PaletteRoot {
 
-  PaletteGroup group;
+  /** The {@link PaletteGroup} to which all {@link PaletteDrawer}s are added. */
+  private PaletteGroup group;
+  /** A {@link HashMap}, which contains all visibility flags of the palett entry. */
+  private final Map<String, Boolean> entryVisibility;
+  /** A {@link HashMap}, which matchs to every palett entry a string id. */
+  private final Map<String, CreationToolEntry> entries;
 
-  // private boolean RoleTypeVisible = false;
-  private Map<String, Boolean> entryVisibility = new HashMap<String, Boolean>();
-  private Map<String, CreationToolEntry> entries = new HashMap<String, CreationToolEntry>();
-
+  /**
+   * The constructor of this class, where the palett is build and entryVisibility and entries
+   * variables are initialized.
+   * */
   public ORMGraphicalEditorPalette() {
+
+    entryVisibility = new HashMap<String, Boolean>();
+    entries = new HashMap<String, CreationToolEntry>();
 
     addGroup();
     addSelectionTool();
     createComponentsDrawer();
     createComponentPartsDrawer();
     createConnectionsDrawer();
-    
-//    EditorChangeNotifier.instance().register(this); // get notified when changes in the editor occur
   }
 
-  /* adds a palette entry to the maps */
-  private void addEntry(String name, CreationToolEntry entry, Boolean visibility) {
+  /**
+   * This method add a palett entry with sting id/name to the entries map.
+   * */
+  private void addEntry(final String name, final CreationToolEntry entry, final Boolean visibility) {
     entries.put(name, entry);
     setEntryVisibility(name, visibility);
   }
 
-  /* sets the visibility of an entry in the map and in the palette */
-  private void setEntryVisibility(String name, Boolean visibility) {
+  /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
+  private void setEntryVisibility(final String name, final Boolean visibility) {
     entryVisibility.put(name, visibility);
     entries.get(name).setVisible(visibility.booleanValue());
   }
 
-  private boolean getEntryVisisbility(String name) {
+  /**
+   * A getter for the visibility of a palett entry.
+   * 
+   * @return boolean
+   * */
+  private boolean getEntryVisisbility(final String name) {
     return entryVisibility.get(name).booleanValue();
   }
 
-//  @Override
-//  public boolean equals(Object other) {
-//    return this.getClass().equals(other.getClass());
-//  }
 
-  public void setRoleEntriesVisibility(boolean visible){
-    if(visible){
+  /** This method sets the visibility of all palett entrys depending on the variable visible. */
+  public void setRoleEntriesVisibility(final boolean visible) {
+    if (visible) {
       setEntryVisibility("RoleType", true);
       setEntryVisibility("RoleGroup", true);
       setEntryVisibility("Role Implication", true);
@@ -90,7 +104,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("NaturalType", false);
       setEntryVisibility("Group", false);
       setEntryVisibility("Fulfilment", false);
-    }else{
+    } else {
       setEntryVisibility("RoleType", false);
       setEntryVisibility("RoleGroup", false);
       setEntryVisibility("Role Implication", false);
@@ -107,36 +121,42 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Fulfilment", true);
     }
   }
-  
-  
-  
-  public void update(ORMGraphicalEditor.EditorType type){
-    if(type.equals(EditorType.COMPARTMENT))
+
+
+
+  /** This method updates the visibility of the all palett entrys. */
+  public void update(final ORMGraphicalEditor.EditorType type) {
+    if (type.equals(EditorType.COMPARTMENT)) {
       setRoleEntriesVisibility(false);
-    else
+    } else {
       setRoleEntriesVisibility(true);
-  }
-  
-  // ! Update function for EditorChangeNotifier
-  public void update(String type) {
-//    System.out.println("Update "+type);
-//    if (type.equals("StepInNewPage"))
-//      setRoleEntriesVisibility(true);
-    /*else*/ if(type.equals("StepOutNewPage"))
-      setRoleEntriesVisibility(false);
+    }
   }
 
+  /** ! Update function for EditorChangeNotifier */
+  public void update(final String type) {
+    if (type.equals("StepOutNewPage")) {
+      setRoleEntriesVisibility(false);
+    }
+  }
+
+  /** This method add the {@link SelectionTool} to the palett. */
   private void addSelectionTool() {
     SelectionToolEntry entry = new SelectionToolEntry();
     group.add(entry);
     setDefaultEntry(entry);
   }
 
+  /** This method initializes the {@link PaletteGroup} and adds the group to the palett. */
   private void addGroup() {
     group = new PaletteGroup("Framed Controls");
     add(group);
   }
-  
+
+  /**
+   * This method creates the palett entrys for the creation of all {@link Node} kinds and adds them to
+   * palett.
+   */
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
     CreationToolEntry entry =
@@ -178,8 +198,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry =
         new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
-    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/group.png"));
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
     addEntry("Group", entry, true);
 
@@ -187,14 +206,16 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
 
-
+  /**
+   * This method creates the palett entrys for the creation of {@link Attribute}s and {@link Method}
+   * s and adds them to palett.
+   */
   private void createComponentPartsDrawer() {
 
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodFactory(), null,
-            null);
+        new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodFactory(), null, null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));
@@ -213,6 +234,10 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     group.add(drawer);
   }
 
+  /**
+   * This method creates the palett entrys for the creation of all {@link Relation} kinds and adds them to
+   * palett.
+   */
   private void createConnectionsDrawer() {
 
     PaletteDrawer drawer = new PaletteDrawer("Connections");
@@ -275,8 +300,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     CreationToolEntry entry8 =
         new ConnectionCreationToolEntry("Total", "Create a new Total Relation",
             new ORMTotalFactory(), null, null);
-    entry8.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/total.png"));
+    entry8
+        .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
     drawer.add(entry8);
     addEntry("Total", entry8, false);
 

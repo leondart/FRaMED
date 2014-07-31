@@ -12,14 +12,21 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.RetargetAction;
 
 /**
- * @author KAy Bierzynski
+ * This is the {@link ActionBarContributor} for the {@link ORMMultiPageEditor}/
+ * {@link ORMGraphicalEditor}, which adds {@link UndoRetargetAction}, {@link RedoRetargetAction},
+ * {@link DeleteRetargetAction}, gridaction and snapaction to the workbench actionbar.
+ * 
+ * @author Kay Bierzynski
  * @author Lars Schuetze
  * */
 public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor {
 
-  private static String TOGGLE_GRID_LABEL = "Show Grid";
-  private static String TOGGLE_SNAP_TO_GERMETRY_LABEL = "Snap to Geometry";
+  /** String vraible, which hold the text for the grid action. */
+  private static final String TOGGLE_GRID_LABEL = "Show Grid";
+  /** String vraible, which hold the text for the snap action. */
+  private static final String TOGGLE_SNAP_TO_GERMETRY_LABEL = "Snap to Geometry";
 
+  /** {@inheritDoc} */
   @Override
   protected void buildActions() {
     addRetargetAction(new UndoRetargetAction());
@@ -45,16 +52,25 @@ public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor
   }
 
   // is called from the ORMMultiPageEditor pageChange when user switch between editors
+  /**
+   * Sets the active editor for the contributor and updates the workbench actionbar.
+   * 
+   * This method is called from the {@link ORMMultiPageEditor#pageChange(int)} when user switch
+   * between behaviour editor and data editor.
+   * */
   @Override
-  public void setActiveEditor(IEditorPart editor) {
+  public void setActiveEditor(final IEditorPart editor) {
     super.setActiveEditor(editor);
     // creats actionbar for active editor with actionregistry/graphicalViewer/CommandStack from the
     // active editor
     getActionBars().updateActionBars();
   }
 
+  /**
+   * Contributes to the given tool bar(workbench actionbar) the actions.
+   * */
   @Override
-  public void contributeToToolBar(IToolBarManager toolBarManager) {
+  public void contributeToToolBar(final IToolBarManager toolBarManager) {
     super.contributeToToolBar(toolBarManager);
     toolBarManager.add(getAction(ActionFactory.UNDO.getId()));
     toolBarManager.add(getAction(ActionFactory.REDO.getId()));
@@ -63,6 +79,7 @@ public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor
     toolBarManager.add(getAction(GEFActionConstants.TOGGLE_SNAP_TO_GEOMETRY));
   }
 
+  /** {@inheritDoc} Does nothin at the moment. */
   @Override
   protected void declareGlobalActionKeys() {
     // TODO Auto-generated method stub

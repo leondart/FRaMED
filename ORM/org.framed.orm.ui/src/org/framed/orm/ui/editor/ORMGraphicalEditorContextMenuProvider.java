@@ -15,21 +15,32 @@ import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepInNewTabAction;
 
 /**
+ * This {@link ContextMenuProvider} provides the context menu for the {@link ORMGraphicalEditor}.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
 
+  /**
+   * The {@link ActionRegistry} of the {@link ORMGraphicalEditor}, which is needed to add actions to
+   * the contextmenu.
+   */
   private ActionRegistry actionRegistry;
 
-  public ORMGraphicalEditorContextMenuProvider(EditPartViewer viewer,
+  /**
+   * The constructor of this class. The class is initialized through calling
+   * {@link ContextMenuProvider#ContextMenuProvider(EditPartViewer)} and sets the
+   * {@link ActionRegistry}.
+   * */
+  public ORMGraphicalEditorContextMenuProvider(final EditPartViewer viewer,
       final ActionRegistry actionRegistry) {
     super(viewer);
     setActionRegistry(actionRegistry);
   }
 
-
+  /** {@inheritDoc} */
   @Override
-  public void buildContextMenu(IMenuManager menu) {
+  public void buildContextMenu(final IMenuManager menu) {
     GEFActionConstants.addStandardActionGroups(menu);
 
     IAction action;
@@ -52,10 +63,18 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
   }
 
+  /**
+   * A getter for the action registry.
+   * 
+   * @return actionRegistry {@link ActionRegistry}
+   * */
   private ActionRegistry getActionRegistry() {
     return actionRegistry;
   }
 
+  /**
+   * A setter for the action registry.
+   * */
   private void setActionRegistry(final ActionRegistry actionRegistry) {
     this.actionRegistry = actionRegistry;
   }
