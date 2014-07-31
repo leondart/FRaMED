@@ -348,46 +348,16 @@ public class RelationshipImpl extends MinimalEObjectImpl.Container implements Re
 
   }
 
+  /**
+   * Resets the cardinality labels. This function is deprecated because useless but for compatibility still here.
+   * 
+   * @param FeatureID
+   * @param cardinality
+   */
   private void updateCardinality(int FeatureID, int cardinality) {
     String newLabel = null;
 
-    //    switch (FeatureID) {
-    //      case OrmPackage.RELATIONSHIP__FIRST_LOWER:
-    //        System.out.println("FIRST_LOWER");
-    //        if (getFirstUpper() == -1 && cardinality == -1) {
-    //          newLabel = "*";
-    //        } else {
-    //          newLabel = cardinality + ".." + getFirstUpper();
-    //        }
-    //        break;
-    //      case OrmPackage.RELATIONSHIP__SECOND_LOWER:
-    //        System.out.println("SECOND_LOWER");
-    //        if (getSecondUpper() == -1 && cardinality == -1) {
-    //          newLabel = "*";
-    //        } else {
-    //          newLabel = cardinality + ".." + getSecondUpper();
-    //        }
-    //        break;
-    //      case OrmPackage.RELATIONSHIP__FIRST_UPPER:
-    //        if (getFirstLower() == -1 && cardinality == -1) {
-    //          newLabel = "*";
-    //        } else {
-    //          newLabel = getFirstLower() + ".." + cardinality;
-    //        }
-    //        break;
-    //      case OrmPackage.RELATIONSHIP__SECOND_UPPER:
-    //        if (getSecondLower() == -1 && cardinality == -1) {
-    //          newLabel = "*";
-    //        } else {
-    //          newLabel = getSecondLower() + ".." + cardinality;
-    //        }
-    //        break;
-    //      case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
-    ////        System.out.println("FIRST_LOWER_UPPER: " + getFirstLowerUpper());
-    ////        String cards[] = getFirstLowerUpper().split("[\\s.]+");
-    ////        if(cards.length != 2) System.out.println("ERROR: " + cards + " has not enough cardinality values.");
-    //        break;
-    //    }
+   
 
     // to group the setting
     switch (FeatureID) {

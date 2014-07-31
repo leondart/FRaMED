@@ -73,11 +73,15 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
     return itemPropertyDescriptors;
   }
   
+  /**
+   * Adds the property descriptor for the first lower/upper Cardinality for the relationship.
+   * @param object
+   */
   private void addFirstLowerUpperPropertyDescriptor(Object object) {
     ItemPropertyDescriptor propDesc = createItemPropertyDescriptor(
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
         getResourceLocator(),
-        getString("_UI_Relationship_firstLowerUpper_feature"),
+        getString("_UI_Relationship_firstLowerUpper_feature"),  /* get the name for the feature out of the generated local file*/
         getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLowerUpper_feature",
             "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, true,
         false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null);
