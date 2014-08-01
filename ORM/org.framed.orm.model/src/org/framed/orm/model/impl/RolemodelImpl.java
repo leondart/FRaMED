@@ -53,6 +53,8 @@ public class RolemodelImpl extends ContainerImpl implements Rolemodel {
 
   /**
    * <!-- begin-user-doc -->
+   * This method needs to be implemented manuel, because th editor adds to new created nodes to the container node list.
+   * @return all compartments in a role model
    * <!-- end-user-doc -->
    * @generated NOT
    */
@@ -68,6 +70,8 @@ public class RolemodelImpl extends ContainerImpl implements Rolemodel {
 
   /**
    * <!-- begin-user-doc -->
+   * This method needs to be implemented manuel, because th editor adds to new created nodes to the container node list.
+   * @return all role types and role groups in a role model
    * <!-- end-user-doc -->
    * @generated NOT
    */
@@ -83,6 +87,8 @@ public class RolemodelImpl extends ContainerImpl implements Rolemodel {
 
   /**
    * <!-- begin-user-doc -->
+   * This method needs to be implemented manuel, because th editor adds to new created nodes to the container node list.
+   * @return all natrual types in a role model
    * <!-- end-user-doc -->
    * @generated NOT
    */
