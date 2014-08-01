@@ -411,7 +411,9 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->  Create a <code>Point</code> instance from a <code>String</code>.
+   * The expected representation is "x,y". Illegal representations will return a null
+   * value. <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -436,7 +438,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc --> Convert a <code>Point</code> to a <code>String</code>
+   * representation. The <code>Point</code> is represented as "x,y". <!-- end-user-doc -->
    * 
    * @generated NOT
    */
