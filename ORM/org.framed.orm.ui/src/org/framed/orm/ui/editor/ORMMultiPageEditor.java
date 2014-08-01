@@ -28,13 +28,14 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.OrmPackage;
 
 
 /**
- * The multi-page editor handles the behaviour editor and the data editor.
+ * 
+ * This {@link MultiPageEditorPart} has as pages the behaviour {@link ORMGraphicalEditor} and the
+ * data {@link ORMGraphicalEditor}.
  * 
  * @author Kay Bierzynski
  * @author Lars Schütze
@@ -42,47 +43,84 @@ import org.framed.orm.model.OrmPackage;
 public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectionListener,
     CommandStackListener, IResourceChangeListener {
 
-
-  private ORMGraphicalEditor editorBeh;
-  private ORMGraphicalEditor editorData;
-  private EditorChangeNotifier changeNotifier = null;
+  /**
+   * The behaviour {@link ORMGraphicalEditor}, which is manages through this editor.
+   * */
+  private ORMGraphicalEditor behaviourEditor;
+  /**
+   * The data {@link ORMGraphicalEditor}, which is manages through this editor.
+   * */
+  private ORMGraphicalEditor dataEditor;
+  /**
+   * The {@link EditorChangeNotifier} of this editor.
+   * */
+  private EditorChangeNotifier changeNotifier;
+  /**
+   * The input {@link Resource} of this editor, which contains the emf model.
+   * */
   private Resource resource;
-  private String inputFilename = "";
+  /**
+   * The name of the file, which contains the model resources. This variable is necessary for the
+   * creation of custom title for this edito.
+   */
+  private String inputFilename;
 
-  public void setEditorChangeNotifier(EditorChangeNotifier changeNotifier) {
+  /**
+   * The constructor of this class, where {@link MultiPageEditorPart#MultiPageEditorPart()} is
+   * called, inputFilename and changeNotifier are initialized and a listener to the model resources
+   * is added.
+   * */
+  public ORMMultiPageEditor() {
+    super();
+    inputFilename = "";
+    changeNotifier = null;
+    ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+  }
+
+  /**
+   * A setter for the {@link EditorChangeNotifier} of this editor.
+   * */
+  public void setEditorChangeNotifier(final EditorChangeNotifier changeNotifier) {
     this.changeNotifier = changeNotifier;
   }
 
-  public void createCustomTitleForEditor(Object model) {
+  /**
+   * This method creates a custom title for this editor out of resource file name, the genral model
+   * element term and the specific modele elment name of the model element which is the content of
+   * the viewer of data/behaviour {@link ORMGraphicalEditor}.
+   * */
+  public void createCustomTitleForEditor(final Object model) {
 
-    String modelClassName = model.getClass().getSimpleName();
+    final String modelClassName = model.getClass().getSimpleName();
     setTitle(inputFilename + " " + modelClassName.substring(0, modelClassName.length() - 4));
     if (model instanceof Node) {
       setTitle(getTitle() + " " + ((Node) model).getName());
     }
   }
 
+  /**
+   * A getter for name of input resource file.
+   * 
+   * @return inputFilename String
+   * */
   public String getInputFileName() {
     return inputFilename;
   }
 
-  public ORMMultiPageEditor() {
-    super();
-    ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
-  }
-
+  /** {@inheritDoc} */
   @Override
-  public void setTitleImage(Image titleImage) {
+  public void setTitleImage(final Image titleImage) {
     super.setTitleImage(titleImage);
   }
 
   /**
-   *  creates the beahvior editor and adds it to the multipage editor
+   * This method creates the beahvior {@link ORMGraphicalEditor} and adds the behaviour editor as a
+   * page to this editor.
    */
-  void createBehaviorEditorPage() {
+  private void createBehaviorEditorPage() {
     try {
-      editorBeh = new ORMGraphicalEditor(this, resource, false);
-      int index = addPage(editorBeh, getEditorInput());
+      behaviourEditor = new ORMGraphicalEditor(this, resource, false);
+      int index = addPage(behaviourEditor, getEditorInput());
       setPageText(index, "Behavior");
     } catch (PartInitException e) {
       ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
@@ -90,13 +128,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
+
   /**
-   *  creates the data editor and adds it to the multipageeditor
+   * This method creates the data {@link ORMGraphicalEditor} and adds the behaviour data as a page
+   * to this editor.
    */
-  void createDataEditorPage() {
+  private void createDataEditorPage() {
     try {
-      editorData = new ORMGraphicalEditor(this, resource, true);
-      int index = addPage(editorData, getEditorInput());
+      dataEditor = new ORMGraphicalEditor(this, resource, true);
+      int index = addPage(dataEditor, getEditorInput());
       setPageText(index, "Data");
     } catch (PartInitException e) {
       ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
@@ -104,37 +144,42 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
-  /**
-   * Creates the behavior and data editor pages and initializes them
-   */
+  /** {@inheritDoc} In this method the title image of this editor is set as well. */
   @Override
   protected void createPages() {
     createBehaviorEditorPage();
     createDataEditorPage();
 
-    // set TitleImage of this ORMMultiPageEditor with background color of the viewer of the behaivorEditor
+    // set TitleImage of this ORMMultiPageEditor with background color of the viewer of the
+    // behaivorEditor
     Image img =
         Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/rosi-icon-smaller.gif")
             .createImage();
-    img.setBackground(editorBeh.getGraphicalControl().getBackground());
+    img.setBackground(behaviourEditor.getGraphicalControl().getBackground());
     setTitleImage(img);
   }
 
   /**
-   * The <code>MultiPageEditorExample</code> implementation of this method checks that the input is
-   * an instance of <code>IFileEditorInput</code>.
+   * {@inheritDoc} The implementation of the {@link ORMMultiPageEditor} tests if the editor input is
+   * from type {@link IFileEditorInput}, adds a selection listener and initializes the input
+   * resource.
    */
-  public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
-    if (!(editorInput instanceof IFileEditorInput))
+  @Override
+  public void init(final IEditorSite site, final IEditorInput editorInput) throws PartInitException {
+    if (!(editorInput instanceof IFileEditorInput)) {
       throw new PartInitException("Invalid Input: Must be IFileEditorInput");
+    }
     super.init(site, editorInput);
     getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
-    
+
     initializeResource(editorInput);
   }
 
-  private void initializeResource(IEditorInput editorInput) {
-    OrmPackage.eINSTANCE.eClass();                      // This initializes the OrmPackage singleton implementation.
+  /**
+   * This method initializes the model resource, which serves as input for this editor.
+   * */
+  private void initializeResource(final IEditorInput editorInput) {
+    OrmPackage.eINSTANCE.eClass(); // This initializes the OrmPackage singleton implementation.
     ResourceSet resourceSet = new ResourceSetImpl();
     if (editorInput instanceof IFileEditorInput) {
       IFileEditorInput fileInput = (IFileEditorInput) editorInput;
@@ -151,10 +196,12 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
-  // TODO: test whether "save all" works correct
-  // save for the active editor and synchronization between the two editors
+  /**
+   * {@inheritDoc} The implementation of the {@link ORMMultiPageEditor} saves the all editor, which
+   * work on the same input resource and are registered through a page.
+   */
   @Override
-  public void doSave(IProgressMonitor monitor) {
+  public void doSave(final IProgressMonitor monitor) {
     for (int i = 0; i < getPageCount(); i++) {
       IEditorPart editorPart = getEditor(i);
       if (editorPart.isDirty()) {
@@ -163,45 +210,54 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
+  /**
+   * Does at the moment nothing, because {@link ORMGraphicalEditor#doSaveAs()} isn't implemented.
+   * */
   @Override
   public void doSaveAs() {
 
-    if (editorBeh.equals(getActiveEditor())) {
-      editorBeh.doSaveAs();
-      setInput(editorBeh.getEditorInput());
+    if (behaviourEditor.equals(getActiveEditor())) {
+      behaviourEditor.doSaveAs();
+      setInput(behaviourEditor.getEditorInput());
 
     }
 
-    if (editorData.equals(getActiveEditor())) {
-      editorData.doSaveAs();
-      setInput(editorData.getEditorInput());
+    if (dataEditor.equals(getActiveEditor())) {
+      dataEditor.doSaveAs();
+      setInput(dataEditor.getEditorInput());
 
     }
   }
 
-  // TODO: adapt it, because not everything is allowed
+  /**
+   * {@inheritDoc} At the moment this method returns always true, because SaveAs functionalty isn't
+   * implemented.
+   */
   @Override
   public boolean isSaveAsAllowed() {
     return true;
   }
 
-  // enables select action for the active editor
+  /** This method enables select action for the active editor. */
   @Override
-  public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+  public void selectionChanged(final IWorkbenchPart part, final ISelection selection) {
     if (this.equals(getSite().getPage().getActiveEditor())) {
 
-      if (editorBeh.equals(getActiveEditor())) {
-        editorBeh.selectionChanged(getActiveEditor(), selection);
+      if (behaviourEditor.equals(getActiveEditor())) {
+        behaviourEditor.selectionChanged(getActiveEditor(), selection);
       }
-      if (editorData.equals(getActiveEditor()))
-        editorData.selectionChanged(getActiveEditor(), selection);
+      if (dataEditor.equals(getActiveEditor()))
+        dataEditor.selectionChanged(getActiveEditor(), selection);
     }
   }
 
-  // need to be overriden so that when you switch between the editors the actionbarcontributer
-  // take the actionregistry/graphicalViewer/CommandStack from the active editor
+  /**
+   * {@inheritDoc} This method needs to be overriden so that when you switch between the editors the
+   * actionbarcontributer takes the actionregistry/graphicalViewer/CommandStack from the active
+   * editor.
+   * */
   @Override
-  protected void pageChange(int newPageIndex) {
+  protected void pageChange(final int newPageIndex) {
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
 
@@ -211,15 +267,18 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
+  /**
+   * Called when the CommandStack state of the active editor has changed.
+   * */
   @Override
   public void commandStackChanged(EventObject event) {
     if (this.equals(getSite().getPage().getActiveEditor())) {
-      if (editorBeh.equals(getActiveEditor())) {
-        editorBeh.commandStackChanged(event);
+      if (behaviourEditor.equals(getActiveEditor())) {
+        behaviourEditor.commandStackChanged(event);
       }
 
-      if (editorData.equals(getActiveEditor())) {
-        editorData.commandStackChanged(event);
+      if (dataEditor.equals(getActiveEditor())) {
+        dataEditor.commandStackChanged(event);
       }
     }
 
@@ -238,9 +297,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
         public void run() {
           IWorkbenchPage[] pages = getSite().getWorkbenchWindow().getPages();
           for (int i = 0; i < pages.length; i++) {
-            if (((FileEditorInput) editorBeh.getEditorInput()).getFile().getProject()
+            if (((FileEditorInput) behaviourEditor.getEditorInput()).getFile().getProject()
                 .equals(event.getResource())) {
-              IEditorPart editorPart = pages[i].findEditor(editorBeh.getEditorInput());
+              IEditorPart editorPart = pages[i].findEditor(behaviourEditor.getEditorInput());
               pages[i].closeEditor(editorPart, true);
             }
           }
@@ -250,12 +309,22 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
 
+  /**
+   * A getter for behaviour editor, which registered by this editor.
+   * 
+   * @reutrn {@link ORMGraphicalEditor}
+   * */
   public ORMGraphicalEditor getBehaviorEditor() {
-    return editorBeh;
+    return behaviourEditor;
   }
 
+  /**
+   * A getter for data editor, which registered by this editor.
+   * 
+   * @reutrn {@link ORMGraphicalEditor}
+   * */
   public ORMGraphicalEditor getDataEditor() {
-    return editorData;
+    return dataEditor;
   }
 
   /**
@@ -263,7 +332,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * 
    * @param obj The object which will be set as content
    */
-  public void setContents(Object obj) {
+  public void setContents(final Object obj) {
     /*
      * first, check which editor type we will get when setting the object as content. The palette
      * will be updated

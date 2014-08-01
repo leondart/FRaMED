@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor.PropertyValueWrapper;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyStroke;
@@ -18,6 +19,7 @@ import org.eclipse.gef.ui.actions.DirectEditAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
 import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
+import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
@@ -35,6 +37,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.framed.orm.model.Compartment;
 import org.framed.orm.model.CompartmentDiagram;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
@@ -48,51 +51,112 @@ import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 
 /**
- * The editor you can see. Interacts with the user and shows the contents.
+ * The {@link GraphicalEditor} you can see. Interacts with the user and shows the contents.
  * 
- * @author Kay Bierzynski
+ * @author Kay BierzynskiS
  * @author Paul Peschel
  * */
 public class ORMGraphicalEditor extends AbstractGraphicalEditor {
-  
+
+  /**
+   * This enum describes the editor type, which can be COMPARTMENT or ROLES.
+   * */
   public enum EditorType {
-    COMPARTMENT,    /*the editor shows compartments at the moment*/ 
-    ROLES           /*the editor shows roles at the moment (e.g. after step in)*/
+    COMPARTMENT, /* the editor shows compartments at the moment */
+    ROLES /* the editor shows roles at the moment (e.g. after step in) */
   }; // if the editor does not allow to create role-related components, it's a COMPARTMENT-editor
 
+  /**
+   * The input {@link Resource} of this editor, which contains the emf model.
+   * */
   private final Resource cdResource;
-  private CompartmentDiagram cd;
+  /**
+   * The {@link CompartmentDiagram}, which represents the root of the model tree and which is the
+   * first content for editor viewer.
+   * */
+  private CompartmentDiagram compartdiagram;
 
+  /**
+   * The {@link ORMMultiPageEditor}, where this editor is registered and managed.
+   * */
   private final IEditorPart parentEditor; // the multipageditor
+  /**
+   * A boolean flag, which indicates if this edito shows the method list of the {@link Type} model
+   * elements or not. false = this is a behaviour editor true = this is a data editor
+   * */
   private final boolean isEditorData;
+  /**
+   * The {@link PropertySheetPage} of this editor, which shown in the Properties.
+   * */
   private PropertySheetPage propertyPage;
+  /**
+   * The {@link EditorChangeNotifier} of this editor.
+   * */
+  private final EditorChangeNotifier changeNotifier;
+  /**
+   * The {@link EditorType} of this editor, which need to change the visibility of palett entrys.
+   * */
+  private EditorType editorType;
 
-  private final EditorChangeNotifier changeNotifier = new EditorChangeNotifier(this);
-  private EditorType editorType = EditorType.COMPARTMENT; // standard is compartment
 
-  public GraphicalViewer getOwnViewer() {
-    return getGraphicalViewer();
-  }
-
-  public IEditorPart getParentEditor() {
-    return parentEditor;
-  }
-
-  public boolean getIsEditorData() {
-    return isEditorData;
-  }
-
-  public ActionRegistry getEditorActionRegistry() {
-    return getActionRegistry();
-  }
-
-  public ORMGraphicalEditor(IEditorPart editor, Resource resource, boolean flag) {
+  /**
+   * The constructor of this class. The most of the gloabal variables are initialized here and the
+   * {@link EditDomain} ot the editor is set here as well.
+   * */
+  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag) {
 
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
+    changeNotifier = new EditorChangeNotifier(this);
+    editorType = EditorType.COMPARTMENT; // standard is compartment
 
     setEditDomain(new DefaultEditDomain(this));
+  }
+
+  /**
+   * A getter for the editor type of this editor.
+   * 
+   * @return {@link EditorType}
+   * */
+  public EditorType getEditorType() {
+    return editorType;
+  }
+
+  /**
+   * A getter for the viewer of this editor.
+   * 
+   * @return {@link GraphicalViewer}
+   * */
+  public GraphicalViewer getOwnViewer() {
+    return getGraphicalViewer();
+  }
+
+  /**
+   * A getter for the parenteditor({@link ORMMultiPageEditor}) of this editor.
+   * 
+   * @return parentEditor {@link IEditorPart}
+   * */
+  public IEditorPart getParentEditor() {
+    return parentEditor;
+  }
+
+  /**
+   * A getter for the isEditorData flag.
+   * 
+   * @return isEditorData boolean
+   * */
+  public boolean getIsEditorData() {
+    return isEditorData;
+  }
+
+  /**
+   * A getter for action registry of this editor.
+   * 
+   * @return {@link ActionRegistry}
+   * */
+  public ActionRegistry getEditorActionRegistry() {
+    return getActionRegistry();
   }
 
   /**
@@ -101,8 +165,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   @Override
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
-    getGraphicalViewer().setContents(cd);
-    ((ORMMultiPageEditor) parentEditor).createCustomTitleForEditor(cd);
+    getGraphicalViewer().setContents(compartdiagram);
+    ((ORMMultiPageEditor) parentEditor).createCustomTitleForEditor(compartdiagram);
 
     // add the change notifier as listener
     getGraphicalViewer().getEditDomain().getCommandStack()
@@ -110,15 +174,20 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   }
 
   /**
-   * Configures the graphical viewer. 
+   * Configures the graphical viewer.
    * 
-   * Sets org.framed.orm.ui.editPart.ORMEditPartFactory.ORMEditPartFactory(), 
-   * org.framed.orm.ui.editor.ORMGraphicalEditorContextMenuProvider.ORMGraphicalEditorContextMenuProvider(EditPartViewer, ActionRegistry).
+   * Sets org.framed.orm.ui.editPart.ORMEditPartFactory.ORMEditPartFactory(),
+   * org.framed.orm.ui.editor
+   * .ORMGraphicalEditorContextMenuProvider.ORMGraphicalEditorContextMenuProvider(EditPartViewer,
+   * ActionRegistry).
    * 
-   * Registers button actions of grid (org.eclipse.gef.ui.actions.ToggleGridAction.ToggleGridAction(GraphicalViewer) )
-   * and snap to geometry (org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction.ToggleSnapToGeometryAction(GraphicalViewer) )
+   * Registers button actions of grid
+   * (org.eclipse.gef.ui.actions.ToggleGridAction.ToggleGridAction(GraphicalViewer) ) and snap to
+   * geometry (org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction.ToggleSnapToGeometryAction(
+   * GraphicalViewer) )
    * 
-   * Configures the keyboard shortcuts @see org.framed.orm.ui.editor.ORMGraphicalEditor.configureKeyboardShortcuts()
+   * Configures the keyboard shortcuts @see
+   * org.framed.orm.ui.editor.ORMGraphicalEditor.configureKeyboardShortcuts()
    */
   @Override
   protected void configureGraphicalViewer() {
@@ -137,14 +206,19 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     configureKeyboardShortcuts();
   }
 
-  // need to override because getSite.getPage().getActiveEditor would return multipageditor
-  // and with that the select actions
-  // would not function
+  /**
+   * {@inheritDoc} We need to override this method, because getSite.getPage().getActiveEditor()
+   * would return the {@link ORMMultiPageEditor} that leads to the problem that the select actions
+   * doesn't work.
+   */
   @Override
-  public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+  public void selectionChanged(final IWorkbenchPart part, final ISelection selection) {
     updateActions(getSelectionActions());
   }
 
+  /**
+   * This method sets shortcuts for actions.
+   * */
   private void configureKeyboardShortcuts() {
     getGraphicalViewer().getKeyHandler();
     GraphicalViewerKeyHandler keyHandler = new GraphicalViewerKeyHandler(getGraphicalViewer());
@@ -155,20 +229,26 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     getGraphicalViewer().setKeyHandler(keyHandler);
   }
 
+  /**
+   * {@inheritDoc} In this method the {@link ORMGraphicalEditorPalette} of this editor is registered
+   * by the changeNotifier as well.
+   */
   @Override
   protected PaletteRoot getPaletteRoot() {
     ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette();
 
-    changeNotifier.register(tmp);               // register the palette for editor changes
-    if (getEditorType() == EditorType.ROLES)    //if we show only roles
-      tmp.setRoleEntriesVisibility(true);       //show only palette entries belonging to roles
-    else                                        //compartments 
-      tmp.setRoleEntriesVisibility(false);      //show only palette entries belonging to compartment
+    changeNotifier.register(tmp); // register the palette for editor changes
+    if (getEditorType() == EditorType.ROLES) { // if we show only roles
+      tmp.setRoleEntriesVisibility(true); // show only palette entries belonging to roles
+    } else {
+      // compartments
+      tmp.setRoleEntriesVisibility(false); // show only palette entries belonging to compartment
+    }
 
     return tmp;
   }
 
-  // creates own actions and actions for shortcuts
+  /** {@inheritDoc} */
   @Override
   protected void createActions() {
 
@@ -197,7 +277,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     action = new RelationshipConstraintsAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
-    
+
     action = new CreateActionMethodAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
@@ -213,7 +293,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * the {@link CommandStack}.
    */
   @Override
-  public void doSave(IProgressMonitor monitor) {
+  public void doSave(final IProgressMonitor monitor) {
     if (cdResource == null) {
       return;
     }
@@ -227,17 +307,16 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     }
   }
 
-  // initialize input
+  /** {@inheritDoc} */
   @Override
-  public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+  public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
     super.init(site, input);
     if (cdResource != null) {
-      cd = (CompartmentDiagram) cdResource.getContents().get(0);
+      compartdiagram = (CompartmentDiagram) cdResource.getContents().get(0);
     }
   }
 
-  // TODO: anpassen an multiPageEditor --> bug wenn man im Behavior Editor etwas veraendert enabled
-  // dies auch Data Editor den save button von eclipse
+
   /**
    * Fire a {@link IEditorPart#PROP_DIRTY} property change and call super implementation. Enable
    * save from Eclipse.
@@ -294,10 +373,12 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     return super.getAdapter(type);
   }
 
-  public EditorType getEditorType() {
-    return editorType;
-  }
 
+  /**
+   * This method updates the {@link EditorType} of this editor and the behaviour/data(depending on
+   * which type this editor is) editor, when the user steps in or out of {@link Compartment}s or
+   * {@link Grouping}s.
+   * */
   public void updateEditorType() {
     EditorType temptype;
 
@@ -316,8 +397,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     changeNotifier.editorTypeChanged(editorType);
 
     // set data editor type to the same type as the behaviour editor type (btw: the complete design
-    // of this editor
-    // hick-hack should be refactored)
+    // of this editor hick-hack should be refactored)
     ((ORMMultiPageEditor) getParentEditor()).getDataEditor().updateEditorType();;
   }
 
@@ -329,10 +409,14 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   public class UnwrappingPropertySource implements IPropertySource {
     private final IPropertySource source;
 
+    /**
+     * The constructor of this class, where the source is set.
+     * */
     public UnwrappingPropertySource(final IPropertySource source) {
       this.source = source;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Object getEditableValue() {
       Object value = source.getEditableValue();
@@ -344,14 +428,16 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
       }
     }
 
+    /** {@inheritDoc} */
     @Override
     public IPropertyDescriptor[] getPropertyDescriptors() {
       return source.getPropertyDescriptors();
     }
 
+    /** {@inheritDoc} */
     @Override
-    public Object getPropertyValue(Object id) {
-      Object value = source.getPropertyValue(id);
+    public Object getPropertyValue(final Object id) {
+      final Object value = source.getPropertyValue(id);
       if (value instanceof PropertyValueWrapper) {
         PropertyValueWrapper wrapper = (PropertyValueWrapper) value;
         return wrapper.getEditableValue(null);
@@ -360,18 +446,21 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
       }
     }
 
+    /** {@inheritDoc} */
     @Override
-    public boolean isPropertySet(Object id) {
+    public boolean isPropertySet(final Object id) {
       return source.isPropertySet(id);
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void resetPropertyValue(Object id) {
+    public void resetPropertyValue(final Object id) {
       source.resetPropertyValue(id);
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void setPropertyValue(Object id, Object value) {
+    public void setPropertyValue(final Object id, final Object value) {
       source.setPropertyValue(id, value);
     }
   }
