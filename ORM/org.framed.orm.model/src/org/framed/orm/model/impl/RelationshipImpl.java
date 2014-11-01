@@ -2,10 +2,9 @@
  */
 package org.framed.orm.model.impl;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.framed.orm.model.Direction;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.OrmPackage;
@@ -361,4 +360,57 @@ public class RelationshipImpl extends RelationImpl implements Relationship {
     return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
+  private void updateCardinalityLabel(int featureID, String label) {
+
+    if (featureID == OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER) {
+//            System.out.println("Setting source label to " + label);
+      getSourceLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, label);
+    }
+
+    if(featureID == OrmPackage.RELATIONSHIP__SECOND_LOWER_UPPER) {
+      getTargetLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, label);
+    }
+
+  }
+
+  /**
+   * Resets the cardinality labels. This function is deprecated because useless but for compatibility still here.
+   * 
+   * @param FeatureID
+   * @param cardinality
+   */
+  private void updateCardinality(int FeatureID, int cardinality) {
+    String newLabel = null;
+
+   
+
+    // to group the setting
+    switch (FeatureID) {
+      case OrmPackage.RELATIONSHIP__SECOND_LOWER:
+      case OrmPackage.RELATIONSHIP__SECOND_UPPER:
+        getTargetLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, newLabel);
+        break;
+      case OrmPackage.RELATIONSHIP__FIRST_LOWER:
+      case OrmPackage.RELATIONSHIP__FIRST_UPPER:
+      case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
+        getSourceLabel().eSet(OrmPackage.Literals.RELATION_LABEL__LABEL, newLabel);
+        break;
+    }
+  }
+
+  @Override
+  public void eNotify(Notification notification) {
+    super.eNotify(notification);
+    if (notification.getEventType() == Notification.SET) {
+      int feature = notification.getFeatureID(Relationship.class);
+      if (feature != Notification.NO_FEATURE_ID) {
+        try {
+          updateCardinalityLabel(feature, notification.getNewStringValue());
+        } catch (IllegalStateException e) {
+          // do nothing
+        }
+      }
+    }
+  }
+  
 } //RelationshipImpl
