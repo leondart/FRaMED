@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.framed.orm.model.ComplexConstraint#getGroups <em>Groups</em>}</li>
+ *   <li>{@link org.framed.orm.model.ComplexConstraint#getTargets <em>Targets</em>}</li>
  *   <li>{@link org.framed.orm.model.ComplexConstraint#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -23,20 +23,20 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ComplexConstraint extends Constraint {
   /**
-   * Returns the value of the '<em><b>Groups</b></em>' reference list.
-   * The list contents are of type {@link org.framed.orm.model.RoleGroup}.
+   * Returns the value of the '<em><b>Targets</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.model.AbstractRole}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Groups</em>' reference list isn't clear,
+   * If the meaning of the '<em>Targets</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Groups</em>' reference list.
-   * @see org.framed.orm.model.OrmPackage#getComplexConstraint_Groups()
+   * @return the value of the '<em>Targets</em>' reference list.
+   * @see org.framed.orm.model.OrmPackage#getComplexConstraint_Targets()
    * @model required="true"
    * @generated
    */
-  EList<RoleGroup> getGroups();
+  EList<AbstractRole> getTargets();
 
   /**
    * Returns the value of the '<em><b>Expression</b></em>' attribute.

@@ -2,8 +2,6 @@
  */
 package org.framed.orm.model.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 import org.framed.orm.model.Inheritance;
@@ -15,15 +13,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InheritanceTest extends TestCase {
-
-  /**
-   * The fixture for this Inheritance test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Inheritance fixture = null;
+public class InheritanceTest extends RelationTest {
 
   /**
    * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class InheritanceTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Inheritance test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void setFixture(Inheritance fixture) {
-    this.fixture = fixture;
-  }
-
-  /**
    * Returns the fixture for this Inheritance test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected Inheritance getFixture() {
-    return fixture;
+    return (Inheritance) fixture;
   }
 
   /**

@@ -2,8 +2,6 @@
  */
 package org.framed.orm.model.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 import org.framed.orm.model.Fulfillment;
@@ -15,15 +13,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FulfillmentTest extends TestCase {
-
-  /**
-   * The fixture for this Fulfillment test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Fulfillment fixture = null;
+public class FulfillmentTest extends RelationTest {
 
   /**
    * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class FulfillmentTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Fulfillment test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void setFixture(Fulfillment fixture) {
-    this.fixture = fixture;
-  }
-
-  /**
    * Returns the fixture for this Fulfillment test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected Fulfillment getFixture() {
-    return fixture;
+    return (Fulfillment) fixture;
   }
 
   /**

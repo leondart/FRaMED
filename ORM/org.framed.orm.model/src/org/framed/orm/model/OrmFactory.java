@@ -22,6 +22,69 @@ public interface OrmFactory extends EFactory {
   OrmFactory eINSTANCE = org.framed.orm.model.impl.OrmFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model</em>'.
+   * @generated
+   */
+  Model createModel();
+
+  /**
+   * Returns a new object of class '<em>Element Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Element Model</em>'.
+   * @generated
+   */
+  ElementModel createElementModel();
+
+  /**
+   * Returns a new object of class '<em>Abstract Role Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Role Model</em>'.
+   * @generated
+   */
+  AbstractRoleModel createAbstractRoleModel();
+
+  /**
+   * Returns a new object of class '<em>Rigid Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rigid Type</em>'.
+   * @generated
+   */
+  RigidType createRigidType();
+
+  /**
+   * Returns a new object of class '<em>Group</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Group</em>'.
+   * @generated
+   */
+  Group createGroup();
+
+  /**
+   * Returns a new object of class '<em>Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parameter</em>'.
+   * @generated
+   */
+  Parameter createParameter();
+
+  /**
+   * Returns a new object of class '<em>Operation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Operation</em>'.
+   * @generated
+   */
+  Operation createOperation();
+
+  /**
    * Returns a new object of class '<em>Attribute</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -31,22 +94,13 @@ public interface OrmFactory extends EFactory {
   Attribute createAttribute();
 
   /**
-   * Returns a new object of class '<em>Method</em>'.
+   * Returns a new object of class '<em>Data Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Method</em>'.
+   * @return a new object of class '<em>Data Type</em>'.
    * @generated
    */
-  Method createMethod();
-
-  /**
-   * Returns a new object of class '<em>Compartment Diagram</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Compartment Diagram</em>'.
-   * @generated
-   */
-  CompartmentDiagram createCompartmentDiagram();
+  DataType createDataType();
 
   /**
    * Returns a new object of class '<em>Natural Type</em>'.
@@ -58,22 +112,22 @@ public interface OrmFactory extends EFactory {
   NaturalType createNaturalType();
 
   /**
-   * Returns a new object of class '<em>Compartment</em>'.
+   * Returns a new object of class '<em>Compartment Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Compartment</em>'.
+   * @return a new object of class '<em>Compartment Type</em>'.
    * @generated
    */
-  Compartment createCompartment();
+  CompartmentType createCompartmentType();
 
   /**
-   * Returns a new object of class '<em>Grouping</em>'.
+   * Returns a new object of class '<em>Anti Rigid Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Grouping</em>'.
+   * @return a new object of class '<em>Anti Rigid Type</em>'.
    * @generated
    */
-  Grouping createGrouping();
+  AntiRigidType createAntiRigidType();
 
   /**
    * Returns a new object of class '<em>Role Type</em>'.
@@ -85,40 +139,13 @@ public interface OrmFactory extends EFactory {
   RoleType createRoleType();
 
   /**
-   * Returns a new object of class '<em>Container</em>'.
+   * Returns a new object of class '<em>Relationship</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Container</em>'.
+   * @return a new object of class '<em>Relationship</em>'.
    * @generated
    */
-  Container createContainer();
-
-  /**
-   * Returns a new object of class '<em>Role Group</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Role Group</em>'.
-   * @generated
-   */
-  RoleGroup createRoleGroup();
-
-  /**
-   * Returns a new object of class '<em>Rolemodel</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rolemodel</em>'.
-   * @generated
-   */
-  Rolemodel createRolemodel();
-
-  /**
-   * Returns a new object of class '<em>Total</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Total</em>'.
-   * @generated
-   */
-  Total createTotal();
+  Relationship createRelationship();
 
   /**
    * Returns a new object of class '<em>Fulfillment</em>'.
@@ -130,24 +157,6 @@ public interface OrmFactory extends EFactory {
   Fulfillment createFulfillment();
 
   /**
-   * Returns a new object of class '<em>Role Equivalence</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Role Equivalence</em>'.
-   * @generated
-   */
-  RoleEquivalence createRoleEquivalence();
-
-  /**
-   * Returns a new object of class '<em>Acyclic</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Acyclic</em>'.
-   * @generated
-   */
-  Acyclic createAcyclic();
-
-  /**
    * Returns a new object of class '<em>Inheritance</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,22 +166,103 @@ public interface OrmFactory extends EFactory {
   Inheritance createInheritance();
 
   /**
-   * Returns a new object of class '<em>Relationship</em>'.
+   * Returns a new object of class '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Relationship</em>'.
+   * @return a new object of class '<em>Constraint</em>'.
    * @generated
    */
-  Relationship createRelationship();
+  Constraint createConstraint();
 
   /**
-   * Returns a new object of class '<em>Role Prohibition</em>'.
+   * Returns a new object of class '<em>Intra Relationship Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Role Prohibition</em>'.
+   * @return a new object of class '<em>Intra Relationship Constraint</em>'.
    * @generated
    */
-  RoleProhibition createRoleProhibition();
+  IntraRelationshipConstraint createIntraRelationshipConstraint();
+
+  /**
+   * Returns a new object of class '<em>Inter Relationship Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Inter Relationship Constraint</em>'.
+   * @generated
+   */
+  InterRelationshipConstraint createInterRelationshipConstraint();
+
+  /**
+   * Returns a new object of class '<em>Complex Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Complex Constraint</em>'.
+   * @generated
+   */
+  ComplexConstraint createComplexConstraint();
+
+  /**
+   * Returns a new object of class '<em>Data Inheritance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Data Inheritance</em>'.
+   * @generated
+   */
+  DataInheritance createDataInheritance();
+
+  /**
+   * Returns a new object of class '<em>Natural Inheritance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Natural Inheritance</em>'.
+   * @generated
+   */
+  NaturalInheritance createNaturalInheritance();
+
+  /**
+   * Returns a new object of class '<em>Compartment Inheritance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Compartment Inheritance</em>'.
+   * @generated
+   */
+  CompartmentInheritance createCompartmentInheritance();
+
+  /**
+   * Returns a new object of class '<em>Role Inheritance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Role Inheritance</em>'.
+   * @generated
+   */
+  RoleInheritance createRoleInheritance();
+
+  /**
+   * Returns a new object of class '<em>Place</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Place</em>'.
+   * @generated
+   */
+  Place createPlace();
+
+  /**
+   * Returns a new object of class '<em>Relationship Implication</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relationship Implication</em>'.
+   * @generated
+   */
+  RelationshipImplication createRelationshipImplication();
+
+  /**
+   * Returns a new object of class '<em>Relation Target</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relation Target</em>'.
+   * @generated
+   */
+  RelationTarget createRelationTarget();
 
   /**
    * Returns a new object of class '<em>Irreflexive</em>'.
@@ -184,6 +274,33 @@ public interface OrmFactory extends EFactory {
   Irreflexive createIrreflexive();
 
   /**
+   * Returns a new object of class '<em>Cyclic</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cyclic</em>'.
+   * @generated
+   */
+  Cyclic createCyclic();
+
+  /**
+   * Returns a new object of class '<em>Total</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Total</em>'.
+   * @generated
+   */
+  Total createTotal();
+
+  /**
+   * Returns a new object of class '<em>Role Group</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Role Group</em>'.
+   * @generated
+   */
+  RoleGroup createRoleGroup();
+
+  /**
    * Returns a new object of class '<em>Role Implication</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -193,13 +310,58 @@ public interface OrmFactory extends EFactory {
   RoleImplication createRoleImplication();
 
   /**
-   * Returns a new object of class '<em>Complex Constraint</em>'.
+   * Returns a new object of class '<em>Role Equivalence</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Complex Constraint</em>'.
+   * @return a new object of class '<em>Role Equivalence</em>'.
    * @generated
    */
-  ComplexConstraint createComplexConstraint();
+  RoleEquivalence createRoleEquivalence();
+
+  /**
+   * Returns a new object of class '<em>Role Prohibition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Role Prohibition</em>'.
+   * @generated
+   */
+  RoleProhibition createRoleProhibition();
+
+  /**
+   * Returns a new object of class '<em>Part</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Part</em>'.
+   * @generated
+   */
+  Part createPart();
+
+  /**
+   * Returns a new object of class '<em>Parthood Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parthood Constraint</em>'.
+   * @generated
+   */
+  ParthoodConstraint createParthoodConstraint();
+
+  /**
+   * Returns a new object of class '<em>Role Group Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Role Group Element</em>'.
+   * @generated
+   */
+  RoleGroupElement createRoleGroupElement();
+
+  /**
+   * Returns a new object of class '<em>Abstract Role Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Role Ref</em>'.
+   * @generated
+   */
+  AbstractRoleRef createAbstractRoleRef();
 
   /**
    * Returns a new object of class '<em>Relation Label</em>'.

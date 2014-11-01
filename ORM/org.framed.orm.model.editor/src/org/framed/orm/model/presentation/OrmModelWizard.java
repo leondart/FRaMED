@@ -12,45 +12,72 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
+
+import org.eclipse.emf.common.CommonPlugin;
+
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.ecore.xmi.XMLResource;
+
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+
 import org.eclipse.jface.dialogs.MessageDialog;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
+
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
+
 import org.eclipse.swt.SWT;
+
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
+
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
+
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.provider.ORMEditPlugin;
+
 import org.eclipse.core.runtime.Path;
+
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -64,9 +91,6 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class OrmModelWizard extends Wizard implements INewWizard {
-
-  private static final String ENCODING = "UTF-8";
-
   /**
    * The supported extensions for created files.
    * <!-- begin-user-doc -->
@@ -157,36 +181,36 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * Returns the names of the types that can be created as the root object. Actually there is only one type CompartmentDiagram.
-   * Uncommenting the commented lines will return all types, but only CompartmentDiagram will work.
+   * Returns the names of the types that can be created as the root object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   protected Collection<String> getInitialObjectNames() {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
-      //      for (EClassifier eClassifier : ormPackage.getEClassifiers()) {
-      //        if (eClassifier instanceof EClass) {
-      //          EClass eClass = (EClass) eClassifier;
-      //          if (!eClass.isAbstract()) {
-      initialObjectNames.add(/*eClass.getName()*/ormPackage.getCompartmentDiagram().getName());
-      //          }
-      //        }
-      //      }
-      //      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+      for (EClassifier eClassifier : ormPackage.getEClassifiers()) {
+        if (eClassifier instanceof EClass) {
+          EClass eClass = (EClass) eClassifier;
+          if (!eClass.isAbstract()) {
+            initialObjectNames.add(eClass.getName());
+          }
+        }
+      }
+      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
   }
 
   /**
-   * Create a new model. Since we only use one type, we can throw a dialog page for the type selection away.
+   * Create a new model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   protected EObject createInitialModel() {
-    EClass eClass = (EClass) ormPackage.getCompartmentDiagram();//getEClassifier(initialObjectCreationPage.getInitialObjectName());
+    EClass eClass =
+        (EClass) ormPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
     EObject rootObject = ormFactory.create(eClass);
     return rootObject;
   }
@@ -195,7 +219,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
    * Do the work after everything is specified.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   @Override
   public boolean performFinish() {
@@ -232,7 +256,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
             // Save the contents of the resource to the file system.
             //
             Map<Object, Object> options = new HashMap<Object, Object>();
-            options.put(XMLResource.OPTION_ENCODING, ENCODING);
+            options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
             resource.save(options);
           } catch (Exception exception) {
             ORMEditorPlugin.INSTANCE.log(exception);
@@ -537,11 +561,10 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * The framework calls this to create the contents of the wizard. We have thrown the type selection page away. Uncomment the last lines
-   * to enable it again.
+   * The framework calls this to create the contents of the wizard.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   @Override
   public void addPages() {
@@ -589,12 +612,12 @@ public class OrmModelWizard extends Wizard implements INewWizard {
         }
       }
     }
-    //    initialObjectCreationPage = new OrmModelWizardInitialObjectCreationPage("Whatever2");
-    //    initialObjectCreationPage.setTitle(ORMEditorPlugin.INSTANCE
-    //        .getString("_UI_OrmModelWizard_label"));
-    //    initialObjectCreationPage.setDescription(ORMEditorPlugin.INSTANCE
-    //        .getString("_UI_Wizard_initial_object_description"));
-    //    addPage(initialObjectCreationPage);
+    initialObjectCreationPage = new OrmModelWizardInitialObjectCreationPage("Whatever2");
+    initialObjectCreationPage.setTitle(ORMEditorPlugin.INSTANCE
+        .getString("_UI_OrmModelWizard_label"));
+    initialObjectCreationPage.setDescription(ORMEditorPlugin.INSTANCE
+        .getString("_UI_Wizard_initial_object_description"));
+    addPage(initialObjectCreationPage);
   }
 
   /**

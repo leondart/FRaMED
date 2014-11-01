@@ -16,7 +16,7 @@ import org.framed.orm.model.OrmPackage;
  *
  * @generated
  */
-public class IrreflexiveImpl extends RelationshipConstraintImpl implements Irreflexive {
+public class IrreflexiveImpl extends IntraRelationshipConstraintImpl implements Irreflexive {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

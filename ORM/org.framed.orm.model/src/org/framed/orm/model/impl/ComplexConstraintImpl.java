@@ -3,10 +3,12 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
+import org.framed.orm.model.AbstractRole;
 import org.framed.orm.model.ComplexConstraint;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.RoleGroup;
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +17,7 @@ import org.framed.orm.model.RoleGroup;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.ComplexConstraintImpl#getGroups <em>Groups</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ComplexConstraintImpl#getTargets <em>Targets</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.ComplexConstraintImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -48,8 +50,8 @@ public class ComplexConstraintImpl extends ConstraintImpl implements ComplexCons
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EList<RoleGroup> getGroups() {
-    return (EList<RoleGroup>) eGet(OrmPackage.Literals.COMPLEX_CONSTRAINT__GROUPS, true);
+  public EList<AbstractRole> getTargets() {
+    return (EList<AbstractRole>) eGet(OrmPackage.Literals.COMPLEX_CONSTRAINT__TARGETS, true);
   }
 
   /**

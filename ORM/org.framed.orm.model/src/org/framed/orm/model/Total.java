@@ -13,6 +13,5 @@ package org.framed.orm.model;
  * @model
  * @generated
  */
-public interface Total extends RelationshipConstraint {
-
+public interface Total extends IntraRelationshipConstraint {
 } // Total

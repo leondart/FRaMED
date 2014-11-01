@@ -4,7 +4,6 @@ package org.framed.orm.model;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Relationship</b></em>'.
@@ -19,11 +18,14 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.framed.orm.model.Relationship#getFirstUpper <em>First Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSecondUpper <em>Second Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getFirstParthood <em>First Parthood</em>}</li>
- *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSourceLabel <em>Source Label</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getTargetLabel <em>Target Label</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getFirstLowerUpper <em>First Lower Upper</em>}</li>
  *   <li>{@link org.framed.orm.model.Relationship#getSecondLowerUpper <em>Second Lower Upper</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getRlshipConstraints <em>Rlship Constraints</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getFirst <em>First</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relationship#getSecond <em>Second</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Relationship extends Relation {
+public interface Relationship extends Relation, NamedElement {
   /**
    * Returns the value of the '<em><b>Second Parthood</b></em>' attribute.
    * The default value is <code>"Unconstrained"</code>.
@@ -201,24 +203,6 @@ public interface Relationship extends Relation {
   void setFirstParthood(Parthood value);
 
   /**
-   * Returns the value of the '<em><b>Rlship Constraints</b></em>' reference list.
-   * The list contents are of type {@link org.framed.orm.model.RelationshipConstraint}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationshipConstraint#getRelation <em>Relation</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Rlship Constraints</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Rlship Constraints</em>' reference list.
-   * @see org.framed.orm.model.OrmPackage#getRelationship_RlshipConstraints()
-   * @see org.framed.orm.model.RelationshipConstraint#getRelation
-   * @model opposite="relation"
-   * @generated
-   */
-  EList<RelationshipConstraint> getRlshipConstraints();
-
-  /**
    * Returns the value of the '<em><b>Source Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
@@ -321,5 +305,104 @@ public interface Relationship extends Relation {
    * @generated
    */
   void setSecondLowerUpper(String value);
+
+  /**
+   * Returns the value of the '<em><b>Rlship Constraints</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.model.RelationshipConstraint}.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationshipConstraint#getRelation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Rlship Constraints</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Rlship Constraints</em>' reference list.
+   * @see org.framed.orm.model.OrmPackage#getRelationship_RlshipConstraints()
+   * @see org.framed.orm.model.RelationshipConstraint#getRelation
+   * @model opposite="relation"
+   * @generated
+   */
+  EList<RelationshipConstraint> getRlshipConstraints();
+
+  /**
+   * Returns the value of the '<em><b>Direction</b></em>' attribute.
+   * The literals are from the enumeration {@link org.framed.orm.model.Direction}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Direction</em>' attribute.
+   * @see org.framed.orm.model.Direction
+   * @see #setDirection(Direction)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_Direction()
+   * @model required="true"
+   * @generated
+   */
+  Direction getDirection();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getDirection <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Direction</em>' attribute.
+   * @see org.framed.orm.model.Direction
+   * @see #getDirection()
+   * @generated
+   */
+  void setDirection(Direction value);
+
+  /**
+   * Returns the value of the '<em><b>First</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>First</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>First</em>' reference.
+   * @see #setFirst(Place)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_First()
+   * @model required="true"
+   * @generated
+   */
+  Place getFirst();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getFirst <em>First</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>First</em>' reference.
+   * @see #getFirst()
+   * @generated
+   */
+  void setFirst(Place value);
+
+  /**
+   * Returns the value of the '<em><b>Second</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Second</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Second</em>' reference.
+   * @see #setSecond(Place)
+   * @see org.framed.orm.model.OrmPackage#getRelationship_Second()
+   * @model required="true"
+   * @generated
+   */
+  Place getSecond();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relationship#getSecond <em>Second</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Second</em>' reference.
+   * @see #getSecond()
+   * @generated
+   */
+  void setSecond(Place value);
 
 } // Relationship

@@ -3,6 +3,7 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relationship;
 import org.framed.orm.model.RelationshipConstraint;

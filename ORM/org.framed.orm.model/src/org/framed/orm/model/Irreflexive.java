@@ -13,5 +13,5 @@ package org.framed.orm.model;
  * @model
  * @generated
  */
-public interface Irreflexive extends RelationshipConstraint {
+public interface Irreflexive extends IntraRelationshipConstraint {
 } // Irreflexive

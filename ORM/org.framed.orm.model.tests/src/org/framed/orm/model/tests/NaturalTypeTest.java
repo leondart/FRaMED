@@ -13,7 +13,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class NaturalTypeTest extends TypeTest {
+public class NaturalTypeTest extends RigidTypeTest {
 
   /**
    * <!-- begin-user-doc -->

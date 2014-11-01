@@ -73,6 +73,167 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Model} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ModelItemProvider modelItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Model}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createModelAdapter() {
+    if (modelItemProvider == null) {
+      modelItemProvider = new ModelItemProvider(this);
+    }
+
+    return modelItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.ElementModel} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ElementModelItemProvider elementModelItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.ElementModel}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createElementModelAdapter() {
+    if (elementModelItemProvider == null) {
+      elementModelItemProvider = new ElementModelItemProvider(this);
+    }
+
+    return elementModelItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.AbstractRoleModel} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected AbstractRoleModelItemProvider abstractRoleModelItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.AbstractRoleModel}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createAbstractRoleModelAdapter() {
+    if (abstractRoleModelItemProvider == null) {
+      abstractRoleModelItemProvider = new AbstractRoleModelItemProvider(this);
+    }
+
+    return abstractRoleModelItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RigidType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RigidTypeItemProvider rigidTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RigidType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRigidTypeAdapter() {
+    if (rigidTypeItemProvider == null) {
+      rigidTypeItemProvider = new RigidTypeItemProvider(this);
+    }
+
+    return rigidTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Group} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected GroupItemProvider groupItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Group}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createGroupAdapter() {
+    if (groupItemProvider == null) {
+      groupItemProvider = new GroupItemProvider(this);
+    }
+
+    return groupItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Parameter} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ParameterItemProvider parameterItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Parameter}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createParameterAdapter() {
+    if (parameterItemProvider == null) {
+      parameterItemProvider = new ParameterItemProvider(this);
+    }
+
+    return parameterItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Operation} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected OperationItemProvider operationItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Operation}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createOperationAdapter() {
+    if (operationItemProvider == null) {
+      operationItemProvider = new OperationItemProvider(this);
+    }
+
+    return operationItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.framed.orm.model.Attribute} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -96,49 +257,26 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Method} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.DataType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected MethodItemProvider methodItemProvider;
+  protected DataTypeItemProvider dataTypeItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Method}.
+   * This creates an adapter for a {@link org.framed.orm.model.DataType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createMethodAdapter() {
-    if (methodItemProvider == null) {
-      methodItemProvider = new MethodItemProvider(this);
+  public Adapter createDataTypeAdapter() {
+    if (dataTypeItemProvider == null) {
+      dataTypeItemProvider = new DataTypeItemProvider(this);
     }
 
-    return methodItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.CompartmentDiagram} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected CompartmentDiagramItemProvider compartmentDiagramItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.framed.orm.model.CompartmentDiagram}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createCompartmentDiagramAdapter() {
-    if (compartmentDiagramItemProvider == null) {
-      compartmentDiagramItemProvider = new CompartmentDiagramItemProvider(this);
-    }
-
-    return compartmentDiagramItemProvider;
+    return dataTypeItemProvider;
   }
 
   /**
@@ -165,49 +303,49 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Compartment} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.CompartmentType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected CompartmentItemProvider compartmentItemProvider;
+  protected CompartmentTypeItemProvider compartmentTypeItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Compartment}.
+   * This creates an adapter for a {@link org.framed.orm.model.CompartmentType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createCompartmentAdapter() {
-    if (compartmentItemProvider == null) {
-      compartmentItemProvider = new CompartmentItemProvider(this);
+  public Adapter createCompartmentTypeAdapter() {
+    if (compartmentTypeItemProvider == null) {
+      compartmentTypeItemProvider = new CompartmentTypeItemProvider(this);
     }
 
-    return compartmentItemProvider;
+    return compartmentTypeItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Grouping} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.AntiRigidType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GroupingItemProvider groupingItemProvider;
+  protected AntiRigidTypeItemProvider antiRigidTypeItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Grouping}.
+   * This creates an adapter for a {@link org.framed.orm.model.AntiRigidType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createGroupingAdapter() {
-    if (groupingItemProvider == null) {
-      groupingItemProvider = new GroupingItemProvider(this);
+  public Adapter createAntiRigidTypeAdapter() {
+    if (antiRigidTypeItemProvider == null) {
+      antiRigidTypeItemProvider = new AntiRigidTypeItemProvider(this);
     }
 
-    return groupingItemProvider;
+    return antiRigidTypeItemProvider;
   }
 
   /**
@@ -234,95 +372,26 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Container} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Relationship} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContainerItemProvider containerItemProvider;
+  protected RelationshipItemProvider relationshipItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Container}.
+   * This creates an adapter for a {@link org.framed.orm.model.Relationship}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createContainerAdapter() {
-    if (containerItemProvider == null) {
-      containerItemProvider = new ContainerItemProvider(this);
+  public Adapter createRelationshipAdapter() {
+    if (relationshipItemProvider == null) {
+      relationshipItemProvider = new RelationshipItemProvider(this);
     }
 
-    return containerItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleGroup} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected RoleGroupItemProvider roleGroupItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.framed.orm.model.RoleGroup}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createRoleGroupAdapter() {
-    if (roleGroupItemProvider == null) {
-      roleGroupItemProvider = new RoleGroupItemProvider(this);
-    }
-
-    return roleGroupItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Rolemodel} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected RolemodelItemProvider rolemodelItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.framed.orm.model.Rolemodel}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createRolemodelAdapter() {
-    if (rolemodelItemProvider == null) {
-      rolemodelItemProvider = new RolemodelItemProvider(this);
-    }
-
-    return rolemodelItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Total} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TotalItemProvider totalItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.framed.orm.model.Total}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTotalAdapter() {
-    if (totalItemProvider == null) {
-      totalItemProvider = new TotalItemProvider(this);
-    }
-
-    return totalItemProvider;
+    return relationshipItemProvider;
   }
 
   /**
@@ -349,52 +418,6 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleEquivalence} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected RoleEquivalenceItemProvider roleEquivalenceItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.framed.orm.model.RoleEquivalence}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createRoleEquivalenceAdapter() {
-    if (roleEquivalenceItemProvider == null) {
-      roleEquivalenceItemProvider = new RoleEquivalenceItemProvider(this);
-    }
-
-    return roleEquivalenceItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Acyclic} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected AcyclicItemProvider acyclicItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.framed.orm.model.Acyclic}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createAcyclicAdapter() {
-    if (acyclicItemProvider == null) {
-      acyclicItemProvider = new AcyclicItemProvider(this);
-    }
-
-    return acyclicItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.framed.orm.model.Inheritance} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -418,49 +441,256 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Relationship} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Constraint} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RelationshipItemProvider relationshipItemProvider;
+  protected ConstraintItemProvider constraintItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.Relationship}.
+   * This creates an adapter for a {@link org.framed.orm.model.Constraint}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createRelationshipAdapter() {
-    if (relationshipItemProvider == null) {
-      relationshipItemProvider = new RelationshipItemProvider(this);
+  public Adapter createConstraintAdapter() {
+    if (constraintItemProvider == null) {
+      constraintItemProvider = new ConstraintItemProvider(this);
     }
 
-    return relationshipItemProvider;
+    return constraintItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleProhibition} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.IntraRelationshipConstraint} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RoleProhibitionItemProvider roleProhibitionItemProvider;
+  protected IntraRelationshipConstraintItemProvider intraRelationshipConstraintItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.RoleProhibition}.
+   * This creates an adapter for a {@link org.framed.orm.model.IntraRelationshipConstraint}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createRoleProhibitionAdapter() {
-    if (roleProhibitionItemProvider == null) {
-      roleProhibitionItemProvider = new RoleProhibitionItemProvider(this);
+  public Adapter createIntraRelationshipConstraintAdapter() {
+    if (intraRelationshipConstraintItemProvider == null) {
+      intraRelationshipConstraintItemProvider = new IntraRelationshipConstraintItemProvider(this);
     }
 
-    return roleProhibitionItemProvider;
+    return intraRelationshipConstraintItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.InterRelationshipConstraint} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected InterRelationshipConstraintItemProvider interRelationshipConstraintItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.InterRelationshipConstraint}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createInterRelationshipConstraintAdapter() {
+    if (interRelationshipConstraintItemProvider == null) {
+      interRelationshipConstraintItemProvider = new InterRelationshipConstraintItemProvider(this);
+    }
+
+    return interRelationshipConstraintItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.ComplexConstraint} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ComplexConstraintItemProvider complexConstraintItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.ComplexConstraint}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createComplexConstraintAdapter() {
+    if (complexConstraintItemProvider == null) {
+      complexConstraintItemProvider = new ComplexConstraintItemProvider(this);
+    }
+
+    return complexConstraintItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.DataInheritance} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DataInheritanceItemProvider dataInheritanceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.DataInheritance}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDataInheritanceAdapter() {
+    if (dataInheritanceItemProvider == null) {
+      dataInheritanceItemProvider = new DataInheritanceItemProvider(this);
+    }
+
+    return dataInheritanceItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.NaturalInheritance} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected NaturalInheritanceItemProvider naturalInheritanceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.NaturalInheritance}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createNaturalInheritanceAdapter() {
+    if (naturalInheritanceItemProvider == null) {
+      naturalInheritanceItemProvider = new NaturalInheritanceItemProvider(this);
+    }
+
+    return naturalInheritanceItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.CompartmentInheritance} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected CompartmentInheritanceItemProvider compartmentInheritanceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.CompartmentInheritance}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createCompartmentInheritanceAdapter() {
+    if (compartmentInheritanceItemProvider == null) {
+      compartmentInheritanceItemProvider = new CompartmentInheritanceItemProvider(this);
+    }
+
+    return compartmentInheritanceItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleInheritance} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RoleInheritanceItemProvider roleInheritanceItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RoleInheritance}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRoleInheritanceAdapter() {
+    if (roleInheritanceItemProvider == null) {
+      roleInheritanceItemProvider = new RoleInheritanceItemProvider(this);
+    }
+
+    return roleInheritanceItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Place} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PlaceItemProvider placeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Place}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPlaceAdapter() {
+    if (placeItemProvider == null) {
+      placeItemProvider = new PlaceItemProvider(this);
+    }
+
+    return placeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RelationshipImplication} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RelationshipImplicationItemProvider relationshipImplicationItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RelationshipImplication}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRelationshipImplicationAdapter() {
+    if (relationshipImplicationItemProvider == null) {
+      relationshipImplicationItemProvider = new RelationshipImplicationItemProvider(this);
+    }
+
+    return relationshipImplicationItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RelationTarget} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RelationTargetItemProvider relationTargetItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RelationTarget}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRelationTargetAdapter() {
+    if (relationTargetItemProvider == null) {
+      relationTargetItemProvider = new RelationTargetItemProvider(this);
+    }
+
+    return relationTargetItemProvider;
   }
 
   /**
@@ -487,6 +717,75 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Cyclic} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected CyclicItemProvider cyclicItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Cyclic}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createCyclicAdapter() {
+    if (cyclicItemProvider == null) {
+      cyclicItemProvider = new CyclicItemProvider(this);
+    }
+
+    return cyclicItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Total} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected TotalItemProvider totalItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Total}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createTotalAdapter() {
+    if (totalItemProvider == null) {
+      totalItemProvider = new TotalItemProvider(this);
+    }
+
+    return totalItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleGroup} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RoleGroupItemProvider roleGroupItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RoleGroup}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRoleGroupAdapter() {
+    if (roleGroupItemProvider == null) {
+      roleGroupItemProvider = new RoleGroupItemProvider(this);
+    }
+
+    return roleGroupItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleImplication} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -510,26 +809,141 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.framed.orm.model.ComplexConstraint} instances.
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleEquivalence} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ComplexConstraintItemProvider complexConstraintItemProvider;
+  protected RoleEquivalenceItemProvider roleEquivalenceItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.framed.orm.model.ComplexConstraint}.
+   * This creates an adapter for a {@link org.framed.orm.model.RoleEquivalence}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createComplexConstraintAdapter() {
-    if (complexConstraintItemProvider == null) {
-      complexConstraintItemProvider = new ComplexConstraintItemProvider(this);
+  public Adapter createRoleEquivalenceAdapter() {
+    if (roleEquivalenceItemProvider == null) {
+      roleEquivalenceItemProvider = new RoleEquivalenceItemProvider(this);
     }
 
-    return complexConstraintItemProvider;
+    return roleEquivalenceItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleProhibition} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RoleProhibitionItemProvider roleProhibitionItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RoleProhibition}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRoleProhibitionAdapter() {
+    if (roleProhibitionItemProvider == null) {
+      roleProhibitionItemProvider = new RoleProhibitionItemProvider(this);
+    }
+
+    return roleProhibitionItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.Part} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PartItemProvider partItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.Part}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createPartAdapter() {
+    if (partItemProvider == null) {
+      partItemProvider = new PartItemProvider(this);
+    }
+
+    return partItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.ParthoodConstraint} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ParthoodConstraintItemProvider parthoodConstraintItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.ParthoodConstraint}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createParthoodConstraintAdapter() {
+    if (parthoodConstraintItemProvider == null) {
+      parthoodConstraintItemProvider = new ParthoodConstraintItemProvider(this);
+    }
+
+    return parthoodConstraintItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.RoleGroupElement} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RoleGroupElementItemProvider roleGroupElementItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.RoleGroupElement}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createRoleGroupElementAdapter() {
+    if (roleGroupElementItemProvider == null) {
+      roleGroupElementItemProvider = new RoleGroupElementItemProvider(this);
+    }
+
+    return roleGroupElementItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.framed.orm.model.AbstractRoleRef} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected AbstractRoleRefItemProvider abstractRoleRefItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.framed.orm.model.AbstractRoleRef}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createAbstractRoleRefAdapter() {
+    if (abstractRoleRefItemProvider == null) {
+      abstractRoleRefItemProvider = new AbstractRoleRefItemProvider(this);
+    }
+
+    return abstractRoleRefItemProvider;
   }
 
   /**
@@ -654,46 +1068,82 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
    * @generated
    */
   public void dispose() {
+    if (modelItemProvider != null)
+      modelItemProvider.dispose();
+    if (elementModelItemProvider != null)
+      elementModelItemProvider.dispose();
+    if (abstractRoleModelItemProvider != null)
+      abstractRoleModelItemProvider.dispose();
+    if (rigidTypeItemProvider != null)
+      rigidTypeItemProvider.dispose();
+    if (groupItemProvider != null)
+      groupItemProvider.dispose();
+    if (parameterItemProvider != null)
+      parameterItemProvider.dispose();
+    if (operationItemProvider != null)
+      operationItemProvider.dispose();
     if (attributeItemProvider != null)
       attributeItemProvider.dispose();
-    if (methodItemProvider != null)
-      methodItemProvider.dispose();
-    if (compartmentDiagramItemProvider != null)
-      compartmentDiagramItemProvider.dispose();
+    if (dataTypeItemProvider != null)
+      dataTypeItemProvider.dispose();
     if (naturalTypeItemProvider != null)
       naturalTypeItemProvider.dispose();
-    if (compartmentItemProvider != null)
-      compartmentItemProvider.dispose();
-    if (groupingItemProvider != null)
-      groupingItemProvider.dispose();
+    if (compartmentTypeItemProvider != null)
+      compartmentTypeItemProvider.dispose();
+    if (antiRigidTypeItemProvider != null)
+      antiRigidTypeItemProvider.dispose();
     if (roleTypeItemProvider != null)
       roleTypeItemProvider.dispose();
-    if (containerItemProvider != null)
-      containerItemProvider.dispose();
-    if (roleGroupItemProvider != null)
-      roleGroupItemProvider.dispose();
-    if (rolemodelItemProvider != null)
-      rolemodelItemProvider.dispose();
-    if (totalItemProvider != null)
-      totalItemProvider.dispose();
-    if (fulfillmentItemProvider != null)
-      fulfillmentItemProvider.dispose();
-    if (roleEquivalenceItemProvider != null)
-      roleEquivalenceItemProvider.dispose();
-    if (acyclicItemProvider != null)
-      acyclicItemProvider.dispose();
-    if (inheritanceItemProvider != null)
-      inheritanceItemProvider.dispose();
     if (relationshipItemProvider != null)
       relationshipItemProvider.dispose();
-    if (roleProhibitionItemProvider != null)
-      roleProhibitionItemProvider.dispose();
-    if (irreflexiveItemProvider != null)
-      irreflexiveItemProvider.dispose();
-    if (roleImplicationItemProvider != null)
-      roleImplicationItemProvider.dispose();
+    if (fulfillmentItemProvider != null)
+      fulfillmentItemProvider.dispose();
+    if (inheritanceItemProvider != null)
+      inheritanceItemProvider.dispose();
+    if (constraintItemProvider != null)
+      constraintItemProvider.dispose();
+    if (intraRelationshipConstraintItemProvider != null)
+      intraRelationshipConstraintItemProvider.dispose();
+    if (interRelationshipConstraintItemProvider != null)
+      interRelationshipConstraintItemProvider.dispose();
     if (complexConstraintItemProvider != null)
       complexConstraintItemProvider.dispose();
+    if (dataInheritanceItemProvider != null)
+      dataInheritanceItemProvider.dispose();
+    if (naturalInheritanceItemProvider != null)
+      naturalInheritanceItemProvider.dispose();
+    if (compartmentInheritanceItemProvider != null)
+      compartmentInheritanceItemProvider.dispose();
+    if (roleInheritanceItemProvider != null)
+      roleInheritanceItemProvider.dispose();
+    if (placeItemProvider != null)
+      placeItemProvider.dispose();
+    if (relationshipImplicationItemProvider != null)
+      relationshipImplicationItemProvider.dispose();
+    if (relationTargetItemProvider != null)
+      relationTargetItemProvider.dispose();
+    if (irreflexiveItemProvider != null)
+      irreflexiveItemProvider.dispose();
+    if (cyclicItemProvider != null)
+      cyclicItemProvider.dispose();
+    if (totalItemProvider != null)
+      totalItemProvider.dispose();
+    if (roleGroupItemProvider != null)
+      roleGroupItemProvider.dispose();
+    if (roleImplicationItemProvider != null)
+      roleImplicationItemProvider.dispose();
+    if (roleEquivalenceItemProvider != null)
+      roleEquivalenceItemProvider.dispose();
+    if (roleProhibitionItemProvider != null)
+      roleProhibitionItemProvider.dispose();
+    if (partItemProvider != null)
+      partItemProvider.dispose();
+    if (parthoodConstraintItemProvider != null)
+      parthoodConstraintItemProvider.dispose();
+    if (roleGroupElementItemProvider != null)
+      roleGroupElementItemProvider.dispose();
+    if (abstractRoleRefItemProvider != null)
+      abstractRoleRefItemProvider.dispose();
     if (relationLabelItemProvider != null)
       relationLabelItemProvider.dispose();
   }

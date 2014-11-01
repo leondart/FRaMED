@@ -100,6 +100,7 @@ public class RelationLabelItemProvider extends ItemProviderAdapter implements
         : getString("_UI_RelationLabel_type") + " " + label;
   }
 
+
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.

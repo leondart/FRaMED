@@ -8,24 +8,17 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.INotifyChangedListener;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.Parthood;
 import org.framed.orm.model.Relationship;
-import org.framed.orm.model.impl.RelationLabelImpl;
 
 /**
  * This is the item provider adapter for a {@link org.framed.orm.model.Relationship} object.
@@ -33,10 +26,7 @@ import org.framed.orm.model.impl.RelationLabelImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationshipItemProvider extends ItemProviderAdapter implements
-    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-    IItemLabelProvider, IItemPropertySource {
-  
+public class RelationshipItemProvider extends RelationItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -51,122 +41,41 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addTargetPropertyDescriptor(object);
-      addSourcePropertyDescriptor(object);
-      addDim1BPPropertyDescriptor(object);
-      addDim2BPPropertyDescriptor(object);
+      addNamePropertyDescriptor(object);
+      addSecondLowerPropertyDescriptor(object);
+      addFirstLowerPropertyDescriptor(object);
+      addFirstUpperPropertyDescriptor(object);
+      addSecondUpperPropertyDescriptor(object);
       addFirstLowerUpperPropertyDescriptor(object);
       addSecondLowerUpperPropertyDescriptor(object);
-      //      addSecondLowerPropertyDescriptor(object);
-      //      addFirstLowerPropertyDescriptor(object);
-      //      addFirstUpperPropertyDescriptor(object);
-      //      addSecondUpperPropertyDescriptor(object);
       addRlshipConstraintsPropertyDescriptor(object);
+      addDirectionPropertyDescriptor(object);
+      addFirstPropertyDescriptor(object);
+      addSecondPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
-  
-  /**
-   * Adds the property descriptor for the first lower/upper Cardinality for the relationship.
-   * @param object
-   */
-  private void addFirstLowerUpperPropertyDescriptor(Object object) {
-    ItemPropertyDescriptor propDesc = createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relationship_firstLowerUpper_feature"),  /* get the name for the feature out of the generated local file*/
-        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLowerUpper_feature",
-            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, true,
-        false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null);
-    
-    itemPropertyDescriptors.add(propDesc);
-  }
 
   /**
-   * This adds a property descriptor for the Second Lower Upper feature.
+   * This adds a property descriptor for the Name feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addSecondLowerUpperPropertyDescriptor(Object object) {
+  protected void addNamePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
         getResourceLocator(),
-        getString("_UI_Relationship_secondLowerUpper_feature"),
-        getString("_UI_PropertyDescriptor_description",
-            "_UI_Relationship_secondLowerUpper_feature", "_UI_Relationship_type"),
-        OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER_UPPER, true, false, false,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Target feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_target_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_target_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__TARGET, true, false, true, null,
-        null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Source feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_source_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_source_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__SOURCE, true, false, true, null,
-        null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Dim1 BP feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addDim1BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_dim1BP_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim1BP_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM1_BP, true, false, false,
-        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Dim2 BP feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addDim2BPPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(
-        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_Relation_dim2BP_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_Relation_dim2BP_feature",
-            "_UI_Relation_type"), OrmPackage.Literals.RELATION__DIM2_BP, true, false, false,
+        getString("_UI_NamedElement_name_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_NamedElement_name_feature",
+            "_UI_NamedElement_type"), OrmPackage.Literals.NAMED_ELEMENT__NAME, true, false, false,
         ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
@@ -235,6 +144,39 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
   }
 
   /**
+   * This adds a property descriptor for the First Lower Upper feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addFirstLowerUpperPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_firstLowerUpper_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_firstLowerUpper_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST_LOWER_UPPER, true,
+        false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Second Lower Upper feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addSecondLowerUpperPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_secondLowerUpper_feature"),
+        getString("_UI_PropertyDescriptor_description",
+            "_UI_Relationship_secondLowerUpper_feature", "_UI_Relationship_type"),
+        OrmPackage.Literals.RELATIONSHIP__SECOND_LOWER_UPPER, true, false, false,
+        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  }
+
+  /**
    * This adds a property descriptor for the Rlship Constraints feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -248,6 +190,54 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
         getString("_UI_PropertyDescriptor_description",
             "_UI_Relationship_rlshipConstraints_feature", "_UI_Relationship_type"),
         OrmPackage.Literals.RELATIONSHIP__RLSHIP_CONSTRAINTS, true, false, true, null, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Direction feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addDirectionPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_direction_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_direction_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__DIRECTION, true, false,
+        false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the First feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addFirstPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_first_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_first_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__FIRST, true, false, true,
+        null, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Second feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addSecondPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relationship_second_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relationship_second_feature",
+            "_UI_Relationship_type"), OrmPackage.Literals.RELATIONSHIP__SECOND, true, false, true,
+        null, null, null));
   }
 
   /**
@@ -300,11 +290,11 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
    */
   @Override
   public String getText(Object object) {
-    Parthood labelValue = ((Relationship) object).getSecondParthood();
-    String label = labelValue == null ? null : labelValue.toString();
+    String label = ((Relationship) object).getName();
     return label == null || label.length() == 0 ? getString("_UI_Relationship_type")
         : getString("_UI_Relationship_type") + " " + label;
   }
+
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -318,8 +308,7 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
     updateChildren(notification);
 
     switch (notification.getFeatureID(Relationship.class)) {
-      case OrmPackage.RELATIONSHIP__DIM1_BP:
-      case OrmPackage.RELATIONSHIP__DIM2_BP:
+      case OrmPackage.RELATIONSHIP__NAME:
       case OrmPackage.RELATIONSHIP__SECOND_PARTHOOD:
       case OrmPackage.RELATIONSHIP__SECOND_LOWER:
       case OrmPackage.RELATIONSHIP__FIRST_LOWER:
@@ -328,8 +317,9 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
       case OrmPackage.RELATIONSHIP__FIRST_PARTHOOD:
       case OrmPackage.RELATIONSHIP__FIRST_LOWER_UPPER:
       case OrmPackage.RELATIONSHIP__SECOND_LOWER_UPPER:
+      case OrmPackage.RELATIONSHIP__DIRECTION:
         fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false,
-            true));        
+            true));
         return;
       case OrmPackage.RELATIONSHIP__SOURCE_LABEL:
       case OrmPackage.RELATIONSHIP__TARGET_LABEL:
@@ -379,17 +369,6 @@ public class RelationshipItemProvider extends ItemProviderAdapter implements
           getFeatureText(childFeature), getTypeText(owner)});
     }
     return super.getCreateChildText(owner, feature, child, selection);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return ORMEditPlugin.INSTANCE;
   }
 
 }

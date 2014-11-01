@@ -2,8 +2,6 @@
  */
 package org.framed.orm.model.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 import org.framed.orm.model.Attribute;
@@ -15,15 +13,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AttributeTest extends TestCase {
-
-  /**
-   * The fixture for this Attribute test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Attribute fixture = null;
+public class AttributeTest extends TypedElementTest {
 
   /**
    * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class AttributeTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Attribute test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void setFixture(Attribute fixture) {
-    this.fixture = fixture;
-  }
-
-  /**
    * Returns the fixture for this Attribute test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected Attribute getFixture() {
-    return fixture;
+    return (Attribute) fixture;
   }
 
   /**

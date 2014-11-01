@@ -17,21 +17,21 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.framed.orm.model.Relation#getRelationContainer <em>Relation Container</em>}</li>
- *   <li>{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}</li>
- *   <li>{@link org.framed.orm.model.Relation#getSource <em>Source</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getDim1BP <em>Dim1 BP</em>}</li>
  *   <li>{@link org.framed.orm.model.Relation#getDim2BP <em>Dim2 BP</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.framed.orm.model.Relation#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.framed.orm.model.OrmPackage#getRelation()
- * @model interface="true" abstract="true"
+ * @model abstract="true"
  * @generated
  */
 public interface Relation extends EObject {
   /**
    * Returns the value of the '<em><b>Relation Container</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Container#getRelations <em>Relations</em>}'.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Model#getRelations <em>Relations</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Relation Container</em>' container reference isn't clear,
@@ -39,13 +39,13 @@ public interface Relation extends EObject {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Relation Container</em>' container reference.
-   * @see #setRelationContainer(Container)
+   * @see #setRelationContainer(Model)
    * @see org.framed.orm.model.OrmPackage#getRelation_RelationContainer()
-   * @see org.framed.orm.model.Container#getRelations
-   * @model opposite="relations" transient="false"
+   * @see org.framed.orm.model.Model#getRelations
+   * @model opposite="relations" required="true" transient="false"
    * @generated
    */
-  Container getRelationContainer();
+  Model getRelationContainer();
 
   /**
    * Sets the value of the '{@link org.framed.orm.model.Relation#getRelationContainer <em>Relation Container</em>}' container reference.
@@ -55,63 +55,7 @@ public interface Relation extends EObject {
    * @see #getRelationContainer()
    * @generated
    */
-  void setRelationContainer(Container value);
-
-  /**
-   * Returns the value of the '<em><b>Target</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Node#getIncomingLinks <em>Incoming Links</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Target</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Target</em>' reference.
-   * @see #setTarget(Node)
-   * @see org.framed.orm.model.OrmPackage#getRelation_Target()
-   * @see org.framed.orm.model.Node#getIncomingLinks
-   * @model opposite="incomingLinks"
-   * @generated
-   */
-  Node getTarget();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target</em>' reference.
-   * @see #getTarget()
-   * @generated
-   */
-  void setTarget(Node value);
-
-  /**
-   * Returns the value of the '<em><b>Source</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Node#getOutgoingLinks <em>Outgoing Links</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Source</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Source</em>' reference.
-   * @see #setSource(Node)
-   * @see org.framed.orm.model.OrmPackage#getRelation_Source()
-   * @see org.framed.orm.model.Node#getOutgoingLinks
-   * @model opposite="outgoingLinks"
-   * @generated
-   */
-  Node getSource();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Relation#getSource <em>Source</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source</em>' reference.
-   * @see #getSource()
-   * @generated
-   */
-  void setSource(Node value);
+  void setRelationContainer(Model value);
 
   /**
    * Returns the value of the '<em><b>Dim1 BP</b></em>' attribute list.
@@ -144,5 +88,61 @@ public interface Relation extends EObject {
    * @generated
    */
   EList<Point> getDim2BP();
+
+  /**
+   * Returns the value of the '<em><b>Target</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationTarget#getIncoming <em>Incoming</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Target</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Target</em>' reference.
+   * @see #setTarget(RelationTarget)
+   * @see org.framed.orm.model.OrmPackage#getRelation_Target()
+   * @see org.framed.orm.model.RelationTarget#getIncoming
+   * @model opposite="incoming"
+   * @generated
+   */
+  RelationTarget getTarget();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Target</em>' reference.
+   * @see #getTarget()
+   * @generated
+   */
+  void setTarget(RelationTarget value);
+
+  /**
+   * Returns the value of the '<em><b>Source</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.RelationTarget#getOutgoing <em>Outgoing</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Source</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Source</em>' reference.
+   * @see #setSource(RelationTarget)
+   * @see org.framed.orm.model.OrmPackage#getRelation_Source()
+   * @see org.framed.orm.model.RelationTarget#getOutgoing
+   * @model opposite="outgoing"
+   * @generated
+   */
+  RelationTarget getSource();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Relation#getSource <em>Source</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Source</em>' reference.
+   * @see #getSource()
+   * @generated
+   */
+  void setSource(RelationTarget value);
 
 } // Relation

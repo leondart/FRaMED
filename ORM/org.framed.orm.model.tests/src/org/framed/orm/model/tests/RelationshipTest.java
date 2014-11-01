@@ -2,8 +2,6 @@
  */
 package org.framed.orm.model.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
 
 import org.framed.orm.model.OrmFactory;
@@ -15,15 +13,7 @@ import org.framed.orm.model.Relationship;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationshipTest extends TestCase {
-
-  /**
-   * The fixture for this Relationship test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Relationship fixture = null;
+public class RelationshipTest extends RelationTest {
 
   /**
    * <!-- begin-user-doc -->
@@ -45,23 +35,14 @@ public class RelationshipTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Relationship test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void setFixture(Relationship fixture) {
-    this.fixture = fixture;
-  }
-
-  /**
    * Returns the fixture for this Relationship test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected Relationship getFixture() {
-    return fixture;
+    return (Relationship) fixture;
   }
 
   /**

@@ -13,7 +13,7 @@ import org.framed.orm.model.RoleType;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RoleTypeTest extends TypeTest {
+public class RoleTypeTest extends RoleGroupElementTest {
 
   /**
    * <!-- begin-user-doc -->

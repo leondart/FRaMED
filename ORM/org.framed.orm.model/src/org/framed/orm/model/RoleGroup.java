@@ -2,7 +2,6 @@
  */
 package org.framed.orm.model;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.framed.orm.model.RoleGroup#getLower <em>Lower</em>}</li>
- *   <li>{@link org.framed.orm.model.RoleGroup#getItems <em>Items</em>}</li>
  *   <li>{@link org.framed.orm.model.RoleGroup#getUpper <em>Upper</em>}</li>
  * </ul>
  * </p>
@@ -22,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface RoleGroup extends AbstractRole, Node, Container {
+public interface RoleGroup extends AbstractRole, RelationTarget, AbstractRoleModel {
   /**
    * Returns the value of the '<em><b>Lower</b></em>' attribute.
    * The default value is <code>"0"</code>.
@@ -49,22 +47,6 @@ public interface RoleGroup extends AbstractRole, Node, Container {
    * @generated
    */
   void setLower(int value);
-
-  /**
-   * Returns the value of the '<em><b>Items</b></em>' containment reference list.
-   * The list contents are of type {@link org.framed.orm.model.AbstractRole}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Items</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Items</em>' containment reference list.
-   * @see org.framed.orm.model.OrmPackage#getRoleGroup_Items()
-   * @model containment="true"
-   * @generated
-   */
-  EList<AbstractRole> getItems();
 
   /**
    * Returns the value of the '<em><b>Upper</b></em>' attribute.

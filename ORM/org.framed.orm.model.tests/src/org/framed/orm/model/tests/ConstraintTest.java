@@ -2,9 +2,10 @@
  */
 package org.framed.orm.model.tests;
 
-import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 import org.framed.orm.model.Constraint;
+import org.framed.orm.model.OrmFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,15 +13,16 @@ import org.framed.orm.model.Constraint;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class ConstraintTest extends TestCase {
+public class ConstraintTest extends RelationTest {
 
   /**
-   * The fixture for this Constraint test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected Constraint fixture = null;
+  public static void main(String[] args) {
+    TestRunner.run(ConstraintTest.class);
+  }
 
   /**
    * Constructs a new Constraint test case with the given name.
@@ -33,23 +35,36 @@ public abstract class ConstraintTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Constraint test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void setFixture(Constraint fixture) {
-    this.fixture = fixture;
-  }
-
-  /**
    * Returns the fixture for this Constraint test case.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   protected Constraint getFixture() {
-    return fixture;
+    return (Constraint) fixture;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#setUp()
+   * @generated
+   */
+  @Override
+  protected void setUp() throws Exception {
+    setFixture(OrmFactory.eINSTANCE.createConstraint());
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see junit.framework.TestCase#tearDown()
+   * @generated
+   */
+  @Override
+  protected void tearDown() throws Exception {
+    setFixture(null);
   }
 
 } //ConstraintTest

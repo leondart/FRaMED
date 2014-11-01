@@ -13,7 +13,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class IrreflexiveTest extends RelationshipConstraintTest {
+public class IrreflexiveTest extends IntraRelationshipConstraintTest {
 
   /**
    * <!-- begin-user-doc -->

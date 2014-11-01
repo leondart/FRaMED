@@ -3,6 +3,7 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Total;
 
@@ -15,7 +16,7 @@ import org.framed.orm.model.Total;
  *
  * @generated
  */
-public class TotalImpl extends RelationshipConstraintImpl implements Total {
+public class TotalImpl extends IntraRelationshipConstraintImpl implements Total {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

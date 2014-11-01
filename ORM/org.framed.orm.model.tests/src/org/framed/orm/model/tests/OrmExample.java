@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import org.framed.orm.model.Attribute;
+import org.framed.orm.model.Model;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 
@@ -57,7 +57,7 @@ public class OrmExample {
       System.out.println("Enter a list of file paths or URIs that have content like this:");
       try {
         Resource resource = resourceSet.createResource(URI.createURI("http:///My.orm"));
-        Attribute root = OrmFactory.eINSTANCE.createAttribute();
+        Model root = OrmFactory.eINSTANCE.createModel();
         resource.getContents().add(root);
         resource.save(System.out, null);
       } catch (IOException exception) {

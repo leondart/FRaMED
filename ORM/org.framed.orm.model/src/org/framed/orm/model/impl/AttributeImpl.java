@@ -3,7 +3,7 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Type;
@@ -15,14 +15,13 @@ import org.framed.orm.model.Type;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.AttributeImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.AttributeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.AttributeImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AttributeImpl extends MinimalEObjectImpl.Container implements Attribute {
+public class AttributeImpl extends TypedElementImpl implements Attribute {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -47,9 +46,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  protected int eStaticFeatureCount() {
-    return 0;
+  public Type getOwner() {
+    return (Type) eGet(OrmPackage.Literals.ATTRIBUTE__OWNER, true);
   }
 
   /**
@@ -57,35 +55,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type getType() {
-    return (Type) eGet(OrmPackage.Literals.ATTRIBUTE__TYPE, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(Type newType) {
-    eSet(OrmPackage.Literals.ATTRIBUTE__TYPE, newType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName() {
-    return (String) eGet(OrmPackage.Literals.ATTRIBUTE__NAME, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName) {
-    eSet(OrmPackage.Literals.ATTRIBUTE__NAME, newName);
+  public void setOwner(Type newOwner) {
+    eSet(OrmPackage.Literals.ATTRIBUTE__OWNER, newOwner);
   }
 
 } //AttributeImpl

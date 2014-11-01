@@ -10,7 +10,7 @@ import org.framed.orm.model.AbstractRole;
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class AbstractRoleTest extends ConstraintTest {
+public abstract class AbstractRoleTest extends RoleGroupElementTest {
 
   /**
    * Constructs a new Abstract Role test case with the given name.

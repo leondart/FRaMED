@@ -3,14 +3,20 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.draw2d.geometry.Rectangle;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.framed.orm.model.AbstractRole;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.AbstractRoleModel;
+import org.framed.orm.model.Fulfillment;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.RelationTarget;
 import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleType;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,24 +25,22 @@ import org.framed.orm.model.RoleType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getFirst <em>First</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getSecond <em>Second</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getIncomingLinks <em>Incoming Links</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getOutgoingLinks <em>Outgoing Links</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getFulfillment <em>Fulfillment</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getOutgoing <em>Outgoing</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getBoundaries <em>Boundaries</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getRelations <em>Relations</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getNodes <em>Nodes</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getAbstractroles <em>Abstractroles</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getLower <em>Lower</em>}</li>
- *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getItems <em>Items</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RoleGroupImpl#getUpper <em>Upper</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
+public class RoleGroupImpl extends RoleGroupElementImpl implements RoleGroup {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -61,8 +65,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public RoleType getFirst() {
-    return (RoleType) eGet(OrmPackage.Literals.ABSTRACT_ROLE__FIRST, true);
+  public Fulfillment getFulfillment() {
+    return (Fulfillment) eGet(OrmPackage.Literals.ABSTRACT_ROLE__FULFILLMENT, true);
   }
 
   /**
@@ -70,8 +74,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFirst(RoleType newFirst) {
-    eSet(OrmPackage.Literals.ABSTRACT_ROLE__FIRST, newFirst);
+  public void setFulfillment(Fulfillment newFulfillment) {
+    eSet(OrmPackage.Literals.ABSTRACT_ROLE__FULFILLMENT, newFulfillment);
   }
 
   /**
@@ -79,8 +83,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public RoleType getSecond() {
-    return (RoleType) eGet(OrmPackage.Literals.ABSTRACT_ROLE__SECOND, true);
+  public AbstractRoleModel getParent() {
+    return (AbstractRoleModel) eGet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT, true);
   }
 
   /**
@@ -88,28 +92,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSecond(RoleType newSecond) {
-    eSet(OrmPackage.Literals.ABSTRACT_ROLE__SECOND, newSecond);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  public EList<Relation> getIncomingLinks() {
-    return (EList<Relation>) eGet(OrmPackage.Literals.NODE__INCOMING_LINKS, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  public EList<Relation> getOutgoingLinks() {
-    return (EList<Relation>) eGet(OrmPackage.Literals.NODE__OUTGOING_LINKS, true);
+  public void setParent(AbstractRoleModel newParent) {
+    eSet(OrmPackage.Literals.ABSTRACT_ROLE__PARENT, newParent);
   }
 
   /**
@@ -118,7 +102,7 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * @generated
    */
   public String getName() {
-    return (String) eGet(OrmPackage.Literals.NODE__NAME, true);
+    return (String) eGet(OrmPackage.Literals.NAMED_ELEMENT__NAME, true);
   }
 
   /**
@@ -127,7 +111,7 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * @generated
    */
   public void setName(String newName) {
-    eSet(OrmPackage.Literals.NODE__NAME, newName);
+    eSet(OrmPackage.Literals.NAMED_ELEMENT__NAME, newName);
   }
 
   /**
@@ -135,8 +119,9 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Rectangle getConstraints() {
-    return (Rectangle) eGet(OrmPackage.Literals.NODE__CONSTRAINTS, true);
+  @SuppressWarnings("unchecked")
+  public EList<Relation> getIncoming() {
+    return (EList<Relation>) eGet(OrmPackage.Literals.RELATION_TARGET__INCOMING, true);
   }
 
   /**
@@ -144,8 +129,9 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setConstraints(Rectangle newConstraints) {
-    eSet(OrmPackage.Literals.NODE__CONSTRAINTS, newConstraints);
+  @SuppressWarnings("unchecked")
+  public EList<Relation> getOutgoing() {
+    return (EList<Relation>) eGet(OrmPackage.Literals.RELATION_TARGET__OUTGOING, true);
   }
 
   /**
@@ -153,8 +139,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public org.framed.orm.model.Container getContainer() {
-    return (org.framed.orm.model.Container) eGet(OrmPackage.Literals.NODE__CONTAINER, true);
+  public Rectangle getBoundaries() {
+    return (Rectangle) eGet(OrmPackage.Literals.RELATION_TARGET__BOUNDARIES, true);
   }
 
   /**
@@ -162,8 +148,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContainer(org.framed.orm.model.Container newContainer) {
-    eSet(OrmPackage.Literals.NODE__CONTAINER, newContainer);
+  public void setBoundaries(Rectangle newBoundaries) {
+    eSet(OrmPackage.Literals.RELATION_TARGET__BOUNDARIES, newBoundaries);
   }
 
   /**
@@ -173,7 +159,7 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    */
   @SuppressWarnings("unchecked")
   public EList<Relation> getRelations() {
-    return (EList<Relation>) eGet(OrmPackage.Literals.CONTAINER__RELATIONS, true);
+    return (EList<Relation>) eGet(OrmPackage.Literals.MODEL__RELATIONS, true);
   }
 
   /**
@@ -182,8 +168,8 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EList<Node> getNodes() {
-    return (EList<Node>) eGet(OrmPackage.Literals.CONTAINER__NODES, true);
+  public EList<AbstractRole> getAbstractroles() {
+    return (EList<AbstractRole>) eGet(OrmPackage.Literals.ABSTRACT_ROLE_MODEL__ABSTRACTROLES, true);
   }
 
   /**
@@ -202,16 +188,6 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    */
   public void setLower(int newLower) {
     eSet(OrmPackage.Literals.ROLE_GROUP__LOWER, newLower);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  public EList<AbstractRole> getItems() {
-    return (EList<AbstractRole>) eGet(OrmPackage.Literals.ROLE_GROUP__ITEMS, true);
   }
 
   /**
@@ -239,28 +215,38 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    */
   @Override
   public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-    if (baseClass == Node.class) {
+    if (baseClass == NamedElement.class) {
       switch (derivedFeatureID) {
-        case OrmPackage.ROLE_GROUP__INCOMING_LINKS:
-          return OrmPackage.NODE__INCOMING_LINKS;
-        case OrmPackage.ROLE_GROUP__OUTGOING_LINKS:
-          return OrmPackage.NODE__OUTGOING_LINKS;
         case OrmPackage.ROLE_GROUP__NAME:
-          return OrmPackage.NODE__NAME;
-        case OrmPackage.ROLE_GROUP__CONSTRAINTS:
-          return OrmPackage.NODE__CONSTRAINTS;
-        case OrmPackage.ROLE_GROUP__CONTAINER:
-          return OrmPackage.NODE__CONTAINER;
+          return OrmPackage.NAMED_ELEMENT__NAME;
         default:
           return -1;
       }
     }
-    if (baseClass == org.framed.orm.model.Container.class) {
+    if (baseClass == RelationTarget.class) {
+      switch (derivedFeatureID) {
+        case OrmPackage.ROLE_GROUP__INCOMING:
+          return OrmPackage.RELATION_TARGET__INCOMING;
+        case OrmPackage.ROLE_GROUP__OUTGOING:
+          return OrmPackage.RELATION_TARGET__OUTGOING;
+        case OrmPackage.ROLE_GROUP__BOUNDARIES:
+          return OrmPackage.RELATION_TARGET__BOUNDARIES;
+        default:
+          return -1;
+      }
+    }
+    if (baseClass == Model.class) {
       switch (derivedFeatureID) {
         case OrmPackage.ROLE_GROUP__RELATIONS:
-          return OrmPackage.CONTAINER__RELATIONS;
-        case OrmPackage.ROLE_GROUP__NODES:
-          return OrmPackage.CONTAINER__NODES;
+          return OrmPackage.MODEL__RELATIONS;
+        default:
+          return -1;
+      }
+    }
+    if (baseClass == AbstractRoleModel.class) {
+      switch (derivedFeatureID) {
+        case OrmPackage.ROLE_GROUP__ABSTRACTROLES:
+          return OrmPackage.ABSTRACT_ROLE_MODEL__ABSTRACTROLES;
         default:
           return -1;
       }
@@ -275,28 +261,38 @@ public class RoleGroupImpl extends ConstraintImpl implements RoleGroup {
    */
   @Override
   public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-    if (baseClass == Node.class) {
+    if (baseClass == NamedElement.class) {
       switch (baseFeatureID) {
-        case OrmPackage.NODE__INCOMING_LINKS:
-          return OrmPackage.ROLE_GROUP__INCOMING_LINKS;
-        case OrmPackage.NODE__OUTGOING_LINKS:
-          return OrmPackage.ROLE_GROUP__OUTGOING_LINKS;
-        case OrmPackage.NODE__NAME:
+        case OrmPackage.NAMED_ELEMENT__NAME:
           return OrmPackage.ROLE_GROUP__NAME;
-        case OrmPackage.NODE__CONSTRAINTS:
-          return OrmPackage.ROLE_GROUP__CONSTRAINTS;
-        case OrmPackage.NODE__CONTAINER:
-          return OrmPackage.ROLE_GROUP__CONTAINER;
         default:
           return -1;
       }
     }
-    if (baseClass == org.framed.orm.model.Container.class) {
+    if (baseClass == RelationTarget.class) {
       switch (baseFeatureID) {
-        case OrmPackage.CONTAINER__RELATIONS:
+        case OrmPackage.RELATION_TARGET__INCOMING:
+          return OrmPackage.ROLE_GROUP__INCOMING;
+        case OrmPackage.RELATION_TARGET__OUTGOING:
+          return OrmPackage.ROLE_GROUP__OUTGOING;
+        case OrmPackage.RELATION_TARGET__BOUNDARIES:
+          return OrmPackage.ROLE_GROUP__BOUNDARIES;
+        default:
+          return -1;
+      }
+    }
+    if (baseClass == Model.class) {
+      switch (baseFeatureID) {
+        case OrmPackage.MODEL__RELATIONS:
           return OrmPackage.ROLE_GROUP__RELATIONS;
-        case OrmPackage.CONTAINER__NODES:
-          return OrmPackage.ROLE_GROUP__NODES;
+        default:
+          return -1;
+      }
+    }
+    if (baseClass == AbstractRoleModel.class) {
+      switch (baseFeatureID) {
+        case OrmPackage.ABSTRACT_ROLE_MODEL__ABSTRACTROLES:
+          return OrmPackage.ROLE_GROUP__ABSTRACTROLES;
         default:
           return -1;
       }

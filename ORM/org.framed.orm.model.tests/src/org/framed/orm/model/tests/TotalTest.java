@@ -13,7 +13,7 @@ import org.framed.orm.model.Total;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TotalTest extends RelationshipConstraintTest {
+public class TotalTest extends IntraRelationshipConstraintTest {
 
   /**
    * <!-- begin-user-doc -->

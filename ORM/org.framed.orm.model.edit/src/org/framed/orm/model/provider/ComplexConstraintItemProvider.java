@@ -10,12 +10,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -28,9 +23,7 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ComplexConstraintItemProvider extends ConstraintItemProvider implements
-    IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
-    IItemLabelProvider, IItemPropertySource {
+public class ComplexConstraintItemProvider extends ConstraintItemProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -52,25 +45,25 @@ public class ComplexConstraintItemProvider extends ConstraintItemProvider implem
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addGroupsPropertyDescriptor(object);
+      addTargetsPropertyDescriptor(object);
       addExpressionPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Groups feature.
+   * This adds a property descriptor for the Targets feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addGroupsPropertyDescriptor(Object object) {
+  protected void addTargetsPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
         getResourceLocator(),
-        getString("_UI_ComplexConstraint_groups_feature"),
-        getString("_UI_PropertyDescriptor_description", "_UI_ComplexConstraint_groups_feature",
-            "_UI_ComplexConstraint_type"), OrmPackage.Literals.COMPLEX_CONSTRAINT__GROUPS, true,
+        getString("_UI_ComplexConstraint_targets_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_ComplexConstraint_targets_feature",
+            "_UI_ComplexConstraint_type"), OrmPackage.Literals.COMPLEX_CONSTRAINT__TARGETS, true,
         false, true, null, null, null));
   }
 
@@ -113,6 +106,7 @@ public class ComplexConstraintItemProvider extends ConstraintItemProvider implem
     return label == null || label.length() == 0 ? getString("_UI_ComplexConstraint_type")
         : getString("_UI_ComplexConstraint_type") + " " + label;
   }
+
 
   /**
    * This handles model notifications by calling {@link #updateChildren} to update any cached

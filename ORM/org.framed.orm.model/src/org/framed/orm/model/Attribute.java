@@ -2,7 +2,6 @@
  */
 package org.framed.orm.model;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,8 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.framed.orm.model.Attribute#getType <em>Type</em>}</li>
- *   <li>{@link org.framed.orm.model.Attribute#getName <em>Name</em>}</li>
+ *   <li>{@link org.framed.orm.model.Attribute#getOwner <em>Owner</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,60 +19,33 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Attribute extends EObject {
+public interface Attribute extends TypedElement {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' container reference.
+   * Returns the value of the '<em><b>Owner</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.framed.orm.model.Type#getAttributes <em>Attributes</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' container reference isn't clear,
+   * If the meaning of the '<em>Owner</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' container reference.
-   * @see #setType(Type)
-   * @see org.framed.orm.model.OrmPackage#getAttribute_Type()
+   * @return the value of the '<em>Owner</em>' container reference.
+   * @see #setOwner(Type)
+   * @see org.framed.orm.model.OrmPackage#getAttribute_Owner()
    * @see org.framed.orm.model.Type#getAttributes
-   * @model opposite="attributes" transient="false"
+   * @model opposite="attributes" required="true" transient="false"
    * @generated
    */
-  Type getType();
+  Type getOwner();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Attribute#getType <em>Type</em>}' container reference.
+   * Sets the value of the '{@link org.framed.orm.model.Attribute#getOwner <em>Owner</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' container reference.
-   * @see #getType()
+   * @param value the new value of the '<em>Owner</em>' container reference.
+   * @see #getOwner()
    * @generated
    */
-  void setType(Type value);
-
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * The default value is <code>"<...>"</code>.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.framed.orm.model.OrmPackage#getAttribute_Name()
-   * @model default="<...>"
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Attribute#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
+  void setOwner(Type value);
 
 } // Attribute

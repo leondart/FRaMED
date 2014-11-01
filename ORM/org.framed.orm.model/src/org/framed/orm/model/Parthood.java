@@ -29,6 +29,16 @@ public enum Parthood implements Enumerator {
   UNCONSTRAINED(0, "Unconstrained", "Unconstrained"),
 
   /**
+   * The '<em><b>Exclusive Part</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #EXCLUSIVE_PART_VALUE
+   * @generated
+   * @ordered
+   */
+  EXCLUSIVE_PART(1, "ExclusivePart", "ExclusivePart"),
+
+  /**
    * The '<em><b>Sharable Part</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -37,16 +47,6 @@ public enum Parthood implements Enumerator {
    * @ordered
    */
   SHARABLE_PART(2, "SharablePart", "SharablePart"),
-
-  /**
-   * The '<em><b>Mandatory Part</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #MANDATORY_PART_VALUE
-   * @generated
-   * @ordered
-   */
-  MANDATORY_PART(4, "MandatoryPart", "MandatoryPart"),
 
   /**
    * The '<em><b>Essential Part</b></em>' literal object.
@@ -59,14 +59,14 @@ public enum Parthood implements Enumerator {
   ESSENTIAL_PART(3, "EssentialPart", "EssentialPart"),
 
   /**
-   * The '<em><b>Exclusive Part</b></em>' literal object.
+   * The '<em><b>Mandatory Part</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #EXCLUSIVE_PART_VALUE
+   * @see #MANDATORY_PART_VALUE
    * @generated
    * @ordered
    */
-  EXCLUSIVE_PART(1, "ExclusivePart", "ExclusivePart"),
+  MANDATORY_PART(4, "MandatoryPart", "MandatoryPart"),
 
   /**
    * The '<em><b>Inseperable Part</b></em>' literal object.
@@ -94,6 +94,21 @@ public enum Parthood implements Enumerator {
   public static final int UNCONSTRAINED_VALUE = 0;
 
   /**
+   * The '<em><b>Exclusive Part</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Exclusive Part</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #EXCLUSIVE_PART
+   * @model name="ExclusivePart"
+   * @generated
+   * @ordered
+   */
+  public static final int EXCLUSIVE_PART_VALUE = 1;
+
+  /**
    * The '<em><b>Sharable Part</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
@@ -107,21 +122,6 @@ public enum Parthood implements Enumerator {
    * @ordered
    */
   public static final int SHARABLE_PART_VALUE = 2;
-
-  /**
-   * The '<em><b>Mandatory Part</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>Mandatory Part</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @see #MANDATORY_PART
-   * @model name="MandatoryPart"
-   * @generated
-   * @ordered
-   */
-  public static final int MANDATORY_PART_VALUE = 4;
 
   /**
    * The '<em><b>Essential Part</b></em>' literal value.
@@ -139,19 +139,19 @@ public enum Parthood implements Enumerator {
   public static final int ESSENTIAL_PART_VALUE = 3;
 
   /**
-   * The '<em><b>Exclusive Part</b></em>' literal value.
+   * The '<em><b>Mandatory Part</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of '<em><b>Exclusive Part</b></em>' literal object isn't clear,
+   * If the meaning of '<em><b>Mandatory Part</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #EXCLUSIVE_PART
-   * @model name="ExclusivePart"
+   * @see #MANDATORY_PART
+   * @model name="MandatoryPart"
    * @generated
    * @ordered
    */
-  public static final int EXCLUSIVE_PART_VALUE = 1;
+  public static final int MANDATORY_PART_VALUE = 4;
 
   /**
    * The '<em><b>Inseperable Part</b></em>' literal value.
@@ -174,8 +174,8 @@ public enum Parthood implements Enumerator {
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final Parthood[] VALUES_ARRAY = new Parthood[] {UNCONSTRAINED, SHARABLE_PART,
-      MANDATORY_PART, ESSENTIAL_PART, EXCLUSIVE_PART, INSEPERABLE_PART,};
+  private static final Parthood[] VALUES_ARRAY = new Parthood[] {UNCONSTRAINED, EXCLUSIVE_PART,
+      SHARABLE_PART, ESSENTIAL_PART, MANDATORY_PART, INSEPERABLE_PART,};
 
   /**
    * A public read-only list of all the '<em><b>Parthood</b></em>' enumerators.
@@ -228,14 +228,14 @@ public enum Parthood implements Enumerator {
     switch (value) {
       case UNCONSTRAINED_VALUE:
         return UNCONSTRAINED;
-      case SHARABLE_PART_VALUE:
-        return SHARABLE_PART;
-      case MANDATORY_PART_VALUE:
-        return MANDATORY_PART;
-      case ESSENTIAL_PART_VALUE:
-        return ESSENTIAL_PART;
       case EXCLUSIVE_PART_VALUE:
         return EXCLUSIVE_PART;
+      case SHARABLE_PART_VALUE:
+        return SHARABLE_PART;
+      case ESSENTIAL_PART_VALUE:
+        return ESSENTIAL_PART;
+      case MANDATORY_PART_VALUE:
+        return MANDATORY_PART;
       case INSEPERABLE_PART_VALUE:
         return INSEPERABLE_PART;
     }
