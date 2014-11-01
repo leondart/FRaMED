@@ -7,7 +7,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true" interface="true"
       eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
-        eType="#//Model" eOpposite="#//ElementModel/elements"/>
+        eType="#//ElementModel" eOpposite="#//ElementModel/elements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
@@ -131,9 +131,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="relation" lowerBound="1"
         eType="#//Relationship" eOpposite="#//Relationship/rlshipConstraints"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntraRelationshipConstraint" eSuperTypes="#//RelationshipConstraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relation" eType="#//Relationship"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntraRelationshipConstraint" eSuperTypes="#//RelationshipConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="InterRelationshipConstraint" eSuperTypes="#//RelationshipConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1" eType="#//Relationship"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="second" lowerBound="1"

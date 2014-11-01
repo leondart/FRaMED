@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.framed.orm.model/src" modelPluginID="org.framed.orm.model"
+    modelName="ORM" modelPluginClass="" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    featureDelegation="Reflective" complianceLevel="7.0" copyrightFields="false" editPluginID="org.framed.orm.model.edit"
+    editorPluginID="org.framed.orm.model.editor" operationReflection="true" importOrganizing="true">
+  <foreignModel>ORM.ecore</foreignModel>
+  <genPackages prefix="Orm" basePackage="org.framed" disposableProviderFactory="true"
+      interfacePackageSuffix="model" metaDataPackageSuffix="model" classPackageSuffix="model.impl"
+      utilityPackageSuffix="model.util" providerPackageSuffix="model.provider" presentationPackageSuffix="model.presentation"
+      testsPackageSuffix="model.tests" ecorePackage="ORM.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ORM.ecore#//Parthood">
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Parthood/Unconstrained"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Parthood/SharablePart"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Parthood/MandatoryPart"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Parthood/EssentialPart"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Parthood/ExclusivePart"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Parthood/InseperablePart"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="ORM.ecore#//Rectangle"/>
+    <genDataTypes ecoreDataType="ORM.ecore#//Point"/>
+    <genClasses ecoreClass="ORM.ecore#//Attribute">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Attribute/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//Method">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Method/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Method/Name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ORM.ecore#//Type">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Type/attributes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Type/operations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Type/isExpand"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//CompartmentDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//CompartmentDiagram/compartments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//CompartmentDiagram/groups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//CompartmentDiagram/players"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//NaturalType"/>
+    <genClasses ecoreClass="ORM.ecore#//Compartment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Compartment/rolemodel"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//Grouping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Grouping/rolemodel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ORM.ecore#//Node">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Node/incomingLinks"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Node/outgoingLinks"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Node/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Node/constraints"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Node/Container"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//RoleType"/>
+    <genClasses ecoreClass="ORM.ecore#//Container">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Container/relations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Container/nodes"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//RoleGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//RoleGroup/lower"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//RoleGroup/items"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//RoleGroup/upper"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//Rolemodel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/subcontexts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/participants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/players"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/compartment"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/parentGroup"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Rolemodel/groups"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//Total"/>
+    <genClasses ecoreClass="ORM.ecore#//Fulfillment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Fulfillment/fulfilledRoles"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//RoleEquivalence"/>
+    <genClasses ecoreClass="ORM.ecore#//Acyclic"/>
+    <genClasses image="false" ecoreClass="ORM.ecore#//Inheritance"/>
+    <genClasses ecoreClass="ORM.ecore#//Relationship">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondParthood"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondLower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstLower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstUpper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/secondUpper"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relationship/firstParthood"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/rlshipConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription=""
+          ecoreFeature="ecore:EReference ORM.ecore#//Relationship/sourceLabel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relationship/targetLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//RoleProhibition"/>
+    <genClasses ecoreClass="ORM.ecore#//Irreflexive"/>
+    <genClasses ecoreClass="ORM.ecore#//RoleImplication"/>
+    <genClasses image="false" ecoreClass="ORM.ecore#//RelationshipConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//RelationshipConstraint/relation"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ORM.ecore#//Relation">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Relation/relationContainer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relation/dim1BP"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//Relation/dim2BP"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ORM.ecore#//Constraint"/>
+    <genClasses image="false" ecoreClass="ORM.ecore#//RoleConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//RoleConstraint/ends"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//RoleConstraint/second"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//RoleConstraint/first"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ORM.ecore#//RoleInvariant">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//RoleInvariant/subject"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ORM.ecore#//AbstractRole">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//AbstractRole/first"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//AbstractRole/second"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//ComplexConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//ComplexConstraint/groups"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//ComplexConstraint/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="ORM.ecore#//RelationLabel">
+      <genFeatures createChild="false" propertyDescription="" ecoreFeature="ecore:EAttribute ORM.ecore#//RelationLabel/label"/>
+      <genFeatures property="None" createChild="false" propertyCategory="" propertyDescription=""
+          ecoreFeature="ecore:EAttribute ORM.ecore#//RelationLabel/isRelationEnd"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
