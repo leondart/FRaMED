@@ -13,58 +13,56 @@
         eOpposite="#//Relation/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingRelations" eType="#//Relation"
         eOpposite="#//Relation/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencingElement" eType="ecore:EClass ../../org.rosi.crom.metamodel/src-gen/crom_l1_composed.ecore#//NamedElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="children" eType="ecore:EClass ../../org.rosi.crom.metamodel/src-gen/crom_l1_composed.ecore#//ModelElement"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
-        eType="#//Relation" containment="true" eOpposite="#//Relation/relationContainer"/>
+        eType="#//Relation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/container"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relationContainer" lowerBound="1"
-        eType="#//Model" eOpposite="#//Model/relations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElement"
         eOpposite="#//ModelElement/incomingRelations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//ModelElement"
         eOpposite="#//ModelElement/outgoingRelations"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bendpoints" upperBound="-1"
         eType="#//geometry/RelativePoint" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencingElement" eType="ecore:EClass ../../org.rosi.crom.metamodel/src-gen/crom_l1_composed.ecore#//Relation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Relation #//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondParthood" lowerBound="1"
-        defaultValueLiteral="Unconstrained"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondLower" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstLower" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="0"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstUpper" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondUpper" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstParthood" lowerBound="1"
-        defaultValueLiteral="Unconstrained"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLabel" lowerBound="1"
-        eType="#//RelationLabel" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLabel" lowerBound="1"
-        eType="#//RelationLabel" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="firstLowerUpper" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secondLowerUpper" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rlshipConstraints" upperBound="-1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" lowerBound="1"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="second" lowerBound="1"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Relationship" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceLabel" eType="#//NamedElement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetLabel" eType="#//NamedElement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="#//FanOutRelation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RelationLabel">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="0..1"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRelationEnd" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Container" eSuperTypes="#//ModelElement #//Model"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstrainedContainer" eSuperTypes="#//Container">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ModelElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shape" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstSegment" eType="#//Segment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondSegment" eType="#//Segment"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Segment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//NamedElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compartment" eSuperTypes="#//Shape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ModelElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
+        eType="#//Relation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FanOutRelation" eSuperTypes="#//Relation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceElements" upperBound="-1"
+        eType="#//NamedElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FanInFanOutRelation" eSuperTypes="#//FanOutRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetElements" upperBound="-1"
+        eType="#//NamedElement" containment="true"/>
   </eClassifiers>
   <eSubpackages name="geometry">
     <eClassifiers xsi:type="ecore:EClass" name="Point">
