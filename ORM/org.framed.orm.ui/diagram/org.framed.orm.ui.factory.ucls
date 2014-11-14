@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.factory.ORMRoleGroupFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMRoleGroupFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="183" x="37" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.ui.factory.ORMTotalFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMTotalFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="151" x="260" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.factory.ORMCompartmentFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMCompartmentFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="201" x="451" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.ui.factory.ORMRoleImplicationFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMRoleImplicationFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="216" x="692" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.ui.factory.ORMGroupingFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMGroupingFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="174" x="948" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.ui.factory.ORMAttributeFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMAttributeFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="169" x="1162" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.framed.orm.ui.factory.ORMInheritanceFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMInheritanceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="186" x="1371" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.framed.orm.ui.factory.ORMRoleEquivalenceFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMRoleEquivalenceFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="224" x="1597" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.framed.orm.ui.factory.ORMNaturalTypeFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMNaturalTypeFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="192" x="1861" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.framed.orm.ui.factory.ORMRoleTypeFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMRoleTypeFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="174" x="2093" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="org.framed.orm.ui.factory.ORMMethodFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMMethodFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="161" x="2307" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="org.framed.orm.ui.factory.ORMAcyclicFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMAcyclicFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="159" x="2508" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.framed.orm.ui.factory.ORMRoleProhibitionFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMRoleProhibitionFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="216" x="2707" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="org.framed.orm.ui.factory.ORMRelationshipFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMRelationshipFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="196" x="2963" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="org.framed.orm.ui.factory.ORMFulfillmentFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMFulfillmentFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="182" x="3415" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="org.framed.orm.ui.factory.ORMIrreflexiveFactory" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/factory/ORMIrreflexiveFactory.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="176" x="3199" y="-8"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

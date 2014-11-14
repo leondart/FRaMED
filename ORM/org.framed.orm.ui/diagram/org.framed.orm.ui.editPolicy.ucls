@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.editPolicy.ORMTypeXYLayoutPolicy" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMTypeXYLayoutPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="288" x="-52" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.ui.editPolicy.ORMAttributeComponentEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMAttributeComponentEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="301" x="276" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.editPolicy.ORMRoleGroupComponentEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMRoleGroupComponentEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="301" x="617" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.ui.editPolicy.ORMMethodComponentEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMMethodComponentEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="301" x="958" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMRelationBendpointEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="363" x="1299" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.ui.editPolicy.ORMCompartmentDiagramXYLayoutPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMCompartmentDiagramXYLayoutPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="366" x="1702" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMTypeComponentEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="338" x="2108" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMDragEditPartsTracker.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="222" x="2486" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMNodeDirectEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="320" x="3211" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.framed.orm.ui.editPolicy.ORMRoleGroupXYLayoutEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMRoleGroupXYLayoutEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="366" x="2545" y="297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="org.framed.orm.ui.editPolicy.ORMAttributeDirectEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMAttributeDirectEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="320" x="3571" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="org.framed.orm.ui.editPolicy.ORMRolemodelXYLayoutPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMRolemodelXYLayoutPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="366" x="2951" y="297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.framed.orm.ui.editPolicy.ORMRelationLabelEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMRelationLabelEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="320" x="3931" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMRelationConnectionEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="683" x="4291" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="org.framed.orm.ui.editPolicy.ORMAbstractXYLayoutPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMAbstractXYLayoutPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="423" x="2748" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="org.framed.orm.ui.editPolicy.ORMContainerEditPolicy" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMContainerEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="336" x="5997" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="org.framed.orm.ui.editPolicy.ORMMethodDirectEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMMethodDirectEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="320" x="5637" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/editPolicy/ORMNodeGraphicalNodeEditPolicy.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="422" width="583" x="5014" y="-165"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="19">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <generalization id="20">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

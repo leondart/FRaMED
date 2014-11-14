@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.model.provider.RelationItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RelationItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="358" x="5336" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.model.provider.RoleGroupItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleGroupItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="332" width="411" x="2590" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.model.provider.NaturalInheritanceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/NaturalInheritanceItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="3545" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.model.provider.InterRelationshipConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/InterRelationshipConstraintItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="5933" y="1081"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.model.provider.RoleProhibitionItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleProhibitionItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="4739" y="1081"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.model.provider.AntiRigidTypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/AntiRigidTypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="1741" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.framed.orm.model.provider.CompartmentTypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/CompartmentTypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="411" x="7180" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.framed.orm.model.provider.TotalItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/TotalItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="5933" y="1327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.framed.orm.model.provider.RelationLabelItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RelationLabelItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="1741" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.framed.orm.model.provider.TypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/TypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="411" x="1741" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="org.framed.orm.model.provider.ParthoodConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ParthoodConstraintItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="358" x="5535" y="1327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="org.framed.orm.model.provider.ORMEditPlugin.Implementation" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ORMEditPlugin.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7786" y="413"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.framed.orm.model.provider.RoleGroupElementItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleGroupElementItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="358" x="2590" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="org.framed.orm.model.provider.ComplexConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ComplexConstraintItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="5933" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="org.framed.orm.model.provider.NaturalTypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/NaturalTypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="358" x="6782" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="org.framed.orm.model.provider.AbstractRoleModelItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/AbstractRoleModelItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="411" x="1290" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="org.framed.orm.model.provider.ElementModelItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ElementModelItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="411" x="839" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="org.framed.orm.model.provider.AttributeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/AttributeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="3890" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="org.framed.orm.model.provider.ModelItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ModelItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="411" x="1290" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="org.framed.orm.model.provider.RigidTypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RigidTypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="411" x="6782" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="org.framed.orm.model.provider.AbstractRoleRefItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/AbstractRoleRefItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="188" width="358" x="2192" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="org.framed.orm.model.provider.FulfillmentItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/FulfillmentItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="5535" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="org.framed.orm.model.provider.OperationItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/OperationItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="411" x="4288" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="org.framed.orm.model.provider.TypedElementItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/TypedElementItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="3890" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="org.framed.orm.model.provider.CyclicItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/CyclicItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="5137" y="1327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="org.framed.orm.model.provider.PartItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/PartItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="260" width="358" x="892" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="org.framed.orm.model.provider.DataTypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/DataTypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="6384" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="org.framed.orm.model.provider.DataInheritanceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/DataInheritanceItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="3943" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="org.framed.orm.model.provider.RoleTypeItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleTypeItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="314" width="411" x="3041" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="org.framed.orm.model.provider.PlaceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/PlaceItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="358" x="494" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="org.framed.orm.model.provider.RoleImplicationItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleImplicationItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="5137" y="1081"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="org.framed.orm.model.provider.RoleConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleConstraintItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="5137" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="org.framed.orm.model.provider.ORMEditPlugin" project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ORMEditPlugin.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="277" x="7631" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="org.framed.orm.model.provider.RoleEquivalenceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleEquivalenceItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="4341" y="1081"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="org.framed.orm.model.provider.RoleInheritanceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RoleInheritanceItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="4341" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="org.framed.orm.model.provider.CompartmentInheritanceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/CompartmentInheritanceItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="358" x="4739" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="org.framed.orm.model.provider.ParameterItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ParameterItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="3492" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="org.framed.orm.model.provider.RelationTargetItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RelationTargetItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="260" width="358" x="2139" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="org.framed.orm.model.provider.InheritanceItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/InheritanceItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="358" x="4739" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="org.framed.orm.model.provider.RelationshipConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RelationshipConstraintItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="5535" y="835"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="org.framed.orm.model.provider.IrreflexiveItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/IrreflexiveItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="4739" y="1327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="org.framed.orm.model.provider.ConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/ConstraintItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="5137" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="org.framed.orm.model.provider.GroupItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/GroupItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="296" width="411" x="43" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="org.framed.orm.model.provider.RelationshipImplicationItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RelationshipImplicationItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="6331" y="1327"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="org.framed.orm.model.provider.IntraRelationshipConstraintItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/IntraRelationshipConstraintItemProvider.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="170" width="358" x="5535" y="1081"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="org.framed.orm.model.provider.RelationshipItemProvider" 
+    project="org.framed.orm.model.edit" 
+    file="/org.framed.orm.model.edit/src/org/framed/orm/model/provider/RelationshipItemProvider.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="422" width="411" x="5933" y="373"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="47">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="51">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="39"/>  
+  </generalization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <generalization id="55">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <nesting id="56">    
+    <bendpoint x="7626" y="302"/>    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="12"/>  
+  </nesting>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="42"/>  
+  </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="40"/>  
+  </generalization>  
+  <generalization id="60">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="62">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="64">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="65">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="66">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="38"/>  
+  </generalization>  
+  <generalization id="67">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="68">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="40"/>  
+  </generalization>  
+  <association id="69">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="70" name="INSTANCE"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="72">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="74">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="75">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="42"/>  
+  </generalization>  
+  <generalization id="76">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="77">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="78" name="plugin"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="80">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="32"/>  
+  </generalization>  
+  <generalization id="82">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="39"/>  
+  </generalization>  
+  <generalization id="83">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="45"/>  
+  </generalization>  
+  <generalization id="84">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="42"/>  
+  </generalization>  
+  <generalization id="85">    
+    <end type="SOURCE" refId="35"/>    
+    <end type="TARGET" refId="39"/>  
+  </generalization>  
+  <generalization id="86">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="87">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="39"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

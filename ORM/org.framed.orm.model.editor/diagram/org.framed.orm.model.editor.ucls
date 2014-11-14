@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" 
+    name="org.framed.orm.model.presentation.OrmModelWizard.OrmModelWizardNewFileCreationPage" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/OrmModelWizard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="395" x="733" y="499"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.model.presentation.ORMEditorPlugin" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/ORMEditorPlugin.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="277" x="521" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.model.presentation.ORMEditorPlugin.Implementation" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/ORMEditorPlugin.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="80" width="172" x="521" y="499"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.model.presentation.OrmActionBarContributor" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/OrmActionBarContributor.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="422" width="440" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.model.presentation.OrmEditor.ReverseAdapterFactoryContentProvider" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/OrmEditor.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="335" x="1523" y="499"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.model.presentation.OrmModelWizard" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/OrmModelWizard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="314" width="258" x="951" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" 
+    name="org.framed.orm.model.presentation.OrmModelWizard.OrmModelWizardInitialObjectCreationPage" 
+    project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/OrmModelWizard.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="278" width="315" x="1168" y="499"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.framed.orm.model.presentation.OrmEditor" project="org.framed.orm.model.editor" 
+    file="/org.framed.orm.model.editor/src/org/framed/orm/model/presentation/OrmEditor.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="52" width="172" x="1523" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <association id="9">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="10" name="plugin"/>      
+      <multiplicity id="11" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="13" name="newFileCreationPage"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="15">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </nesting>  
+  <nesting id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </nesting>  
+  <nesting id="17">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
+  <nesting id="18">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </nesting>  
+  <association id="19">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="20" name="initialObjectCreationPage"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="23" name="INSTANCE"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
