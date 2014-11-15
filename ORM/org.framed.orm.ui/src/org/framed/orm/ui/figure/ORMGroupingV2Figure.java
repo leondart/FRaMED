@@ -15,7 +15,7 @@ import org.framed.orm.model.Grouping;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 /**
- * This figure is for {@link Groupingd}s, where the user did step into. The figure looks in the
+ * This figure is for {@link Grouping}s, where the user did step into. The figure looks in the
  * viewer/editor somewhat like this:
  * 
  *  ___________________________
