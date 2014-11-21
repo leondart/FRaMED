@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.framed.orm.model.Model#getRelations <em>Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.Model#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,22 +23,22 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Model extends EObject {
-  /**
-   * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
-   * The list contents are of type {@link org.framed.orm.model.Relation}.
-   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Relation#getRelationContainer <em>Relation Container</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Relations</em>' containment reference list.
-   * @see org.framed.orm.model.OrmPackage#getModel_Relations()
-   * @see org.framed.orm.model.Relation#getRelationContainer
-   * @model opposite="relationContainer" containment="true"
-   * @generated
-   */
-  EList<Relation> getRelations();
+	/**
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.framed.orm.model.ModelElement}.
+	 * It is bidirectional and its opposite is '{@link org.framed.orm.model.ModelElement#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see org.framed.orm.model.OrmPackage#getModel_Elements()
+	 * @see org.framed.orm.model.ModelElement#getContainer
+	 * @model opposite="container" containment="true"
+	 * @generated
+	 */
+	EList<ModelElement> getElements();
 
 } // Model

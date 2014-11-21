@@ -14,42 +14,42 @@ import org.framed.orm.model.NamedElement;
  */
 public abstract class NamedElementTest extends TestCase {
 
-  /**
-   * The fixture for this Named Element test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected NamedElement fixture = null;
+	/**
+	 * The fixture for this Named Element test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamedElement fixture = null;
 
-  /**
-   * Constructs a new Named Element test case with the given name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NamedElementTest(String name) {
-    super(name);
-  }
+	/**
+	 * Constructs a new Named Element test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NamedElementTest(String name) {
+		super(name);
+	}
 
-  /**
-   * Sets the fixture for this Named Element test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void setFixture(NamedElement fixture) {
-    this.fixture = fixture;
-  }
+	/**
+	 * Sets the fixture for this Named Element test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void setFixture(NamedElement fixture) {
+		this.fixture = fixture;
+	}
 
-  /**
-   * Returns the fixture for this Named Element test case.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected NamedElement getFixture() {
-    return fixture;
-  }
+	/**
+	 * Returns the fixture for this Named Element test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamedElement getFixture() {
+		return fixture;
+	}
 
 } //NamedElementTest

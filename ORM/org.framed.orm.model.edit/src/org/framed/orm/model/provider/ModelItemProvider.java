@@ -2,7 +2,6 @@
  */
 package org.framed.orm.model.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -32,185 +31,138 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-    IItemPropertySource {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ModelItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+public class ModelItemProvider extends ItemProviderAdapter implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-    }
-    return itemPropertyDescriptors;
-  }
+		}
+		return itemPropertyDescriptors;
+	}
 
-  /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(OrmPackage.Literals.MODEL__RELATIONS);
-    }
-    return childrenFeatures;
-  }
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(OrmPackage.Literals.MODEL__ELEMENTS);
+		}
+		return childrenFeatures;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EStructuralFeature getChildFeature(Object object, Object child) {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-    return super.getChildFeature(object, child);
-  }
+		return super.getChildFeature(object, child);
+	}
 
-  /**
-   * This returns Model.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Model"));
-  }
+	/**
+	 * This returns Model.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/Model"));
+	}
 
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getText(Object object) {
-    return getString("_UI_Model_type");
-  }
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getText(Object object) {
+		return getString("_UI_Model_type");
+	}
 
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
+		switch (notification.getFeatureID(Model.class)) {
+		case OrmPackage.MODEL__ELEMENTS:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
+			return;
+		}
+		super.notifyChanged(notification);
+	}
 
-    switch (notification.getFeatureID(Model.class)) {
-      case OrmPackage.MODEL__RELATIONS:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-            false));
-        return;
-    }
-    super.notifyChanged(notification);
-  }
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
+		newChildDescriptors.add(createChildParameter(
+				OrmPackage.Literals.MODEL__ELEMENTS,
+				OrmFactory.eINSTANCE.createModelElement()));
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createRelationship()));
+		newChildDescriptors.add(createChildParameter(
+				OrmPackage.Literals.MODEL__ELEMENTS,
+				OrmFactory.eINSTANCE.createShape()));
+	}
 
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createFulfillment()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createInheritance()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createConstraint()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createIntraRelationshipConstraint()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createInterRelationshipConstraint()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createComplexConstraint()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createDataInheritance()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createNaturalInheritance()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createCompartmentInheritance()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createRoleInheritance()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createRelationshipImplication()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createIrreflexive()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createCyclic()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createTotal()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createRoleImplication()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createRoleEquivalence()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createRoleProhibition()));
-
-    newChildDescriptors.add(createChildParameter(OrmPackage.Literals.MODEL__RELATIONS,
-        OrmFactory.eINSTANCE.createParthoodConstraint()));
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return ORMEditPlugin.INSTANCE;
-  }
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return ORMEditPlugin.INSTANCE;
+	}
 
 }
