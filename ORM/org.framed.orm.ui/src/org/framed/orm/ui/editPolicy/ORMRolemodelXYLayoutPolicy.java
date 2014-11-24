@@ -24,7 +24,7 @@ import org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
-import org.framed.orm.ui.figure.ORMRolemodelFigure;
+import org.framed.orm.ui.figure.ORMModelFigure;
 
 /**
  * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of
@@ -156,7 +156,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
           || ((CreateRequest) request).getNewObjectType().equals(NaturalType.class)
           && getHost().getParent() instanceof ORMGroupingEditPart
           || ((CreateRequest) request).getNewObjectType().equals(RoleGroup.class)) {
-        final ORMRolemodelFigure figure = (ORMRolemodelFigure) getHostFigure();
+        final ORMModelFigure figure = (ORMModelFigure) getHostFigure();
         figure.setBackgroundColor(ColorConstants.lightBlue);
         figure.setOpaque(true);
       }
@@ -166,7 +166,7 @@ public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   /** {@inheritDoc} */
   @Override
   protected void eraseLayoutTargetFeedback(final Request request) {
-    final ORMRolemodelFigure figure = (ORMRolemodelFigure) getHostFigure();
+    final ORMModelFigure figure = (ORMModelFigure) getHostFigure();
     figure.setBackgroundColor(ColorConstants.white);
     figure.setOpaque(false);
   }

@@ -40,7 +40,7 @@ import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMTypeXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
-import org.framed.orm.ui.figure.ORMTypeFigure;
+import org.framed.orm.ui.figure.ORMShapeFigure;
 import org.framed.orm.ui.figure.PartFigure;
 
 /**
@@ -136,7 +136,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
   protected void addChildVisual(final EditPart childEditPart, final int index) {
 
     if (childEditPart.getModel() instanceof Attribute) {
-      final IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
+      final IFigure contentPane = ((ORMShapeFigure) getFigure()).getAttributeFigure();
       final ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
 
       final Attribute attribute = (Attribute) childEditPart.getModel();
@@ -154,7 +154,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     }
 
     if (childEditPart.getModel() instanceof Method) {
-      final IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
+      final IFigure contentPane = ((ORMShapeFigure) getFigure()).getMethodeFigure();
       final ORMMethodEditPart methodEditPart = (ORMMethodEditPart) childEditPart;
 
       final Method method = (Method) childEditPart.getModel();
@@ -242,7 +242,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
   protected void removeChildVisual(final EditPart childEditPart) {
 
     if (childEditPart.getModel() instanceof Attribute) {
-      IFigure contentPane = ((ORMTypeFigure) getFigure()).getAttributeFigure();
+      IFigure contentPane = ((ORMShapeFigure) getFigure()).getAttributeFigure();
 
       if (contentPane.getChildren().contains(((ORMAttributeEditPart) childEditPart).getFigure())) {
         contentPane.remove(((ORMAttributeEditPart) childEditPart).getFigure());
@@ -267,7 +267,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
 
     if (childEditPart.getModel() instanceof Method) {
-      IFigure contentPane = ((ORMTypeFigure) getFigure()).getMethodeFigure();
+      IFigure contentPane = ((ORMShapeFigure) getFigure()).getMethodeFigure();
 
       if (contentPane.getChildren().contains(((ORMMethodEditPart) childEditPart).getFigure())) {
         contentPane.remove(((ORMMethodEditPart) childEditPart).getFigure());
@@ -311,7 +311,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
    * type name.
    */
   private void performDirectEditing() {
-    Label label = ((ORMTypeFigure) getFigure()).getLabel();
+    Label label = ((ORMShapeFigure) getFigure()).getLabel();
     ORMNodeDirectEditManager manager =
         new ORMNodeDirectEditManager(this, TextCellEditor.class,
             new ORMNodeCellEditorLocator(label), label);
@@ -341,25 +341,25 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
   /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-    return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
+    return ((ORMShapeFigure) getFigure()).getConnectionAnchor();
   }
 
   /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-    return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
+    return ((ORMShapeFigure) getFigure()).getConnectionAnchor();
   }
 
   /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-    return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
+    return ((ORMShapeFigure) getFigure()).getConnectionAnchor();
   }
 
   /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-    return ((ORMTypeFigure) getFigure()).getConnectionAnchor();
+    return ((ORMShapeFigure) getFigure()).getConnectionAnchor();
   }
 
   /**
@@ -369,7 +369,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
    * */
   @Override
   public void refreshVisuals() {
-    final ORMTypeFigure figure = (ORMTypeFigure) getFigure();
+    final ORMShapeFigure figure = (ORMShapeFigure) getFigure();
     final Type model = (Type) getModel();
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 

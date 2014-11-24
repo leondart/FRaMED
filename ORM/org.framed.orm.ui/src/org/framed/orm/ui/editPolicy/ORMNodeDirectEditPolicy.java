@@ -9,7 +9,7 @@ import org.framed.orm.ui.command.nodes.ORMNodeRenameCommand;
 import org.framed.orm.ui.figure.ORMGroupingV1Figure;
 import org.framed.orm.ui.figure.ORMGroupingV2Figure;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
-import org.framed.orm.ui.figure.ORMTypeFigure;
+import org.framed.orm.ui.figure.ORMShapeFigure;
 
 /**
  * This {@link DirectEditPolicy} shows DirectEdit feedback and creates the Command to perform a
@@ -41,8 +41,8 @@ public class ORMNodeDirectEditPolicy extends DirectEditPolicy {
   @Override
   protected void showCurrentEditValue(final DirectEditRequest request) {
     final String value = (String) request.getCellEditor().getValue();
-    if (getHostFigure() instanceof ORMTypeFigure){
-      ((ORMTypeFigure) getHostFigure()).getLabel().setText(value);
+    if (getHostFigure() instanceof ORMShapeFigure){
+      ((ORMShapeFigure) getHostFigure()).getLabel().setText(value);
     }
     if (getHostFigure() instanceof ORMRoleGroupFigure){
       ((ORMRoleGroupFigure) getHostFigure()).getLabel().setText(value);

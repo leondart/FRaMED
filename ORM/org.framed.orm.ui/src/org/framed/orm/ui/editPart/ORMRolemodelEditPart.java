@@ -28,7 +28,7 @@ import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRolemodelXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
-import org.framed.orm.ui.figure.ORMRolemodelFigure;
+import org.framed.orm.ui.figure.ORMModelFigure;
 
 /**
  * This {@link EditPart} is the controller for the model element {@link Rolemodel}.
@@ -63,7 +63,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
   }
 
   /**
-   * {@inheritDoc} {@link Rolemodel}s have as a figure a {@link ORMRolemodelFigure}. The border of
+   * {@inheritDoc} {@link Rolemodel}s have as a figure a {@link ORMModelFigure}. The border of
    * the figure is differs dependingon if the parent is a {@link Grouping} or a {@link Compartment}
    * and on the expandstate of {@link Compartment} if the role model has as a parent a
    * {@link Compartment}.
@@ -73,7 +73,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
 
-    ORMRolemodelFigure figure = new ORMRolemodelFigure();
+    ORMModelFigure figure = new ORMModelFigure();
     if (parent.getModel() instanceof Compartment) {
       final Type model = (Type) parent.getModel();
       // change border of the figure depending on expandStateChange of the parent compartment
@@ -121,7 +121,7 @@ public class ORMRolemodelEditPart extends AbstractGraphicalEditPart {
 
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the borders of the
-   * {@link ORMRolemodelFigure} depended on the the expandstate of {@link Compartment} is the role
+   * {@link ORMModelFigure} depended on the the expandstate of {@link Compartment} is the role
    * model has as a parent a {@link Compartment}.
    * */
   @Override
