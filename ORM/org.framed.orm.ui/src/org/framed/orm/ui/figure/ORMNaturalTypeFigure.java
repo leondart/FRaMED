@@ -1,55 +1,46 @@
 package org.framed.orm.ui.figure;
 
-import org.eclipse.draw2d.ChopboxAnchor;
+
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.Segment;
 
 /**
- * This figure is for {@link NaturalType}s. The figure looks in the viewer/editor like this:
+ * This figure is for {@link Shapes}s from type Natrualtype. The figure looks in the viewer/editor like this:
  * 
  * ______________
  * |____Name____|
  * |Attribute   |
  * |_List_______|
- * |Method      |
+ * |Operation   |
  * |_List_______|
  * 
  * The right side and bottom side of the figure have a border shadow.
- * 
+ * The attribute list and operation list are added through child {@link Segment}s in the editparts.
  * @author Kay Bierzynski
  * */
-public class ORMNaturalTypeFigure extends ORMTypeFigure {
+public class ORMNaturalTypeFigure extends ORMShapeFigure {
 
   /**
    * The basic {@link ShadowRectangle}, which has at right and bottom side a border shadow and to
-   * which all child figures(method list, name, attribute list) are added.
+   * which all child figures(operation segment, name, attribute segment) are added.
    */
   private final ShadowRectangle rectangle;
-  /**
-   * The {@link ConnectionAnchor} of this figure, which is necessary for connecting {@link Relation}
-   * s to the figure.
-   */
-  private ConnectionAnchor connectionAnchor;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMTypeFigure#ORMTypeFigure(Node)}
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
    * is called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
-   * {@link Label}), the attribute list({@link PartFigure}) and the method list({@link PartFigure})
-   * are added to basic rectangle. The method list is only added when the isEditorData flag is
-   * false.
+   * {@link Label}) is added to the basic rectangle.
    * 
    * */
-  public ORMNaturalTypeFigure(final boolean isEditorData, final Node parent) {
+  public ORMNaturalTypeFigure() {
 
-    super(parent);
+    super();
 
     rectangle = new ShadowRectangle();
 
@@ -65,12 +56,7 @@ public class ORMNaturalTypeFigure extends ORMTypeFigure {
 
     // add name figure
     rectangle.add(getLabel());
-    // add attribute list figure
-    rectangle.add(getAttributeFigure());
-    if (!isEditorData) {
-      // add method list figure
-      rectangle.add(getMethodeFigure());
-    }
+
     add(rectangle);
 
   }
@@ -82,15 +68,6 @@ public class ORMNaturalTypeFigure extends ORMTypeFigure {
    * */
   public ShadowRectangle getBasicRec() {
     return rectangle;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public ConnectionAnchor getConnectionAnchor() {
-    if (connectionAnchor == null) {
-      connectionAnchor = new ChopboxAnchor(this);
-    }
-    return connectionAnchor;
   }
 
   /** {@inheritDoc} */

@@ -11,46 +11,42 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.Rolemodel;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
-
+import org.framed.orm.model.Shape;
 /**
- * This figure is for {@link Compartment}s, where the user did step into. The figure looks in the
+ * This figure is for {@link Shape}s from type COmpartmenType, where the user did step into. The figure looks in the
  * viewer/editor like this:
  * _____________________________
  * |___________Name____________|
  * |___B_____|                 |
  * |Attribute|                 |
- * |_List____|     Rolemodel   |
- * |Method   |                 |
+ * |_List____|   Child Model   |
+ * |Operation|                 |
  * | List    |                 |
  * |         |                 |
  * |_________|_________________|
  * 
- * B = button for expand/collapse the attribute and method list. The {@link Rolemodel} figure is
- * added in {@link ORMCompartmentEditPart} The right side and bottom side of the figure have a
+ * B = button for expand/collapse the attribute and oepration segment. The {@link Model} figure is
+ * added in editparts The right side and bottom side of the figure have a
  * border shadow.
  * 
  * @author Kay Bierzynski
  * */
-public class ORMCompartmentV2Figure extends ORMTypeFigure {
+public class ORMCompartmentV2Figure extends ORMShapeFigure {
 
   /**
    * The basic {@link ShadowRectangle}, which has at right and bottom side a border shadow and to
-   * which all child figures(name, rolemodel, expandable/collapsable structure rectangle2) are
+   * which all child figures(name, child model, expandable/collapsable structure rectangle2) are
    * added.
    */
   private final ShadowRectangle rectangle;
   /**
-   * The {@link PartFigure}, which containts the attribute list and the method list and be
+   * The {@link PartFigure}, which containts the attribute and the operation segment and be
    * expanded/collapsed through the expandCollapseButton.
    */
   private final PartFigure rectangle2;
   /**
    * The {@link Button}, which expands/collaps the rectangle2(the {@link PartFigure}, which
-   * containts the attribute list and the method list).
+   * containts the attribute and the operation segment).
    */
   private final Button expandCollapseButton;
   /**
@@ -59,18 +55,16 @@ public class ORMCompartmentV2Figure extends ORMTypeFigure {
   private final Image image;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMTypeFigure#ORMTypeFigure(Node)}
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
    * is called, the basic {@link ShadowRectangle} is initialized, expandable/collapsable
    * {@link PartFigure} rectangle2 is initialized and added to the basic rectangle, the
    * {@link Button} for the expandaning/collapsing is initialized and added to rectangle2, the child
-   * figures for the name( {@link Label}) is added to the basic rectangle and the attribute list(
-   * {@link PartFigure}) and the method list({@link PartFigure}) are added to rectangle2. The method
-   * list is only added when the isEditorData flag is false.
+   * figures for the name( {@link Label}) is added to the basic rectangle.
    * 
    * */
-  public ORMCompartmentV2Figure(boolean isEditorData) {
+  public ORMCompartmentV2Figure() {
 
-    super(null);
+    super();
 
     rectangle = new ShadowRectangle();
     rectangle2 = new PartFigure();
@@ -109,12 +103,6 @@ public class ORMCompartmentV2Figure extends ORMTypeFigure {
     // add button
     rectangle2.add(expandCollapseButton);
 
-    // add attribute list figure
-    rectangle2.add(getAttributeFigure());
-    if (!isEditorData) {
-      // add method list figure
-      rectangle2.add(getMethodeFigure());
-    }
     // add expandable/ collapsable structure
     rectangle.add(rectangle2, BorderLayout.LEFT);
 
@@ -126,10 +114,11 @@ public class ORMCompartmentV2Figure extends ORMTypeFigure {
 
   /**
    * A getter for the expandable/collapsable structure of this figure.
+   * Contains button, operation segment and attribute segment.
    * 
    * @return rectangle2 {@link PartFigure}
    * */
-  public final PartFigure getListAttMet() {
+  public final PartFigure getListAttOpt() {
     return rectangle2;
   }
 
@@ -152,11 +141,6 @@ public class ORMCompartmentV2Figure extends ORMTypeFigure {
     return expandCollapseButton;
   }
 
-  /** {@inheritDoc} */
-  @Override
-  protected boolean useLocalCoordinates() {
-    return true;
-  }
 
   /** {@inheritDoc} */
   @Override

@@ -1,52 +1,42 @@
 package org.framed.orm.ui.figure;
 
 import org.eclipse.draw2d.BorderLayout;
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.Rolemodel;
-import org.framed.orm.ui.editPart.ORMGroupingEditPart;
+import org.framed.orm.model.Model;
+
 /**
- * This figure is for {@link Groupingd}s, where the user did step into. The figure looks in the
+ * This figure is for {@link Shape}s from type Group, where the user did step into. The figure looks in the
  * viewer/editor somewhat like this:
  * 
  *  ___________________________
  * |___________Name____________|
  * |                           |
- * |        Rolemodel          |
+ * |       Child Model         |
  * |                           |
  * |___________________________|
  * 
- * The {@link Rolemodel} figure is added in {@link ORMGroupingEditPart} The right side and bottom
+ * The Child {@link Model} figure is added in editparts. The right side and bottom
  * side of the figure have a border shadow and the corners of the rectangle are round.
  * 
  * @author Kay Bierzynski
  * */
-public class ORMGroupingV2Figure extends Figure {
+public class ORMGroupingV2Figure extends ORMShapeFigure {
 
   /**
    * The basic {@link ShadowRoundedRectangle}, which has at right and bottom side a border shadow
-   * and to which all child figures(role model, name) are added.
+   * and to which all child figures(child model, name) are added.
    */
   private final ShadowRoundedRectangle rectangle;
-  /** This {@link Label} is the figure for the {@link Grouping} name. */
-  private final Label label;
-  /**
-   * The {@link ConnectionAnchor} of this figure, which is necessary for connecting {@link Relation}
-   * s to the figure.
-   */
-  private ConnectionAnchor connectionAnchor;
 
   /**
-   * The constructor of this class, where the basic {@link ShadowRoundedRectangle} is initialized and the
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
+   * is called, the basic {@link ShadowRoundedRectangle} is initialized and the
    * child figure for the name( {@link Label}) is added to the basic rectangle.
    * */
   public ORMGroupingV2Figure() {
@@ -70,27 +60,14 @@ public class ORMGroupingV2Figure extends Figure {
     rectangle.setLayoutManager(layout);
 
     rectangle.setFill(false);
-    label = new Label();
+ 
     // add name figure
-    rectangle.add(label, BorderLayout.TOP);
+    rectangle.add(getLabel(), BorderLayout.TOP);
     rectangle.setAntialias(SWT.ON);
     add(rectangle);
 
 
   }
-
-  /**
-   * A getter for the {@link ConnectionAnchor} of this figure.
-   * 
-   * @reutrn connectionAnchor {@link ConnectionAnchor}
-   * */
-  public ConnectionAnchor getConnectionAnchor() {
-    if (connectionAnchor == null) {
-      connectionAnchor = new ChopboxAnchor(this);
-    }
-    return connectionAnchor;
-  }
-
 
   /**
    * A getter for the basic rectangle of this figure.
@@ -101,14 +78,6 @@ public class ORMGroupingV2Figure extends Figure {
     return rectangle;
   }
 
-  /**
-   * A getter for the label, which is the figure for the {@link Grouping} name.
-   * 
-   * @return label {@link Label}
-   * */
-  public Label getLabel() {
-    return label;
-  }
 
   /** {@inheritDoc} */
   @Override

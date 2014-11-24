@@ -1,58 +1,49 @@
 package org.framed.orm.ui.figure;
 
-import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.Segment;
+import org.framed.orm.model.Shape;
 
 
 /**
- * This figure is for {@link RoleType}s. The figure looks in the viewer/editor like this:
+ * This figure is for {@link Shape}s from type RoleType. The figure looks in the viewer/editor like this:
  * 
  * ______________
  * |____Name____|
  * |Attribute   |
  * |_List_______|
- * |Method      |
+ * |Operation   |
  * |_List_______|
  * 
  * The right side and bottom side of the figure have a border shadow and the corners of the
  * rectangle are round.
- * 
+ * The attribute list and operation list are added through child {@link Segment}s in the editparts.
  * @author Kay Bierzynski
  * */
-public class ORMRoleTypeFigure extends ORMTypeFigure {
+public class ORMRoleTypeFigure extends ORMShapeFigure {
 
   /**
    * The basic {@link ShadowRoundedRectangle}, which has at right and bottom side a border shadow
-   * and to which all child figures(method list, name, attribute list) are added.
+   * and to which all child figures(operation segment, name, attribute segment) are added.
    */
   private final ShadowRoundedRectangle rectangle;
-  /**
-   * The {@link ConnectionAnchor} of this figure, which is necessary for connecting {@link Relation}
-   * s to the figure.
-   */
-  private ConnectionAnchor connectionAnchor;
 
 
   /**
-   * The constructor of this class, where the constructor {@link ORMTypeFigure#ORMTypeFigure(Node)}
-   * is called, the basic {@link ShadowRoundedRectangle} is initialized and the child figures for
-   * the name( {@link Label}), the attribute list({@link PartFigure}) and the method list(
-   * {@link PartFigure}) are added to basic rectangle. The method list is only added when the
-   * isEditorData flag is false.
+   * The constructor of this class, where he constructor {@link ORMShapeFigure#ORMShapeFigure()}
+   * is called, the basic {@link ShadowRoundedRectangle} is initialized 
+   * and the child figures for the name( {@link Label}) is added to basic rectangle.
    * 
    * */
-  public ORMRoleTypeFigure(final boolean isEditorData, final Node parent) {
-
-    super(parent);
-
+  public ORMRoleTypeFigure() {
+    super();
+    
     rectangle = new ShadowRoundedRectangle();
 
     ToolbarLayout layout = new ToolbarLayout();
@@ -67,12 +58,7 @@ public class ORMRoleTypeFigure extends ORMTypeFigure {
 
     // add name figure
     rectangle.add(getLabel());
-    // add attribute list figure
-    rectangle.add(getAttributeFigure());
-    if (!isEditorData) {
-      // add method list figure
-      rectangle.add(getMethodeFigure());
-    }
+    
     add(rectangle);
 
   }
@@ -84,15 +70,6 @@ public class ORMRoleTypeFigure extends ORMTypeFigure {
    * */
   public ShadowRoundedRectangle getBasicRec() {
     return rectangle;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public ConnectionAnchor getConnectionAnchor() {
-    if (connectionAnchor == null) {
-      connectionAnchor = new ChopboxAnchor(this);
-    }
-    return connectionAnchor;
   }
 
   /** {@inheritDoc} */
