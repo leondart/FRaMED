@@ -6,20 +6,20 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.CreationTool;
 import org.eclipse.swt.widgets.Display;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.NamedElement;
 
 /**
- * This {@link CreationTool} enables direct editing of a {@link Node}s name after the creating of
- * the {@link Node}.
+ * This {@link CreationTool} enables direct editing of a {@link NamedElement}s name after the creating of
+ * the {@link NamedElement}.
  * 
  * @author Kay Bierzynski
  * */
 public class CreationAndDirectEditTool extends CreationTool {
 
   /**
-   * After the creation of a {@link Node} through a pallet entry this method is called. This method
-   * send a {@link DirectEditRequest} to the edit part of the just created {@link Node}. Through the
-   * request can the user edit the name of the node direct after the creation of the node.
+   * After the creation of a {@link NamedElement} through a pallet entry this method is called. This method
+   * send a {@link DirectEditRequest} to the edit part of the just created {@link NamedElement}. Through the
+   * request can the user edit the name of the NamedElement direct after the creation of the NamedElement.
    * 
    * */
   @Override
