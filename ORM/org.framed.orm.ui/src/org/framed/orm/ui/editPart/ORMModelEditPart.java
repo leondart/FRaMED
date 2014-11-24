@@ -3,10 +3,8 @@ package org.framed.orm.ui.editPart;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionLayer;
+
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LineBorder;
-import org.eclipse.draw2d.XYLayout;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -18,9 +16,9 @@ import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
-import org.eclipse.swt.SWT;
 import org.framed.orm.model.Model;
 import org.framed.orm.ui.editPolicy.ORMCompartmentDiagramXYLayoutPolicy;
+import org.framed.orm.ui.figure.ORMFigureFactory;
 
 /**
  * This {@link EditPart} is the controller for the model element {@link Model.
@@ -48,11 +46,8 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   /** {@inheritDoc} */
   @Override
   protected IFigure createFigure() {
-    ConnectionLayer layer = new ConnectionLayer();
-    layer.setLayoutManager(new XYLayout());
-    layer.setBorder(new LineBorder(1));
-    layer.setAntialias(SWT.ON);
-    return layer;
+
+    return ORMFigureFactory.createFigure(this);
   }
 
   /**
