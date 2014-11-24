@@ -28,8 +28,10 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmPackage;
+import org.framed.orm.model.Type;
 
 
 /**
@@ -86,15 +88,20 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   /**
    * This method creates a custom title for this editor out of resource file name, the genral model
-   * element term and the specific modele elment name of the model element which is the content of
+   * element term and the specific modele element name of the model element which is the content of
    * the viewer of data/behaviour {@link ORMGraphicalEditor}.
    * */
   public void createCustomTitleForEditor(final Object model) {
 
-    final String modelClassName = model.getClass().getSimpleName();
-    setTitle(inputFilename + " " + modelClassName.substring(0, modelClassName.length() - 4));
-    if (model instanceof Node) {
-      setTitle(getTitle() + " " + ((Node) model).getName());
+    if (model instanceof Model || model instanceof Shape) {
+      final String modelClassName = model.getClass().getSimpleName();
+      setTitle(inputFilename + " " + modelClassName.substring(0, modelClassName.length() - 4));
+      if (model instanceof Shape) {
+        Shape shape = ((Shape) model);
+        if (shape.getType() == Type.COMPARTMENT_TYPE || shape.getType() == Type.GROUP) {
+          setTitle(getTitle() + " " + shape.getName());
+        }
+      }
     }
   }
 

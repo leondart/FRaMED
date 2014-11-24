@@ -37,9 +37,9 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Grouping;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 import org.framed.orm.ui.action.CreateActionMethodAction;
 import org.framed.orm.ui.action.RelationshipConstraintsAction;
@@ -71,10 +71,10 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * */
   private final Resource cdResource;
   /**
-   * The {@link CompartmentDiagram}, which represents the root of the model tree and which is the
-   * first content for editor viewer.
+   * The Root {@link Model}, which represents the root of the model tree and which is the first
+   * content for editor viewer.
    * */
-  private CompartmentDiagram compartdiagram;
+  private Model rootmodel;
 
   /**
    * The {@link ORMMultiPageEditor}, where this editor is registered and managed.
@@ -165,8 +165,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   @Override
   protected void initializeGraphicalViewer() {
     super.initializeGraphicalViewer();
-    getGraphicalViewer().setContents(compartdiagram);
-    ((ORMMultiPageEditor) parentEditor).createCustomTitleForEditor(compartdiagram);
+    getGraphicalViewer().setContents(rootmodel);
+    ((ORMMultiPageEditor) parentEditor).createCustomTitleForEditor(rootmodel);
 
     // add the change notifier as listener
     getGraphicalViewer().getEditDomain().getCommandStack()
@@ -254,38 +254,34 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
     super.createActions();
 
-    IAction action = new StepInAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
-    action = new StepOutAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
-    action = new StepInNewPageAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
-    action = new StepInNewTabAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
-    action = new FulfillRolesAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
-    action = new RelationshipConstraintsAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
-    action = new CreateActionMethodAction(this);
-    getActionRegistry().registerAction(action);
-    getSelectionActions().add(action.getId());
-
+    // TODO: when the Ediptpart of the Relation and shape are uncomment these actions
+    /*
+     * IAction action = new StepInAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     * 
+     * action = new StepOutAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     * 
+     * action = new StepInNewPageAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     * 
+     * action = new StepInNewTabAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     * 
+     * action = new FulfillRolesAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     * 
+     * action = new RelationshipConstraintsAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     * 
+     * action = new CreateActionMethodAction(this); getActionRegistry().registerAction(action);
+     * getSelectionActions().add(action.getId());
+     */
     // create direct editing action for shortcuts
-    action = new DirectEditAction(this);
+    IAction action = new DirectEditAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
+
   }
 
   /**
@@ -312,7 +308,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
     super.init(site, input);
     if (cdResource != null) {
-      compartdiagram = (CompartmentDiagram) cdResource.getContents().get(0);
+      rootmodel = (Model) cdResource.getContents().get(0);
     }
   }
 
@@ -380,13 +376,19 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * {@link Grouping}s.
    * */
   public void updateEditorType() {
-    EditorType temptype;
+    EditorType temptype = this.editorType;
 
-    if (getGraphicalViewer().getContents().getModel() instanceof CompartmentDiagram
-        || getGraphicalViewer().getContents().getModel() instanceof Grouping) {
+    if (getGraphicalViewer().getContents().getModel() instanceof Model) {
       temptype = EditorType.COMPARTMENT;
-    } else {
-      temptype = EditorType.ROLES;
+    }
+    if (getGraphicalViewer().getContents().getModel() instanceof Shape) {
+      Shape shape = (Shape) getGraphicalViewer().getContents().getModel();
+      if (shape.getType() == Type.GROUP) {
+        temptype = EditorType.COMPARTMENT;
+      }
+      if (shape.getType() == Type.COMPARTMENT_TYPE) {
+        temptype = EditorType.ROLES;
+      }
     }
 
     if (this.editorType.equals(temptype)) {

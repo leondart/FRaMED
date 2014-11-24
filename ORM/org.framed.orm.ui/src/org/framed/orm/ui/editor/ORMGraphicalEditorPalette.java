@@ -11,8 +11,8 @@ import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.tools.SelectionTool;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
@@ -58,9 +58,10 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
     addGroup();
     addSelectionTool();
-    createComponentsDrawer();
-    createComponentPartsDrawer();
-    createConnectionsDrawer();
+    //TODO: when all factorys are corrected uncomment these
+    // createComponentsDrawer();
+    // createComponentPartsDrawer();
+    // createConnectionsDrawer();
   }
 
   /**
@@ -154,8 +155,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * This method creates the palett entrys for the creation of all {@link Node} kinds and adds them to
-   * palett.
+   * This method creates the palett entrys for the creation of all {@link Shape} kinds and adds them
+   * to palett.
    */
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
@@ -207,8 +208,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
 
   /**
-   * This method creates the palett entrys for the creation of {@link Attribute}s and {@link Method}
-   * s and adds them to palett.
+   * This method creates the palett entrys for the creation of {@link NamedElement}s (Attributes and
+   * Operations) and adds them to palett.
    */
   private void createComponentPartsDrawer() {
 
@@ -235,8 +236,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * This method creates the palett entrys for the creation of all {@link Relation} kinds and adds them to
-   * palett.
+   * This method creates the palett entrys for the creation of all {@link Relation} kinds and adds
+   * them to palett.
    */
   private void createConnectionsDrawer() {
 
