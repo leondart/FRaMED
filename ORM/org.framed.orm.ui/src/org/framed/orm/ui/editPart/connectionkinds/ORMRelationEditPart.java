@@ -17,7 +17,7 @@ import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.framed.orm.model.Relation;
-import org.framed.orm.ui.editPart.ORMCompartmentDiagramEditPart;
+import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy;
@@ -70,7 +70,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   protected void refreshVisuals() {
 
     if (getSource() != null && getTarget() != null
-        && getSource().getParent() instanceof ORMCompartmentDiagramEditPart || getSource() != null
+        && getSource().getParent() instanceof ORMModelEditPart || getSource() != null
         && getTarget() != null
         && getRoot().getContents() instanceof ORMGroupingEditPart
         // source - parentrolemodel of source - parentgroup of rolemodel - parent of group

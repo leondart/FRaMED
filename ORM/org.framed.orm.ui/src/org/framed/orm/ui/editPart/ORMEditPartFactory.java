@@ -53,7 +53,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     EditPart part = null;
 
     if (model instanceof CompartmentDiagram) {
-      part = new ORMCompartmentDiagramEditPart();
+      part = new ORMModelEditPart();
     } else if (model instanceof Compartment) {
       part = new ORMCompartmentEditPart();
     } else if (model instanceof Method) {

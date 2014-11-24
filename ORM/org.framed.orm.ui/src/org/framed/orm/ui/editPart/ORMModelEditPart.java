@@ -19,33 +19,33 @@ import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.CompartmentDiagram;
+import org.framed.orm.model.Model;
 import org.framed.orm.ui.editPolicy.ORMCompartmentDiagramXYLayoutPolicy;
 
 /**
- * This {@link EditPart} is the controller for the model element {@link CompartmentDiagram}.
+ * This {@link EditPart} is the controller for the model element {@link Model.
  * 
  * @author Kay Bierzynski
  * */
-public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
+public class ORMModelEditPart extends AbstractGraphicalEditPart {
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
    * This {@link EditPart} reacts on the notifications
    */
-  private final ORMContextDiagramAdapter adapter;
+  private final ORMModelAdapter adapter;
 
   /**
    * Constructor of this class. In which the class is initialized through calling the constructor of
    * it's parent and initializing it's {@link Adapter}.
    */
-  public ORMCompartmentDiagramEditPart() {
+  public ORMModelEditPart() {
     super();
-    adapter = new ORMContextDiagramAdapter();
+    adapter = new ORMModelAdapter();
   }
 
 
-  /** {@inheritDoc} The {@link CompartmentDiagram} has as a figure a white area with a small border. */
+  /** {@inheritDoc} */
   @Override
   protected IFigure createFigure() {
     ConnectionLayer layer = new ConnectionLayer();
@@ -55,6 +55,15 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
     return layer;
   }
 
+  /**
+   * {@inheritDoc} The Model shouldn't be selectable, because for that reason we need to
+   * override the isSelectable function.
+   */
+  @Override
+  public boolean isSelectable() {
+    return false;
+  }
+  
   /** {@inheritDoc} */
   @Override
   protected void createEditPolicies() {
@@ -68,9 +77,9 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
   @Override
   protected List getModelChildren() {
     List contexts = new ArrayList();
-    CompartmentDiagram cd = (CompartmentDiagram) getModel();
+    Model cd = (Model) getModel();
     // all children of compartmentdiagram are nodes
-    contexts.addAll(cd.getNodes());
+    contexts.addAll(cd.getElements());
 
     return contexts;
   }
@@ -79,7 +88,7 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
   @Override
   public void activate() {
     if (!isActive()) {
-      ((CompartmentDiagram) getModel()).eAdapters().add(adapter);
+      ((Model) getModel()).eAdapters().add(adapter);
     }
     super.activate();
   }
@@ -88,7 +97,7 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
   @Override
   public void deactivate() {
     if (isActive()) {
-      ((CompartmentDiagram) getModel()).eAdapters().remove(adapter);
+      ((Model) getModel()).eAdapters().remove(adapter);
     }
     super.deactivate();
   }
@@ -123,7 +132,7 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
    * refreshChildren() method when it gets a change notification.
    * 
    * */
-  public class ORMContextDiagramAdapter implements Adapter {
+  public class ORMModelAdapter implements Adapter {
 
     /** {@inheritDoc} */
     @Override
@@ -134,7 +143,7 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
     /** {@inheritDoc} */
     @Override
     public Notifier getTarget() {
-      return (CompartmentDiagram) getModel();
+      return (Model) getModel();
     }
 
     /** {@inheritDoc} */
@@ -146,7 +155,7 @@ public class ORMCompartmentDiagramEditPart extends AbstractGraphicalEditPart {
     /** {@inheritDoc} */
     @Override
     public boolean isAdapterForType(final Object type) {
-      return type.getClass().equals(CompartmentDiagram.class);
+      return type.getClass().equals(Model.class);
     }
   }
 }
