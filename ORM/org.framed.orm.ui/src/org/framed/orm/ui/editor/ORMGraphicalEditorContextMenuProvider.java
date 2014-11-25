@@ -49,7 +49,8 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
     menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
     action = getActionRegistry().getAction(ActionFactory.REDO.getId());
     menu.appendToGroup(GEFActionConstants.GROUP_UNDO, action);
-    action = getActionRegistry().getAction(StepInAction.STEP_IN_ID);
+    //TODO: uncomment when actions are fixed
+    /*action = getActionRegistry().getAction(StepInAction.STEP_IN_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
     action = getActionRegistry().getAction(StepInNewTabAction.STEP_IN_NEW_TAB_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_VIEW, action);
@@ -60,7 +61,7 @@ public class ORMGraphicalEditorContextMenuProvider extends ContextMenuProvider {
     action = getActionRegistry().getAction(FulfillRolesAction.FULFILL_ROLES_ID);
     menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
     action = getActionRegistry().getAction(RelationshipConstraintsAction.RLSHIP_CONSTRAINTS_ID);
-    menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);
+    menu.appendToGroup(GEFActionConstants.GROUP_EDIT, action);*/
   }
 
   /**
