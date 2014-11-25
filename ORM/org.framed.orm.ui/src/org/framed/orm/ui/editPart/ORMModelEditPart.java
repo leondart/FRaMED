@@ -3,22 +3,31 @@ package org.framed.orm.ui.editPart;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.eclipse.draw2d.AbstractBorder;
+import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.framed.orm.model.Model;
-import org.framed.orm.ui.editPolicy.ORMCompartmentDiagramXYLayoutPolicy;
+import org.framed.orm.model.Shape;
+import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMModelXYLayoutPolicy;
+import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
+import org.framed.orm.ui.figure.ORMModelFigure;
+import org.framed.orm.ui.figure.ORMShapeFigure;
 
 /**
  * This {@link EditPart} is the controller for the model element {@link Model.
@@ -43,28 +52,86 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   }
 
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc} {@link Model}s have as a figure a {@link ORMModelFigure}. The border of the
+   * figure is differs depending on if the parent is a {@link Shape} from type Group or a
+   * {@link Shape} from type comaprtemnt and on the expandstate of the parent figure.
+   */
   @Override
   protected IFigure createFigure() {
+    final GraphicalEditPart parent = (GraphicalEditPart) getParent();
+    Figure fig = ORMFigureFactory.createFigure(this);
 
-    return ORMFigureFactory.createFigure(this);
+
+    setFigureBorder(parent, fig);
+
+    return fig;
   }
 
   /**
-   * {@inheritDoc} The Model shouldn't be selectable, because for that reason we need to
-   * override the isSelectable function.
+   * {@inheritDoc} The Model shouldn't be selectable, because for that reason we need to override
+   * the isSelectable function.
    */
   @Override
   public boolean isSelectable() {
     return false;
   }
-  
+
+  /** {@inheritDoc} */
+  @Override
+  public IFigure getContentPane() {
+    return getFigure();
+  }
+
+  /**
+   * A border class where a border is drawn at top side of the figure and on the left side of the
+   * figure.
+   * */
+  public class PartFigureBorderExpand extends AbstractBorder {
+
+    /** {@inheritDoc} */
+    @Override
+    public Insets getInsets(IFigure figure) {
+      return new Insets(1, 0, 0, 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void paint(IFigure figure, Graphics graphics, Insets insets) {
+      // draw border at the top side of the figure
+      graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
+      // draw border at the left side of the figure
+      graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getBottomLeft());
+    }
+  }
+
+  /**
+   * A border class where a border is drawn at top side of the figure.
+   * */
+  public class PartFigureBorderNotExpand extends AbstractBorder {
+
+    /** {@inheritDoc} */
+    @Override
+    public Insets getInsets(IFigure figure) {
+      return new Insets(1, 0, 0, 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void paint(IFigure figure, Graphics graphics, Insets insets) {
+      // draw border at the top side of the figure
+      graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
+    }
+  }
+
   /** {@inheritDoc} */
   @Override
   protected void createEditPolicies() {
     // edit policy, which handles the creation of the children of the compartment diagram and the
     // adding of the children to the compartment diagram
-    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMCompartmentDiagramXYLayoutPolicy());
+    //TODO: uncomment when policys are functional
+    //installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMModelXYLayoutPolicy());
+    //installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
   }
 
@@ -73,11 +140,40 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   protected List getModelChildren() {
     List contexts = new ArrayList();
     Model cd = (Model) getModel();
-    // all children of compartmentdiagram are nodes
+    // all children of compartmentdiagram are model elments
     contexts.addAll(cd.getElements());
 
     return contexts;
   }
+
+  /**
+   * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the borders of the
+   * {@link ORMModelFigure} depending on the expandstate of it's parents figure.
+   * */
+  @Override
+  public void refreshVisuals() {
+    final Figure figure = (Figure) getFigure();
+    final GraphicalEditPart parent = (GraphicalEditPart) getParent();
+
+    setFigureBorder(parent, figure);
+  }
+
+  /**
+   * A setter, which sets the border of the {@link ORMModelFigure} depending on it's parent and the
+   * expandstate of the parent figure.
+   * */
+  private void setFigureBorder(GraphicalEditPart parent, Figure fig) {
+    if (getParent().getModel() instanceof Shape) {
+      ORMShapeFigure parentFigure = (ORMShapeFigure) parent.getFigure();
+      if (parentFigure instanceof ORMCompartmentV2Figure && parentFigure.isExpanded()) {
+
+        fig.setBorder(new PartFigureBorderExpand());
+      } else {
+        fig.setBorder(new PartFigureBorderNotExpand());
+      }
+    }
+  }
+
 
   /** {@inheritDoc} */
   @Override

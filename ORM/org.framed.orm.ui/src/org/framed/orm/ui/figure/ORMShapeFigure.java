@@ -19,6 +19,8 @@ public abstract class ORMShapeFigure extends Figure {
   /** This {@link Label} is the figure for the {@link Shape} name. */
   private final Label label;
 
+  /** This boolean variable predicates if the expandable part of a figure is expanded or collapsed.*/
+  private boolean expandState;
   /**
    * The {@link ConnectionAnchor} of this figure, which is necessary for connecting {@link Relation}
    * s to the figure.
@@ -31,6 +33,7 @@ public abstract class ORMShapeFigure extends Figure {
   public ORMShapeFigure() {
     super();
     label = new Label();
+    expandState = false;
   }
 
   /**
@@ -48,7 +51,22 @@ public abstract class ORMShapeFigure extends Figure {
     return true;
   }
 
-
+  /**
+   * A getter for the expand flage of this figure.
+   * 
+   * @return booleanf
+   * */
+  public boolean isExpanded(){
+    return expandState;
+  }
+  
+  /**
+   * A setter for the expand flage of this figure. 
+   * */
+  public void setExpandState(boolean state){
+    this.expandState = state;
+  }
+  
   /**
    * A getter for the {@link ConnectionAnchor} of this figure
    * 
