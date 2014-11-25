@@ -33,7 +33,7 @@ import org.framed.orm.ui.figure.ORMModelFigure;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMRolemodelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
+public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
 
   /**
