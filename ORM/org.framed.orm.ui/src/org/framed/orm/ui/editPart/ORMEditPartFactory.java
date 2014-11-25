@@ -1,27 +1,12 @@
 package org.framed.orm.ui.editPart;
 
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
-import org.framed.orm.model.Acyclic;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.Inheritance;
-import org.framed.orm.model.Irreflexive;
-import org.framed.orm.model.Method;
-import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.RelationLabel;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RoleEquivalence;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleImplication;
-import org.framed.orm.model.RoleProhibition;
-import org.framed.orm.model.RoleType;
-import org.framed.orm.model.Rolemodel;
-import org.framed.orm.model.Total;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editPart.connectionkinds.ORMAcyclicEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMInheritanceEditPart;
@@ -51,8 +36,20 @@ public class ORMEditPartFactory implements EditPartFactory {
   @Override
   public EditPart createEditPart(final EditPart context,final Object model) {
     EditPart part = null;
+    
+    if(model instanceof Model){
+      part = new ORMModelEditPart();
+    }    
+    
+    if(model instanceof Relation){
+      
+    }
 
-    if (model instanceof CompartmentDiagram) {
+    if(model instanceof Shape){
+      
+    }
+    
+ /*   if (model instanceof CompartmentDiagram) {
       part = new ORMModelEditPart();
     } else if (model instanceof Compartment) {
       part = new ORMCompartmentEditPart();
@@ -90,7 +87,7 @@ public class ORMEditPartFactory implements EditPartFactory {
       part = new ORMGroupingEditPart();
     } else if (model instanceof RelationLabel) {
       part = new ORMRelationLabelEditPart();
-    }
+    }*/
     if (part != null) {
       part.setModel(model);
     }
