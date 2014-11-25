@@ -13,6 +13,7 @@
 		<module>../org.framed.orm.ui</module>
 		<module>../org.framed.orm.build.p2</module>
 		<module>../org.framed.orm.build.feature</module>
+		<module>../org.framed.orm.transformation</module>
 	</modules>
 
 	<properties>
