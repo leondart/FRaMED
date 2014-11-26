@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.framed.orm.ui.editPolicy;
 
 import java.util.List;
@@ -63,7 +60,7 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
         Node n = (Node) part.getModel();
         newConstraint = new Rectangle(r.getLocation(), n.getConstraints().getSize());
       }
-      addCommand.setConstraint(newConstraint);
+      addCommand.setBoundaries(newConstraint);
       addCommand.setLabel("Adding");
       addCommand.setDebugLabel("Adding");
 

@@ -1,9 +1,9 @@
 package org.framed.orm.ui.command;
 
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.framed.orm.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.Container;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Shape;
 
 
 /**
@@ -12,11 +12,11 @@ import org.framed.orm.model.Container;
  */
 public class ORMAddCommand extends Command {
 
-  private Container parent;
-  private Node child;
-  private Container oldParent;
-  private Rectangle oldConstraint;
-  private Rectangle constraint;
+  private Model parent;
+  private Shape child;
+  private Model oldParent;
+  private Rectangle oldBoundaries;
+  private Rectangle boundaries;
 
   public ORMAddCommand() {
     super("ORMAddCommand");
@@ -32,7 +32,7 @@ public class ORMAddCommand extends Command {
 
     oldParent = child.getContainer();
 
-    oldConstraint = child.getConstraints();
+    oldBoundaries = child.getBoundaries();
     redo();
   }
 
@@ -40,25 +40,25 @@ public class ORMAddCommand extends Command {
   public void redo() {
     child.setContainer(parent);
 
-    child.setConstraints(constraint);
+    child.setBoundaries(boundaries);
   }
 
   @Override
   public void undo() {
     child.setContainer(oldParent);
 
-    child.setConstraints(oldConstraint);
+    child.setBoundaries(oldBoundaries);
   }
 
-  public void setChild(Node child) {
+  public void setChild(Shape child) {
     this.child = child;
   }
 
-  public void setParent(Container parent) {
+  public void setParent(Model parent) {
     this.parent = parent;
   }
 
-  public void setConstraint(Rectangle constraint) {
-    this.constraint = constraint;
+  public void setBoundaries(Rectangle constraint) {
+    this.boundaries = constraint;
   }
 }
