@@ -1,7 +1,7 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.framed.orm.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -13,14 +13,14 @@ import org.framed.orm.model.Compartment;
 import org.framed.orm.model.Container;
 import org.framed.orm.model.Grouping;
 import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand;
-import org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand;
+import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
@@ -39,14 +39,14 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   /**
    * {@inheritDoc} Constraints means here boundaries.
    * 
-   * @return {@link ORMNodeChangeBoundariesCommand}
+   * @return {@link ORMShapeChangeBoundariesCommand}
    * */
   @Override
-  protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
+  protected Command createChangeConstraintCommand(final EditPart child, final Object newBoundarie) {
 
-    final ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
-    command.setNode((Node) child.getModel());
-    command.setNewBoundaries((Rectangle) constraint);
+    final ORMShapeChangeBoundariesCommand command = new ORMShapeChangeBoundariesCommand();
+    command.setShape((Shape) child.getModel());
+    command.setNewBoundaries((Rectangle) newBoundarie);
 
     return command;
   }
@@ -66,7 +66,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         ORMNodeCreateCommand command = new ORMNodeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
-        command.setNode((Node) (request.getNewObject()));
+        command.setShape((Node) (request.getNewObject()));
 
         command.setBoundaries(new Rectangle(constraints.getLocation(),
             ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
@@ -82,7 +82,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         ORMNodeCreateCommand command = new ORMNodeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         
-        command.setNode((Node) (request.getNewObject()));
+        command.setShape((Node) (request.getNewObject()));
         // here are init size set
         command.setBoundaries(new Rectangle(constraints.getLocation(),
             ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
@@ -108,7 +108,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
         command.setBoundaries(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
-        command.setNode(ct);
+        command.setShape(ct);
         command.setRolemodel(rm);
         compoundcommand.add(command);
         command.setContainer((Container) getHost().getModel());
@@ -132,7 +132,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
         command.setBoundaries(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
-        command.setNode(group);
+        command.setShape(group);
         command.setRolemodel(rm);
         compoundcommand.add(command);
         command.setContainer((Container) getHost().getModel());

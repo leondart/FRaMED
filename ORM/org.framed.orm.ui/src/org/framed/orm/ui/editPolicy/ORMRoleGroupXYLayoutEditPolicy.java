@@ -13,7 +13,7 @@ import org.framed.orm.model.Container;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand;
+import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
@@ -30,13 +30,13 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
   /**
    * {@inheritDoc} Constraints means here boundaries.
    * 
-   * @return {@link ORMNodeChangeBoundariesCommand}
+   * @return {@link ORMShapeChangeBoundariesCommand}
    * */
   @Override
   protected Command createChangeConstraintCommand(final EditPart child, final Object constraint) {
 
-    final ORMNodeChangeBoundariesCommand command = new ORMNodeChangeBoundariesCommand();
-    command.setNode((Node) child.getModel());
+    final ORMShapeChangeBoundariesCommand command = new ORMShapeChangeBoundariesCommand();
+    command.setShape((Node) child.getModel());
     command.setNewBoundaries((Rectangle) constraint);
 
     return command;
@@ -53,7 +53,7 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
       ORMNodeCreateCommand command = new ORMNodeCreateCommand();
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
-      command.setNode((Node) (request.getNewObject()));
+      command.setShape((Node) (request.getNewObject()));
 
       command.setBoundaries(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy
           .dynamicDimensions(request.getNewObjectType())));

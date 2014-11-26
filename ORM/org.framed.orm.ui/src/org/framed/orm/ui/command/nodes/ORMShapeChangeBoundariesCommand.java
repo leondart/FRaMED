@@ -1,33 +1,33 @@
 package org.framed.orm.ui.command.nodes;
 
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.framed.orm.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.Shape;;
 
 
 /**
- * Through this command the boundaries of a {@link Node} can be changed.
+ * Through this command the boundaries of a {@link Shape} can be changed.
  * 
  * @author Kay Bierzynski
  * */
-public class ORMNodeChangeBoundariesCommand extends Command {
+public class ORMShapeChangeBoundariesCommand extends Command {
 
   /**
-   * The initial boundaries of the {@link Node} need to be stored for tha case that the user wants
+   * The initial boundaries of the {@link Shape} need to be stored for tha case that the user wants
    * to undone this command.
    */
   private Rectangle oldBoundaries;
-  /** The new boundaries of the {@link Node}. */
+  /** The new boundaries of the {@link Shape}. */
   private Rectangle newBoundaries;
-  /** The {@link Node}, whose boundaries should be changed. */
-  private Node node;
+  /** The {@link Shape}, whose boundaries should be changed. */
+  private Shape shape;
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
    * 
    */
-  public ORMNodeChangeBoundariesCommand() {
-    super.setLabel("ORMNodeChangeConstraints");
+  public ORMShapeChangeBoundariesCommand() {
+    super.setLabel("ORMShapeChangeConstraints");
   }
 
   /**
@@ -37,7 +37,7 @@ public class ORMNodeChangeBoundariesCommand extends Command {
    */
   @Override
   public boolean canExecute() {
-    return node != null && newBoundaries != null;
+    return shape != null && newBoundaries != null;
   }
 
   /**
@@ -47,7 +47,7 @@ public class ORMNodeChangeBoundariesCommand extends Command {
    */
   @Override
   public boolean canUndo() {
-    return node != null && oldBoundaries != null;
+    return shape != null && oldBoundaries != null;
   }
 
   /**
@@ -57,8 +57,8 @@ public class ORMNodeChangeBoundariesCommand extends Command {
    */
   @Override
   public void execute() {
-    oldBoundaries = node.getConstraints();
-    node.setConstraints(newBoundaries);
+    oldBoundaries = shape.getBoundaries();
+    shape.setBoundaries(newBoundaries);
   }
 
   /**
@@ -67,25 +67,25 @@ public class ORMNodeChangeBoundariesCommand extends Command {
    */
   @Override
   public void undo() {
-    node.setConstraints(oldBoundaries);
+    shape.setBoundaries(oldBoundaries);
   }
 
   /**
-   * Setter for the {@link Node}, whose boundaries should be changed.
+   * Setter for the {@link Shape}, whose boundaries should be changed.
    * 
-   * @param node org.framed.orm.model.Node
+   * @param shape org.framed.orm.model.Shape
    * */
-  public void setNode(final Node node) {
-    this.node = node;
+  public void setShape(final Shape shape) {
+    this.shape = shape;
   }
 
   /**
-   * Setter for the new boundaries of the {@link Node}.
+   * Setter for the new boundaries of the {@link Shape}.
    * 
    * @param boundaries org.eclipse.draw2d.geometry.Rectangle
    * */
-  public void setNewBoundaries(Rectangle newConstraint) {
-    this.newBoundaries = newConstraint;
+  public void setNewBoundaries(Rectangle newBoundarie) {
+    this.newBoundaries = newBoundarie;
   }
 
 }
