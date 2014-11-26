@@ -18,7 +18,7 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.model.Rolemodel;
-import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
+import org.framed.orm.ui.command.ORMModelCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMShapeCreateCommand;
@@ -99,7 +99,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         Compartment ct = (Compartment) (request.getNewObject());
         CompoundCommand compoundcommand = new CompoundCommand();
 
-        ORMRoleModelCreateCommand rmCommand = new ORMRoleModelCreateCommand();
+        ORMModelCreateCommand rmCommand = new ORMModelCreateCommand();
         rmCommand.setCompartment(ct);
         rmCommand.setRolemodel(rm);
         compoundcommand.add(rmCommand);
@@ -123,7 +123,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         Grouping group = (Grouping) (request.getNewObject());
         CompoundCommand compoundcommand = new CompoundCommand();
 
-        ORMRoleModelCreateCommand rmCommand = new ORMRoleModelCreateCommand();
+        ORMModelCreateCommand rmCommand = new ORMModelCreateCommand();
         rmCommand.setGroup(group);
         rmCommand.setRolemodel(rm);
         compoundcommand.add(rmCommand);
