@@ -1,7 +1,7 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.framed.orm.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -21,7 +21,7 @@ import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.command.ORMRoleModelCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand;
 import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
-import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
+import org.framed.orm.ui.command.nodes.ORMShapeCreateCommand;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.ORMModelFigure;
@@ -63,7 +63,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     if (!(getHost().getParent() instanceof ORMGroupingEditPart)) {
       if (request.getNewObjectType().equals(RoleType.class)
           || request.getNewObjectType().equals(RoleGroup.class)) {
-        ORMNodeCreateCommand command = new ORMNodeCreateCommand();
+        ORMShapeCreateCommand command = new ORMShapeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         // here are init size set
         command.setShape((Node) (request.getNewObject()));
@@ -79,7 +79,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     // instances can be added
     if (!(getHost().getParent() instanceof ORMCompartmentEditPart)) {
       if (request.getNewObjectType().equals(NaturalType.class)) {
-        ORMNodeCreateCommand command = new ORMNodeCreateCommand();
+        ORMShapeCreateCommand command = new ORMShapeCreateCommand();
         Rectangle constraints = (Rectangle) getConstraintFor(request);
         
         command.setShape((Node) (request.getNewObject()));

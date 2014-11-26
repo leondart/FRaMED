@@ -14,7 +14,7 @@ import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
 import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
-import org.framed.orm.ui.command.nodes.ORMNodeCreateCommand;
+import org.framed.orm.ui.command.nodes.ORMShapeCreateCommand;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
 /**
@@ -50,7 +50,7 @@ public class ORMRoleGroupXYLayoutEditPolicy extends ORMAbstractXYLayoutPolicy {
 
     if (request.getNewObjectType().equals(RoleType.class)
         || request.getNewObjectType().equals(RoleGroup.class)) {
-      ORMNodeCreateCommand command = new ORMNodeCreateCommand();
+      ORMShapeCreateCommand command = new ORMShapeCreateCommand();
       Rectangle constraints = (Rectangle) getConstraintFor(request);
       // here are init size set
       command.setShape((Node) (request.getNewObject()));
