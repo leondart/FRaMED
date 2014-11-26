@@ -16,9 +16,9 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
-import org.framed.orm.ui.factory.ORMCompartmentFactory;
+import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
 import org.framed.orm.ui.factory.ORMFulfillmentFactory;
-import org.framed.orm.ui.factory.ORMGroupingFactory;
+import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
 import org.framed.orm.ui.factory.ORMMethodFactory;
@@ -164,7 +164,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
     CreationToolEntry entry =
         new CreationToolEntry("Compartment", "Create a new Compartment",
-            new ORMCompartmentFactory(), null, null);
+            new ORMCompartmentTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/compartment.png"));
@@ -199,7 +199,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("RoleGroup", entry, false);
 
     entry =
-        new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
+        new CreationToolEntry("Group", "Create a new Group", new ORMGroupFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
