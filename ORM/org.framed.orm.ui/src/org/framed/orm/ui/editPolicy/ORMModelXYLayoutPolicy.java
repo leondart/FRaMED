@@ -6,30 +6,23 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Container;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.NaturalType;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmFactory;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleType;
-import org.framed.orm.model.Rolemodel;
-import org.framed.orm.ui.command.ORMModelCreateCommand;
-import org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.nodes.ORMShapeCreateCommand;
-import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.ORMModelFigure;
 
 /**
- * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of
- * all kinds {@link Node}s in a {@link Rolemodel} and returns and creates the
- * nessecary commands for the creation and boundarie change.
+ * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of all kinds
+ * {@link Shapes}s in a {@link Model} and returns and creates the nessecary commands for the
+ * creation and boundarie change.
  * 
  * @author Kay Bierzynski
  * */
@@ -46,97 +39,55 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
     final ORMShapeChangeBoundariesCommand command = new ORMShapeChangeBoundariesCommand();
     command.setShape((Shape) child.getModel());
-    command.setNewBoundaries((Rectangle) newBoundarie);
+    command.setNewBoundaries(createModelReactangle((Rectangle) newBoundarie));
 
     return command;
   }
- 
+
   /**
-   * {@inheritDoc} Specifically the create commands for all kinds of {@link Node}s.
+   * {@inheritDoc} Specifically the create commands for all kinds of {@link Shape}s.
    * */
   @Override
   protected Command getCreateCommand(final CreateRequest request) {
     Command retVal = null;
+    Shape parentShape = null;
 
-    // when the parent of the rolemodel is a compartment only roletype and rolegroup instances can
-    // be added
-    if (!(getHost().getParent() instanceof ORMGroupingEditPart)) {
-      if (request.getNewObjectType().equals(RoleType.class)
-          || request.getNewObjectType().equals(RoleGroup.class)) {
-        ORMShapeCreateCommand command = new ORMShapeCreateCommand();
-        Rectangle constraints = (Rectangle) getConstraintFor(request);
-        // here are init size set
-        command.setShape((Node) (request.getNewObject()));
+    if (getHost().getParent().getModel() instanceof Shape) {
+      parentShape = (Shape) getHost().getParent().getModel();
+    }
 
-        command.setBoundaries(new Rectangle(constraints.getLocation(),
-            ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
-        command.setContainer((Container) getHost().getModel());
-        retVal = command;
+    // when the parent of the model is a compartmenttype or a rolegroup only roletype and rolegroup
+    // instances can be added
+    if (parentShape != null) {
+      if (parentShape.getType().equals(Type.COMPARTMENT_TYPE)
+          || parentShape.getType().equals(Type.ROLE_GROUP)) {
+        if (request.getNewObjectType().equals(Type.ROLE_GROUP)) {
+          retVal = setUpCreateCommand(request, null, null, createDescription(), createChildModel());
+        }
+
+        if (request.getNewObjectType().equals(Type.ROLE_TYPE)) {
+          retVal =
+              setUpCreateCommand(request, createSegment(), createSegment(), createDescription(),
+                  null);
+        }
       }
     }
 
-    // when the parent of the rolemodel is a grouping only naturaltype, compartment and grouping
-    // instances can be added
-    if (!(getHost().getParent() instanceof ORMCompartmentEditPart)) {
-      if (request.getNewObjectType().equals(NaturalType.class)) {
-        ORMShapeCreateCommand command = new ORMShapeCreateCommand();
-        Rectangle constraints = (Rectangle) getConstraintFor(request);
-        
-        command.setShape((Node) (request.getNewObject()));
-        // here are init size set
-        command.setBoundaries(new Rectangle(constraints.getLocation(),
-            ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
-        command.setContainer((Container) getHost().getModel());
-        retVal = command;
+    // when the parent of the model is a group or the model is the root model than only naturaltype,
+    // compartmenttype and group
+    // instances can be added to the model
+    if (parentShape == null || parentShape.getType().equals(Type.GROUP)) {
+      if (request.getNewObjectType().equals(Type.NATURAL_TYPE)) {
+        retVal = setUpCreateCommand(request, createSegment(), createSegment(), null, null);
       }
 
-      // if the request object is a compartment create the creatcommand for the compartment
-      // and the creatcommand for the rolemodel, which belong to the compartment and add them to a
-      // compund command
-      
-      if (request.getNewObjectType().equals(Compartment.class)) {
-        Rolemodel rm = OrmFactory.eINSTANCE.createRolemodel();
-        Compartment ct = (Compartment) (request.getNewObject());
-        CompoundCommand compoundcommand = new CompoundCommand();
-
-        ORMModelCreateCommand rmCommand = new ORMModelCreateCommand();
-        rmCommand.setCompartment(ct);
-        rmCommand.setRolemodel(rm);
-        compoundcommand.add(rmCommand);
-
-        ORMCompartmentGroupingCreateCommand command = new ORMCompartmentGroupingCreateCommand();
-        Rectangle constraints = (Rectangle) getConstraintFor(request);
-        // here are init size set
-        command.setBoundaries(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
-        command.setShape(ct);
-        command.setRolemodel(rm);
-        compoundcommand.add(command);
-        command.setContainer((Container) getHost().getModel());
-        retVal = compoundcommand;
+      if (request.getNewObjectType().equals(Type.COMPARTMENT_TYPE)) {
+        retVal =
+            setUpCreateCommand(request, createSegment(), createSegment(), null, createChildModel());
       }
 
-      // if the request object is a grouping create the creatcommand for the grouping
-      // and the creatcommand for the rolemodel, which belong to the grouping and add them to a
-      // compund command
-      if (request.getNewObjectType().equals(Grouping.class)) {
-        Rolemodel rm = OrmFactory.eINSTANCE.createRolemodel();
-        Grouping group = (Grouping) (request.getNewObject());
-        CompoundCommand compoundcommand = new CompoundCommand();
-
-        ORMModelCreateCommand rmCommand = new ORMModelCreateCommand();
-        rmCommand.setGroup(group);
-        rmCommand.setRolemodel(rm);
-        compoundcommand.add(rmCommand);
-
-        ORMCompartmentGroupingCreateCommand command = new ORMCompartmentGroupingCreateCommand();
-        Rectangle constraints = (Rectangle) getConstraintFor(request);
-        // here are init size set
-        command.setBoundaries(new Rectangle(constraints.getLocation(), ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType())));
-        command.setShape(group);
-        command.setRolemodel(rm);
-        compoundcommand.add(command);
-        command.setContainer((Container) getHost().getModel());
-        retVal = compoundcommand;
+      if (request.getNewObjectType().equals(Type.GROUP)) {
+        retVal = setUpCreateCommand(request, null, null, null, createChildModel());
       }
     }
     return retVal;
@@ -150,12 +101,11 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   @Override
   protected void showLayoutTargetFeedback(final Request request) {
     if (request.getType() == RequestConstants.REQ_CREATE) {
-      if (((CreateRequest) request).getNewObjectType().equals(RoleType.class)
-          || ((CreateRequest) request).getNewObjectType().equals(Compartment.class)
-          && getHost().getParent() instanceof ORMGroupingEditPart
-          || ((CreateRequest) request).getNewObjectType().equals(NaturalType.class)
-          && getHost().getParent() instanceof ORMGroupingEditPart
-          || ((CreateRequest) request).getNewObjectType().equals(RoleGroup.class)) {
+      if (((CreateRequest) request).getNewObjectType().equals(Type.ROLE_TYPE)
+          || ((CreateRequest) request).getNewObjectType().equals(Type.COMPARTMENT_TYPE)
+          || ((CreateRequest) request).getNewObjectType().equals(Type.NATURAL_TYPE)
+          || ((CreateRequest) request).getNewObjectType().equals(Type.ROLE_GROUP)) {
+
         final ORMModelFigure figure = (ORMModelFigure) getHostFigure();
         figure.setBackgroundColor(ColorConstants.lightBlue);
         figure.setOpaque(true);
@@ -169,5 +119,43 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     final ORMModelFigure figure = (ORMModelFigure) getHostFigure();
     figure.setBackgroundColor(ColorConstants.white);
     figure.setOpaque(false);
+  }
+
+
+  
+
+  private NamedElement createDescription() {
+    ModelElement element = OrmFactory.eINSTANCE.createModelElement();
+    element.setContainer(null);
+    element.setName("");
+    element.setType(null);
+
+    return element;
+  }
+
+  private Segment createSegment() {
+    return OrmFactory.eINSTANCE.createSegment();
+  }
+
+  private Model createChildModel() {
+    return OrmFactory.eINSTANCE.createModel();
+  }
+
+  private ORMShapeCreateCommand setUpCreateCommand(final CreateRequest request,
+      Segment attributeSegment, Segment operationSegment, NamedElement description, Model childmodel) {
+
+    ORMShapeCreateCommand command = new ORMShapeCreateCommand();
+    Rectangle boundaries = (Rectangle) getConstraintFor(request);
+
+    command.setShape((Shape) request.getNewObject());
+    command.setBoundaries(createModelReactangle(boundaries));
+    command.setContainer((Model) getHost().getModel());
+
+    command.setAttributeSegment(attributeSegment);
+    command.setOperationSegment(operationSegment);
+    command.setChildmodel(childmodel);
+    command.setDescription(description);
+
+    return command;
   }
 }

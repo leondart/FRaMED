@@ -129,9 +129,8 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   protected void createEditPolicies() {
     // edit policy, which handles the creation of the children of the compartment diagram and the
     // adding of the children to the compartment diagram
-    //TODO: uncomment when policys are functional
-    //installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMModelXYLayoutPolicy());
-    //installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
+    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMModelXYLayoutPolicy());
+    installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
   }
 
