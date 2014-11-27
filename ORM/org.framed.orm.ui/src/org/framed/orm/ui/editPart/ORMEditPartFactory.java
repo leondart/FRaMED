@@ -6,6 +6,7 @@ import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editPart.connectionkinds.ORMAcyclicEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
@@ -46,6 +47,10 @@ public class ORMEditPartFactory implements EditPartFactory {
     }
 
     if(model instanceof Shape){
+      
+    }
+   
+    if(model instanceof Segment){
       
     }
     
