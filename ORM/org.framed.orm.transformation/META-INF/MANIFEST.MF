@@ -6,6 +6,10 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.framed.orm.transformation.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.epsilon.standalone;bundle-version="1.0.0"
+ org.eclipse.epsilon.eol.engine,
+ org.eclipse.epsilon.emc.emf,
+ org.eclipse.epsilon.eol.dt;bundle-version="1.2.0",
+ org.eclipse.epsilon.etl.engine
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+Export-Package: org.framed.orm.transformation
