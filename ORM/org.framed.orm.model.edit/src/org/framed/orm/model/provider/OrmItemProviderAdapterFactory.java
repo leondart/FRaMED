@@ -73,6 +73,29 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.framed.orm.model.NamedElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NamedElementItemProvider namedElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.framed.orm.model.NamedElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNamedElementAdapter() {
+		if (namedElementItemProvider == null) {
+			namedElementItemProvider = new NamedElementItemProvider(this);
+		}
+
+		return namedElementItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.framed.orm.model.ModelElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,6 +289,8 @@ public class OrmItemProviderAdapterFactory extends OrmAdapterFactory implements
 	 * @generated
 	 */
 	public void dispose() {
+		if (namedElementItemProvider != null)
+			namedElementItemProvider.dispose();
 		if (modelElementItemProvider != null)
 			modelElementItemProvider.dispose();
 		if (modelItemProvider != null)

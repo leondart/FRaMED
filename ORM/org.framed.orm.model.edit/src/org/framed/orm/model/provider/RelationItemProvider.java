@@ -196,11 +196,19 @@ public class RelationItemProvider extends ModelElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(
 				OrmPackage.Literals.RELATION__SOURCE_LABEL,
+				OrmFactory.eINSTANCE.createNamedElement()));
+
+		newChildDescriptors.add(createChildParameter(
+				OrmPackage.Literals.RELATION__SOURCE_LABEL,
 				OrmFactory.eINSTANCE.createModelElement()));
 
 		newChildDescriptors.add(createChildParameter(
 				OrmPackage.Literals.RELATION__SOURCE_LABEL,
 				OrmFactory.eINSTANCE.createShape()));
+
+		newChildDescriptors.add(createChildParameter(
+				OrmPackage.Literals.RELATION__TARGET_LABEL,
+				OrmFactory.eINSTANCE.createNamedElement()));
 
 		newChildDescriptors.add(createChildParameter(
 				OrmPackage.Literals.RELATION__TARGET_LABEL,

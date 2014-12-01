@@ -161,6 +161,10 @@ public class ShapeItemProvider extends ModelElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(
 				OrmPackage.Literals.SHAPE__DESCRIPTION,
+				OrmFactory.eINSTANCE.createNamedElement()));
+
+		newChildDescriptors.add(createChildParameter(
+				OrmPackage.Literals.SHAPE__DESCRIPTION,
 				OrmFactory.eINSTANCE.createModelElement()));
 
 		newChildDescriptors.add(createChildParameter(

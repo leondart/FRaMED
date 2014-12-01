@@ -2,10 +2,7 @@
  */
 package org.framed.orm.model.tests;
 
-import junit.framework.TestCase;
-
 import junit.textui.TestRunner;
-
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.OrmFactory;
 
@@ -15,15 +12,7 @@ import org.framed.orm.model.OrmFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModelElementTest extends TestCase {
-
-	/**
-	 * The fixture for this Model Element test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ModelElement fixture = null;
+public class ModelElementTest extends NamedElementTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -45,23 +34,14 @@ public class ModelElementTest extends TestCase {
 	}
 
 	/**
-	 * Sets the fixture for this Model Element test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(ModelElement fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
 	 * Returns the fixture for this Model Element test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected ModelElement getFixture() {
-		return fixture;
+		return (ModelElement) fixture;
 	}
 
 	/**

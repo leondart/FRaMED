@@ -4,22 +4,15 @@ package org.framed.orm.model.tests;
 
 import java.io.File;
 import java.io.IOException;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.util.Diagnostician;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-
-import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 
@@ -63,7 +56,7 @@ public class OrmExample {
 			try {
 				Resource resource = resourceSet.createResource(URI
 						.createURI("http:///My.orm"));
-				ModelElement root = OrmFactory.eINSTANCE.createModelElement();
+				NamedElement root = OrmFactory.eINSTANCE.createNamedElement();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			} catch (IOException exception) {
