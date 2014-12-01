@@ -1,0 +1,8 @@
+rule NaturalType
+	transform t : ORM!Shape
+	to n : crom_l1_composed!NaturalType {
+
+	guard : t.getType == Type.NATURAL_TYPE
+	
+	n.name = t.name;
+}

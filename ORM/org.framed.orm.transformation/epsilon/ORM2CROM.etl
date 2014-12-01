@@ -1,0 +1,5 @@
+rule ORM2CROM
+	transform orm : ORM!Model
+	to crom : CROM!Model {
+	
+}

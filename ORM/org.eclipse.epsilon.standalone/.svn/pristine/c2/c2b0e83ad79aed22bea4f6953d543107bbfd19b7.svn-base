@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Epsilon Standalone
+Bundle-SymbolicName: org.eclipse.epsilon.standalone;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.epsilon.standalone.Activator
+Bundle-Vendor: Hugo A. Garcia
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.7.101",
+ org.eclipse.epsilon.commons;bundle-version="0.9.1",
+ org.eclipse.epsilon.emc.emf;bundle-version="0.9.1",
+ org.eclipse.epsilon.eol.engine;bundle-version="0.9.1",
+ org.eclipse.epsilon.etl.engine;bundle-version="0.9.1",
+ org.eclipse.epsilon.erl.engine;bundle-version="0.9.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.epsilon.standalone,
+ org.eclipse.epsilon.standalone.attributes,
+ org.eclipse.epsilon.standalone.handlers,
+ org.eclipse.epsilon.standalone.jobs,
+ org.eclipse.epsilon.standalone.util
