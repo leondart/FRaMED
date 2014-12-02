@@ -22,6 +22,15 @@ public interface OrmFactory extends EFactory {
 	OrmFactory eINSTANCE = org.framed.orm.model.impl.OrmFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Named Element</em>'.
+	 * @generated
+	 */
+	NamedElement createNamedElement();
+
+	/**
 	 * Returns a new object of class '<em>Model Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

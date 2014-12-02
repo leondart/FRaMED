@@ -58,10 +58,10 @@ public interface OrmPackage extends EPackage {
 	OrmPackage eINSTANCE = org.framed.orm.model.impl.OrmPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.framed.orm.model.NamedElement <em>Named Element</em>}' class.
+	 * The meta object id for the '{@link org.framed.orm.model.impl.NamedElementImpl <em>Named Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.framed.orm.model.NamedElement
+	 * @see org.framed.orm.model.impl.NamedElementImpl
 	 * @see org.framed.orm.model.impl.OrmPackageImpl#getNamedElement()
 	 * @generated
 	 */
@@ -788,10 +788,10 @@ public interface OrmPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.framed.orm.model.NamedElement <em>Named Element</em>}' class.
+		 * The meta object literal for the '{@link org.framed.orm.model.impl.NamedElementImpl <em>Named Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.framed.orm.model.NamedElement
+		 * @see org.framed.orm.model.impl.NamedElementImpl
 		 * @see org.framed.orm.model.impl.OrmPackageImpl#getNamedElement()
 		 * @generated
 		 */

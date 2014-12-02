@@ -57,6 +57,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+		case OrmPackage.NAMED_ELEMENT:
+			return createNamedElement();
 		case OrmPackage.MODEL_ELEMENT:
 			return createModelElement();
 		case OrmPackage.MODEL:
@@ -101,6 +103,16 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NamedElement createNamedElement() {
+		NamedElementImpl namedElement = new NamedElementImpl();
+		return namedElement;
 	}
 
 	/**

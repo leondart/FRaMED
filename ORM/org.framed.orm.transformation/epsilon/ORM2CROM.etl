@@ -1,0 +1,19 @@
+import "NaturalType.etl";
+
+operation Any println() : Any { 
+	("Printing : " + self)->println();
+}
+
+rule ORM2CROM
+	transform mym : source!Model
+	to crom : target!Model {
+	
+	for(shape : source!Shape in mym.elements) {
+		var x = shape.equivalent();
+		if(not (x == null)) {
+			crom.elements.add(x);
+		}
+	}
+	
+}
+

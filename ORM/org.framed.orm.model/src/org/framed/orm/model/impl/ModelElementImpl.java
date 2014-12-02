@@ -3,11 +3,7 @@
 package org.framed.orm.model.impl;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.OrmPackage;
@@ -21,7 +17,6 @@ import org.framed.orm.model.Type;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getIncomingRelations <em>Incoming Relations</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getOutgoingRelations <em>Outgoing Relations</em>}</li>
@@ -31,8 +26,7 @@ import org.framed.orm.model.Type;
  *
  * @generated
  */
-public class ModelElementImpl extends MinimalEObjectImpl.Container implements
-		ModelElement {
+public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50,34 +44,6 @@ public class ModelElementImpl extends MinimalEObjectImpl.Container implements
 	@Override
 	protected EClass eStaticClass() {
 		return OrmPackage.Literals.MODEL_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return (String) eGet(OrmPackage.Literals.NAMED_ELEMENT__NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		eSet(OrmPackage.Literals.NAMED_ELEMENT__NAME, newName);
 	}
 
 	/**

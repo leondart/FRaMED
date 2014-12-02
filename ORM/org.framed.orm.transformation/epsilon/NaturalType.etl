@@ -1,0 +1,24 @@
+rule NaturalType
+	transform t : source!Shape
+	to n : target!NaturalType {
+
+	guard : t.getType.getValue == 1
+	
+	n.name = t.name;
+	
+	var segment = t.firstSegment;
+	
+	if(not (segment == null)) {
+		for(ele : source!NamedElement in segment.elements) {
+			var attribut = new target!Attribute;
+			attribut.owner = n;
+			attribut.name = ele.name;
+			attribut.name.println();
+			n.attributes.add(attribut);
+		}
+	}
+	
+	for(at : target!Attribute in n.attributes) {
+		at.println();
+	}
+}

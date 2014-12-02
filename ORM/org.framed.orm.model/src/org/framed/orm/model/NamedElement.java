@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.framed.orm.model.OrmPackage#getNamedElement()
- * @model interface="true" abstract="true"
+ * @model
  * @generated
  */
 public interface NamedElement extends EObject {
