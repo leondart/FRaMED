@@ -10,7 +10,7 @@ import org.framed.orm.model.OrmFactory;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMAcyclicFactory implements CreationFactory {
+public class ORMCyclicFactory implements CreationFactory {
 
   @Override
   public Object getNewObject() {
