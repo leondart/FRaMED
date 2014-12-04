@@ -4,34 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.RolesDialog;
 
 /**
  * This command is used from the {@link FulfillRolesAction} and the {@link RolesDialog} to add all
- * the names of the choosen {@link RoleGroup}s and {@link RoleType}s to the fulfilledRoles list of a
- * {@link Fulfillment} and delete all the names of the not choosen {@link RoleGroup}s and
- * {@link RoleType}s from the fulfilledRoles list of a {@link Fulfillment}.
+ * of the choosen {@link Shape}s from type roletype and rolegroups to the fulfilledRoles list of a
+ * {@link Relation} from type fulfillment and delete of the not choosen rolegroups and roleTypes
+ * from the referencedRoles list of a fulfillment.
  * 
  * */
 public class FulfillRolesCommand extends Command {
 
   /**
-   * The {@link Fulfillment} with the fulfilledRoles list, where elements added to and deleted from.
+   * The {@link Relation} from type fulfillment with the referencedRoles list, where elements added
+   * to and deleted from.
    */
-  private Fulfillment fulfillment;
+  private Relation fulfillment;
   /**
-   * A list, which containts all the names of the choosen {@link RoleGroup}s and {@link RoleType}s .
+   * A list, which containts all of the choosen {@link Shapes}s from type rolegroup and roletype .
    * */
-  private List<String> roles;
+  private List<Shape> roles;
   /**
-   * A list, which stores tempoary the initial content of the fulfilled roles list of the
-   * {@link Fulfillment}.
+   * A list, which stores tempoary the initial content of the refrenced roles list of the
+   * {@link Relation} from type fulfillment.
    */
-  private List<String> oldFulfilledRoles;
+  private List<Shape> oldFulfilledRoles;
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user,
@@ -40,7 +40,7 @@ public class FulfillRolesCommand extends Command {
    * */
   public FulfillRolesCommand() {
     super.setLabel(" FulfillRolesCommand");
-    oldFulfilledRoles = new ArrayList<String>();
+    oldFulfilledRoles = new ArrayList<Shape>();
   }
 
   /**
@@ -54,52 +54,53 @@ public class FulfillRolesCommand extends Command {
   }
 
   /**
-   * {@inheritDoc} In this method the initial content of the fulfilledRoles list of the
-   * {@link Fulfillment} is stored in the oldFulfilledRoles list. After this the all content of the
-   * fulfilledRoles list is deleted and that the names of the choosen {@link RoleGroup}s and
-   * {@link RoleType}s are added to the fulfilledRoles list.
+   * {@inheritDoc} In this method the initial content of the fulfilledRoles list of the fulfillment
+   * is stored in the oldFulfilledRoles list. After that all content of the fulfilledRoles list is
+   * deleted and the choosen {@link Shapes}s from type roletype and rolegroup are added to the
+   * fulfilledRoles list.
    * 
    */
   @Override
   public void execute() {
 
-    oldFulfilledRoles.addAll(fulfillment.getFulfilledRoles());
+    oldFulfilledRoles.addAll(fulfillment.getReferencedRoles());
 
-    fulfillment.getFulfilledRoles().clear();
+    fulfillment.getReferencedRoles().clear();
 
-    for (String name : roles) {
-      fulfillment.getFulfilledRoles().add(name);
+    for (Shape role : roles) {
+      fulfillment.getReferencedRoles().add(role);
     }
   }
 
   /**
    * {@inheritDoc} To undo this command the content of the fulfilledRoles list is deleted and
-   * replaced with the initial content of the fulfilledRoles list, which is stored in the oldFulfilledRoles list.
+   * replaced with the initial content of the fulfilledRoles list, which is stored in the
+   * oldFulfilledRoles list.
    * 
    * */
   @Override
   public void undo() {
 
-    fulfillment.getFulfilledRoles().clear();
-    fulfillment.getFulfilledRoles().addAll(oldFulfilledRoles);
+    fulfillment.getReferencedRoles().clear();
+    fulfillment.getReferencedRoles().addAll(oldFulfilledRoles);
 
   }
 
   /**
    * Setter for the choosen roles list.
    * 
-   * @param roles java.util.List<String>
+   * @param roles java.util.List<Shape>
    * */
-  public void setRoles(final List<String> roles) {
+  public void setRoles(final List<Shape> roles) {
     this.roles = roles;
   }
 
   /**
-   * Setter for the {@link Fulfillment}.
+   * Setter for the {@link Relation} from type fulfillment.
    * 
-   * @param fulfillment org.framed.orm.model.Fulfillment
+   * @param fulfillment org.framed.orm.model.Relation
    * */
-  public void setFulfillment(final Fulfillment fulfillment) {
+  public void setFulfillment(final Relation fulfillment) {
     this.fulfillment = fulfillment;
   }
 }
