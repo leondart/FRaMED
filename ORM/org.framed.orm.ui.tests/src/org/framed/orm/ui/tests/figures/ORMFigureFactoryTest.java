@@ -7,7 +7,8 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
-import org.framed.orm.ui.editPart.types.ShapeEditPart;
+import org.framed.orm.ui.editPart.types.ORMSegmentEditPart;
+import org.framed.orm.ui.editPart.types.ORMShapeEditPart;
 import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
@@ -24,7 +25,7 @@ public class ORMFigureFactoryTest {
 
   @Test
   public void testCreateFigureOfRoleType() {
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMShapeEditPart();
     Shape shape = OrmFactory.eINSTANCE.createShape();  
     shape.setType(Type.ROLE_TYPE);
     part.setModel(shape);
@@ -34,7 +35,7 @@ public class ORMFigureFactoryTest {
   
   @Test
   public void testCreateFigureOfRoleGroup() {
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMShapeEditPart();
     Shape shape = OrmFactory.eINSTANCE.createShape();  
     shape.setType(Type.ROLE_GROUP);
     part.setModel(shape);
@@ -44,7 +45,7 @@ public class ORMFigureFactoryTest {
   
   @Test
   public void testCreateFigureOfDataType() {
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMShapeEditPart();
     Shape shape = OrmFactory.eINSTANCE.createShape();  
     shape.setType(Type.DATA_TYPE);
     part.setModel(shape);
@@ -54,7 +55,7 @@ public class ORMFigureFactoryTest {
   
   @Test
   public void testCreateFigureOfNatrualType() {
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMShapeEditPart();
     Shape shape = OrmFactory.eINSTANCE.createShape();  
     shape.setType(Type.NATURAL_TYPE);
     part.setModel(shape);
@@ -64,7 +65,7 @@ public class ORMFigureFactoryTest {
   
   @Test
   public void testCreateFigureOfGroup() {
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMShapeEditPart();
     Shape shape = OrmFactory.eINSTANCE.createShape();  
     shape.setType(Type.GROUP);
     part.setModel(shape);
@@ -82,7 +83,7 @@ public class ORMFigureFactoryTest {
   
   @Test
   public void testCreateFigureOfCompartmentType() {
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMShapeEditPart();
     Shape shape = OrmFactory.eINSTANCE.createShape();  
     shape.setType(Type.COMPARTMENT_TYPE);
     part.setModel(shape);
@@ -108,8 +109,7 @@ public class ORMFigureFactoryTest {
   
   @Test
   public void testCreateFigureOfSegment() {
-    //TODO: switch it with ORMSegmentEditPart when ORMSegmentEditPart is implemented
-    EditPart part = new ShapeEditPart();
+    EditPart part = new ORMSegmentEditPart();
     part.setModel(OrmFactory.eINSTANCE.createSegment());
     
     assertTrue("Return PartFigure()", ORMFigureFactory.createFigure(part) instanceof PartFigure);
