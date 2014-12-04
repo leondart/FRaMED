@@ -154,30 +154,20 @@ public interface Relation extends ModelElement {
   void setTargetLabel(NamedElement value);
 
   /**
-   * Returns the value of the '<em><b>Referenced Relation</b></em>' reference.
+   * Returns the value of the '<em><b>Referenced Relation</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.model.Relation}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Referenced Relation</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Referenced Relation</em>' reference.
-   * @see #setReferencedRelation(Relation)
+   * @return the value of the '<em>Referenced Relation</em>' reference list.
    * @see org.framed.orm.model.OrmPackage#getRelation_ReferencedRelation()
    * @model
    * @generated
    */
-  Relation getReferencedRelation();
-
-  /**
-   * Sets the value of the '{@link org.framed.orm.model.Relation#getReferencedRelation <em>Referenced Relation</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Referenced Relation</em>' reference.
-   * @see #getReferencedRelation()
-   * @generated
-   */
-  void setReferencedRelation(Relation value);
+  EList<Relation> getReferencedRelation();
 
   /**
    * Returns the value of the '<em><b>Referenced Roles</b></em>' reference list.

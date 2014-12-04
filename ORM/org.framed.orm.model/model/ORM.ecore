@@ -28,7 +28,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetLabel" eType="#//NamedElement"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedRelation" eType="#//Relation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referencedRelation" upperBound="-1"
+        eType="#//Relation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedRoles" upperBound="-1"
         eType="#//Shape"/>
   </eClassifiers>

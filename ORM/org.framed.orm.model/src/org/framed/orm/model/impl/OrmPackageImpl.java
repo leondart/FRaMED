@@ -539,7 +539,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
         1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
         !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelation_ReferencedRelation(), this.getRelation(), null,
-        "referencedRelation", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE,
+        "referencedRelation", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE,
         IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
         IS_ORDERED);
     initEReference(getRelation_ReferencedRoles(), this.getShape(), null, "referencedRoles", null,

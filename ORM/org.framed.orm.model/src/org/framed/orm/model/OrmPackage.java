@@ -305,7 +305,7 @@ public interface OrmPackage extends EPackage {
   int RELATION__TARGET_LABEL = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
-   * The feature id for the '<em><b>Referenced Relation</b></em>' reference.
+   * The feature id for the '<em><b>Referenced Relation</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -667,10 +667,10 @@ public interface OrmPackage extends EPackage {
   EReference getRelation_TargetLabel();
 
   /**
-   * Returns the meta object for the reference '{@link org.framed.orm.model.Relation#getReferencedRelation <em>Referenced Relation</em>}'.
+   * Returns the meta object for the reference list '{@link org.framed.orm.model.Relation#getReferencedRelation <em>Referenced Relation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Referenced Relation</em>'.
+   * @return the meta object for the reference list '<em>Referenced Relation</em>'.
    * @see org.framed.orm.model.Relation#getReferencedRelation()
    * @see #getRelation()
    * @generated
@@ -936,7 +936,7 @@ public interface OrmPackage extends EPackage {
     EReference RELATION__TARGET_LABEL = eINSTANCE.getRelation_TargetLabel();
 
     /**
-     * The meta object literal for the '<em><b>Referenced Relation</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Referenced Relation</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

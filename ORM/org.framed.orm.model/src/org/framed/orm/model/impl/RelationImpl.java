@@ -140,17 +140,9 @@ public class RelationImpl extends ModelElementImpl implements Relation {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Relation getReferencedRelation() {
-    return (Relation) eGet(OrmPackage.Literals.RELATION__REFERENCED_RELATION, true);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setReferencedRelation(Relation newReferencedRelation) {
-    eSet(OrmPackage.Literals.RELATION__REFERENCED_RELATION, newReferencedRelation);
+  @SuppressWarnings("unchecked")
+  public EList<Relation> getReferencedRelation() {
+    return (EList<Relation>) eGet(OrmPackage.Literals.RELATION__REFERENCED_RELATION, true);
   }
 
   /**
