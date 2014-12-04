@@ -6,8 +6,6 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.ui.actions.SaveAction;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Grouping;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
