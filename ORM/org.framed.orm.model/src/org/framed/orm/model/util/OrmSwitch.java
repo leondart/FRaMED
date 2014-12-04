@@ -23,210 +23,210 @@ import org.framed.orm.model.*;
  * @generated
  */
 public class OrmSwitch<T> extends Switch<T> {
-	/**
-	 * The cached model package
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static OrmPackage modelPackage;
+  /**
+   * The cached model package
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected static OrmPackage modelPackage;
 
-	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OrmSwitch() {
-		if (modelPackage == null) {
-			modelPackage = OrmPackage.eINSTANCE;
-		}
-	}
+  /**
+   * Creates an instance of the switch.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OrmSwitch() {
+    if (modelPackage == null) {
+      modelPackage = OrmPackage.eINSTANCE;
+    }
+  }
 
-	/**
-	 * Checks whether this is a switch for the given package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
-	 * @return whether this is a switch for the given package.
-	 * @generated
-	 */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
-	}
+  /**
+   * Checks whether this is a switch for the given package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @parameter ePackage the package in question.
+   * @return whether this is a switch for the given package.
+   * @generated
+   */
+  @Override
+  protected boolean isSwitchFor(EPackage ePackage) {
+    return ePackage == modelPackage;
+  }
 
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case OrmPackage.NAMED_ELEMENT: {
-			NamedElement namedElement = (NamedElement) theEObject;
-			T result = caseNamedElement(namedElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrmPackage.MODEL_ELEMENT: {
-			ModelElement modelElement = (ModelElement) theEObject;
-			T result = caseModelElement(modelElement);
-			if (result == null)
-				result = caseNamedElement(modelElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrmPackage.MODEL: {
-			Model model = (Model) theEObject;
-			T result = caseModel(model);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrmPackage.RELATION: {
-			Relation relation = (Relation) theEObject;
-			T result = caseRelation(relation);
-			if (result == null)
-				result = caseModelElement(relation);
-			if (result == null)
-				result = caseNamedElement(relation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrmPackage.SHAPE: {
-			Shape shape = (Shape) theEObject;
-			T result = caseShape(shape);
-			if (result == null)
-				result = caseModelElement(shape);
-			if (result == null)
-				result = caseNamedElement(shape);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OrmPackage.SEGMENT: {
-			Segment segment = (Segment) theEObject;
-			T result = caseSegment(segment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
-		}
-	}
+  /**
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @generated
+   */
+  @Override
+  protected T doSwitch(int classifierID, EObject theEObject) {
+    switch (classifierID) {
+      case OrmPackage.NAMED_ELEMENT: {
+        NamedElement namedElement = (NamedElement) theEObject;
+        T result = caseNamedElement(namedElement);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      case OrmPackage.MODEL_ELEMENT: {
+        ModelElement modelElement = (ModelElement) theEObject;
+        T result = caseModelElement(modelElement);
+        if (result == null)
+          result = caseNamedElement(modelElement);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      case OrmPackage.MODEL: {
+        Model model = (Model) theEObject;
+        T result = caseModel(model);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      case OrmPackage.RELATION: {
+        Relation relation = (Relation) theEObject;
+        T result = caseRelation(relation);
+        if (result == null)
+          result = caseModelElement(relation);
+        if (result == null)
+          result = caseNamedElement(relation);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      case OrmPackage.SHAPE: {
+        Shape shape = (Shape) theEObject;
+        T result = caseShape(shape);
+        if (result == null)
+          result = caseModelElement(shape);
+        if (result == null)
+          result = caseNamedElement(shape);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      case OrmPackage.SEGMENT: {
+        Segment segment = (Segment) theEObject;
+        T result = caseSegment(segment);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      default:
+        return defaultCase(theEObject);
+    }
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNamedElement(NamedElement object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(ModelElement object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModelElement(ModelElement object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModel(Model object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseModel(Model object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Relation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRelation(Relation object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelation(Relation object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Shape</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Shape</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseShape(Shape object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Shape</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Shape</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseShape(Shape object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Segment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Segment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSegment(Segment object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Segment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Segment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSegment(Segment object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-	 * @generated
-	 */
-	@Override
-	public T defaultCase(EObject object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch, but this is the last case anyway.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+   * @generated
+   */
+  @Override
+  public T defaultCase(EObject object) {
+    return null;
+  }
 
 } //OrmSwitch

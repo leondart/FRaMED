@@ -24,36 +24,36 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface RelativePoint extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Reference Points</b></em>' reference list.
-	 * The list contents are of type {@link org.framed.orm.geometry.Point}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Reference Points</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reference Points</em>' reference list.
-	 * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_ReferencePoints()
-	 * @model lower="2" upper="2"
-	 * @generated
-	 */
-	EList<Point> getReferencePoints();
+  /**
+   * Returns the value of the '<em><b>Reference Points</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.geometry.Point}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Reference Points</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Reference Points</em>' reference list.
+   * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_ReferencePoints()
+   * @model lower="2" upper="2"
+   * @generated
+   */
+  EList<Point> getReferencePoints();
 
-	/**
-	 * Returns the value of the '<em><b>Distances</b></em>' containment reference list.
-	 * The list contents are of type {@link org.framed.orm.geometry.Point}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Distances</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Distances</em>' containment reference list.
-	 * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_Distances()
-	 * @model containment="true" lower="2" upper="2"
-	 * @generated
-	 */
-	EList<Point> getDistances();
+  /**
+   * Returns the value of the '<em><b>Distances</b></em>' containment reference list.
+   * The list contents are of type {@link org.framed.orm.geometry.Point}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Distances</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Distances</em>' containment reference list.
+   * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_Distances()
+   * @model containment="true" lower="2" upper="2"
+   * @generated
+   */
+  EList<Point> getDistances();
 
 } // RelativePoint

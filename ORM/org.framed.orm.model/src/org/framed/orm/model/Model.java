@@ -23,22 +23,22 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Model extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.framed.orm.model.ModelElement}.
-	 * It is bidirectional and its opposite is '{@link org.framed.orm.model.ModelElement#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Elements</em>' containment reference list.
-	 * @see org.framed.orm.model.OrmPackage#getModel_Elements()
-	 * @see org.framed.orm.model.ModelElement#getContainer
-	 * @model opposite="container" containment="true"
-	 * @generated
-	 */
-	EList<ModelElement> getElements();
+  /**
+   * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+   * The list contents are of type {@link org.framed.orm.model.ModelElement}.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.ModelElement#getContainer <em>Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Elements</em>' containment reference list.
+   * @see org.framed.orm.model.OrmPackage#getModel_Elements()
+   * @see org.framed.orm.model.ModelElement#getContainer
+   * @model opposite="container" containment="true"
+   * @generated
+   */
+  EList<ModelElement> getElements();
 
 } // Model

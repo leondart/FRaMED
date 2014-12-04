@@ -12,6 +12,7 @@ import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,134 +27,140 @@ import org.framed.orm.model.Relation;
  *   <li>{@link org.framed.orm.model.impl.RelationImpl#getSourceLabel <em>Source Label</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationImpl#getTargetLabel <em>Target Label</em>}</li>
  *   <li>{@link org.framed.orm.model.impl.RelationImpl#getReferencedRelation <em>Referenced Relation</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getReferencedRoles <em>Referenced Roles</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class RelationImpl extends ModelElementImpl implements Relation {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RelationImpl() {
-		super();
-	}
+public class RelationImpl extends ModelElementImpl implements Relation {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected RelationImpl() {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return OrmPackage.Literals.RELATION;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return OrmPackage.Literals.RELATION;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelElement getTarget() {
-		return (ModelElement) eGet(OrmPackage.Literals.RELATION__TARGET, true);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ModelElement getTarget() {
+    return (ModelElement) eGet(OrmPackage.Literals.RELATION__TARGET, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTarget(ModelElement newTarget) {
-		eSet(OrmPackage.Literals.RELATION__TARGET, newTarget);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTarget(ModelElement newTarget) {
+    eSet(OrmPackage.Literals.RELATION__TARGET, newTarget);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ModelElement getSource() {
-		return (ModelElement) eGet(OrmPackage.Literals.RELATION__SOURCE, true);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ModelElement getSource() {
+    return (ModelElement) eGet(OrmPackage.Literals.RELATION__SOURCE, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSource(ModelElement newSource) {
-		eSet(OrmPackage.Literals.RELATION__SOURCE, newSource);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSource(ModelElement newSource) {
+    eSet(OrmPackage.Literals.RELATION__SOURCE, newSource);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<RelativePoint> getBendpoints() {
-		return (EList<RelativePoint>) eGet(
-				OrmPackage.Literals.RELATION__BENDPOINTS, true);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  public EList<RelativePoint> getBendpoints() {
+    return (EList<RelativePoint>) eGet(OrmPackage.Literals.RELATION__BENDPOINTS, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NamedElement getSourceLabel() {
-		return (NamedElement) eGet(OrmPackage.Literals.RELATION__SOURCE_LABEL,
-				true);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NamedElement getSourceLabel() {
+    return (NamedElement) eGet(OrmPackage.Literals.RELATION__SOURCE_LABEL, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourceLabel(NamedElement newSourceLabel) {
-		eSet(OrmPackage.Literals.RELATION__SOURCE_LABEL, newSourceLabel);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSourceLabel(NamedElement newSourceLabel) {
+    eSet(OrmPackage.Literals.RELATION__SOURCE_LABEL, newSourceLabel);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NamedElement getTargetLabel() {
-		return (NamedElement) eGet(OrmPackage.Literals.RELATION__TARGET_LABEL,
-				true);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NamedElement getTargetLabel() {
+    return (NamedElement) eGet(OrmPackage.Literals.RELATION__TARGET_LABEL, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTargetLabel(NamedElement newTargetLabel) {
-		eSet(OrmPackage.Literals.RELATION__TARGET_LABEL, newTargetLabel);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTargetLabel(NamedElement newTargetLabel) {
+    eSet(OrmPackage.Literals.RELATION__TARGET_LABEL, newTargetLabel);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Relation getReferencedRelation() {
-		return (Relation) eGet(
-				OrmPackage.Literals.RELATION__REFERENCED_RELATION, true);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Relation getReferencedRelation() {
+    return (Relation) eGet(OrmPackage.Literals.RELATION__REFERENCED_RELATION, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setReferencedRelation(Relation newReferencedRelation) {
-		eSet(OrmPackage.Literals.RELATION__REFERENCED_RELATION,
-				newReferencedRelation);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReferencedRelation(Relation newReferencedRelation) {
+    eSet(OrmPackage.Literals.RELATION__REFERENCED_RELATION, newReferencedRelation);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  public EList<Shape> getReferencedRoles() {
+    return (EList<Shape>) eGet(OrmPackage.Literals.RELATION__REFERENCED_ROLES, true);
+  }
 
 } //RelationImpl
