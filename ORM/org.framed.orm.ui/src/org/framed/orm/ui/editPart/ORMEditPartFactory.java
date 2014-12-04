@@ -20,7 +20,7 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMTotalEditPart;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
 import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
-import org.framed.orm.ui.editPart.types.ShapeEditPart;
+import org.framed.orm.ui.editPart.types.ORMShapeEditPart;
 
 
 
@@ -48,7 +48,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     }
 
     if(model instanceof Shape){
-      part = new ShapeEditPart();
+      part = new ORMShapeEditPart();
     }
    
     if(model instanceof Segment){

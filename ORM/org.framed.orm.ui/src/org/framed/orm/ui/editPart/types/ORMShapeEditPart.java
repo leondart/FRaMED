@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPart.types;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.figure.ORMFigureFactory;
@@ -12,7 +13,7 @@ import org.framed.orm.ui.figure.ORMFigureFactory;
  * @author Bálint Gyapjas
  *
  */
-public class ShapeEditPart extends AbstractGraphicalEditPart {
+public class ORMShapeEditPart extends AbstractGraphicalEditPart {
 
 	@Override
 	protected IFigure createFigure() {
@@ -33,6 +34,11 @@ public class ShapeEditPart extends AbstractGraphicalEditPart {
 				bottomRight = new Point( boundries.getBottomRight().getX(), boundries.getBottomRight().getY());
 		
 		return new org.eclipse.draw2d.geometry.Rectangle(topLeft,bottomRight);		
+	}
+	
+	@Override
+	protected void addChildVisual(final EditPart childEditPart, final int index) {
+		
 	}
 
 }
