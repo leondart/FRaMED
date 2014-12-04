@@ -14,7 +14,7 @@ import org.eclipse.gef.tools.SelectionTool;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
-import org.framed.orm.ui.factory.ORMAcyclicFactory;
+import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
 import org.framed.orm.ui.factory.ORMFulfillmentFactory;
@@ -102,7 +102,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Relationship", true);
       setEntryVisibility("Irreflexive", true);
       setEntryVisibility("Total", true);
-      setEntryVisibility("Acyclic", true);
+      setEntryVisibility("Cyclic", true);
 
       setEntryVisibility("Compartment", false);
       setEntryVisibility("NaturalType", false);
@@ -117,7 +117,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Relationship", false);
       setEntryVisibility("Irreflexive", false);
       setEntryVisibility("Total", false);
-      setEntryVisibility("Acyclic", false);
+      setEntryVisibility("Cyclic", false);
 
       setEntryVisibility("Compartment", true);
       setEntryVisibility("NaturalType", true);
@@ -310,12 +310,12 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("Total", entry8, false);
 
     CreationToolEntry entry9 =
-        new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
-            new ORMAcyclicFactory(), null, null);
+        new ConnectionCreationToolEntry("Cyclic", "Create a new Cyclic Relation",
+            new ORMCyclicFactory(), null, null);
     entry9.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/acyclic.png"));
+        "icons/cyclic.png"));
     drawer.add(entry9);
-    addEntry("Acyclic", entry9, false);
+    addEntry("Cyclic", entry9, false);
 
     group.add(drawer);
   }
