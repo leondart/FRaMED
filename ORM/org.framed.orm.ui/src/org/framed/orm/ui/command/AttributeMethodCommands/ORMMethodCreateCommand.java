@@ -4,7 +4,7 @@ package org.framed.orm.ui.command.AttributeMethodCommands;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Method;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.factory.ORMMethodFactory;
+import org.framed.orm.ui.factory.ORMOperationFactory;
 
 /**
  * Through this command the model element {@link Method} can be created(invoked into the model
@@ -72,7 +72,7 @@ public class ORMMethodCreateCommand extends Command {
 
   /**
    * Setter of the {@link Method}, which should be created/invoked. The basis {@link Method} class
-   * is given by {@link ORMMethodFactory}.
+   * is given by {@link ORMOperationFactory}.
    * 
    * @param method org.framed.orm.model.Method
    */

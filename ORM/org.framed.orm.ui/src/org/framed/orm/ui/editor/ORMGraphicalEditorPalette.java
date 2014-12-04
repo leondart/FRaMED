@@ -21,7 +21,7 @@ import org.framed.orm.ui.factory.ORMFulfillmentFactory;
 import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
-import org.framed.orm.ui.factory.ORMMethodFactory;
+import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMNamedElementFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;

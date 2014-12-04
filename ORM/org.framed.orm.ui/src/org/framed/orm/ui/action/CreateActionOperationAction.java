@@ -8,31 +8,26 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Method;
-import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.RoleType;
-import org.framed.orm.ui.editPart.ORMAttributeEditPart;
-import org.framed.orm.ui.editPart.ORMMethodEditPart;
+import org.framed.orm.model.Segment;
+import org.framed.orm.model.Shape;
+import org.framed.orm.ui.editPart.types.ORMSegmentEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
-import org.framed.orm.ui.factory.ORMMethodFactory;
+import org.framed.orm.ui.factory.ORMOperationFactory;
 
 /**
- * A action for creating {@link Method}s and {@link Attribute}s. This action is nessecary to create
- * methods and atributtes through a shortcut.
+ * A action for creating a operations and attributess. This action is nessecary to create methods
+ * and atributtes through a shortcut.
  * 
  * @author Kay Bierzynski
  * 
  */
-public class CreateActionMethodAction extends SelectionAction {
+public class CreateActionOperationAction extends SelectionAction {
 
   /** String which contains the id of this action. */
   public static final String CREATE_A_M_ID = "CreateAttributeMethod";
   /**
-   * Editpart of the {@link NaturalType}, {@link RoleType} or {@link Compartment} to which the
-   * attribute or method is added.
+   * Editpart of the {@link Segment} to which the attribute or operation should be added.
    */
   private AbstractGraphicalEditPart editPart;
 
@@ -42,18 +37,17 @@ public class CreateActionMethodAction extends SelectionAction {
    * 
    * @param part org.eclipse.ui.IWorkbenchPart
    * */
-  public CreateActionMethodAction(final IWorkbenchPart part) {
+  public CreateActionOperationAction(final IWorkbenchPart part) {
     super(part);
     setId(CREATE_A_M_ID);
     setText("CreateAttributeMethod");
   }
 
   /**
-   * This method creates and send the creation request for a {@link Attribute}, when the user
-   * selected a {@link Attribute}, or a {@link Method}, when the user selected a {@link Method}, to
-   * the editpart to which the {@link Attribute} or {@link Method} should be added. The editpart to
-   * which the {@link Attribute} or {@link Method} is added is the parenteditpart of the selected
-   * {@link Attribute} or {@link Method}.
+   * This method creates and send the creation request for a attribute, when the user selected a
+   * attribute, or a operation, when the user selected a operation, to the editpart to which the
+   * attribute or operation should be added. The editpart to which the attribute or operation is
+   * added is the parenteditpart of the selected attribute or opeartion.
    * 
    * */
   @Override
@@ -67,11 +61,14 @@ public class CreateActionMethodAction extends SelectionAction {
 
     CreateRequest request = new CreateRequest();
 
-    // decide and setup the creation request for attribute or method
-    if (getSelectedObjects().get(0) instanceof ORMAttributeEditPart) {
+    // decide and setup the creation request for attribute or opeartion
+    Segment segment = (Segment) editPart.getModel();
+    Shape shape = (Shape) editPart.getParent().getModel();
+    if (shape.getFirstSegment().equals(segment)) {
       request.setFactory(new ORMAttributeFactory());
-    } else {
-      request.setFactory(new ORMMethodFactory());
+    }
+    if (shape.getSecondSegment().equals(segment)) {
+      request.setFactory(new ORMOperationFactory());
     }
 
     // send the creation request to the editpart
@@ -94,8 +91,8 @@ public class CreateActionMethodAction extends SelectionAction {
   }
 
   /**
-   * {@inheritDoc} This action is enabled when the selected element is a {@link Attribute} or a
-   * {@link Method}.
+   * {@inheritDoc} This action is enabled when the selected element is the child of
+   * {@link ORMSegmentEditPart} also a attribute or a operation.
    * */
   @Override
   protected boolean calculateEnabled() {
@@ -104,8 +101,7 @@ public class CreateActionMethodAction extends SelectionAction {
     }
 
 
-    if (getSelectedObjects().get(0) instanceof ORMAttributeEditPart
-        || getSelectedObjects().get(0) instanceof ORMMethodEditPart) {
+    if (((EditPart) getSelectedObjects().get(0)).getParent() instanceof ORMSegmentEditPart) {
       editPart =
           (AbstractGraphicalEditPart) ((AbstractGraphicalEditPart) getSelectedObjects().get(0))
               .getParent();

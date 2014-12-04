@@ -41,7 +41,7 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
-import org.framed.orm.ui.action.CreateActionMethodAction;
+import org.framed.orm.ui.action.CreateActionOperationAction;
 import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.StepInAction;
@@ -225,7 +225,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     keyHandler.put(KeyStroke.getPressed(SWT.F2, 0),
         getActionRegistry().getAction(GEFActionConstants.DIRECT_EDIT));
     keyHandler.put(KeyStroke.getPressed(SWT.CR, '\r', 0),
-        getActionRegistry().getAction(CreateActionMethodAction.CREATE_A_M_ID));
+        getActionRegistry().getAction(CreateActionOperationAction.CREATE_A_M_ID));
     getGraphicalViewer().setKeyHandler(keyHandler);
   }
 

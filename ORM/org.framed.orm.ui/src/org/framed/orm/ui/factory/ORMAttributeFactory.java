@@ -2,7 +2,6 @@ package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import org.framed.orm.model.Attribute;
 import org.framed.orm.model.OrmFactory;
 
 /**
@@ -11,14 +10,16 @@ import org.framed.orm.model.OrmFactory;
  * @author Kay Bierzynski
  * */
 public class ORMAttributeFactory implements CreationFactory {
-	
+  
+  private static int attribute = 100;
+  
   @Override 
   public Object getNewObject() {		
-    return OrmFactory.eINSTANCE.createAttribute();
+    return OrmFactory.eINSTANCE.createNamedElement();
   }
 
   @Override 
   public Object getObjectType() {
-    return Attribute.class;
+    return attribute;
   }
 }
