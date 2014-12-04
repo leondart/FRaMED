@@ -1,7 +1,9 @@
 package org.framed.orm.ui.tests;
 
 
+import org.framed.orm.ui.tests.action.FulfillRolesActionTest;
 import org.framed.orm.ui.tests.action.StepActionTest;
+import org.framed.orm.ui.tests.command.FulfillRolesCommandTest;
 import org.framed.orm.ui.tests.command.ORMAddCommandTest;
 import org.framed.orm.ui.tests.command.ORMOrphanChildCommandTest;
 import org.framed.orm.ui.tests.command.StepCommandTest;
@@ -27,7 +29,8 @@ import org.junit.runners.Suite.SuiteClasses;
     ORMEditPartFactoryTest.class, ORMModelEditPartTest.class, ORMAbstractXYLayoutPolicyTest.class,
     ORMModelXYLayoutPolicyTest.class, ORMCompartmentTypeFactoryTest.class,
     ORMGroupFactoryTest.class, ORMNaturalTypeFactoryTest.class, ORMRoleGroupFactoryTest.class,
-    ORMRoleTypeFactoryTest.class, ORMFigureFactoryTest.class, StepActionTest.class, StepCommandTest.class})
+    ORMRoleTypeFactoryTest.class, ORMFigureFactoryTest.class, StepActionTest.class,
+    StepCommandTest.class, FulfillRolesActionTest.class, FulfillRolesCommandTest.class})
 public class FramedAllJUnitTests {
 
 }
