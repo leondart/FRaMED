@@ -79,7 +79,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         && hasARelationship(request, true) && !hasConstraintsKind(request)) {
       final ORMRelationshipConstraintCreateCommand result =
           (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
-      result.setTargetNode((Node) getHost().getModel());
+      result.setTarget((Node) getHost().getModel());
       result.setRelationship(testedRelationship);
       retVal = result;
     }
@@ -109,7 +109,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
       final ORMRelationshipConstraintCreateCommand result =
           new ORMRelationshipConstraintCreateCommand();
-      result.setSourceNode((Node) getHost().getModel());
+      result.setSource((Node) getHost().getModel());
       result.setRelation((RelationshipConstraint) request.getNewObject());
       request.setStartCommand(result);
 
@@ -221,7 +221,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   private ORMRelationCreateCommand setupConnectionCompleteCommand(
       final CreateConnectionRequest request) {
     final ORMRelationCreateCommand result = (ORMRelationCreateCommand) request.getStartCommand();
-    result.setTargetNode((Node) getHost().getModel());
+    result.setTarget((Node) getHost().getModel());
     return result;
   }
 
@@ -234,7 +234,7 @@ public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   private ORMRelationCreateCommand setupConnectionStartCommand(
       final CreateConnectionRequest request, final Container container) {
     final ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-    result.setSourceNode((Node) getHost().getModel());
+    result.setSource((Node) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
     request.setStartCommand(result);

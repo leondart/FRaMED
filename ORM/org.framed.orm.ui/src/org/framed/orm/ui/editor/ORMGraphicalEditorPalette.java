@@ -22,7 +22,6 @@ import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;
-import org.framed.orm.ui.factory.ORMNamedElementFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
@@ -219,7 +218,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Methode", "Create a new Methode", new ORMNamedElementFactory(), null, null);
+        new CreationToolEntry("Methode", "Create a new Methode", new ORMOperationFactory(), null, null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));
@@ -227,7 +226,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("Methode", entry1, true);
 
     CreationToolEntry entry2 =
-        new CreationToolEntry("Attribute", "Create a new Attribute", new ORMNamedElementFactory(),
+        new CreationToolEntry("Attribute", "Create a new Attribute", new ORMAttributeFactory(),
             null, null);
     entry2.setToolClass(CreationAndDirectEditTool.class);
     entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,

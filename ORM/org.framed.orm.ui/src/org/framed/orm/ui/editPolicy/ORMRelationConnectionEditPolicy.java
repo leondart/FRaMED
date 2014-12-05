@@ -84,7 +84,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
       final RelationshipConstraint rc, final EditPartViewer epv) {
     final ORMRelationshipConstraintDeleteCommand command =
         new ORMRelationshipConstraintDeleteCommand();
-    command.setRelationshipConstraint(rc);
+    command.setRelation(rc);
     command.setEPViewer(epv);
     return command;
   }

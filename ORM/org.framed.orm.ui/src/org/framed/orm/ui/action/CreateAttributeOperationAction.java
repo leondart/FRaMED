@@ -22,7 +22,7 @@ import org.framed.orm.ui.factory.ORMOperationFactory;
  * @author Kay Bierzynski
  * 
  */
-public class CreateActionOperationAction extends SelectionAction {
+public class CreateAttributeOperationAction extends SelectionAction {
 
   /** String which contains the id of this action. */
   public static final String CREATE_A_M_ID = "CreateAttributeMethod";
@@ -37,7 +37,7 @@ public class CreateActionOperationAction extends SelectionAction {
    * 
    * @param part org.eclipse.ui.IWorkbenchPart
    * */
-  public CreateActionOperationAction(final IWorkbenchPart part) {
+  public CreateAttributeOperationAction(final IWorkbenchPart part) {
     super(part);
     setId(CREATE_A_M_ID);
     setText("CreateAttributeMethod");

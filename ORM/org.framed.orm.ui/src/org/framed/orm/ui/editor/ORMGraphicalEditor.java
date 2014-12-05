@@ -41,7 +41,7 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
-import org.framed.orm.ui.action.CreateActionOperationAction;
+import org.framed.orm.ui.action.CreateAttributeOperationAction;
 import org.framed.orm.ui.action.RelationshipConstraintsAction;
 import org.framed.orm.ui.action.FulfillRolesAction;
 import org.framed.orm.ui.action.StepInAction;
@@ -225,7 +225,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     keyHandler.put(KeyStroke.getPressed(SWT.F2, 0),
         getActionRegistry().getAction(GEFActionConstants.DIRECT_EDIT));
     keyHandler.put(KeyStroke.getPressed(SWT.CR, '\r', 0),
-        getActionRegistry().getAction(CreateActionOperationAction.CREATE_A_M_ID));
+        getActionRegistry().getAction(CreateAttributeOperationAction.CREATE_A_M_ID));
     getGraphicalViewer().setKeyHandler(keyHandler);
   }
 
@@ -255,30 +255,37 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     super.createActions();
 
     // TODO: when the Ediptpart of the Relation and shape are uncomment these actions
-    /*
-     * IAction action = new StepInAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     * 
-     * action = new StepOutAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     * 
-     * action = new StepInNewPageAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     * 
-     * action = new StepInNewTabAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     * 
-     * action = new FulfillRolesAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     * 
-     * action = new RelationshipConstraintsAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     * 
-     * action = new CreateActionMethodAction(this); getActionRegistry().registerAction(action);
-     * getSelectionActions().add(action.getId());
-     */
+
+    IAction action = new StepInAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
+    action = new StepOutAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
+    action = new StepInNewPageAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
+    action = new StepInNewTabAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
+    action = new FulfillRolesAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
+    action = new RelationshipConstraintsAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
+    action = new CreateAttributeOperationAction(this);
+    getActionRegistry().registerAction(action);
+    getSelectionActions().add(action.getId());
+
     // create direct editing action for shortcuts
-    IAction action = new DirectEditAction(this);
+    action = new DirectEditAction(this);
     getActionRegistry().registerAction(action);
     getSelectionActions().add(action.getId());
 

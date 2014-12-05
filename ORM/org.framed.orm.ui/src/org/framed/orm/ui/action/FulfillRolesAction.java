@@ -57,9 +57,8 @@ public class FulfillRolesAction extends SelectionAction {
         Relation relation = (Relation) ((EditPart) selectedObject).getModel();
         if (relation.getType().equals(Type.FULFILLMENT) && relation.getTarget() instanceof Shape) {
           Shape shape = (Shape) relation.getTarget();
-          if (shape.getType().equals(Type.COMPARTMENT_TYPE)
-              && shape.getModel().getElements().size() != 0) {
-            return true;
+          if (shape.getType().equals(Type.COMPARTMENT_TYPE)) {
+            return shape.getModel().getElements().size() != 0;
           }
         }
       }
