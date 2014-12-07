@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.framed.orm.model.editor;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Activator: org.framed.orm.model.presentation.ORMEditorPlugin$Implementation
 Bundle-Vendor: %providerName
