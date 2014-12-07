@@ -4,7 +4,6 @@ package org.framed.orm.ui.editPart.connectionkinds;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.gef.EditPart;
-import org.framed.orm.model.Acyclic;
 
 /**
  * This {@link EditPart} is the controller for the model element {@link Acyclic}.
