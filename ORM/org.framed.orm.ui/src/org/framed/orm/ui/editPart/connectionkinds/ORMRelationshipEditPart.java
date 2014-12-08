@@ -10,8 +10,8 @@ import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.RelationLabel;
-import org.framed.orm.model.Relationship;
+import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Relation;
 import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
 
 /**
@@ -19,12 +19,13 @@ import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
  * 
  * @author Kay Bierzynski (initial development)
  * @author Lars Schuetze (refactoring)
+ * @author David Gollasch (changes due to a new model)
  **/
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
    * {@inheritDoc} {@link Relationship}s have as figure a drawn through line with two {@link Label}s
-   * at both ends. The {@link Label} are added through childre model elements(the
+   * at both ends. The {@link Label} are added through child model elements(the
    * {@link RelationLabel}s.
    */
   @Override
@@ -50,8 +51,8 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /** {@inheritDoc} */
   @Override
-  protected List getModelChildren() {
-    List<RelationLabel> children = new ArrayList<>(2);
+  protected List<NamedElement> getModelChildren() {
+    List<NamedElement> children = new ArrayList<>(2);
     children.add(getRelationship().getTargetLabel());
     children.add(getRelationship().getSourceLabel());
     return children;
@@ -62,8 +63,8 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    * 
    * @return ({@link Relationship}) getModel()
    * */
-  protected Relationship getRelationship() {
-    return (Relationship) getModel();
+  protected Relation getRelationship() {
+    return (Relation) getModel();
   }
 
   /**
