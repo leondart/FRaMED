@@ -1,8 +1,6 @@
 package org.framed.orm.ui.figure;
 
 import org.eclipse.draw2d.ConnectionLayer;
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.Model;
@@ -14,19 +12,17 @@ import org.framed.orm.model.Model;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMModelFigure extends Figure {
+public class ORMModelFigure extends ConnectionLayer {
 
   /**
    * The constructor of this class, where the layout for the white area is set.
    * */
   public ORMModelFigure() {
     
-    ConnectionLayer layer = new ConnectionLayer();
-    layer.setLayoutManager(new XYLayout());
-    //layer.setBorder(new LineBorder(1));
-    layer.setAntialias(SWT.ON);
-
-    add(layer);
+ 
+    setLayoutManager(new XYLayout());
+    //setBorder(new LineBorder(1));
+    setAntialias(SWT.ON);
   }
 
 

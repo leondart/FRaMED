@@ -104,6 +104,7 @@ public class ORMShapeCreateCommand extends Command {
    */
   @Override
   public void execute() {
+    shape.setName("<...>");
     shape.setBoundaries(boundarie);
     shape.setContainer(parent);
     shape.setFirstSegment(attributeSegment);
