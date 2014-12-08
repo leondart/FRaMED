@@ -11,15 +11,13 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 
 /**
- * This {@link EditPart} is the super/parent {@link EditPart} also super/parent controller of all
- * {@link RelationshipConstraint}s and is needed, because all {@link RelationshipConstraint}s of a
- * {@link Relationship} need to be unified in a single figure and when the user deletes/adds a
- * {@link RelationshipConstraint} than the figure mus be updated.
+ * This {@link EditPart} is the super/parent {@link EditPart} respectively super/parent controller of all
+ * {@link RelationshipConstraint}s and is required as all {@link RelationshipConstraint}s of a
+ * {@link Relationship} need to be unified in a single figure. Furthermore, in case the user deletes/adds a
+ * {@link RelationshipConstraint}, the figure has to be updated.
  * 
  * @author Kay Bierzynski
  * */
@@ -31,7 +29,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
    */
   private Label label = new Label();
   /**
-   * A string, which contains the intital text of a {@link RelationshipConstraint} without unfiy it
+   * A string, which contains the initial text of a {@link RelationshipConstraint} without unifying it
    * with other {@link RelationshipConstraint}s.
    */
   private String textInitial;
@@ -88,7 +86,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} calls
    * {@link ORMRelationEditPart#refreshVisuals()}, "unifies the {@link RelationshipConstraint}
-   * figures" of a single {@link Relationship}" and sets the visibilitie of the
+   * figures" of a single {@link Relationship}" and sets the visibility of the
    * {@link RelationshipConstraint} figure. The unifying of the {@link RelationshipConstraint}
    * figures is done through combining the text/name of all the {@link RelationshipConstraint}s in
    * the {@link Label} of the {@link RelationshipConstraint} figure of the first

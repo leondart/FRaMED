@@ -8,18 +8,8 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
-import org.framed.orm.ui.editPart.connectionkinds.ORMAcyclicEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMInheritanceEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMIrreflexiveEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRoleEquivalenceEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRoleImplicationEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRoleProhibitionEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMTotalEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
-import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
+import org.framed.orm.ui.editPart.types.ORMSegmentEditPart;
 import org.framed.orm.ui.editPart.types.ORMShapeEditPart;
 
 
@@ -44,7 +34,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     }    
     
     if(model instanceof Relation){
-      
+      part = new ORMRelationEditPart();
     }
 
     if(model instanceof Shape){
@@ -52,7 +42,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     }
    
     if(model instanceof Segment){
-      
+      part = new ORMSegmentEditPart();
     }
     
  /*   if (model instanceof CompartmentDiagram) {

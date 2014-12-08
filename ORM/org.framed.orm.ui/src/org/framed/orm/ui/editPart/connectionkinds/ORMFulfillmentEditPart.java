@@ -10,15 +10,17 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleType;
+//import org.framed.orm.model.Fulfillment;
+//import org.framed.orm.model.RoleGroup;
+//import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Relation;
 import org.framed.orm.ui.action.FulfillRolesAction;
 
 /**
  * This {@link EditPart} is the controller for the model element {@link Fulfillment}.
  * 
- * @author Kay Bierzynski
+ * @author Kay Bierzynski (initial dev)
+ * @author David Gollasch
  * */
 public class ORMFulfillmentEditPart extends ORMRelationEditPart {
   /**
@@ -37,7 +39,7 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
   }
 
   /**
-   * {@inheritDoc} {@link Fulfilment}s have as figure a drawn through line with a {@link Label} that
+   * {@inheritDoc} {@link Fulfillment}s have as figure a drawn through line with a {@link Label} that
    * contains the names of the {@link RoleType}s and {@link RoleGroup}s that are fulfill from the
    * source of this {@link Fulfillment} and a black arrow tip at the target end of the connection .
    */
@@ -64,17 +66,18 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
     ConnectionEndpointLocator targetEndL = new ConnectionEndpointLocator(conn, true);
     targetEndL.setVDistance(-1);
     targetEndL.setUDistance(1);
-    // add to the targetLabel the initial text(when no roletype or rolegroup names in the
-    // fulfilledroles list) or the roletype and the rolegroup names in the fulfilledrole list
-    String text = "<...>";
-    for (String name : ((Fulfillment) getModel()).getFulfilledRoles()) {
-      if (text.equals("<...>")) {
-        text = name;
-      } else {
-        text = text + ", " + name;
-      }
-    }
-    targetLabel.setText(text);
+//    // add to the targetLabel the initial text(when no roletype or rolegroup names in the
+//    // fulfilledroles list) or the roletype and the rolegroup names in the fulfilledrole list
+//    String text = "<...>";
+//    for (String name : ((Relation) getModel()).getFulfilledRoles()) {
+//      if (text.equals("<...>")) {
+//        text = name;
+//      } else {
+//        text = text + ", " + name;
+//      }
+//    }
+//    targetLabel.setText(text);
+    targetLabel.setText(((Relation)getModel()).getTargetLabel().getName());
     targetLabel.setToolTip(tooltipTarget);
     conn.add(targetLabel, targetEndL);
 
@@ -92,17 +95,17 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
   protected void refreshVisuals() {
     super.refreshVisuals();
 
-    final Fulfillment model = (Fulfillment) getModel();
+    final Relation model = (Relation) getModel();
 
-    String text = "<...>";
-    for (String name : model.getFulfilledRoles()) {
-      if (text.equals("<...>")) {
-        text = name;
-      } else {
-        text = text + ", " + name;
-      }
-    }
+//    String text = "<...>";
+//    for (String name : model.getFulfilledRoles()) {
+//      if (text.equals("<...>")) {
+//        text = name;
+//      } else {
+//        text = text + ", " + name;
+//      }
+//    }
 
-    targetLabel.setText(text);
+    targetLabel.setText(model.getTargetLabel().getName());
   }
 }

@@ -7,7 +7,6 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.Inheritance;
 
 
 /**
