@@ -59,7 +59,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addGroup();
     addSelectionTool();
     // TODO: when all factorys are corrected uncomment these
-    // createComponentsDrawer();
+     createComponentsDrawer();
     // createComponentPartsDrawer();
     // createConnectionsDrawer();
   }
@@ -75,7 +75,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
   private void setEntryVisibility(final String name, final Boolean visibility) {
     entryVisibility.put(name, visibility);
-    if (entries.size() != 0) {
+    if (entries.size() != 0 && entries.get(name) != null) {
       entries.get(name).setVisible(visibility.booleanValue());
     }
   }

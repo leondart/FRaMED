@@ -36,9 +36,8 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
       return d;
     }
 
-    if (obj instanceof Shape) {
-      Shape shape = (Shape) obj;
-      if (shape.getType().equals(Type.ROLE_GROUP)) {
+
+      if (obj.equals(Type.ROLE_GROUP)) {
         // offset + title + role height
         d.setHeight(2 * ORMTextUtilities.charHeight(null) + dynamicDimensions(null).height());
         d.setWidth(250);
@@ -46,7 +45,7 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
         // charHeight * 10: title + 3 attributes + 3 methods + 3 dots
         d.setHeight(ORMTextUtilities.charHeight(null) * 10);
       }
-    }
+    
 
     return d;
   }
@@ -115,6 +114,6 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
     rec.setBottomRight(bottomRight);
     rec.setTopLeft(topLeft);
-    return null;
+    return rec;
   }
 }

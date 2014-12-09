@@ -122,7 +122,6 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   }
 
 
-  
 
   private NamedElement createDescription() {
     ModelElement element = OrmFactory.eINSTANCE.createModelElement();
@@ -148,7 +147,8 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     Rectangle boundaries = (Rectangle) getConstraintFor(request);
 
     command.setShape((Shape) request.getNewObject());
-    command.setBoundaries(createModelReactangle(boundaries));
+    command.setBoundaries(createModelReactangle(new Rectangle(boundaries.getLocation(),
+        ORMAbstractXYLayoutPolicy.dynamicDimensions(request.getNewObjectType()))));
     command.setContainer((Model) getHost().getModel());
 
     command.setAttributeSegment(attributeSegment);
