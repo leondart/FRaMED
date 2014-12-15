@@ -1,4 +1,4 @@
-package org.framed.orm.ui.command.nodes;
+package org.framed.orm.ui.command.shapes;
 
 import java.util.ArrayList;
 import java.util.List;

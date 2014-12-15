@@ -18,7 +18,7 @@ import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.command.StepCommand;
-import org.framed.orm.ui.command.nodes.ORMShapeDeleteCommand;
+import org.framed.orm.ui.command.shapes.ORMShapeDeleteCommand;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 

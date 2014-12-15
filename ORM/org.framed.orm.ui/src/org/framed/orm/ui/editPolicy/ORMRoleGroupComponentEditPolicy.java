@@ -5,7 +5,7 @@ import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
-import org.framed.orm.ui.command.nodes.ORMRoleGroupDeleteCommand;
+import org.framed.orm.ui.command.shapes.ORMRoleGroupDeleteCommand;
 
 
 /**

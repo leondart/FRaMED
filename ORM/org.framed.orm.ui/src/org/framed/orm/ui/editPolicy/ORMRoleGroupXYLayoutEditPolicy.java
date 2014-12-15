@@ -13,8 +13,8 @@ import org.framed.orm.model.Container;
 import org.framed.orm.model.Node;
 import org.framed.orm.model.RoleGroup;
 import org.framed.orm.model.RoleType;
-import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
-import org.framed.orm.ui.command.nodes.ORMShapeCreateCommand;
+import org.framed.orm.ui.command.shapes.ORMShapeChangeBoundariesCommand;
+import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 
 /**

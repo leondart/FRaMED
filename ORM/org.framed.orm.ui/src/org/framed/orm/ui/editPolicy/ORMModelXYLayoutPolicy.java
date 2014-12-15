@@ -15,8 +15,8 @@ import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.command.nodes.ORMShapeChangeBoundariesCommand;
-import org.framed.orm.ui.command.nodes.ORMShapeCreateCommand;
+import org.framed.orm.ui.command.shapes.ORMShapeChangeBoundariesCommand;
+import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
 import org.framed.orm.ui.figure.ORMModelFigure;
 
 /**

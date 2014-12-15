@@ -1,4 +1,4 @@
-package org.framed.orm.ui.command.nodes;
+package org.framed.orm.ui.command.shapes;
 
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.geometry.Rectangle;
