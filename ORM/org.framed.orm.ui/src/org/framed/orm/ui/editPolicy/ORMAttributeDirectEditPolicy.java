@@ -5,7 +5,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.framed.orm.model.Attribute;
-import org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeRenameCommand;
+import org.framed.orm.ui.command.ORMNamedElementRenameCommand;
 
 /**
  * This {@link DirectEditPolicy} shows DirectEdit feedback and creates the Command to perform a
@@ -27,7 +27,7 @@ public class ORMAttributeDirectEditPolicy extends DirectEditPolicy {
   @Override
   protected Command getDirectEditCommand(final DirectEditRequest request) {
 
-    ORMAttributeRenameCommand command = new ORMAttributeRenameCommand();
+    ORMNamedElementRenameCommand command = new ORMNamedElementRenameCommand();
     command.setElement((Attribute) getHost().getModel());
     command.setNewName((String) request.getCellEditor().getValue());
 
