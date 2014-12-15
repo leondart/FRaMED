@@ -26,7 +26,7 @@ public class ORMRoleGroupComponentEditPolicy extends ComponentEditPolicy {
   protected Command createDeleteCommand(final GroupRequest deleteRequest) {
 
     final ORMRoleGroupDeleteCommand roleGroupDeleteCommand = new ORMRoleGroupDeleteCommand();
-    roleGroupDeleteCommand.setNode((Node) getHost().getModel());
+    roleGroupDeleteCommand.setShape((Node) getHost().getModel());
 
     return roleGroupDeleteCommand;
   }

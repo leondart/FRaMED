@@ -18,7 +18,7 @@ import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.command.StepCommand;
-import org.framed.orm.ui.command.nodes.ORMNodeDeleteCommand;
+import org.framed.orm.ui.command.nodes.ORMShapeDeleteCommand;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 
@@ -60,13 +60,13 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
    * {@inheritDoc} In this EditPolicy this method creates and returns a command for deleting a
    * {@link Type} or a {@link Grouping}.
    * 
-   * @return {@link ORMNodeDeleteCommand}
+   * @return {@link ORMShapeDeleteCommand}
    */
   @Override
   protected Command createDeleteCommand(final GroupRequest deleteRequest) {
 
-    final ORMNodeDeleteCommand typeDeleteCommand = new ORMNodeDeleteCommand();
-    typeDeleteCommand.setNode((Node) getHost().getModel());
+    final ORMShapeDeleteCommand typeDeleteCommand = new ORMShapeDeleteCommand();
+    typeDeleteCommand.setShape((Node) getHost().getModel());
     return typeDeleteCommand;
   }
 

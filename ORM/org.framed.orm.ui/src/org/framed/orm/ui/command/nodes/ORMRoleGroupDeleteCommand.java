@@ -11,7 +11,7 @@ import org.framed.orm.model.RoleType;
 /**
  * @author Kay Bierzynski
  * */
-public class ORMRoleGroupDeleteCommand extends ORMNodeDeleteCommand {
+public class ORMRoleGroupDeleteCommand extends ORMShapeDeleteCommand {
 
   /**
    * A list which contains all {@link RoleType}s and {@link RoleGroup}s that are in this
@@ -43,7 +43,7 @@ public class ORMRoleGroupDeleteCommand extends ORMNodeDeleteCommand {
 
     items = new ArrayList<Node>();
 
-    items.addAll(((RoleGroup) node).getNodes());
+    items.addAll(((RoleGroup) shape).getNodes());
 
     gatherRoleGroupsItems(items);
 
