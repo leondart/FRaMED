@@ -13,7 +13,7 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Attribute;
-import org.framed.orm.ui.editPolicy.ORMAttributeComponentEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMAttributeOperationComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMAttributeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
@@ -65,7 +65,7 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMAttributeDirectEditPolicy());
     // edit policy, which handels requests for deleting the {@link Attribute}, which is controlled
     // through this edit part
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeComponentEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
   }
 
   /** {@inheritDoc} */
