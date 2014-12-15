@@ -4,10 +4,10 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Attribute;
-import org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeDeleteCommand;
+import org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeOperationDeleteCommand;
 
 /**
- * This {@link ComponentEditPolicy} handels requests for the deletion of {@link Attribute}s and
+ * This {@link ComponentEditPolicy} handels requests for the deletion of attributes and operations and
  * returns and creats the deletion commands.
  * 
  * @author Kay Bierzynski
@@ -21,7 +21,7 @@ public class ORMAttributeComponentEditPolicy extends ComponentEditPolicy {
    */
   @Override
   protected Command createDeleteCommand(final GroupRequest deleteRequest) {
-    ORMAttributeDeleteCommand attDeleteCommand = new ORMAttributeDeleteCommand();
+    ORMAttributeOperationDeleteCommand attDeleteCommand = new ORMAttributeOperationDeleteCommand();
     attDeleteCommand.setAttribute((Attribute) getHost().getModel());
     return attDeleteCommand;
   }
