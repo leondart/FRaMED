@@ -36,7 +36,7 @@ import org.framed.orm.ui.editPart.ORMAttributeEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
@@ -112,7 +112,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
     // edit policy, which handels requests for deleting the type, which is controlled
     // through this edit part
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy(this));
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
   }
 
   /** {@inheritDoc} */

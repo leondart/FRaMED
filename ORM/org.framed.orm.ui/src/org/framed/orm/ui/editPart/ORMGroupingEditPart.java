@@ -33,7 +33,7 @@ import org.framed.orm.model.Relation;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 import org.framed.orm.ui.figure.ORMGroupingV1Figure;
@@ -95,7 +95,7 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNodeDirectEditPolicy());
     // edit policy, which handels requests for deleting the grouping, which is controlled
     // through this edit part
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy(this));
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
     // when the user has steped in the grouping than the should be unselctable for connection
     // creation, therefore the ORMNodeGraphicalNodeEditPolicy is only installed for groupings, where

@@ -6,13 +6,10 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.Rolemodel;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
@@ -24,29 +21,29 @@ import org.framed.orm.ui.editor.ORMMultiPageEditor;
 
 
 /**
- * This {@link ComponentEditPolicy} handels requests for the deletion of {@link Types}s/
- * {@linkGrouping}s and the step requests for stepping in and out of {@link Compartment}s and
- * {@link Grouping}s. This Policy creates and returns the necessary command for these requests,
+ * This {@link ComponentEditPolicy} handles requests for the deletion of {@link Shape}s and the step
+ * requests for stepping in and out of {@link Shapes}s ftom type compartment and grouping. This
+ * Policy creates and returns the necessary command for these requests,
  * 
  * @author Kay Bierzynski
  * */
-public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
+public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
 
   /**
-   * The {@link ORMMultiPageEditor} instance that shows/controlls/manages the {@link Types}s/
-   * {@linkGrouping}s which the user wants to delete/step into/ step outo.
+   * The {@link ORMMultiPageEditor} instance that shows/controls/manages the {@link Shape}s which
+   * the user wants to delete/step into/ step outo.
    * */
   private final ORMMultiPageEditor editorPart;
   /** The {@link EditPart}, where this EditPolicy is installed. */
   private final AbstractGraphicalEditPart hostEditPart;
-  /** The model element, which is controlles through hostEditPart. */
+  /** The model element, which is controlled through hostEditPart. */
   private final Object hostModel;
 
   /**
    * The constructor of this class. This class is initialized through calling the constructor of the
    * parent class and through setting the global variables.
    * */
-  public ORMTypeComponentEditPolicy(EditPart host) {
+  public ORMShapeComponentEditPolicy(EditPart host) {
     super();
     ORMGraphicalEditor editor =
         (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain()).getEditorPart();
@@ -58,16 +55,16 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
 
   /**
    * {@inheritDoc} In this EditPolicy this method creates and returns a command for deleting a
-   * {@link Type} or a {@link Grouping}.
+   * {@link Shape}.
    * 
    * @return {@link ORMShapeDeleteCommand}
    */
   @Override
   protected Command createDeleteCommand(final GroupRequest deleteRequest) {
 
-    final ORMShapeDeleteCommand typeDeleteCommand = new ORMShapeDeleteCommand();
-    typeDeleteCommand.setShape((Node) getHost().getModel());
-    return typeDeleteCommand;
+    final ORMShapeDeleteCommand command = new ORMShapeDeleteCommand();
+    command.setShape((Shape) getHost().getModel());
+    return command;
   }
 
   /**
@@ -97,23 +94,14 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
    * */
   private StepCommand createStepOutCommand() {
 
-    final Object container = ((Node) hostModel).getContainer();
-
     final StepCommand command = new StepCommand();
     command.setEditPart(hostEditPart);
     command.setEditorPart(editorPart);
 
-    if (container instanceof CompartmentDiagram) {
-      command.setNewContent(container);
-    } else if (container instanceof Rolemodel) {
-
-      Rolemodel rm = (Rolemodel) ((Node) hostModel).getContainer();
-
-      if (rm.getParentGroup() != null) {
-        command.setNewContent(rm.getParentGroup());
-      } else {
-        command.setNewContent(rm.getCompartment());
-      }
+    if (hostEditPart.getParent().getParent() instanceof ScalableRootEditPart) {
+      command.setNewContent(hostEditPart.getParent().getModel());
+    } else {
+      command.setNewContent(hostEditPart.getParent().getParent().getModel());
     }
 
     command.setIsNewWindowCommand(false);
@@ -129,7 +117,7 @@ public class ORMTypeComponentEditPolicy extends ComponentEditPolicy {
    * */
   @Override
   public Command getCommand(final Request request) {
-    
+
     if (request.getType().equals(StepInAction.STEP_IN_REQUEST)) {
       return createStepInCommand(false, false);
     }

@@ -21,6 +21,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMTypeEditPart.ORMTypeAdapter;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 import org.framed.orm.ui.figure.ORMFigureFactory;
@@ -51,6 +52,7 @@ public class ORMShapeEditPart extends AbstractGraphicalEditPart {
   protected void createEditPolicies() {
     // TODO Auto-generated method stub
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
   }
   
   /** {@inheritDoc} */
