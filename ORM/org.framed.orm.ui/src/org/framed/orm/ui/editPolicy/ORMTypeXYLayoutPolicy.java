@@ -6,7 +6,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.Method;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeCreateCommand;
+import org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeOperationCreateCommand;
 import org.framed.orm.ui.command.AttributeOperationCommands.ORMMethodCreateCommand;
 
 /**
@@ -34,8 +34,8 @@ public class ORMTypeXYLayoutPolicy extends XYLayoutEditPolicy {
     }
 
     if (request.getNewObjectType().equals(Attribute.class)) {
-      final ORMAttributeCreateCommand command = new ORMAttributeCreateCommand();
-      command.setContainer((Type) getHost().getModel());
+      final ORMAttributeOperationCreateCommand command = new ORMAttributeOperationCreateCommand();
+      command.setParentSegment((Type) getHost().getModel());
       command.setElement((Attribute) (request.getNewObject()));
       retVal = command;
 
