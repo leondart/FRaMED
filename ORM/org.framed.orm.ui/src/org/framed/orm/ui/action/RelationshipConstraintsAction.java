@@ -75,9 +75,11 @@ public class RelationshipConstraintsAction extends SelectionAction {
     }
 
     for (Object selectedObject : getSelectedObjects()) {
-      if (((EditPart) selectedObject).getModel() instanceof Relation) {
-        Relation rel = (Relation) ((EditPart) selectedObject).getModel();
-        return rel.getType().equals(Type.RELATIONSHIP);
+      if (selectedObject instanceof EditPart) {
+        if (((EditPart) selectedObject).getModel() instanceof Relation) {
+          Relation rel = (Relation) ((EditPart) selectedObject).getModel();
+          return rel.getType().equals(Type.RELATIONSHIP);
+        }
       }
     }
     return false;
@@ -144,13 +146,12 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
       for (Relation relation : dialog.getChosenCreateConstraints()) {
         if (!constraints.contains(relation)) {
-          ORMRelationCreateCommand command =
-              new ORMRelationCreateCommand();
+          ORMRelationCreateCommand command = new ORMRelationCreateCommand();
 
           command.setRelation(relation);
           command.setRelationContainer(rlship.getContainer());
-          command.setSource((Shape)rlship.getSource());
-          command.setTarget((Shape)rlship.getTarget());
+          command.setSource((Shape) rlship.getSource());
+          command.setTarget((Shape) rlship.getTarget());
           command.setSourceLabel(null);
           command.setTargetLabel(null);
           ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
