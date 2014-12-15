@@ -28,7 +28,7 @@ public class ORMAttributeDirectEditPolicy extends DirectEditPolicy {
   protected Command getDirectEditCommand(final DirectEditRequest request) {
 
     ORMAttributeRenameCommand command = new ORMAttributeRenameCommand();
-    command.setAttribute((Attribute) getHost().getModel());
+    command.setElement((Attribute) getHost().getModel());
     command.setNewName((String) request.getCellEditor().getValue());
 
     return command;

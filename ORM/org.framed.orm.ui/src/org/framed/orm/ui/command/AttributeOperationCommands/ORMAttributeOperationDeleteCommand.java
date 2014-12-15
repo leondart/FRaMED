@@ -59,7 +59,7 @@ public class ORMAttributeOperationDeleteCommand extends Command {
    * 
    * @param element org.framed.orm.model.NamedElement
    */
-  public void setAttribute(final NamedElement element) {
+  public void setElement(final NamedElement element) {
     this.element = element;
   }
 

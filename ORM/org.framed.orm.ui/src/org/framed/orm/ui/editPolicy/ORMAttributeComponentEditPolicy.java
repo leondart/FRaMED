@@ -17,12 +17,12 @@ public class ORMAttributeComponentEditPolicy extends ComponentEditPolicy {
   /**
    * {@inheritDoc} In this EditPolicy this method creates and returns a command for deleting a attribute or operation.
    * 
-   * @return attoperDeleteCommand org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeOperationDeleteCommand
+   * @return attoperDeleteCommand org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeOperationDeleteCommand
    */
   @Override
   protected Command createDeleteCommand(final GroupRequest deleteRequest) {
     ORMAttributeOperationDeleteCommand attDeleteCommand = new ORMAttributeOperationDeleteCommand();
-    attDeleteCommand.setAttribute((Attribute) getHost().getModel());
+    attDeleteCommand.setElement((Attribute) getHost().getModel());
     return attDeleteCommand;
   }
 

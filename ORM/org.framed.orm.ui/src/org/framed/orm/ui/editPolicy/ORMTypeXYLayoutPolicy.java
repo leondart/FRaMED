@@ -36,7 +36,7 @@ public class ORMTypeXYLayoutPolicy extends XYLayoutEditPolicy {
     if (request.getNewObjectType().equals(Attribute.class)) {
       final ORMAttributeCreateCommand command = new ORMAttributeCreateCommand();
       command.setContainer((Type) getHost().getModel());
-      command.setAttribute((Attribute) (request.getNewObject()));
+      command.setElement((Attribute) (request.getNewObject()));
       retVal = command;
 
     }
