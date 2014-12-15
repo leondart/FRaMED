@@ -8,20 +8,28 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
+import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.ui.internal.handlers.WizardHandler.New;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.types.ORMTypeEditPart.ORMTypeAdapter;
+import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
+import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
+import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.ORMShapeFigure;
 
 /**
  * 
  * @author Bálint Gyapjas
+ * @author Kay Bierzynski
  *
  */
 public class ORMShapeEditPart extends AbstractGraphicalEditPart {
@@ -42,7 +50,29 @@ public class ORMShapeEditPart extends AbstractGraphicalEditPart {
   @Override
   protected void createEditPolicies() {
     // TODO Auto-generated method stub
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
+  }
+  
+  /** {@inheritDoc} */
+  @Override
+  public void performRequest(Request req) {
 
+    if (req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+      performDirectEditing();
+    }
+  }
+
+  
+  /**
+   * This method initializes and starts the {@link ORMNodeDirectEditManager} for direct editing the
+   * type name.
+   */
+  private void performDirectEditing() {
+    Label label = ((ORMShapeFigure) getFigure()).getLabel();
+    ORMNodeDirectEditManager manager =
+        new ORMNodeDirectEditManager(this, TextCellEditor.class,
+            new ORMNodeCellEditorLocator(label), label);
+    manager.show(); // refresh view
   }
 
   public Rectangle getConstraints() {

@@ -53,12 +53,14 @@ public class FulfillRolesAction extends SelectionAction {
     }
 
     for (Object selectedObject : getSelectedObjects()) {
-      if (((EditPart) selectedObject).getModel() instanceof Relation) {
-        Relation relation = (Relation) ((EditPart) selectedObject).getModel();
-        if (relation.getType().equals(Type.FULFILLMENT) && relation.getTarget() instanceof Shape) {
-          Shape shape = (Shape) relation.getTarget();
-          if (shape.getType().equals(Type.COMPARTMENT_TYPE)) {
-            return shape.getModel().getElements().size() != 0;
+      if (selectedObject instanceof EditPart) {
+        if (((EditPart) selectedObject).getModel() instanceof Relation) {
+          Relation relation = (Relation) ((EditPart) selectedObject).getModel();
+          if (relation.getType().equals(Type.FULFILLMENT) && relation.getTarget() instanceof Shape) {
+            Shape shape = (Shape) relation.getTarget();
+            if (shape.getType().equals(Type.COMPARTMENT_TYPE)) {
+              return shape.getModel().getElements().size() != 0;
+            }
           }
         }
       }
@@ -90,12 +92,13 @@ public class FulfillRolesAction extends SelectionAction {
     // create and setup the roles dialog
     RolesDialog dialog = new RolesDialog(shell);
     ArrayList<Shape> roles = new ArrayList<Shape>();
-    for(ModelElement modelelement : target.getModel().getElements()){
-      if(modelelement.getType().equals(Type.ROLE_TYPE) || modelelement.getType().equals(Type.ROLE_GROUP)){
+    for (ModelElement modelelement : target.getModel().getElements()) {
+      if (modelelement.getType().equals(Type.ROLE_TYPE)
+          || modelelement.getType().equals(Type.ROLE_GROUP)) {
         roles.add((Shape) modelelement);
       }
     }
-    
+
     dialog.setRoles(roles);
 
     // add all role types and role groups wich are already "fulfilled" through the Fulfillment to a
