@@ -16,6 +16,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/container"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Shape"
+        eOpposite="#//Shape/model"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElement"
@@ -39,7 +41,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="secondSegment" eType="#//Segment"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="#//Model"
-        containment="true"/>
+        containment="true" eOpposite="#//Model/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//NamedElement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="boundaries" eType="#//geometry/Rectangle"

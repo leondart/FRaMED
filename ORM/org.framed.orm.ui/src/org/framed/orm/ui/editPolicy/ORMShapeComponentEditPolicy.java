@@ -6,9 +6,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
+import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepOutAction;
@@ -93,15 +93,18 @@ public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
    * @return {@link StepCommand}
    * */
   private StepCommand createStepOutCommand() {
-
+	  
+    final Model container = ((Shape)hostModel).getContainer();
+    
     final StepCommand command = new StepCommand();
     command.setEditPart(hostEditPart);
     command.setEditorPart(editorPart);
 
-    if (hostEditPart.getParent().getParent() instanceof ScalableRootEditPart) {
-      command.setNewContent(hostEditPart.getParent().getModel());
+                        
+    if (container.getParent() == null) {
+      command.setNewContent(container);
     } else {
-      command.setNewContent(hostEditPart.getParent().getParent().getModel());
+      command.setNewContent(container.getParent());
     }
 
     command.setIsNewWindowCommand(false);
