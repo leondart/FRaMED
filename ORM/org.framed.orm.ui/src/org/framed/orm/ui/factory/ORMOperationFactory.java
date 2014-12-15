@@ -11,7 +11,7 @@ import org.framed.orm.model.OrmFactory;
  * */
 public class ORMOperationFactory implements CreationFactory {
 
-  private static int operation = 101;
+  public static int operation = 101;
   
   @Override 
   public Object getNewObject() {		

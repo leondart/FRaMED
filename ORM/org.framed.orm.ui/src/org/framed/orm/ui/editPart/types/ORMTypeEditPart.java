@@ -37,7 +37,7 @@ import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMTypeComponentEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMTypeXYLayoutPolicy;
+import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
 import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
 import org.framed.orm.ui.figure.ORMShapeFigure;
@@ -109,7 +109,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
     // edit policy, which handles the creation of the children of the tyoe and the
     // adding of the children to the type
-    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMTypeXYLayoutPolicy());
+    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
     // edit policy, which handels requests for deleting the type, which is controlled
     // through this edit part
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMTypeComponentEditPolicy(this));

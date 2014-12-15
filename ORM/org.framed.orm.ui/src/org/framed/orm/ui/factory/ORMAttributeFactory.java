@@ -11,7 +11,7 @@ import org.framed.orm.model.OrmFactory;
  * */
 public class ORMAttributeFactory implements CreationFactory {
   
-  private static int attribute = 100;
+  public static int attribute = 100;
   
   @Override 
   public Object getNewObject() {		
