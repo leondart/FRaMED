@@ -1,4 +1,4 @@
-package org.framed.orm.ui.command.AttributeMethodCommands;
+package org.framed.orm.ui.command.AttributeOperationCommands;
 
 
 import org.eclipse.gef.commands.Command;

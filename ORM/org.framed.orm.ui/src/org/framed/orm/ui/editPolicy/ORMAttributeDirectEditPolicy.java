@@ -5,7 +5,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.framed.orm.model.Attribute;
-import org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeRenameCommand;
+import org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeRenameCommand;
 
 /**
  * This {@link DirectEditPolicy} shows DirectEdit feedback and creates the Command to perform a

@@ -4,7 +4,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ComponentEditPolicy;
 import org.eclipse.gef.requests.GroupRequest;
 import org.framed.orm.model.Method;
-import org.framed.orm.ui.command.AttributeMethodCommands.ORMMethodDeleteCommand;
+import org.framed.orm.ui.command.AttributeOperationCommands.ORMMethodDeleteCommand;
 
 /**
  * This {@link ComponentEditPolicy} handels requests for the deletion of {@link Methods}s and

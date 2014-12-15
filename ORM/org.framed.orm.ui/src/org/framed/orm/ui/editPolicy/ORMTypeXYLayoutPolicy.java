@@ -6,8 +6,8 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Attribute;
 import org.framed.orm.model.Method;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeCreateCommand;
-import org.framed.orm.ui.command.AttributeMethodCommands.ORMMethodCreateCommand;
+import org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeCreateCommand;
+import org.framed.orm.ui.command.AttributeOperationCommands.ORMMethodCreateCommand;
 
 /**
  * This {@link XYLayoutEditPolicy} handels request for creation of all kinds {@link Attribute}s and
