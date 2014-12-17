@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMNodeCellEditorLocator implements CellEditorLocator {
+public class ORMCellEditorLocator implements CellEditorLocator {
 
   /** The {@link Label}, whose text the user wants edit. */
   private final Label nameLabel;
@@ -23,7 +23,7 @@ public class ORMNodeCellEditorLocator implements CellEditorLocator {
   /**
    * The constructor of this class, where the {@link Label}, whose text the user wants edit, is set.
    */
-  public ORMNodeCellEditorLocator(final Label label) {
+  public ORMCellEditorLocator(final Label label) {
     this.nameLabel = label;
   }
 

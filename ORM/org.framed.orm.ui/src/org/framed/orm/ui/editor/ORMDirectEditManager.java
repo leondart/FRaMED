@@ -15,7 +15,7 @@ import org.eclipse.gef.tools.DirectEditManager;
  * @author Kay Bierzynski
  * @author Lars Schuetze (refactoring)
  * */
-public class ORMNodeDirectEditManager extends DirectEditManager {
+public class ORMDirectEditManager extends DirectEditManager {
 
   /** The {@link Label}, whose text the user wants edit. */
   private final Label label;
@@ -25,7 +25,7 @@ public class ORMNodeDirectEditManager extends DirectEditManager {
    * {@link DirectEditManager#DirectEditManager(GraphicalEditPart, Class, CellEditorLocator, Object)}
    * is called and the {@link Label}, whose text the user wants edit is set.
    * */
-  public ORMNodeDirectEditManager(final GraphicalEditPart source, final Class editorType,
+  public ORMDirectEditManager(final GraphicalEditPart source, final Class editorType,
       final CellEditorLocator locator, final Label label) {
     super(source, editorType, locator);
     this.label = label;

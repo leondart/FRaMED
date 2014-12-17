@@ -34,8 +34,8 @@ import org.framed.orm.model.Rolemodel;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
-import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
-import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
+import org.framed.orm.ui.editor.ORMCellEditorLocator;
+import org.framed.orm.ui.editor.ORMDirectEditManager;
 import org.framed.orm.ui.figure.ORMGroupingV1Figure;
 import org.framed.orm.ui.figure.ORMGroupingV2Figure;
 import org.framed.orm.ui.figure.PartFigure;
@@ -130,7 +130,7 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
 
 
   /**
-   * This method initializes and starts the {@link ORMNodeDirectEditManager} for direct editing the
+   * This method initializes and starts the {@link ORMDirectEditManager} for direct editing the
    * grouping name.
    */
   private void performDirectEditing() {
@@ -140,9 +140,9 @@ public class ORMGroupingEditPart extends AbstractGraphicalEditPart implements No
     } else {
       label = ((ORMGroupingV2Figure) getFigure()).getLabel();
     }
-    ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class,
-            new ORMNodeCellEditorLocator(label), label);
+    ORMDirectEditManager manager =
+        new ORMDirectEditManager(this, TextCellEditor.class,
+            new ORMCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 

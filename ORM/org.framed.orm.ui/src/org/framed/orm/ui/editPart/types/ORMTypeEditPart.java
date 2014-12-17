@@ -38,8 +38,8 @@ import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
-import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
-import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
+import org.framed.orm.ui.editor.ORMCellEditorLocator;
+import org.framed.orm.ui.editor.ORMDirectEditManager;
 import org.framed.orm.ui.figure.ORMShapeFigure;
 import org.framed.orm.ui.figure.PartFigure;
 
@@ -307,14 +307,14 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
   }
 
   /**
-   * This method initializes and starts the {@link ORMNodeDirectEditManager} for direct editing the
+   * This method initializes and starts the {@link ORMDirectEditManager} for direct editing the
    * type name.
    */
   private void performDirectEditing() {
     Label label = ((ORMShapeFigure) getFigure()).getLabel();
-    ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class,
-            new ORMNodeCellEditorLocator(label), label);
+    ORMDirectEditManager manager =
+        new ORMDirectEditManager(this, TextCellEditor.class,
+            new ORMCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
