@@ -32,7 +32,7 @@ import org.framed.orm.model.Method;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Rolemodel;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.editPart.ORMAttributeEditPart;
+import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMMethodEditPart;
 import org.framed.orm.ui.editPolicy.ORMNodeDirectEditPolicy;
@@ -137,7 +137,7 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
 
     if (childEditPart.getModel() instanceof Attribute) {
       final IFigure contentPane = ((ORMShapeFigure) getFigure()).getAttributeFigure();
-      final ORMAttributeEditPart attrEditPart = (ORMAttributeEditPart) childEditPart;
+      final ORMNamedElementEditPart attrEditPart = (ORMNamedElementEditPart) childEditPart;
 
       final Attribute attribute = (Attribute) childEditPart.getModel();
 
@@ -244,10 +244,10 @@ public abstract class ORMTypeEditPart extends AbstractGraphicalEditPart implemen
     if (childEditPart.getModel() instanceof Attribute) {
       IFigure contentPane = ((ORMShapeFigure) getFigure()).getAttributeFigure();
 
-      if (contentPane.getChildren().contains(((ORMAttributeEditPart) childEditPart).getFigure())) {
-        contentPane.remove(((ORMAttributeEditPart) childEditPart).getFigure());
+      if (contentPane.getChildren().contains(((ORMNamedElementEditPart) childEditPart).getFigure())) {
+        contentPane.remove(((ORMNamedElementEditPart) childEditPart).getFigure());
       } else {
-        collectionAtt.remove(((ORMAttributeEditPart) childEditPart).getFigure());
+        collectionAtt.remove(((ORMNamedElementEditPart) childEditPart).getFigure());
       }
 
       if (contentPane.getChildren().contains(collectAttribute)) {

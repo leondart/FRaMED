@@ -24,7 +24,7 @@ import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
+public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -36,7 +36,7 @@ public class ORMAttributeEditPart extends AbstractGraphicalEditPart {
    * Constructor of this class. In which the class is initialized through calling the constructor of
    * it's parent and initializing it's {@link Adapter}.
    */
-  public ORMAttributeEditPart() {
+  public ORMNamedElementEditPart() {
     super();
     adapter = new ORMAttributeAdapter();
   }
