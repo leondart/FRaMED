@@ -31,9 +31,11 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
+import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.ORMShapeFigure;
 
 /**
@@ -62,6 +64,14 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
 
   /** {@inheritDoc} */
   @Override
+  protected IFigure createFigure() {
+    return ORMFigureFactory.createFigure(this);
+  }
+
+
+
+  /** {@inheritDoc} */
+  @Override
   public void createEditPolicies() {
     // edit policy for handling requests of editing the shape name
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
@@ -69,6 +79,11 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     // edit policy, which handels requests for deleting the shape, which is controlled
     // through this edit part
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
+    // the ORMNodeGraphicalNodeEditPolicy shouldn't for shapes from type compartmenttype and group,
+    // where the user stepped into
+    if (!(getParent() instanceof ScalableRootEditPart)) {
+      installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
+    }
   }
 
   /** {@inheritDoc} */
@@ -78,38 +93,6 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     if (req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
       performDirectEditing();
     }
-  }
-
-  /**
-   * {@inheritDoc} In case of this {@link EditPart} that would be the figure of {@link Attribute}s
-   * and {@link Method}s. When more than 3 Attributes/Methodes are added to this Type, than the
-   * label collectAttribute/collectMethod( they have as a text ...) are added and the names of the
-   * Attributes/Methodes with index >2 are collected and shown in the tooltip(collectionAtt/
-   * collectionMet) of the label collectAttribute/collectMethod.
-   * 
-   * */
-  @Override
-  protected void addChildVisual(final EditPart childEditPart, final int index) {
-
-  }
-
-
-  /**
-   * {@inheritDoc} In case of this {@link EditPart} that would be the figures of {@link Attribute}s
-   * and {@link Method}s. Depending on the index of the {@link Attribute}/{@link Method} is the
-   * child removed from the contentPane or the collectionAtt/collectionMet. When after the removing
-   * the contentPane has less than four children and has a collectAttribute/collectMethod, which has
-   * at least one children, than a children is taken from collectionAttribute/collectionMethod and
-   * added before the collectAttribute/collectMethod. At end this method tests if the
-   * collectionAttribute/collectionMethod contains ate least one children when not thatn the the
-   * collectAttribute/collectMethod is removed from the conetntPane.
-   * 
-   * */
-  @Override
-  protected void removeChildVisual(final EditPart childEditPart) {
-
-
-
   }
 
   /** {@inheritDoc} */
@@ -193,13 +176,7 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
 
     figure.getLabel().setText(model.getName());
     figure.getLabel().setToolTip(new Label(model.getName()));
-    Point upperLeft =
-        new Point(model.getBoundaries().getTopLeft().getX(), model.getBoundaries().getTopLeft()
-            .getY());
-    Point bottomRight =
-        new Point(model.getBoundaries().getBottomRight().getX(), model.getBoundaries()
-            .getBottomRight().getY());
-    parent.setLayoutConstraint(this, figure, new Rectangle(upperLeft, bottomRight));
+    parent.setLayoutConstraint(this, figure, getConstraints());
   }
 
   /** {@inheritDoc} */
@@ -316,9 +293,18 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
   }
 
   /**
-   * A getter for the boundaries of this {@link Type}.
+   * A getter for the boundaries of this {@link Shape}.
    * 
-   * @return type boundaries
+   * @return shape boundaries
    * */
-  public abstract Rectangle getConstraints();
+  public Rectangle getConstraints() {
+    Shape model = (Shape) getModel();
+    org.framed.orm.geometry.Rectangle boundries = model.getBoundaries();
+
+    Point topLeft = new Point(boundries.getTopLeft().getX(), boundries.getTopLeft().getX());
+    Point bottomRight =
+        new Point(boundries.getBottomRight().getX(), boundries.getBottomRight().getY());
+
+    return new org.eclipse.draw2d.geometry.Rectangle(topLeft, bottomRight);
+  }
 }
