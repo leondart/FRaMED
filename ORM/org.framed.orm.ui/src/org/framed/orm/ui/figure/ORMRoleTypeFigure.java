@@ -47,7 +47,7 @@ public class ORMRoleTypeFigure extends ORMShapeFigure {
     rectangle = new ShadowRoundedRectangle();
 
     ToolbarLayout layout = new ToolbarLayout();
-    layout.setSpacing(4); // set the initial heigth of the child figures
+    layout.setSpacing(8); // set the initial heigth of the child figures
     setLayoutManager(new XYLayout());
     setBackgroundColor(ColorConstants.white);
 
