@@ -82,7 +82,7 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     // the ORMNodeGraphicalNodeEditPolicy shouldn't for shapes from type compartmenttype and group,
     // where the user stepped into
     if (!(getParent() instanceof ScalableRootEditPart)) {
-      //installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
+      // installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
     }
   }
 
@@ -100,8 +100,12 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
   protected List getModelChildren() {
     List children = new ArrayList();
     Shape shape = (Shape) getModel();
-    children.add(shape.getFirstSegment());
-    children.add(shape.getSecondSegment());
+    if (shape.getFirstSegment() != null) {
+      children.add(shape.getFirstSegment());
+    }
+    if (shape.getSecondSegment() != null) {
+      children.add(shape.getSecondSegment());
+    }
     if (shape.getModel() != null) {
       children.add(shape.getModel());
     }

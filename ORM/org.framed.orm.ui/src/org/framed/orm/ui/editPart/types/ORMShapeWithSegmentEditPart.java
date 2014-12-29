@@ -16,7 +16,7 @@ import org.framed.orm.ui.figure.ORMNaturalTypeFigure;
 import org.framed.orm.ui.figure.ORMRoleTypeFigure;
 
 /**
- * This {@link EditPart} is the controller for a {@link Shape} from type natrualtype, roletype and
+ * This {@link EditPart} is the controller for a {@link Shape} from type natrualtype, roletype or
  * datatype. This class is the parent of {@link ORMCompartmentEditPart}.
  * 
  * @author Kay Bierzynski
