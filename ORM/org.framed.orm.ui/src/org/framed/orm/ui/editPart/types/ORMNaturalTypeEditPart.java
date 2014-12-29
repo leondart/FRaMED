@@ -19,13 +19,13 @@ import org.framed.orm.ui.figure.ORMNaturalTypeFigure;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMNaturalTypeEditPart extends ORMTypeEditPart {
+public class ORMNaturalTypeEditPart extends ORMSuperShapeEditPart {
 
   /**
    * {@inheritDoc} GRAPHICAL_NODE_ROLE Policy must be installed here so that we can make the
    * {@link Compartment}s unselectable for connection creation, when the user steped in the
    * compartment. The other {@link EditPolicy}s are installed through calling
-   * {@link ORMTypeEditPart#createEditPolicies()}.
+   * {@link ORMSuperShapeEditPart#createEditPolicies()}.
    * 
    * */
   @Override

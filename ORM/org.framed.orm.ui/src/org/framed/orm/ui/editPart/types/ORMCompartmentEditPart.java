@@ -44,7 +44,7 @@ import org.framed.orm.ui.figure.PartFigure;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMCompartmentEditPart extends ORMTypeEditPart {
+public class ORMCompartmentEditPart extends ORMSuperShapeEditPart {
 
   /**
    * A {@link PartFigure} in which all {@link RoleType}s and {@link RoleGroup}s that the
@@ -98,7 +98,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
    * {@inheritDoc} GRAPHICAL_NODE_ROLE Policy must be installed here so that we can make the
    * {@link Compartment} unselectable for connection creation, when the user steped in the
    * compartment. The other {@link EditPolicy}s are installed through calling
-   * {@link ORMTypeEditPart#createEditPolicies()}.
+   * {@link ORMSuperShapeEditPart#createEditPolicies()}.
    * 
    * */
   @Override
@@ -113,7 +113,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} the names of all {@link RoleType}s
    * and {@link RoleGroup}s in the child {@link Rolemodel} are added to the rolePart and the method
-   * {@link ORMTypeEditPart#refreshVisuals()} is called.
+   * {@link ORMSuperShapeEditPart#refreshVisuals()} is called.
    * 
    */
   @Override
@@ -133,7 +133,7 @@ public class ORMCompartmentEditPart extends ORMTypeEditPart {
    * {@link Rolemodel}. If the figure of the {@link Rolemodel} or the rolePart is added to this
    * {@link Compartment} depends on which version of the compartment figure is used also if the user
    * has steped in compartment or not. ( the adding of attribute and method figures is handelt
-   * through calling {@link ORMTypeEditPart#addChildVisual(EditPart, int)}.
+   * through calling {@link ORMSuperShapeEditPart#addChildVisual(EditPart, int)}.
    */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {

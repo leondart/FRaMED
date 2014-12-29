@@ -19,7 +19,7 @@ import org.eclipse.ui.internal.handlers.WizardHandler.New;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.types.ORMTypeEditPart.ORMTypeAdapter;
+import org.framed.orm.ui.editPart.types.ORMSuperShapeEditPart.ORMShapeAdapter;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
