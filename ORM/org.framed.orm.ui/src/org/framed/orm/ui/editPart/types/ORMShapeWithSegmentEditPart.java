@@ -1,6 +1,8 @@
 package org.framed.orm.ui.editPart.types;
 
 
+import java.util.ArrayList;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
@@ -21,6 +23,22 @@ import org.framed.orm.ui.figure.ORMRoleTypeFigure;
  * */
 public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
 
+  /**
+   * A list, which contains the child {@link Segment} figures. This list is necessary for the
+   * {@link ORMCompartmentEditPart}s, because when the user steps into the compartmentype he can
+   * expand and collapse the segments through a button and in both cases the figure of the segments
+   * are needed for the button action.
+   * */
+  protected ArrayList<IFigure> childFigureList;
+
+  /**
+   * Constructor of this class. In which the class is initialized through calling the constructor of
+   * it's parent and initializing the childFigureList.
+   */
+  public ORMShapeWithSegmentEditPart() {
+    super();
+    childFigureList = new ArrayList<IFigure>();
+  }
 
   /**
    * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Segment}.
@@ -57,8 +75,10 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
       }
 
       contentPane.add(((ORMSegmentEditPart) childEditPart).getFigure());
+      childFigureList.add(((ORMSegmentEditPart) childEditPart).getFigure());
       if (editorPart.getIsEditorData() && shape.getSecondSegment().equals(childEditPart.getModel())) {
         contentPane.remove(((ORMSegmentEditPart) childEditPart).getFigure());
+        childFigureList.remove(((ORMSegmentEditPart) childEditPart).getFigure());
       }
 
     }
