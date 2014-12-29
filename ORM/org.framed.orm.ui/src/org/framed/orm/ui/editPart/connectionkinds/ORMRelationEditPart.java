@@ -13,7 +13,7 @@ import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.framed.orm.model.Relation;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy;
 

@@ -1,4 +1,4 @@
-package org.framed.orm.ui.editPart.types;
+package org.framed.orm.ui.editPart.shape;
 
 import java.util.ArrayList;
 import java.util.Collections;

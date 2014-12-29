@@ -12,10 +12,10 @@ import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMSegmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMShapeWithSegmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMShapeWithoutSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
 
 
 

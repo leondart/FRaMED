@@ -8,7 +8,7 @@ import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.editPart.types.ORMSuperShapeEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**

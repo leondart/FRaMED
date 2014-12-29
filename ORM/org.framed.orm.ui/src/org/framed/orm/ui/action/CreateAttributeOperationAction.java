@@ -10,7 +10,7 @@ import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
-import org.framed.orm.ui.editPart.types.ORMSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;

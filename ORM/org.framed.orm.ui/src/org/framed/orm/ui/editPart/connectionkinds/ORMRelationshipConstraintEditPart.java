@@ -11,7 +11,7 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 
 /**
  * This {@link EditPart} is the super/parent {@link EditPart} respectively super/parent controller of all

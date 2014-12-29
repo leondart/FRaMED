@@ -28,9 +28,9 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreate
 import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.ORMRoleGroupEditPart;
 import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
-import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
+import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMNaturalTypeEditPart;
+import org.framed.orm.ui.editPart.shape.ORMRoleTypeEditPart;
 
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
