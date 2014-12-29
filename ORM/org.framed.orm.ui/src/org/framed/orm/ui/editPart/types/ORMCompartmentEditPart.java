@@ -204,7 +204,9 @@ public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
       }
 
       ((Label) figure.getButton().getChildren().get(0)).setIcon(imageExpand);
-
+      // switch the expandstate
+      figure.setExpandState(!figure.isExpanded());
+      
       // change the borders of the child model
       rmed.refreshVisuals();
 
@@ -225,7 +227,9 @@ public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
       }
 
       ((Label) figure.getButton().getChildren().get(0)).setIcon(imageCollapse);
-
+      // switch the expandstate
+      figure.setExpandState(!figure.isExpanded());
+      
       // change the borders of the child rolemodel
       rmed.refreshVisuals();
 
@@ -239,8 +243,7 @@ public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
       }
     }
 
-    // switch the expandstate
-    figure.setExpandState(!figure.isExpanded());
+   
 
   }
 
@@ -270,7 +273,7 @@ public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
     });
 
     ((Label) figure.getButton().getChildren().get(0)).setIcon(imageCollapse);
-
+    
     return figure;
 
   }

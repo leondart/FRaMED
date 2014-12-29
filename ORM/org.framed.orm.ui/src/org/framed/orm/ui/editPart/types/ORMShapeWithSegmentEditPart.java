@@ -76,9 +76,11 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
 
       contentPane.add(((ORMSegmentEditPart) childEditPart).getFigure());
       childFigureList.add(((ORMSegmentEditPart) childEditPart).getFigure());
-      if (editorPart.getIsEditorData() && shape.getSecondSegment().equals(childEditPart.getModel())) {
-        contentPane.remove(((ORMSegmentEditPart) childEditPart).getFigure());
-        childFigureList.remove(((ORMSegmentEditPart) childEditPart).getFigure());
+      if (shape.getSecondSegment() != null) {
+        if (editorPart.getIsEditorData() && shape.getSecondSegment().equals(childEditPart.getModel())) {
+          contentPane.remove(((ORMSegmentEditPart) childEditPart).getFigure());
+          childFigureList.remove(((ORMSegmentEditPart) childEditPart).getFigure());
+        }
       }
 
     }

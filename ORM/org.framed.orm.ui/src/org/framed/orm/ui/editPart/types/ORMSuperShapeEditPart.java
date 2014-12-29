@@ -267,7 +267,7 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
 
           // for synchronsation with compartment list of the Group in above layer of the tree
           if (parent.getType().equals(Type.GROUP)) {
-            ((ORMGroupingEditPart) getParent().getParent()).refreshVisuals();
+            ((ORMShapeWithoutSegmentEditPart) getParent().getParent()).refreshVisuals();
           }
         }
       }
@@ -305,7 +305,7 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     Shape model = (Shape) getModel();
     org.framed.orm.geometry.Rectangle boundries = model.getBoundaries();
 
-    Point topLeft = new Point(boundries.getTopLeft().getX(), boundries.getTopLeft().getX());
+    Point topLeft = new Point(boundries.getTopLeft().getX(), boundries.getTopLeft().getY());
     Point bottomRight =
         new Point(boundries.getBottomRight().getX(), boundries.getBottomRight().getY());
 

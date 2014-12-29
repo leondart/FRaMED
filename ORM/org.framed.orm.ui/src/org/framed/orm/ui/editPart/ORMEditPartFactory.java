@@ -6,6 +6,7 @@ import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
@@ -37,11 +38,11 @@ public class ORMEditPartFactory implements EditPartFactory {
       part = new ORMModelEditPart();
     }
 
-    if (model instanceof Relation) {
+    else if (model instanceof Relation) {
       part = new ORMRelationEditPart();
     }
 
-    if (model instanceof Shape) {
+    else if (model instanceof Shape) {
       Shape shape = (Shape) model;
       if (shape.getType().equals(Type.COMPARTMENT_TYPE)) {
         part = new ORMCompartmentEditPart();
@@ -52,11 +53,11 @@ public class ORMEditPartFactory implements EditPartFactory {
       }
     }
 
-    if (model instanceof Segment) {
+    else if (model instanceof Segment) {
       part = new ORMSegmentEditPart();
     }
 
-    if (!(model instanceof ModelElement)) {
+    else if (!(model instanceof ModelElement) && model instanceof NamedElement) {
       part = new ORMNamedElementEditPart();
     }
 

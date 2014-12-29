@@ -14,7 +14,11 @@ public class ORMFigureFactory {
 
 
     if (editpart.getModel() instanceof Model) {
-      fig = new ORMModelFigure();
+      if (!(editpart.getParent().getModel() instanceof Shape)) {
+        fig = new ORMModelFigure();
+      } else {
+        fig = new ORMChildModelFigure();
+      }
     }
 
     if (editpart.getModel() instanceof Shape) {

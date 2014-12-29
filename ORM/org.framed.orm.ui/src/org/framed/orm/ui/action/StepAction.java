@@ -8,7 +8,7 @@ import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.editPart.types.ORMShapeEditPart;
+import org.framed.orm.ui.editPart.types.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
@@ -83,7 +83,7 @@ public class StepAction extends SelectionAction {
   protected boolean calculateEnabled() {
     if (getSelectedObjects().isEmpty() || getSelectedObjects().size() > 1) {
       return false;
-    } else if (getSelectedObjects().get(0) instanceof ORMShapeEditPart) {
+    } else if (getSelectedObjects().get(0) instanceof ORMSuperShapeEditPart) {
       editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
       if (((Shape) editPart.getModel()).getType().equals(Type.COMPARTMENT_TYPE)
           || ((Shape) editPart.getModel()).getType().equals(Type.GROUP)) {
