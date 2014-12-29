@@ -12,12 +12,12 @@ import org.framed.orm.model.Model;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMModelFigure extends ConnectionLayer {
+public class ORMRootModelFigure extends ConnectionLayer {
 
   /**
    * The constructor of this class, where the layout for the white area is set.
    * */
-  public ORMModelFigure() {
+  public ORMRootModelFigure() {
     
  
     setLayoutManager(new XYLayout());

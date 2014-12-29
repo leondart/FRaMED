@@ -14,7 +14,7 @@ import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.ORMGroupingV1Figure;
 import org.framed.orm.ui.figure.ORMGroupingV2Figure;
-import org.framed.orm.ui.figure.ORMModelFigure;
+import org.framed.orm.ui.figure.ORMRootModelFigure;
 import org.framed.orm.ui.figure.ORMNaturalTypeFigure;
 import org.framed.orm.ui.figure.ORMRoleGroupFigure;
 import org.framed.orm.ui.figure.ORMRoleTypeFigure;
@@ -104,7 +104,7 @@ public class ORMFigureFactoryTest {
     EditPart part = new ORMModelEditPart();
     part.setModel(OrmFactory.eINSTANCE.createModel());
     
-    assertTrue("Return ORMModelFigure", ORMFigureFactory.createFigure(part) instanceof ORMModelFigure);
+    assertTrue("Return ORMModelFigure", ORMFigureFactory.createFigure(part) instanceof ORMRootModelFigure);
   }
   
   @Test

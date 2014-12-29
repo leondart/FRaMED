@@ -28,7 +28,7 @@ import org.framed.orm.model.Shape;
 public class ORMRoleGroupFigure extends ORMShapeFigure {
 
   /**
-   * The basic {@link RoundedRectangle} to which all child figures({@link ORMModelFigure} , name) are added.
+   * The basic {@link RoundedRectangle} to which all child figures({@link ORMRootModelFigure} , name) are added.
    */
   private final RoundedRectangle rectangle;
 

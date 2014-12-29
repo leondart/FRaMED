@@ -18,7 +18,7 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.shapes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
-import org.framed.orm.ui.figure.ORMModelFigure;
+import org.framed.orm.ui.figure.ORMRootModelFigure;
 
 /**
  * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of all kinds
