@@ -58,7 +58,7 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
           break;
         case Type.ROLE_GROUP_VALUE:
           contentPane = ((ORMRoleGroupFigure) getFigure()).getBasicRec();
-          contentPane.add(((ORMModelEditPart) childEditPart).getFigure());
+          contentPane.add(((ORMModelEditPart) childEditPart).getFigure(), BorderLayout.CENTER);
           break;
       }
     }

@@ -1,9 +1,9 @@
 package org.framed.orm.ui.figure;
 
+import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -41,23 +41,29 @@ public class ORMRoleGroupFigure extends ORMShapeFigure {
     super();
     rectangle = new RoundedRectangle();
 
-    getLabel().setLabelAlignment(PositionConstants.TOP);
-    getLabel().setTextAlignment(PositionConstants.TOP);
-    getLabel().setOpaque(false);
-
     setLayoutManager(new XYLayout());
     setBackgroundColor(ColorConstants.white);
 
+    BorderLayout layout = new BorderLayout();
+
+    layout.setHorizontalSpacing(-1);
+    layout.setVerticalSpacing(-1);
+    
     rectangle.setAntialias(SWT.ON);
-    rectangle.setLayoutManager(new XYLayout());
+    rectangle.setLayoutManager(layout);
 
     rectangle.setCornerDimensions(new Dimension(20, 20));
 
     // CODE for dashed rectangle
     rectangle.setLineDash(new float[] {5.0f, 5.0f});
     rectangle.setLineStyle(SWT.LINE_CUSTOM);
+    
+    
+    rectangle.setFill(false);
+    
     // add name figure
-    rectangle.add(getLabel());
+    rectangle.add(getLabel(), BorderLayout.TOP);
+    
     add(rectangle);
 
   }
@@ -77,7 +83,6 @@ public class ORMRoleGroupFigure extends ORMShapeFigure {
     super.paintFigure(graphics);
     final Rectangle r = getBounds().getCopy();
     setConstraint(rectangle, new Rectangle(0, 0, r.width(), r.height()));
-    rectangle.setConstraint(getLabel(), new Rectangle(5, 5, r.width() - 5, r.height() - 5));
   }
 
 }

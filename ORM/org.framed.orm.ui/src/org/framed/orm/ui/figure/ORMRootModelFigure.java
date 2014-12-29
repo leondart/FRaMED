@@ -7,8 +7,7 @@ import org.framed.orm.model.Model;
 
 
 /**
- * This figure is for {@link Model}s. The figure is nothing more that white area to which
- * borders are added in the Editparts of {@link Shape}s from type CompartmentType and Goup.
+ * This figure is for a root {@link Model}. 
  * 
  * @author Kay Bierzynski
  * */

@@ -261,12 +261,13 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
         if (parent != null) {
           // for synchronsation with role list of the Shape from type compartmenttype in above layer
           // of the tree
-          if (parent.getType().equals(Type.COMPARTMENT_TYPE)) {
+          if (getParent().getParent() instanceof ORMCompartmentEditPart) {
             ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
           }
 
           // for synchronsation with compartment list of the Group in above layer of the tree
-          if (parent.getType().equals(Type.GROUP)) {
+          if (getParent().getParent() instanceof ORMShapeWithoutSegmentEditPart
+              && parent.getType().equals(Type.GROUP)) {
             ((ORMShapeWithoutSegmentEditPart) getParent().getParent()).refreshVisuals();
           }
         }
