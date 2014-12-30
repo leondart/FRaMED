@@ -78,10 +78,10 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     // edit policy, which handels requests for deleting the shape, which is controlled
     // through this edit part
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
-    // the ORMNodeGraphicalNodeEditPolicy shouldn't for shapes from type compartmenttype and group,
-    // where the user stepped into
+    // the ORMNodeGraphicalNodeEditPolicy shouldn't be installes for shapes from type
+    // compartmenttype and group, where the user stepped into
     if (!(getParent() instanceof ScalableRootEditPart)) {
-      // installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
+      installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
     }
   }
 
