@@ -30,7 +30,7 @@ import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMNodeGraphicalNodeEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMShapeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
@@ -81,7 +81,7 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     // the ORMNodeGraphicalNodeEditPolicy shouldn't be installes for shapes from type
     // compartmenttype and group, where the user stepped into
     if (!(getParent() instanceof ScalableRootEditPart)) {
-      installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMNodeGraphicalNodeEditPolicy());
+      installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMShapeGraphicalNodeEditPolicy());
     }
   }
 

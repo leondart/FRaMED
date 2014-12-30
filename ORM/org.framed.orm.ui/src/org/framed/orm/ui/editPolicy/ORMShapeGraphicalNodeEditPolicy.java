@@ -24,7 +24,7 @@ import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
+public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * A {@link Relation} from type relationship that exist between source edit part and target edit
    * part.
