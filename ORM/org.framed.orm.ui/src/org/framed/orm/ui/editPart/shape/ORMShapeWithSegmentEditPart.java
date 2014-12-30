@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
@@ -38,6 +40,17 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
   public ORMShapeWithSegmentEditPart() {
     super();
     childFigureList = new ArrayList<IFigure>();
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public void createEditPolicies() {
+    super.createEditPolicies();
+    // edit policy, which handles the creation of the children of the segment and the
+    // adding of the children to the segment
+    // this policy is installed here for better selectability for the case when the user wants to
+    // create attributes and operations
+    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
   }
 
   /**
@@ -77,7 +90,8 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
       contentPane.add(((ORMSegmentEditPart) childEditPart).getFigure());
       childFigureList.add(((ORMSegmentEditPart) childEditPart).getFigure());
       if (shape.getSecondSegment() != null) {
-        if (editorPart.getIsEditorData() && shape.getSecondSegment().equals(childEditPart.getModel())) {
+        if (editorPart.getIsEditorData()
+            && shape.getSecondSegment().equals(childEditPart.getModel())) {
           contentPane.remove(((ORMSegmentEditPart) childEditPart).getFigure());
           childFigureList.remove(((ORMSegmentEditPart) childEditPart).getFigure());
         }

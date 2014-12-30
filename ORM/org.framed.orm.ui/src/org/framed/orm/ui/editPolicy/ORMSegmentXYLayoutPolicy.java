@@ -25,23 +25,24 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
   protected Command getCreateCommand(final CreateRequest request) {
     Command retVal = null;
 
-    if (getHost().getParent().getModel() instanceof Shape) {
-      Shape parent = (Shape) getHost().getParent().getModel();
+    if (getHost().getModel() instanceof Shape) {
+      Shape shape = (Shape) getHost().getModel();
+      if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
+        if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
+          final ORMAttributeOperationCreateCommand command =
+              new ORMAttributeOperationCreateCommand();
+          command.setParentSegment(((Shape) getHost().getModel()).getFirstSegment());
+          command.setElement((NamedElement) (request.getNewObject()));
+          retVal = command;
+        }
 
-      if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)
-          && parent.getFirstSegment().equals(getHost().getModel())) {
-        final ORMAttributeOperationCreateCommand command = new ORMAttributeOperationCreateCommand();
-        command.setParentSegment((Segment) getHost().getModel());
-        command.setElement((NamedElement) (request.getNewObject()));
-        retVal = command;
-      }
-
-      if (request.getNewObjectType().equals(ORMOperationFactory.operation)
-          && parent.getSecondSegment().equals(getHost().getModel())) {
-        final ORMAttributeOperationCreateCommand command = new ORMAttributeOperationCreateCommand();
-        command.setParentSegment((Segment) getHost().getModel());
-        command.setElement((NamedElement) (request.getNewObject()));
-        retVal = command;
+        if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
+          final ORMAttributeOperationCreateCommand command =
+              new ORMAttributeOperationCreateCommand();
+          command.setParentSegment(((Shape) getHost().getModel()).getSecondSegment());
+          command.setElement((NamedElement) (request.getNewObject()));
+          retVal = command;
+        }
       }
 
     }

@@ -10,14 +10,12 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Segment;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
-import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.PartFigure;
 
@@ -67,14 +65,6 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
   @Override
   protected IFigure createFigure() {
     return ORMFigureFactory.createFigure(this);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public void createEditPolicies() {
-    // edit policy, which handles the creation of the children of the sehment and the
-    // adding of the children to the segment
-    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
   }
 
   /**
@@ -265,6 +255,11 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
     public boolean isAdapterForType(final Object segment) {
       return segment.equals(Segment.class);
     }
+  }
+
+
+  @Override
+  protected void createEditPolicies() {
   }
 
 }
