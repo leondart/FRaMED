@@ -21,12 +21,12 @@ import org.framed.orm.model.Type;
 public class ORMRelationCreateCommand extends Command {
 
   /** The target/end {@link Shape} of the {@link Relation} to be created. */
-  private Shape target;
+  protected Shape target;
   /** The source/start {@link Shape} of the {@link Relation} to be created. */
-  private Shape source;
-  /** The target label  of the {@link Relation} to be created. */
+  protected Shape source;
+  /** The target label of the {@link Relation} to be created. */
   private NamedElement targetLabel;
-  /** The source label  of the {@link Relation} to be created. */
+  /** The source label of the {@link Relation} to be created. */
   private NamedElement sourceLabel;
   /** A list of refrences on other {@link Relation}s. */
   private ArrayList<Relation> refrencedRelations;
@@ -37,7 +37,7 @@ public class ORMRelationCreateCommand extends Command {
    */
   private Relation relation;
   /** The {@link Model} to which the {@link Relation} should be added. */
-  private Model parent;
+  protected Model parent;
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -54,8 +54,8 @@ public class ORMRelationCreateCommand extends Command {
    */
   @Override
   public boolean canExecute() {
-    
-    if (relation == null || target == null || parent == null|| source == null) {
+
+    if (relation == null || target == null || parent == null || source == null) {
       return false;
     }
 
@@ -76,9 +76,9 @@ public class ORMRelationCreateCommand extends Command {
         return targetLabel == null && sourceLabel == null && refrencedRelations == null;
     }
   }
-  
-  private boolean testRelationshipConstraint(){
-    if(targetLabel == null && sourceLabel == null && refrencedRelations != null){
+
+  private boolean testRelationshipConstraint() {
+    if (targetLabel == null && sourceLabel == null && refrencedRelations != null) {
       return refrencedRelations.size() == 1;
     }
     return false;
@@ -103,13 +103,14 @@ public class ORMRelationCreateCommand extends Command {
     relation.setSourceLabel(sourceLabel);
     relation.setTargetLabel(targetLabel);
     relation.getReferencedRelation().addAll(refrencedRelations);
-    
-    Point psbottomright = new Point(source.getBoundaries().getBottomRight().getX(), source.getBoundaries().getBottomRight().getY());
-    Point pstopleft = new Point(source.getBoundaries().getTopLeft().getX(), source.getBoundaries().getTopLeft().getY());
+
+    Point psbottomright =
+        new Point(source.getBoundaries().getBottomRight().getX(), source.getBoundaries()
+            .getBottomRight().getY());
+    Point pstopleft =
+        new Point(source.getBoundaries().getTopLeft().getX(), source.getBoundaries().getTopLeft()
+            .getY());
     Rectangle sourcerec = new Rectangle(pstopleft, psbottomright);
-    Point ptbottomright = new Point(target.getBoundaries().getBottomRight().getX(), target.getBoundaries().getBottomRight().getY());
-    Point pttopleft = new Point(target.getBoundaries().getTopLeft().getX(), target.getBoundaries().getTopLeft().getY());
-    Rectangle targetrec = new Rectangle(pttopleft, ptbottomright);
 
     // when source and target of the {@link Relation} are equal, than call insertSelfLoopBPs()
     // method, because to make the {@link Relation} visible/look good to the user we need to insert
@@ -118,19 +119,19 @@ public class ORMRelationCreateCommand extends Command {
       insertSelfLoopBPs(sourcerec);
     }
 
-  
+
     int relationCount = getRelationCount();
     if (relationCount > 1 && !source.equals(target)) {
-    Point ps = new Point(sourcerec.x(), sourcerec.y());
-      Point pt = new Point(targetrec.x(),targetrec.y());
+      Point ps = new Point(sourcerec.x(), sourcerec.y());
+      Point pt = createMiddlePointFromBoundarieData(target);
       adaptRelationCreation(ps, pt, relationCount);
     }
   }
 
   /**
    * {@inheritDoc} This command is undone through removing the created {@link Relation} from the
-   * source, the {@link Model} and the target and through deleting all the {@link Bendpoint}s of
-   * the {@link Relation}.
+   * source, the {@link Model} and the target and through deleting all the {@link Bendpoint}s of the
+   * {@link Relation}.
    * 
    */
   @Override
@@ -151,7 +152,7 @@ public class ORMRelationCreateCommand extends Command {
    * 
    * @return number of relations between source and target.
    * */
-  private int getRelationCount() {
+  protected int getRelationCount() {
     // get all relations which are come from the source and go to the target
     final ArrayList<Relation> relsIn = new ArrayList<Relation>();
     relsIn.addAll(target.getIncomingRelations());
@@ -169,7 +170,7 @@ public class ORMRelationCreateCommand extends Command {
    * In this method a {@link Bendpoint} is added to the created {@link Relation}, when between
    * source and target more than one {@link Relation} exists.
    */
-  private void adaptRelationCreation(final Point ps, final Point pt, final int relationCount) {
+  protected void adaptRelationCreation(final Point ps, final Point pt, final int relationCount) {
 
     int relCount = relationCount;
 
@@ -219,7 +220,7 @@ public class ORMRelationCreateCommand extends Command {
 
     // add the bendpoint to the relaton
     creatAndAddBenpoint(dim1P, dim2P);
-    
+
   }
 
   /**
@@ -232,25 +233,38 @@ public class ORMRelationCreateCommand extends Command {
     // first bendpoint which lays beneaths the source/target
     creatAndAddBenpoint(new Point(0, height / 2 + 30), new Point(0, height / 2 + 30));
     // second bendpoint which lays in the southeast from the source/target
-    creatAndAddBenpoint(new Point(width / 2 + 30, height / 2 + 30), new Point(width / 2 + 30, height / 2 + 30));
+    creatAndAddBenpoint(new Point(width / 2 + 30, height / 2 + 30), new Point(width / 2 + 30,
+        height / 2 + 30));
     // third bendpoint which lays in the east from the source/target
     creatAndAddBenpoint(new Point(width / 2 + 30, 0), new Point(width / 2 + 30, 0));
   }
 
-  private void creatAndAddBenpoint(Point dim1P, Point dim2P){
-    org.framed.orm.geometry.Point p1 =  GeometryFactory.eINSTANCE.createPoint();
+  private void creatAndAddBenpoint(Point dim1P, Point dim2P) {
+    org.framed.orm.geometry.Point p1 = GeometryFactory.eINSTANCE.createPoint();
     p1.setX(dim1P.x());
     p1.setY(dim1P.y());
-    org.framed.orm.geometry.Point p2 =  GeometryFactory.eINSTANCE.createPoint();
+    org.framed.orm.geometry.Point p2 = GeometryFactory.eINSTANCE.createPoint();
     p1.setX(dim2P.x());
     p1.setY(dim2P.y());
-    
-    org.framed.orm.geometry.RelativePoint relPoint = GeometryFactory.eINSTANCE.createRelativePoint();
+
+    org.framed.orm.geometry.RelativePoint relPoint =
+        GeometryFactory.eINSTANCE.createRelativePoint();
     relPoint.getReferencePoints().add(p1);
     relPoint.getReferencePoints().add(p2);
     relation.getBendpoints().add(relPoint);
   }
   
+  protected Point createMiddlePointFromBoundarieData(Shape shape){
+    Point ptbottomright =
+        new Point(shape.getBoundaries().getBottomRight().getX(), shape.getBoundaries()
+            .getBottomRight().getY());
+    Point pttopleft =
+        new Point(shape.getBoundaries().getTopLeft().getX(), shape.getBoundaries().getTopLeft()
+            .getY());
+    Rectangle shaperec = new Rectangle(pttopleft, ptbottomright);
+    return new Point(shaperec.x(), shaperec.y());
+  }
+
   /**
    * Setter for the source of the {@link Relation}.
    * 
@@ -286,7 +300,7 @@ public class ORMRelationCreateCommand extends Command {
   public void setRelationContainer(final Model relcon) {
     this.parent = relcon;
   }
-  
+
   public void setTargetLabel(NamedElement targetLabel) {
     this.targetLabel = targetLabel;
   }

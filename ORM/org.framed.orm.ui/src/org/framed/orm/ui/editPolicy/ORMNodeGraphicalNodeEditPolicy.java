@@ -8,30 +8,11 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.framed.orm.model.AbstractRole;
-import org.framed.orm.model.Acyclic;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.Inheritance;
-import org.framed.orm.model.Irreflexive;
-import org.framed.orm.model.Node;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Container;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
-import org.framed.orm.model.RoleEquivalence;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleImplication;
-import org.framed.orm.model.RoleProhibition;
-import org.framed.orm.model.Total;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
-import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.ORMRoleGroupEditPart;
-import org.framed.orm.ui.editPart.ORMRolemodelEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
-import org.framed.orm.ui.editPart.shape.ORMNaturalTypeEditPart;
-import org.framed.orm.ui.editPart.shape.ORMRoleTypeEditPart;
-
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
  * {@link Relation}s and creates and returns the necessary commands for that purpose. NewObject =
@@ -41,14 +22,14 @@ import org.framed.orm.ui.editPart.shape.ORMRoleTypeEditPart;
  * */
 public class ORMNodeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
-   * A {@link Relationship} that exist between source edit part and target edit part.
+   * A {@link Relation} from type relationship that exist between source edit part and target edit part.
    * */
-  private Relationship testedRelationship = null;
+  private Relation testedRelationship = null;
 
   /**
    * {@inheritDoc} The feedback is only shown when the target edit part model is not the model
    * parent of the source edit part model. (this restriction is important for the creation of
-   * {@link Relation}s in a {@link RoleGroup})
+   * {@link Relation}s in a {@link Shape} from type role group)
    */
   @Override
   protected void showCreationFeedback(final CreateConnectionRequest request) {
