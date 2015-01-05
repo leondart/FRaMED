@@ -1,0 +1,38 @@
+import "Type.etl";
+
+pre DataType {
+	var roleTypes : OrderedSet(source!Shape);
+}
+
+/**
+ * Transforms a shape with type DATA_TYPE.
+ */
+rule DataType
+	transform t : source!Shape
+	to n : target!DataType {
+
+	guard : t.getType.getValue == 3 // enum value DATA_TYPE
+
+	n.name = t.name;
+
+	dataTypes.add(t);
+}
+
+/**
+ * Add operations and attributes in the post processing step.
+ *
+ * This separation is necessary as the type references in attributes and operations may form cycles between
+ * types/shapes. The post block ensures that these cycles can be resolved.
+ */
+post DataType {
+	for (t : source!Shape in dataTypes) {
+		var n = t.equivalent();
+
+		if (not n.isDefined() or not t.isDefined()) {
+			continue;
+		}
+
+		t.addAttributes(n);
+		t.addOperations(n);
+	}
+}
