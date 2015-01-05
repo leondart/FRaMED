@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="Simple TestCase for Inheritance from inherited element"
+    description="TestCase to test inheritance over inheritance ;)">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="CompType1"
+        outgoingRelations="//@framedModel/@elements.2"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="CompType2"
+        incomingRelations="//@framedModel/@elements.2"
+        outgoingRelations="//@framedModel/@elements.4"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        type="Relationship"
+        target="//@framedModel/@elements.1"
+        source="//@framedModel/@elements.0"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="CompType3"
+        incomingRelations="//@framedModel/@elements.4"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        type="Inheritance"
+        target="//@framedModel/@elements.3"
+        source="//@framedModel/@elements.1"/>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:CompartmentType"
+        name="CompType1"
+        outgoing="//@cromModel/@relations.0"/>
+    <elements
+        xsi:type="crom_l1_composed:CompartmentType"
+        name="CompType2"
+        incoming="//@cromModel/@relations.0"
+        outgoing="//@cromModel/@relations.1"/>
+    <elements
+        xsi:type="crom_l1_composed:CompartmentType"
+        name="CompType3"
+        incoming="//@cromModel/@relations.1"/>
+    <relations
+        xsi:type="crom_l1_composed:Inheritance"/>
+    <relations
+        xsi:type="crom_l1_composed:Inheritance"/>
+  </cromModel>
+</ts:TestCase>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="Simple TestCase for Relationships"
+    description="Simple TestCase for Relationships">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType1"
+        outgoingRelations="//@framedModel/@elements.2"
+        type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType2"
+        incomingRelations="//@framedModel/@elements.2"
+        type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        name="testFulfillment"
+        type="Fulfillment"
+        target="//@framedModel/@elements.1"
+        source="//@framedModel/@elements.0"
+        referencedRoles="//@framedModel/@elements.3"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="roleType1"
+        type="RoleType"/>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType1"
+        outgoing="//@cromModel/@relations.0"/>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType2"/>
+    <elements
+        xsi:type="crom_l1_composed:RigidType"
+        name="roleType1"/>
+    <relations
+        xsi:type="crom_l1_composed:Fulfillment"
+        filler="//@cromModel/@elements.0"/>
+  </cromModel>
+</ts:TestCase>
