@@ -33,7 +33,7 @@ public abstract class ORMShapeFigure extends Figure {
   public ORMShapeFigure() {
     super();
     label = new Label();
-    expandState = false;
+    expandState = true;
   }
 
   /**

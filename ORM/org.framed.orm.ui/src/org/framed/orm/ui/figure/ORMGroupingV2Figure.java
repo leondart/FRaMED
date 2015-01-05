@@ -4,7 +4,6 @@ import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
@@ -46,15 +45,12 @@ public class ORMGroupingV2Figure extends ORMShapeFigure {
     rectangle = new ShadowRoundedRectangle();
 
     BorderLayout layout = new BorderLayout();
-    ToolbarLayout layout2 = new ToolbarLayout();
-    XYLayout layout3 = new XYLayout();
+    XYLayout layout2 = new XYLayout();
 
-    layout2.setSpacing(4); //set the initial heigth of the child figures
-    layout2.setHorizontal(false);
     layout.setHorizontalSpacing(-1);
     layout.setVerticalSpacing(-1);
 
-    setLayoutManager(layout3);
+    setLayoutManager(layout2);
     setBackgroundColor(ColorConstants.white);
 
     rectangle.setLayoutManager(layout);

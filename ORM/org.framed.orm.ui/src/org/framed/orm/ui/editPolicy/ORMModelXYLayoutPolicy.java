@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -17,7 +18,6 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.shapes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
-import org.framed.orm.ui.figure.ORMModelFigure;
 
 /**
  * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of all kinds
@@ -106,7 +106,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
           || ((CreateRequest) request).getNewObjectType().equals(Type.NATURAL_TYPE)
           || ((CreateRequest) request).getNewObjectType().equals(Type.ROLE_GROUP)) {
 
-        final ORMModelFigure figure = (ORMModelFigure) getHostFigure();
+        final Figure figure = (Figure) getHostFigure();
         figure.setBackgroundColor(ColorConstants.lightBlue);
         figure.setOpaque(true);
       }
@@ -116,7 +116,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   /** {@inheritDoc} */
   @Override
   protected void eraseLayoutTargetFeedback(final Request request) {
-    final ORMModelFigure figure = (ORMModelFigure) getHostFigure();
+    final Figure figure =  (Figure) getHostFigure();
     figure.setBackgroundColor(ColorConstants.white);
     figure.setOpaque(false);
   }

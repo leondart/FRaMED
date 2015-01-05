@@ -18,8 +18,8 @@ import org.framed.orm.model.RelationLabel;
 import org.framed.orm.model.impl.RelationLabelImpl;
 import org.framed.orm.model.impl.RelationLabelImpl.LabelInfo;
 import org.framed.orm.ui.editPolicy.ORMRelationLabelEditPolicy;
-import org.framed.orm.ui.editor.ORMNodeCellEditorLocator;
-import org.framed.orm.ui.editor.ORMNodeDirectEditManager;
+import org.framed.orm.ui.editor.ORMCellEditorLocator;
+import org.framed.orm.ui.editor.ORMDirectEditManager;
 
 /**
  * @author Lars Schuetze
@@ -56,8 +56,8 @@ public class ORMRelationLabelEditPart extends AbstractGraphicalEditPart {
   }
 
   private void performDirectEditing() {
-    ORMNodeDirectEditManager manager =
-        new ORMNodeDirectEditManager(this, TextCellEditor.class, new ORMNodeCellEditorLocator(
+    ORMDirectEditManager manager =
+        new ORMDirectEditManager(this, TextCellEditor.class, new ORMCellEditorLocator(
             getRelationLabelFigure()), getRelationLabelFigure());
     manager.show();
   }

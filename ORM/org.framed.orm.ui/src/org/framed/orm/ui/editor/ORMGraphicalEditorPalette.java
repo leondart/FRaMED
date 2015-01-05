@@ -60,7 +60,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addSelectionTool();
     // TODO: when all factorys are corrected uncomment these
      createComponentsDrawer();
-    // createComponentPartsDrawer();
+     createComponentPartsDrawer();
     // createConnectionsDrawer();
   }
 
@@ -218,7 +218,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Methode", "Create a new Methode", new ORMOperationFactory(), null, null);
+        new CreationToolEntry("Operation", "Create a new Operation", new ORMOperationFactory(), null, null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));

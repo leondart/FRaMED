@@ -10,7 +10,7 @@ import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
-import org.framed.orm.ui.editPart.types.ORMSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;
@@ -100,12 +100,13 @@ public class CreateAttributeOperationAction extends SelectionAction {
       return false;
     }
 
-
-    if (((EditPart) getSelectedObjects().get(0)).getParent() instanceof ORMSegmentEditPart) {
-      editPart =
-          (AbstractGraphicalEditPart) ((AbstractGraphicalEditPart) getSelectedObjects().get(0))
-              .getParent();
-      return true;
+    if (getSelectedObjects().get(0) instanceof EditPart) {
+      if (((EditPart) getSelectedObjects().get(0)).getParent() instanceof ORMSegmentEditPart) {
+        editPart =
+            (AbstractGraphicalEditPart) ((AbstractGraphicalEditPart) getSelectedObjects().get(0))
+                .getParent();
+        return true;
+      }
     }
     return false;
   }

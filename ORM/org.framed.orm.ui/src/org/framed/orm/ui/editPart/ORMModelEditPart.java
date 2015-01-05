@@ -26,7 +26,7 @@ import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMModelXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
-import org.framed.orm.ui.figure.ORMModelFigure;
+import org.framed.orm.ui.figure.ORMRootModelFigure;
 import org.framed.orm.ui.figure.ORMShapeFigure;
 
 /**
@@ -53,7 +53,7 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
 
 
   /**
-   * {@inheritDoc} {@link Model}s have as a figure a {@link ORMModelFigure}. The border of the
+   * {@inheritDoc} {@link Model}s have as a figure a {@link ORMRootModelFigure}. The border of the
    * figure is differs depending on if the parent is a {@link Shape} from type Group or a
    * {@link Shape} from type comaprtemnt and on the expandstate of the parent figure.
    */
@@ -147,7 +147,7 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
 
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the borders of the
-   * {@link ORMModelFigure} depending on the expandstate of it's parents figure.
+   * {@link ORMRootModelFigure} depending on the expandstate of it's parents figure.
    * */
   @Override
   public void refreshVisuals() {
@@ -158,7 +158,7 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   }
 
   /**
-   * A setter, which sets the border of the {@link ORMModelFigure} depending on it's parent and the
+   * A setter, which sets the border of the {@link ORMRootModelFigure} depending on it's parent and the
    * expandstate of the parent figure.
    * */
   private void setFigureBorder(GraphicalEditPart parent, Figure fig) {

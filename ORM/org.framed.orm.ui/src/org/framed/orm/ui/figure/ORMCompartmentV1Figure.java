@@ -48,7 +48,7 @@ public class ORMCompartmentV1Figure extends ORMShapeFigure {
     rectangle = new ShadowRectangle();
 
     ToolbarLayout layout = new ToolbarLayout();
-    layout.setSpacing(4); // set the initial heigth of the child figures
+    layout.setSpacing(8); // set the initial heigth of the child figures
     setLayoutManager(new XYLayout());
     setBackgroundColor(ColorConstants.white);
 
