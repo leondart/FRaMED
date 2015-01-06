@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="Simple TestCase for RoleImplications"
+    description="Simple TestCase for RoleImplications">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="CompType1">
+      <model>
+        <elements
+            xsi:type="org.framed.orm.model:Shape"
+            name="roleType1"
+            outgoingRelations="//@framedModel/@elements.0/@model/@elements.2"
+            type="RoleType"/>
+        <elements
+            xsi:type="org.framed.orm.model:Shape"
+            name="roleType2"
+            incomingRelations="//@framedModel/@elements.0/@model/@elements.2"
+            type="RoleType"/>
+        <elements
+            xsi:type="org.framed.orm.model:Relation"
+            name=""
+            type="RoleImplication"
+            target="//@framedModel/@elements.0/@model/@elements.1"
+            source="//@framedModel/@elements.0/@model/@elements.0"/>
+      </model>
+    </elements>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:CompartmentType"
+        name="compType1">
+      <parts>
+        <role
+            xsi:type="crom_l1_composed:RoleGroup">
+          <elements
+              xsi:type="crom_l1_composed:RoleType"
+              name="roleType1"/>
+          <elements
+              xsi:type="crom_l1_composed:RoleType"
+              name="roleType2"/>
+        </role>
+      </parts>
+    </elements>
+  </cromModel>
+</ts:TestCase>
