@@ -15,15 +15,9 @@
         type="NaturalType">
       <firstSegment>
         <elements
-            name="Named Element 0"/>
+            name="NamedElement0 : NaturalType1"/>
         <elements
-            name="Named Element 1"/>
-        <elements
-            name="Named Element 2"/>
-        <elements
-            name="Named Element 3"/>
-        <elements
-            name="Named Element 4"/>
+            name="NamedElement1 : NaturalType2"/>        
       </firstSegment>
     </elements>
     <elements
@@ -36,15 +30,9 @@
         xsi:type="crom_l1_composed:NaturalType"
         name="NaturalType1">
       <attributes
-          name="Named Element 0"/>
+          name="NamedElement0" type="//@cromModel/@elements.0"/>
       <attributes
-          name="Named Element 1"/>
-      <attributes
-          name="Named Element 2"/>
-      <attributes
-          name="Named Element 3"/>
-      <attributes
-          name="Named Element 4"/>
+          name="NamedElement1" type="//@cromModel/@elements.1"/>      
     </elements>
     <elements
         xsi:type="crom_l1_composed:NaturalType"

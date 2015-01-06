@@ -14,7 +14,17 @@ operation source!Shape addAttributes(n : target!Type) {
 		for(ele : source!NamedElement in attributes.elements) {
 			var attribute = new target!Attribute;
 			attribute.owner = n;
-			attribute.name = ele.name;
+			
+			var attString = ele.name.replaceAll(" +", "");
+			var tokens = attString.split(":");
+			var attName = tokens[0];
+			var attType = findTypeForName(tokens[1]);
+						
+			attribute.name = attName;
+			if (not (attType == null)) {
+				attribute.type = attType;
+			}
+			
 			n.attributes.add(attribute);
 		}
 	}
