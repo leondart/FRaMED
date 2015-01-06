@@ -1,7 +1,7 @@
 import "Type.etl";
 
 pre DataType {
-	var roleTypes : OrderedSet(source!Shape);
+	var dataTypes : OrderedSet(source!Shape);
 }
 
 /**

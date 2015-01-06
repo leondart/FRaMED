@@ -26,11 +26,11 @@
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:CompartmentType" name="CompType1">
-			<attributes name="NamedElement0" type="//@cromModel/@elements.2" />
-			<attributes name="NamedElement1" type="//@cromModel/@elements.2"/>
-			<attributes name="NamedElement2" type="//@cromModel/@elements.2"/>
-			<attributes name="NamedElement3" type="//@cromModel/@elements.2"/>
-			<attributes name="NamedElement4" type="//@cromModel/@elements.2"/>
+			<attributes name="NamedElement0" type="//@cromModel/@elements.1" />
+			<attributes name="NamedElement1" type="//@cromModel/@elements.1"/>
+			<attributes name="NamedElement2" type="//@cromModel/@elements.1"/>
+			<attributes name="NamedElement3" type="//@cromModel/@elements.1"/>
+			<attributes name="NamedElement4" type="//@cromModel/@elements.1"/>
 		</elements>
 		<elements xsi:type="crom_l1_composed:NaturalType" name="CompType2" />
 	</cromModel>
