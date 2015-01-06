@@ -16,9 +16,9 @@
       <firstSegment/>
       <secondSegment>
         <elements
-            name="operation1(para1:Natural_Type1):       NaturalType2"/>
+            name="operation1(para1:NaturalType1):       NaturalType2"/>
         <elements
-            name="operation2(para_1       : NaturalType1, para2:NaturalType2) :NaturalType1"/>
+            name="operation2(para1       : NaturalType1, para2:NaturalType2) :NaturalType1"/>
       </secondSegment>
     </elements>
     <elements
