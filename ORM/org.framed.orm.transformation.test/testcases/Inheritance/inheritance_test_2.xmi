@@ -36,20 +36,20 @@
   <cromModel>
     <elements
         xsi:type="crom_l1_composed:CompartmentType"
-        name="CompType1"
-        outgoing="//@cromModel/@relations.0"/>
+        name="CompType1"/>
     <elements
         xsi:type="crom_l1_composed:CompartmentType"
-        name="CompType2"
-        incoming="//@cromModel/@relations.0"
-        outgoing="//@cromModel/@relations.1"/>
+        name="CompType2"/>
     <elements
         xsi:type="crom_l1_composed:CompartmentType"
-        name="CompType3"
-        incoming="//@cromModel/@relations.1"/>
+        name="CompType3"/>
     <relations
-        xsi:type="crom_l1_composed:Inheritance"/>
+        xsi:type="crom_l1_composed:CompartmentInheritance"
+        super="//@cromModel/@elements.1"
+        sub="//@cromModel/@elements.0"/>
     <relations
-        xsi:type="crom_l1_composed:Inheritance"/>
+        xsi:type="crom_l1_composed:CompartmentInheritance"
+        super="//@cromModel/@elements.2"
+        sub="//@cromModel/@elements.1"/>
   </cromModel>
 </ts:TestCase>

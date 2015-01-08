@@ -26,13 +26,13 @@
   <cromModel>
     <elements
         xsi:type="crom_l1_composed:CompartmentType"
-        name="CompType1"
-        outgoing="//@cromModel/@relations.0"/>
+        name="CompType1"/>
     <elements
         xsi:type="crom_l1_composed:CompartmentType"
-        name="CompType2"
-        incoming="//@cromModel/@relations.0"/>
+        name="CompType2"/>
     <relations
-        xsi:type="crom_l1_composed:Inheritance"/>
+        xsi:type="crom_l1_composed:CompartmentInheritance"
+        super="//@cromModel/@elements.1"
+        sub="//@cromModel/@elements.0"/>
   </cromModel>
 </ts:TestCase>
