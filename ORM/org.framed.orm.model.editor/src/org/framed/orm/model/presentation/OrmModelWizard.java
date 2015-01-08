@@ -11,69 +11,45 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
-
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.xmi.XMLResource;
-
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-
 import org.eclipse.jface.dialogs.MessageDialog;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
-
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-
 import org.eclipse.swt.SWT;
-
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
-
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
-
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
-
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.provider.ORMEditPlugin;
-
 import org.eclipse.core.runtime.Path;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -86,10 +62,10 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class OrmModelWizard extends Wizard implements INewWizard {
-   
-    private static final String ENCODING = "UTF-8";
-	
-    /**
+
+	private static final String ENCODING = "UTF-8";
+
+	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,8 +179,7 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 	 * @generated NOT
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass) ormPackage
-				.getModel();
+		EClass eClass = (EClass) ormPackage.getModel();
 		EObject rootObject = ormFactory.create(eClass);
 		return rootObject;
 	}

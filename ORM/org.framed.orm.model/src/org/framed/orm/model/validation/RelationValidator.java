@@ -11,6 +11,7 @@ import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 
 /**
  * A sample validator interface for {@link org.framed.orm.model.Relation}.
@@ -30,6 +31,10 @@ public interface RelationValidator {
 	boolean validateSourceLabel(NamedElement value);
 
 	boolean validateTargetLabel(NamedElement value);
+
+	boolean validateReferencedRelation(EList<Relation> value);
+
+	boolean validateReferencedRoles(EList<Shape> value);
 
 	boolean validateReferencedRelation(Relation value);
 }
