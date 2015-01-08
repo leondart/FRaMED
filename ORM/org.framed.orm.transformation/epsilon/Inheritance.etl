@@ -1,0 +1,15 @@
+/**
+ * Transforms a relation with type INHERITANCE.
+ */
+rule Inheritance
+	transform s : source!Relation
+	to t : target!Inheritance {
+
+	guard : s.getType.getValue == 6 // enum value INHERITANCE
+	
+	//t.source = null;
+	//t.target = null;
+	
+	s.getSource.equivalent().getOutgoing.add(t);
+	s.getTarget.equivalent().getIncoming.add(t);
+}

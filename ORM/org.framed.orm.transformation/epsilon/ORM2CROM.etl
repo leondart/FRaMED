@@ -3,6 +3,8 @@ import "DataType.etl";
 import "NaturalType.etl";
 import "RoleType.etl";
 
+import "Inheritance.etl";
+
 operation Any println() : Any { 
 	("Printing : " + self)->println();
 }
@@ -15,6 +17,13 @@ rule ORM2CROM
 		var x = shape.equivalent();
 		if(not ((x == null) or x.instanceOf(target!AbstractRole))) {
 			crom.elements.add(x);
+		}
+	}
+	
+	for (relation : source!Relation in mym.elements) {
+		var r = relation.equivalent();
+		if (not (r == null)) {
+			crom.relations.add(r);
 		}
 	}
 	

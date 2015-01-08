@@ -19,7 +19,7 @@
         incomingRelations="//@framedModel/@elements.2"/>
     <elements
         xsi:type="org.framed.orm.model:Relation"
-        type="Relationship"
+        type="Inheritance"
         target="//@framedModel/@elements.1"
         source="//@framedModel/@elements.0"/>
   </framedModel>
