@@ -40,7 +40,7 @@
         source="//@framedModel/@elements.0"/>
     <elements
         xsi:type="org.framed.orm.model:Relation"
-        type="Relationship"
+        type="RelationshipImplication"
         target="//@framedModel/@elements.4"
         source="//@framedModel/@elements.3"/>
   </framedModel>
