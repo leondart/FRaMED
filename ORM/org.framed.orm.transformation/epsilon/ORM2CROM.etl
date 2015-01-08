@@ -4,6 +4,7 @@ import "NaturalType.etl";
 import "RoleType.etl";
 
 import "Inheritance.etl";
+import "Relationship.etl";
 
 operation Any println() : Any { 
 	("Printing : " + self)->println();
