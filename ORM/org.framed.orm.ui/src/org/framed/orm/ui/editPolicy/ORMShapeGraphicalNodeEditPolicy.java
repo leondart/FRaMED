@@ -9,6 +9,7 @@ import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
@@ -196,6 +197,11 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     result.setSource((Shape) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
+    if(request.getNewObjectType().equals(Type.FULFILLMENT)){
+      NamedElement ele = OrmFactory.eINSTANCE.createNamedElement();
+      ele.setName("<...>");
+      result.setTargetLabel(ele);
+    }
     if(request.getNewObjectType().equals(Type.RELATIONSHIP)){
       result.setSourceLabel(OrmFactory.eINSTANCE.createNamedElement());
       result.setTargetLabel(OrmFactory.eINSTANCE.createNamedElement());
