@@ -9,10 +9,10 @@ import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
-import org.framed.orm.ui.figure.ORMGroupingV1Figure;
-import org.framed.orm.ui.figure.ORMGroupingV2Figure;
-import org.framed.orm.ui.figure.ORMRoleGroupFigure;
-import org.framed.orm.ui.figure.PartFigure;
+import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
  * This {@link EditPart} is the controller for a {@link Shape} from type group or compartmentype.

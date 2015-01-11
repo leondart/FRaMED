@@ -16,8 +16,8 @@ import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Segment;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
-import org.framed.orm.ui.figure.ORMFigureFactory;
-import org.framed.orm.ui.figure.PartFigure;
+import org.framed.orm.ui.figure.shapes.ORMFigureFactory;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
  * This {@link EditPart} is for {@link Segment}s.

@@ -22,10 +22,10 @@ import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editor.Activator;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
-import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
-import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
-import org.framed.orm.ui.figure.ORMFigureFactory;
-import org.framed.orm.ui.figure.PartFigure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMFigureFactory;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 
 
 /**

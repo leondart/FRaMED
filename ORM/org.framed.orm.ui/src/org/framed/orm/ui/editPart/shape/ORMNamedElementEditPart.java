@@ -2,7 +2,7 @@ package org.framed.orm.ui.editPart.shape;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.framed.orm.ui.figure.ORMFigureFactory;
+import org.framed.orm.ui.figure.shapes.ORMFigureFactory;
 
 public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
 

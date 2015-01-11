@@ -24,10 +24,10 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMModelXYLayoutPolicy;
-import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
-import org.framed.orm.ui.figure.ORMFigureFactory;
-import org.framed.orm.ui.figure.ORMRootModelFigure;
-import org.framed.orm.ui.figure.ORMShapeFigure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMFigureFactory;
+import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
+import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
  * This {@link EditPart} is the controller for the model element {@link Model.

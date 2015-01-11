@@ -12,10 +12,10 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
-import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
-import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
-import org.framed.orm.ui.figure.ORMNaturalTypeFigure;
-import org.framed.orm.ui.figure.ORMRoleTypeFigure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
+import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
 
 /**
  * This {@link EditPart} is the controller for a {@link Shape} from type natrualtype, roletype or

@@ -6,6 +6,16 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.figure.shapes.ORMChildModelFigure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
+import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
+import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
+import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 
 public class ORMFigureFactory {
 

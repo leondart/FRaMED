@@ -1,4 +1,4 @@
-package org.framed.orm.ui.figure;
+package org.framed.orm.ui.figure.shapes;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;

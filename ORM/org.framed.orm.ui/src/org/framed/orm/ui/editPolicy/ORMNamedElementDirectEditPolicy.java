@@ -6,7 +6,7 @@ import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.ui.command.ORMNamedElementRenameCommand;
-import org.framed.orm.ui.figure.ORMShapeFigure;
+import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
  * This {@link DirectEditPolicy} shows DirectEdit feedback and creates the Command to perform a

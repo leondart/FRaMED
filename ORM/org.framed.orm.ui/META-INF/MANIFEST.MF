@@ -21,4 +21,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.framed.orm.ui.editPart,
  org.framed.orm.ui.editPart.shape,
  org.framed.orm.ui.editor,
- org.framed.orm.ui.figure
+ org.framed.orm.ui.figure.shapes
