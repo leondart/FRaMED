@@ -350,7 +350,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 		String name = sourceURI.lastSegment();
 		name = name.substring(0, name.lastIndexOf("."));
 		name += ".crom";
-		file += name;
+		file += "/" + name;
 		
 		// create target resource
 		URI targetURI = URI.createFileURI(file);
