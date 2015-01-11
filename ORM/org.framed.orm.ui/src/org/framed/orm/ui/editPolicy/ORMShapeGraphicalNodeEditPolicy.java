@@ -9,6 +9,7 @@ import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
@@ -170,7 +171,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   }
 
   /**
-   * This method creates and return the creation commands for all {@link Relation}s except for
+   * This method completes and return the creation commands for all {@link Relation}s except for
    * {@link Relation}s from type cyclic, irreflexive and total.
    * 
    * @return {@link ORMRelationCreateCommand}
@@ -184,10 +185,10 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 
   /**
-   * This method creates and return the creation command for all {@link Relation}s from type cyclic,
-   * total and irrflexive.
+   * This method creates and return the creation command for all {@link Relation}s except the
+   * relations from type cyclic, total and irrflexive.
    * 
-   * @return {@link ORMRelationshipConstraintCreateCommand}
+   * @return {@link ORMRelationCreateCommand}
    * */
   private ORMRelationCreateCommand setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
@@ -195,6 +196,10 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     result.setSource((Shape) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
+    if(request.getNewObjectType().equals(Type.RELATIONSHIP)){
+      result.setSourceLabel(OrmFactory.eINSTANCE.createNamedElement());
+      result.setTargetLabel(OrmFactory.eINSTANCE.createNamedElement());
+    }
     request.setStartCommand(result);
     return result;
   }
@@ -330,7 +335,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method tests if between source edit part and traget edit part already exist a
-   * relationshipConstraint(total,irrflexive,cyclic) kind of the requested relationshipConstraint kind.
+   * relationshipConstraint(total,irrflexive,cyclic) kind of the requested relationshipConstraint
+   * kind.
    * 
    * @return boolean
    * */
@@ -338,7 +344,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
     if (testedRelationship != null) {
       for (Relation rel : testedRelationship.getReferencedRelation()) {
-        if (request.getNewObjectType().equals(Type.IRREFLEXIVE) && rel.getType().equals(Type.IRREFLEXIVE))
+        if (request.getNewObjectType().equals(Type.IRREFLEXIVE)
+            && rel.getType().equals(Type.IRREFLEXIVE))
           return true;
         if (request.getNewObjectType().equals(Type.TOTAL) && rel.getType().equals(Type.TOTAL))
           return true;
