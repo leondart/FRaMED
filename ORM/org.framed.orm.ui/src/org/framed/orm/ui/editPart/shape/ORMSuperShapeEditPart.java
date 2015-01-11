@@ -34,7 +34,7 @@ import org.framed.orm.ui.editPolicy.ORMShapeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
-import org.framed.orm.ui.figure.shapes.ORMFigureFactory;
+import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**

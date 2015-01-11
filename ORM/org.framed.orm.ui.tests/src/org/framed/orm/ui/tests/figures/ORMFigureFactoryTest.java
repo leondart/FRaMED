@@ -11,16 +11,16 @@ import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
-import org.framed.orm.ui.figure.ORMCompartmentV1Figure;
-import org.framed.orm.ui.figure.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
-import org.framed.orm.ui.figure.ORMGroupingV1Figure;
-import org.framed.orm.ui.figure.ORMGroupingV2Figure;
-import org.framed.orm.ui.figure.ORMRootModelFigure;
-import org.framed.orm.ui.figure.ORMNaturalTypeFigure;
-import org.framed.orm.ui.figure.ORMRoleGroupFigure;
-import org.framed.orm.ui.figure.ORMRoleTypeFigure;
-import org.framed.orm.ui.figure.PartFigure;
+import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
+import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
+import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
+import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 import org.junit.Test;
 
 public class ORMFigureFactoryTest {
