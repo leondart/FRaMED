@@ -1,24 +1,27 @@
 package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
-
-import org.framed.orm.model.Fulfillment;
 import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 
 /**
- * The ORMFulfillmentFactory creates a fulfillment relationship.
+ * The ORMFulfillmentFactory creates an {@link Relation} from type fulfillment.
  * 
  * @author Kay Bierzynski
  * */
-public class ORMFulfillmentFactory implements CreationFactory{
-	
-  @Override 
+public class ORMFulfillmentFactory implements CreationFactory {
+
+  @Override
   public Object getNewObject() {
-    return OrmFactory.eINSTANCE.createFulfillment();
+    Relation relation = OrmFactory.eINSTANCE.createRelation();
+    relation.setName("");
+    relation.setType(Type.FULFILLMENT);
+    return relation;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
-    return Fulfillment.class;
+    return Type.FULFILLMENT;
   }
 }

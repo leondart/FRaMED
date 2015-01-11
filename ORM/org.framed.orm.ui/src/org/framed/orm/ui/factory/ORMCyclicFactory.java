@@ -1,12 +1,12 @@
 package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
-
-import org.framed.orm.model.Acyclic;
 import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 
 /**
- * This factory creates an Acyclic Object. This is a relationship object.
+ * This factory creates an {@link Relation} from type cyclic.
  * 
  * @author Kay Bierzynski
  * */
@@ -14,12 +14,15 @@ public class ORMCyclicFactory implements CreationFactory {
 
   @Override
   public Object getNewObject() {
-    return OrmFactory.eINSTANCE.createAcyclic();
+    Relation relation = OrmFactory.eINSTANCE.createRelation();
+    relation.setName("cyclic");
+    relation.setType(Type.CYCLIC);
+    return relation;
   }
 
   @Override
   public Object getObjectType() {
-    return Acyclic.class;
+    return Type.CYCLIC;
   }
 
 }

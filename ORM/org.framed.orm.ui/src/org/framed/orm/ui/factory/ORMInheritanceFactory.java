@@ -1,13 +1,12 @@
 package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
-
-import org.framed.orm.model.Inheritance;
-
 import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 
 /**
- * The ORMInheritanceFactory creates a inheritance object.
+ * The ORMInheritanceFactory creates an {@link Relation} from type inheritance.
  * 
  * @author Kay Bierzynski
  * */
@@ -15,11 +14,14 @@ public class ORMInheritanceFactory implements CreationFactory {
 	
   @Override 
   public Object getNewObject() {		
-    return OrmFactory.eINSTANCE.createInheritance();
+    Relation relation = OrmFactory.eINSTANCE.createRelation();
+    relation.setName("");
+    relation.setType(Type.INHERITANCE);
+    return relation;
   }
 
   @Override 
   public Object getObjectType() {
-    return Inheritance.class;
+    return Type.INHERITANCE;
   }
 }

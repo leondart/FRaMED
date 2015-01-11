@@ -1,24 +1,27 @@
 package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
-
 import org.framed.orm.model.OrmFactory;
-import org.framed.orm.model.RoleEquivalence;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 
 /**
- * The ORMRoleEquivalenceFactory creates the Equivalence relation object.
+ * The ORMRoleEquivalenceFactory creates an {@link Relation} from type roleequivalence.
  * 
  * @author Kay Bierzynski
  * */
-public class ORMRoleEquivalenceFactory implements CreationFactory{
-	
-  @Override 
+public class ORMRoleEquivalenceFactory implements CreationFactory {
+
+  @Override
   public Object getNewObject() {
-    return OrmFactory.eINSTANCE.createRoleEquivalence();
+    Relation relation = OrmFactory.eINSTANCE.createRelation();
+    relation.setName("");
+    relation.setType(Type.ROLE_EQUIVALENCE);
+    return relation;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
-    return RoleEquivalence.class;
+    return Type.ROLE_EQUIVALENCE;
   }
 }
