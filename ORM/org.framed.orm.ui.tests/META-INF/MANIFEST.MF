@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: org.framed.orm.ui.tests
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: org.framed.orm.ui.tests.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
