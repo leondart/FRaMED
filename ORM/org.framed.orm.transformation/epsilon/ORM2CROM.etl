@@ -1,4 +1,10 @@
+import "CompartmentType.etl";
+import "DataType.etl";
 import "NaturalType.etl";
+import "RoleType.etl";
+
+import "Inheritance.etl";
+import "Relationship.etl";
 
 operation Any println() : Any { 
 	("Printing : " + self)->println();
@@ -10,8 +16,15 @@ rule ORM2CROM
 	
 	for(shape : source!Shape in mym.elements) {
 		var x = shape.equivalent();
-		if(not (x == null)) {
+		if(not ((x == null) or x.instanceOf(target!AbstractRole))) {
 			crom.elements.add(x);
+		}
+	}
+	
+	for (relation : source!Relation in mym.elements) {
+		var r = relation.equivalent();
+		if (not (r == null)) {
+			crom.relations.add(r);
 		}
 	}
 	

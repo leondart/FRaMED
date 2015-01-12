@@ -166,7 +166,16 @@ public enum Type implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	FULFILLMENT(14, "Fulfillment", "Fulfillment");
+	FULFILLMENT(14, "Fulfillment", "Fulfillment"), /**
+													 * The '<em><b>Relationship Implication</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 * @see #RELATIONSHIP_IMPLICATION_VALUE
+													 * @generated
+													 * @ordered
+													 */
+	RELATIONSHIP_IMPLICATION(15, "RelationshipImplication",
+			"RelationshipImplication");
 
 	/**
 	 * The '<em><b>Compartment Type</b></em>' literal value.
@@ -394,6 +403,21 @@ public enum Type implements Enumerator {
 	public static final int FULFILLMENT_VALUE = 14;
 
 	/**
+	 * The '<em><b>Relationship Implication</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Relationship Implication</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #RELATIONSHIP_IMPLICATION
+	 * @model name="RelationshipImplication"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RELATIONSHIP_IMPLICATION_VALUE = 15;
+
+	/**
 	 * An array of all the '<em><b>Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,7 +426,8 @@ public enum Type implements Enumerator {
 	private static final Type[] VALUES_ARRAY = new Type[] { COMPARTMENT_TYPE,
 			NATURAL_TYPE, ROLE_TYPE, DATA_TYPE, ROLE_IMPLICATION,
 			ROLE_EQUIVALENCE, INHERITANCE, RELATIONSHIP, TOTAL, CYCLIC,
-			IRREFLEXIVE, ROLE_PROHIBITION, ROLE_GROUP, GROUP, FULFILLMENT, };
+			IRREFLEXIVE, ROLE_PROHIBITION, ROLE_GROUP, GROUP, FULFILLMENT,
+			RELATIONSHIP_IMPLICATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -483,6 +508,8 @@ public enum Type implements Enumerator {
 			return GROUP;
 		case FULFILLMENT_VALUE:
 			return FULFILLMENT;
+		case RELATIONSHIP_IMPLICATION_VALUE:
+			return RELATIONSHIP_IMPLICATION;
 		}
 		return null;
 	}

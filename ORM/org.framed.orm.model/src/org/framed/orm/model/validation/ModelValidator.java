@@ -7,6 +7,7 @@ package org.framed.orm.model.validation;
 import org.eclipse.emf.common.util.EList;
 
 import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.Shape;
 
 /**
  * A sample validator interface for {@link org.framed.orm.model.Model}.
@@ -18,4 +19,6 @@ public interface ModelValidator {
 	boolean validate();
 
 	boolean validateElements(EList<ModelElement> value);
+
+	boolean validateParent(Shape value);
 }

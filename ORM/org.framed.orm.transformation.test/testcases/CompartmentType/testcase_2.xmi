@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+	xmlns:org.framed.orm.model="http://orm/1.0" xmlns:ts="http://org.framed/testmodel">
+	<title>
+		Simple TestCase for CompartmentTypes
+	</title>
+	<description>
+		This test verifies that Shapes of type CompartmentType are
+		converted to CompartmentTypes and still have the same name and their attributes
+	</description>
+	<framedModel>
+		<elements xsi:type="org.framed.orm.model:Shape" name="CompType1"
+			type="CompartmentType">
+			<firstSegment>
+				<elements name="NamedElement0 : CompType2" />
+				<elements name="NamedElement1 : CompType2" />
+				<elements name="NamedElement2 : CompType2" />
+				<elements name="NamedElement3 : CompType2" />
+				<elements name="NamedElement4 : CompType2" />
+			</firstSegment>
+		</elements>
+		<elements xsi:type="org.framed.orm.model:Shape" name="CompType2"
+			type="NaturalType" />
+	</framedModel>
+	<cromModel>
+		<elements xsi:type="crom_l1_composed:CompartmentType" name="CompType1">
+			<attributes name="NamedElement0" type="//@cromModel/@elements.1" />
+			<attributes name="NamedElement1" type="//@cromModel/@elements.1"/>
+			<attributes name="NamedElement2" type="//@cromModel/@elements.1"/>
+			<attributes name="NamedElement3" type="//@cromModel/@elements.1"/>
+			<attributes name="NamedElement4" type="//@cromModel/@elements.1"/>
+		</elements>
+		<elements xsi:type="crom_l1_composed:NaturalType" name="CompType2" />
+	</cromModel>
+</ts:TestCase>

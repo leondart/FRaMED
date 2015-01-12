@@ -18,6 +18,7 @@ Package orm <http://orm/1.0>
 
   Class Model
     Reference elements : ModelElement<<0..*>>
+    Reference parent : Shape
 
   Class Relation -> ModelElement
     Reference target : ModelElement
@@ -25,7 +26,8 @@ Package orm <http://orm/1.0>
     Reference bendpoints : RelativePoint<<0..*>>
     Reference sourceLabel : NamedElement
     Reference targetLabel : NamedElement
-    Reference referencedRelation : Relation
+    Reference referencedRelation : Relation<<0..*>>
+    Reference referencedRoles : Shape<<0..*>>
 
   Class Shape -> ModelElement
     Reference firstSegment : Segment
@@ -53,3 +55,4 @@ Package orm <http://orm/1.0>
     Literal RoleGroup = 12
     Literal Group = 13
     Literal Fulfillment = 14
+    Literal RelationshipImplication = 15

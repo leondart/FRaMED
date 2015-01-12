@@ -1,0 +1,38 @@
+import "Type.etl";
+
+pre RoleType {
+	var roleTypes : OrderedSet(source!Shape);
+}
+
+/**
+ * Transforms a shape with type ROLE_TYPE.
+ */
+rule RoleType
+	transform t : source!Shape
+	to n : target!RoleType {
+
+	guard : t.getType.getValue == 2 // enum value ROLE_TYPE
+
+	n.name = t.name;
+
+	roleTypes.add(t);
+}
+
+/**
+ * Add operations and attributes in the post processing step.
+ *
+ * This separation is necessary as the type references in attributes and operations may form cycles between
+ * types/shapes. The post block ensures that these cycles can be resolved.
+ */
+post RoleType {
+	for (t : source!Shape in roleTypes) {
+		var n = t.equivalent();
+
+		if (not n.isDefined() or not t.isDefined()) {
+			continue;
+		}
+
+		t.addAttributes(n);
+		t.addOperations(n);
+	}
+}

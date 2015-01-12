@@ -6,24 +6,37 @@
     xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
     xmlns:org.framed.orm.model="http://orm/1.0"
     xmlns:ts="http://org.framed/testmodel"
-    title="&#xA;&#x9;&#x9;Simple TestCase for Natural Types&#xA;&#x9;"
-    description="&#xA;&#x9;&#x9;This test verifies that Shapes of type NaturalType are&#xA;&#x9;&#x9;converted to NaturalTypes and still have the same name&#xA;&#x9;">
+    title="Simple TestCase for Relationships"
+    description="Simple TestCase for Relationships">
   <framedModel>
     <elements
         xsi:type="org.framed.orm.model:Shape"
         name="NaturalType1"
+        outgoingRelations="//@framedModel/@elements.2"
         type="NaturalType"/>
     <elements
         xsi:type="org.framed.orm.model:Shape"
         name="NaturalType2"
+        incomingRelations="//@framedModel/@elements.2"
         type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        name="testRelation"
+        type="Relationship"
+        target="//@framedModel/@elements.1"
+        source="//@framedModel/@elements.0"/>
   </framedModel>
   <cromModel>
     <elements
         xsi:type="crom_l1_composed:NaturalType"
-        name="NaturalType1"/>
+        name="NaturalType1"
+        outgoing="//@cromModel/@relations.0"/>
     <elements
         xsi:type="crom_l1_composed:NaturalType"
-        name="NaturalType2"/>
+        name="NaturalType2"
+        incoming="//@cromModel/@relations.0"/>
+    <relations
+        xsi:type="crom_l1_composed:Relationship"
+        name="testRelation"/>
   </cromModel>
 </ts:TestCase>

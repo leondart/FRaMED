@@ -2,6 +2,7 @@ package org.framed.orm.transformation.test;
 
 import static org.junit.Assert.fail;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.framed.orm.transformation.TransformationExecutor;
 import org.framed.orm.transformation.test.model.test.TestCase;
 import org.junit.After;
@@ -184,7 +186,9 @@ public class ParameterizedTestRunner {
 		try {
 			exe.execute();
 		} catch (Exception e) {
-			fail("Error at transformation execution :\n" + e.toString());
+			fail("Error in transformation execution of test case \""
+					+ testCase.eResource().getURI().toFileString() + "\":\n"
+					+ e.toString());
 		}
 		// reload all resources
 		for (Resource res : resources) {
@@ -209,18 +213,47 @@ public class ParameterizedTestRunner {
 			// build error message
 			StringBuilder builder = new StringBuilder();
 			builder.append("Test \"");
-			builder.append(testCase.toString());
+			builder.append(testCase.getTitle());
 			builder.append("\" failed :\n");
 			builder.append("\tDescription: ");
 			builder.append(testCase.getDescription());
-			builder.append("\n");
+			builder.append("\n\n");
+			
+			builder.append("Expected model:\n");
+			builder.append(getModelXML(expectedModel));
+			
+			builder.append("\n\n");
+			builder.append("Current model:\n");
+			builder.append(getModelXML(toCompare));
+			
+			builder.append("\n\n");
 			builder.append("\tDifferences: ");
 			builder.append(comp.getDifferences());
-			builder.append("\n");
+
+			// some empty lines
+			for (int i = 0; i < 3; i++) {
+				builder.append("\n");
+			}
 
 			// Fail it!
 			fail(builder.toString());
 		}
+	}
+
+	private String getModelXML(EObject toCompare) {
+		try {
+			ByteArrayOutputStream oStream = new ByteArrayOutputStream();
+			Resource res = new XMLResourceImpl(URI.createURI("dummyfile.xml"));
+			res.getContents().add(EcoreUtil.copy(toCompare));
+			res.save(oStream, null);
+			oStream.flush();
+			oStream.close();
+			String file = new String(oStream.toByteArray());
+			return file;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**

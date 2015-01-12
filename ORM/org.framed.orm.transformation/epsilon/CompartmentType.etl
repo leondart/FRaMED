@@ -1,0 +1,38 @@
+import "Type.etl";
+
+pre CompartmentType {
+	var compartmentTypes : OrderedSet(source!Shape);
+}
+
+/**
+ * Transforms a shape with type COMPARTMENT_TYPE.
+ */
+rule CompartmentType
+	transform t : source!Shape
+	to n : target!CompartmentType {
+
+	guard : t.getType.getValue == 0 // enum value COMPARTMENT_TYPE
+
+	n.name = t.name;
+
+	compartmentTypes.add(t);
+}
+
+/**
+ * Add operations and attributes in the post processing step.
+ *
+ * This separation is necessary as the type references in attributes and operations may form cycles between
+ * types/shapes. The post block ensures that these cycles can be resolved.
+ */
+post CompartmentType {
+	for (t : source!Shape in compartmentTypes) {
+		var n = t.equivalent();
+
+		if (not n.isDefined() or not t.isDefined()) {
+			continue;
+		}
+
+		t.addAttributes(n);
+		t.addOperations(n);
+	}
+}

@@ -627,6 +627,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 		addEEnumLiteral(typeEEnum, Type.ROLE_GROUP);
 		addEEnumLiteral(typeEEnum, Type.GROUP);
 		addEEnumLiteral(typeEEnum, Type.FULFILLMENT);
+		addEEnumLiteral(typeEEnum, Type.RELATIONSHIP_IMPLICATION);
 
 		// Create resource
 		createResource(eNS_URI);

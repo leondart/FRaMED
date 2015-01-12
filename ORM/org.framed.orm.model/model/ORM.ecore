@@ -67,6 +67,7 @@
     <eLiterals name="RoleGroup" value="12"/>
     <eLiterals name="Group" value="13"/>
     <eLiterals name="Fulfillment" value="14"/>
+    <eLiterals name="RelationshipImplication" value="15" literal="RelationshipImplication"/>
   </eClassifiers>
   <eSubpackages name="geometry" nsURI="http://orm.geometry/1.0" nsPrefix="org.framed.orm.model.geometry">
     <eClassifiers xsi:type="ecore:EClass" name="Point">

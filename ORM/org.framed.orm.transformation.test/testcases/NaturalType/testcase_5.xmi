@@ -7,7 +7,7 @@
     xmlns:org.framed.orm.model="http://orm/1.0"
     xmlns:ts="http://org.framed/testmodel"
     title="&#xA;&#x9;&#x9;Test to ensure operations can be transformed basically&#xA;&#x9;"
-    description="&#xA;&#x9;&#x9;This test checks if two operations with parameters can be converted.&#xA;&#x9;">
+    description="&#xA;&#x9;&#x9;This test checks if two operations with parameters with some crazy syntax can be converted.&#xA;&#x9;">
   <framedModel>
     <elements
         xsi:type="org.framed.orm.model:Shape"
@@ -16,9 +16,9 @@
       <firstSegment/>
       <secondSegment>
         <elements
-            name="operation1(para1 : NaturalType1) : NaturalType2"/>
+            name="operation1(para1:NaturalType1):       NaturalType2"/>
         <elements
-            name="operation2(para1 : NaturalType1, para2:NaturalType2) : NaturalType1"/>
+            name="operation2(para1       : NaturalType1, para2:NaturalType2) :NaturalType1"/>
       </secondSegment>
     </elements>
     <elements

@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ts:TestCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
-	xmlns:org.framed.orm.model="http://orm/1.0" xmlns:ts="http://org.framed/testmodel">
-	<title>
-		Simple TestCase for Natural Types with attributes
-	</title>
-	<description>
-		This test verifies that Shapes of type NaturalType are
-		converted to NaturalTypes with their attributes which are contained in
-		the first segment of a shape.
-	</description>
-	<framedModel>
-		<elements xsi:type="org.framed.orm.model:Shape" name="Natural Type 1"
-			type="NaturalType">
-			<firstSegment>
-				<elements name="Named Element 0" />
-				<elements name="Named Element 1" />
-				<elements name="Named Element 2" />
-				<elements name="Named Element 3" />
-				<elements name="Named Element 4" />
-			</firstSegment>
-		</elements>
-		<elements xsi:type="org.framed.orm.model:Shape" name="Natural Type 2"
-			type="NaturalType" />
-	</framedModel>
-	<cromModel>
-		<elements xsi:type="crom_l1_composed:NaturalType" name="Natural Type 1">
-			<attributes name="Named Element 0" />
-			<attributes name="Named Element 1" />
-			<attributes name="Named Element 2" />
-			<attributes name="Named Element 3" />
-			<attributes name="Named Element 4" />
-		</elements>
-		<elements xsi:type="crom_l1_composed:NaturalType" name="Natural Type 2" />
-	</cromModel>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="&#xA;&#x9;&#x9;Simple TestCase for Natural Types with attributes&#xA;&#x9;"
+    description="&#xA;&#x9;&#x9;This test verifies that Shapes of type NaturalType are&#xA;&#x9;&#x9;converted to NaturalTypes with their attributes which are contained in&#xA;&#x9;&#x9;the first segment of a shape.&#xA;&#x9;">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType1"
+        type="NaturalType">
+      <firstSegment>
+        <elements
+            name="NamedElement0 : NaturalType1"/>
+        <elements
+            name="NamedElement1 : NaturalType2"/>        
+      </firstSegment>
+    </elements>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType2"
+        type="NaturalType"/>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType1">
+      <attributes
+          name="NamedElement0" type="//@cromModel/@elements.0"/>
+      <attributes
+          name="NamedElement1" type="//@cromModel/@elements.1"/>      
+    </elements>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType2"/>
+  </cromModel>
 </ts:TestCase>

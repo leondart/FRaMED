@@ -7,7 +7,7 @@
 		Test to ensure operations can be transformed.
 	</title>
 	<description>
-		This test checks if two operations with parameters can be converted.
+		This test checks if two operations without parameters can be converted.
 	</description>
 	<framedModel>
 		<elements xsi:type="org.framed.orm.model:Shape" name="NaturalType1"
