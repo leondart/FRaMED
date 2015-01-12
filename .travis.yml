@@ -10,8 +10,8 @@ branches:
 
 # Pull the CROM dependency and install it locally.
 before_install:
-#- git clone --quiet --branch=master https://github.com/Eden-06/CROM CROM
-#- mvn clean install -f CROM/pom.xml
+- wget https://github.com/Eden-06/CROM/releases/download/v0.1.0/org.rosi.crom.metamodel-0.1.0.jar
+- mvn install:install-file -Dfile=org.rosi.crom.metamodel-0.1.0.jar -DgroupId=org.rosi.crom.metamodel -DartifactId=org.rosi.crom.metamodel -Dversion=0.1.0 -Dpackaging=eclipse-plugin
 
 # Install the application locally. Only print errors.
 install:
