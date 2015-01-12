@@ -3,6 +3,8 @@ language: java
 # Only run Travis for changes on the following branches.
 branches:
   only:
+  - master
+  - develop_branch
   - travis-ci
 
 # (Encrypted) GitHub OAuth token used for pushing the generated Javadoc to GH-Pages.
