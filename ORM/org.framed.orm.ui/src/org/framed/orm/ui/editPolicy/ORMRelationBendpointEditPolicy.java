@@ -6,6 +6,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.BendpointEditPolicy;
 import org.eclipse.gef.requests.BendpointRequest;
+import org.framed.orm.geometry.GeometryFactory;
 import org.framed.orm.model.Relation;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateBendpointCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationDeleteBendpointCommand;
@@ -47,6 +48,15 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     command.setRelation((Relation) request.getSource().getModel());
     command.setDimension(p.getDifference(sourceP), p.getDifference(targetP));
     command.setIndex(request.getIndex());
+    
+    org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
+    sourceRef.setX(sourceP.x());
+    sourceRef.setY(sourceP.y());
+    command.setSourceRefence(sourceRef);
+    org.framed.orm.geometry.Point targetRef = GeometryFactory.eINSTANCE.createPoint();
+    sourceRef.setX(targetP.x());
+    sourceRef.setY(targetP.y());
+    command.setTargetRefence(targetRef);
 
     return command;
   }

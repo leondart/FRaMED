@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.geometry.GeometryFactory;
+import org.framed.orm.geometry.Point;
+import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.Type;
 
 /**
  * With this command a {@link Bendpoint} for {@link Relation} can be created.
@@ -17,25 +18,36 @@ import org.framed.orm.model.RelationshipConstraint;
  * */
 public class ORMRelationCreateBendpointCommand extends Command {
 
-  /** Index on which the new {@link Bendpoint} coordinates are added. */
+  /**
+   * Index on which the new {@link Bendpoint} is added. The index is needed for the case when the
+   * user wants to undo this command
+   */
   private int index;
-  /** The {@link Dimension}s, which are describing the relative position of the {@link Bendpoint}. */
-  private Dimension dim1, dim2;
+  /**
+   * The {@link Point}s, which are the the refrence to the target and source of the {@link Relation}
+   * to which the {@link Bendpoint is added}
+   */
+  private Point sourceRefence, targetRefence;
+  /**
+   * The {@link Dimension}s, which are describing the distances of the {@link Bendpoint} to the
+   * target and the source.
+   */
+  private Dimension dimsource, dimtarget;
   /** {@link Relation} to which the {@link Bendpoint} is added. */
   private Relation relation;
   /**
-   * A list, which contains all {@link RelationshipConstraint}s from one {@link Relationship}. This
-   * list is needed for the case the user wants to undone the adding(remove) of a {@link Bendpoint}
-   * to a {@link RelationshipConstraint} in such case {@link Bendpoint}s with the same coordiantes
-   * as the initial {@link Bendpoint} must be removed from all {@link RelationshipConstraint}s of
-   * the same {@link Relationship} as the {@link RelationshipConstraint}, which the user has
-   * selected. The reason for that is that only one line of the {@link RelationshipConstraint}s is
-   * visible to the user and when the user deletes the {@link RelationshipConstraint}, whose line is
-   * visible, than the line of the next {@link RelationshipConstraint} must become visible at the
-   * same place with the same {@link Bendpoint}s as the line of the deleted
-   * {@link RelationshipConstraint}.
+   * A list, which contains all {@link Relation}s from type cyclic, total and irreflexive(aka
+   * RelationshipConstraint) from one {@link Relation} from type relationship. This list is needed
+   * for the case the user wants to undone the adding(remove) of a {@link Bendpoint} to a
+   * relationshipConstraint in such case {@link Bendpoint}s with the same coordiantes as the initial
+   * {@link Bendpoint} must be removed from all relationshipConstraints of the same relationship as
+   * the relationshipConstraint, which the user has selected. The reason for that is that only one
+   * line of the relationshipConstraints is visible to the user and when the user deletes the
+   * relationshipConstraint, whose line is visible, than the line of the next relationshipConstraint
+   * must become visible at the same place with the same {@link Bendpoint}s as the line of the
+   * deleted relationshipConstraint.
    */
-  private ArrayList<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+  private ArrayList<Relation> relCList = new ArrayList<Relation>();
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -47,31 +59,42 @@ public class ORMRelationCreateBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} is added to the selected {@link Relation}.
-   * Is the {@link Relation} a {@link RelationshipConstraint} than {@link Bendpoint}s with same
-   * coordinates as the initial {@link Bendpoint} must be added to all
-   * {@link RelationshipConstraint}s of the same {@link Relationship} as the
-   * {@link RelationshipConstraint}, which the user has selected. The reason for that is that only
-   * one line of the {@link RelationshipConstraint}s is visible to the user and when the user
-   * deletes the {@link RelationshipConstraint}, whose line is visible, than the line of the next
-   * {@link RelationshipConstraint} must become visible at the same place with the same
-   * {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * Is the {@link Relation} from type cyclic, total and irrflexvie(aka RelationshipConstraint) than
+   * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} must be added to all
+   * relationshipConstraints of the same {@link Relation} from type relationship as the
+   * relationshipConstraint, which the user has selected. The reason for that is that only one line
+   * of the relationshipConstraints is visible to the user and when the user deletes the
+   * relationshipConstraint, whose line is visible, than the line of the next relationshipConstraint
+   * must become visible at the same place with the same {@link Bendpoint}s as the line of the
+   * deleted relationshipConstraint.
    */
   @Override
   public void execute() {
-    Point source = new Point(dim1.width, dim1.height);
-    Point target = new Point(dim2.width, dim2.height);
-    relation.getDim1BP().add(index, source);
-    relation.getDim2BP().add(index, target);
+    Point source = GeometryFactory.eINSTANCE.createPoint();
+    source.setX(dimsource.width);
+    source.setY(dimsource.height);
 
-    if (relation instanceof RelationshipConstraint) {
+    Point target = GeometryFactory.eINSTANCE.createPoint();
+    target.setX(dimtarget.width);
+    target.setY(dimtarget.height);
 
-      relCList.addAll(((RelationshipConstraint) relation).getRelation().getRlshipConstraints());
+    RelativePoint relP = GeometryFactory.eINSTANCE.createRelativePoint();
+    relP.getReferencePoints().add(sourceRefence);
+    relP.getReferencePoints().add(targetRefence);
+    relP.getDistances().add(source);
+    relP.getDistances().add(target);
+
+    relation.getBendpoints().add(index, relP);
+
+    if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)) {
+
+      relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
       relCList.remove(relation);
 
-      for (RelationshipConstraint relC : relCList) {
+      for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
-          relC.getDim1BP().add(index, source);
-          relC.getDim2BP().add(index, target);
+          relC.getBendpoints().add(index, relP);
         }
       }
     }
@@ -80,25 +103,25 @@ public class ORMRelationCreateBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through removing the {@link Bendpoint} from the selected
-   * {@link Relation}. Is the {@link Relation} a {@link RelationshipConstraint} than
-   * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} must be removed from
-   * all {@link RelationshipConstraint}s of the same {@link Relationship} as the
-   * {@link RelationshipConstraint}, which the user has selected. The reason for that is that only
-   * one line of the {@link RelationshipConstraint}s is visible to the user and when the user
-   * deletes the {@link RelationshipConstraint}, whose line is visible, than the line of the next
-   * {@link RelationshipConstraint} must become visible at the same place with the same
-   * {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * {@link Relation}. Is the {@link Relation} from type cyclic, total and irreflexive(aka
+   * relationConstraint) than {@link Bendpoint}s with same coordinates as the initial
+   * {@link Bendpoint} must be removed from all relationshipConstraints of the same
+   * {@link Relation} from type relationship as the relationshipConstraint, which the user has selected. The
+   * reason for that is that only one line of the relationshipConstraints is visible to the
+   * user and when the user deletes the relationshipConstraint, whose line is visible, than
+   * the line of the next telationshipConstraint must become visible at the same place with
+   * the same {@link Bendpoint}s as the line of the deleted relationshipConstraint.
    * */
   @Override
   public void undo() {
-    relation.getDim1BP().remove(index);
-    relation.getDim2BP().remove(index);
-    if (relation instanceof RelationshipConstraint) {
+    relation.getBendpoints().remove(index);
 
-      for (RelationshipConstraint relC : relCList) {
+    if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)) {
+
+      for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
-          relC.getDim1BP().remove(index);
-          relC.getDim2BP().remove(index);
+          relC.getBendpoints().remove(index);
         }
       }
 
@@ -131,7 +154,29 @@ public class ORMRelationCreateBendpointCommand extends Command {
    * @param relation org.eclipse.draw2d.geometry.Dimension
    */
   public void setDimension(final Dimension dim1, final Dimension dim2) {
-    this.dim1 = dim1;
-    this.dim2 = dim2;
+    this.dimsource = dim1;
+    this.dimtarget = dim2;
   }
+
+  /**
+   * Setter for the {@link Point}, which is the refence to the source of the {@link Relation} to
+   * which the Bendpoint is added.
+   * 
+   * @param sourceRefence org.framed.orm.geometry.Point
+   */
+  public void setSourceRefence(final Point sourceRefence) {
+    this.sourceRefence = sourceRefence;
+  }
+
+  /**
+   * Setter for the {@link Point}, which is the refence to the target of the {@link Relation} to
+   * which the Bendpoint is added.
+   * 
+   * @param targetRefence org.framed.orm.geometry.Point
+   */
+  public void setTargetRefence(final Point targetRefence) {
+    this.targetRefence = targetRefence;
+  }
+
+
 }
