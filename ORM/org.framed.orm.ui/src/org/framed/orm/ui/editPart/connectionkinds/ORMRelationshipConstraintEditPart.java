@@ -14,10 +14,10 @@ import org.eclipse.swt.SWT;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 
 /**
- * This {@link EditPart} is the super/parent {@link EditPart} respectively super/parent controller of all
- * {@link RelationshipConstraint}s and is required as all {@link RelationshipConstraint}s of a
- * {@link Relationship} need to be unified in a single figure. Furthermore, in case the user deletes/adds a
- * {@link RelationshipConstraint}, the figure has to be updated.
+ * This {@link EditPart} is the super/parent {@link EditPart} respectively super/parent controller
+ * of all {@link RelationshipConstraint}s and is required as all {@link RelationshipConstraint}s of
+ * a {@link Relationship} need to be unified in a single figure. Furthermore, in case the user
+ * deletes/adds a {@link RelationshipConstraint}, the figure has to be updated.
  * 
  * @author Kay Bierzynski
  * */
@@ -29,8 +29,8 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
    */
   private Label label = new Label();
   /**
-   * A string, which contains the initial text of a {@link RelationshipConstraint} without unifying it
-   * with other {@link RelationshipConstraint}s.
+   * A string, which contains the initial text of a {@link RelationshipConstraint} without unifying
+   * it with other {@link RelationshipConstraint}s.
    */
   private String textInitial;
 
@@ -51,37 +51,11 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
     return label;
   }
 
-  /**
-   * This method creates and returns the {@link RelationshipConstraint} figure, which differs from
-   * {@link RelationshipConstraint} to {@link RelationshipConstraint} only in the text of the
-   * {@link Label}. A {@link RelationshipConstraint} figure is dashed line with a {@link Label}.
-   * 
-   * @return conn org.eclipse.draw2d.PolylineConnection
-   * */
-  public IFigure creatRelationshipConstraint(final String text) {
-
-    label.setText(text);
-    textInitial = text;
-
-    PolylineConnection conn = new PolylineConnection();
-    conn.setAntialias(SWT.ON);
-    conn.setLineDash(new float[] {5.0f, 5.0f});
-    conn.setLineStyle(SWT.LINE_CUSTOM);;
-    conn.setConnectionRouter(new BendpointConnectionRouter());
-
-    // add label to the connection
-    // TODO: change calculation/refresh so that label is always in the mid of the connection
-    MidpointLocator midL = new MidpointLocator(conn, 0);
-    midL.setGap(5);
-    midL.setRelativePosition(PositionConstants.SOUTH);
-    // this is needed, because when the label would be just added the label text could be seen in
-    // the
-    // compartmentdiagram
-    if (getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      conn.add(label, midL);
-    }
-    return conn;
+  public void setTextInitial(String initial) {
+    textInitial = initial;
   }
+
+
 
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} calls
@@ -114,7 +88,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
                 relCList.get(0));
 
         if (rep != null) {
-          //if branch for the relationconstraints that not are first created relationconstraint
+          // if branch for the relationconstraints that not are first created relationconstraint
           if (!rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
             String oldText = rep.getLabel().getText();
             rep.getLabel().setText(textInitial + " , " + oldText);
@@ -122,7 +96,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
             getConnectionFigure().setVisible(false);
 
           }
-        //if branch for the first created relationconstraint
+          // if branch for the first created relationconstraint
           if (rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
             label.setText(textInitial);
             getConnectionFigure().setVisible(true);

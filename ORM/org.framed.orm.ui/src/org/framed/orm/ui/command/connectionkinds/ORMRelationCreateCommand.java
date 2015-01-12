@@ -45,6 +45,8 @@ public class ORMRelationCreateCommand extends Command {
    */
   public ORMRelationCreateCommand() {
     super.setLabel("ORMRelationCreate");
+    targetLabel = null;
+    sourceLabel = null;
   }
 
   /**

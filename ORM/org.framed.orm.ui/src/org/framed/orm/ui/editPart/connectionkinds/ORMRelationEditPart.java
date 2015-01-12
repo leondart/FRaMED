@@ -2,6 +2,7 @@ package org.framed.orm.ui.editPart.connectionkinds;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,6 +17,7 @@ import org.framed.orm.ui.editPart.ORMGroupingEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy;
+import org.framed.orm.ui.figure.ORMConnectionFigureFactory;
 
 /**
  * This {@link EditPart} is the super/parent {@link EditPart} also super/parent controller of all
@@ -38,6 +40,12 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   public ORMRelationEditPart() {
     super();
     adapter = new RelationAdapter();
+  }
+
+  /**{@inheritDoc}*/
+  @Override
+  protected IFigure createFigure() {
+    return ORMConnectionFigureFactory.createConnectionFigure(this);
   }
 
   /** {@inheritDoc} */
@@ -73,27 +81,29 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
         && getRoot().getContents() instanceof ORMCompartmentEditPart) {
 
       Connection connection = getConnectionFigure();
-//      List<Point> dim1Constraint = ((Relation) getModel()).getDim1BP();
-//      List<Point> dim2Constraint = ((Relation) getModel()).getDim2BP();
-//      // the bendpoints are added as RelativeBendpoint, because the position of the bendpoints must
-//      // change when the position of the source or target of the relation changes or the the figure
-//      // of the content of the viewer has expandalble and collapsible elements
-//      List<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
-//      // this check is needed, while during the execute of the CreateBendpointCommand the
-//      // refreshVisual is called
-//      if (dim1Constraint.size() == dim2Constraint.size()) {
-//        for (int i = 0; i < dim1Constraint.size(); i++) {
-//          RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
-//          // p.x = width p.y = height
-//          Dimension dim1 = new Dimension(dim1Constraint.get(i).x, dim1Constraint.get(i).y);
-//          Dimension dim2 = new Dimension(dim2Constraint.get(i).x, dim2Constraint.get(i).y);
-//          rbp.setRelativeDimensions(dim1, dim2);
-//
-//          figureConstraint.add(rbp);
-//        }
-//      }
-//      connection.setRoutingConstraint(figureConstraint);
-      connection.setRoutingConstraint(((Relation)getModel()).getBendpoints());
+      // List<Point> dim1Constraint = ((Relation) getModel()).getDim1BP();
+      // List<Point> dim2Constraint = ((Relation) getModel()).getDim2BP();
+      // // the bendpoints are added as RelativeBendpoint, because the position of the bendpoints
+      // must
+      // // change when the position of the source or target of the relation changes or the the
+      // figure
+      // // of the content of the viewer has expandalble and collapsible elements
+      // List<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
+      // // this check is needed, while during the execute of the CreateBendpointCommand the
+      // // refreshVisual is called
+      // if (dim1Constraint.size() == dim2Constraint.size()) {
+      // for (int i = 0; i < dim1Constraint.size(); i++) {
+      // RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
+      // // p.x = width p.y = height
+      // Dimension dim1 = new Dimension(dim1Constraint.get(i).x, dim1Constraint.get(i).y);
+      // Dimension dim2 = new Dimension(dim2Constraint.get(i).x, dim2Constraint.get(i).y);
+      // rbp.setRelativeDimensions(dim1, dim2);
+      //
+      // figureConstraint.add(rbp);
+      // }
+      // }
+      // connection.setRoutingConstraint(figureConstraint);
+      connection.setRoutingConstraint(((Relation) getModel()).getBendpoints());
     }
   }
 

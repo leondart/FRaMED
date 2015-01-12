@@ -24,20 +24,6 @@ import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
-   * {@inheritDoc} {@link Relationship}s have as figure a drawn through line with two {@link Label}s
-   * at both ends. The {@link Label} are added through child model elements(the
-   * {@link RelationLabel}s.
-   */
-  @Override
-  protected IFigure createFigure() {
-    PolylineConnection connection = new PolylineConnection();
-    connection.setAntialias(SWT.ON);
-    connection.setConnectionRouter(new BendpointConnectionRouter());
-
-    return connection;
-  }
-
-  /**
    * This method returns a {@link ConnectionEndpointLocator} for this {@link Relationship}.
    * 
    * @return locator org.eclipse.draw2d.ConnectionEndpointLocator
