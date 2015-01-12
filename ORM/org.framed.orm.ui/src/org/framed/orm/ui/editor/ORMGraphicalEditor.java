@@ -7,7 +7,8 @@ import java.util.EventObject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor.PropertyValueWrapper;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.gef.DefaultEditDomain;
@@ -354,7 +355,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 		
 		// create target resource
 		URI targetURI = URI.createFileURI(file);
-		Resource res = new XMIResourceImpl(targetURI);
+		ResourceSet set = new ResourceSetImpl();
+		Resource res = set.createResource(targetURI);
 
 		// setup model transformation
 		TransformationExecutor exe = new TransformationExecutor();
@@ -363,8 +365,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
 		// execute transformation
 		try {
-			exe.execute();
 			res.save(Collections.EMPTY_MAP);
+			exe.execute();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

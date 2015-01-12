@@ -1,12 +1,10 @@
 package org.framed.orm.transformation;
 
-import java.io.File;
-import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.epsilon.common.parse.problem.ParseProblem;
 import org.eclipse.epsilon.eol.IEolExecutableModule;
@@ -35,7 +33,6 @@ public abstract class EpsilonStandalone {
 	public void execute() throws Exception {
 
 		module = createModule();
-
 		module.parse(getTransformationFile());
 
 		if (module.getParseProblems().size() > 0) {
@@ -62,17 +59,16 @@ public abstract class EpsilonStandalone {
 		return module.execute();
 	}
 
-	private File getTransformationFile() {
+	private URI getTransformationFile() {
 		Bundle bundle = Platform.getBundle("org.framed.orm.transformation");
 		URL fileURL = bundle.getEntry(getSource());
-		File file = null;
+		
 		try {
-			file = new File(FileLocator.resolve(fileURL).toURI());
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
+			return fileURL.toURI();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return file;
+		return null;
 	}
 }
