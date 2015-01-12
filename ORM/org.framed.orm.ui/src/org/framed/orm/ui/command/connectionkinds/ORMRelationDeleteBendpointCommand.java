@@ -4,12 +4,10 @@ package org.framed.orm.ui.command.connectionkinds;
 import java.util.ArrayList;
 
 import org.eclipse.draw2d.Bendpoint;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.Type;
 
 
 
@@ -24,20 +22,24 @@ public class ORMRelationDeleteBendpointCommand extends Command {
   private Relation relation;
   /** Index on which the {@link Bendpoint} coordinates should be readded . */
   private int index;
-  /** The {@link Dimension}s, which are describing the relative position of the {@link Bendpoint}. */
-  private Point dim1, dim2;
   /**
-   * A list, which contains all {@link RelationshipConstraint}s from one {@link Relationship}. This
-   * list is needed for the case the user wants to undone the removing of a {@link Bendpoint} to a
-   * {@link RelationshipConstraint} in such case {@link Bendpoint}s with the same coordiantes as the
-   * initial {@link Bendpoint} must be added to all {@link RelationshipConstraint}s of the same
-   * {@link Relationship} as the {@link RelationshipConstraint}, which the user has selected. The
-   * reason for that is that only one line of the {@link RelationshipConstraint}s is visible to the
-   * user and when the user deletes the {@link RelationshipConstraint}, whose line is visible, than
-   * the line of the next {@link RelationshipConstraint} must become visible at the same place with
-   * the same {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * The {@link RelativePoint}, which represents the {@link Bendpoint} that should be removed in
+   * this command.
    */
-  private ArrayList<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+  private RelativePoint relP;
+  /**
+   * A list, which contains all {@link Relation}s from type cyclic, total and irreflexive(aka
+   * RelationshipConstraints) from one {@link Relation} from type relationship. This list is needed
+   * for the case the user wants to undo the removing of a {@link Bendpoint} from a
+   * relationshipConstraint in such a case {@link Bendpoint}s with the same coordiantes as the
+   * initial {@link Bendpoint} must be added to all relationshipConstraints of the same
+   * {@link Relation} from type relationship as the relationshipConstraint, which the user has
+   * selected. The reason for that is that only one line of the relationshipConstraints is visible
+   * to the user and when the user deletes the relationshipConstraint, whose line is visible, than
+   * the line of the next relationshipConstraint must become visible at the same place with the same
+   * {@link Bendpoint}s as the line of the deleted relationshipConstraint.
+   */
+  private ArrayList<Relation> relCList = new ArrayList<Relation>();
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -55,37 +57,35 @@ public class ORMRelationDeleteBendpointCommand extends Command {
   @Override
   public boolean canExecute() {
     if (relation != null) {
-      return (relation.getDim1BP().size() > index) && (relation.getDim2BP().size() > index);
+      return relation.getBendpoints().size() > index;
     }
     return false;
   }
 
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} is removed from the selected
-   * {@link Relation}. Is the {@link Relation} a {@link RelationshipConstraint} than
-   * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} must be removed from
-   * all {@link RelationshipConstraint}s of the same {@link Relationship} as the
-   * {@link RelationshipConstraint}, which the user has selected. The reason for that is that only
-   * one line of the {@link RelationshipConstraint}s is visible to the user and when the user
-   * deletes the {@link RelationshipConstraint}, whose line is visible, than the line of the next
-   * {@link RelationshipConstraint} must become visible at the same place with the same
-   * {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * {@link Relation}. Is the {@link Relation} from type cyclic, total and irreflexive(aka
+   * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
+   * {@link Bendpoint} must be removed from all relationshipConstraints of the same {@link Relation}
+   * from type relationship as the {relationshipConstraint, which the user has selected. The reason
+   * for that is that only one line of the relationshipConstraints is visible to the user and when
+   * the user deletes the relationshipConstraint, whose line is visible, than the line of the next
+   * relationshipConstraint must become visible at the same place with the same {@link Bendpoint}s
+   * as the line of the deleted relationshipConstraint.
    */
   @Override
   public void execute() {
-    dim1 = relation.getDim1BP().get(index);
-    dim2 = relation.getDim2BP().get(index);
-    relation.getDim1BP().remove(index);
-    relation.getDim2BP().remove(index);
+    relP = relation.getBendpoints().get(index);
+    relation.getBendpoints().remove(index);
 
-    if (relation instanceof RelationshipConstraint) {
+    if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)) {
 
-      relCList.addAll(((RelationshipConstraint) relation).getRelation().getRlshipConstraints());
+      relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
 
-      for (RelationshipConstraint relC : relCList) {
+      for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
-          relC.getDim1BP().remove(index);
-          relC.getDim2BP().remove(index);
+          relC.getBendpoints().remove(index);
         }
       }
     }
@@ -94,26 +94,25 @@ public class ORMRelationDeleteBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through adding the {@link Bendpoint} to the selected
-   * {@link Relation}. Is the {@link Relation} a {@link RelationshipConstraint} than
-   * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} must be added to all
-   * {@link RelationshipConstraint}s of the same {@link Relationship} as the
-   * {@link RelationshipConstraint}, which the user has selected. The reason for that is that only
-   * one line of the {@link RelationshipConstraint}s is visible to the user and when the user
-   * deletes the {@link RelationshipConstraint}, whose line is visible, than the line of the next
-   * {@link RelationshipConstraint} must become visible at the same place with the same
-   * {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * {@link Relation}. Is the {@link Relation} from type cyclic, total and irreflexive(aka
+   * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
+   * {@link Bendpoint} must be added to all relationshipConstraints of the same {@link Relation}
+   * from type relationship as the relationshipConstraint, which the user has selected. The reason
+   * for that is that only one line of the relationshipConstraints is visible to the user and when
+   * the user deletes the relationshipConstraint, whose line is visible, than the line of the next
+   * relationshipConstraint must become visible at the same place with the same {@link Bendpoint}s
+   * as the line of the deleted relationshipConstraint.
    * */
   @Override
   public void undo() {
-    relation.getDim1BP().add(index, dim1);
-    relation.getDim2BP().add(index, dim2);
+    relation.getBendpoints().add(index, relP);
 
-    if (relation instanceof RelationshipConstraint) {
+    if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)) {
 
-      for (RelationshipConstraint relC : relCList) {
+      for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
-          relC.getDim1BP().add(index, dim1);
-          relC.getDim2BP().add(index, dim2);
+          relC.getBendpoints().add(index, relP);
         }
       }
     }
