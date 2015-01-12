@@ -1,5 +1,6 @@
 package org.framed.orm.ui.editor;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.EventObject;
@@ -347,7 +348,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 		// resolve target uri
 		URI sourceURI = cdResource.getURI();
 		String file = sourceURI.toFileString();
-		file = file.substring(0, file.lastIndexOf("/"));
+		file = file.substring(0, file.lastIndexOf(File.separator));
 		String name = sourceURI.lastSegment();
 		name = name.substring(0, name.lastIndexOf("."));
 		name += ".crom";
