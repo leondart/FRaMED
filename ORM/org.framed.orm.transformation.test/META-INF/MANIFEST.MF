@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.compare;bundle-version="3.5.501",
  org.eclipse.emf.compare;bundle-version="3.1.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.framed.orm.transformation.test.model.test,
  org.framed.orm.transformation.test.model.test.impl,
  org.framed.orm.transformation.test.model.test.util
