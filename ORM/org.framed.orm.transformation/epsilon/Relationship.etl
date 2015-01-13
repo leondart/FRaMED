@@ -8,10 +8,39 @@ rule Relationship
 	guard : s.getType.getValue == 7 // enum value RELATIONSHIP
 	
 	t.name = s.name;
-	//TODO: add references to source and target element 
-	//t.source = null;
-	//t.target = null;
+	
+	//t.first - place from label
+	//t.second - place from label
 	
 	s.getSource.equivalent().getOutgoing.add(t);
 	s.getTarget.equivalent().getIncoming.add(t);
+
+	for (r : source!Relation in s.referencedRelation) {
+		var referenced = r.equivalent();
+		referenced.setRelation(t);
+	}	
 }
+
+rule TotalRelation
+	transform s : source!Relation
+	to t : target!Total {
+	
+	guard : s.getType.getValue == 8 
+	
+}
+
+rule CyclicRelation
+	transform s : source!Relation
+	to t : target!Cyclic {
+	
+	guard : s.getType.getValue == 9 
+	
+}  
+
+rule IrreflexiveRelation
+	transform s : source!Relation
+	to t : target!Irreflexive {
+	
+	guard : s.getType.getValue == 10 
+	
+} 
