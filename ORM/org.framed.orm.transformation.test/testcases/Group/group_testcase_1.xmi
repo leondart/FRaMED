@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+	xmlns:org.framed.orm.model="http://orm/1.0" xmlns:ts="http://org.framed/testmodel">
+	<title>
+		Test for a simple Group shape with one contained NaturalType.
+	</title>
+	<description>
+		This test verifies that Groups and contained elements are transformed correctly.
+	</description>
+	<framedModel>
+		<elements xsi:type="org.framed.orm.model:Shape" name="GroupTest" type="Group">
+		    <model>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="NaturalType1" type="NaturalType">
+		        <firstSegment/>
+		        <secondSegment/>		        
+		      </elements>
+		    </model>    
+  		</elements>
+	</framedModel>
+	<cromModel>
+		<elements xsi:type="crom_l1_composed:Group" name="GroupTest">			
+			<elements xsi:type="crom_l1_composed:NaturalType" name="NaturalType1"/>			
+      	</elements>
+	</cromModel>
+</ts:TestCase>
