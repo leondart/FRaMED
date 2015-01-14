@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+	xmlns:org.framed.orm.model="http://orm/1.0" xmlns:ts="http://org.framed/testmodel">
+	<title>
+		Test for CompartmentType with a RoleGroup.
+	</title>
+	<description>
+		This test verifies that Shapes of type CompartmentType are converted correctly, and 
+		that a RoleGroup is correctly transformed as child element.
+	</description>
+	<framedModel>
+		<elements xsi:type="org.framed.orm.model:Shape" type="CompartmentType" name="Bank">
+      		<model>
+      			<elements xsi:type="org.framed.orm.model:Shape" type="RoleGroup" name="RoleGroup1">
+      				<model>
+      					<elements xsi:type="org.framed.orm.model:Shape" type="RoleType" name="Consultant">          
+          					<description name="1..*"/>
+        				</elements>
+		        		<elements xsi:type="org.framed.orm.model:Shape" type="RoleType" name="Customer">
+		          			<description name="0..*"/>
+		        		</elements>	
+      				</model>
+      			</elements>	
+      		</model>
+    	</elements>
+	</framedModel>
+	<cromModel>
+		<elements xsi:type="crom_l1_composed:CompartmentType" name="Bank">
+			<parts>
+				<role xsi:type="crom_l1_composed:RoleGroup" name="RoleGroup1">
+					<elements xsi:type="crom_l1_composed:RoleType" name="Consultant"/>
+					<elements xsi:type="crom_l1_composed:RoleType" name="Customer"/>
+				</role>
+			</parts>
+      	</elements>
+	</cromModel>
+</ts:TestCase>
