@@ -16,6 +16,25 @@ rule CompartmentType
 	n.name = t.name;
 
 	compartmentTypes.add(t);
+	
+	// iterate over all children of the compartment type
+	for (elem : source!ModelElement in t.getModel().elements) {	
+		var e = elem.equivalent();
+		
+		if ( e.instanceOf(target!AbstractRole)) { 		// ROLE
+			// create a new part with the role
+			var part = new target!Part;
+			part.role = e;
+			part.whole = n;			
+			
+			// add the new part to the compartment
+			n.getParts().add(part);
+		} else if ( e.instanceOf(target!Constraint)) {	// CONSTRAINT
+		
+		} else {										// RELATIONSHIP
+		
+		}		
+	}
 }
 
 /**

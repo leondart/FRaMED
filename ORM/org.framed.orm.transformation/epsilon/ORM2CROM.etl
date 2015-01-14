@@ -13,6 +13,7 @@ operation Any println() : Any {
 rule ORM2CROM
 	transform mym : source!Model
 	to crom : target!Model {
+	guard : mym.parent == null
 	
 	for(shape : source!Shape in mym.elements) {
 		var x = shape.equivalent();
