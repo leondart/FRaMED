@@ -160,7 +160,7 @@ public interface GeometryPackage extends EPackage {
 	int RELATIVE_POINT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Reference Points</b></em>' reference list.
+	 * The feature id for the '<em><b>Reference Points</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -270,10 +270,10 @@ public interface GeometryPackage extends EPackage {
 	EClass getRelativePoint();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.framed.orm.geometry.RelativePoint#getReferencePoints <em>Reference Points</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.framed.orm.geometry.RelativePoint#getReferencePoints <em>Reference Points</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Reference Points</em>'.
+	 * @return the meta object for the containment reference list '<em>Reference Points</em>'.
 	 * @see org.framed.orm.geometry.RelativePoint#getReferencePoints()
 	 * @see #getRelativePoint()
 	 * @generated
@@ -378,7 +378,7 @@ public interface GeometryPackage extends EPackage {
 		EClass RELATIVE_POINT = eINSTANCE.getRelativePoint();
 
 		/**
-		 * The meta object literal for the '<em><b>Reference Points</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Reference Points</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
