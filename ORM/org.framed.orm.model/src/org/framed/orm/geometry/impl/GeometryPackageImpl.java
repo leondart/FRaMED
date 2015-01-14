@@ -298,8 +298,8 @@ public class GeometryPackageImpl extends EPackageImpl implements
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRelativePoint_ReferencePoints(), this.getPoint(),
 				null, "referencePoints", null, 2, 2, RelativePoint.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEReference(getRelativePoint_Distances(), this.getPoint(), null,
 				"distances", null, 2, 2, RelativePoint.class, !IS_TRANSIENT,

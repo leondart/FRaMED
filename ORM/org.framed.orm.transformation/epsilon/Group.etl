@@ -1,0 +1,16 @@
+rule Group
+	transform s : source!Shape
+	to t : target!Group {	
+	guard : s.getType.value == 13	// GROUP
+	
+	t.name = s.name;	
+	
+	var children = s.`model`;
+	if (not (children == null)) {
+		for (elem : source!ModelElement in children.elements) {
+			var e = elem.equivalent();
+			t.getElements().add(e);
+		}
+	}
+	
+}

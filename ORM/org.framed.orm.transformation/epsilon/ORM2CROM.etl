@@ -3,6 +3,9 @@ import "DataType.etl";
 import "NaturalType.etl";
 import "RoleType.etl";
 
+import "RoleGroup.etl";
+import "Group.etl";
+
 import "Inheritance.etl";
 import "Relationship.etl";
 

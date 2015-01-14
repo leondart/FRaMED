@@ -82,7 +82,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RelativePoint">
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencePoints" lowerBound="2"
-          upperBound="2" eType="#//geometry/Point"/>
+          upperBound="2" eType="#//geometry/Point" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="distances" lowerBound="2"
           upperBound="2" eType="#//geometry/Point" containment="true"/>
     </eClassifiers>

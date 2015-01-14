@@ -1,0 +1,32 @@
+rule RoleGroup
+	transform s : source!Shape
+	to t : target!RoleGroup {	
+	guard : s.getType.value == 12	// ROLEGROUP
+	
+	t.name = s.name;
+	
+	var desc = s.description;
+	if (not (desc == null)) {
+		var card = desc.name;
+		if (card.matches("[0-9]*..[0-9]*")) {
+			var cards = card.split("\\.\\.");
+			t.lower = new Native("java.lang.Integer")(cards[0]);
+			t.upper = new Native("java.lang.Integer")(cards[1]);
+		} else if (card.matches("[0-9]*..\\*")) {
+			var cards = card.split("\\.\\.");
+			t.lower = new Native("java.lang.Integer")(cards[0]);
+		} else if (card.matches("[0-9]*")) {
+			t.lower = new Native("java.lang.Integer")(card);
+			t.upper = new Native("java.lang.Integer")(card);
+		}
+	}
+	
+	var children = s.`model`;
+	if (not (children == null)) {
+		for (elem : source!ModelElement in children.elements) {
+			var e = elem.equivalent();
+			t.getElements().add(e);
+		}
+	}
+	
+}

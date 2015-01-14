@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface RelativePoint extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Reference Points</b></em>' reference list.
+	 * Returns the value of the '<em><b>Reference Points</b></em>' containment reference list.
 	 * The list contents are of type {@link org.framed.orm.geometry.Point}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -33,9 +33,9 @@ public interface RelativePoint extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reference Points</em>' reference list.
+	 * @return the value of the '<em>Reference Points</em>' containment reference list.
 	 * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_ReferencePoints()
-	 * @model lower="2" upper="2"
+	 * @model containment="true" lower="2" upper="2"
 	 * @generated
 	 */
 	EList<Point> getReferencePoints();
