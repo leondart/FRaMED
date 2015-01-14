@@ -61,7 +61,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     // TODO: when all factorys are corrected uncomment these
      createComponentsDrawer();
      createComponentPartsDrawer();
-    // createConnectionsDrawer();
+     createConnectionsDrawer();
   }
 
   /**

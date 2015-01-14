@@ -11,6 +11,7 @@ import org.framed.orm.model.Relation;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
@@ -39,7 +40,17 @@ public class ORMEditPartFactory implements EditPartFactory {
     }
 
     else if (model instanceof Relation) {
-      part = new ORMRelationEditPart();
+      Relation relation = (Relation) model;
+      if(relation.getType().equals(Type.FULFILLMENT)){
+        part = new ORMFulfillmentEditPart();
+      } else if(relation.getType().equals(Type.RELATIONSHIP)){
+        
+      } else if(relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)){
+        
+      } else{
+        part = new ORMRelationEditPart(); 
+      }
     }
 
     else if (model instanceof Shape) {
@@ -60,27 +71,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     else if (!(model instanceof ModelElement) && model instanceof NamedElement) {
       part = new ORMNamedElementEditPart();
     }
-
-    /*
-     * if (model instanceof CompartmentDiagram) { part = new ORMModelEditPart(); } else if (model
-     * instanceof Compartment) { part = new ORMCompartmentEditPart(); } else if (model instanceof
-     * Method) { part = new ORMMethodEditPart(); } else if (model instanceof Attribute) { part = new
-     * ORMAttributeEditPart(); } else if (model instanceof Rolemodel) { part = new
-     * ORMRolemodelEditPart(); } else if (model instanceof RoleType) { part = new
-     * ORMRoleTypeEditPart(); } else if (model instanceof NaturalType) { part = new
-     * ORMNaturalTypeEditPart(); } else if (model instanceof RoleGroup) { part = new
-     * ORMRoleGroupEditPart(); } else if (model instanceof Fulfillment) { part = new
-     * ORMFulfillmentEditPart(); } else if (model instanceof RoleImplication) { part = new
-     * ORMRoleImplicationEditPart(); } else if (model instanceof RoleEquivalence) { part = new
-     * ORMRoleEquivalenceEditPart(); } else if (model instanceof RoleProhibition) { part = new
-     * ORMRoleProhibitionEditPart(); } else if (model instanceof Inheritance) { part = new
-     * ORMInheritanceEditPart(); } else if (model instanceof Relationship) { part = new
-     * ORMRelationshipEditPart(); } else if (model instanceof Irreflexive) { part = new
-     * ORMIrreflexiveEditPart(); } else if (model instanceof Total) { part = new ORMTotalEditPart();
-     * } else if (model instanceof Acyclic) { part = new ORMAcyclicEditPart(); } else if (model
-     * instanceof Grouping) { part = new ORMGroupingEditPart(); } else if (model instanceof
-     * RelationLabel) { part = new ORMRelationLabelEditPart(); }
-     */
+    
     if (part != null) {
       part.setModel(model);
     }

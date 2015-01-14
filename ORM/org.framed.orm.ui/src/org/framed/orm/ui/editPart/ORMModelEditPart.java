@@ -21,6 +21,8 @@ import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SnapFeedbackPolicy;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMModelXYLayoutPolicy;
@@ -140,8 +142,11 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
     List contexts = new ArrayList();
     Model cd = (Model) getModel();
     // all children of compartmentdiagram are model elments
-    contexts.addAll(cd.getElements());
-
+    for (ModelElement ele : cd.getElements()) {
+      if (!(ele instanceof Relation)) {
+        contexts.add(ele);
+      }
+    }
     return contexts;
   }
 
@@ -158,8 +163,8 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   }
 
   /**
-   * A setter, which sets the border of the {@link ORMRootModelFigure} depending on it's parent and the
-   * expandstate of the parent figure.
+   * A setter, which sets the border of the {@link ORMRootModelFigure} depending on it's parent and
+   * the expandstate of the parent figure.
    * */
   private void setFigureBorder(GraphicalEditPart parent, Figure fig) {
     if (getParent().getModel() instanceof Shape) {

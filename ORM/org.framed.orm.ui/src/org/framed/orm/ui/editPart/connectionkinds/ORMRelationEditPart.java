@@ -1,8 +1,13 @@
 package org.framed.orm.ui.editPart.connectionkinds;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RelativeBendpoint;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -11,6 +16,8 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
+import org.framed.orm.geometry.Point;
+import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Relation;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
@@ -42,7 +49,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
     adapter = new RelationAdapter();
   }
 
-  /**{@inheritDoc}*/
+  /** {@inheritDoc} */
   @Override
   protected IFigure createFigure() {
     return ORMConnectionFigureFactory.createConnectionFigure(this);
@@ -61,11 +68,11 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates/adds the {@link Bendpoint}s
    * of a {@link Relation}. The content of this method should only be called when the
-   * compartment/grouping/compartmentdiagram where this {@link Relation}s parentrolemodel(for the
-   * cases compartment/grouping) belongs to is the current opened(content of the viewer)
-   * compartment/grouping/compartmentdiagram. The test of getSource() != null and getTarget() !=
-   * null is needed, because it exist cases where this method /its called and getSource() or
-   * getTarget() returns null.
+   * compartmenttype/group/rootmodel where this {@link Relation}s parentrolemodel(for the cases
+   * compartmenttype/group) belongs to is the current opened(content of the viewer)
+   * compartmenttype/group/rootmodel. The test of getSource() != null and getTarget() != null is
+   * needed, because it exist cases where this method is called and getSource() or getTarget()
+   * returns null.
    * 
    */
   @Override
@@ -81,29 +88,29 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
         && getRoot().getContents() instanceof ORMCompartmentEditPart) {
 
       Connection connection = getConnectionFigure();
-      // List<Point> dim1Constraint = ((Relation) getModel()).getDim1BP();
-      // List<Point> dim2Constraint = ((Relation) getModel()).getDim2BP();
-      // // the bendpoints are added as RelativeBendpoint, because the position of the bendpoints
-      // must
-      // // change when the position of the source or target of the relation changes or the the
-      // figure
-      // // of the content of the viewer has expandalble and collapsible elements
-      // List<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
-      // // this check is needed, while during the execute of the CreateBendpointCommand the
-      // // refreshVisual is called
-      // if (dim1Constraint.size() == dim2Constraint.size()) {
-      // for (int i = 0; i < dim1Constraint.size(); i++) {
-      // RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
-      // // p.x = width p.y = height
-      // Dimension dim1 = new Dimension(dim1Constraint.get(i).x, dim1Constraint.get(i).y);
-      // Dimension dim2 = new Dimension(dim2Constraint.get(i).x, dim2Constraint.get(i).y);
-      // rbp.setRelativeDimensions(dim1, dim2);
-      //
-      // figureConstraint.add(rbp);
-      // }
-      // }
-      // connection.setRoutingConstraint(figureConstraint);
-      connection.setRoutingConstraint(((Relation) getModel()).getBendpoints());
+      List<RelativePoint> relativePoints = ((Relation) getModel()).getBendpoints();
+
+      // the bendpoints are added as RelativeBendpoint, because the position of the bendpoints
+      // must change when the position of the source or target of the relation changes or the the
+      // figure of the content of the viewer has expandable and collapsable elements
+      ArrayList<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
+
+      // this check is needed, while during the execute of the CreateBendpointCommand the
+      // refreshVisual is called
+
+      for (int i = 0; i < relativePoints.size(); i++) {
+        RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
+        // p.x = width p.y = height
+        Point pSource = relativePoints.get(i).getDistances().get(0);
+        Point pTarget = relativePoints.get(i).getDistances().get(1);
+        Dimension dim1 = new Dimension(pSource.getX(), pSource.getY());
+        Dimension dim2 = new Dimension(pTarget.getX(), pTarget.getY());
+        rbp.setRelativeDimensions(dim1, dim2);
+
+        figureConstraint.add(rbp);
+      }
+
+      connection.setRoutingConstraint(figureConstraint);
     }
   }
 

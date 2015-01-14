@@ -65,7 +65,7 @@ public class ORMRelationCreateCommand extends Command {
 
     switch (val) {
       case Type.FULFILLMENT_VALUE:
-        return targetLabel == null && sourceLabel != null && refrencedRelations == null;
+        return targetLabel == null && sourceLabel == null && refrencedRelations == null;
       case Type.RELATIONSHIP_VALUE:
         return targetLabel != null && sourceLabel != null && refrencedRelations == null;
       case Type.IRREFLEXIVE_VALUE:
@@ -104,8 +104,9 @@ public class ORMRelationCreateCommand extends Command {
     relation.setContainer(parent);
     relation.setSourceLabel(sourceLabel);
     relation.setTargetLabel(targetLabel);
-    relation.getReferencedRelation().addAll(refrencedRelations);
-
+    if(refrencedRelations != null){
+      relation.getReferencedRelation().addAll(refrencedRelations);
+    }
     Point psbottomright =
         new Point(source.getBoundaries().getBottomRight().getX(), source.getBoundaries()
             .getBottomRight().getY());

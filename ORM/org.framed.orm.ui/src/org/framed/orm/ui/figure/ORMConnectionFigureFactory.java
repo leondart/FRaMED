@@ -13,7 +13,6 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
-import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
@@ -219,15 +218,15 @@ public class ORMConnectionFigureFactory {
     targetEndL.setUDistance(1);
 
     // add to the targetLabel the initial roletype and the rolegroup names in the fulfilledrole list
-    NamedElement targetLabel = relation.getTargetLabel();
+    Label label = new Label("<...>");
     for (Shape role : relation.getReferencedRoles()) {
-      if (targetLabel.getName().equals("<...>")) {
-        targetLabel.setName(role.getName());
+      if (label.getText().equals("<...>")) {
+        label.setText(role.getName());
       } else {
-        targetLabel.setName(targetLabel.getName() + ", " + role.getName());
+        label.setText(label.getText() + ", " + role.getName());
       }
     }
-    Label label = new Label(targetLabel.getName());
+   
     label.setToolTip(tooltipTarget);
     conn.add(label, targetEndL);
 
