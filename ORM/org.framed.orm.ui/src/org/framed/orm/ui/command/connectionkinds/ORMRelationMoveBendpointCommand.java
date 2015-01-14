@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.geometry.GeometryFactory;
+import org.framed.orm.geometry.Point;
+import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.Type;
 
 
 /**
@@ -23,28 +24,28 @@ public class ORMRelationMoveBendpointCommand extends Command {
   /** {@link Relation} which owns the {@link Bendpoint}, which is to be moved. */
   private Relation relation;
   /**
-   * The {@link Dimension}s, which are describing the old relative position/coordinates of the
+   * The {@link RelativePoint}s, which describes the old relative position/coordinates of the
    * {@link Bendpoint}.
    */
-  private Point oldDim1, oldDim2;
+  private RelativePoint oldRelP;
   /**
-   * The {@link Dimension}s, which are describing the new relative position/coordinates of the
-   * {@link Bendpoint}.
+   * The {@link Dimension}s, which are describing the new distances of the {@link Bendpoint} to the
+   * source and target.
    */
-  private Dimension newDim1, newDim2;
+  private Dimension newDimsource, newDimtarget;
   /**
-   * A list, which contains all {@link RelationshipConstraint}s from one {@link Relationship}. This
-   * list is needed for the case the user wants to undone the moving of a {@link Bendpoint} from a
-   * {@link RelationshipConstraint}. In such a case {@link Bendpoint}s with the same coordiantes as
-   * the initial {@link Bendpoint} from all {@link RelationshipConstraint}s of the same
-   * {@link Relationship} as the {@link RelationshipConstraint}, which the user has selected, must
-   * be moved as well. The reason for that is that only one line of the
-   * {@link RelationshipConstraint}s is visible to the user and when the user deletes the
-   * {@link RelationshipConstraint}, whose line is visible, than the line of the next
-   * {@link RelationshipConstraint} must become visible at the same place with the same
-   * {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * A list, which contains all {@link Relation}s from type cyclic, total and irreflexive(aka
+   * relationshipCOnstraints) from one {@link Relation} of the type relationship. This list is
+   * needed for the case the user wants to undo the moving of a {@link Bendpoint} from a
+   * relationshipConstraint. In such a case {@link Bendpoint}s with the same coordiantes as the
+   * initial {@link Bendpoint} from all relationshipConstraints of the same relationship as the
+   * relationshipConstraint, which the user has selected, must be moved as well. The reason for that
+   * is that only one line of the relationshipConstraints is visible to the user and when the user
+   * deletes the relationshipConstraint, whose line is visible, than the line of the next
+   * relationshipConstraint must become visible at the same place with the same {@link Bendpoint}s
+   * as the line of the deleted relationshipConstraint.
    */
-  private ArrayList<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+  private ArrayList<Relation> relCList = new ArrayList<Relation>();
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -56,36 +57,46 @@ public class ORMRelationMoveBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} from the selected {@link Relation} is moved
-   * to a new position and the old position is stored in case that user wants to undonwethe command.
-   * After that in case the {@link Relation} is a {@link RelationshipConstraint} than
-   * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} from all
-   * {@link RelationshipConstraint}s of the same {@link Relationship} as the
-   * {@link RelationshipConstraint}, which the user has selected, must be moved to new coordinates
-   * as well. The reason for that is that only one line of the {@link RelationshipConstraint}s is
-   * visible to the user and when the user deletes the {@link RelationshipConstraint}, whose line is
-   * visible, than the line of the next {@link RelationshipConstraint} must become visible at the
-   * same place with the same {@link Bendpoint}s as the line of the deleted
-   * {@link RelationshipConstraint}.
+   * to a new position and the old position is stored in case that user wants to undo the command.
+   * After that in case the {@link Relation} is from type cyclic, total or irrflexive(aka
+   * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
+   * {@link Bendpoint} from all relationshipConstraints of the same {@link Relationship} as the
+   * relationshipConstraint, which the user has selected, must be moved to new coordinates as well.
+   * The reason for that is that only one line of the relationshipConstraints is visible to the user
+   * and when the user deletes the relationshipConstraint, whose line is visible, than the line of
+   * the next relationshipConstraint must become visible at the same place with the same
+   * {@link Bendpoint}s as the line of the deleted relationshipConstraint.
    */
   public void execute() {
-    if (oldDim1 == null && oldDim2 == null) {
-      oldDim1 = relation.getDim1BP().get(index);
-      oldDim2 = relation.getDim2BP().get(index);
+    if (oldRelP == null) {
+      oldRelP = relation.getBendpoints().get(index);
     }
 
-    Point source = new Point(newDim1.width, newDim1.height);
-    Point target = new Point(newDim2.width, newDim2.height);
-    relation.getDim1BP().set(index, source);
-    relation.getDim2BP().set(index, target);
+    Point source = GeometryFactory.eINSTANCE.createPoint();
+    source.setX(newDimsource.width);
+    source.setY(newDimsource.height);
 
-    if (relation instanceof RelationshipConstraint) {
+    Point target = GeometryFactory.eINSTANCE.createPoint();
+    target.setX(newDimtarget.width);
+    target.setY(newDimtarget.height);
 
-      relCList.addAll(((RelationshipConstraint) relation).getRelation().getRlshipConstraints());
+    RelativePoint relP = GeometryFactory.eINSTANCE.createRelativePoint();
+    relP.getReferencePoints().add(oldRelP.getReferencePoints().get(0));
+    relP.getReferencePoints().add(oldRelP.getReferencePoints().get(1));
+    relP.getDistances().add(source);
+    relP.getDistances().add(target);
 
-      for (RelationshipConstraint relC : relCList) {
+    relation.getBendpoints().set(index, relP);
+
+    if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)) {
+
+      relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
+      relCList.remove(relation);
+
+      for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
-          relC.getDim1BP().set(index, source);
-          relC.getDim2BP().set(index, target);
+          relC.getBendpoints().set(index, relP);
         }
       }
     }
@@ -94,26 +105,25 @@ public class ORMRelationMoveBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through moving the {@link Bendpoint} to the old position.
-   * Is the {@link Relation} a {@link RelationshipConstraint} than after the moving of the initial
-   * {@link Bendpoint} all {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint}
-   * from all {@link RelationshipConstraint}s of the same {@link Relationship} as the
-   * {@link RelationshipConstraint}, which the user has selected, must be moved back to the old
-   * position as well. The reason for that is that only one line of the
-   * {@link RelationshipConstraint}s is visible to the user and when the user deletes the
-   * {@link RelationshipConstraint}, whose line is visible, than the line of the next
-   * {@link RelationshipConstraint} must become visible at the same place with the same
-   * {@link Bendpoint}s as the line of the deleted {@link RelationshipConstraint}.
+   * Is the {@link Relation} from type cyclic, total or irrfelxive(aka relationshipConstraint) than
+   * after the moving of the initial {@link Bendpoint} all {@link Bendpoint}s with same coordinates
+   * as the initial {@link Bendpoint} from all relationshipConstraints of the same {@link Relation}
+   * from type relationship as the relationshipConstraint, which the user has selected, must be
+   * moved back to the old position as well. The reason for that is that only one line of the
+   * relationshipConstraints is visible to the user and when the user deletes the
+   * relationshipConstraint, whose line is visible, than the line of the next relationshipConstraint
+   * must become visible at the same place with the same {@link Bendpoint}s as the line of the
+   * deleted relationshipConstraint.
    * */
   @Override
   public void undo() {
-    relation.getDim1BP().set(index, oldDim1);
-    relation.getDim2BP().set(index, oldDim2);
+    relation.getBendpoints().set(index, oldRelP);
 
-    if (relation instanceof RelationshipConstraint) {
-      for (RelationshipConstraint relC : relCList) {
+    if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)) {
+      for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
-          relC.getDim1BP().set(index, oldDim1);
-          relC.getDim2BP().set(index, oldDim2);
+          relC.getBendpoints().set(index, oldRelP);
         }
       }
     }
@@ -140,12 +150,12 @@ public class ORMRelationMoveBendpointCommand extends Command {
   }
 
   /**
-   * Setter for the {@link Dimension}s, which are describing the new relative position of the
-   * {@link Bendpoint}.
+   * Setter for the {@link Dimension}s, which are describing the new distances of the
+   * {@link Bendpoint} to target and source.
    * 
    * */
   public void setNewDimension(final Dimension dim1, final Dimension dim2) {
-    this.newDim1 = dim1;
-    this.newDim2 = dim2;
+    this.newDimsource = dim1;
+    this.newDimtarget = dim2;
   }
 }
