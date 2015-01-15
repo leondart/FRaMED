@@ -81,10 +81,9 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   @Override
   protected void refreshVisuals() {
 
-    if (testRootModel() || testGroup()
+    if ((getSource() != null && getTarget() != null) && (testRootModel() || testGroup()
         && getSource().getParent().getParent().getParent() instanceof ScalableRootEditPart
-        || getSource() != null && getTarget() != null
-        && getRoot().getContents() instanceof ORMCompartmentEditPart) {
+        || getRoot().getContents() instanceof ORMCompartmentEditPart)) {
 
       Connection connection = getConnectionFigure();
       connection.setVisible(true);
@@ -114,7 +113,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   }
 
   private boolean testRootModel() {
-    if (getSource() != null && getTarget() != null &&  getSource().getParent() instanceof ORMModelEditPart) {
+    if (getSource().getParent() instanceof ORMModelEditPart) {
       Model model = (Model) getSource().getParent().getModel();
       return  model.getParent() == null;
     } else {
@@ -123,9 +122,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   }
   
   private boolean testGroup(){
-    if(getSource() != null
-        && getTarget() != null
-        && getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart){
+    if(getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart){
       return ((Shape)getRoot().getContents().getModel()).getType().equals(Type.GROUP);
     }else{
       return false;
