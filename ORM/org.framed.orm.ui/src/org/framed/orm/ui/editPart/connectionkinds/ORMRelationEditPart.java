@@ -18,7 +18,10 @@ import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.framed.orm.geometry.Point;
 import org.framed.orm.geometry.RelativePoint;
+import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
@@ -78,16 +81,13 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   @Override
   protected void refreshVisuals() {
 
-    if (getSource() != null && getTarget() != null
-        && getSource().getParent() instanceof ORMModelEditPart || getSource() != null
-        && getTarget() != null
-        && getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart
-        // source - parentrolemodel of source - parentgroup of rolemodel - parent of group
+    if (testRootModel() || testGroup()
         && getSource().getParent().getParent().getParent() instanceof ScalableRootEditPart
         || getSource() != null && getTarget() != null
         && getRoot().getContents() instanceof ORMCompartmentEditPart) {
 
       Connection connection = getConnectionFigure();
+      connection.setVisible(true);
       List<RelativePoint> relativePoints = ((Relation) getModel()).getBendpoints();
 
       // the bendpoints are added as RelativeBendpoint, because the position of the bendpoints
@@ -111,7 +111,29 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
       }
 
       connection.setRoutingConstraint(figureConstraint);
+    } else{
+      getConnectionFigure().setVisible(false);
     }
+  }
+
+  private boolean testRootModel() {
+    if (getSource() != null && getTarget() != null &&  getSource().getParent() instanceof ORMModelEditPart) {
+      Model model = (Model) getSource().getParent().getModel();
+      return  model.getParent() == null;
+    } else {
+      return false;
+    }
+  }
+  
+  private boolean testGroup(){
+    if(getSource() != null
+        && getTarget() != null
+        && getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart){
+      return ((Shape)getRoot().getContents().getModel()).getType().equals(Type.GROUP);
+    }else{
+      return false;
+    }
+
   }
 
   /** {@inheritDoc} */
