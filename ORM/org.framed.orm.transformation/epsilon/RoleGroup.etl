@@ -25,7 +25,11 @@ rule RoleGroup
 	if (not (children == null)) {
 		for (elem : source!ModelElement in children.elements) {
 			var e = elem.equivalent();
-			t.getElements().add(e);
+			if (e.instanceOf(target!RoleGroupElement)) {
+				t.getElements().add(e);				
+			} else {
+				// TODO: print warning or throw exception
+			}			
 		}
 	}
 	
