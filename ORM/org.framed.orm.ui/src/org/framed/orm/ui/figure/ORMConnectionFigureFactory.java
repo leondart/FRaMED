@@ -19,6 +19,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 
 public class ORMConnectionFigureFactory {
 
@@ -195,9 +196,7 @@ public class ORMConnectionFigureFactory {
    * tip at the target end of the connection .
    */
   private static Figure createFulfillmentFigure(Relation relation, EditPart editPart) {
-    Label tooltipTarget = new Label();
-    tooltipTarget
-        .setText("This tooltip is for layouting of the text, which is not implemented yet");
+    PartFigure tooltipTarget = new PartFigure();
 
     PolylineConnection conn = new PolylineConnection();
     conn.setAntialias(SWT.ON);
@@ -219,12 +218,18 @@ public class ORMConnectionFigureFactory {
 
     // add to the targetLabel the initial roletype and the rolegroup names in the fulfilledrole list
     Label label = new Label("<...>");
+    int roleCount = 0;
     for (Shape role : relation.getReferencedRoles()) {
       if (label.getText().equals("<...>")) {
         label.setText(role.getName());
       } else {
-        label.setText(label.getText() + ", " + role.getName());
+        if(roleCount >2){
+          tooltipTarget.add(new Label(role.getName()));
+        } else{
+          label.setText(label.getText() + ", " + role.getName());
+        }
       }
+      roleCount++;
     }
    
     label.setToolTip(tooltipTarget);

@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.eclipse.draw2d.Label;
 import org.eclipse.gef.EditPart;
+import org.eclipse.jface.window.ToolTip;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.action.FulfillRolesAction;
+import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type fulfillment.
@@ -24,7 +26,7 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
    */
   private Label targetLabel;
 
-  private Label targetToolTip;
+  private PartFigure targetToolTip;
 
   /**
    * Constructor of this class. In which the class is initialized through calling the constructor of
@@ -44,23 +46,32 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
   @Override
   protected void refreshVisuals() {
     super.refreshVisuals();
-
+    // TODO: not show all role names in the label, when to many names in the label or names to long
+    // they must go into the tooltip
     final Relation relation = (Relation) getModel();
 
+    targetLabel.setText("<...>");
+    targetToolTip.removeAll();
+    int roleCount = 0;
     for (Shape role : relation.getReferencedRoles()) {
       if (targetLabel.getText().equals("<...>")) {
         targetLabel.setText(role.getName());
       } else {
-        targetLabel.setText(targetLabel.getText() + ", " + role.getName());
+        if (roleCount > 2) {
+          targetToolTip.add(new Label(role.getName()));
+        } else {
+          targetLabel.setText(targetLabel.getText() + ", " + role.getName());
+        }
       }
+      roleCount++;
     }
   }
-  
+
   public void setTargetLabel(Label targetLabel) {
     this.targetLabel = targetLabel;
   }
 
-  public void setTargetToolTip(Label targetToolTip) {
+  public void setTargetToolTip(PartFigure targetToolTip) {
     this.targetToolTip = targetToolTip;
   }
 
