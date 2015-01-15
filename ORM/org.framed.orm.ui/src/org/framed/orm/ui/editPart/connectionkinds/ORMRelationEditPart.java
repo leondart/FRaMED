@@ -94,10 +94,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
       // must change when the position of the source or target of the relation changes or the the
       // figure of the content of the viewer has expandable and collapsable elements
       ArrayList<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
-
-      // this check is needed, while during the execute of the CreateBendpointCommand the
-      // refreshVisual is called
-
+      
       for (int i = 0; i < relativePoints.size(); i++) {
         RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
         // p.x = width p.y = height
