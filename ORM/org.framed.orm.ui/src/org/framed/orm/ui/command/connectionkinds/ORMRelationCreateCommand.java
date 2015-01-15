@@ -2,6 +2,7 @@ package org.framed.orm.ui.command.connectionkinds;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -64,8 +65,6 @@ public class ORMRelationCreateCommand extends Command {
     int val = relation.getType().getValue();
 
     switch (val) {
-      case Type.FULFILLMENT_VALUE:
-        return targetLabel == null && sourceLabel == null && refrencedRelations == null;
       case Type.RELATIONSHIP_VALUE:
         return targetLabel != null && sourceLabel != null && refrencedRelations == null;
       case Type.IRREFLEXIVE_VALUE:
@@ -107,13 +106,8 @@ public class ORMRelationCreateCommand extends Command {
     if(refrencedRelations != null){
       relation.getReferencedRelation().addAll(refrencedRelations);
     }
-    Point psbottomright =
-        new Point(source.getBoundaries().getBottomRight().getX(), source.getBoundaries()
-            .getBottomRight().getY());
-    Point pstopleft =
-        new Point(source.getBoundaries().getTopLeft().getX(), source.getBoundaries().getTopLeft()
-            .getY());
-    Rectangle sourcerec = new Rectangle(pstopleft, psbottomright);
+
+    Rectangle sourcerec = createRectabgleFromFromBoundarieData(source);
 
     // when source and target of the {@link Relation} are equal, than call insertSelfLoopBPs()
     // method, because to make the {@link Relation} visible/look good to the user we need to insert
@@ -125,8 +119,9 @@ public class ORMRelationCreateCommand extends Command {
 
     int relationCount = getRelationCount();
     if (relationCount > 1 && !source.equals(target)) {
-      Point ps = new Point(sourcerec.x(), sourcerec.y());
-      Point pt = createMiddlePointFromBoundarieData(target);
+      Rectangle targetrec = createRectabgleFromFromBoundarieData(target);
+      Point ps = calculateCorrectPoint(sourcerec, targetrec.getLocation());
+      Point pt = calculateCorrectPoint(targetrec, sourcerec.getLocation());
       adaptRelationCreation(ps, pt, relationCount);
     }
   }
@@ -178,13 +173,13 @@ public class ORMRelationCreateCommand extends Command {
     int relCount = relationCount;
 
     // calculate initial dimensions to get started
-    final Point p = new Point((ps.x() + pt.x()) / 4, (ps.y() + pt.y()) / 4);
+    final Point p = new Point((ps.x() + pt.x()) / 2, (ps.y() + pt.y()) / 2);
     Dimension d1 = p.getDifference(ps);
     Dimension d2 = p.getDifference(pt);
 
     // put the dimension in points to prepare them for adding to the relation
-    Point dim1P = new Point(d1.width(), d1.height());
-    Point dim2P = new Point(d2.width(), d2.height());
+    Point dim1P = new Point(Math.abs(d1.width()), Math.abs(d1.height()));
+    Point dim2P = new Point(Math.abs(d2.width()), Math.abs(d2.height()));
 
     // calculate the x(width) and y(heigth) gaps between the dimensions for adjusting the bendpoint
     // position
@@ -199,6 +194,7 @@ public class ORMRelationCreateCommand extends Command {
     // and target that has no bendpoints
 
     if (relCount % 2 == 0) {
+      relCount = relCount / 2;
       // test if the target/source is above/beneath the source/target
       // else branch is for the case when target and source are next to each other
       if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xGap == yGap) {
@@ -209,7 +205,7 @@ public class ORMRelationCreateCommand extends Command {
         dim2P.setY(-(dim2P.y() + relCount * 20));
       }
     } else {
-       relCount = (relCount + 2) ;
+      relCount = (relCount + 1) / 2;
       // test if the target/source is above/beneath the source/target
       // else branch is for the case when target and source are next to each other
       if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xGap == yGap) {
@@ -222,7 +218,7 @@ public class ORMRelationCreateCommand extends Command {
     }
 
     // add the bendpoint to the relaton
-    creatAndAddBenpoint(dim1P, dim2P, ps ,pt);
+    creatAndAddBenpoint(dim1P, dim2P, ps, pt);
 
   }
 
@@ -234,14 +230,14 @@ public class ORMRelationCreateCommand extends Command {
     final int width = sourcerec.width();
     final int height = sourcerec.height();
     Point refSource = new Point(sourcerec.x(), sourcerec.y());
-    
+
     // first bendpoint which lays beneaths the source/target
     creatAndAddBenpoint(new Point(0, height + 30), new Point(0, height + 30), refSource, refSource);
     // second bendpoint which lays in the southeast from the source/target
-    creatAndAddBenpoint(new Point(width + 30, height + 30), new Point(width + 30,
-        height + 30), refSource, refSource);
+    creatAndAddBenpoint(new Point(width + 30, height + 30), new Point(width + 30, height + 30),
+        refSource, refSource);
     // third bendpoint which lays in the east from the source/target
-    creatAndAddBenpoint(new Point(width+ 30, 0), new Point(width  + 30, 0), refSource, refSource);
+    creatAndAddBenpoint(new Point(width + 30, 0), new Point(width + 30, 0), refSource, refSource);
   }
 
   private void creatAndAddBenpoint(Point dim1P, Point dim2P, Point refSource, Point refTarget) {
@@ -251,7 +247,7 @@ public class ORMRelationCreateCommand extends Command {
     org.framed.orm.geometry.Point p2 = GeometryFactory.eINSTANCE.createPoint();
     p1.setX(dim2P.x());
     p1.setY(dim2P.y());
-    
+
     org.framed.orm.geometry.Point ps = GeometryFactory.eINSTANCE.createPoint();
     ps.setX(refSource.x());
     ps.setY(refSource.y());
@@ -267,16 +263,43 @@ public class ORMRelationCreateCommand extends Command {
     relPoint.getDistances().add(p2);
     relation.getBendpoints().add(relPoint);
   }
-  
-  protected Point createMiddlePointFromBoundarieData(Shape shape){
+
+  protected Point createMiddlePointFromBoundarieData(Shape shape) {
+    Rectangle shaperec = createRectabgleFromFromBoundarieData(shape);
+    return shaperec.getCenter();
+  }
+
+  protected Point calculateCorrectPoint(Rectangle rec, Point locationOfOther){
+    switch(rec.getPosition(locationOfOther)){
+      case PositionConstants.NORTH:
+      return rec.getTop();
+      case PositionConstants.NORTH_EAST:
+        return rec.getTop();
+      case PositionConstants.NORTH_WEST:
+        return rec.getTop();
+      case PositionConstants.EAST:
+        return rec.getRight();
+      case PositionConstants.WEST:
+        return rec.getLeft();
+      case PositionConstants.SOUTH:
+        return rec.getBottom();
+      case PositionConstants.SOUTH_EAST:
+        return rec.getBottom();
+      case PositionConstants.SOUTH_WEST:
+        return rec.getBottom();
+        default:
+          return null;
+    }
+  }
+
+  protected Rectangle createRectabgleFromFromBoundarieData(Shape shape) {
     Point ptbottomright =
         new Point(shape.getBoundaries().getBottomRight().getX(), shape.getBoundaries()
             .getBottomRight().getY());
     Point pttopleft =
         new Point(shape.getBoundaries().getTopLeft().getX(), shape.getBoundaries().getTopLeft()
             .getY());
-    Rectangle shaperec = new Rectangle(pttopleft, ptbottomright);
-    return new Point(shaperec.x(), shaperec.y());
+    return new Rectangle(pttopleft, ptbottomright);
   }
 
   /**
