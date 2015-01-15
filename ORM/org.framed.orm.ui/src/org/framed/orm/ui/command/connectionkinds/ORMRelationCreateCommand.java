@@ -97,16 +97,15 @@ public class ORMRelationCreateCommand extends Command {
    */
   @Override
   public void execute() {
-
-    relation.setSource(source);
-    relation.setTarget(target);
-    relation.setContainer(parent);
     relation.setSourceLabel(sourceLabel);
     relation.setTargetLabel(targetLabel);
     if(refrencedRelations != null){
       relation.getReferencedRelation().addAll(refrencedRelations);
     }
-
+    relation.setSource(source);
+    relation.setTarget(target);
+    relation.setContainer(parent);
+    
     Rectangle sourcerec = createRectabgleFromFromBoundarieData(source);
 
     // when source and target of the {@link Relation} are equal, than call insertSelfLoopBPs()

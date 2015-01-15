@@ -13,6 +13,7 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.NamedElement;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editPolicy.ORMAttributeOperationComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
@@ -20,7 +21,8 @@ import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
 
 /**
- * This {@link EditPart} is the controller for {@link NamedElement}s, which represent attributes and operations.
+ * This {@link EditPart} is the controller for {@link NamedElement}s, which represent attributes and
+ * operations.
  * 
  * @author Kay Bierzynski
  * */
@@ -65,7 +67,9 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
     // edit policy, which handels requests for deleting the namedlement, which is controlled
     // through this edit part
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
+    if (!(getParent() instanceof ORMRelationshipEditPart)) {
+      installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
+    }
   }
 
   /** {@inheritDoc} */
@@ -84,14 +88,14 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
   private void performDirectEditing() {
     final Label label = (Label) (getFigure());
     final ORMDirectEditManager manager =
-        new ORMDirectEditManager(this, TextCellEditor.class,
-            new ORMCellEditorLocator(label), label);
+        new ORMDirectEditManager(this, TextCellEditor.class, new ORMCellEditorLocator(label), label);
     manager.show(); // refresh view
   }
 
   /**
-   * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the text(shorten named element
-   * name) and the tooltip(complete named elment name) of the named element figure({@link Label}.
+   * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the text(shorten named
+   * element name) and the tooltip(complete named elment name) of the named element figure(
+   * {@link Label}.
    * 
    */
   @Override
@@ -143,7 +147,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
     public Notifier getTarget() {
       return (NamedElement) getModel();
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public void setTarget(final Notifier newTarget) {

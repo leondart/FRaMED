@@ -6,6 +6,7 @@ import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.ui.command.ORMNamedElementRenameCommand;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
@@ -30,8 +31,16 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
 
     ORMNamedElementRenameCommand command = new ORMNamedElementRenameCommand();
     command.setNamedElement((NamedElement) getHost().getModel());
-    command.setNewName((String) request.getCellEditor().getValue());
-
+    if (getHost().getParent() instanceof ORMRelationshipEditPart) {
+      String newName = (String) request.getCellEditor().getValue();
+      if(preProcessLabelText(newName)){
+        command.setNewName(newName);
+      } else{
+        command.setNewName(null);
+      }
+    } else {
+      command.setNewName((String) request.getCellEditor().getValue());
+    }
     return command;
   }
 
@@ -45,5 +54,33 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
       ((Label) getHostFigure()).setText(value);
     }
   }
+
+  /**
+   * Parse the raw cardinality strings typed in by the user.
+   * 
+   * @param newLabel
+   * @return
+   */
+  private boolean preProcessLabelText(String newLabel) {
+    int lower = -1, upper = -1;
+    String[] split = newLabel.split("[\\s.-]+"); // split the new label by dots, - or whitespaces
+    if (split.length == 1 && "*".equals(newLabel)) { // no split was possible and newlabel equals
+                                                     // "*"
+      lower = upper = -1; // set lower and upper = -1
+    } else if (split.length == 2) { // split was ok, user may have set cardinalities
+      try {
+        upper = "*".equals(split[1]) ? -1 : Integer.parseInt(split[1]); // if 2nd card == '*' ->
+                                                                        // upper = -1, else parse
+                                                                        // the int of split[1]
+        lower = Integer.parseInt(split[0]); // parse the lower bound
+      } catch (NumberFormatException e) {
+        return false; // user typed in a strange number or no number at all -> keep the old values
+      }
+    } else { // user typed in something strange -> keep the old values
+      return false;
+    }
+    return true;
+  }
+
 
 }

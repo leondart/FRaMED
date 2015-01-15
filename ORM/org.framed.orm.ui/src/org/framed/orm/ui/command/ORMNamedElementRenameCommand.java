@@ -26,6 +26,11 @@ public class ORMNamedElementRenameCommand extends Command {
   public ORMNamedElementRenameCommand() {
     super.setLabel("ORMNamedElementRename");
   }
+  
+  @Override
+  public boolean canExecute() {
+    return newName!=null;
+  }
 
   /**
    * {@inheritDoc} In this methode the initial name of the {@link NamedElement} is stored in the

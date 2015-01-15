@@ -12,10 +12,11 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
+import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
 
 /**
- * This {@link EditPart} is the controller for the model element {@link Relationship}.
+ * This {@link EditPart} is the controller for {@link Relation}s from type relatinship.
  * 
  * @author Kay Bierzynski (initial development)
  * @author Lars Schuetze (refactoring)
@@ -24,7 +25,8 @@ import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
-   * This method returns a {@link ConnectionEndpointLocator} for this {@link Relationship}.
+   * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
+   * relationship.
    * 
    * @return locator org.eclipse.draw2d.ConnectionEndpointLocator
    * */
@@ -45,7 +47,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   }
 
   /**
-   * A getter for the model element {@link Relationship}. 
+   * A getter for the model element {@link Relation} from type relationship.
    * 
    * @return ({@link Relationship}) getModel()
    * */
@@ -54,7 +56,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   }
 
   /**
-   * A getter for the model element {@link Relationship} figure. 
+   * A getter for the relationship figure.
    * 
    * @return ({@link PolylineConnection}) getFigure()
    * */
@@ -62,13 +64,21 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     return (PolylineConnection) getFigure();
   }
 
-  /** {@inheritDoc} In case the figures of {@link RelationLabel}s.*/
+  /**
+   * {@inheritDoc} In case the figures of targetLabel and sourceLabel which are {@link NamedElement}
+   * s.
+   */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
     if (childEditPart instanceof ORMRelationLabelEditPart) {
-      ORMRelationLabelEditPart labelEditPart = (ORMRelationLabelEditPart) childEditPart;
-      getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
-          getConnectionLocator(getRelationFigure(), labelEditPart.isRelationEnd()));
+      ORMNamedElementEditPart labelEditPart = (ORMNamedElementEditPart) childEditPart;
+      if (labelEditPart.getModel().equals(getRelationship().getSourceLabel())) {
+        getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
+            getConnectionLocator(getRelationFigure(), false));
+      } else {
+        getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
+            getConnectionLocator(getRelationFigure(), true));
+      }
     }
     super.addChildVisual(childEditPart, index);
   }
