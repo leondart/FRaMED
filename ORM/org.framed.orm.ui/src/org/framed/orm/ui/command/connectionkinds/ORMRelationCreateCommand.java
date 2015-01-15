@@ -178,7 +178,7 @@ public class ORMRelationCreateCommand extends Command {
     int relCount = relationCount;
 
     // calculate initial dimensions to get started
-    final Point p = new Point((ps.x() + pt.x()) / 2, (ps.y() + pt.y()) / 2);
+    final Point p = new Point((ps.x() + pt.x()) / 4, (ps.y() + pt.y()) / 4);
     Dimension d1 = p.getDifference(ps);
     Dimension d2 = p.getDifference(pt);
 
@@ -197,8 +197,8 @@ public class ORMRelationCreateCommand extends Command {
     // else branch: every "first"(3,5,7..) relation gets a bendpoint, which lays beneath/rigth from
     // a realtion between source
     // and target that has no bendpoints
+
     if (relCount % 2 == 0) {
-      relCount = relCount / 2;
       // test if the target/source is above/beneath the source/target
       // else branch is for the case when target and source are next to each other
       if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xGap == yGap) {
@@ -209,7 +209,7 @@ public class ORMRelationCreateCommand extends Command {
         dim2P.setY(-(dim2P.y() + relCount * 20));
       }
     } else {
-      relCount = (relCount + 1) / 2;
+       relCount = (relCount + 2) ;
       // test if the target/source is above/beneath the source/target
       // else branch is for the case when target and source are next to each other
       if (Math.abs(dim1P.y()) > Math.abs(dim1P.x()) || xGap == yGap) {
@@ -222,7 +222,7 @@ public class ORMRelationCreateCommand extends Command {
     }
 
     // add the bendpoint to the relaton
-    creatAndAddBenpoint(dim1P, dim2P);
+    creatAndAddBenpoint(dim1P, dim2P, ps ,pt);
 
   }
 
@@ -233,27 +233,38 @@ public class ORMRelationCreateCommand extends Command {
   private void insertSelfLoopBPs(Rectangle sourcerec) {
     final int width = sourcerec.width();
     final int height = sourcerec.height();
+    Point refSource = new Point(sourcerec.x(), sourcerec.y());
+    
     // first bendpoint which lays beneaths the source/target
-    creatAndAddBenpoint(new Point(0, height / 2 + 30), new Point(0, height / 2 + 30));
+    creatAndAddBenpoint(new Point(0, height + 30), new Point(0, height + 30), refSource, refSource);
     // second bendpoint which lays in the southeast from the source/target
-    creatAndAddBenpoint(new Point(width / 2 + 30, height / 2 + 30), new Point(width / 2 + 30,
-        height / 2 + 30));
+    creatAndAddBenpoint(new Point(width + 30, height + 30), new Point(width + 30,
+        height + 30), refSource, refSource);
     // third bendpoint which lays in the east from the source/target
-    creatAndAddBenpoint(new Point(width / 2 + 30, 0), new Point(width / 2 + 30, 0));
+    creatAndAddBenpoint(new Point(width+ 30, 0), new Point(width  + 30, 0), refSource, refSource);
   }
 
-  private void creatAndAddBenpoint(Point dim1P, Point dim2P) {
+  private void creatAndAddBenpoint(Point dim1P, Point dim2P, Point refSource, Point refTarget) {
     org.framed.orm.geometry.Point p1 = GeometryFactory.eINSTANCE.createPoint();
     p1.setX(dim1P.x());
     p1.setY(dim1P.y());
     org.framed.orm.geometry.Point p2 = GeometryFactory.eINSTANCE.createPoint();
     p1.setX(dim2P.x());
     p1.setY(dim2P.y());
+    
+    org.framed.orm.geometry.Point ps = GeometryFactory.eINSTANCE.createPoint();
+    ps.setX(refSource.x());
+    ps.setY(refSource.y());
+    org.framed.orm.geometry.Point pt = GeometryFactory.eINSTANCE.createPoint();
+    pt.setX(refTarget.x());
+    pt.setY(refTarget.y());
 
     org.framed.orm.geometry.RelativePoint relPoint =
         GeometryFactory.eINSTANCE.createRelativePoint();
-    relPoint.getReferencePoints().add(p1);
-    relPoint.getReferencePoints().add(p2);
+    relPoint.getReferencePoints().add(ps);
+    relPoint.getReferencePoints().add(pt);
+    relPoint.getDistances().add(p1);
+    relPoint.getDistances().add(p2);
     relation.getBendpoints().add(relPoint);
   }
   

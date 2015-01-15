@@ -81,8 +81,7 @@ public class ORMRelationMoveBendpointCommand extends Command {
     target.setY(newDimtarget.height);
 
     RelativePoint relP = GeometryFactory.eINSTANCE.createRelativePoint();
-    relP.getReferencePoints().add(oldRelP.getReferencePoints().get(0));
-    relP.getReferencePoints().add(oldRelP.getReferencePoints().get(1));
+    relP.getReferencePoints().addAll(oldRelP.getReferencePoints());
     relP.getDistances().add(source);
     relP.getDistances().add(target);
 
