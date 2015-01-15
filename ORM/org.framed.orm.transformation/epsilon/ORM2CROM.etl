@@ -8,6 +8,7 @@ import "Group.etl";
 
 import "Inheritance.etl";
 import "Relationship.etl";
+import "Fulfillment.etl";
 
 operation Any println() : Any { 
 	("Printing : " + self)->println();
@@ -28,7 +29,13 @@ rule ORM2CROM
 	for (relation : source!Relation in mym.elements) {
 		var r = relation.equivalent();
 		if (not (r == null)) {
-			crom.relations.add(r);
+			if(not(r.isKindOf(Sequence))) {
+				crom.relations.add(r);
+			} else {
+				for(ob in r) {
+					crom.relations.add(ob);
+				}
+			}
 		}
 	}
 	

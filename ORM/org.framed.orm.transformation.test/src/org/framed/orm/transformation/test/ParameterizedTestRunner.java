@@ -75,9 +75,9 @@ public class ParameterizedTestRunner {
 	 * @return {@link List} of {@link TestCase}
 	 * @throws Exception
 	 */
-	@Parameters
-	public static Iterable<TestCase[]> getTestCases() throws Exception {
-		List<TestCase[]> list = new LinkedList<TestCase[]>();
+	@Parameters(name = "{index}: file={1}")
+	public static Iterable<Object[]> getTestCases() throws Exception {
+		List<Object[]> list = new LinkedList<Object[]>();
 
 		File file = null;
 
@@ -105,7 +105,7 @@ public class ParameterizedTestRunner {
 	 * @param file
 	 *            Current directory
 	 */
-	private static void loadDirectory(List<TestCase[]> list, File file) {
+	private static void loadDirectory(List<Object[]> list, File file) {
 		for (File testFile : file.listFiles()) {
 			// if entry is directory load it recursively
 			if (testFile.isDirectory()) {
@@ -114,7 +114,7 @@ public class ParameterizedTestRunner {
 				// if entry is file try to load test file
 				TestCase testCase = loadTestCase(testFile);
 				if (testCase != null) {
-					list.add(new TestCase[] { testCase, null });
+					list.add(new Object[] { testCase, testFile.getName() });
 				}
 			}
 		}
@@ -161,7 +161,7 @@ public class ParameterizedTestRunner {
 	 * @param _bla
 	 *            JUnit needs this, but we dont use it.
 	 */
-	public ParameterizedTestRunner(TestCase testCase, TestCase _bla) {
+	public ParameterizedTestRunner(TestCase testCase, String _bla) {
 		this.testCase = testCase;
 	}
 

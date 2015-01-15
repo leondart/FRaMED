@@ -12,39 +12,31 @@
     <elements
         xsi:type="org.framed.orm.model:Shape"
         name="NaturalType1"
-        outgoingRelations="//@framedModel/@elements.2"
-        type="NaturalType"/>
-    <elements
-        xsi:type="org.framed.orm.model:Shape"
-        name="NaturalType2"
+        outgoingRelations="//@framedModel/@elements.1"
         type="NaturalType"/>
     <elements
         xsi:type="org.framed.orm.model:Relation"
         name="testFulfillment"
         type="Fulfillment"
-        target="//@framedModel/@elements.4"
+        target="//@framedModel/@elements.2"
         source="//@framedModel/@elements.0"
-        referencedRoles="//@framedModel/@elements.3"/>
-    <elements
-        xsi:type="org.framed.orm.model:Shape"
-        name="roleType1"
-        type="RoleType"/>
+        referencedRoles="//@framedModel/@elements.2/@model/@elements.0"/>
     <elements
         xsi:type="org.framed.orm.model:Shape"
         name="compType1"
-        incomingRelations="//@framedModel/@elements.2"/>
+        incomingRelations="//@framedModel/@elements.1">
+      <model>
+        <elements
+            xsi:type="org.framed.orm.model:Shape"
+            name="roleType1"
+            type="RoleType"/>
+      </model>
+    </elements>
   </framedModel>
   <cromModel>
     <elements
         xsi:type="crom_l1_composed:NaturalType"
-        name="NaturalType1"
-        outgoing="//@cromModel/@relations.0"/>
-    <elements
-        xsi:type="crom_l1_composed:NaturalType"
-        name="NaturalType2"/>
-    <elements
-        xsi:type="crom_l1_composed:RigidType"
-        name="roleType1"/>
+        name="NaturalType1"/>
     <elements
         xsi:type="crom_l1_composed:CompartmentType"
         name="compType1">
@@ -56,7 +48,7 @@
     </elements>
     <relations
         xsi:type="crom_l1_composed:Fulfillment"
-        filled="//@cromModel/@elements.3/@parts.0/@role"
+        filled="//@cromModel/@elements.1/@parts.0/@role"
         filler="//@cromModel/@elements.0"/>
   </cromModel>
 </ts:TestCase>
