@@ -3,17 +3,13 @@ package org.framed.orm.ui.editPart.connectionkinds;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.swt.SWT;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
-import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
 
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type relatinship.
@@ -70,7 +66,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
-    if (childEditPart instanceof ORMRelationLabelEditPart) {
+    if (childEditPart instanceof  ORMNamedElementEditPart) {
       ORMNamedElementEditPart labelEditPart = (ORMNamedElementEditPart) childEditPart;
       if (labelEditPart.getModel().equals(getRelationship().getSourceLabel())) {
         getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
