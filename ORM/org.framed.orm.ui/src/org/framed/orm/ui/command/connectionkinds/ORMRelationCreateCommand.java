@@ -263,11 +263,6 @@ public class ORMRelationCreateCommand extends Command {
     relation.getBendpoints().add(relPoint);
   }
 
-  protected Point createMiddlePointFromBoundarieData(Shape shape) {
-    Rectangle shaperec = createRectabgleFromFromBoundarieData(shape);
-    return shaperec.getCenter();
-  }
-
   protected Point calculateCorrectPoint(Rectangle rec, Point locationOfOther){
     switch(rec.getPosition(locationOfOther)){
       case PositionConstants.NORTH:

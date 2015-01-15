@@ -1,6 +1,7 @@
 package org.framed.orm.ui.command.connectionkinds;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
 
@@ -58,8 +59,10 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
       relationCons.getBendpoints().addAll(relationship.getReferencedRelation().get(0).getBendpoints());
     }
     if (relationCount > 1 && relationship.getReferencedRelation().size() <= 1) {
-      Point ps = createMiddlePointFromBoundarieData(source);
-      Point pt = createMiddlePointFromBoundarieData(target);
+      Rectangle sourcerec = createRectabgleFromFromBoundarieData(source);
+      Rectangle targetrec = createRectabgleFromFromBoundarieData(target);
+      Point ps = calculateCorrectPoint(sourcerec, targetrec.getLocation());
+      Point pt = calculateCorrectPoint(targetrec, sourcerec.getLocation());
       adaptRelationCreation(ps, pt, relationCount);
     }
 
