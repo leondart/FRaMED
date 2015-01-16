@@ -12,15 +12,19 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 
+
+
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<!-- This configuration was necessary because tycho-surefire is a dumb 
+					buggy idiot and does not recognize parameterized tests by itself right now. -->
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<testSuite>org.framed.orm.transformation.test</testSuite>
+					<testClass>org.framed.orm.transformation.test.TransformationTestSuite</testClass>
 				</configuration>
 			</plugin>
 		</plugins>
