@@ -15,7 +15,7 @@ public class ORMRoleProhibitionFactory implements CreationFactory{
   @Override 
   public Object getNewObject() {
     Relation relation = OrmFactory.eINSTANCE.createRelation();
-    relation.setName("");
+    relation.setName(null);
     relation.setType(Type.ROLE_PROHIBITION);
     return relation;
   }
