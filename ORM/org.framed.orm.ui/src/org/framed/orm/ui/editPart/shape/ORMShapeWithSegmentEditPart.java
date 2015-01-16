@@ -14,6 +14,7 @@ import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMDataTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
 
@@ -81,6 +82,7 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
           contentPane = ((ORMNaturalTypeFigure) getFigure()).getBasicRec();
           break;
         case Type.DATA_TYPE_VALUE:
+          contentPane = ((ORMDataTypeFigure) getFigure()).getBasicRec();
           break;
         case Type.ROLE_TYPE_VALUE:
           contentPane = ((ORMRoleTypeFigure) getFigure()).getBasicRec();
