@@ -40,7 +40,7 @@ rule CompartmentType
 					} else if (card.matches("[0-9]*..\\*")) {
 						var cards = card.split("\\.\\.");
 						part.lower = new Native("java.lang.Integer")(cards[0]);
-					} else if (card.matches("[0-9]*")) {
+					} else if (card.matches("[0-9]+")) {
 						part.lower = new Native("java.lang.Integer")(card);
 						part.upper = new Native("java.lang.Integer")(card);
 					}
