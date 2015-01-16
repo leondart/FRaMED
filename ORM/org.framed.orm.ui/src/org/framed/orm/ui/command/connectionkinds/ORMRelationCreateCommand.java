@@ -36,7 +36,7 @@ public class ORMRelationCreateCommand extends Command {
    * The {@link Relation} to be created. The basis type of the {@link Relation} is given by a
    * factory.
    */
-  private Relation relation;
+  protected Relation relation;
   /** The {@link Model} to which the {@link Relation} should be added. */
   protected Model parent;
 

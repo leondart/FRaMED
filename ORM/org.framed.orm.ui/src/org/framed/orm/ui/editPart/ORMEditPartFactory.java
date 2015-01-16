@@ -13,6 +13,7 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
@@ -48,7 +49,7 @@ public class ORMEditPartFactory implements EditPartFactory {
         part = new ORMRelationshipEditPart();
       } else if(relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
         || relation.getType().equals(Type.IRREFLEXIVE)){
-        
+        part = new ORMRelationshipConstraintEditPart();
       } else{
         part = new ORMRelationEditPart(); 
       }

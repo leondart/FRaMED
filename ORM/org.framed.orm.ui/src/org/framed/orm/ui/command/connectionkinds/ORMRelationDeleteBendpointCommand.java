@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.geometry.GeometryFactory;
 import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
@@ -82,11 +83,10 @@ public class ORMRelationDeleteBendpointCommand extends Command {
         || relation.getType().equals(Type.IRREFLEXIVE)) {
 
       relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
+      relCList.remove(relation);
 
       for (Relation relC : relCList) {
-        if (!relC.equals(relation)) {
-          relC.getBendpoints().remove(index);
-        }
+        relC.getBendpoints().remove(index);
       }
     }
 
@@ -111,9 +111,31 @@ public class ORMRelationDeleteBendpointCommand extends Command {
         || relation.getType().equals(Type.IRREFLEXIVE)) {
 
       for (Relation relC : relCList) {
-        if (!relC.equals(relation)) {
-          relC.getBendpoints().add(index, relP);
-        }
+        // RelativePoints cannot be shared between relations so we must create a relativepoint with
+        // same data
+        RelativePoint newRelP = GeometryFactory.eINSTANCE.createRelativePoint();
+
+        org.framed.orm.geometry.Point sourceDis = GeometryFactory.eINSTANCE.createPoint();
+        sourceDis.setX(relP.getDistances().get(0).getX());
+        sourceDis.setY(relP.getDistances().get(0).getY());
+        newRelP.getDistances().add(sourceDis);
+
+        org.framed.orm.geometry.Point targetDis = GeometryFactory.eINSTANCE.createPoint();
+        targetDis.setX(relP.getDistances().get(1).getX());
+        targetDis.setY(relP.getDistances().get(1).getY());
+        newRelP.getDistances().add(targetDis);
+
+        org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
+        sourceRef.setX(relP.getReferencePoints().get(0).getX());
+        sourceRef.setY(relP.getReferencePoints().get(0).getY());
+        newRelP.getReferencePoints().add(sourceRef);
+
+        org.framed.orm.geometry.Point targetRef = GeometryFactory.eINSTANCE.createPoint();
+        targetRef.setX(relP.getReferencePoints().get(1).getX());
+        targetRef.setY(relP.getReferencePoints().get(1).getY());
+        newRelP.getReferencePoints().add(targetRef);
+
+        relC.getBendpoints().add(index, newRelP);
       }
     }
 

@@ -94,9 +94,31 @@ public class ORMRelationMoveBendpointCommand extends Command {
       relCList.remove(relation);
 
       for (Relation relC : relCList) {
-        if (!relC.equals(relation)) {
-          relC.getBendpoints().set(index, relP);
-        }
+        // RelativePoints cannot be shared between rleations so we must create a relativepoint with
+        // same data
+        RelativePoint newRelP = GeometryFactory.eINSTANCE.createRelativePoint();
+
+        org.framed.orm.geometry.Point sourceDis = GeometryFactory.eINSTANCE.createPoint();
+        sourceDis.setX(relP.getDistances().get(0).getX());
+        sourceDis.setY(relP.getDistances().get(0).getY());
+        newRelP.getDistances().add(sourceDis);
+
+        org.framed.orm.geometry.Point targetDis = GeometryFactory.eINSTANCE.createPoint();
+        targetDis.setX(relP.getDistances().get(1).getX());
+        targetDis.setY(relP.getDistances().get(1).getY());
+        newRelP.getDistances().add(targetDis);
+
+        org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
+        sourceRef.setX(relP.getReferencePoints().get(0).getX());
+        sourceRef.setY(relP.getReferencePoints().get(0).getY());
+        newRelP.getReferencePoints().add(sourceRef);
+
+        org.framed.orm.geometry.Point targetRef = GeometryFactory.eINSTANCE.createPoint();
+        targetRef.setX(relP.getReferencePoints().get(1).getX());
+        targetRef.setY(relP.getReferencePoints().get(1).getY());
+        newRelP.getReferencePoints().add(targetRef);
+
+        relC.getBendpoints().set(index, newRelP);
       }
     }
 
