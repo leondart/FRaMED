@@ -6,7 +6,7 @@ import "RoleType.etl";
 import "RoleGroup.etl";
 import "Group.etl";
 
-import "RoleImpl.etl";
+import "RoleConstraints.etl";
 
 import "Inheritance.etl";
 import "Relationship.etl";
