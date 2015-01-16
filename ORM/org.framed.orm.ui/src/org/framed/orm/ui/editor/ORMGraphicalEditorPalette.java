@@ -17,6 +17,7 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
+import org.framed.orm.ui.factory.ORMDataTypeFactory;
 import org.framed.orm.ui.factory.ORMFulfillmentFactory;
 import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
@@ -58,7 +59,6 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
     addGroup();
     addSelectionTool();
-    // TODO: when all factorys are corrected uncomment these
      createComponentsDrawer();
      createComponentPartsDrawer();
      createConnectionsDrawer();
@@ -105,6 +105,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
       setEntryVisibility("Compartment", false);
       setEntryVisibility("NaturalType", false);
+      setEntryVisibility("DataType", false);
       setEntryVisibility("Group", false);
       setEntryVisibility("Fulfilment", false);
     } else {
@@ -120,6 +121,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
       setEntryVisibility("Compartment", true);
       setEntryVisibility("NaturalType", true);
+      setEntryVisibility("DataType", true);
       setEntryVisibility("Group", true);
       setEntryVisibility("Fulfilment", true);
     }
@@ -179,6 +181,16 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         "icons/naturaltype.png"));
     drawer.add(entry);
     addEntry("NaturalType", entry, true);
+    
+    entry =
+        new CreationToolEntry("DataType", "Create a new DataType",
+            new ORMDataTypeFactory(), null, null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    //TODOD: create datatype.png
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/naturaltype.png"));
+    drawer.add(entry);
+    addEntry("DataType", entry, true);
 
     entry =
         new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,

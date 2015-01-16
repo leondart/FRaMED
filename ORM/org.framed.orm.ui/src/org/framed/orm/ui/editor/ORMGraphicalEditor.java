@@ -332,10 +332,10 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 		}
 
 		// transform graphical model to crom
-		/*boolean modelTransformationSucceed = transformModel();
+		boolean modelTransformationSucceed = transformModel();
 		if (!modelTransformationSucceed) {
 			return;
-		}*/
+		}
 
 		getCommandStack().markSaveLocation();
 	}
