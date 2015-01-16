@@ -9,6 +9,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.figure.shapes.ORMChildModelFigure;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMDataTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
 import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
 import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
@@ -45,6 +46,7 @@ public class ORMFigureFactory {
           fig = new ORMNaturalTypeFigure();
           break;
         case Type.DATA_TYPE_VALUE:
+          fig = new ORMDataTypeFigure();
           break;
         case Type.ROLE_GROUP_VALUE:
           fig = new ORMRoleGroupFigure();
