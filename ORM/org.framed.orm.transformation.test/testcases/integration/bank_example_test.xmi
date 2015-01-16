@@ -51,8 +51,6 @@
       </firstSegment>
       <secondSegment>
         <elements
-            name="login(id:int, credentials:String):Customer"/>
-        <elements
             name="executeTransactions()"/>
       </secondSegment>
       <model>
@@ -310,17 +308,17 @@
         type="Fulfillment"
         target="//@framedModel/@elements.2"
         source="//@framedModel/@elements.4"
-        referencedRoles="//@framedModel/@elements.4"/>
+        referencedRoles="//@framedModel/@elements.2/@model/@elements.3"/>
     <elements
         xsi:type="org.framed.orm.model:Relation"
         type="Fulfillment"
         target="//@framedModel/@elements.2"
         source="//@framedModel/@elements.5"
-        referencedRoles="//@framedModel/@elements.4/@model/@elements.0"/>
+        referencedRoles="//@framedModel/@elements.2/@model/@elements.4"/>
     <elements
         xsi:type="org.framed.orm.model:Relation"
         type="Fulfillment"
-        target="//@framedModel/@elements.2"
+        target="//@framedModel/@elements.4"
         source="//@framedModel/@elements.5"
         referencedRoles="//@framedModel/@elements.4/@model/@elements.0"/>
   </framedModel>
@@ -363,17 +361,6 @@
       <attributes
           name="name"
           type="//@cromModel/@elements.3"/>
-      <operations
-          name="login"
-          type="//@cromModel/@elements.3"
-          operation="">
-        <params
-            name="id"
-            type="//@cromModel/@elements.6"/>
-        <params
-            name="credentials"
-            type="//@cromModel/@elements.3"/>
-      </operations>
       <operations
           name="executeTransactions"
           operation=""/>
