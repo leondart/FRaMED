@@ -186,29 +186,34 @@ public class ConstraintsDialog extends Dialog {
       boolean isInList = false;
       for (Relation constraint : constraints) {
         if (i == 0) {
-            isInList = constraint.equals(Type.IRREFLEXIVE);
+            isInList = constraint.getType().equals(Type.IRREFLEXIVE);
         }
         if (i == 1) {
-            isInList = constraint.equals(Type.TOTAL);
+            isInList = constraint.getType().equals(Type.TOTAL);
         }
         if (i == 2) {
-            isInList = constraint.equals(Type.CYCLIC);
+            isInList = constraint.getType().equals(Type.CYCLIC);
         }
-
+        if(isInList){
+          break;
+        }
       }
       
       Relation relation = OrmFactory.eINSTANCE.createRelation();
       if (!isInList) {
         if (i == 0) {
           relation.setType(Type.IRREFLEXIVE);
+          relation.setName("irreflexive");
           viewerContent.add(relation);
         }
         if (i == 1) {
           relation.setType(Type.TOTAL);
+          relation.setName("total");
           viewerContent.add(relation);
         }
         if (i == 2) {
           relation.setType(Type.CYCLIC);
+          relation.setName("cyclic");
           viewerContent.add(relation);
         }
 

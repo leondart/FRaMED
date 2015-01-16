@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.geometry.GeometryFactory;
 import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
@@ -81,6 +82,7 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
     source = (Shape) relation.getSource();
     target = (Shape) relation.getTarget();
     relationship = relation.getReferencedRelation().get(0);
+    relationship.getReferencedRelation().remove(relation);
     bendpointList.addAll(relation.getBendpoints());
 
 
@@ -94,7 +96,6 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
     final List<Relation> relCList = new ArrayList<Relation>();
 
     relCList.addAll(relationship.getReferencedRelation());
-    // relCList.remove(relation);
 
     for (final Relation relC : relCList) {
       ORMRelationshipConstraintEditPart editPart =
@@ -117,10 +118,38 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
     relation.setTarget(target);
     relation.setContainer(parent);
     relation.getReferencedRelation().add(relationship);
-
+    relationship.getReferencedRelation().add(relation);
+    
     if (relationship.getReferencedRelation().size() != 0
         && relationship.getReferencedRelation().get(0).getBendpoints().size() != 0) {
-      relation.getBendpoints().addAll(relationship.getReferencedRelation().get(0).getBendpoints());
+      Relation rel = relationship.getReferencedRelation().get(0);
+      // RelativePoints cannot be shared between rleations so we must create a relativepoint with
+      // same data
+      for (RelativePoint relP : rel.getBendpoints()) {
+        RelativePoint newRelP = GeometryFactory.eINSTANCE.createRelativePoint();
+
+        org.framed.orm.geometry.Point sourceDis = GeometryFactory.eINSTANCE.createPoint();
+        sourceDis.setX(relP.getDistances().get(0).getX());
+        sourceDis.setY(relP.getDistances().get(0).getY());
+        newRelP.getDistances().add(sourceDis);
+
+        org.framed.orm.geometry.Point targetDis = GeometryFactory.eINSTANCE.createPoint();
+        targetDis.setX(relP.getDistances().get(1).getX());
+        targetDis.setY(relP.getDistances().get(1).getY());
+        newRelP.getDistances().add(targetDis);
+
+        org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
+        sourceRef.setX(relP.getReferencePoints().get(0).getX());
+        sourceRef.setY(relP.getReferencePoints().get(0).getY());
+        newRelP.getReferencePoints().add(sourceRef);
+
+        org.framed.orm.geometry.Point targetRef = GeometryFactory.eINSTANCE.createPoint();
+        targetRef.setX(relP.getReferencePoints().get(1).getX());
+        targetRef.setY(relP.getReferencePoints().get(1).getY());
+        newRelP.getReferencePoints().add(targetRef);
+
+        relation.getBendpoints().add(newRelP);
+      }
     } else {
       relation.getBendpoints().addAll(bendpointList);
     }

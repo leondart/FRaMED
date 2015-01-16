@@ -22,17 +22,6 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
   private Relation relationship;
 
   /**
-   * This method tests if the conditions for executing this command are fulfilled,
-   * 
-   * @return true if the parameter target, source, relationCons, arent and relationship are set.
-   */
-  @Override
-  public boolean canExecute() {
-    return target != null && source != null && relation != null && parent != null
-        && relationship != null;
-  }
-
-  /**
    * In this method the relationshipConstrain(cyclic,total,irreflexive) is created/ invoked into the
    * model tree through setting it's parameter. After that when a relationshipConstrain already
    * exist beside the relationshipConstrain to be invoked all {@link Bendpoint}s from this
@@ -44,6 +33,8 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
    */
   @Override
   public void execute() {
+    relationship = refrencedRelations.get(0);
+    
     relation.setSource(source);
     relation.setTarget(target);
     relation.setContainer(parent);
@@ -108,17 +99,4 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
     relation.getBendpoints().clear();
     relationship.getReferencedRelation().remove(relation);
   }
-
-  /**
-   * Setter for the {@link Relation} from type realtionship to which the relationshipConstrain is
-   * added.
-   * 
-   * @param rlship org.framed.orm.model.Relation
-   * */
-  public void setRelationship(final Relation rlship) {
-    this.relationship = rlship;
-  }
-
-
-
 }

@@ -14,7 +14,7 @@ import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.CallRelationshipConstraintsActionCommand;
-import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 
 /**
@@ -89,10 +89,10 @@ public class RelationshipConstraintsAction extends SelectionAction {
   /**
    * In this method first the {@link ConstraintsDialog} is prepared and started. After the user has
    * closed the {@link ConstraintsDialog} through the cancel button this method is finished as well.
-   * When the user has closed the {@link ConstraintsDialog} through the ok button the choosen
+   * When the user has closed the {@link ConstraintsDialog} through the ok button the chosen
    * {@link Relation}s from type total, cyclic and irreflexive are added to the {@link Relation}
    * from type relationship one after the another and all relationshipconstraints , which where not
-   * choosen and belonged at the beginning to the relationship, are removed one after another from
+   * Chosen and belonged at the beginning to the relationship, are removed one after another from
    * the relationship.
    * 
    * */
@@ -146,7 +146,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
       for (Relation relation : dialog.getChosenCreateConstraints()) {
         if (!constraints.contains(relation)) {
-          ORMRelationCreateCommand command = new ORMRelationCreateCommand();
+          ORMRelationshipConstraintCreateCommand command = new  ORMRelationshipConstraintCreateCommand();
 
           command.setRelation(relation);
           command.setRelationContainer(rlship.getContainer());
@@ -157,6 +157,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
           ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
           refrencedRelation.add(rlship);
           command.setRefrencedRelations(refrencedRelation);
+          
 
           compoundCommand.add(command);
         }

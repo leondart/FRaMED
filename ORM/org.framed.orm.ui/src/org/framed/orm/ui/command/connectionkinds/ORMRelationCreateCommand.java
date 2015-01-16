@@ -30,7 +30,7 @@ public class ORMRelationCreateCommand extends Command {
   /** The source label of the {@link Relation} to be created. */
   private NamedElement sourceLabel;
   /** A list of refrences on other {@link Relation}s. */
-  private ArrayList<Relation> refrencedRelations;
+  protected ArrayList<Relation> refrencedRelations;
 
   /**
    * The {@link Relation} to be created. The basis type of the {@link Relation} is given by a

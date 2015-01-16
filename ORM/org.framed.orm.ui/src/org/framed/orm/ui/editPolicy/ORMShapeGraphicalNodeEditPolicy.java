@@ -69,7 +69,10 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       final ORMRelationshipConstraintCreateCommand result =
           (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
       result.setTarget((Shape) getHost().getModel());
-      result.setRelationship(testedRelationship);
+      ArrayList<Relation> refrencedRelations = new ArrayList<Relation>();
+      refrencedRelations.add(testedRelationship);
+      result.setRefrencedRelations(refrencedRelations);
+      
       retVal = result;
     }
 
