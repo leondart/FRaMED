@@ -48,22 +48,32 @@ operation source!Shape addOperations(n : target!Type) {
 		return;
 	}
 	
-	for (ele : source!NamedElement in operations.elements) {		
+	for (ele : source!NamedElement in operations.elements) {
 		var tokens = ele.name.split("[\\(\\)]");
 		var opName = tokens[0].replaceAll(" +", "");
-		var pars = tokens[1];
-		var opType = tokens[2].replaceAll("[ \\:]", "");
+		
+		var pars = null;
+		if(tokens.length>1) {
+			pars = tokens[1];
+		}
+		
+		var opType = null;
+		if(tokens.length>2) {
+			opType = tokens[2].replaceAll("[ \\:]", "");
+		}
 		
 		var op = new target!Operation;
 		op.owner = n;
 		op.name = opName;
-								
-		var t = findTypeForName(opType);
-		if (not (t == null)) {
-			op.type = t;
+							
+		if(not (opType == null)) {
+			var t = findTypeForName(opType);
+			if (not (t == null)) {
+				op.type = t;
+			}
 		}
 		
-		if (not pars.isEmpty()) {
+		if (not (pars == null or pars.isEmpty())) {
 			for (param : String in pars.split(",")) {
 				var paramSpec = param.split(":"); 
 				var paramName = paramSpec[0].replaceAll(" +", "");
