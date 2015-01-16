@@ -18,7 +18,7 @@
 	</modules>
 
 	<properties>
-		<tycho.version>0.20.0</tycho.version>
+		<tycho.version>0.22.0</tycho.version>
 		<luna-repo.url>http://download.eclipse.org/releases/luna</luna-repo.url>
 		<epsilon-repo.url>http://download.eclipse.org/epsilon/updates/</epsilon-repo.url>
 	</properties>
