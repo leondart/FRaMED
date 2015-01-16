@@ -1,11 +1,14 @@
 package org.framed.orm.ui.figure.shapes;
 
 
+import org.eclipse.draw2d.AbstractBorder;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.Segment;
@@ -56,6 +59,7 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     //add data label
     rectangle.add(new Label("Data"));
     // add name figure
+    getLabel().setBorder(new PartFigureBorder());
     rectangle.add(getLabel());
 
     add(rectangle);
@@ -77,7 +81,21 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     super.paintFigure(graphics);
     final Rectangle r = getBounds().getCopy();
     setConstraint(rectangle, new Rectangle(0, 0, r.width(), r.height()));
+  }
+  
+  /**
+   * A border class where a border is drawn at top side of the figure.
+   * */
+  public class PartFigureBorder extends AbstractBorder {
+    /** {@inheritDoc} */
+    public Insets getInsets(final IFigure figure) {
+      return new Insets(1, 0, 0, 0);
+    }
 
+    /** {@inheritDoc} */
+    public void paint(final IFigure figure,final Graphics graphics,final  Insets insets) {
+      graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
+    }
   }
 
 }
