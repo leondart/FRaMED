@@ -81,6 +81,10 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
         retVal = setUpCreateCommand(request, createSegment(), createSegment(), null, null);
       }
 
+      if (request.getNewObjectType().equals(Type.DATA_TYPE)) {
+        retVal = setUpCreateCommand(request, createSegment(), createSegment(), null, null);
+      }
+      
       if (request.getNewObjectType().equals(Type.COMPARTMENT_TYPE)) {
         retVal =
             setUpCreateCommand(request, createSegment(), createSegment(), null, createChildModel());

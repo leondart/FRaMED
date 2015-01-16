@@ -246,6 +246,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   public boolean isCompleteOK(final CreateConnectionRequest request) {
     // Fulfillment Test End
     return oSTCheck(request, Type.FULFILLMENT, Type.NATURAL_TYPE, Type.COMPARTMENT_TYPE)
+        || oSTCheck(request, Type.FULFILLMENT, Type.DATA_TYPE, Type.COMPARTMENT_TYPE)
         || oSTCheck(request, Type.FULFILLMENT, Type.COMPARTMENT_TYPE, Type.COMPARTMENT_TYPE)
         // Role Implication TesT End
         || ((oSTCheck(request, Type.ROLE_IMPLICATION, Type.ROLE_GROUP, Type.ROLE_GROUP)
@@ -274,6 +275,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         // Inheritance Test End
         || (oSTCheck(request, Type.INHERITANCE, Type.ROLE_TYPE, Type.ROLE_TYPE) && tNotEqualSCheck(request))
         || (oSTCheck(request, Type.INHERITANCE, Type.NATURAL_TYPE, Type.NATURAL_TYPE) && tNotEqualSCheck(request))
+        || (oSTCheck(request, Type.INHERITANCE, Type.DATA_TYPE, Type.DATA_TYPE) && tNotEqualSCheck(request))
         || (oSTCheck(request, Type.INHERITANCE, Type.COMPARTMENT_TYPE, Type.COMPARTMENT_TYPE) && tNotEqualSCheck(request))
         // Relationship Test End
         || (oSTCheck(request, Type.RELATIONSHIP, Type.ROLE_TYPE, Type.ROLE_TYPE)
@@ -289,6 +291,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   public boolean isStartOK(final CreateConnectionRequest request) {
     // Fufillment start
     return oTCheck(request, Type.FULFILLMENT, Type.NATURAL_TYPE)
+        || oTCheck(request, Type.FULFILLMENT, Type.DATA_TYPE)
         || oTCheck(request, Type.FULFILLMENT, Type.COMPARTMENT_TYPE)
         // Role Implication start
         || oTCheck(request, Type.ROLE_IMPLICATION, Type.ROLE_TYPE)
@@ -301,6 +304,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         || oTCheck(request, Type.ROLE_PROHIBITION, Type.ROLE_GROUP)
         // Inheritance start
         || oTCheck(request, Type.INHERITANCE, Type.NATURAL_TYPE)
+        || oTCheck(request, Type.INHERITANCE, Type.DATA_TYPE)
         || oTCheck(request, Type.INHERITANCE, Type.ROLE_TYPE)
         || oTCheck(request, Type.INHERITANCE, Type.COMPARTMENT_TYPE)
         // Relationship start
