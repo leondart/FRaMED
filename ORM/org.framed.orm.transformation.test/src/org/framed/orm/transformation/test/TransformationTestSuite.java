@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,7 +41,6 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 import org.osgi.framework.Bundle;
 
 import crom_l1_composed.Model;
@@ -52,7 +52,7 @@ import crom_l1_composed.Model;
  *
  */
 @RunWith(Parameterized.class)
-public class ParameterizedTestRunner {
+public class TransformationTestSuite {
 
 	/**
 	 * File uri of crom model. This file is created during tests and delete
@@ -67,7 +67,7 @@ public class ParameterizedTestRunner {
 	 */
 	private static final URI FRAMED_FILE_URI = URI
 			.createFileURI("framed_model.xmi");
-
+	
 	/**
 	 * Loads all {@link TestCase}s from the "testcases" directory of this
 	 * plugin.
@@ -75,8 +75,8 @@ public class ParameterizedTestRunner {
 	 * @return {@link List} of {@link TestCase}
 	 * @throws Exception
 	 */
-	@Parameters(name = "{index}: file={1}")
-	public static Iterable<Object[]> getTestCases() throws Exception {
+	@Parameterized.Parameters(name = "{index} : file={1}")
+	public static Collection<Object[]> getTestCases() throws Exception {
 		List<Object[]> list = new LinkedList<Object[]>();
 
 		File file = null;
@@ -88,6 +88,7 @@ public class ParameterizedTestRunner {
 			// get dir out of bundle
 			URL fileURL = bundle.getEntry("testcases");
 			file = new File(FileLocator.resolve(fileURL).toURI());
+			System.out.println(file.getAbsolutePath());
 		} else {
 			// otherwise just load it from the working directory
 			file = new File("testcases");
@@ -161,7 +162,7 @@ public class ParameterizedTestRunner {
 	 * @param _bla
 	 *            JUnit needs this, but we dont use it.
 	 */
-	public ParameterizedTestRunner(TestCase testCase, String _bla) {
+	public TransformationTestSuite(TestCase testCase, String _bla) {
 		this.testCase = testCase;
 	}
 
