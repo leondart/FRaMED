@@ -9,6 +9,22 @@ rule Relationship
 	
 	t.name = s.name;
 	
+	if(s.sourceLabel.isDefined()) {
+		var card = s.sourceLabel.name;
+		var place = getCardinality(card);
+		if(not(place==null)) {
+			t.first = place;
+		}
+	}
+	
+	if(s.targetLabel.isDefined()) {
+		var card = s.targetLabel.name;
+		var place = getCardinality(card);
+		if(not(place==null)) {
+			t.second = place;
+		}
+	}
+	
 	//t.first - place from label
 	//t.second - place from label
 	
@@ -18,7 +34,22 @@ rule Relationship
 	for (r : source!Relation in s.referencedRelation) {
 		var referenced = r.equivalent();
 		referenced.setRelation(t);
-	}	
+	}
+}
+
+operation getCardinality(card : String) : target!Place {
+	if(card.isDefined()) {
+		var cards = parseCardinality(card);
+		if(cards.size() > 0) {
+			var place = new target!Place;
+			place.lower = cards[0];
+			if(cards.size()>1) {
+				place.upper = cards[1];
+			}
+			return place;
+		}
+	}
+	return null;
 }
 
 rule TotalRelation

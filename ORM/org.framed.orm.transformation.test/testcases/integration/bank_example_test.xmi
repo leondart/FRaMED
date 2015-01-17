@@ -6,8 +6,8 @@
     xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
     xmlns:org.framed.orm.model="http://orm/1.0"
     xmlns:ts="http://org.framed/testmodel"
-    title="Simple TestCase for RoleImplications"
-    description="Simple TestCase for RoleImplications">
+    title="BankExample Test"
+    description="BankExample Test">
   <framedModel>
     <elements
         xsi:type="org.framed.orm.model:Shape"
@@ -94,7 +94,7 @@
             <elements
                 name="transfer(from : Integer, to : Integer) : Boolean"/>
             <elements
-                name="sendAccountStatement(id : Integer)"/>
+                name="sendAccountStatement(id : Integer) : Boolean"/>
           </secondSegment>
           <description
               name="0..*"/>
@@ -139,7 +139,7 @@
                 type="RoleType">
               <firstSegment>
                 <elements
-                    name="execution : DateTime"/>
+                    name="limit : Money"/>
               </firstSegment>
               <secondSegment>
                 <elements
@@ -147,7 +147,7 @@
                 <elements
                     name="getLimit() : Money"/>
                 <elements
-                    name="setLimit(amount : Money) "/>
+                    name="setLimit(limit : Money) "/>
               </secondSegment>
             </elements>
             <elements
@@ -267,7 +267,24 @@
         xsi:type="org.framed.orm.model:Shape"
         name="Account"
         outgoingRelations="//@framedModel/@elements.14 //@framedModel/@elements.15"
-        type="NaturalType"/>
+        type="NaturalType">
+      <firstSegment>
+        <elements
+            name="id : Integer"/>
+        <elements
+            name="balance : Money"/>
+      </firstSegment>
+      <secondSegment>
+        <elements
+            name="getBalance() : Money"/>
+        <elements
+            name="getId() : Integer"/>
+        <elements
+            name="increase(amount: Money)"/>
+        <elements
+            name="decrease(amount : Money)"/>
+      </secondSegment>
+    </elements>
     <elements
         xsi:type="org.framed.orm.model:Shape"
         name="Integer"
@@ -318,7 +335,7 @@
     <elements
         xsi:type="org.framed.orm.model:Relation"
         type="Fulfillment"
-        target="//@framedModel/@elements.4"
+        target="//@framedModel/@elements.2"
         source="//@framedModel/@elements.5"
         referencedRoles="//@framedModel/@elements.4/@model/@elements.0"/>
   </framedModel>
@@ -447,6 +464,7 @@
       <parts>
         <role
             xsi:type="crom_l1_composed:RoleGroup"
+            name="RoleGroup"
             lower="1"
             upper="1">
           <elements
@@ -538,6 +556,7 @@
           upper="2">
         <role
             xsi:type="crom_l1_composed:RoleGroup"
+            name="RoleGroup"
             lower="1"
             upper="1">
           <elements
@@ -600,18 +619,10 @@
       </operations>
       <operations
           name="getId"
-          type="//@cromModel/@elements.6">
-        <params
-            name="amount"
-            type="//@cromModel/@elements.8"/>
-      </operations>
+          type="//@cromModel/@elements.6"/>
       <operations
           name="getBalance"
-          type="//@cromModel/@elements.8">
-        <params
-            name="amount"
-            type="//@cromModel/@elements.8"/>
-      </operations>
+          type="//@cromModel/@elements.8"/>
     </elements>
     <elements
         xsi:type="crom_l1_composed:DataType"

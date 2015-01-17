@@ -1,23 +1,23 @@
+import "CardinalityParser.eol";
+
 rule RoleGroup
 	transform s : source!Shape
 	to t : target!RoleGroup {	
 	guard : s.getType.value == 12	// ROLEGROUP
 	
 	t.name = s.name;
+	if(s.name.indexOf("(")>-1) {
+		t.name = s.name.substring(0,s.name.indexOf("(")).trim();
+	}
 	
-	var desc = s.description;
+	var desc = s.name;
 	if (not (desc == null)) {
-		var card = desc.name;
-		if (card.matches("[0-9]*..[0-9]*")) {
-			var cards = card.split("\\.\\.");
-			t.lower = new Native("java.lang.Integer")(cards[0]);
-			t.upper = new Native("java.lang.Integer")(cards[1]);
-		} else if (card.matches("[0-9]*..\\*")) {
-			var cards = card.split("\\.\\.");
-			t.lower = new Native("java.lang.Integer")(cards[0]);
-		} else if (card.matches("[0-9]*")) {
-			t.lower = new Native("java.lang.Integer")(card);
-			t.upper = new Native("java.lang.Integer")(card);
+		var cards = parseCardinality(desc);
+		if(cards.size()>0) {
+			t.lower = cards[0];
+		}
+		if(cards.size()>1) {
+			t.upper = cards[1];
 		}
 	}
 	
@@ -27,10 +27,21 @@ rule RoleGroup
 			var e = elem.equivalent();
 			if (e.instanceOf(target!RoleGroupElement)) {
 				t.getElements().add(e);				
+			} else if(e.instanceOf(target!Relation)) {
+				var compTypeFound = false;
+				var compType = s;
+				while(not(compTypeFound)) {
+					compType = compType.eContainer();
+					compTypeFound = not(compType.instanceOf(source!Model)) and compType.getType.getValue == 0;
+				}
+				if(e.instanceOf(target!Constraint)) {
+					compType.equivalent().getConstraints().add(e);
+				} else {
+					compType.equivalent().getRelationships().add(e);
+				}
 			} else {
 				// TODO: print warning or throw exception
 			}			
 		}
-	}
-	
+	}	
 }
