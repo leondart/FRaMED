@@ -52,13 +52,15 @@ operation source!Shape addOperations(n : target!Type) {
 		var tokens = ele.name.split("[\\(\\)]");
 		var opName = tokens[0].replaceAll(" +", "");
 		
+		// parse parameters if possible
 		var pars = null;
-		if(tokens.length>1) {
+		if(tokens.size()>1) {
 			pars = tokens[1];
 		}
 		
+		// parse return type if possible
 		var opType = null;
-		if(tokens.length>2) {
+		if(tokens.size()>2) {
 			opType = tokens[2].replaceAll("[ \\:]", "");
 		}
 		
