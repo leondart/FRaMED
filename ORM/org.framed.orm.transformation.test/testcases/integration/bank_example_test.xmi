@@ -78,7 +78,7 @@
             type="RoleType">
           <firstSegment>
             <elements
-                name="id : int"/>
+                name="id : Integer"/>
             <elements
                 name="name : String"/>
           </firstSegment>
@@ -90,11 +90,11 @@
             <elements
                 name="getAccounts() : Integer"/>
             <elements
-                name="getBalance(id : int) : Money"/>
+                name="getBalance(id : Integer) : Money"/>
             <elements
-                name="transfer(from : int, to : int) : Boolean"/>
+                name="transfer(from : Integer, to : Integer) : Boolean"/>
             <elements
-                name="sendAccountStatement(id : int)"/>
+                name="sendAccountStatement(id : Integer)"/>
           </secondSegment>
           <description
               name="0..*"/>
