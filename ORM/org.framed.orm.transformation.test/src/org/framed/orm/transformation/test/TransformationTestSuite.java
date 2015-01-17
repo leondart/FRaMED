@@ -88,7 +88,6 @@ public class TransformationTestSuite {
 			// get dir out of bundle
 			URL fileURL = bundle.getEntry("testcases");
 			file = new File(FileLocator.resolve(fileURL).toURI());
-			System.out.println(file.getAbsolutePath());
 		} else {
 			// otherwise just load it from the working directory
 			file = new File("testcases");
