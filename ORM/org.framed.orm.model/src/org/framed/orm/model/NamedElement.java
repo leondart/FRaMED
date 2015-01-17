@@ -32,7 +32,7 @@ public interface NamedElement extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.framed.orm.model.OrmPackage#getNamedElement_Name()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
