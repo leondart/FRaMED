@@ -25,7 +25,7 @@ rule CompartmentType
 			
 			var e = elem.equivalent();
 			if (e == null) { continue; }
-			if ( e.instanceOf(target!AbstractRole)) { 		// ROLE
+			if ( e.instanceOf(target!AbstractRole)) { 			// ROLE
 				// create a new part with the role
 				var part = new target!Part;
 				part.role = e;
@@ -48,9 +48,9 @@ rule CompartmentType
 				
 				// add the new part to the compartment
 				n.getParts().add(part);
-			} else if ( e.instanceOf(target!Constraint)) {	// CONSTRAINT
+			} else if ( e.instanceOf(target!Constraint)) {		// CONSTRAINT
 				n.getConstraints().add(e);
-			} else {										// RELATIONSHIP
+			} else if ( e.instanceOf(target!Relationship)) {	// RELATIONSHIP
 				n.getRelationships().add(e);
 			}		
 		}
