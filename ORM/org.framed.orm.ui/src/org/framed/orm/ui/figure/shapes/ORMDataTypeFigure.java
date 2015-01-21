@@ -8,6 +8,8 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 import org.framed.orm.model.Segment;
 
 /**
@@ -53,8 +55,15 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     rectangle.setLayoutManager(layout);
     rectangle.setOpaque(true);
     setOpaque(true);
+    
+    // set name Label font
+    Font font1 = new Font(Display.getCurrent(), "DataFigure", 8, SWT.ITALIC);
+    getLabel().setFont(font1);
+    
     // add name figure
     rectangle.add(getLabel());
+
+
 
     add(rectangle);
 
@@ -77,4 +86,7 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     setConstraint(rectangle, new Rectangle(0, 0, r.width(), r.height()));
   }
 
+  
+  
+  
 }
