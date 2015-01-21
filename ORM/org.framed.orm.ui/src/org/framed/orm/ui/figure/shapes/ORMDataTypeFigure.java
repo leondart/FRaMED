@@ -33,7 +33,7 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
    * The basic {@link ShadowRectangle}, which has at right and bottom side a border shadow and to
    * which all child figures(operation segment, name, attribute segment) are added.
    */
-  private final ShadowRectangle rectangle;
+  private final ShadowOctagon rectangle;
 
   /**
    * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
@@ -45,7 +45,7 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
 
     super();
 
-    rectangle = new ShadowRectangle();
+    rectangle = new ShadowOctagon();
 
     ToolbarLayout layout = new ToolbarLayout();
     layout.setSpacing(8); // set the initial heigth of the child figures
@@ -56,8 +56,6 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     rectangle.setLayoutManager(layout);
     rectangle.setOpaque(true);
     setOpaque(true);
-    //add data label
-    rectangle.add(new Label("Data"));
     // add name figure
     getLabel().setBorder(new PartFigureBorder());
     rectangle.add(getLabel());
@@ -71,7 +69,7 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
    * 
    * @return rectangle {@link ShadowRectangle}
    * */
-  public ShadowRectangle getBasicRec() {
+  public ShadowOctagon getBasicRec() {
     return rectangle;
   }
 
