@@ -10,7 +10,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Model;
-import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
@@ -128,10 +127,8 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
 
   private NamedElement createDescription() {
-    ModelElement element = OrmFactory.eINSTANCE.createModelElement();
-    element.setContainer(null);
-    element.setName("");
-    element.setType(null);
+    NamedElement element = OrmFactory.eINSTANCE.createNamedElement();
+    element.setName("*");
 
     return element;
   }

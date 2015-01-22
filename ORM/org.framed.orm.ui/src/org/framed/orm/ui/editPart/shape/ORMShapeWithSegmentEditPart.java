@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPart.shape;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
@@ -10,6 +11,7 @@ import org.eclipse.gef.EditPolicy;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
@@ -62,32 +64,33 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
    * */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
+
+    IFigure contentPane = null;
+    Shape shape = (Shape) getModel();
+
+    switch (shape.getType().getValue()) {
+      case Type.COMPARTMENT_TYPE_VALUE:
+        if (getFigure() instanceof ORMCompartmentV1Figure) {
+          contentPane = ((ORMCompartmentV1Figure) getFigure()).getBasicRec();
+        } else {
+          contentPane = ((ORMCompartmentV2Figure) getFigure()).getListAttOpt();
+        }
+        break;
+      case Type.NATURAL_TYPE_VALUE:
+        contentPane = ((ORMNaturalTypeFigure) getFigure()).getBasicRec();
+        break;
+      case Type.DATA_TYPE_VALUE:
+        contentPane = ((ORMDataTypeFigure) getFigure()).getBasicRec();
+        break;
+      case Type.ROLE_TYPE_VALUE:
+        contentPane = ((ORMRoleTypeFigure) getFigure()).getBasicRec();
+        break;
+    }
+
     if (childEditPart instanceof ORMSegmentEditPart) {
 
-      IFigure contentPane = null;
-      Shape shape = (Shape) getModel();
       final ORMGraphicalEditor editorPart =
           (ORMGraphicalEditor) ((DefaultEditDomain) getViewer().getEditDomain()).getEditorPart();
-
-
-      switch (shape.getType().getValue()) {
-        case Type.COMPARTMENT_TYPE_VALUE:
-          if (getFigure() instanceof ORMCompartmentV1Figure) {
-            contentPane = ((ORMCompartmentV1Figure) getFigure()).getBasicRec();
-          } else {
-            contentPane = ((ORMCompartmentV2Figure) getFigure()).getListAttOpt();
-          }
-          break;
-        case Type.NATURAL_TYPE_VALUE:
-          contentPane = ((ORMNaturalTypeFigure) getFigure()).getBasicRec();
-          break;
-        case Type.DATA_TYPE_VALUE:
-          contentPane = ((ORMDataTypeFigure) getFigure()).getBasicRec();
-          break;
-        case Type.ROLE_TYPE_VALUE:
-          contentPane = ((ORMRoleTypeFigure) getFigure()).getBasicRec();
-          break;
-      }
 
       contentPane.add(((ORMSegmentEditPart) childEditPart).getFigure());
       childFigureList.add(((ORMSegmentEditPart) childEditPart).getFigure());
@@ -99,6 +102,15 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
         }
       }
 
+    }
+
+    if (childEditPart instanceof ORMNamedElementEditPart) {
+      if (shape.getType().equals(Type.ROLE_TYPE)
+          && shape.getDescription().equals(childEditPart.getModel())) {
+
+        getFigure().add(((ORMNamedElementEditPart) childEditPart).getFigure(), BorderLayout.TOP);
+
+      }
     }
   }
 

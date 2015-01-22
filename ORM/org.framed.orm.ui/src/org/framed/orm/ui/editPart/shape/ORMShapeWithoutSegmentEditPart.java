@@ -9,6 +9,7 @@ import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
+import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
 import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
 import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
@@ -38,9 +39,10 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
 
+    Shape shape = (Shape) getModel();
+
     if (childEditPart.getModel() instanceof Model) {
       IFigure contentPane = null;
-      Shape shape = (Shape) getModel();
 
       switch (shape.getType().getValue()) {
         case Type.GROUP_VALUE:
@@ -63,6 +65,13 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
       }
     }
 
+    if (childEditPart instanceof ORMNamedElementEditPart) {
+      if (shape.getType().equals(Type.ROLE_GROUP)
+          && shape.getDescription().equals(childEditPart.getModel())) {
+        getFigure().add(((ORMNamedElementEditPart) childEditPart).getFigure(), BorderLayout.TOP);
+      }
+    }
+    
   }
 
   /**

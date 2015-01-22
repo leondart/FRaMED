@@ -108,6 +108,9 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     if (shape.getModel() != null) {
       children.add(shape.getModel());
     }
+    if(shape.getDescription() != null){
+      children.add(shape.getDescription());
+    }
     return children;
   }
 
