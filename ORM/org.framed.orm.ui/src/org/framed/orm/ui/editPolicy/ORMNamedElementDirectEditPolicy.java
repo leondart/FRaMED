@@ -5,8 +5,11 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ORMNamedElementRenameCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
@@ -31,11 +34,11 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
 
     ORMNamedElementRenameCommand command = new ORMNamedElementRenameCommand();
     command.setNamedElement((NamedElement) getHost().getModel());
-    if (getHost().getParent() instanceof ORMRelationshipEditPart) {
+    if (getHost().getParent() instanceof ORMRelationshipEditPart || testForRoleTypeAndRoleGroup()) {
       String newName = (String) request.getCellEditor().getValue();
-      if(preProcessLabelText(newName)){
+      if (preProcessLabelText(newName)) {
         command.setNewName(newName);
-      } else{
+      } else {
         command.setNewName(null);
       }
     } else {
@@ -82,5 +85,15 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     return true;
   }
 
+
+  private boolean testForRoleTypeAndRoleGroup() {
+    if (getHost().getParent() instanceof ORMSuperShapeEditPart) {
+      Shape shape = (Shape) getHost().getParent().getModel();
+      if (shape.getType().equals(Type.ROLE_GROUP) || shape.getType().equals(Type.ROLE_TYPE)) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 }

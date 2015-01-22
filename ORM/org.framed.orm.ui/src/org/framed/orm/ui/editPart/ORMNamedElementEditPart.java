@@ -13,7 +13,6 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.NamedElement;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editPolicy.ORMAttributeOperationComponentEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
@@ -67,9 +66,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
     // edit policy, which handels requests for deleting the namedlement, which is controlled
     // through this edit part
-    if (!(getParent() instanceof ORMRelationshipEditPart)) {
-      installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
-    }
+    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
   }
 
   /** {@inheritDoc} */
