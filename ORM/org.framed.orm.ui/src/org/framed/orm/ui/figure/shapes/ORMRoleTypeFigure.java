@@ -1,11 +1,9 @@
 package org.framed.orm.ui.figure.shapes;
 
+import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.XYLayout;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
@@ -14,7 +12,7 @@ import org.framed.orm.model.Shape;
 /**
  * This figure is for {@link Shape}s from type RoleType. The figure looks in the viewer/editor like this:
  * 
- * ______________
+ * _Cardinality__
  * |____Name____|
  * |Attribute   |
  * |_List_______|
@@ -48,7 +46,7 @@ public class ORMRoleTypeFigure extends ORMShapeFigure {
 
     ToolbarLayout layout = new ToolbarLayout();
     layout.setSpacing(8); // set the initial heigth of the child figures
-    setLayoutManager(new XYLayout());
+    setLayoutManager(new BorderLayout());
     setBackgroundColor(ColorConstants.white);
 
     rectangle.setAntialias(SWT.ON);
@@ -59,8 +57,7 @@ public class ORMRoleTypeFigure extends ORMShapeFigure {
     // add name figure
     rectangle.add(getLabel());
     
-    add(rectangle);
-
+    add(rectangle, BorderLayout.CENTER);
   }
 
   /**
@@ -70,14 +67,6 @@ public class ORMRoleTypeFigure extends ORMShapeFigure {
    * */
   public ShadowRoundedRectangle getBasicRec() {
     return rectangle;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  protected void paintFigure(final Graphics graphics) {
-    super.paintFigure(graphics);
-    final Rectangle r = getBounds().getCopy();
-    setConstraint(rectangle, new Rectangle(0, 0, r.width(), r.height()));
   }
 
 }
