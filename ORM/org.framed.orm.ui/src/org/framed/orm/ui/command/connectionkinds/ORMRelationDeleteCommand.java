@@ -92,6 +92,7 @@ public class ORMRelationDeleteCommand extends Command {
     bendpoints.addAll(relation.getBendpoints());
     if(relation.getType().equals(Type.RELATIONSHIP)){
       detachLinks();
+      relation.getReferencedRoles().get(0).setContainer(null);
     }
 
     relation.setSource(null);
@@ -112,6 +113,7 @@ public class ORMRelationDeleteCommand extends Command {
     relation.getBendpoints().addAll(bendpoints);
     if(relation.getType().equals(Type.RELATIONSHIP)){
       reattachLinks();
+      relation.getReferencedRoles().get(0).setContainer(parent);
     }
   }
   

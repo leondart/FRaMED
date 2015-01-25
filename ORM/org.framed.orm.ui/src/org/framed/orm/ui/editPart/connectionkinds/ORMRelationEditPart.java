@@ -161,6 +161,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
     /** {@inheritDoc} */
     @Override
     public void notifyChanged(final Notification notification) {
+      refreshChildren();
       refreshVisuals();
     }
 

@@ -144,8 +144,10 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
     Model cd = (Model) getModel();
     // all children of compartmentdiagram are model elments
     for (ModelElement ele : cd.getElements()) {
-      if (!(ele instanceof Relation)|| ele.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
-        contexts.add(ele);
+      if (!(ele instanceof Relation)) {
+        if (!ele.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+          contexts.add(ele);
+        }
       }
     }
     return contexts;

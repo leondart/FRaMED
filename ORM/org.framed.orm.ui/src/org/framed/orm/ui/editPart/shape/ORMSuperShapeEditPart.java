@@ -178,14 +178,14 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
   @Override
   public void refreshVisuals() {
     final Shape model = (Shape) getModel();
-    if (!model.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
-      final ORMShapeFigure figure = (ORMShapeFigure) getFigure();
-      final GraphicalEditPart parent = (GraphicalEditPart) getParent();
+    final ORMShapeFigure figure = (ORMShapeFigure) getFigure();
+    final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
-      figure.getLabel().setText(model.getName());
-      figure.getLabel().setToolTip(new Label(model.getName()));
+    figure.getLabel().setText(model.getName());
+    figure.getLabel().setToolTip(new Label(model.getName()));
+    if (!model.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
       parent.setLayoutConstraint(this, figure, getConstraints());
-    }
+    } 
   }
 
   /** {@inheritDoc} */
@@ -256,29 +256,29 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
     /** {@inheritDoc} */
     @Override
     public void notifyChanged(final Notification notification) {
-      if (!((Shape) getModel()).getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
-        refreshChildren();
-        refreshVisuals();
 
-        Shape shape = (Shape) getModel();
-        if (shape.getContainer() != null) {
-          Shape parent = shape.getContainer().getParent();
-          if (parent != null) {
-            // for synchronsation with role list of the Shape from type compartmenttype in above
-            // layer
-            // of the tree
-            if (getParent().getParent() instanceof ORMCompartmentEditPart) {
-              ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
-            }
+      refreshChildren();
+      refreshVisuals();
 
-            // for synchronsation with compartment list of the Group in above layer of the tree
-            if (getParent().getParent() instanceof ORMShapeWithoutSegmentEditPart
-                && parent.getType().equals(Type.GROUP)) {
-              ((ORMShapeWithoutSegmentEditPart) getParent().getParent()).refreshVisuals();
-            }
+      Shape shape = (Shape) getModel();
+      if (shape.getContainer() != null) {
+        Shape parent = shape.getContainer().getParent();
+        if (parent != null) {
+          // for synchronsation with role list of the Shape from type compartmenttype in above
+          // layer
+          // of the tree
+          if (getParent().getParent() instanceof ORMCompartmentEditPart) {
+            ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
+          }
+
+          // for synchronsation with compartment list of the Group in above layer of the tree
+          if (getParent().getParent() instanceof ORMShapeWithoutSegmentEditPart
+              && parent.getType().equals(Type.GROUP)) {
+            ((ORMShapeWithoutSegmentEditPart) getParent().getParent()).refreshVisuals();
           }
         }
       }
+
       if (!(getParent() instanceof ScalableRootEditPart)) {
         refreshSourceConnections();
         refreshTargetConnections();

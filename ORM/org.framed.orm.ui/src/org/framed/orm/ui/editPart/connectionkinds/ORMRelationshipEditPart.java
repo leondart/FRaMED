@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.eclipse.draw2d.ConnectionEndpointLocator;
 import org.eclipse.draw2d.Locator;
-import org.eclipse.draw2d.MidpointLocator;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RelativeLocator;
 import org.eclipse.gef.EditPart;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
@@ -81,16 +81,12 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
         getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
             getConnectionLocator(getRelationFigure(), true));
       }
-      super.addChildVisual(childEditPart, index);
     }
 
     if (childEditPart instanceof ORMSuperShapeEditPart) {
-      MidpointLocator midL = new MidpointLocator(getRelationFigure(), 0);
-      midL.setRelativePosition(PositionConstants.CENTER);
-
-      getRelationFigure().getLayoutManager().setConstraint(((ORMSuperShapeEditPart) childEditPart).getFigure(), midL);
-     // super.addChildVisual(childEditPart, index);
+      RelativeLocator loc = new RelativeLocator(getRelationFigure(), PositionConstants.CENTER);
+      getRelationFigure().getLayoutManager().setConstraint(((ORMSuperShapeEditPart) childEditPart).getFigure(), loc);
     }
-   // super.addChildVisual(childEditPart, index);
+    super.addChildVisual(childEditPart, index);
   }
 }
