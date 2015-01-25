@@ -1,6 +1,7 @@
 package org.framed.orm.ui.figure;
 
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.XYLayout;
 import org.eclipse.gef.EditPart;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Segment;
@@ -16,6 +17,7 @@ import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
+import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
 public class ORMFigureFactory {
@@ -53,6 +55,11 @@ public class ORMFigureFactory {
           break;
         case Type.ROLE_TYPE_VALUE:
           fig = new ORMRoleTypeFigure();
+          break;
+        case Type.RELATIONSHIP_SHAPE_CHILD_VALUE:
+          fig = new ORMShapeFigure();
+          fig.setOpaque(false);
+          fig.setLayoutManager(new XYLayout());
           break;
       }
     }
