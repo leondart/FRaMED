@@ -1,98 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.framed.orm.model:CompartmentDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
-  <relations xsi:type="org.framed.orm.model:Fulfillment" target="//@nodes.2" source="//@nodes.1">
-    <fulfilledRoles>Customer</fulfilledRoles>
-  </relations>
-  <relations xsi:type="org.framed.orm.model:Fulfillment" target="//@nodes.2" source="//@nodes.0">
-    <fulfilledRoles>Customer</fulfilledRoles>
-  </relations>
-  <relations xsi:type="org.framed.orm.model:Fulfillment" target="//@nodes.2" source="//@nodes.3">
-    <fulfilledRoles>MoneyTransaction</fulfilledRoles>
-  </relations>
-  <relations xsi:type="org.framed.orm.model:Fulfillment" target="//@nodes.3" source="//@nodes.4">
-    <fulfilledRoles>TransactionEnd</fulfilledRoles>
-  </relations>
-  <nodes xsi:type="org.framed.orm.model:NaturalType" outgoingLinks="//@relations.1" Name="Person" constraints="85,491,203,153">
-    <attributes Name="address:String"/>
-    <attributes Name="lastName:String"/>
-    <attributes Name="firstName:String"/>
-    <attributes Name="title:String"/>
-    <operations Name="getName():String"/>
-  </nodes>
-  <nodes xsi:type="org.framed.orm.model:NaturalType" outgoingLinks="//@relations.0" Name="Company" constraints="299,491,205,154">
-    <attributes Name="POBox:String"/>
-    <attributes Name="addresses:String[]"/>
-    <attributes Name="legalForm:String"/>
-    <attributes Name="name:String"/>
-    <operations Name="getName():String"/>
-  </nodes>
-  <nodes xsi:type="org.framed.orm.model:Compartment" incomingLinks="//@relations.0 //@relations.1 //@relations.2" Name="Bank" constraints="85,223,419,170" isExpand="true">
-    <attributes Name="name:String"/>
-    <operations Name="login(id:Integer,cred:String):Customer"/>
-    <operations Name="executeTransactions()"/>
-    <rolemodel>
-      <nodes xsi:type="org.framed.orm.model:RoleType" incomingLinks="//@nodes.2/@rolemodel/@nodes.1/@relations.0 //@nodes.2/@rolemodel/@nodes.1/@relations.1" Name="Customer" constraints="117,198,229,145">
-        <attributes Name="name:String"/>
-        <attributes Name="id:Integer"/>
-        <operations Name="addSavingsAccount():Boolean"/>
-        <operations Name="addCheckingsAccount():Boolean"/>
-        <operations Name="getAccounts():Integer[]"/>
-        <operations Name="transfer(from:Integer,to:Integer):Boolean"/>
-        <operations Name="getBalance(id:Integer):Money"/>
-      </nodes>
-      <nodes xsi:type="org.framed.orm.model:RoleGroup" Name="AccountGroup" constraints="549,191,229,320">
-        <relations xsi:type="org.framed.orm.model:Relationship" target="//@nodes.2/@rolemodel/@nodes.0" source="//@nodes.2/@rolemodel/@nodes.1/@nodes.0" secondLower="1" secondUpper="-1" rlshipConstraints="//@nodes.2/@rolemodel/@nodes.1/@relations.1">
-          <sourceLabel/>
-          <targetLabel label="1..-1" isRelationEnd="true"/>
-        </relations>
-        <relations xsi:type="org.framed.orm.model:Irreflexive" target="//@nodes.2/@rolemodel/@nodes.0" source="//@nodes.2/@rolemodel/@nodes.1/@nodes.0" relation="//@nodes.2/@rolemodel/@nodes.1/@relations.0">
-          <dim1BP>-218,17</dim1BP>
-          <dim2BP>218,29</dim2BP>
-        </relations>
-        <nodes xsi:type="org.framed.orm.model:RoleType" outgoingLinks="//@nodes.2/@rolemodel/@nodes.1/@relations.0 //@nodes.2/@rolemodel/@nodes.1/@relations.1" Name="CheckingsAccount" constraints="18,37,200,109">
-          <attributes Name="limit:Money"/>
-          <operations Name="decrease(amount:Money)"/>
-          <operations Name="setLimit(limit:Money)"/>
-          <operations Name="getLimit():Money"/>
-        </nodes>
-        <nodes xsi:type="org.framed.orm.model:RoleType" Name="SavingsAccount" constraints="15,217,200,83">
-          <attributes Name="transactionFee:Double"/>
-          <operations Name="decrease(amount:Money)"/>
-        </nodes>
-      </nodes>
-      <nodes xsi:type="org.framed.orm.model:RoleType" Name="MoneyTransaction" constraints="117,402,229,109">
-        <attributes Name="execution:DateTime"/>
-        <operations Name="execute():Boolean"/>
-        <operations Name="isExecuted():boolean"/>
-      </nodes>
-    </rolemodel>
-  </nodes>
-  <nodes xsi:type="org.framed.orm.model:Compartment" incomingLinks="//@relations.3" outgoingLinks="//@relations.2" Name="Transaction" constraints="644,223,340,170" isExpand="true">
-    <attributes Name="amount:Money"/>
-    <attributes Name="creationtime:DateTime"/>
-    <operations Name="bind(source:Account,target:Account):Boolean"/>
-    <operations Name="execute():boolean"/>
-    <rolemodel>
-      <nodes xsi:type="org.framed.orm.model:RoleGroup" Name="TransactionEnd" constraints="40,30,463,235">
-        <relations xsi:type="org.framed.orm.model:Relationship" target="//@nodes.3/@rolemodel/@nodes.0/@nodes.0" source="//@nodes.3/@rolemodel/@nodes.0/@nodes.1" secondLower="1" firstLower="1">
-          <sourceLabel label="1..1"/>
-          <targetLabel label="1..1" isRelationEnd="true"/>
-        </relations>
-        <nodes xsi:type="org.framed.orm.model:RoleType" incomingLinks="//@nodes.3/@rolemodel/@nodes.0/@relations.0" Name="Source" constraints="26,48,205,61">
-          <operations Name="withdraw(amount:Money)"/>
-        </nodes>
-        <nodes xsi:type="org.framed.orm.model:RoleType" outgoingLinks="//@nodes.3/@rolemodel/@nodes.0/@relations.0" Name="Target" constraints="242,156,205,61">
-          <operations Name="deposite(amount:Money)"/>
-        </nodes>
-      </nodes>
-    </rolemodel>
-  </nodes>
-  <nodes xsi:type="org.framed.orm.model:NaturalType" outgoingLinks="//@relations.3" Name="Account" constraints="647,491,337,154">
-    <attributes Name="id:Integer"/>
-    <attributes Name="balance:Money"/>
-    <operations Name="getBalance():Money"/>
-    <operations Name="getId():Integer"/>
-    <operations Name="decrease(amount:Money)"/>
-    <operations Name="increase(amount:Money)"/>
-  </nodes>
-</org.framed.orm.model:CompartmentDiagram>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="Person" outgoingRelations="//@elements.11" type="NaturalType">
+    <firstSegment>
+      <elements name="title : String"/>
+      <elements name="firstName : String"/>
+      <elements name="lastName : String"/>
+      <elements name="address : String"/>
+    </firstSegment>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="81" y="166"/>
+      <bottomRight x="287" y="287"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Company" outgoingRelations="//@elements.12" type="NaturalType">
+    <firstSegment>
+      <elements name="POBox : String"/>
+      <elements name="addresses : String"/>
+      <elements name="legalForm : String"/>
+      <elements name="name : String"/>
+    </firstSegment>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="83" y="422"/>
+      <bottomRight x="289" y="534"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="String" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="193" y="579"/>
+      <bottomRight x="396" y="628"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Integer" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="440" y="579"/>
+      <bottomRight x="645" y="631"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Account" outgoingRelations="//@elements.13 //@elements.14" type="NaturalType">
+    <firstSegment>
+      <elements name="balance : Money"/>
+      <elements name="id : Integer"/>
+    </firstSegment>
+    <secondSegment>
+      <elements name="getBalance() : Money"/>
+      <elements name="getId() : Integer"/>
+      <elements name="increase(amount:Money)"/>
+      <elements name="decrease(amount:Money)"/>
+    </secondSegment>
+    <boundaries>
+      <topLeft x="982" y="407"/>
+      <bottomRight x="1195" y="552"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Boolean" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="697" y="579"/>
+      <bottomRight x="901" y="630"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Money" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="984" y="576"/>
+      <bottomRight x="1188" y="633"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Transaction" incomingRelations="//@elements.13" outgoingRelations="//@elements.15">
+    <firstSegment>
+      <elements name="amount : Money"/>
+      <elements name="creationTime : DateTime"/>
+    </firstSegment>
+    <secondSegment>
+      <elements name="execute() : Boolean"/>
+      <elements name="bind(source:Account, target:Account) : Boolean"/>
+    </secondSegment>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="RoleGroup (1..1)" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="Source" outgoingRelations="//@elements.7/@model/@elements.0/@model/@elements.2 //@elements.7/@model/@elements.0/@model/@elements.3" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="withdraw(amount:Money)"/>
+            </secondSegment>
+            <description name="*"/>
+            <boundaries>
+              <topLeft x="99" y="66"/>
+              <bottomRight x="300" y="217"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="Target" incomingRelations="//@elements.7/@model/@elements.0/@model/@elements.2 //@elements.7/@model/@elements.0/@model/@elements.3" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="withdraw(amount:Money)"/>
+            </secondSegment>
+            <description name="*"/>
+            <boundaries>
+              <topLeft x="584" y="70"/>
+              <bottomRight x="785" y="221"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Relation" name="trans" type="Relationship" target="//@elements.7/@model/@elements.0/@model/@elements.1" source="//@elements.7/@model/@elements.0/@model/@elements.0" referencedRelation="//@elements.7/@model/@elements.0/@model/@elements.3">
+            <sourceLabel name="1"/>
+            <targetLabel name="1"/>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Relation" name="irreflexive" type="Irreflexive" target="//@elements.7/@model/@elements.0/@model/@elements.1" source="//@elements.7/@model/@elements.0/@model/@elements.0" referencedRelation="//@elements.7/@model/@elements.0/@model/@elements.2">
+            <bendpoints>
+              <referencePoints x="301" y="142"/>
+              <referencePoints x="685" y="70"/>
+              <distances x="247" y="36"/>
+              <distances x="-238" y="32"/>
+            </bendpoints>
+          </elements>
+        </model>
+        <description name="2..2"/>
+        <boundaries>
+          <topLeft x="150" y="172"/>
+          <bottomRight x="1010" y="464"/>
+        </boundaries>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="923" y="85"/>
+      <bottomRight x="1254" y="343"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="DateTime" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="194" y="651"/>
+      <bottomRight x="397" y="705"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Bank" incomingRelations="//@elements.11 //@elements.12 //@elements.14 //@elements.15">
+    <firstSegment>
+      <elements name="name : String"/>
+    </firstSegment>
+    <secondSegment>
+      <elements name="executeTransactions()"/>
+    </secondSegment>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Consultant" outgoingRelations="//@elements.9/@model/@elements.4" type="RoleType">
+        <firstSegment>
+          <elements name="phone : String"/>
+        </firstSegment>
+        <secondSegment>
+          <elements name="consult(id : Integer)"/>
+        </secondSegment>
+        <description name="1..*"/>
+        <boundaries>
+          <topLeft x="144" y="55"/>
+          <bottomRight x="345" y="206"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Customer" incomingRelations="//@elements.9/@model/@elements.4 //@elements.9/@model/@elements.3/@model/@elements.2" outgoingRelations="//@elements.9/@model/@elements.5" type="RoleType">
+        <firstSegment>
+          <elements name="name : String"/>
+          <elements name="id : Integer"/>
+        </firstSegment>
+        <secondSegment>
+          <elements name="addSavingsAccount() : Boolean"/>
+          <elements name="addCheckingsAccount() : Boolean"/>
+          <elements name="getAccounts() : Integer"/>
+          <elements name="getBalance(id:Integer) : Money"/>
+          <elements name="transfer(from:Intger, to:Integer) : Boolean"/>
+          <elements name="sendAccountStatement(id:Integer)"/>
+        </secondSegment>
+        <description name="*"/>
+        <boundaries>
+          <topLeft x="147" y="459"/>
+          <bottomRight x="350" y="612"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Transaction" type="RoleType">
+        <firstSegment>
+          <elements name="execution : DateTime"/>
+        </firstSegment>
+        <secondSegment>
+          <elements name="execute() : Boolean"/>
+          <elements name="isExecuted() : Boolean"/>
+        </secondSegment>
+        <description name="*"/>
+        <boundaries>
+          <topLeft x="684" y="58"/>
+          <bottomRight x="887" y="211"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="RoleGroup (1..1)" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="CheckingsAccount" outgoingRelations="//@elements.9/@model/@elements.3/@model/@elements.2" type="RoleType">
+            <firstSegment>
+              <elements name="limit : Money"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="decrease(amount:Money)"/>
+              <elements name="getLimit() : Money"/>
+              <elements name="setLimit(amount:Money)"/>
+            </secondSegment>
+            <description name="*"/>
+            <boundaries>
+              <topLeft x="111" y="18"/>
+              <bottomRight x="313" y="170"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="SavingsAccount" incomingRelations="//@elements.9/@model/@elements.5" type="RoleType">
+            <firstSegment>
+              <elements name="transactionFee : Double"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="decrease(amount:Money)"/>
+            </secondSegment>
+            <description name="*"/>
+            <boundaries>
+              <topLeft x="112" y="198"/>
+              <bottomRight x="314" y="350"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Relation" name="own_ca" type="Relationship" target="//@elements.9/@model/@elements.1" source="//@elements.9/@model/@elements.3/@model/@elements.0">
+            <sourceLabel name="*"/>
+            <targetLabel name="1"/>
+          </elements>
+        </model>
+        <description name="*"/>
+        <boundaries>
+          <topLeft x="675" y="262"/>
+          <bottomRight x="1078" y="659"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="advices" type="Relationship" target="//@elements.9/@model/@elements.1" source="//@elements.9/@model/@elements.0">
+        <sourceLabel name="*"/>
+        <targetLabel name="1..*"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="own_sa" type="Relationship" target="//@elements.9/@model/@elements.3/@model/@elements.1" source="//@elements.9/@model/@elements.1">
+        <sourceLabel name="1..*"/>
+        <targetLabel name="*"/>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="513" y="85"/>
+      <bottomRight x="793" y="539"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Double" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="442" y="651"/>
+      <bottomRight x="644" y="706"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.0" referencedRoles="//@elements.9/@model/@elements.0 //@elements.9/@model/@elements.1"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.1" referencedRoles="//@elements.9/@model/@elements.1"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.7" source="//@elements.4" referencedRoles="//@elements.9/@model/@elements.3"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.4" referencedRoles="//@elements.9/@model/@elements.3"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.7" referencedRoles="//@elements.9/@model/@elements.2"/>
+</org.framed.orm.model:Model>
