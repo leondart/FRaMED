@@ -19,6 +19,7 @@ import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 
 
 
@@ -43,15 +44,15 @@ public class ORMEditPartFactory implements EditPartFactory {
 
     else if (model instanceof Relation) {
       Relation relation = (Relation) model;
-      if(relation.getType().equals(Type.FULFILLMENT)){
+      if (relation.getType().equals(Type.FULFILLMENT)) {
         part = new ORMFulfillmentEditPart();
-      } else if(relation.getType().equals(Type.RELATIONSHIP)){
+      } else if (relation.getType().equals(Type.RELATIONSHIP)) {
         part = new ORMRelationshipEditPart();
-      } else if(relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)){
+      } else if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+          || relation.getType().equals(Type.IRREFLEXIVE)) {
         part = new ORMRelationshipConstraintEditPart();
-      } else{
-        part = new ORMRelationEditPart(); 
+      } else {
+        part = new ORMRelationEditPart();
       }
     }
 
@@ -61,6 +62,8 @@ public class ORMEditPartFactory implements EditPartFactory {
         part = new ORMCompartmentEditPart();
       } else if (shape.getType().equals(Type.GROUP) || shape.getType().equals(Type.ROLE_GROUP)) {
         part = new ORMShapeWithoutSegmentEditPart();
+      } else if (shape.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+        part = new ORMSuperShapeEditPart();
       } else {
         part = new ORMShapeWithSegmentEditPart();
       }
@@ -73,7 +76,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     else if (!(model instanceof ModelElement) && model instanceof NamedElement) {
       part = new ORMNamedElementEditPart();
     }
-    
+
     if (part != null) {
       part.setModel(model);
     }
