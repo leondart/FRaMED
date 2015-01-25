@@ -39,7 +39,9 @@ public class ORMConnectionFigureFactory {
       case Type.ROLE_EQUIVALENCE_VALUE:
         return createRoleEquivalenceFigure();
       case Type.ROLE_IMPLICATION_VALUE:
-        return createRoleImplicationFigure();
+        return createRoleRelationshipImplicationFigure();
+      case Type.RELATIONSHIP_IMPLICATION_VALUE:
+        return createRoleRelationshipImplicationFigure();
       case Type.ROLE_PROHIBITION_VALUE:
         return createRoleProhibitonFigure();
       case Type.FULFILLMENT_VALUE:
@@ -127,10 +129,10 @@ public class ORMConnectionFigureFactory {
   }
 
   /**
-   * {@link Relations}s from type roleimplication have as figure a dashed line with a white arrow
-   * tip at target end of this connection.
+   * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
+   * dashed line with a white arrow tip at target end of this connection.
    */
-  private static Figure createRoleImplicationFigure() {
+  private static Figure createRoleRelationshipImplicationFigure() {
     // create white arrow tip
     PolygonDecoration poly = new PolygonDecoration();
     poly.setAntialias(SWT.ON);
@@ -223,15 +225,15 @@ public class ORMConnectionFigureFactory {
       if (label.getText().equals("<...>")) {
         label.setText(role.getName());
       } else {
-        if(roleCount >2){
+        if (roleCount > 2) {
           tooltipTarget.add(new Label(role.getName()));
-        } else{
+        } else {
           label.setText(label.getText() + ", " + role.getName());
         }
       }
       roleCount++;
     }
-   
+
     label.setToolTip(tooltipTarget);
     conn.add(label, targetEndL);
 
