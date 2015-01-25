@@ -5,10 +5,7 @@ import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.Model;
-import org.framed.orm.model.NamedElement;
-import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 
@@ -16,7 +13,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
-    if (oSTCheck(request, Type.ROLE_IMPLICATION, Type.ROLE_TYPE, Type.ROLE_TYPE)
+    if (oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP)
         && tNotEqualSCheck(request)) {
       return setupConnectionCompleteCommand(request);
     }
