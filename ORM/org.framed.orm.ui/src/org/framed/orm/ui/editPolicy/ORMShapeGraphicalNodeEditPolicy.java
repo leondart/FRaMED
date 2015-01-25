@@ -21,8 +21,9 @@ import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
 
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
- * {@link Relation}s and creates and returns the necessary commands for that purpose. NewObject =
- * O/o SourceEditPart = S/s TargetEditPart = T/t Model = M/m
+ * {@link Relation}s except of {@linkReltions} from type relationshipimplication and creates and
+ * returns the necessary commands for that purpose. NewObject = O/o SourceEditPart = S/s
+ * TargetEditPart = T/t Model = M/m
  * 
  * @author Kay Bierzynski
  * */
@@ -72,7 +73,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       ArrayList<Relation> refrencedRelations = new ArrayList<Relation>();
       refrencedRelations.add(testedRelationship);
       result.setRefrencedRelations(refrencedRelations);
-      
+
       retVal = result;
     }
 
@@ -201,7 +202,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
 
-    if(request.getNewObjectType().equals(Type.RELATIONSHIP)){
+    if (request.getNewObjectType().equals(Type.RELATIONSHIP)) {
       NamedElement ele = OrmFactory.eINSTANCE.createNamedElement();
       ele.setName("*");
       result.setSourceLabel(ele);
