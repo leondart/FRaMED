@@ -45,10 +45,10 @@ public class ORMRelationshipFactory implements CreationFactory {
     Point bottomRight = GeometryFactory.eINSTANCE.createPoint();
     Point topLeft = GeometryFactory.eINSTANCE.createPoint();
 
-    bottomRight.setX(1);
+    bottomRight.setX(10);
     bottomRight.setY(0);
     topLeft.setX(0);
-    topLeft.setY(1);
+    topLeft.setY(10);
 
     rec.setBottomRight(bottomRight);
     rec.setTopLeft(topLeft);

@@ -43,8 +43,7 @@ import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements
-    NodeEditPart {
+public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements NodeEditPart {
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -178,9 +177,9 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements
    * */
   @Override
   public void refreshVisuals() {
-    if (!((Shape) getModel()).getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+    final Shape model = (Shape) getModel();
+    if (!model.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
       final ORMShapeFigure figure = (ORMShapeFigure) getFigure();
-      final Shape model = (Shape) getModel();
       final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
       figure.getLabel().setText(model.getName());
@@ -257,24 +256,26 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements
     /** {@inheritDoc} */
     @Override
     public void notifyChanged(final Notification notification) {
+      if (!((Shape) getModel()).getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+        refreshChildren();
+        refreshVisuals();
 
-      refreshChildren();
-      refreshVisuals();
+        Shape shape = (Shape) getModel();
+        if (shape.getContainer() != null) {
+          Shape parent = shape.getContainer().getParent();
+          if (parent != null) {
+            // for synchronsation with role list of the Shape from type compartmenttype in above
+            // layer
+            // of the tree
+            if (getParent().getParent() instanceof ORMCompartmentEditPart) {
+              ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
+            }
 
-      Shape shape = (Shape) getModel();
-      if (shape.getContainer() != null) {
-        Shape parent = shape.getContainer().getParent();
-        if (parent != null) {
-          // for synchronsation with role list of the Shape from type compartmenttype in above layer
-          // of the tree
-          if (getParent().getParent() instanceof ORMCompartmentEditPart) {
-            ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
-          }
-
-          // for synchronsation with compartment list of the Group in above layer of the tree
-          if (getParent().getParent() instanceof ORMShapeWithoutSegmentEditPart
-              && parent.getType().equals(Type.GROUP)) {
-            ((ORMShapeWithoutSegmentEditPart) getParent().getParent()).refreshVisuals();
+            // for synchronsation with compartment list of the Group in above layer of the tree
+            if (getParent().getParent() instanceof ORMShapeWithoutSegmentEditPart
+                && parent.getType().equals(Type.GROUP)) {
+              ((ORMShapeWithoutSegmentEditPart) getParent().getParent()).refreshVisuals();
+            }
           }
         }
       }
@@ -282,6 +283,7 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements
         refreshSourceConnections();
         refreshTargetConnections();
       }
+
     }
 
     /** {@inheritDoc} */
