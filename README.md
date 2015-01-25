@@ -1,4 +1,4 @@
-FRaMED
+FRaMED [![Build Status](https://travis-ci.org/leondart/FRaMED.svg?branch=master)](https://travis-ci.org/leondart/FRaMED)
 ======
 
 FRaMED is the First Role Modeling EDitor allowing the graphical specification of Role-based Software Systems
