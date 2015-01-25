@@ -1,6 +1,9 @@
 package org.framed.orm.ui.command.connectionkinds;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.gef.commands.Command;
@@ -8,6 +11,7 @@ import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
@@ -35,6 +39,24 @@ public class ORMRelationDeleteCommand extends Command {
    */
   private ArrayList<RelativePoint> bendpoints = new ArrayList<RelativePoint>();
 
+  /**
+   * A list, which contains all {@link Relation}s that are connected to the {@link Relation} to be
+   * removed. This list necessary for the case that the user wants to undo this command.
+   */
+  protected List<Relation> relations;
+
+  /**
+   * Sources for the {@link Relation}s that start or end at this {@link Relation}. This list necessary
+   * for the case that the user wants to undo this command.
+   */
+  private Map<Relation, ModelElement> sourceLinks;
+
+  /**
+   * Targets for the {@link Relation}s that start or end at this {@link Relation}. This list necessary
+   * for the case that the user wants to undo this command.
+   */
+  private Map<Relation, ModelElement> targetLinks;
+
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -42,6 +64,7 @@ public class ORMRelationDeleteCommand extends Command {
    */
   public ORMRelationDeleteCommand() {
     super.setLabel("ORMRelationDelete");
+    relations = new ArrayList<Relation>();
   }
 
   /**
@@ -67,6 +90,9 @@ public class ORMRelationDeleteCommand extends Command {
     source = relation.getSource();
     target = relation.getTarget();
     bendpoints.addAll(relation.getBendpoints());
+    if(relation.getType().equals(Type.RELATIONSHIP)){
+      detachLinks();
+    }
 
     relation.setSource(null);
     relation.setTarget(null);
@@ -84,8 +110,42 @@ public class ORMRelationDeleteCommand extends Command {
     relation.setTarget(target);
     relation.setContainer(parent);
     relation.getBendpoints().addAll(bendpoints);
+    if(relation.getType().equals(Type.RELATIONSHIP)){
+      reattachLinks();
+    }
+  }
+  
+  
+  /**
+   * Detach/Delete all {@link Relation}s from this {@link Relation} and their source/target
+   * {@link Relation} and storing the connection information in local data structures.
+   */
+  protected void detachLinks() {
+    sourceLinks = new HashMap<Relation, ModelElement>();
+    targetLinks = new HashMap<Relation, ModelElement>();
+    relations.addAll(relation.getReferencedRoles().get(0).getIncomingRelations());
+    relations.addAll(relation.getReferencedRoles().get(0).getOutgoingRelations());
+    for (Relation relation : relations) {
+      sourceLinks.put(relation, relation.getSource());
+      targetLinks.put(relation, relation.getTarget());
+      relation.setSource(null);
+      relation.setTarget(null);
+      relation.setContainer(null);
+    }
   }
 
+  /**
+   * Reattach/Recreate all {@link Relation}s to this {@link Relation} and their source/target
+   * {@link Relation}.
+   */
+  private void reattachLinks() {
+    for (Relation relation : relations) {
+      relation.setSource(sourceLinks.get(relation));
+      relation.setTarget(targetLinks.get(relation));
+      relation.setContainer(parent);
+    }
+  }
+  
   /**
    * Setter for the {@link Relation}, which is deleted/removed in this command.
    * 

@@ -1,5 +1,7 @@
 package org.framed.orm.ui.editPolicy;
 
+import java.util.ArrayList;
+
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
@@ -8,13 +10,14 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 
 public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
     if (oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP)
-        && tNotEqualSCheck(request)) {
+        && tNotEqualSCheck(request) && testHasZeroRelation(request)) {
       return setupConnectionCompleteCommand(request);
     }
     return null;
@@ -110,5 +113,24 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   private boolean tNotEqualSCheck(final CreateConnectionRequest request) {
     return !(request.getTargetEditPart().equals(request.getSourceEditPart()));
+  }
+
+  private boolean testHasZeroRelation(CreateConnectionRequest request) {
+    if (request.getSourceEditPart() instanceof ORMRelationshipEditPart
+        && request.getTargetEditPart() instanceof ORMRelationshipEditPart) {
+      Relation targetrelation = (Relation) request.getTargetEditPart().getModel();
+      Relation sourcerelation = (Relation) request.getSourceEditPart().getModel();
+      ArrayList<Relation> targetRel = new ArrayList<Relation>();
+      ArrayList<Relation> sourceRel = new ArrayList<Relation>();
+
+      targetRel.addAll(targetrelation.getReferencedRoles().get(0).getIncomingRelations());
+      sourceRel.addAll(sourcerelation.getReferencedRoles().get(0).getOutgoingRelations());
+
+      targetRel.retainAll(sourceRel);
+      if(targetRel.size() == 0){
+        return true;
+      }
+    }
+    return false;
   }
 }
