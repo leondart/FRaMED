@@ -1,7 +1,6 @@
 package org.framed.orm.ui.action;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.edit.provider.ItemProvider;
@@ -19,18 +18,15 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.framed.orm.model.AbstractRole;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleType;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
 
 /**
- * A dialog class for creating a dialog, which let the user choose the {@link RoleType}s and the
- * {@link RoleGroup}s he wants to add or to remove from a {@link Fulfillment}. With this the user
- * decides, which {@link RoleType}s and {@link RoleGroup}s the source of the {@link Fulfillment}
- * fulfills.
+ * A dialog class for creating a dialog, which let the user choose the {@link Shape}s from type
+ * roletype and rolegroup he wants to add or to remove from a {@link Relation} from type
+ * fulfillment. With this the user decides, which RoleTypes and RoleGroups the source of the
+ * Fulfillment fulfills.
  * 
  * @author Kay Bierzynski (initial development)
  * @author Lars Schuetze (use EMF adapters)
@@ -44,17 +40,17 @@ public class RolesDialog extends Dialog {
   private final static int SIZING_SELECTION_WIDGET_WIDTH = 300;
 
   /**
-   * A list, which containts all the {@link RoleType}s and the {@link RoleGroup}s of the target of
-   * the {@link Fulfillment}.
+   * A list, which containts all the {@link Shape}s from type roletype and rolegroup of the target
+   * of {@link Relation} from type fulfillment.
    */
-  private List<AbstractRole> roles;
+  private List<Shape> roles;
   /**
-   * This list contains names of the {@link RoleType}s and the {@link RoleGroup}s, which the user
-   * has choosen.
+   * This list contains all the {@link Shape}s from type roletype and rolegroup, which the user has
+   * choosen.
    */
-  private List<String> fulfilledRoles;
+  private List<Shape> fulfilledRoles;
   /**
-   * The viewer for listing the {@link RoleType}s and the {@link RoleGroup}s.
+   * The viewer for listing the RoleTypes and the RoleGroups.
    * 
    * */
   private CheckboxTableViewer viewer;
@@ -66,8 +62,6 @@ public class RolesDialog extends Dialog {
    * */
   protected RolesDialog(final Shell shell) {
     super(shell);
-    fulfilledRoles = new ArrayList<>();
-    roles = new ArrayList<>();
   }
 
   /** {@inheritDoc} */
@@ -99,8 +93,8 @@ public class RolesDialog extends Dialog {
     viewer.setInput(new ItemProvider(new OrmItemProviderAdapterFactory(), roles));
 
     // check all the role types and the role groups, which already fulfilled thorugh the fulfillment
-    for (AbstractRole role : roles) {
-      if (fulfilledRoles.contains(((Node) role).getName())) {
+    for (Shape role : roles) {
+      if (fulfilledRoles.contains(role)) {
         viewer.setChecked(role, true);
       }
     }
@@ -153,17 +147,16 @@ public class RolesDialog extends Dialog {
   }
 
   /**
-   * {@inheritDoc}
-   *  Before the dialog is closed the  fulfilledRoles list is cleared and
-   *  refilled with the names of the choosen {@link RoleType}s and the choosen {@link RoleGroup}s.
+   * {@inheritDoc} Before the dialog is closed the fulfilledRoles list is cleared and refilled with
+   * the names of the choosen {@link RoleType}s and the choosen {@link RoleGroup}s.
    */
   @Override
   protected void okPressed() {
     fulfilledRoles.clear();
 
-    // after clearing the list add the names of the choosen role types and the choosen role groups
+    // after clearing the list add the choosen role types and role groups
     for (Object object : viewer.getCheckedElements()) {
-      fulfilledRoles.add(((Node) object).getName());
+      fulfilledRoles.add((Shape) object);
     }
 
     setReturnCode(OK);
@@ -173,9 +166,9 @@ public class RolesDialog extends Dialog {
   /**
    * Setter for the roles list.
    * 
-   * @param  roles java.util.List<AbstractRole>
+   * @param roles java.util.List<Shape>
    * */
-  public void setRoles(List<AbstractRole> roles) {
+  public void setRoles(List<Shape> roles) {
     this.roles = roles;
   }
 
@@ -184,7 +177,7 @@ public class RolesDialog extends Dialog {
    * 
    * @param fulfilledRoles java.util.List<String>
    * */
-  public void setFulfilledRoles(List<String> fulfilledRoles) {
+  public void setFulfilledRoles(List<Shape> fulfilledRoles) {
     this.fulfilledRoles = fulfilledRoles;
   }
 
@@ -193,7 +186,7 @@ public class RolesDialog extends Dialog {
    * 
    * @return fulfilledRoles java.util.List<String>
    * */
-  public List<String> getFulfilledRoles() {
+  public List<Shape> getFulfilledRoles() {
     return fulfilledRoles;
   }
 }

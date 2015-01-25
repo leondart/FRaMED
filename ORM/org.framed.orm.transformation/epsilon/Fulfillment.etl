@@ -1,0 +1,17 @@
+
+rule Fulfillment
+	transform t : source!Relation
+	to n : Sequence(target!Fulfillment) {
+	
+	guard : t.getType.getValue == 14 // enum value Fulfillment
+	
+	for(role : source!Shape in t.referencedRoles) {
+		var fulfillment = new target!Fulfillment;
+		
+		fulfillment.filler ::= t.source;
+		fulfillment.filled ::= role;
+		
+		n.add(fulfillment);
+	}
+	
+}

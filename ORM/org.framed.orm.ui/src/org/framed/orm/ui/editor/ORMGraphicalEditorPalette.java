@@ -11,17 +11,18 @@ import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.tools.SelectionTool;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Node;
+import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
-import org.framed.orm.ui.factory.ORMAcyclicFactory;
+import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
-import org.framed.orm.ui.factory.ORMCompartmentFactory;
+import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
+import org.framed.orm.ui.factory.ORMDataTypeFactory;
 import org.framed.orm.ui.factory.ORMFulfillmentFactory;
-import org.framed.orm.ui.factory.ORMGroupingFactory;
+import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
-import org.framed.orm.ui.factory.ORMMethodFactory;
+import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
@@ -58,9 +59,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
     addGroup();
     addSelectionTool();
-    createComponentsDrawer();
-    createComponentPartsDrawer();
-    createConnectionsDrawer();
+     createComponentsDrawer();
+     createComponentPartsDrawer();
+     createConnectionsDrawer();
   }
 
   /**
@@ -74,7 +75,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
   private void setEntryVisibility(final String name, final Boolean visibility) {
     entryVisibility.put(name, visibility);
-    entries.get(name).setVisible(visibility.booleanValue());
+    if (entries.size() != 0 && entries.get(name) != null) {
+      entries.get(name).setVisible(visibility.booleanValue());
+    }
   }
 
   /**
@@ -98,10 +101,11 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Relationship", true);
       setEntryVisibility("Irreflexive", true);
       setEntryVisibility("Total", true);
-      setEntryVisibility("Acyclic", true);
+      setEntryVisibility("Cyclic", true);
 
       setEntryVisibility("Compartment", false);
       setEntryVisibility("NaturalType", false);
+      setEntryVisibility("DataType", false);
       setEntryVisibility("Group", false);
       setEntryVisibility("Fulfilment", false);
     } else {
@@ -113,10 +117,11 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Relationship", false);
       setEntryVisibility("Irreflexive", false);
       setEntryVisibility("Total", false);
-      setEntryVisibility("Acyclic", false);
+      setEntryVisibility("Cyclic", false);
 
       setEntryVisibility("Compartment", true);
       setEntryVisibility("NaturalType", true);
+      setEntryVisibility("DataType", true);
       setEntryVisibility("Group", true);
       setEntryVisibility("Fulfilment", true);
     }
@@ -154,14 +159,14 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * This method creates the palett entrys for the creation of all {@link Node} kinds and adds them to
-   * palett.
+   * This method creates the palett entrys for the creation of all {@link Shape} kinds and adds them
+   * to palett.
    */
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
     CreationToolEntry entry =
         new CreationToolEntry("Compartment", "Create a new Compartment",
-            new ORMCompartmentFactory(), null, null);
+            new ORMCompartmentTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/compartment.png"));
@@ -176,6 +181,16 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         "icons/naturaltype.png"));
     drawer.add(entry);
     addEntry("NaturalType", entry, true);
+    
+    entry =
+        new CreationToolEntry("DataType", "Create a new DataType",
+            new ORMDataTypeFactory(), null, null);
+    entry.setToolClass(CreationAndDirectEditTool.class);
+    //TODOD: create datatype.png
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/naturaltype.png"));
+    drawer.add(entry);
+    addEntry("DataType", entry, true);
 
     entry =
         new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,
@@ -196,7 +211,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("RoleGroup", entry, false);
 
     entry =
-        new CreationToolEntry("Group", "Create a new Group", new ORMGroupingFactory(), null, null);
+        new CreationToolEntry("Group", "Create a new Group", new ORMGroupFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
@@ -207,15 +222,15 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
 
   /**
-   * This method creates the palett entrys for the creation of {@link Attribute}s and {@link Method}
-   * s and adds them to palett.
+   * This method creates the palett entrys for the creation of {@link NamedElement}s (Attributes and
+   * Operations) and adds them to palett.
    */
   private void createComponentPartsDrawer() {
 
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Methode", "Create a new Methode", new ORMMethodFactory(), null, null);
+        new CreationToolEntry("Operation", "Create a new Operation", new ORMOperationFactory(), null, null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));
@@ -235,8 +250,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * This method creates the palett entrys for the creation of all {@link Relation} kinds and adds them to
-   * palett.
+   * This method creates the palett entrys for the creation of all {@link Relation} kinds and adds
+   * them to palett.
    */
   private void createConnectionsDrawer() {
 
@@ -306,12 +321,12 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("Total", entry8, false);
 
     CreationToolEntry entry9 =
-        new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
-            new ORMAcyclicFactory(), null, null);
+        new ConnectionCreationToolEntry("Cyclic", "Create a new Cyclic Relation",
+            new ORMCyclicFactory(), null, null);
     entry9.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/acyclic.png"));
+        "icons/cyclic.png"));
     drawer.add(entry9);
-    addEntry("Acyclic", entry9, false);
+    addEntry("Cyclic", entry9, false);
 
     group.add(drawer);
   }

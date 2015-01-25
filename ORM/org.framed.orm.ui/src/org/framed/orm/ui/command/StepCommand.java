@@ -5,22 +5,19 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.WorkbenchException;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Grouping;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.action.StepOutAction;
-import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
 import org.framed.orm.ui.editor.ORMMultiPageEditor;
 
 /**
  * This command realize the step in/out, which is initialized by the {@link StepInAction}, the
  * {@link StepInNewPageAction}, the {@link StepInNewTabAction} or the {@link StepOutAction}, through
  * changing the content of the viewer of the {@link ORMMultiPageEditor} instance, which owns the
- * {@link Compartment} or the {@link Grouping} the user wants to step in/out.
+ * {@link Shape} from type compartmentype or group the user wants to step in/out.
  * 
  * @author Kay Bierzynski
  * 
@@ -28,20 +25,20 @@ import org.framed.orm.ui.editor.ORMMultiPageEditor;
 public class StepCommand extends Command {
 
   /**
-   * The {@link ORMCompartmentEditPart} or the {@link ORMGroupingEditPart} of the
-   * {@link Compartment} or the {@link Grouping} the user wants to step in/out.
+   * The {@link ORMShapeEditPart} of the {@link Shape} from type compartmentype or group the user
+   * wants to step in/out.
    */
   private AbstractGraphicalEditPart editpart;
   /**
-   * The {@link ORMMultiPageEditor} instance, which owns the {@link Compartment} or the
-   * {@link Grouping} you want to step in/out and whose viewer content this command changes.
+   * The {@link ORMMultiPageEditor} instance, which owns the {@link Shape} from type compartmentype
+   * or group you want to step in/out and whose viewer content this command changes.
    */
   private ORMMultiPageEditor editorPart;
   /**
-   * This object variable represents a {@link Compartment} or a {@link Grouping} model element, when
-   * you want to step in, and represents a {@link Compartment}, the {@link CompartmentDiagram} or a
-   * {@link Grouping} model element, when you want to step out. All in all holds this variable the
-   * new content for the viewer of the active {@link ORMMultiPageEditor} instance.
+   * This object variable represents a {@link Shape} from type compartmentype or group, when you
+   * want to step in, and represents a {@link Shape} from type compartmentype or group or the root
+   * {@link Model} , when you want to step out. All in all holds this variable the new content for
+   * the viewer of the active {@link ORMMultiPageEditor} instance.
    */
   private Object newContent;
   /**

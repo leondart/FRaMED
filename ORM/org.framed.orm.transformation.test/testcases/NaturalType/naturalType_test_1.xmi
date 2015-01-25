@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="&#xA;&#x9;&#x9;Simple TestCase for Natural Types&#xA;&#x9;"
+    description="&#xA;&#x9;&#x9;This test verifies that Shapes of type NaturalType are&#xA;&#x9;&#x9;converted to NaturalTypes and still have the same name&#xA;&#x9;">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType1"
+        type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType2"
+        type="NaturalType"/>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType1"/>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType2"/>
+  </cromModel>
+</ts:TestCase>

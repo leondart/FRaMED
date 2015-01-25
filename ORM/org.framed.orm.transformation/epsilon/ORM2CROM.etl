@@ -1,0 +1,46 @@
+import "CompartmentType.etl";
+import "DataType.etl";
+import "NaturalType.etl";
+import "RoleType.etl";
+
+import "RoleGroup.etl";
+import "Group.etl";
+
+import "RoleConstraints.etl";
+import "RelationshipImplication.etl";
+
+import "Inheritance.etl";
+import "Relationship.etl";
+import "Fulfillment.etl";
+
+operation Any println() : Any { 
+	("Printing : " + self)->println();
+}
+
+rule ORM2CROM
+	transform mym : source!Model
+	to crom : target!Model {
+	guard : mym.parent == null
+	
+	for(shape : source!Shape in mym.elements) {
+		var x = shape.equivalent();
+		if(not ((x == null) or x.instanceOf(target!AbstractRole))) {
+			crom.elements.add(x);
+		}
+	}
+	
+	for (relation : source!Relation in mym.elements) {
+		var r = relation.equivalent();
+		if (not (r == null)) {
+			if(not(r.isKindOf(Sequence))) {
+				crom.relations.add(r);
+			} else {
+				for(ob in r) {
+					crom.relations.add(ob);
+				}
+			}
+		}
+	}
+	
+}
+

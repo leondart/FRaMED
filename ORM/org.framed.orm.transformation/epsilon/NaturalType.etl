@@ -1,0 +1,38 @@
+import "Type.etl";
+
+pre NaturalType {
+	var naturalTypes : OrderedSet(source!Shape);
+}
+
+/**
+ * Transforms a shape with type NATURAL_TYPE.
+ */
+rule NaturalType
+	transform t : source!Shape
+	to n : target!NaturalType {
+
+	guard : t.getType.getValue == 1
+	
+	n.name = t.name;
+	
+	naturalTypes.add(t);	
+}
+
+/**
+ * Add operations and attributes in the post processing step. 
+ *
+ * This separation is necessary as the type references in attributes and operations may form cycles between 
+ * types/shapes. The post block ensures that these cycles can be resolved.
+ */
+post NaturalType {
+	for (t : source!Shape in naturalTypes) {		
+		var n = t.equivalent();
+		
+		if (not n.isDefined() or not t.isDefined()) {
+			continue;
+		}
+		
+		t.addAttributes(n);
+		t.addOperations(n);		
+	}
+}

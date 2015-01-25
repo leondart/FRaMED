@@ -1,0 +1,47 @@
+import "CardinalityParser.eol";
+
+rule RoleGroup
+	transform s : source!Shape
+	to t : target!RoleGroup {	
+	guard : s.getType.value == 12	// ROLEGROUP
+	
+	t.name = s.name;
+	if(s.name.indexOf("(")>-1) {
+		t.name = s.name.substring(0,s.name.indexOf("(")).trim();
+	}
+	
+	var desc = s.name;
+	if (not (desc == null)) {
+		var cards = parseCardinality(desc);
+		if(cards.size()>0) {
+			t.lower = cards[0];
+		}
+		if(cards.size()>1) {
+			t.upper = cards[1];
+		}
+	}
+	
+	var children = s.`model`;
+	if (not (children == null)) {
+		for (elem : source!ModelElement in children.elements) {
+			var e = elem.equivalent();
+			if (e.instanceOf(target!RoleGroupElement)) {
+				t.getElements().add(e);				
+			} else if(e.instanceOf(target!Relation)) {
+				var compTypeFound = false;
+				var compType = s;
+				while(not(compTypeFound)) {
+					compType = compType.eContainer();
+					compTypeFound = not(compType.instanceOf(source!Model)) and compType.getType.getValue == 0;
+				}
+				if(e.instanceOf(target!Constraint)) {
+					compType.equivalent().getConstraints().add(e);
+				} else {
+					compType.equivalent().getRelationships().add(e);
+				}
+			} else {
+				// TODO: print warning or throw exception
+			}			
+		}
+	}	
+}

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.framed</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -13,17 +13,25 @@
 		<module>../org.framed.orm.ui</module>
 		<module>../org.framed.orm.build.p2</module>
 		<module>../org.framed.orm.build.feature</module>
+		<module>../org.framed.orm.transformation</module>
+		<module>../org.framed.orm.transformation.test</module>
 	</modules>
 
 	<properties>
-		<tycho.version>0.20.0</tycho.version>
-		<kepler-repo.url>http://download.eclipse.org/releases/kepler</kepler-repo.url>
+		<tycho.version>0.22.0</tycho.version>
+		<luna-repo.url>http://download.eclipse.org/releases/luna</luna-repo.url>
+		<epsilon-repo.url>http://download.eclipse.org/epsilon/updates/</epsilon-repo.url>
 	</properties>
 
 	<repositories>
 		<repository>
-			<id>kepler</id>
-			<url>${kepler-repo.url}</url>
+			<id>luna</id>
+			<url>${luna-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>epsilon</id>
+			<url>${epsilon-repo.url}</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
@@ -40,7 +48,9 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
 				<configuration>
+					<pomDependencies>consider</pomDependencies>
 					<environments>
 						<environment>
 							<os>linux</os>
@@ -72,4 +82,12 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.rosi.crom.metamodel</groupId>
+			<artifactId>org.rosi.crom.metamodel</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+	</dependencies>
 </project> 

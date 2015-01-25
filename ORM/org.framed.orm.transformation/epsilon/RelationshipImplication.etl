@@ -1,0 +1,9 @@
+rule RelationshipImplication
+	transform s : source!Relation
+	to t : target!RelationshipImplication {
+
+	guard : s.getType.getValue == 15 // enum value RelationshipImplication
+	
+	t.first ::= s.source;
+	t.second ::= s.target;
+}

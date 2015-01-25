@@ -3,21 +3,19 @@ package org.framed.orm.ui.command.connectionkinds;
 import java.util.ArrayList;
 
 import org.eclipse.draw2d.Bendpoint;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
+import org.framed.orm.geometry.RelativePoint;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Container;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
- * Through this command all {@link Relation}s except the {@link RelationshipConstraint}s can be
- * deleted(removed from the model tree). The {@link RelationshipConstraint}s need an extra command,
- * because after every deletion of a {@link RelationshipConstraint} the
- * {@link ORMRelationshipConstraintEditPart} of the other {@link RelationshipConstraint}s from the
- * same {@link Relationship} muste be refreshed.
+ * Through this command all {@link Relation}s except the {@link Relation}s from type cyclic, total
+ * and irreflexive(relationshipConstraints) can be deleted(removed from the model tree). The
+ * relationshipConstraints need an extra command, because after every deletion of a
+ * relationshipConstraint the {@link ORMRelationshipConstraintEditPart} of the other
+ * relationshipConstraints from the same {@link Relation} from type relationship muste be refreshed.
  * 
  * @author Kay Bierzynski
  * */
@@ -25,22 +23,18 @@ public class ORMRelationDeleteCommand extends Command {
 
   /** The {@link Relation} to be removed. */
   private Relation relation;
-  /** The {@link Container} from which the {@link Relation} should be removed. */
-  private Container parent;
-  /** The source/start {@link Node} of the {@link Relation} to be created. */
-  private Node source;
-  /** The target/end {@link Node} of the {@link Relation} to be created. */
-  private Node target;
+  /** The {@link Model} from which the {@link Relation} should be removed. */
+  private Model parent;
+  /** The source/start {@link ModelElement} of the {@link Relation} to be removed. */
+  private ModelElement source;
+  /** The target/end {@link ModelElement} of the {@link Relation} to be removed. */
+  private ModelElement target;
   /**
-   * A list, which stores the first part of the {@link Bendpoint}s positions for the case that the
-   * user wants to undone this command.
+   * A list, which stores the {@link Bendpoint}s positions for the case that the user wants to undo
+   * this command.
    */
-  private ArrayList<Point> dim1BPList = new ArrayList<Point>();
-  /**
-   * A list, which stores the second part of the {@link Bendpoint}s positions for the case that the
-   * user wants to undone this command.
-   */
-  private ArrayList<Point> dim2BPList = new ArrayList<Point>();
+  private ArrayList<RelativePoint> bendpoints = new ArrayList<RelativePoint>();
+
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -63,23 +57,21 @@ public class ORMRelationDeleteCommand extends Command {
   /**
    * {@inheritDoc} In this method all the attributes of the {@link Relation} to be removed are
    * stored in variables in case that the user wants to undone this command. After this part the
-   * {@link Relation} is removed from the source, the {@link Container} and the target and all of
+   * {@link Relation} is removed from the source, the {@link Model} and the target and all of
    * it's {@link Bendpoint}s are deleted.
    * 
    */
   @Override
   public void execute() {
-    parent = relation.getRelationContainer();
+    parent = relation.getContainer();
     source = relation.getSource();
     target = relation.getTarget();
-    dim1BPList.addAll(relation.getDim1BP());
-    dim2BPList.addAll(relation.getDim2BP());
+    bendpoints.addAll(relation.getBendpoints());
 
     relation.setSource(null);
     relation.setTarget(null);
-    relation.setRelationContainer(null);
-    relation.getDim1BP().clear();
-    relation.getDim2BP().clear();
+    relation.setContainer(null);
+    relation.getBendpoints().clear();
   }
 
   /**
@@ -90,10 +82,8 @@ public class ORMRelationDeleteCommand extends Command {
   public void undo() {
     relation.setSource(source);
     relation.setTarget(target);
-    relation.setRelationContainer(parent);
-    relation.getDim1BP().addAll(dim1BPList);
-    relation.getDim2BP().addAll(dim2BPList);
-
+    relation.setContainer(parent);
+    relation.getBendpoints().addAll(bendpoints);
   }
 
   /**

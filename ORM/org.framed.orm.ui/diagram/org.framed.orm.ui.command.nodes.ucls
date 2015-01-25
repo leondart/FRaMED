@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.command.nodes.ORMNodeRenameCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/nodes/ORMNodeRenameCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="217" x="36" y="-62"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.ui.command.nodes.ORMRoleGroupDeleteCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/nodes/ORMRoleGroupDeleteCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="253" x="873" y="238"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.command.nodes.ORMNodeChangeBoundariesCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/nodes/ORMNodeChangeBoundariesCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="294" x="293" y="-62"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.ui.command.nodes.ORMCompartmentGroupingCreateCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/nodes/ORMCompartmentGroupingCreateCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="152" width="327" x="506" y="238"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.ui.command.nodes.ORMNodeCreateCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/nodes/ORMNodeCreateCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="206" x="627" y="-62"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.ui.command.nodes.ORMNodeDeleteCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/nodes/ORMNodeDeleteCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="260" width="215" x="873" y="-62"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="8">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

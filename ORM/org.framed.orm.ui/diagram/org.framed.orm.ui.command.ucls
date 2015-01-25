@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.command.ORMRoleModelCreateCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/ORMRoleModelCreateCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="242" width="243" x="53" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.ui.command.ORMCloneCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/ORMCloneCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="166" x="336" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.command.StepCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/StepCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="314" width="259" x="542" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.ui.command.FulfillRolesCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/FulfillRolesCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="189" x="1114" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.ui.command.ExpandStateChangeCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/ExpandStateChangeCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="233" x="841" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.ui.command.ORMAddCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/ORMAddCommand.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="296" width="188" x="1343" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.framed.orm.ui.command.ORMOrphanChildCommand" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/ORMOrphanChildCommand.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="213" x="1571" y="-29"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

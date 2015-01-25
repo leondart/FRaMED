@@ -2,22 +2,22 @@ package org.framed.orm.ui.action;
 
 import java.util.ArrayList;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleType;
+import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.FulfillRolesCommand;
-import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 
 /**
- * This action is for adding to a {@link Fulfillment} the {@link RoleType}s and the
- * {@link RoleGroup}s, which the source of the {@link Fulfillment} fulfills.
+ * This action is for adding to a {@link Relation} from type fulfillment the {@link Shapes}s from
+ * type roletype and rolegroup ,which the source of the fufillment fulfills.
  * 
  * @author Kay Bierzynski
  * 
@@ -41,9 +41,9 @@ public class FulfillRolesAction extends SelectionAction {
   }
 
   /**
-   * {@inheritDoc} This action is enabled when the selected element is a {@link Fulfillment} and the
-   * target of the selected {@link Fulfillment} has at least one {@link RoleType} or
-   * {@link RoleGroup}.
+   * {@inheritDoc} This action is enabled when the selected element is a {@link Relation} from type
+   * fulfillemnt and the target of the selected fulfillemt has at least one {@link Shape} from type
+   * roletype or rolegroup.
    * */
   @Override
   protected boolean calculateEnabled() {
@@ -53,11 +53,15 @@ public class FulfillRolesAction extends SelectionAction {
     }
 
     for (Object selectedObject : getSelectedObjects()) {
-      if (selectedObject instanceof ORMFulfillmentEditPart) {
-        Compartment targetCompartment =
-            (Compartment) ((ORMFulfillmentEditPart) selectedObject).getTarget().getModel();
-        if (targetCompartment.getRolemodel().getParticipants().size() != 0) {
-          return true;
+      if (selectedObject instanceof EditPart) {
+        if (((EditPart) selectedObject).getModel() instanceof Relation) {
+          Relation relation = (Relation) ((EditPart) selectedObject).getModel();
+          if (relation.getType().equals(Type.FULFILLMENT) && relation.getTarget() instanceof Shape) {
+            Shape shape = (Shape) relation.getTarget();
+            if (shape.getType().equals(Type.COMPARTMENT_TYPE)) {
+              return shape.getModel().getElements().size() != 0;
+            }
+          }
         }
       }
     }
@@ -68,7 +72,7 @@ public class FulfillRolesAction extends SelectionAction {
    * In this method first the {@link RolesDialog} is prepared and started. After the user has closed
    * the {@link RolesDialog} through the cancel button this method is finished as well. When the
    * user has closed the {@link RolesDialog} through the ok button the choosen roles are added all
-   * at once to the {@link Fulfillment} through the {@link FulfillRolesCommand}.
+   * at once to the fulfillment through the {@link FulfillRolesCommand}.
    * 
    * */
   @Override
@@ -79,19 +83,27 @@ public class FulfillRolesAction extends SelectionAction {
     Shell shell = new Shell((style & SWT.MIRRORED) != 0 ? SWT.RIGHT_TO_LEFT : SWT.NONE);
 
     // get the editpart of the selected fulfillment
-    ORMFulfillmentEditPart editPart = (ORMFulfillmentEditPart) getSelectedObjects().get(0);
+    EditPart editPart = (EditPart) getSelectedObjects().get(0);
     // get the model of the selected fulfillment
-    Fulfillment ful = (Fulfillment) editPart.getModel();
+    Relation ful = (Relation) editPart.getModel();
     // get the target of the selected fulfillment, which is always a compartment
-    Compartment target = (Compartment) ful.getTarget();
+    Shape target = (Shape) ful.getTarget();
 
     // create and setup the roles dialog
     RolesDialog dialog = new RolesDialog(shell);
-    dialog.setRoles(target.getRolemodel().getParticipants());
+    ArrayList<Shape> roles = new ArrayList<Shape>();
+    for (ModelElement modelelement : target.getModel().getElements()) {
+      if (modelelement.getType().equals(Type.ROLE_TYPE)
+          || modelelement.getType().equals(Type.ROLE_GROUP)) {
+        roles.add((Shape) modelelement);
+      }
+    }
 
-    // add all role types and role groups wich are already "fulfilled" thorugh the Fulfillment to a
+    dialog.setRoles(roles);
+
+    // add all role types and role groups wich are already "fulfilled" through the Fulfillment to a
     // list
-    ArrayList<String> fulfilledRoles = new ArrayList<String>(ful.getFulfilledRoles());
+    ArrayList<Shape> fulfilledRoles = new ArrayList<Shape>(ful.getReferencedRoles());
     dialog.setFulfilledRoles(fulfilledRoles);
 
     // open the roles dialog

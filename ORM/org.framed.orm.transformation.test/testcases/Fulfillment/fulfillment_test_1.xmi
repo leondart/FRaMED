@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="Simple TestCase for Fulfillments"
+    description="Simple TestCase for Fulfillments">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType1"
+        outgoingRelations="//@framedModel/@elements.1"
+        type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        name="testFulfillment"
+        type="Fulfillment"
+        target="//@framedModel/@elements.2"
+        source="//@framedModel/@elements.0"
+        referencedRoles="//@framedModel/@elements.2/@model/@elements.0"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="compType1"
+        incomingRelations="//@framedModel/@elements.1">
+      <model>
+        <elements
+            xsi:type="org.framed.orm.model:Shape"
+            name="roleType1"
+            type="RoleType"/>
+      </model>
+    </elements>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType1"/>
+    <elements
+        xsi:type="crom_l1_composed:CompartmentType"
+        name="compType1">
+      <parts>
+        <role
+            xsi:type="crom_l1_composed:RoleType"
+            name="roleType1"/>
+      </parts>
+    </elements>
+    <relations
+        xsi:type="crom_l1_composed:Fulfillment"
+        filled="//@cromModel/@elements.1/@parts.0/@role"
+        filler="//@cromModel/@elements.0"/>
+  </cromModel>
+</ts:TestCase>

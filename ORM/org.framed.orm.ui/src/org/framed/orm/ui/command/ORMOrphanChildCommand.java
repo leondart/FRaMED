@@ -4,8 +4,8 @@
 package org.framed.orm.ui.command;
 
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.Container;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Shape;
 
 /**
  * @author Lars Schuetze
@@ -13,8 +13,8 @@ import org.framed.orm.model.Container;
  */
 public class ORMOrphanChildCommand extends Command {
 
-  private Container parent;
-  private Node child;
+  private Model parent;
+  private Shape child;
 
   public ORMOrphanChildCommand() {
     super("ORMOrphanChildCommand");
@@ -40,11 +40,11 @@ public class ORMOrphanChildCommand extends Command {
       child.setContainer(parent);
   }
 
-  public void setChild(Node child) {
+  public void setChild(Shape child) {
     this.child = child;
   }
 
-  public void setParent(Container parent) {
+  public void setParent(Model parent) {
     this.parent = parent;
   }
 }

@@ -1,39 +1,24 @@
 package org.framed.orm.ui.editPart;
 
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
-import org.framed.orm.model.Acyclic;
-import org.framed.orm.model.Attribute;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.CompartmentDiagram;
-import org.framed.orm.model.Fulfillment;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.model.Inheritance;
-import org.framed.orm.model.Irreflexive;
-import org.framed.orm.model.Method;
-import org.framed.orm.model.NaturalType;
-import org.framed.orm.model.RelationLabel;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RoleEquivalence;
-import org.framed.orm.model.RoleGroup;
-import org.framed.orm.model.RoleImplication;
-import org.framed.orm.model.RoleProhibition;
-import org.framed.orm.model.RoleType;
-import org.framed.orm.model.Rolemodel;
-import org.framed.orm.model.Total;
-import org.framed.orm.ui.editPart.connectionkinds.ORMAcyclicEditPart;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
+import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Segment;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMInheritanceEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMIrreflexiveEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRoleEquivalenceEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRoleImplicationEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRoleProhibitionEditPart;
-import org.framed.orm.ui.editPart.connectionkinds.ORMTotalEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
-import org.framed.orm.ui.editPart.types.ORMNaturalTypeEditPart;
-import org.framed.orm.ui.editPart.types.ORMRoleTypeEditPart;
+import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
 
 
 
@@ -49,48 +34,46 @@ public class ORMEditPartFactory implements EditPartFactory {
 
   /** {@inheritDoc} */
   @Override
-  public EditPart createEditPart(final EditPart context,final Object model) {
+  public EditPart createEditPart(final EditPart context, final Object model) {
     EditPart part = null;
 
-    if (model instanceof CompartmentDiagram) {
-      part = new ORMCompartmentDiagramEditPart();
-    } else if (model instanceof Compartment) {
-      part = new ORMCompartmentEditPart();
-    } else if (model instanceof Method) {
-      part = new ORMMethodEditPart();
-    } else if (model instanceof Attribute) {
-      part = new ORMAttributeEditPart();
-    } else if (model instanceof Rolemodel) {
-      part = new ORMRolemodelEditPart();
-    } else if (model instanceof RoleType) {
-      part = new ORMRoleTypeEditPart();
-    } else if (model instanceof NaturalType) {
-      part = new ORMNaturalTypeEditPart();
-    } else if (model instanceof RoleGroup) {
-      part = new ORMRoleGroupEditPart();
-    } else if (model instanceof Fulfillment) {
-      part = new ORMFulfillmentEditPart();
-    } else if (model instanceof RoleImplication) {
-      part = new ORMRoleImplicationEditPart();
-    } else if (model instanceof RoleEquivalence) {
-      part = new ORMRoleEquivalenceEditPart();
-    } else if (model instanceof RoleProhibition) {
-      part = new ORMRoleProhibitionEditPart();
-    } else if (model instanceof Inheritance) {
-      part = new ORMInheritanceEditPart();
-    } else if (model instanceof Relationship) {
-      part = new ORMRelationshipEditPart();
-    } else if (model instanceof Irreflexive) {
-      part = new ORMIrreflexiveEditPart();
-    } else if (model instanceof Total) {
-      part = new ORMTotalEditPart();
-    } else if (model instanceof Acyclic) {
-      part = new ORMAcyclicEditPart();
-    } else if (model instanceof Grouping) {
-      part = new ORMGroupingEditPart();
-    } else if (model instanceof RelationLabel) {
-      part = new ORMRelationLabelEditPart();
+    if (model instanceof Model) {
+      part = new ORMModelEditPart();
     }
+
+    else if (model instanceof Relation) {
+      Relation relation = (Relation) model;
+      if(relation.getType().equals(Type.FULFILLMENT)){
+        part = new ORMFulfillmentEditPart();
+      } else if(relation.getType().equals(Type.RELATIONSHIP)){
+        part = new ORMRelationshipEditPart();
+      } else if(relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE)){
+        part = new ORMRelationshipConstraintEditPart();
+      } else{
+        part = new ORMRelationEditPart(); 
+      }
+    }
+
+    else if (model instanceof Shape) {
+      Shape shape = (Shape) model;
+      if (shape.getType().equals(Type.COMPARTMENT_TYPE)) {
+        part = new ORMCompartmentEditPart();
+      } else if (shape.getType().equals(Type.GROUP) || shape.getType().equals(Type.ROLE_GROUP)) {
+        part = new ORMShapeWithoutSegmentEditPart();
+      } else {
+        part = new ORMShapeWithSegmentEditPart();
+      }
+    }
+
+    else if (model instanceof Segment) {
+      part = new ORMSegmentEditPart();
+    }
+
+    else if (!(model instanceof ModelElement) && model instanceof NamedElement) {
+      part = new ORMNamedElementEditPart();
+    }
+    
     if (part != null) {
       part.setModel(model);
     }

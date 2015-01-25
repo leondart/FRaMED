@@ -2,8 +2,6 @@ package org.framed.orm.ui.action;
 
 import org.eclipse.gef.Request;
 import org.eclipse.ui.IWorkbenchPart;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Grouping;
 
 
 /**

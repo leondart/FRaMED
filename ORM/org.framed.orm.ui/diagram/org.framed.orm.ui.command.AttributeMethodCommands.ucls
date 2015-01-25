@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.command.AttributeMethodCommands.ORMMethodDeleteCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/AttributeMethodCommands/ORMMethodDeleteCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="268" x="4" y="-4"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.ui.command.AttributeMethodCommands.ORMMethodRenameCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/AttributeMethodCommands/ORMMethodRenameCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="268" x="312" y="-4"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.command.AttributeMethodCommands.ORMMethodCreateCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/AttributeMethodCommands/ORMMethodCreateCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="268" x="620" y="-4"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeRenameCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/AttributeMethodCommands/ORMAttributeRenameCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="268" x="928" y="-4"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeDeleteCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/AttributeMethodCommands/ORMAttributeDeleteCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="268" x="1544" y="-4"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.ui.command.AttributeMethodCommands.ORMAttributeCreateCommand" 
+    project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/command/AttributeMethodCommands/ORMAttributeCreateCommand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="268" x="1236" y="-4"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

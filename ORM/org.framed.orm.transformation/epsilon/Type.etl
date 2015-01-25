@@ -1,0 +1,111 @@
+/**
+ * Parses the elements in the shape's first segment to attributes and adds them to the target element.
+ * 
+ * When parsing attribute strings, a valid format is assumed by the transformation!  
+ * A valid format conforms to the following schema for each attribute: '<name> : <type>'.
+ * 
+ * The name has to be a valid identifier, i.e. it starts with a letter and only contains letters and numbers.
+ * The type has to be another model element.  
+ */
+operation source!Shape addAttributes(n : target!Type) {	
+	var attributes = self.firstSegment;
+		
+	if(not (attributes == null) ) {
+		for(ele : source!NamedElement in attributes.elements) {
+			var attribute = new target!Attribute;
+			attribute.owner = n;
+			
+			var attString = ele.name.replaceAll(" +", "");
+			var tokens = attString.split(":");
+			var attName = tokens[0];
+			var attType = findTypeForName(tokens[1]);
+						
+			attribute.name = attName;
+			if (not (attType == null)) {
+				attribute.type = attType;
+			}
+			
+			n.attributes.add(attribute);
+		}
+	}
+}
+
+/**
+ * Parses the elements in the shape's second segment to operations and adds them to the target element.
+ * 
+ * When parsing operation strings, a valid format is assumed by the transformation!
+ * 
+ * A valid format conforms to the following schema: '<name> ( <parameters> ) : <type>'.
+ * Whitespace characters can occur in between. The name has to be a valid identifier, i.e. it starts with 
+ * a letter and only contains letters and numbers.
+ * The type has to be another model element. The parameters are a (probably empty) comma-separated list of 
+ * '<parameterName> : <parameterType>' pairs, where the name and type follow the same constraints as above. 
+ */
+operation source!Shape addOperations(n : target!Type) {
+	var operations = self.secondSegment;
+	
+	if (operations == null) {
+		return;
+	}
+	
+	for (ele : source!NamedElement in operations.elements) {
+		var tokens = ele.name.split("[\\(\\)]");
+		var opName = tokens[0].replaceAll(" +", "");
+		
+		// parse parameters if possible
+		var pars = null;
+		if(tokens.size()>1) {
+			pars = tokens[1];
+		}
+		
+		// parse return type if possible
+		var opType = null;
+		if(tokens.size()>2) {
+			opType = tokens[2].replaceAll("[ \\:]", "");
+		}
+		
+		var op = new target!Operation;
+		op.owner = n;
+		op.name = opName;
+							
+		if(not (opType == null)) {
+			var t = findTypeForName(opType);
+			if (not (t == null)) {
+				op.type = t;
+			}
+		}
+		
+		if (not (pars == null or pars.isEmpty())) {
+			for (param : String in pars.split(",")) {
+				var paramSpec = param.split(":"); 
+				var paramName = paramSpec[0].replaceAll(" +", "");
+				var paramType = paramSpec[1].replaceAll(" +", "");
+				
+				var parameter = new target!Parameter;
+				parameter.name = paramName;
+				
+				var pt = findTypeForName(paramType);			
+				if (not (pt == null)) {
+					parameter.type = pt;
+				}
+				op.params.add(parameter);					 
+			}
+		}
+		
+		n.operations.add(op);
+	}
+}
+
+/**
+ * Returns the equivalent Type to the given name, if any.
+ * 
+ * Searches the source model for a shape element with the given name and returns the equivalent target model element 
+ * if a shape of given name was found, or null otherwise.
+ */
+operation Any findTypeForName(str : String) : target!Type {
+	var shape = source!Shape.allInstances().select(s|s.name = str).first;
+	if (shape.isDefined()) {
+		return shape.equivalent();
+	}
+	return null;
+} 

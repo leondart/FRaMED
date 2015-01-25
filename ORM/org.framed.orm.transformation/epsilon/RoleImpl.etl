@@ -1,0 +1,10 @@
+
+rule RoleImpl
+	transform t : source!Relation
+	to n : target!RoleImplication {
+	
+	guard : t.getType.getValue == 4 // enum value RoleImplication
+	
+	n.first ::= t.source;
+	n.second ::= t.target;	
+}

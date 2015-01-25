@@ -1,12 +1,12 @@
 package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
-
 import org.framed.orm.model.OrmFactory;
-import org.framed.orm.model.RoleProhibition;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 
 /**
- * The ORMRoleProhibitionFactory creates a RoleProhibition relation object.
+ * The ORMRoleProhibitionFactory creates an {@link Relation} from type roleprohibition.
  * 
  * @author Kay Bierzynski
  * */
@@ -14,11 +14,14 @@ public class ORMRoleProhibitionFactory implements CreationFactory{
 
   @Override 
   public Object getNewObject() {
-    return OrmFactory.eINSTANCE.createRoleProhibition();
+    Relation relation = OrmFactory.eINSTANCE.createRelation();
+    relation.setName(null);
+    relation.setType(Type.ROLE_PROHIBITION);
+    return relation;
   }
 
   @Override 
   public Object getObjectType() {
-    return RoleProhibition.class;
+    return Type.ROLE_PROHIBITION;
   }
 }

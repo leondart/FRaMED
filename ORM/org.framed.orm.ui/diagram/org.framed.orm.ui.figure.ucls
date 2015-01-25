@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.figure.ORMRoleTypeFigure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMRoleTypeFigure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="152" width="258" x="449" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="org.framed.orm.ui.figure.PartFigure.PartFigureBorder" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/PartFigure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="116" width="212" x="749" y="710"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.figure.ShadowRoundedRectangle" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ShadowRoundedRectangle.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="224" width="320" x="151" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="org.framed.orm.ui.figure.ORMCompartmentV2Figure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMCompartmentV2Figure.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="206" width="231" x="789" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="org.framed.orm.ui.figure.PartFigure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/PartFigure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="120" x="749" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="org.framed.orm.ui.figure.ORMRolemodelFigure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMRolemodelFigure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="98" width="199" x="-27" y="-64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="org.framed.orm.ui.figure.ORMNaturalTypeFigure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMNaturalTypeFigure.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="258" x="1060" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="org.framed.orm.ui.figure.ORMGroupingV1Figure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMGroupingV1Figure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="258" x="-147" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="org.framed.orm.ui.figure.ORMRoleGroupFigure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMRoleGroupFigure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="224" width="258" x="332" y="-64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="org.framed.orm.ui.figure.ORMGroupingV2Figure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMGroupingV2Figure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="258" x="151" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="org.framed.orm.ui.figure.ORMCompartmentV1Figure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMCompartmentV1Figure.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="152" width="264" x="1358" y="200"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="org.framed.orm.ui.figure.ShadowRectangle" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ShadowRectangle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="188" width="320" x="1060" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="org.framed.orm.ui.figure.ORMTypeFigure" project="org.framed.orm.ui" 
+    file="/org.framed.orm.ui/src/org/framed/orm/ui/figure/ORMTypeFigure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="206" width="258" x="749" y="-64"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="14">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="15">    
+    <bendpoint x="758" y="200"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="16" name="methodFigure"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="19" name="rectangle"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="21">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="22">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="23" name="rectangle2"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <bendpoint x="737" y="200"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="26" name="attributeFigure"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="29">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="30" name="rectangle"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="32">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <association id="33">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="34" name="rectangle"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="37" name="rectangle"/>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="41" name="rectangle"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="44" name="rectangle"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

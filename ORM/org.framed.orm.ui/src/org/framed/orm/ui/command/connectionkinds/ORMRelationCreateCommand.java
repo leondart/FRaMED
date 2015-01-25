@@ -2,35 +2,43 @@ package org.framed.orm.ui.command.connectionkinds;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
+import org.framed.orm.geometry.GeometryFactory;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
-import org.framed.orm.model.Container;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 
 /**
- * Through this command all {@link Relation}s except the {@link RelationshipConstraint}s can be
- * created(invoked into the model tree). The {@link RelationshipConstraint}s need a extra command,
- * because for their creation the {@link Relationship}s to which they belong must be setted as well.
+ * Through this command all {@link Relation}s can be created(invoked into the model tree).
  * 
  * @author Kay Bierzynski
  * */
 public class ORMRelationCreateCommand extends Command {
 
-  /** The target/end {@link Node} of the {@link Relation} to be created. */
-  protected Node target;
-  /** The source/start {@link Node} of the {@link Relation} to be created. */
-  protected Node source;
+  /** The target/end {@link Shape} of the {@link Relation} to be created. */
+  protected Shape target;
+  /** The source/start {@link Shape} of the {@link Relation} to be created. */
+  protected Shape source;
+  /** The target label of the {@link Relation} to be created. */
+  private NamedElement targetLabel;
+  /** The source label of the {@link Relation} to be created. */
+  private NamedElement sourceLabel;
+  /** A list of refrences on other {@link Relation}s. */
+  protected ArrayList<Relation> refrencedRelations;
+
   /**
-   * The {@link Relation} to be created. The basis class of the {@link Relation} is given by a
+   * The {@link Relation} to be created. The basis type of the {@link Relation} is given by a
    * factory.
    */
   protected Relation relation;
-  /** The {@link Container} to which the {@link Relation} should be added. */
-  protected Container parent;
+  /** The {@link Model} to which the {@link Relation} should be added. */
+  protected Model parent;
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -38,6 +46,8 @@ public class ORMRelationCreateCommand extends Command {
    */
   public ORMRelationCreateCommand() {
     super.setLabel("ORMRelationCreate");
+    targetLabel = null;
+    sourceLabel = null;
   }
 
   /**
@@ -47,7 +57,32 @@ public class ORMRelationCreateCommand extends Command {
    */
   @Override
   public boolean canExecute() {
-    return target != null && source != null && relation != null && parent != null;
+
+    if (relation == null || target == null || parent == null || source == null) {
+      return false;
+    }
+
+    int val = relation.getType().getValue();
+
+    switch (val) {
+      case Type.RELATIONSHIP_VALUE:
+        return targetLabel != null && sourceLabel != null && refrencedRelations == null;
+      case Type.IRREFLEXIVE_VALUE:
+        return testRelationshipConstraint();
+      case Type.TOTAL_VALUE:
+        return testRelationshipConstraint();
+      case Type.CYCLIC_VALUE:
+        return testRelationshipConstraint();
+      default:
+        return targetLabel == null && sourceLabel == null && refrencedRelations == null;
+    }
+  }
+
+  private boolean testRelationshipConstraint() {
+    if (targetLabel == null && sourceLabel == null && refrencedRelations != null) {
+      return refrencedRelations.size() == 1;
+    }
+    return false;
   }
 
   /**
@@ -62,41 +97,51 @@ public class ORMRelationCreateCommand extends Command {
    */
   @Override
   public void execute() {
-
+    relation.setSourceLabel(sourceLabel);
+    relation.setTargetLabel(targetLabel);
+    if(refrencedRelations != null){
+      relation.getReferencedRelation().addAll(refrencedRelations);
+    }
     relation.setSource(source);
     relation.setTarget(target);
-    relation.setRelationContainer(parent);
+    relation.setContainer(parent);
+    
+    Rectangle sourcerec = createRectabgleFromFromBoundarieData(source);
 
     // when source and target of the {@link Relation} are equal, than call insertSelfLoopBPs()
-    // method, because to make the {@link Relation} visible/look good to the use we need to insert
+    // method, because to make the {@link Relation} visible/look good to the user we need to insert
     // three {@link Bendpoint}
     if (source.equals(target)) {
-      insertSelfLoopBPs();
+      insertSelfLoopBPs(sourcerec);
     }
+
 
     int relationCount = getRelationCount();
     if (relationCount > 1 && !source.equals(target)) {
-      Point ps = new Point(source.getConstraints().x(), source.getConstraints().y());
-      Point pt = new Point(target.getConstraints().x(), target.getConstraints().y());
+      Rectangle targetrec = createRectabgleFromFromBoundarieData(target);
+      Point ps = calculateCorrectPoint(sourcerec, targetrec.getLocation());
+      Point pt = calculateCorrectPoint(targetrec, sourcerec.getLocation());
       adaptRelationCreation(ps, pt, relationCount);
     }
   }
 
   /**
    * {@inheritDoc} This command is undone through removing the created {@link Relation} from the
-   * source, the {@link Container} and the target and through deleting all the {@link Bendpoint}s of
-   * the {@link Relation}.
+   * source, the {@link Model} and the target and through deleting all the {@link Bendpoint}s of the
+   * {@link Relation}.
    * 
    */
   @Override
   public void undo() {
-    relation.getSource().getOutgoingLinks().remove(relation);
+    relation.getSource().getOutgoingRelations().remove(relation);
     relation.setSource(null);
-    relation.getTarget().getIncomingLinks().remove(relation);
+    relation.getTarget().getIncomingRelations().remove(relation);
     relation.setTarget(null);
-    relation.setRelationContainer(null);
-    relation.getDim1BP().clear();
-    relation.getDim2BP().clear();
+    relation.setContainer(null);
+    relation.setSourceLabel(null);
+    relation.setTargetLabel(null);
+    relation.getBendpoints().clear();
+    relation.getReferencedRelation().clear();
   }
 
   /**
@@ -104,16 +149,16 @@ public class ORMRelationCreateCommand extends Command {
    * 
    * @return number of relations between source and target.
    * */
-  public int getRelationCount() {
+  protected int getRelationCount() {
     // get all relations which are come from the source and go to the target
     final ArrayList<Relation> relsIn = new ArrayList<Relation>();
-    relsIn.addAll(target.getIncomingLinks());
-    relsIn.retainAll(source.getOutgoingLinks());
+    relsIn.addAll(target.getIncomingRelations());
+    relsIn.retainAll(source.getOutgoingRelations());
 
     // get all relations which are come from the target and go to the source
     final ArrayList<Relation> rels = new ArrayList<Relation>();
-    rels.addAll(target.getOutgoingLinks());
-    rels.retainAll(source.getIncomingLinks());
+    rels.addAll(target.getOutgoingRelations());
+    rels.retainAll(source.getIncomingRelations());
 
     return rels.size() + relsIn.size();
   }
@@ -122,7 +167,7 @@ public class ORMRelationCreateCommand extends Command {
    * In this method a {@link Bendpoint} is added to the created {@link Relation}, when between
    * source and target more than one {@link Relation} exists.
    */
-  public void adaptRelationCreation(final Point ps, final Point pt, final int relationCount) {
+  protected void adaptRelationCreation(final Point ps, final Point pt, final int relationCount) {
 
     int relCount = relationCount;
 
@@ -132,8 +177,8 @@ public class ORMRelationCreateCommand extends Command {
     Dimension d2 = p.getDifference(pt);
 
     // put the dimension in points to prepare them for adding to the relation
-    Point dim1P = new Point(d1.width(), d1.height());
-    Point dim2P = new Point(d2.width(), d2.height());
+    Point dim1P = new Point(Math.abs(d1.width()), Math.abs(d1.height()));
+    Point dim2P = new Point(Math.abs(d2.width()), Math.abs(d2.height()));
 
     // calculate the x(width) and y(heigth) gaps between the dimensions for adjusting the bendpoint
     // position
@@ -146,6 +191,7 @@ public class ORMRelationCreateCommand extends Command {
     // else branch: every "first"(3,5,7..) relation gets a bendpoint, which lays beneath/rigth from
     // a realtion between source
     // and target that has no bendpoints
+
     if (relCount % 2 == 0) {
       relCount = relCount / 2;
       // test if the target/source is above/beneath the source/target
@@ -171,45 +217,100 @@ public class ORMRelationCreateCommand extends Command {
     }
 
     // add the bendpoint to the relaton
-    relation.getDim1BP().add(dim1P);
-    relation.getDim2BP().add(dim2P);
-
+    creatAndAddBenpoint(dim1P, dim2P, ps, pt);
 
   }
 
   /**
    * This method adds three {@link Bendpoint}s to relation and should only be called when the source
-   * equals the traget.
+   * equals the target.
    * */
-  public void insertSelfLoopBPs() {
-    final int width = source.getConstraints().width();
-    final int height = source.getConstraints().height();
+  private void insertSelfLoopBPs(Rectangle sourcerec) {
+    final int width = sourcerec.width();
+    final int height = sourcerec.height();
+    Point refSource = new Point(sourcerec.x(), sourcerec.y());
+
     // first bendpoint which lays beneaths the source/target
-    relation.getDim1BP().add(new Point(0, height / 2 + 30));
-    relation.getDim2BP().add(new Point(0, height / 2 + 30));
+    creatAndAddBenpoint(new Point(0, height + 30), new Point(0, height + 30), refSource, refSource);
     // second bendpoint which lays in the southeast from the source/target
-    relation.getDim1BP().add(new Point(width / 2 + 30, height / 2 + 30));
-    relation.getDim2BP().add(new Point(width / 2 + 30, height / 2 + 30));
+    creatAndAddBenpoint(new Point(width + 30, height + 30), new Point(width + 30, height + 30),
+        refSource, refSource);
     // third bendpoint which lays in the east from the source/target
-    relation.getDim1BP().add(new Point(width / 2 + 30, 0));
-    relation.getDim2BP().add(new Point(width / 2 + 30, 0));
+    creatAndAddBenpoint(new Point(width + 30, 0), new Point(width + 30, 0), refSource, refSource);
+  }
+
+  private void creatAndAddBenpoint(Point dim1P, Point dim2P, Point refSource, Point refTarget) {
+    org.framed.orm.geometry.Point p1 = GeometryFactory.eINSTANCE.createPoint();
+    p1.setX(dim1P.x());
+    p1.setY(dim1P.y());
+    org.framed.orm.geometry.Point p2 = GeometryFactory.eINSTANCE.createPoint();
+    p1.setX(dim2P.x());
+    p1.setY(dim2P.y());
+
+    org.framed.orm.geometry.Point ps = GeometryFactory.eINSTANCE.createPoint();
+    ps.setX(refSource.x());
+    ps.setY(refSource.y());
+    org.framed.orm.geometry.Point pt = GeometryFactory.eINSTANCE.createPoint();
+    pt.setX(refTarget.x());
+    pt.setY(refTarget.y());
+
+    org.framed.orm.geometry.RelativePoint relPoint =
+        GeometryFactory.eINSTANCE.createRelativePoint();
+    relPoint.getReferencePoints().add(ps);
+    relPoint.getReferencePoints().add(pt);
+    relPoint.getDistances().add(p1);
+    relPoint.getDistances().add(p2);
+    relation.getBendpoints().add(relPoint);
+  }
+
+  protected Point calculateCorrectPoint(Rectangle rec, Point locationOfOther){
+    switch(rec.getPosition(locationOfOther)){
+      case PositionConstants.NORTH:
+      return rec.getTop();
+      case PositionConstants.NORTH_EAST:
+        return rec.getTop();
+      case PositionConstants.NORTH_WEST:
+        return rec.getTop();
+      case PositionConstants.EAST:
+        return rec.getRight();
+      case PositionConstants.WEST:
+        return rec.getLeft();
+      case PositionConstants.SOUTH:
+        return rec.getBottom();
+      case PositionConstants.SOUTH_EAST:
+        return rec.getBottom();
+      case PositionConstants.SOUTH_WEST:
+        return rec.getBottom();
+        default:
+          return null;
+    }
+  }
+
+  protected Rectangle createRectabgleFromFromBoundarieData(Shape shape) {
+    Point ptbottomright =
+        new Point(shape.getBoundaries().getBottomRight().getX(), shape.getBoundaries()
+            .getBottomRight().getY());
+    Point pttopleft =
+        new Point(shape.getBoundaries().getTopLeft().getX(), shape.getBoundaries().getTopLeft()
+            .getY());
+    return new Rectangle(pttopleft, ptbottomright);
   }
 
   /**
    * Setter for the source of the {@link Relation}.
    * 
-   * @param source org.framed.orm.model.Node
+   * @param source org.framed.orm.model.Shape
    * */
-  public void setSourceNode(final Node source) {
+  public void setSource(final Shape source) {
     this.source = source;
   }
 
   /**
    * Setter for the target of the {@link Relation}.
    * 
-   * @param target org.framed.orm.model.Node
+   * @param target org.framed.orm.model.Shape
    * */
-  public void setTargetNode(final Node target) {
+  public void setTarget(final Shape target) {
     this.target = target;
   }
 
@@ -223,11 +324,23 @@ public class ORMRelationCreateCommand extends Command {
   }
 
   /**
-   * Setter for the {@link Container} to which {@link Relation} should be added.
+   * Setter for the {@linkModel} to which {@link Relation} should be added.
    * 
-   * @param relcon org.framed.orm.model.Container
+   * @param relcon org.framed.orm.model.Model
    * */
-  public void setRelationContainer(final Container relcon) {
+  public void setRelationContainer(final Model relcon) {
     this.parent = relcon;
+  }
+
+  public void setTargetLabel(NamedElement targetLabel) {
+    this.targetLabel = targetLabel;
+  }
+
+  public void setSourceLabel(NamedElement sourceLabel) {
+    this.sourceLabel = sourceLabel;
+  }
+
+  public void setRefrencedRelations(ArrayList<Relation> refrencedRelations) {
+    this.refrencedRelations = refrencedRelations;
   }
 }

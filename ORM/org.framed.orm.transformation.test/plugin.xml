@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated testmodel -->
+      <package
+            uri="http://org.framed/testmodel"
+            class="org.framed.orm.transformation.test.model.test.TestPackage"
+            genModel="model/testmodel.genmodel"/>
+   </extension>
+
+</plugin>

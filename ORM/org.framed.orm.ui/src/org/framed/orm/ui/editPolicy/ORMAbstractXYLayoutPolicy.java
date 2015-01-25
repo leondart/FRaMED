@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.framed.orm.ui.editPolicy;
 
 import java.util.List;
@@ -14,10 +11,11 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.swt.widgets.Display;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.Container;
-import org.framed.orm.model.RoleGroup;
+import org.framed.orm.geometry.GeometryFactory;
+import org.framed.orm.geometry.Point;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.ORMAddCommand;
 import org.framed.orm.ui.utilities.ORMTextUtilities;
 
@@ -29,24 +27,29 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
   static Dimension dynamicDimensions(Object obj) {
     Dimension d = new Dimension();
-    
+
     d.setWidth(200);
-    
-    if(obj == null) {
-      d.setHeight(ORMTextUtilities.charHeight(null) * 10);   //charHeight * 10: title + 3 attributes + 3 methods + 3 dots
+
+    if (obj == null) {
+      d.setHeight(ORMTextUtilities.charHeight(null) * 10); // charHeight * 10: title + 3 attributes
+                                                           // + 3 methods + 3 dots
       return d;
     }
+
+
+      if (obj.equals(Type.ROLE_GROUP)) {
+        // offset + title + role height
+        d.setHeight(2 * ORMTextUtilities.charHeight(null) + dynamicDimensions(null).height());
+        d.setWidth(250);
+      } else {
+        // charHeight * 10: title + 3 attributes + 3 methods + 3 dots
+        d.setHeight(ORMTextUtilities.charHeight(null) * 10);
+      }
     
-    if(obj.equals(RoleGroup.class)) {
-      d.setHeight(2 * ORMTextUtilities.charHeight(null) + dynamicDimensions(null).height());   //offset + title + role height
-      d.setWidth(250);
-    }else {
-      d.setHeight(ORMTextUtilities.charHeight(null) * 10);   //charHeight * 10: title + 3 attributes + 3 methods + 3 dots
-    }
-    
+
     return d;
   }
-  
+
   @Override
   protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
     CompoundCommand result = new CompoundCommand();
@@ -55,15 +58,21 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
     Rectangle r = (Rectangle) constraint;
 
     for (AbstractGraphicalEditPart part : parts) {
-      Rectangle newConstraint = r;
+      Rectangle newBoundarie = r;
       ORMAddCommand addCommand = new ORMAddCommand();
-      addCommand.setParent((Container) getHost().getModel());
-      addCommand.setChild((Node) part.getModel());
-      if (part.getModel() instanceof Node) {
-        Node n = (Node) part.getModel();
-        newConstraint = new Rectangle(r.getLocation(), n.getConstraints().getSize());
+      addCommand.setParent((Model) getHost().getModel());
+      addCommand.setChild((Shape) part.getModel());
+      if (part.getModel() instanceof Shape) {
+        Shape n = (Shape) part.getModel();
+        
+        org.framed.orm.geometry.Rectangle rec = n.getBoundaries();
+        int width = Math.abs(rec.getTopLeft().getX() - rec.getBottomRight().getX());
+        int heigth =   Math.abs( rec.getTopLeft().getY() - rec.getBottomRight().getY());
+        Dimension dim = new Dimension(width, heigth);
+        
+        newBoundarie = new Rectangle(r.getLocation(), dim);
       }
-      addCommand.setConstraint(newConstraint);
+      addCommand.setBoundaries(createModelReactangle(newBoundarie));
       addCommand.setLabel("Adding");
       addCommand.setDebugLabel("Adding");
 
@@ -90,5 +99,21 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
   protected Command getCloneCommand(ChangeBoundsRequest request) {
     // TODO Auto-generated method stub
     return super.getCloneCommand(request);
+  }
+  
+  protected org.framed.orm.geometry.Rectangle createModelReactangle(final Rectangle boundarie) {
+    org.framed.orm.geometry.Rectangle rec = GeometryFactory.eINSTANCE.createRectangle();
+
+    Point bottomRight = GeometryFactory.eINSTANCE.createPoint();
+    Point topLeft = GeometryFactory.eINSTANCE.createPoint();
+
+    bottomRight.setX(boundarie.getBottomRight().x());
+    bottomRight.setY(boundarie.getBottomRight().y());
+    topLeft.setX(boundarie.getTopLeft().x());
+    topLeft.setY(boundarie.getTopLeft().y());
+
+    rec.setBottomRight(bottomRight);
+    rec.setTopLeft(topLeft);
+    return rec;
   }
 }

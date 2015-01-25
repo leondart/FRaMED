@@ -4,47 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.Bendpoint;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Node;
-import org.framed.orm.model.Container;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.geometry.GeometryFactory;
+import org.framed.orm.geometry.RelativePoint;
+import org.framed.orm.model.Model;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
- * Through this command {@link RelationshipConstraint}s can be deleted(removed from the model tree).
+ * Through this command {@link Relation}s from type total, cyclic and irreflexive can be
+ * deleted(removed from the model tree).
  * 
  * @author Kay Bierzynski
  * */
 public class ORMRelationshipConstraintDeleteCommand extends Command {
 
-  /** The {@link RelationshipConstraint} to be removed. */
-  private RelationshipConstraint relation;
-  /** The {@link Container} from which the {@link RelationshipConstraint} should be removed. */
-  private Container parent;
-  /** The source/start {@link Node} of the {@link RelationshipConstraint} to be created. */
-  private Node source;
-  /** The source/start {@link Node} of the {@link RelationshipConstraint} to be created. */
-  private Node target;
-  /** The {@link Relationship} to which the {@link RelationshipConstraint} belongs to. */
-  private Relationship relationship;
+  /** The {@link Relation} from type total, cyclic or irreflexive to be removed. */
+  private Relation relation;
   /**
-   * The {@link EditPartViewer}, which is need to activiate the next {@link RelationshipConstraint}
-   * to make it's line visible after this {@link RelationshipConstraint} is deleted.
+   * The {@link Model} from which the {@link Relation} from type total, cyclic or irreflexive should
+   * be removed.
+   */
+  private Model parent;
+  /**
+   * The source/start {@link Shape} of the {@link Relation} from type total, cyclic or irreflexive
+   * to be created.
+   */
+  private Shape source;
+  /**
+   * The source/start {@link Shape} of the {@link Relation} from type total, cyclic or irreflexive
+   * to be created.
+   */
+  private Shape target;
+  /**
+   * The Relation from type relationship to which the {@link Relation} from type total, cyclic or
+   * irreflexive belongs to.
+   */
+  private Relation relationship;
+  /**
+   * The {@link EditPartViewer}, which is need to activiate the next {@link Relation} from type
+   * total, cyclic or irreflexive to make it's line visible after this relationship constraint is
+   * deleted.
    */
   private EditPartViewer epViewer;
   /**
-   * A list, which stores the first part of the {@link Bendpoint}s positions for the case that the
-   * user wants to undone this command.
+   * A list, which stores the {@link Bendpoint}s positions for the case that the user wants to
+   * undone this command.
    */
-  private ArrayList<Point> dim1BPList = new ArrayList<Point>();
-  /**
-   * A list, which stores the second part of the {@link Bendpoint}s positions for the case that the
-   * user wants to undone this command.
-   */
-  private ArrayList<Point> dim2BPList = new ArrayList<Point>();
+  private ArrayList<RelativePoint> bendpointList = new ArrayList<RelativePoint>();
 
   /**
    * This method tests if the conditions for executing this command are fulfilled,
@@ -57,38 +66,38 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * {@inheritDoc} In this method all the attributes of the {@link RelationshipConstraint} to be
-   * removed are stored in variables in case that the user wants to undone this command. After this
-   * part the {@link RelationshipConstraint} is removed from the source, the {@link Container}, the
-   * {@link Relationship} and the target and all of it's {@link Bendpoint}s are deleted. At the end
-   * of the method all the remaining {@link RelationshipConstraint} of the {@link Relationship} are
-   * gathered in a list and the {@link ORMRelationshipConstraintEditPart} of every
-   * {@link RelationshipConstraint} in the list is refreshed. The refreshing makes the line of the
-   * next {@link RelationshipConstraint} visible.
+   * {@inheritDoc} In this method all the attributes of the {@link Relation} from type total, cyclic
+   * or irreflexive to be removed are stored in variables in case that the user wants to undone this
+   * command. After this part the relationship constraint is removed from the source, the
+   * {@link Model}, the {@link Relation} from type relationship and the target and all of it's
+   * {@link Bendpoint}s are deleted. At the end of the method all the remaining relationship
+   * constraint of the relationship are gathered in a list and the
+   * {@link ORMRelationshipConstraintEditPart} of every relationship constraint in the list is
+   * refreshed. The refreshing makes the line of the next relationship constraint visible.
    */
   @Override
   public void execute() {
 
-    parent = relation.getRelationContainer();
-    source = relation.getSource();
-    target = relation.getTarget();
-    relationship = relation.getRelation();
-    dim1BPList.addAll(relation.getDim1BP());
-    dim2BPList.addAll(relation.getDim2BP());
+    parent = relation.getContainer();
+    source = (Shape) relation.getSource();
+    target = (Shape) relation.getTarget();
+    relationship = relation.getReferencedRelation().get(0);
+    relationship.getReferencedRelation().remove(relation);
+    bendpointList.addAll(relation.getBendpoints());
+
 
     relation.setSource(null);
     relation.setTarget(null);
-    relation.setRelationContainer(null);
-    relation.setRelation(null);
-    relation.getDim1BP().clear();
-    relation.getDim2BP().clear();
+    relation.setContainer(null);
+    relation.getReferencedRelation().clear();
+    relation.getBendpoints().clear();
 
-    final List<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
 
-    relCList.addAll(relationship.getRlshipConstraints());
-    // relCList.remove(relation);
+    final List<Relation> relCList = new ArrayList<Relation>();
 
-    for (final RelationshipConstraint relC : relCList) {
+    relCList.addAll(relationship.getReferencedRelation());
+
+    for (final Relation relC : relCList) {
       ORMRelationshipConstraintEditPart editPart =
           (ORMRelationshipConstraintEditPart) epViewer.getEditPartRegistry().get(relC);
       editPart.getLabel().setText("");
@@ -98,41 +107,68 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * {@inheritDoc} This command is undone through the recreation/ invoking of the
-   * {@link RelationshipConstraint} into the model tree through setting it's attributes. When
-   * another {@link RelationshipConstraint} exists between source and target the
-   * {@link RelationshipConstraint}, which is readded, get it's {@link Bendpoint}s from their.
+   * {@inheritDoc} This command is undone through the recreation/ invoking of the {@link Relation}
+   * from type total, cyclic or irreflexive into the model tree through setting it's attributes.
+   * When another relationship constraint exists between source and target the relationship
+   * constraint, which is readded, get it's {@link Bendpoint}s from their.
    */
   @Override
   public void undo() {
     relation.setSource(source);
     relation.setTarget(target);
-    relation.setRelationContainer(parent);
-    relation.setRelation(relationship);
+    relation.setContainer(parent);
+    relation.getReferencedRelation().add(relationship);
+    relationship.getReferencedRelation().add(relation);
+    
+    if (relationship.getReferencedRelation().size() != 0
+        && relationship.getReferencedRelation().get(0).getBendpoints().size() != 0) {
+      Relation rel = relationship.getReferencedRelation().get(0);
+      // RelativePoints cannot be shared between rleations so we must create a relativepoint with
+      // same data
+      for (RelativePoint relP : rel.getBendpoints()) {
+        RelativePoint newRelP = GeometryFactory.eINSTANCE.createRelativePoint();
 
-    if (relationship.getRlshipConstraints().size() != 0
-        && relationship.getRlshipConstraints().get(0).getDim1BP().size() != 0) {
-      relation.getDim1BP().addAll(relationship.getRlshipConstraints().get(0).getDim1BP());
-      relation.getDim2BP().addAll(relationship.getRlshipConstraints().get(0).getDim2BP());
+        org.framed.orm.geometry.Point sourceDis = GeometryFactory.eINSTANCE.createPoint();
+        sourceDis.setX(relP.getDistances().get(0).getX());
+        sourceDis.setY(relP.getDistances().get(0).getY());
+        newRelP.getDistances().add(sourceDis);
+
+        org.framed.orm.geometry.Point targetDis = GeometryFactory.eINSTANCE.createPoint();
+        targetDis.setX(relP.getDistances().get(1).getX());
+        targetDis.setY(relP.getDistances().get(1).getY());
+        newRelP.getDistances().add(targetDis);
+
+        org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
+        sourceRef.setX(relP.getReferencePoints().get(0).getX());
+        sourceRef.setY(relP.getReferencePoints().get(0).getY());
+        newRelP.getReferencePoints().add(sourceRef);
+
+        org.framed.orm.geometry.Point targetRef = GeometryFactory.eINSTANCE.createPoint();
+        targetRef.setX(relP.getReferencePoints().get(1).getX());
+        targetRef.setY(relP.getReferencePoints().get(1).getY());
+        newRelP.getReferencePoints().add(targetRef);
+
+        relation.getBendpoints().add(newRelP);
+      }
     } else {
-      relation.getDim1BP().addAll(dim1BPList);
-      relation.getDim2BP().addAll(dim2BPList);
+      relation.getBendpoints().addAll(bendpointList);
     }
   }
 
   /**
-   * Setter for the {@link RelationshipConstraint}, which is deleted/removed in this command.
+   * Setter for the {@link Relation} from type total, cyclic or irreflexive, which is
+   * deleted/removed in this command.
    * 
-   * @param relation org.framed.orm.model.RelationConstraint
+   * @param relation org.framed.orm.model.Relation
    * */
-  public void setRelationshipConstraint(final RelationshipConstraint relaiton) {
-    relation = relaiton;
+  public void setRelation(final Relation relation) {
+    this.relation = relation;
   }
 
   /**
-   * Setter for the {@link EditPartViewer}, which is need to activiate the next
-   * {@link RelationshipConstraint} to make it's line visible after this
-   * {@link RelationshipConstraint} is deleted..
+   * Setter for the {@link EditPartViewer}, which is need to activiate the next {@link Relation}
+   * from type total, cyclic or irreflexive to make it's line visible after this he {@link Relation}
+   * from type total, cyclic or irreflexive is deleted.
    * 
    * @param epViewer org.eclipse.gef.EditPartViewer
    * */

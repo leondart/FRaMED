@@ -1,18 +1,18 @@
 package org.framed.orm.ui.command.connectionkinds;
 
 import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CommandStack;
-import org.framed.orm.model.RelationshipConstraint;
+import org.framed.orm.model.Relation;
 import org.framed.orm.ui.action.RelationshipConstraintsAction;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 
 /**
  * Through this command the {@link RelationshipConstraintsAction} is called. This command is called,
- * when the user selects the figure of a {@link RelationshipConstraint} and the clicks on the delete
- * button.(red X in the actionbar)
+ * when the user selects the figure of a {@link Relation} from type total, cyclic or irreflexive and
+ * the clicks on the delete button.(red X in the actionbar)
  * 
  * @author Kay Bierzynski
  * */
@@ -21,10 +21,10 @@ public class CallRelationshipConstraintsActionCommand extends Command {
   /** The {@link RelationshipConstraintsAction}, which called/invoked through this command. */
   private RelationshipConstraintsAction action;
   /**
-   * The {@link ORMRelationshipConstraintEditPart} of the {@link RelationshipConstraint}, which the
-   * user has selected.
+   * The {@link EditPart} of the {@link Relation} from the type total, cyclic or irreflexive, which
+   * the user has selected.
    */
-  private ORMRelationshipConstraintEditPart editPart;
+  private EditPart editPart;
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -65,9 +65,9 @@ public class CallRelationshipConstraintsActionCommand extends Command {
   }
 
   /**
-   * {@inheritDoc} This command is unone through calling
+   * {@inheritDoc} This command is undone through calling
    * {@link RelationshipConstraintsAction#actionUndo()}. The action must undo itself, because a
-   * command has in the normal case no acesses to the {@link CommandStack}.
+   * command has in the normal case no accesses to the {@link CommandStack}.
    */
   @Override
   public void undo() {
@@ -78,7 +78,7 @@ public class CallRelationshipConstraintsActionCommand extends Command {
   /**
    * {@inheritDoc} This command is redone through calling
    * {@link RelationshipConstraintsAction#actionRedo()}. The action must redo itself, because a
-   * command has in the normal case no acesses to the {@link CommandStack}.
+   * command has in the normal case no accesses to the {@link CommandStack}.
    */
   @Override
   public void redo() {
@@ -86,12 +86,12 @@ public class CallRelationshipConstraintsActionCommand extends Command {
   }
 
   /**
-   * Setter of the {@link ORMRelationshipConstraintEditPart}, which the user has selected for
+   * Setter of the {@link EditPart}, which the user has selected for
    * deletion.
    * 
-   * @param editpart org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart
+   * @param editpart org.eclipse.gef.EditPart
    */
-  public void setEditPart(final ORMRelationshipConstraintEditPart editPart) {
+  public void setEditPart(final EditPart editPart) {
     this.editPart = editPart;
   }
 

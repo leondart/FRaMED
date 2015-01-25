@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.7" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="org.framed.orm.ui.tests.swtbot.FramedComponentsOrmTests" 
+    project="org.framed.orm.ui.tests" 
+    file="/org.framed.orm.ui.tests/src/org/framed/orm/ui/tests/swtbot/FramedComponentsOrmTests.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="98" width="229" x="-151" y="308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" 
+    name="org.framed.orm.ui.tests.swtbot.FramedComponentsAbstractTests.NodeAvailableAndSelect" 
+    project="org.framed.orm.ui.tests" 
+    file="/org.framed.orm.ui.tests/src/org/framed/orm/ui/tests/swtbot/FramedComponentsAbstractTests.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="170" width="310" x="118" y="308"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="org.framed.orm.ui.tests.swtbot.FramedComponentsAbstractTests" 
+    project="org.framed.orm.ui.tests" 
+    file="/org.framed.orm.ui.tests/src/org/framed/orm/ui/tests/swtbot/FramedComponentsAbstractTests.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="278" width="420" x="-16" y="-10"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="4">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <nesting id="5">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

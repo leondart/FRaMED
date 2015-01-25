@@ -1,0 +1,22 @@
+operation parseCardinality(card : String) : Sequence(Integer) { 
+		var result = new Sequence(Integer);
+		
+		if(card.matches(".*\\(.*\\).*")) {
+			card = card.substring(card.indexOf("(") + 1, card.indexOf(")"));
+		}
+		
+		if (card.matches("[0-9]+\\.\\.[0-9]+")) {
+			var cards = card.split("\\.\\.");
+			result.add(new Native("java.lang.Integer")(cards[0]));
+			result.add(new Native("java.lang.Integer")(cards[1]));
+		} else if (card.matches("[0-9]+\\.\\.\\*")) {
+			var cards = card.split("\\.\\.");
+			result.add(new Native("java.lang.Integer")(cards[0]));
+		} else if (card.matches("[0-9]+")) {
+			var x = new Native("java.lang.Integer")(card);
+			result.add(x);
+			result.add(x);
+		}
+
+		return result;
+}

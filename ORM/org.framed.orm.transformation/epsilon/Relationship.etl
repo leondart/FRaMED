@@ -1,0 +1,77 @@
+/**
+ * Transforms a relation with type INHERITANCE.
+ */
+rule Relationship
+	transform s : source!Relation
+	to t : target!Relationship {
+
+	guard : s.getType.getValue == 7 // enum value RELATIONSHIP
+	
+	t.name = s.name;
+	
+	if(s.sourceLabel.isDefined()) {
+		var card = s.sourceLabel.name;
+		var place = getCardinality(card);
+		if(not(place==null)) {
+			t.first = place;
+		}
+	}
+	
+	if(s.targetLabel.isDefined()) {
+		var card = s.targetLabel.name;
+		var place = getCardinality(card);
+		if(not(place==null)) {
+			t.second = place;
+		}
+	}
+	
+	//t.first - place from label
+	//t.second - place from label
+	
+	s.getSource.equivalent().getOutgoing.add(t);
+	s.getTarget.equivalent().getIncoming.add(t);
+
+	for (r : source!Relation in s.referencedRelation) {
+		var referenced = r.equivalent();
+		referenced.setRelation(t);
+	}
+}
+
+operation getCardinality(card : String) : target!Place {
+	if(card.isDefined()) {
+		var cards = parseCardinality(card);
+		if(cards.size() > 0) {
+			var place = new target!Place;
+			place.lower = cards[0];
+			if(cards.size()>1) {
+				place.upper = cards[1];
+			}
+			return place;
+		}
+	}
+	return null;
+}
+
+rule TotalRelation
+	transform s : source!Relation
+	to t : target!Total {
+	
+	guard : s.getType.getValue == 8 
+	
+}
+
+rule CyclicRelation
+	transform s : source!Relation
+	to t : target!Cyclic {
+	
+	guard : s.getType.getValue == 9 
+	
+}  
+
+rule IrreflexiveRelation
+	transform s : source!Relation
+	to t : target!Irreflexive {
+	
+	guard : s.getType.getValue == 10 
+	
+} 

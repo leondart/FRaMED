@@ -1,25 +1,28 @@
 package org.framed.orm.ui.factory;
 
 import org.eclipse.gef.requests.CreationFactory;
-
 import org.framed.orm.model.OrmFactory;
-import org.framed.orm.model.Total;
+import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 
 /**
- * The ORMTotalFactory creates a Total relationship object.
+ * The ORMTotalFactory creates an {@link Relation} from type total.
  * 
  * @author Kay Bierzynski
  * */
 public class ORMTotalFactory implements CreationFactory {
 
-  @Override 
-  public Object getNewObject() {		
-    return OrmFactory.eINSTANCE.createTotal();
+  @Override
+  public Object getNewObject() {
+    Relation relation = OrmFactory.eINSTANCE.createRelation();
+    relation.setName("total");
+    relation.setType(Type.TOTAL);
+    return relation;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
-    return Total.class;
+    return Type.TOTAL;
   }
 
 }

@@ -3,41 +3,26 @@ package org.framed.orm.ui.editPart.connectionkinds;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.swt.SWT;
-import org.framed.orm.model.RelationLabel;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.ui.editPart.ORMRelationLabelEditPart;
+import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Relation;
+import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 
 /**
- * This {@link EditPart} is the controller for the model element {@link Relationship}.
+ * This {@link EditPart} is the controller for {@link Relation}s from type relatinship.
  * 
  * @author Kay Bierzynski (initial development)
  * @author Lars Schuetze (refactoring)
+ * @author David Gollasch (changes due to a new model)
  **/
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
-   * {@inheritDoc} {@link Relationship}s have as figure a drawn through line with two {@link Label}s
-   * at both ends. The {@link Label} are added through childre model elements(the
-   * {@link RelationLabel}s.
-   */
-  @Override
-  protected IFigure createFigure() {
-    PolylineConnection connection = new PolylineConnection();
-    connection.setAntialias(SWT.ON);
-    connection.setConnectionRouter(new BendpointConnectionRouter());
-
-    return connection;
-  }
-
-  /**
-   * This method returns a {@link ConnectionEndpointLocator} for this {@link Relationship}.
+   * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
+   * relationship.
    * 
    * @return locator org.eclipse.draw2d.ConnectionEndpointLocator
    * */
@@ -50,24 +35,24 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /** {@inheritDoc} */
   @Override
-  protected List getModelChildren() {
-    List<RelationLabel> children = new ArrayList<>(2);
+  protected List<NamedElement> getModelChildren() {
+    List<NamedElement> children = new ArrayList<>(2);
     children.add(getRelationship().getTargetLabel());
     children.add(getRelationship().getSourceLabel());
     return children;
   }
 
   /**
-   * A getter for the model element {@link Relationship}. 
+   * A getter for the model element {@link Relation} from type relationship.
    * 
    * @return ({@link Relationship}) getModel()
    * */
-  protected Relationship getRelationship() {
-    return (Relationship) getModel();
+  protected Relation getRelationship() {
+    return (Relation) getModel();
   }
 
   /**
-   * A getter for the model element {@link Relationship} figure. 
+   * A getter for the relationship figure.
    * 
    * @return ({@link PolylineConnection}) getFigure()
    * */
@@ -75,13 +60,21 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     return (PolylineConnection) getFigure();
   }
 
-  /** {@inheritDoc} In case the figures of {@link RelationLabel}s.*/
+  /**
+   * {@inheritDoc} In case the figures of targetLabel and sourceLabel which are {@link NamedElement}
+   * s.
+   */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
-    if (childEditPart instanceof ORMRelationLabelEditPart) {
-      ORMRelationLabelEditPart labelEditPart = (ORMRelationLabelEditPart) childEditPart;
-      getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
-          getConnectionLocator(getRelationFigure(), labelEditPart.isRelationEnd()));
+    if (childEditPart instanceof  ORMNamedElementEditPart) {
+      ORMNamedElementEditPart labelEditPart = (ORMNamedElementEditPart) childEditPart;
+      if (labelEditPart.getModel().equals(getRelationship().getSourceLabel())) {
+        getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
+            getConnectionLocator(getRelationFigure(), false));
+      } else {
+        getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
+            getConnectionLocator(getRelationFigure(), true));
+      }
     }
     super.addChildVisual(childEditPart, index);
   }

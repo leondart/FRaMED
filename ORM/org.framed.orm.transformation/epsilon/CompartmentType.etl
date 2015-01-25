@@ -1,0 +1,78 @@
+import "Type.etl";
+import "CardinalityParser.eol";
+
+pre CompartmentType {
+	var compartmentTypes : OrderedSet(source!Shape);
+}
+
+/**
+ * Transforms a shape with type COMPARTMENT_TYPE.
+ */
+rule CompartmentType
+	transform t : source!Shape
+	to n : target!CompartmentType {
+
+	guard : t.getType.getValue == 0 // enum value COMPARTMENT_TYPE
+
+	n.name = t.name;
+
+	compartmentTypes.add(t);
+	
+	// iterate over all children of the compartment type
+	var children = t.getModel();
+	if (not (children == null)) {	
+		for (elem : source!ModelElement in children.elements) {
+			
+			var e = elem.equivalent();
+			if (e == null) { continue; }
+			if ( e.instanceOf(target!AbstractRole)) { 			// ROLE
+				// create a new part with the role
+				var part = new target!Part;
+				part.role = e;
+				part.whole = n;
+				
+				// parse the lower and upper bound from the role
+				var desc = elem.description;
+				if (not (desc == null)) {
+					var card = desc.name;
+					var cards = parseCardinality(card);
+					
+					if(cards.size()>0) {
+						part.lower = cards[0];
+						if(cards.size()>1) {
+							part.upper = cards[1];
+						}				
+					}	
+				}
+				
+				
+				// add the new part to the compartment
+				n.getParts().add(part);
+			} else if ( e.instanceOf(target!Constraint)) {		// CONSTRAINT
+				n.getConstraints().add(e);
+			} else if ( e.instanceOf(target!Relationship)) {	// RELATIONSHIP
+				n.getRelationships().add(e);
+			}		
+		}
+	}
+	
+}
+
+/**
+ * Add operations and attributes in the post processing step.
+ *
+ * This separation is necessary as the type references in attributes and operations may form cycles between
+ * types/shapes. The post block ensures that these cycles can be resolved.
+ */
+post CompartmentType {
+	for (t : source!Shape in compartmentTypes) {
+		var n = t.equivalent();
+
+		if (not n.isDefined() or not t.isDefined()) {
+			continue;
+		}
+
+		t.addAttributes(n);
+		t.addOperations(n);
+	}
+}

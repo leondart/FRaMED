@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="&#xA;&#x9;&#x9;Test to ensure operations can be transformed basically&#xA;&#x9;"
+    description="&#xA;&#x9;&#x9;This test checks if two operations with parameters with some crazy syntax can be converted.&#xA;&#x9;">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType1"
+        type="NaturalType">
+      <firstSegment/>
+      <secondSegment>
+        <elements
+            name="operation1(para1:NaturalType1):       NaturalType2"/>
+        <elements
+            name="operation2(para1       : NaturalType1, para2:NaturalType2) :NaturalType1"/>
+      </secondSegment>
+    </elements>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType2"
+        type="NaturalType"/>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType1">
+      <operations
+          name="operation1"
+          type="//@cromModel/@elements.1"
+          operation="">
+        <params
+            name="para1"
+            type="//@cromModel/@elements.0"/>
+      </operations>
+      <operations
+          name="operation2"
+          type="//@cromModel/@elements.0"
+          operation="">
+        <params
+            name="para1"
+            type="//@cromModel/@elements.0"/>
+        <params
+            name="para2"
+            type="//@cromModel/@elements.1"/>
+      </operations>
+    </elements>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType2"/>
+  </cromModel>
+</ts:TestCase>

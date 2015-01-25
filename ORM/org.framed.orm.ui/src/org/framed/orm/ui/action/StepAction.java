@@ -6,10 +6,9 @@ import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.ui.actions.SaveAction;
 import org.eclipse.gef.ui.actions.SelectionAction;
 import org.eclipse.ui.IWorkbenchPart;
-import org.framed.orm.model.Compartment;
-import org.framed.orm.model.Grouping;
-import org.framed.orm.ui.editPart.ORMGroupingEditPart;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
+import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
@@ -28,7 +27,10 @@ public class StepAction extends SelectionAction {
 
   /** Variable for the request which is send to the editpart for executing the stepin/out. */
   private Request request;
-  /** The editpart of the {@link Compartment} or the {@link Grouping} in/out which we want to step. */
+  /**
+   * The editpart of the {@link Shape} from type compartmentype and group in/out which we want to
+   * step.
+   */
   private AbstractGraphicalEditPart editPart;
 
   /**
@@ -72,18 +74,21 @@ public class StepAction extends SelectionAction {
   /**
    * {@inheritDoc}
    * <p>
-   * The action is enabled if the selected entity on the editor is a {@link ORMCompartmentEditPart}
-   * or a {@link ORMGroupingEditPart} instance and the method testEnabled() returns true.
+   * The action is enabled if the selected entity on the editor is a {@link ORMShapeEditPart}
+   * instance , where the Shape is from type compartmenttype or group, and the method testEnabled()
+   * returns true.
    * </p>
    */
   @Override
   protected boolean calculateEnabled() {
     if (getSelectedObjects().isEmpty() || getSelectedObjects().size() > 1) {
       return false;
-    } else if (getSelectedObjects().get(0) instanceof ORMCompartmentEditPart
-        || getSelectedObjects().get(0) instanceof ORMGroupingEditPart) {
+    } else if (getSelectedObjects().get(0) instanceof ORMSuperShapeEditPart) {
       editPart = (AbstractGraphicalEditPart) getSelectedObjects().get(0);
-      return testEnabled(getId());
+      if (((Shape) editPart.getModel()).getType().equals(Type.COMPARTMENT_TYPE)
+          || ((Shape) editPart.getModel()).getType().equals(Type.GROUP)) {
+        return testEnabled(getId());
+      }
     }
     return false;
   }
@@ -118,3 +123,4 @@ public class StepAction extends SelectionAction {
   }
 
 }
+

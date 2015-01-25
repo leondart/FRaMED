@@ -3,36 +3,29 @@ package org.framed.orm.ui.editPart.connectionkinds;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.BendpointConnectionRouter;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.MidpointLocator;
-import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.EditPart;
-import org.eclipse.swt.SWT;
-import org.framed.orm.model.Relationship;
-import org.framed.orm.model.RelationshipConstraint;
-import org.framed.orm.ui.editPart.types.ORMCompartmentEditPart;
+import org.framed.orm.model.Relation;
 
 /**
- * This {@link EditPart} is the super/parent {@link EditPart} also super/parent controller of all
- * {@link RelationshipConstraint}s and is needed, because all {@link RelationshipConstraint}s of a
- * {@link Relationship} need to be unified in a single figure and when the user deletes/adds a
- * {@link RelationshipConstraint} than the figure mus be updated.
+ * This {@link EditPart} is the super/parent {@link EditPart} respectively super/parent controller
+ * of all {@link Relation}s from type cyclic, total and irreflexive (aka relationshipConstraint) and
+ * is required as all relationshipConstraints of a {@link Relation} from type relationship need to
+ * be unified in a single figure. Furthermore, in case the user deletes/adds a
+ * relationshipConstraint, the figure has to be updated.
  * 
  * @author Kay Bierzynski
  * */
 public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
 
   /**
-   * A {@link Label}, which contains all the {@link RelationshipConstraint}s names of a single
-   * {@link Relationship}.
+   * A {@link Label}, which contains all the {@link Relation}s names of the relations from type
+   * cyclic, total and irreflexive of a single {@link Relation} from type relationship.
    */
   private Label label = new Label();
   /**
-   * A string, which contains the intital text of a {@link RelationshipConstraint} without unfiy it
-   * with other {@link RelationshipConstraint}s.
+   * A string, which contains the initial text of a {@link Relation} from cyclic, total or
+   * irreflexive without unifying it with other relationshipConstraints.
    */
   private String textInitial;
 
@@ -54,58 +47,39 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
   }
 
   /**
-   * This method creates and returns the {@link RelationshipConstraint} figure, which differs from
-   * {@link RelationshipConstraint} to {@link RelationshipConstraint} only in the text of the
-   * {@link Label}. A {@link RelationshipConstraint} figure is dashed line with a {@link Label}.
+   * A setter for the initial text of a {@link Relation} from cyclic, total or irreflexive without
+   * unifying it with other relationshipConstraints.
    * 
-   * @return conn org.eclipse.draw2d.PolylineConnection
+   * @param initial {@link String}
    * */
-  public IFigure creatRelationshipConstraint(final String text) {
-
-    label.setText(text);
-    textInitial = text;
-
-    PolylineConnection conn = new PolylineConnection();
-    conn.setAntialias(SWT.ON);
-    conn.setLineDash(new float[] {5.0f, 5.0f});
-    conn.setLineStyle(SWT.LINE_CUSTOM);;
-    conn.setConnectionRouter(new BendpointConnectionRouter());
-
-    // add label to the connection
-    // TODO: change calculation/refresh so that label is always in the mid of the connection
-    MidpointLocator midL = new MidpointLocator(conn, 0);
-    midL.setGap(5);
-    midL.setRelativePosition(PositionConstants.SOUTH);
-    // this is needed, because when the label would be just added the label text could be seen in
-    // the
-    // compartmentdiagram
-    if (getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      conn.add(label, midL);
-    }
-    return conn;
+  public void setTextInitial(String initial) {
+    textInitial = initial;
   }
+
+
 
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} calls
-   * {@link ORMRelationEditPart#refreshVisuals()}, "unifies the {@link RelationshipConstraint}
-   * figures" of a single {@link Relationship}" and sets the visibilitie of the
-   * {@link RelationshipConstraint} figure. The unifying of the {@link RelationshipConstraint}
-   * figures is done through combining the text/name of all the {@link RelationshipConstraint}s in
-   * the {@link Label} of the {@link RelationshipConstraint} figure of the first
-   * {@link RelationshipConstraint}, which was created for the relationship, and through setting the
-   * visibilities of the other {@link RelationshipConstraint} figures on false.
+   * {@link ORMRelationEditPart#refreshVisuals()}, "unifies the {@link Relation}s from type cyclic,
+   * total and irreflexive(aka relationshipConstraint) figures" of a single {@link Relation} from
+   * type relationship" and sets the visibility of the relationshipConstraint figure. The unifying
+   * of the relationshipConstraint figures is done through combining the text/name of all the
+   * relationshipConstraints in the {@link Label} of the relationshipConstraint figure of the first
+   * relationshipConstraint, which was created for the relationship, and through setting the
+   * visibilities of the other relationshipConstraint figures on false.
    * 
    */
   @Override
   public void refreshVisuals() {
     super.refreshVisuals();
 
-    Relationship relationship = ((RelationshipConstraint) getModel()).getRelation();
-    if (getTarget() != null && getSource() != null && relationship != null) {
 
-      List<RelationshipConstraint> relCList = new ArrayList<RelationshipConstraint>();
+    if (getTarget() != null && getSource() != null
+        && ((Relation) getModel()).getReferencedRelation().size() > 0) {
+      Relation relationship = ((Relation) getModel()).getReferencedRelation().get(0);
+      List<Relation> relCList = new ArrayList<Relation>();
 
-      relCList.addAll(relationship.getRlshipConstraints());
+      relCList.addAll(relationship.getReferencedRelation());
 
       if (relCList.size() != 0) {
 
@@ -116,18 +90,23 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
                 relCList.get(0));
 
         if (rep != null) {
-          //if branch for the relationconstraints that not are first created relationconstraint
+          // the connection figure visibility must be settet here, because the refreshvisual from
+          // ORMRelationEditPart sets the figure visibility as well this is a problem insofar that
+          // only the first created relationshipconstraint should be visible
+          if (!rep.equals(this)) {
+            getConnectionFigure().setVisible(false);
+          } else {
+            getConnectionFigure().setVisible(true);
+          }
+
+          // if branch for the relationconstraints that not are first created relationconstraint
           if (!rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
             String oldText = rep.getLabel().getText();
             rep.getLabel().setText(textInitial + " , " + oldText);
-
-            getConnectionFigure().setVisible(false);
-
           }
-        //if branch for the first created relationconstraint
+          // if branch for the first created relationconstraint
           if (rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
             label.setText(textInitial);
-            getConnectionFigure().setVisible(true);
           }
         }
       }
