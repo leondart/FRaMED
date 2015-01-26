@@ -92,7 +92,7 @@ public class ORMRelationDeleteCommand extends Command {
     bendpoints.addAll(relation.getBendpoints());
     if(relation.getType().equals(Type.RELATIONSHIP)){
       detachLinks();
-      relation.getReferencedRoles().get(0).setContainer(null);
+      relation.getConnectionAnchor().setContainer(null);
     }
 
     relation.setSource(null);
@@ -113,7 +113,7 @@ public class ORMRelationDeleteCommand extends Command {
     relation.getBendpoints().addAll(bendpoints);
     if(relation.getType().equals(Type.RELATIONSHIP)){
       reattachLinks();
-      relation.getReferencedRoles().get(0).setContainer(parent);
+      relation.getConnectionAnchor().setContainer(parent);
     }
   }
   
@@ -125,8 +125,8 @@ public class ORMRelationDeleteCommand extends Command {
   protected void detachLinks() {
     sourceLinks = new HashMap<Relation, ModelElement>();
     targetLinks = new HashMap<Relation, ModelElement>();
-    relations.addAll(relation.getReferencedRoles().get(0).getIncomingRelations());
-    relations.addAll(relation.getReferencedRoles().get(0).getOutgoingRelations());
+    relations.addAll(relation.getConnectionAnchor().getIncomingRelations());
+    relations.addAll(relation.getConnectionAnchor().getOutgoingRelations());
     for (Relation relation : relations) {
       sourceLinks.put(relation, relation.getSource());
       targetLinks.put(relation, relation.getTarget());

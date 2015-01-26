@@ -213,7 +213,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       NamedElement ele2 = OrmFactory.eINSTANCE.createNamedElement();
       ele2.setName("*");
       result.setTargetLabel(ele2);
-      ((Relation) request.getNewObject()).getReferencedRoles().get(0).setContainer(container);
+      ((Relation) request.getNewObject()).getConnectionAnchor().setContainer(container);
     }
     request.setStartCommand(result);
     return result;

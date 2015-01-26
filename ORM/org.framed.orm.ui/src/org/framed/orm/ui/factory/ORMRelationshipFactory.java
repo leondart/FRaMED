@@ -20,7 +20,7 @@ public class ORMRelationshipFactory implements CreationFactory {
   public Object getNewObject() {
     Relation relation = OrmFactory.eINSTANCE.createRelation();
     relation.setName(null);
-    relation.getReferencedRoles().add(createRelationshipShapeChild());
+    relation.setConnectionAnchor(createRelationshipShapeChild());
     relation.setType(Type.RELATIONSHIP);
     return relation;
   }

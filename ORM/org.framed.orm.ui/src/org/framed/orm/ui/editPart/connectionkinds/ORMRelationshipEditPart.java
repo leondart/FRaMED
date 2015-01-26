@@ -15,9 +15,9 @@ import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 
 /**
- * This {@link EditPart} is the controller for {@link Relation}s from type relatinship.
+ * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
  * 
- * @author Kay Bierzynski (initial development)
+ * @author Kay Bierzynski (initial development, implemented Relationship Implication)
  * @author Lars Schuetze (refactoring)
  * @author David Gollasch (changes due to a new model)
  **/
@@ -42,8 +42,8 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     List<NamedElement> children = new ArrayList<>(2);
     children.add(getRelationship().getTargetLabel());
     children.add(getRelationship().getSourceLabel());
-    if (getRelationship().getReferencedRoles().size() == 1) {
-      children.add(getRelationship().getReferencedRoles().get(0));
+    if (getRelationship().getConnectionAnchor() != null) {
+      children.add(getRelationship().getConnectionAnchor());
     }
     return children;
   }

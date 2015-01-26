@@ -53,7 +53,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   private ORMRelationCreateCommand setupConnectionCompleteCommand(
       final CreateConnectionRequest request) {
     final ORMRelationCreateCommand result = (ORMRelationCreateCommand) request.getStartCommand();
-    result.setTarget(((Relation) getHost().getModel()).getReferencedRoles().get(0));
+    result.setTarget(((Relation) getHost().getModel()).getConnectionAnchor());
     return result;
   }
 
@@ -66,7 +66,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   private ORMRelationCreateCommand setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
     final ORMRelationCreateCommand result = new ORMRelationCreateCommand();
-    result.setSource(((Relation) getHost().getModel()).getReferencedRoles().get(0));
+    result.setSource(((Relation) getHost().getModel()).getConnectionAnchor());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
 
@@ -123,8 +123,8 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
       ArrayList<Relation> targetRel = new ArrayList<Relation>();
       ArrayList<Relation> sourceRel = new ArrayList<Relation>();
 
-      targetRel.addAll(targetrelation.getReferencedRoles().get(0).getIncomingRelations());
-      sourceRel.addAll(sourcerelation.getReferencedRoles().get(0).getOutgoingRelations());
+      targetRel.addAll(targetrelation.getConnectionAnchor().getIncomingRelations());
+      sourceRel.addAll(sourcerelation.getConnectionAnchor().getOutgoingRelations());
 
       targetRel.retainAll(sourceRel);
       if(targetRel.size() == 0){
