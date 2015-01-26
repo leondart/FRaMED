@@ -3,9 +3,9 @@ package org.framed.orm.ui.figure;
 import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.MidpointLocator;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PolylineDecoration;
@@ -74,13 +74,13 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
 
     // add label to the connection
-    MidpointLocator midL = new MidpointLocator(conn, 0);
-    midL.setGap(5);
-    midL.setRelativePosition(PositionConstants.SOUTH);
+    ConnectionLocator loc = new ConnectionLocator(conn, ConnectionLocator.MIDDLE);
+    loc.setRelativePosition(PositionConstants.SOUTH);
+    loc.setGap(5);
     // this is needed, because when the label would be just added the label text could be seen in
     // the rootModel
     if (editP.getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      conn.add(editP.getLabel(), midL);
+      conn.add(editP.getLabel(), loc);
     }
     return conn;
   }

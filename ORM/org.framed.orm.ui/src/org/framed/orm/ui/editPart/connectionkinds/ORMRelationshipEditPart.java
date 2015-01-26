@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionEndpointLocator;
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PolylineConnection;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RelativeLocator;
 import org.eclipse.gef.EditPart;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
@@ -17,7 +16,7 @@ import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
  * 
- * @author Kay Bierzynski (initial development, implemented Relationship Implication)
+ * @author Kay Bierzynski (initial development, implemented Relationship Implication, last changes due to new model)
  * @author Lars Schuetze (refactoring)
  * @author David Gollasch (changes due to a new model)
  **/
@@ -84,7 +83,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     }
 
     if (childEditPart instanceof ORMSuperShapeEditPart) {
-      RelativeLocator loc = new RelativeLocator(getRelationFigure(), PositionConstants.CENTER);
+      ConnectionLocator loc = new ConnectionLocator(getRelationFigure(), ConnectionLocator.MIDDLE);
       getRelationFigure().getLayoutManager().setConstraint(((ORMSuperShapeEditPart) childEditPart).getFigure(), loc);
     }
     super.addChildVisual(childEditPart, index);
