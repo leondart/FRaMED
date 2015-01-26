@@ -318,6 +318,15 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRelation_ConnectionAnchor() {
+    return (EReference) relationEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getShape() {
     return shapeEClass;
   }
@@ -444,6 +453,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     createEReference(relationEClass, RELATION__TARGET_LABEL);
     createEReference(relationEClass, RELATION__REFERENCED_RELATION);
     createEReference(relationEClass, RELATION__REFERENCED_ROLES);
+    createEReference(relationEClass, RELATION__CONNECTION_ANCHOR);
 
     shapeEClass = createEClass(SHAPE);
     createEReference(shapeEClass, SHAPE__FIRST_SEGMENT);
@@ -557,6 +567,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
         IS_ORDERED);
     initEReference(getRelation_ReferencedRoles(), this.getShape(), null, "referencedRoles", null,
         0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelation_ConnectionAnchor(), this.getShape(), null, "connectionAnchor", null,
+        0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
         IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(shapeEClass, Shape.class, "Shape", !IS_ABSTRACT, !IS_INTERFACE,

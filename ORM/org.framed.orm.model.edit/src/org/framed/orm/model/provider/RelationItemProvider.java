@@ -52,6 +52,7 @@ public class RelationItemProvider extends ModelElementItemProvider {
       addSourcePropertyDescriptor(object);
       addReferencedRelationPropertyDescriptor(object);
       addReferencedRolesPropertyDescriptor(object);
+      addConnectionAnchorPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -117,6 +118,22 @@ public class RelationItemProvider extends ModelElementItemProvider {
         getString("_UI_Relation_referencedRoles_feature"),
         getString("_UI_PropertyDescriptor_description", "_UI_Relation_referencedRoles_feature",
             "_UI_Relation_type"), OrmPackage.Literals.RELATION__REFERENCED_ROLES, true, false,
+        true, null, null, null));
+  }
+
+  /**
+   * This adds a property descriptor for the Connection Anchor feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addConnectionAnchorPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(
+        ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+        getResourceLocator(),
+        getString("_UI_Relation_connectionAnchor_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Relation_connectionAnchor_feature",
+            "_UI_Relation_type"), OrmPackage.Literals.RELATION__CONNECTION_ANCHOR, true, false,
         true, null, null, null));
   }
 

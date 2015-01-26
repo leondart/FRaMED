@@ -332,13 +332,22 @@ public interface OrmPackage extends EPackage {
   int RELATION__REFERENCED_ROLES = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
   /**
+   * The feature id for the '<em><b>Connection Anchor</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__CONNECTION_ANCHOR = MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+  /**
    * The number of structural features of the '<em>Relation</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 7;
+  int RELATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 8;
 
   /**
    * The number of operations of the '<em>Relation</em>' class.
@@ -709,6 +718,17 @@ public interface OrmPackage extends EPackage {
   EReference getRelation_ReferencedRoles();
 
   /**
+   * Returns the meta object for the reference '{@link org.framed.orm.model.Relation#getConnectionAnchor <em>Connection Anchor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Connection Anchor</em>'.
+   * @see org.framed.orm.model.Relation#getConnectionAnchor()
+   * @see #getRelation()
+   * @generated
+   */
+  EReference getRelation_ConnectionAnchor();
+
+  /**
    * Returns the meta object for class '{@link org.framed.orm.model.Shape <em>Shape</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -978,6 +998,14 @@ public interface OrmPackage extends EPackage {
      * @generated
      */
     EReference RELATION__REFERENCED_ROLES = eINSTANCE.getRelation_ReferencedRoles();
+
+    /**
+     * The meta object literal for the '<em><b>Connection Anchor</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATION__CONNECTION_ANCHOR = eINSTANCE.getRelation_ConnectionAnchor();
 
     /**
      * The meta object literal for the '{@link org.framed.orm.model.impl.ShapeImpl <em>Shape</em>}' class.
