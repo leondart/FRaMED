@@ -18,6 +18,7 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
@@ -35,7 +36,7 @@ public class ORMConnectionFigureFactory {
       case Type.TOTAL_VALUE:
         return createRelationshipConstraintFigure(relation, editPart);
       case Type.RELATIONSHIP_VALUE:
-        return createRelationshipFigure();
+        return createRelationshipFigure((ORMRelationshipEditPart) editPart);
       case Type.ROLE_EQUIVALENCE_VALUE:
         return createRoleEquivalenceFigure();
       case Type.ROLE_IMPLICATION_VALUE:
@@ -90,11 +91,22 @@ public class ORMConnectionFigureFactory {
    * {@link Label}s at both ends. The {@link Label} are added through child model elements(
    * {@link NamedElements}).
    */
-  private static Figure createRelationshipFigure() {
+  private static Figure createRelationshipFigure(ORMRelationshipEditPart editPart) {
     PolylineConnection connection = new PolylineConnection();
     connection.setAntialias(SWT.ON);
     connection.setConnectionRouter(new BendpointConnectionRouter());
-
+    
+    // add label to the connection
+    ConnectionLocator loc = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
+    loc.setRelativePosition(PositionConstants.NORTH);
+    loc.setGap(5);
+    
+    // this is needed, because when the label would be just added the label text could be seen in
+    // the rootModel
+    if (editPart.getRoot().getContents() instanceof ORMCompartmentEditPart) {
+      editPart.getNameLabel().setText(editPart.getRelationship().getName());
+      connection.add(editPart.getNameLabel(), loc);
+    } 
     return connection;
   }
 

@@ -1,6 +1,8 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
@@ -53,6 +55,8 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     String value = (String) request.getCellEditor().getValue();
     if (getHostFigure() instanceof ORMShapeFigure) {
       ((ORMShapeFigure) getHostFigure()).getLabel().setText(value);
+    } else if (getHostFigure() instanceof PolylineConnection) {
+      ((ORMRelationshipEditPart)getHost()).getNameLabel().setText(value);
     } else {
       ((Label) getHostFigure()).setText(value);
     }

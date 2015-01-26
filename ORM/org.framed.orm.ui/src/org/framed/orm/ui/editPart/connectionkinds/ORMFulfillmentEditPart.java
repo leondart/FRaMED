@@ -1,12 +1,7 @@
 package org.framed.orm.ui.editPart.connectionkinds;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.draw2d.Label;
 import org.eclipse.gef.EditPart;
-import org.eclipse.jface.window.ToolTip;
-import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.action.FulfillRolesAction;
