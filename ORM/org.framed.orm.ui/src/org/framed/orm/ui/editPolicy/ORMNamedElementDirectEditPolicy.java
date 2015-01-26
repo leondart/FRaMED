@@ -1,7 +1,6 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
