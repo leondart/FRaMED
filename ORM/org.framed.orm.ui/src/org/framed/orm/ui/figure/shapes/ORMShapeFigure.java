@@ -14,7 +14,7 @@ import org.framed.orm.model.Shape;
  * 
  * @author Kay Bierzynski
  * */
-public abstract class ORMShapeFigure extends Figure {
+public class ORMShapeFigure extends Figure {
 
   /** This {@link Label} is the figure for the {@link Shape} name. */
   private final Label label;

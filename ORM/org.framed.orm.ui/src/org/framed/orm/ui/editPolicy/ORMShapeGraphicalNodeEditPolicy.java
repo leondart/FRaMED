@@ -21,8 +21,9 @@ import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
 
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
- * {@link Relation}s and creates and returns the necessary commands for that purpose. NewObject =
- * O/o SourceEditPart = S/s TargetEditPart = T/t Model = M/m
+ * {@link Relation}s except of {@linkReltions} from type relationshipimplication and creates and
+ * returns the necessary commands for that purpose. NewObject = O/o SourceEditPart = S/s
+ * TargetEditPart = T/t Model = M/m
  * 
  * @author Kay Bierzynski
  * */
@@ -56,26 +57,27 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   @Override
   protected Command getConnectionCompleteCommand(final CreateConnectionRequest request) {
     Command retVal = null;
-    if (isCompleteOK(request)) {
-      retVal = setupConnectionCompleteCommand(request);
-    }
+    if (!request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)) {
+      if (isCompleteOK(request)) {
+        retVal = setupConnectionCompleteCommand(request);
+      }
 
-    // Irreflexive Acyclic Total End
-    if ((oSTCheck(request, Type.CYCLIC, Type.ROLE_TYPE, Type.ROLE_TYPE)
-        || oSTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(request,
-          Type.TOTAL, Type.ROLE_TYPE, Type.ROLE_TYPE))
-        && tNotEqualSCheck(request)
-        && hasARelationship(request, true) && !hasConstraintsKind(request)) {
-      final ORMRelationshipConstraintCreateCommand result =
-          (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
-      result.setTarget((Shape) getHost().getModel());
-      ArrayList<Relation> refrencedRelations = new ArrayList<Relation>();
-      refrencedRelations.add(testedRelationship);
-      result.setRefrencedRelations(refrencedRelations);
-      
-      retVal = result;
-    }
+      // Irreflexive Acyclic Total End
+      if ((oSTCheck(request, Type.CYCLIC, Type.ROLE_TYPE, Type.ROLE_TYPE)
+          || oSTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(
+            request, Type.TOTAL, Type.ROLE_TYPE, Type.ROLE_TYPE))
+          && tNotEqualSCheck(request)
+          && hasARelationship(request, true) && !hasConstraintsKind(request)) {
+        final ORMRelationshipConstraintCreateCommand result =
+            (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
+        result.setTarget((Shape) getHost().getModel());
+        ArrayList<Relation> refrencedRelations = new ArrayList<Relation>();
+        refrencedRelations.add(testedRelationship);
+        result.setRefrencedRelations(refrencedRelations);
 
+        retVal = result;
+      }
+    }
     return retVal;
   }
 
@@ -90,26 +92,29 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   protected Command getConnectionCreateCommand(final CreateConnectionRequest request) {
     Command retVal = null;
 
-    if (isStartOK(request)) {
-      retVal = setupConnectionStartCommand(request, ((Shape) getHost().getModel()).getContainer());
+    if (!request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)) {
+      if (isStartOK(request)) {
+        retVal =
+            setupConnectionStartCommand(request, ((Shape) getHost().getModel()).getContainer());
+      }
+
+      // Irreflexive Acyclic Total start
+      if ((oTCheck(request, Type.CYCLIC, Type.ROLE_TYPE)
+          || oTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE) || oTCheck(request, Type.TOTAL,
+            Type.ROLE_TYPE)) && hasARelationship(request, false)) {
+
+        final ORMRelationshipConstraintCreateCommand result =
+            new ORMRelationshipConstraintCreateCommand();
+        result.setSource((Shape) getHost().getModel());
+        result.setRelation((Relation) request.getNewObject());
+        request.setStartCommand(result);
+
+        result.setRelationContainer(((Shape) getHost().getModel()).getContainer());
+
+        retVal = result;
+      }
     }
-
-    // Irreflexive Acyclic Total start
-    if ((oTCheck(request, Type.CYCLIC, Type.ROLE_TYPE)
-        || oTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE) || oTCheck(request, Type.TOTAL,
-          Type.ROLE_TYPE)) && hasARelationship(request, false)) {
-
-      final ORMRelationshipConstraintCreateCommand result =
-          new ORMRelationshipConstraintCreateCommand();
-      result.setSource((Shape) getHost().getModel());
-      result.setRelation((Relation) request.getNewObject());
-      request.setStartCommand(result);
-
-      result.setRelationContainer(((Shape) getHost().getModel()).getContainer());
-
-      retVal = result;
-    }
-
+    
     return retVal;
   }
 
@@ -201,13 +206,14 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
 
-    if(request.getNewObjectType().equals(Type.RELATIONSHIP)){
+    if (request.getNewObjectType().equals(Type.RELATIONSHIP)) {
       NamedElement ele = OrmFactory.eINSTANCE.createNamedElement();
       ele.setName("*");
       result.setSourceLabel(ele);
       NamedElement ele2 = OrmFactory.eINSTANCE.createNamedElement();
       ele2.setName("*");
       result.setTargetLabel(ele2);
+      ((Relation) request.getNewObject()).getConnectionAnchor().setContainer(container);
     }
     request.setStartCommand(result);
     return result;

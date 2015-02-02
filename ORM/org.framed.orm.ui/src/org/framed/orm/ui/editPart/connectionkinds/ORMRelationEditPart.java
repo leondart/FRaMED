@@ -27,6 +27,7 @@ import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
 import org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMRelationGraphicalNodeEditPolicy;
 import org.framed.orm.ui.figure.ORMConnectionFigureFactory;
 
 /**
@@ -66,6 +67,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
     installEditPolicy(EditPolicy.CONNECTION_ROLE, new ORMRelationConnectionEditPolicy());
     // edit policy, which the creation, moving and deletion of bendpoints on a relation
     installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new ORMRelationBendpointEditPolicy());
+    installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMRelationGraphicalNodeEditPolicy());
   }
 
   /**
@@ -159,6 +161,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
     /** {@inheritDoc} */
     @Override
     public void notifyChanged(final Notification notification) {
+      refreshChildren();
       refreshVisuals();
     }
 

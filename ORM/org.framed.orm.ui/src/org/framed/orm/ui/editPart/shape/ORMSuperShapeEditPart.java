@@ -43,8 +43,7 @@ import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
  * 
  * @author Kay Bierzynski
  * */
-public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements
-    NodeEditPart {
+public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements NodeEditPart {
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -72,16 +71,18 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
   /** {@inheritDoc} */
   @Override
   public void createEditPolicies() {
-    // edit policy for handling requests of editing the shape name
-    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
-    installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
-    // edit policy, which handels requests for deleting the shape, which is controlled
-    // through this edit part
-    installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
-    // the ORMNodeGraphicalNodeEditPolicy shouldn't be installes for shapes from type
-    // compartmenttype and group, where the user stepped into
-    if (!(getParent() instanceof ScalableRootEditPart)) {
-      installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMShapeGraphicalNodeEditPolicy());
+    if (!((Shape) getModel()).getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+      // edit policy for handling requests of editing the shape name
+      installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
+      installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
+      // edit policy, which handels requests for deleting the shape, which is controlled
+      // through this edit part
+      installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMShapeComponentEditPolicy(this));
+      // the ORMNodeGraphicalNodeEditPolicy shouldn't be installes for shapes from type
+      // compartmenttype and group, where the user stepped into
+      if (!(getParent() instanceof ScalableRootEditPart)) {
+        installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMShapeGraphicalNodeEditPolicy());
+      }
     }
   }
 
@@ -108,7 +109,7 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
     if (shape.getModel() != null) {
       children.add(shape.getModel());
     }
-    if(shape.getDescription() != null){
+    if (shape.getDescription() != null) {
       children.add(shape.getDescription());
     }
     return children;
@@ -176,13 +177,15 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
    * */
   @Override
   public void refreshVisuals() {
-    final ORMShapeFigure figure = (ORMShapeFigure) getFigure();
     final Shape model = (Shape) getModel();
+    final ORMShapeFigure figure = (ORMShapeFigure) getFigure();
     final GraphicalEditPart parent = (GraphicalEditPart) getParent();
 
     figure.getLabel().setText(model.getName());
     figure.getLabel().setToolTip(new Label(model.getName()));
-    parent.setLayoutConstraint(this, figure, getConstraints());
+    if (!model.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+      parent.setLayoutConstraint(this, figure, getConstraints());
+    } 
   }
 
   /** {@inheritDoc} */
@@ -261,7 +264,8 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
       if (shape.getContainer() != null) {
         Shape parent = shape.getContainer().getParent();
         if (parent != null) {
-          // for synchronsation with role list of the Shape from type compartmenttype in above layer
+          // for synchronsation with role list of the Shape from type compartmenttype in above
+          // layer
           // of the tree
           if (getParent().getParent() instanceof ORMCompartmentEditPart) {
             ((ORMCompartmentEditPart) getParent().getParent()).refreshVisuals();
@@ -274,10 +278,12 @@ public abstract class ORMSuperShapeEditPart extends AbstractGraphicalEditPart im
           }
         }
       }
+
       if (!(getParent() instanceof ScalableRootEditPart)) {
         refreshSourceConnections();
         refreshTargetConnections();
       }
+
     }
 
     /** {@inheritDoc} */

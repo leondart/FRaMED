@@ -25,6 +25,7 @@ import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
+import org.framed.orm.ui.factory.ORMRelationshipImplicationFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
 import org.framed.orm.ui.factory.ORMRoleGroupFactory;
 import org.framed.orm.ui.factory.ORMRoleImplicationFactory;
@@ -96,6 +97,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("RoleType", true);
       setEntryVisibility("RoleGroup", true);
       setEntryVisibility("Role Implication", true);
+      setEntryVisibility("Relationship Implication", true);
       setEntryVisibility("Role Equivalence", true);
       setEntryVisibility("Role Prohibition", true);
       setEntryVisibility("Relationship", true);
@@ -112,6 +114,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("RoleType", false);
       setEntryVisibility("RoleGroup", false);
       setEntryVisibility("Role Implication", false);
+      setEntryVisibility("Relationship Implication", false);
       setEntryVisibility("Role Equivalence", false);
       setEntryVisibility("Role Prohibition", false);
       setEntryVisibility("Relationship", false);
@@ -303,30 +306,38 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         "icons/relationship.png"));
     drawer.add(entry6);
     addEntry("Relationship", entry6, false);
-
+    
     CreationToolEntry entry7 =
-        new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation",
-            new ORMIrreflexiveFactory(), null, null);
+        new ConnectionCreationToolEntry("Relationship Implication",
+            "Create a new Relationship Implication Relation", new ORMRelationshipImplicationFactory(), null, null);
     entry7.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/irreflexive.png"));
+        "icons/roleimplication.png"));
     drawer.add(entry7);
-    addEntry("Irreflexive", entry7, false);
+    addEntry("Relationship Implication", entry7, false);
 
     CreationToolEntry entry8 =
-        new ConnectionCreationToolEntry("Total", "Create a new Total Relation",
-            new ORMTotalFactory(), null, null);
-    entry8
-        .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
+        new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation",
+            new ORMIrreflexiveFactory(), null, null);
+    entry8.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/irreflexive.png"));
     drawer.add(entry8);
-    addEntry("Total", entry8, false);
+    addEntry("Irreflexive", entry8, false);
 
     CreationToolEntry entry9 =
+        new ConnectionCreationToolEntry("Total", "Create a new Total Relation",
+            new ORMTotalFactory(), null, null);
+    entry9
+        .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
+    drawer.add(entry9);
+    addEntry("Total", entry9, false);
+
+    CreationToolEntry entry10 =
         new ConnectionCreationToolEntry("Cyclic", "Create a new Cyclic Relation",
             new ORMCyclicFactory(), null, null);
-    entry9.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+    entry10.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/cyclic.png"));
-    drawer.add(entry9);
-    addEntry("Cyclic", entry9, false);
+    drawer.add(entry10);
+    addEntry("Cyclic", entry10, false);
 
     group.add(drawer);
   }

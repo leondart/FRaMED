@@ -3,9 +3,9 @@ package org.framed.orm.ui.figure;
 import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.MidpointLocator;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PolylineDecoration;
@@ -18,6 +18,7 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
@@ -35,11 +36,13 @@ public class ORMConnectionFigureFactory {
       case Type.TOTAL_VALUE:
         return createRelationshipConstraintFigure(relation, editPart);
       case Type.RELATIONSHIP_VALUE:
-        return createRelationshipFigure();
+        return createRelationshipFigure((ORMRelationshipEditPart) editPart);
       case Type.ROLE_EQUIVALENCE_VALUE:
         return createRoleEquivalenceFigure();
       case Type.ROLE_IMPLICATION_VALUE:
-        return createRoleImplicationFigure();
+        return createRoleRelationshipImplicationFigure();
+      case Type.RELATIONSHIP_IMPLICATION_VALUE:
+        return createRoleRelationshipImplicationFigure();
       case Type.ROLE_PROHIBITION_VALUE:
         return createRoleProhibitonFigure();
       case Type.FULFILLMENT_VALUE:
@@ -72,13 +75,13 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
 
     // add label to the connection
-    MidpointLocator midL = new MidpointLocator(conn, 0);
-    midL.setGap(5);
-    midL.setRelativePosition(PositionConstants.SOUTH);
+    ConnectionLocator loc = new ConnectionLocator(conn, ConnectionLocator.MIDDLE);
+    loc.setRelativePosition(PositionConstants.SOUTH);
+    loc.setGap(5);
     // this is needed, because when the label would be just added the label text could be seen in
     // the rootModel
     if (editP.getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      conn.add(editP.getLabel(), midL);
+      conn.add(editP.getLabel(), loc);
     }
     return conn;
   }
@@ -88,11 +91,22 @@ public class ORMConnectionFigureFactory {
    * {@link Label}s at both ends. The {@link Label} are added through child model elements(
    * {@link NamedElements}).
    */
-  private static Figure createRelationshipFigure() {
+  private static Figure createRelationshipFigure(ORMRelationshipEditPart editPart) {
     PolylineConnection connection = new PolylineConnection();
     connection.setAntialias(SWT.ON);
     connection.setConnectionRouter(new BendpointConnectionRouter());
-
+    
+    // add label to the connection
+    ConnectionLocator loc = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
+    loc.setRelativePosition(PositionConstants.NORTH);
+    loc.setGap(5);
+    
+    // this is needed, because when the label would be just added the label text could be seen in
+    // the rootModel
+    if (editPart.getRoot().getContents() instanceof ORMCompartmentEditPart) {
+      editPart.getNameLabel().setText(editPart.getRelationship().getName());
+      connection.add(editPart.getNameLabel(), loc);
+    } 
     return connection;
   }
 
@@ -127,10 +141,10 @@ public class ORMConnectionFigureFactory {
   }
 
   /**
-   * {@link Relations}s from type roleimplication have as figure a dashed line with a white arrow
-   * tip at target end of this connection.
+   * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
+   * dashed line with a white arrow tip at target end of this connection.
    */
-  private static Figure createRoleImplicationFigure() {
+  private static Figure createRoleRelationshipImplicationFigure() {
     // create white arrow tip
     PolygonDecoration poly = new PolygonDecoration();
     poly.setAntialias(SWT.ON);
@@ -223,15 +237,15 @@ public class ORMConnectionFigureFactory {
       if (label.getText().equals("<...>")) {
         label.setText(role.getName());
       } else {
-        if(roleCount >2){
+        if (roleCount > 2) {
           tooltipTarget.add(new Label(role.getName()));
-        } else{
+        } else {
           label.setText(label.getText() + ", " + role.getName());
         }
       }
       roleCount++;
     }
-   
+
     label.setToolTip(tooltipTarget);
     conn.add(label, targetEndL);
 

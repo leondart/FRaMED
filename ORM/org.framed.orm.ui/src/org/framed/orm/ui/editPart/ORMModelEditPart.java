@@ -24,6 +24,7 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMModelXYLayoutPolicy;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
@@ -144,7 +145,9 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
     // all children of compartmentdiagram are model elments
     for (ModelElement ele : cd.getElements()) {
       if (!(ele instanceof Relation)) {
-        contexts.add(ele);
+        if (!ele.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+          contexts.add(ele);
+        }
       }
     }
     return contexts;
