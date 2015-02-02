@@ -49,7 +49,7 @@ public class OrmExample {
     if (args.length == 0) {
       System.out.println("Enter a list of file paths or URIs that have content like this:");
       try {
-        Resource resource = resourceSet.createResource(URI.createURI("http:///My.orm"));
+        Resource resource = resourceSet.createResource(URI.createURI("http:///My.graphical.crom"));
         NamedElement root = OrmFactory.eINSTANCE.createNamedElement();
         resource.getContents().add(root);
         resource.save(System.out, null);
