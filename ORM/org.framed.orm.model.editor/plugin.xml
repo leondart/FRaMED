@@ -6,6 +6,7 @@
 
 <plugin>
 
+
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated ORM -->
       <category
@@ -28,38 +29,9 @@
             id="org.framed.orm.model.presentation.OrmEditorID"
             name="%_UI_OrmEditor_label"
             icon="icons/full/obj16/OrmModelFile.gif"
-            extensions="orm"
+            extensions="crom_dia"
             class="org.framed.orm.model.presentation.OrmEditor"
             contributorClass="org.framed.orm.model.presentation.OrmActionBarContributor">
       </editor>
    </extension>
-
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated ORM -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="org.framed.orm.geometry.presentation.GeometryModelWizardID"
-            name="%_UI_GeometryModelWizard_label"
-            class="org.framed.orm.geometry.presentation.GeometryModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/GeometryModelFile.gif">
-         <description>%_UI_GeometryModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated ORM -->
-      <editor
-            id="org.framed.orm.geometry.presentation.GeometryEditorID"
-            name="%_UI_GeometryEditor_label"
-            icon="icons/full/obj16/GeometryModelFile.gif"
-            extensions="geometry"
-            class="org.framed.orm.geometry.presentation.GeometryEditor"
-            contributorClass="org.framed.orm.geometry.presentation.GeometryActionBarContributor">
-      </editor>
-   </extension>
-
 </plugin>

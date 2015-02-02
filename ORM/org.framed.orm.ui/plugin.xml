@@ -7,7 +7,7 @@
             class="org.framed.orm.ui.editor.ORMMultiPageEditor"
             contributorClass="org.framed.orm.ui.editor.ORMGraphicalEditorActionBarContributor"
             default="true"
-            extensions="orm"
+            extensions="crom_dia"
             id="ORMEditor.editorID"
             name="ORM GEF Editor">
       </editor>
