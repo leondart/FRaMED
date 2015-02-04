@@ -263,6 +263,7 @@ public class ORMRelationCreateCommand extends Command {
     relation.getBendpoints().add(relPoint);
   }
 
+  // doesn't work properly for the shape connection anchors of a relation
   protected Point calculateCorrectPoint(Rectangle rec, Point locationOfOther){
     switch(rec.getPosition(locationOfOther)){
       case PositionConstants.NORTH:
@@ -282,7 +283,7 @@ public class ORMRelationCreateCommand extends Command {
       case PositionConstants.SOUTH_WEST:
         return rec.getBottom();
         default:
-          return null;
+          return rec.getCenter();
     }
   }
 

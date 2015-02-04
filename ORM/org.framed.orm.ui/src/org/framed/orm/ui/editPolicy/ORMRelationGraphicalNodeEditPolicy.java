@@ -17,7 +17,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
     if (oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP)
-        && tNotEqualSCheck(request) && testHasZeroRelation(request)) {
+        && tNotEqualSCheck(request) /*&& testHasZeroRelation(request)*/) {
       return setupConnectionCompleteCommand(request);
     }
     return null;
