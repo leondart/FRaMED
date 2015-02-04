@@ -5,14 +5,18 @@ import java.util.List;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RelativeBendpoint;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
@@ -25,10 +29,12 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationGraphicalNodeEditPolicy;
 import org.framed.orm.ui.figure.ORMConnectionFigureFactory;
+import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
  * This {@link EditPart} is the super/parent {@link EditPart} also super/parent controller of all
@@ -36,7 +42,7 @@ import org.framed.orm.ui.figure.ORMConnectionFigureFactory;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMRelationEditPart extends AbstractConnectionEditPart {
+public class ORMRelationEditPart extends AbstractConnectionEditPart implements NodeEditPart {
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -83,9 +89,10 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   @Override
   protected void refreshVisuals() {
 
-    if ((getSource() != null && getTarget() != null) && (testRootModel() || testGroup()
-        && getSource().getParent().getParent().getParent() instanceof ScalableRootEditPart
-        || getRoot().getContents() instanceof ORMCompartmentEditPart)) {
+    if ((getSource() != null && getTarget() != null)
+        && (testRootModel() || testGroup()
+            && getSource().getParent().getParent().getParent() instanceof ScalableRootEditPart || getRoot()
+            .getContents() instanceof ORMCompartmentEditPart)) {
 
       Connection connection = getConnectionFigure();
       connection.setVisible(true);
@@ -95,7 +102,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
       // must change when the position of the source or target of the relation changes or the the
       // figure of the content of the viewer has expandable and collapsable elements
       ArrayList<RelativeBendpoint> figureConstraint = new ArrayList<RelativeBendpoint>();
-      
+
       for (int i = 0; i < relativePoints.size(); i++) {
         RelativeBendpoint rbp = new RelativeBendpoint(getConnectionFigure());
         // p.x = width p.y = height
@@ -109,7 +116,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
       }
 
       connection.setRoutingConstraint(figureConstraint);
-    } else{
+    } else {
       getConnectionFigure().setVisible(false);
     }
   }
@@ -117,16 +124,16 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
   private boolean testRootModel() {
     if (getSource().getParent() instanceof ORMModelEditPart) {
       Model model = (Model) getSource().getParent().getModel();
-      return  model.getParent() == null;
+      return model.getParent() == null;
     } else {
       return false;
     }
   }
-  
-  private boolean testGroup(){
-    if(getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart){
-      return ((Shape)getRoot().getContents().getModel()).getType().equals(Type.GROUP);
-    }else{
+
+  private boolean testGroup() {
+    if (getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart) {
+      return ((Shape) getRoot().getContents().getModel()).getType().equals(Type.GROUP);
+    } else {
       return false;
     }
 
@@ -182,5 +189,47 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart {
     public boolean isAdapterForType(final Object type) {
       return type.getClass().equals(Relation.class);
     }
+  }
+
+  @Override
+  public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
+    Shape shape = ((Relation) getModel()).getConnectionAnchor();
+    if (shape != null) {
+      return getConnectionAnchorFromChildShape(shape);
+    }
+    return null;
+  }
+
+  @Override
+  public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
+    Shape shape = ((Relation) getModel()).getConnectionAnchor();
+    if (shape != null) {
+      return getConnectionAnchorFromChildShape(shape);
+    }
+    return null;
+  }
+
+  @Override
+  public ConnectionAnchor getSourceConnectionAnchor(Request request) {
+    Shape shape = ((Relation) getModel()).getConnectionAnchor();
+    if (shape != null) {
+      return getConnectionAnchorFromChildShape(shape);
+    }
+    return null;
+  }
+
+  @Override
+  public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+    Shape shape = ((Relation) getModel()).getConnectionAnchor();
+    if (shape != null) {
+      return getConnectionAnchorFromChildShape(shape);
+    }
+    return null;
+  }
+
+  public ConnectionAnchor getConnectionAnchorFromChildShape(Shape shape) {
+    ORMSuperShapeEditPart editpart =
+        (ORMSuperShapeEditPart) getViewer().getEditPartRegistry().get(shape);
+    return ((ORMShapeFigure) editpart.getFigure()).getConnectionAnchor();
   }
 }

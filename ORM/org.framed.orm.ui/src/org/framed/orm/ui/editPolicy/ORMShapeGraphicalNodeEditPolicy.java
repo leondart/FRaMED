@@ -44,7 +44,6 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
     if (!parentTest(request.getTargetEditPart(), request.getSourceEditPart())) {
       super.showCreationFeedback(request);
     }
-
   }
 
   /**
