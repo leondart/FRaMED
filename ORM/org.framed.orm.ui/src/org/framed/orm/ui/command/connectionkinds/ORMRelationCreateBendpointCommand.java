@@ -93,7 +93,7 @@ public class ORMRelationCreateBendpointCommand extends Command {
       relCList.remove(relation);
 
       for (Relation relC : relCList) {
-        // RelativePoints cannot be shared between rleations so we must create a relativepoint with
+        // RelativePoints cannot be shared between relations so we must create a relativepoint with
         // same data
         RelativePoint newRelP = GeometryFactory.eINSTANCE.createRelativePoint();
 
@@ -155,7 +155,6 @@ public class ORMRelationCreateBendpointCommand extends Command {
    * @param index integer
    */
   public void setIndex(final int index) {
-    // TODO: add validation checks
     this.index = index;
   }
 

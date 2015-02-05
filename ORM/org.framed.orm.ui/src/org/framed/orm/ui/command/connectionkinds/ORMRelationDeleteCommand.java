@@ -46,14 +46,14 @@ public class ORMRelationDeleteCommand extends Command {
   protected List<Relation> relations;
 
   /**
-   * Sources for the {@link Relation}s that start or end at this {@link Relation}. This list necessary
-   * for the case that the user wants to undo this command.
+   * Sources for the {@link Relation}s that start or end at this {@link Relation}. This list
+   * necessary for the case that the user wants to undo this command.
    */
   private Map<Relation, ModelElement> sourceLinks;
 
   /**
-   * Targets for the {@link Relation}s that start or end at this {@link Relation}. This list necessary
-   * for the case that the user wants to undo this command.
+   * Targets for the {@link Relation}s that start or end at this {@link Relation}. This list
+   * necessary for the case that the user wants to undo this command.
    */
   private Map<Relation, ModelElement> targetLinks;
 
@@ -80,8 +80,9 @@ public class ORMRelationDeleteCommand extends Command {
   /**
    * {@inheritDoc} In this method all the attributes of the {@link Relation} to be removed are
    * stored in variables in case that the user wants to undone this command. After this part the
-   * {@link Relation} is removed from the source, the {@link Model} and the target and all of
-   * it's {@link Bendpoint}s are deleted.
+   * {@link Relation} is removed from the source, the {@link Model} and the target and all of it's
+   * {@link Bendpoint}s are deleted. In case of {@link Relation} from relationship the connection
+   * anchor shape is deleted as well.
    * 
    */
   @Override
@@ -90,7 +91,7 @@ public class ORMRelationDeleteCommand extends Command {
     source = relation.getSource();
     target = relation.getTarget();
     bendpoints.addAll(relation.getBendpoints());
-    if(relation.getType().equals(Type.RELATIONSHIP)){
+    if (relation.getType().equals(Type.RELATIONSHIP)) {
       detachLinks();
       relation.getConnectionAnchor().setContainer(null);
     }
@@ -103,7 +104,8 @@ public class ORMRelationDeleteCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through the recreation/ invoking of the {@link Relation}
-   * into the model tree through setting it's attributes.
+   * into the model tree through setting it's attributes. In case of {@link Relation} from
+   * relationship the connection anchor shape is inovked into the modle tree as well.
    */
   @Override
   public void undo() {
@@ -111,13 +113,13 @@ public class ORMRelationDeleteCommand extends Command {
     relation.setTarget(target);
     relation.setContainer(parent);
     relation.getBendpoints().addAll(bendpoints);
-    if(relation.getType().equals(Type.RELATIONSHIP)){
+    if (relation.getType().equals(Type.RELATIONSHIP)) {
       reattachLinks();
       relation.getConnectionAnchor().setContainer(parent);
     }
   }
-  
-  
+
+
   /**
    * Detach/Delete all {@link Relation}s from this {@link Relation} and their source/target
    * {@link Relation} and storing the connection information in local data structures.
@@ -147,7 +149,7 @@ public class ORMRelationDeleteCommand extends Command {
       relation.setContainer(parent);
     }
   }
-  
+
   /**
    * Setter for the {@link Relation}, which is deleted/removed in this command.
    * 

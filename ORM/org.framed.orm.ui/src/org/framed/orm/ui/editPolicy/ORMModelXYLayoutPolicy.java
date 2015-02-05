@@ -83,7 +83,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
       if (request.getNewObjectType().equals(Type.DATA_TYPE)) {
         retVal = setUpCreateCommand(request, createSegment(), createSegment(), null, null);
       }
-      
+
       if (request.getNewObjectType().equals(Type.COMPARTMENT_TYPE)) {
         retVal =
             setUpCreateCommand(request, createSegment(), createSegment(), null, createChildModel());
@@ -119,13 +119,17 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   /** {@inheritDoc} */
   @Override
   protected void eraseLayoutTargetFeedback(final Request request) {
-    final Figure figure =  (Figure) getHostFigure();
+    final Figure figure = (Figure) getHostFigure();
     figure.setBackgroundColor(ColorConstants.white);
     figure.setOpaque(false);
   }
 
 
-
+  /**
+   * This method creates and return a description of a {@link Shape}.
+   * 
+   * @return element {@link NamedElement}
+   * */
   private NamedElement createDescription() {
     NamedElement element = OrmFactory.eINSTANCE.createNamedElement();
     element.setName("*");
@@ -133,14 +137,31 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     return element;
   }
 
+  /**
+   * This method creates and returns a {@link Segment} of a {@link Shape}.
+   * 
+   * @return {@link Segment}
+   * */
   private Segment createSegment() {
     return OrmFactory.eINSTANCE.createSegment();
   }
 
+  /**
+   * This method creates and returns a child {@link Model} of a {@link Shape}.
+   * 
+   * @return {@link Model}
+   * */
   private Model createChildModel() {
     return OrmFactory.eINSTANCE.createModel();
   }
 
+  /**
+   * This method creates, set ups and return the {@link ORMShapeCreateCommand} for a new
+   * {@link Shape}.
+   * 
+   * @param request {@link CreateRequest}, attributeSegment {@link Segment}, operationsSegment
+   *        {@link Segment}, description {@link NamedElement}, childmodel {@link Model}
+   * */
   private ORMShapeCreateCommand setUpCreateCommand(final CreateRequest request,
       Segment attributeSegment, Segment operationSegment, NamedElement description, Model childmodel) {
 

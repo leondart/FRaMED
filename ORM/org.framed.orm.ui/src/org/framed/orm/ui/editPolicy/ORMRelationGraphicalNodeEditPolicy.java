@@ -12,17 +12,34 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 
+/**
+ * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
+ * {@link Relation}s between other {@link Relation}s and creates and returns the necessary commands
+ * for that purpose. NewObject = O/o SourceEditPart = S/s TargetEditPart = T/t Model = M/m
+ * 
+ * @author Kay Bierzynski
+ * */
 public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return {@link ORMRelationCreateCommand} or null(when no condition is fufilled)
+   * */
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
     if (oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP)
-        && tNotEqualSCheck(request) /*&& testHasZeroRelation(request)*/) {
+        && tNotEqualSCheck(request)) {
       return setupConnectionCompleteCommand(request);
     }
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return {@link ORMRelationCreateCommand} or null(when no condition is fufilled)
+   * */
   @Override
   protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
     if (oTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP)) {
@@ -32,15 +49,23 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return null
+   * */
   @Override
   protected Command getReconnectTargetCommand(ReconnectRequest request) {
-    // TODO Auto-generated method stub
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   * 
+   * @return null
+   * */
   @Override
   protected Command getReconnectSourceCommand(ReconnectRequest request) {
-    // TODO Auto-generated method stub
     return null;
   }
 
@@ -75,7 +100,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   }
 
   /**
-   * This method tests if the type of the new object given by the request equals objecttye, the
+   * This method tests if the type of the new object given by the request equals the objecttype, the
    * source edit part model type given by the request equals the sourcetype and the target edit part
    * model type given by the request equals of targettype.
    * 
@@ -115,22 +140,4 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
     return !(request.getTargetEditPart().equals(request.getSourceEditPart()));
   }
 
-  private boolean testHasZeroRelation(CreateConnectionRequest request) {
-    if (request.getSourceEditPart() instanceof ORMRelationshipEditPart
-        && request.getTargetEditPart() instanceof ORMRelationshipEditPart) {
-      Relation targetrelation = (Relation) request.getTargetEditPart().getModel();
-      Relation sourcerelation = (Relation) request.getSourceEditPart().getModel();
-      ArrayList<Relation> targetRel = new ArrayList<Relation>();
-      ArrayList<Relation> sourceRel = new ArrayList<Relation>();
-
-      targetRel.addAll(targetrelation.getConnectionAnchor().getIncomingRelations());
-      sourceRel.addAll(sourcerelation.getConnectionAnchor().getOutgoingRelations());
-
-      targetRel.retainAll(sourceRel);
-      if(targetRel.size() == 0){
-        return true;
-      }
-    }
-    return false;
-  }
 }

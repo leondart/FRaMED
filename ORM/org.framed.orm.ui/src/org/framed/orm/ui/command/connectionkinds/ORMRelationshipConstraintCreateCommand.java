@@ -73,8 +73,8 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
       }
     }
     if (relationCount > 1 && relationship.getReferencedRelation().size() <= 1) {
-      Rectangle sourcerec = createRectabgleFromFromBoundarieData(source);
-      Rectangle targetrec = createRectabgleFromFromBoundarieData(target);
+      Rectangle sourcerec = createRectangleFromFromBoundarieData(source);
+      Rectangle targetrec = createRectangleFromFromBoundarieData(target);
       Point ps = calculateCorrectPoint(sourcerec, targetrec.getLocation());
       Point pt = calculateCorrectPoint(targetrec, sourcerec.getLocation());
       adaptRelationCreation(ps, pt, relationCount);

@@ -10,8 +10,8 @@ import org.framed.orm.ui.figure.shapes.PartFigure;
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type fulfillment.
  * 
- * @author Kay Bierzynski (initial dev)
- * @author David Gollasch
+ * @author Kay Bierzynski (initial dev, second time adapting to the graphical model)
+ * @author David Gollasch ( first time adapting to the graphical model)
  * */
 public class ORMFulfillmentEditPart extends ORMRelationEditPart {
 
@@ -21,6 +21,11 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
    */
   private Label targetLabel;
 
+  /**
+   * A {@link PartFigure}, which acts as the tool tip figure of the targetLabel and when more than
+   * three roletype and/or rolegroups are fulfilled than this tool tip contains alle name of the
+   * roletypes and rolegroups with a index of above three in the fulfilled role list.
+   * */
   private PartFigure targetToolTip;
 
   /**
@@ -33,16 +38,15 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
 
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} calls
-   * {@link ORMRelationEditPart#refreshVisuals()} and updates the text of the targetLabel(to handle
-   * the cases where the user adds/deletes names of the {@link Shapes}s from type roletype and
-   * rolegroup through the {@link FulfillRolesAction}.
+   * {@link ORMRelationEditPart#refreshVisuals()} and updates the text of the targetLabel or
+   * targetToolTip depening on number of fulfilled roles to handle the cases where the user
+   * adds/deletes names of the {@link Shapes}s from type roletype and rolegroup through the
+   * {@link FulfillRolesAction}.
    * 
    */
   @Override
   protected void refreshVisuals() {
     super.refreshVisuals();
-    // TODO: not show all role names in the label, when to many names in the label or names to long
-    // they must go into the tooltip
     final Relation relation = (Relation) getModel();
 
     targetLabel.setText("<...>");
@@ -62,10 +66,20 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
     }
   }
 
+  /**
+   * A setter for the target Label of this fulfillment.
+   * 
+   * @param targetLabel {@link Label}
+   * */
   public void setTargetLabel(Label targetLabel) {
     this.targetLabel = targetLabel;
   }
 
+  /**
+   * A setter for the target label tool tip of this fulfillment.
+   * 
+   * @param targetToolTip {@link PartFigure}
+   * */
   public void setTargetToolTip(PartFigure targetToolTip) {
     this.targetToolTip = targetToolTip;
   }

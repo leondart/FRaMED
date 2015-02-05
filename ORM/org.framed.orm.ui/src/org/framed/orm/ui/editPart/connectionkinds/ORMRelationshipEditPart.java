@@ -24,14 +24,15 @@ import org.framed.orm.ui.editor.ORMDirectEditManager;
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
  * 
- * @author Kay Bierzynski (initial development, implemented Relationship Implication, last changes due to new model)
+ * @author Kay Bierzynski (initial development, implemented Relationship Implication, last changes
+ *         due to new model)
  * @author Lars Schuetze (refactoring)
  * @author David Gollasch (changes due to a new model)
  **/
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
-  private Label nameLabel  = new Label();;
-  
+  private Label nameLabel = new Label();;
+
   /**
    * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
    * relationship.
@@ -72,6 +73,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     // edit policy for handling requests of editing the named element name
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
   }
+
   /**
    * A getter for the relationship figure.
    * 
@@ -100,17 +102,22 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
     if (childEditPart instanceof ORMSuperShapeEditPart) {
       ConnectionLocator loc = new ConnectionLocator(getRelationFigure(), ConnectionLocator.MIDDLE);
-      getRelationFigure().getLayoutManager().setConstraint(((ORMSuperShapeEditPart) childEditPart).getFigure(), loc);
+      getRelationFigure().getLayoutManager().setConstraint(
+          ((ORMSuperShapeEditPart) childEditPart).getFigure(), loc);
     }
     super.addChildVisual(childEditPart, index);
   }
 
+  /**
+   * {@inheritDoc} In case the relation is from type relationship than the text of the name label is
+   * refreshed here.
+   */
   @Override
   protected void refreshVisuals() {
     super.refreshVisuals();
     nameLabel.setText(getRelationship().getName());
   }
-  
+
   /** {@inheritDoc} */
   @Override
   public void performRequest(final Request req) {
@@ -126,12 +133,18 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    */
   private void performDirectEditing() {
     final ORMDirectEditManager manager =
-        new ORMDirectEditManager(this, TextCellEditor.class, new ORMCellEditorLocator(nameLabel), nameLabel);
+        new ORMDirectEditManager(this, TextCellEditor.class, new ORMCellEditorLocator(nameLabel),
+            nameLabel);
     manager.show(); // refresh view
   }
   
+  /**
+   * A getter for name {@link Label} of this relationship.
+   * 
+   * @return nameLabel
+   * */
   public Label getNameLabel() {
     return nameLabel;
   }
-  
+
 }

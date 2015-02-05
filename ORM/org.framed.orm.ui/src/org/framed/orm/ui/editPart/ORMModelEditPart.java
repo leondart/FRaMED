@@ -33,7 +33,7 @@ import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
- * This {@link EditPart} is the controller for the model element {@link Model.
+ * This {@link EditPart} is the controller for the model element {@link Model}.
  * 
  * @author Kay Bierzynski
  * */
@@ -143,6 +143,8 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
     List contexts = new ArrayList();
     Model cd = (Model) getModel();
     // all children of compartmentdiagram are model elments
+    // only relations and the connection anchor shape(for now only the relationship_shape_child) are handled
+    // in other ways and because of that are not added as a model children
     for (ModelElement ele : cd.getElements()) {
       if (!(ele instanceof Relation)) {
         if (!ele.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {

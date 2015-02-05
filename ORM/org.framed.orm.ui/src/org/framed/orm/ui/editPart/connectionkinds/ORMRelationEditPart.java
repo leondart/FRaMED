@@ -121,6 +121,10 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     }
   }
 
+  /**
+   * This method checks if the parent in the model tree of the model element, which is represented
+   * through this editpart is the root model or not.
+   * */
   private boolean testRootModel() {
     if (getSource().getParent() instanceof ORMModelEditPart) {
       Model model = (Model) getSource().getParent().getModel();
@@ -130,6 +134,10 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     }
   }
 
+  /**
+   * This method checks if the parent in the model tree of the model element, which is represented
+   * through this editpart is a {@link Shape} from type group.
+   * */
   private boolean testGroup() {
     if (getRoot().getContents() instanceof ORMShapeWithoutSegmentEditPart) {
       return ((Shape) getRoot().getContents().getModel()).getType().equals(Type.GROUP);
@@ -191,6 +199,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     }
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
     Shape shape = ((Relation) getModel()).getConnectionAnchor();
@@ -200,6 +209,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     return null;
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
     Shape shape = ((Relation) getModel()).getConnectionAnchor();
@@ -209,6 +219,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     return null;
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getSourceConnectionAnchor(Request request) {
     Shape shape = ((Relation) getModel()).getConnectionAnchor();
@@ -218,6 +229,7 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     return null;
   }
 
+  /** {@inheritDoc} */
   @Override
   public ConnectionAnchor getTargetConnectionAnchor(Request request) {
     Shape shape = ((Relation) getModel()).getConnectionAnchor();
@@ -227,6 +239,12 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
     return null;
   }
 
+  /**
+   * This method returns the connection anchor of the connection anchor {@link Shape} of this
+   * {@link Relation}.
+   * 
+   * @param shape {@link Shape}
+   */
   public ConnectionAnchor getConnectionAnchorFromChildShape(Shape shape) {
     ORMSuperShapeEditPart editpart =
         (ORMSuperShapeEditPart) getViewer().getEditPartRegistry().get(shape);

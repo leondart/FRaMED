@@ -14,13 +14,12 @@ import org.framed.orm.model.Segment;
 
 /**
  * This figure is for {@link Shapes}s from type Datatype. The figure looks in the viewer/editor like this:
- * ______________
- * |____Data____|
- * |____Name____|
- * |Attribute   |
- * |_List_______|
- * |Operation   |
- * |_List_______|
+ *   ____________
+ *  /____Name____\
+ * | Attribute    |
+ * |_List_________|
+ * |Operation     |
+ * \_List_______ /
  * 
  * The right side and bottom side of the figure have a border shadow.
  * The attribute list and operation list are added through child {@link Segment}s in the editparts.
@@ -29,7 +28,7 @@ import org.framed.orm.model.Segment;
 public class ORMDataTypeFigure extends ORMShapeFigure {
 
   /**
-   * The basic {@link ShadowRectangle}, which has at right and bottom side a border shadow and to
+   * The basic {@link ShadowOctagon}, which has at right and bottom side a border shadow and to
    * which all child figures(operation segment, name, attribute segment) are added.
    */
   private final ShadowOctagon rectangle;
@@ -72,7 +71,7 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
   /**
    * A getter for the basic rectangle of this figure.
    * 
-   * @return rectangle {@link ShadowRectangle}
+   * @return rectangle {@link ShadowOctagon}
    * */
   public ShadowOctagon getBasicRec() {
     return rectangle;

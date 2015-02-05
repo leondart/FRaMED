@@ -2,12 +2,14 @@ package org.framed.orm.ui.command.connectionkinds;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.geometry.GeometryFactory;
+import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
@@ -78,6 +80,12 @@ public class ORMRelationCreateCommand extends Command {
     }
   }
 
+  /**
+   * This method checks if all variables, which are needed for the creation of a {@link Relation}
+   * from type cyclic, total or irreflexive.
+   * 
+   * @return true when target and source label are null and refrencedRelations array is not null.
+   * */
   private boolean testRelationshipConstraint() {
     if (targetLabel == null && sourceLabel == null && refrencedRelations != null) {
       return refrencedRelations.size() == 1;
@@ -99,14 +107,14 @@ public class ORMRelationCreateCommand extends Command {
   public void execute() {
     relation.setSourceLabel(sourceLabel);
     relation.setTargetLabel(targetLabel);
-    if(refrencedRelations != null){
+    if (refrencedRelations != null) {
       relation.getReferencedRelation().addAll(refrencedRelations);
     }
     relation.setSource(source);
     relation.setTarget(target);
     relation.setContainer(parent);
-    
-    Rectangle sourcerec = createRectabgleFromFromBoundarieData(source);
+
+    Rectangle sourcerec = createRectangleFromFromBoundarieData(source);
 
     // when source and target of the {@link Relation} are equal, than call insertSelfLoopBPs()
     // method, because to make the {@link Relation} visible/look good to the user we need to insert
@@ -118,7 +126,7 @@ public class ORMRelationCreateCommand extends Command {
 
     int relationCount = getRelationCount();
     if (relationCount > 1 && !source.equals(target)) {
-      Rectangle targetrec = createRectabgleFromFromBoundarieData(target);
+      Rectangle targetrec = createRectangleFromFromBoundarieData(target);
       Point ps = calculateCorrectPoint(sourcerec, targetrec.getLocation());
       Point pt = calculateCorrectPoint(targetrec, sourcerec.getLocation());
       adaptRelationCreation(ps, pt, relationCount);
@@ -239,6 +247,11 @@ public class ORMRelationCreateCommand extends Command {
     creatAndAddBenpoint(new Point(width + 30, 0), new Point(width + 30, 0), refSource, refSource);
   }
 
+  /**
+   * This method converts the source and target dimension {@link Point} as well as the refrence
+   * points to the target and source into a {@link RelativePoint}/Bendpoint and adds the cretaed
+   * Bendpoint to the relation.
+   * */
   private void creatAndAddBenpoint(Point dim1P, Point dim2P, Point refSource, Point refTarget) {
     org.framed.orm.geometry.Point p1 = GeometryFactory.eINSTANCE.createPoint();
     p1.setX(dim1P.x());
@@ -263,11 +276,15 @@ public class ORMRelationCreateCommand extends Command {
     relation.getBendpoints().add(relPoint);
   }
 
-  // doesn't work properly for the shape connection anchors of a relation
-  protected Point calculateCorrectPoint(Rectangle rec, Point locationOfOther){
-    switch(rec.getPosition(locationOfOther)){
+  /**
+   * This method calculates and returns the correct refrence point of a {@link Rectangle} in regards
+   * to a given Point.
+   * */
+  protected Point calculateCorrectPoint(Rectangle rec, Point locationOfOther) {
+    // TODO: doesn't work properly for the shape connection anchors of a relation
+    switch (rec.getPosition(locationOfOther)) {
       case PositionConstants.NORTH:
-      return rec.getTop();
+        return rec.getTop();
       case PositionConstants.NORTH_EAST:
         return rec.getTop();
       case PositionConstants.NORTH_WEST:
@@ -282,12 +299,12 @@ public class ORMRelationCreateCommand extends Command {
         return rec.getBottom();
       case PositionConstants.SOUTH_WEST:
         return rec.getBottom();
-        default:
-          return rec.getCenter();
+      default:
+        return rec.getCenter();
     }
   }
 
-  protected Rectangle createRectabgleFromFromBoundarieData(Shape shape) {
+  protected Rectangle createRectangleFromFromBoundarieData(Shape shape) {
     Point ptbottomright =
         new Point(shape.getBoundaries().getBottomRight().getX(), shape.getBoundaries()
             .getBottomRight().getY());
@@ -325,7 +342,7 @@ public class ORMRelationCreateCommand extends Command {
   }
 
   /**
-   * Setter for the {@linkModel} to which {@link Relation} should be added.
+   * Setter for the {@link Model} to which {@link Relation} should be added.
    * 
    * @param relcon org.framed.orm.model.Model
    * */
@@ -333,14 +350,29 @@ public class ORMRelationCreateCommand extends Command {
     this.parent = relcon;
   }
 
+  /**
+   * Setter for the target {@link NamedElement}/Label of the {@link Relation} which will be created.
+   * 
+   * @param targetLabel {@link org.framed.orm.model.NamedElement}
+   * */
   public void setTargetLabel(NamedElement targetLabel) {
     this.targetLabel = targetLabel;
   }
 
+  /**
+   * Setter for the source {@link NamedElement}/Label of the {@link Relation} which will be created.
+   * 
+   * @param sourceLabel {@link org.framed.orm.model.NamedElement}
+   * */
   public void setSourceLabel(NamedElement sourceLabel) {
     this.sourceLabel = sourceLabel;
   }
 
+  /**
+   * Setter for the refrenced relation array of the {@link Relation} which will be created.
+   * 
+   * @param ArrayList<Relation> refrencedRelations
+   * */
   public void setRefrencedRelations(ArrayList<Relation> refrencedRelations) {
     this.refrencedRelations = refrencedRelations;
   }

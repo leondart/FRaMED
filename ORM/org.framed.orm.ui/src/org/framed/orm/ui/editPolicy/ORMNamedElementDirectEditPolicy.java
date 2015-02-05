@@ -55,7 +55,7 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     if (getHostFigure() instanceof ORMShapeFigure) {
       ((ORMShapeFigure) getHostFigure()).getLabel().setText(value);
     } else if (getHostFigure() instanceof PolylineConnection) {
-      ((ORMRelationshipEditPart)getHost()).getNameLabel().setText(value);
+      ((ORMRelationshipEditPart) getHost()).getNameLabel().setText(value);
     } else {
       ((Label) getHostFigure()).setText(value);
     }
@@ -88,7 +88,10 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     return true;
   }
 
-
+  /**
+   * This method checks if the parent in the model tree of the {@link NamedElement}, whichs name is
+   * edited here, is a {@link Shape} from type rolegroup or roletype.
+   * */
   private boolean testForRoleTypeAndRoleGroup() {
     if (getHost().getParent() instanceof ORMSuperShapeEditPart) {
       Shape shape = (Shape) getHost().getParent().getModel();

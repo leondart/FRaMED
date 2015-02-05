@@ -14,8 +14,8 @@ import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
-import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
-import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupV2Figure;
 import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
@@ -76,11 +76,11 @@ public class ORMFigureFactoryTest {
     parentpart.setModel(OrmFactory.eINSTANCE.createModel());
     part.setParent(parentpart);
     
-    assertTrue("Return ORMGroupingV1Figure", ORMFigureFactory.createFigure(part) instanceof ORMGroupingV1Figure);
+    assertTrue("Return ORMGroupingV1Figure", ORMFigureFactory.createFigure(part) instanceof ORMGroupV1Figure);
     
     parentpart.setModel(OrmFactory.eINSTANCE.createShape());
     
-    assertTrue("Return ORMGroupingV2Figure", ORMFigureFactory.createFigure(part) instanceof ORMGroupingV2Figure);
+    assertTrue("Return ORMGroupingV2Figure", ORMFigureFactory.createFigure(part) instanceof ORMGroupV2Figure);
   }
   
   @Test

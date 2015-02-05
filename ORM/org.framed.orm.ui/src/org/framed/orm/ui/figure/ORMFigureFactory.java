@@ -11,8 +11,8 @@ import org.framed.orm.ui.figure.shapes.ORMChildModelFigure;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV1Figure;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.shapes.ORMDataTypeFigure;
-import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
-import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupV2Figure;
 import org.framed.orm.ui.figure.shapes.ORMNaturalTypeFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
 import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
@@ -20,8 +20,20 @@ import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
+/**
+ * This class serves as a facade/factory for creating figures for different {@link Shape} types.
+ * 
+ * @author Kay Bierzynski
+ * */
 public class ORMFigureFactory {
 
+  /**
+   * This method takes a {@link EditPart} as input and return the correct figure depending on which
+   * kind of model element the edit part controls.
+   * 
+   * @param editpart {@link EditPart}
+   * @return {@link Figure}
+   * */
   public static Figure createFigure(EditPart editpart) {
     Figure fig = null;
 
@@ -72,6 +84,14 @@ public class ORMFigureFactory {
     return fig;
   }
 
+  /**
+   * This method created and returns a version of the figure for a {@link Shape} from type
+   * compartmentypes.
+   * 
+   * @param editpart {@link EditPart}
+   * @return {@link ORMCompartmentV1Figure}(when user not stepped into the compartmentype)
+   *            or {@link ORMCompartmentV2Figure}(when user stepped into the compartmentype)
+   * */
   private static Figure creatCompartmentTypeFigure(EditPart editpart) {
     // when the compartment editpart is not "opened"(steped in) use as figure
     // ORMCompartmentV1Figure
@@ -85,15 +105,23 @@ public class ORMFigureFactory {
     }
   }
 
+  /**
+   * This method created and returns a version of the figure for a {@link Shape} from type
+   * group.
+   * 
+   * @param editpart {@link EditPart}
+   * @return {@link ORMGroupV1Figure}(when user not stepped into the group)
+   *            or {@link ORMGroupV2Figure}(when user stepped into the group)
+   * */
   private static Figure creatGroupFigure(EditPart editpart) {
     // when the group editpart is not "opened"(steped in) use as figure ORMGroupingV1Figure
     if (editpart.getParent().getModel() instanceof Model) {
-      return new ORMGroupingV1Figure();
+      return new ORMGroupV1Figure();
 
     }
     // when the group editpart is "opened"(steped in) use ORMGroupingV2Figure
     else {
-      return new ORMGroupingV2Figure();
+      return new ORMGroupV2Figure();
     }
   }
 }

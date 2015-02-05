@@ -10,8 +10,8 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
-import org.framed.orm.ui.figure.shapes.ORMGroupingV1Figure;
-import org.framed.orm.ui.figure.shapes.ORMGroupingV2Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupV1Figure;
+import org.framed.orm.ui.figure.shapes.ORMGroupV2Figure;
 import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
@@ -46,15 +46,15 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
 
       switch (shape.getType().getValue()) {
         case Type.GROUP_VALUE:
-          if (getFigure() instanceof ORMGroupingV1Figure) {
-            contentPane = ((ORMGroupingV1Figure) getFigure()).getBasicRec();
+          if (getFigure() instanceof ORMGroupV1Figure) {
+            contentPane = ((ORMGroupV1Figure) getFigure()).getBasicRec();
             final Model model = (Model) ((ORMModelEditPart) childEditPart).getModel();
 
             compartmentPart = new PartFigure();
             addNamesToCompartmentPart(model);
             contentPane.add(compartmentPart);
           } else {
-            contentPane = ((ORMGroupingV2Figure) getFigure()).getBasicRec();
+            contentPane = ((ORMGroupV2Figure) getFigure()).getBasicRec();
             contentPane.add(((ORMModelEditPart) childEditPart).getFigure(), BorderLayout.CENTER);
           }
           break;

@@ -21,9 +21,8 @@ import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
 
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
- * {@link Relation}s except of {@linkReltions} from type relationshipimplication and creates and
- * returns the necessary commands for that purpose. NewObject = O/o SourceEditPart = S/s
- * TargetEditPart = T/t Model = M/m
+ * {@link Relation}s between {@link Shape}s and creates and returns the necessary commands for that
+ * purpose. NewObject = O/o SourceEditPart = S/s TargetEditPart = T/t
  * 
  * @author Kay Bierzynski
  * */
@@ -113,7 +112,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         retVal = result;
       }
     }
-    
+
     return retVal;
   }
 
@@ -138,7 +137,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   }
 
   /**
-   * This method tests if the type of the new object given by the request equals objecttye, the
+   * This method tests if the type of the new object given by the request equals the objecttype, the
    * source edit part model type given by the request equals the sourcetype and the target edit part
    * model type given by the request equals of targettype.
    * 

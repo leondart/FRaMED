@@ -7,15 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.commands.CommandStackEvent;
 import org.eclipse.gef.commands.CommandStackEventListener;
-import org.eclipse.ui.IPropertyListener;
-import org.eclipse.ui.IWindowListener;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchListener;
-import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 
 /**
  * @author paul

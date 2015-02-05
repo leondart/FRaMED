@@ -26,7 +26,7 @@ import org.eclipse.swt.SWT;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMGroupingV1Figure extends ORMShapeFigure {
+public class ORMGroupV1Figure extends ORMShapeFigure {
 
   /**
    * The basic {@link ShadowRoundedRectangle}, which has at right and bottom side a border shadow
@@ -39,7 +39,7 @@ public class ORMGroupingV1Figure extends ORMShapeFigure {
    * is called, the basic {@link ShadowRoundedRectangle} is initialized
    * and the child figure for the name( {@link Label}) is added to the basic rectangle.
    * */
-  public ORMGroupingV1Figure() {
+  public ORMGroupV1Figure() {
 
     super();
 
