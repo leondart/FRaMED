@@ -2,18 +2,21 @@ package org.framed.orm.ui.tests.factory;
 
 import static org.junit.Assert.*;
 
+import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
 import org.junit.Test;
 
 public class ORMCompartmentTypeFactoryTest {
 
   @Test
   public void testGetNewObject() {
-    fail("Not yet implemented");
+	  ORMCompartmentTypeFactory obj = new ORMCompartmentTypeFactory();
+	  assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-    fail("Not yet implemented");
+	  ORMCompartmentTypeFactory obj = new ORMCompartmentTypeFactory();
+	  assertNotNull(obj.getObjectType());
   }
 
 }

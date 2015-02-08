@@ -2,18 +2,21 @@ package org.framed.orm.ui.tests.factory;
 
 import static org.junit.Assert.*;
 
+import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.junit.Test;
 
 public class ORMGroupFactoryTest {
 
   @Test
   public void testGetNewObject() {
-    fail("Not yet implemented");
+	  ORMGroupFactory obj = new ORMGroupFactory();
+	  assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-    fail("Not yet implemented");
+	  ORMGroupFactory obj = new ORMGroupFactory();
+	  assertNotNull(obj.getObjectType());
   }
 
 }
