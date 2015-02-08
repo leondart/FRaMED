@@ -25,7 +25,7 @@ import org.framed.orm.model.Model;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMGroupingV2Figure extends ORMShapeFigure {
+public class ORMGroupV2Figure extends ORMShapeFigure {
 
   /**
    * The basic {@link ShadowRoundedRectangle}, which has at right and bottom side a border shadow
@@ -38,7 +38,7 @@ public class ORMGroupingV2Figure extends ORMShapeFigure {
    * is called, the basic {@link ShadowRoundedRectangle} is initialized and the
    * child figure for the name( {@link Label}) is added to the basic rectangle.
    * */
-  public ORMGroupingV2Figure() {
+  public ORMGroupV2Figure() {
 
     super();
 

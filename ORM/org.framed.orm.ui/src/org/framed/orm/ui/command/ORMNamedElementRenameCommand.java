@@ -27,6 +27,11 @@ public class ORMNamedElementRenameCommand extends Command {
     super.setLabel("ORMNamedElementRename");
   }
   
+  /**
+   * This method tests if the conditions for executing this command are fulfilled,
+   * 
+   * @return true when the new name is set
+   */
   @Override
   public boolean canExecute() {
     return newName!=null;

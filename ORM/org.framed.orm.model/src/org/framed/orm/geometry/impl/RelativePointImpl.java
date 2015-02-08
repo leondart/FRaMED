@@ -32,52 +32,49 @@ import org.framed.orm.geometry.RelativePoint;
  *
  * @generated
  */
-public class RelativePointImpl extends MinimalEObjectImpl.Container implements
-		RelativePoint {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected RelativePointImpl() {
-		super();
-	}
+public class RelativePointImpl extends MinimalEObjectImpl.Container implements RelativePoint {
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
+  protected RelativePointImpl() {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return GeometryPackage.Literals.RELATIVE_POINT;
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return GeometryPackage.Literals.RELATIVE_POINT;
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected int eStaticFeatureCount() {
-		return 0;
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected int eStaticFeatureCount() {
+    return 0;
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<Point> getReferencePoints() {
-		return (EList<Point>) eGet(
-				GeometryPackage.Literals.RELATIVE_POINT__REFERENCE_POINTS, true);
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  public EList<Point> getReferencePoints() {
+    return (EList<Point>) eGet(GeometryPackage.Literals.RELATIVE_POINT__REFERENCE_POINTS, true);
+  }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<Point> getDistances() {
-		return (EList<Point>) eGet(
-				GeometryPackage.Literals.RELATIVE_POINT__DISTANCES, true);
-	}
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  public EList<Point> getDistances() {
+    return (EList<Point>) eGet(GeometryPackage.Literals.RELATIVE_POINT__DISTANCES, true);
+  }
 
 } // RelativePointImpl

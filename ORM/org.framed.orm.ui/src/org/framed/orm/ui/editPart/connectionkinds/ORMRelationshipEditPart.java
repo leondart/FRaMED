@@ -4,21 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionEndpointLocator;
+import org.eclipse.draw2d.ConnectionLocator;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
+import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
+import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
+import org.framed.orm.ui.editor.ORMCellEditorLocator;
+import org.framed.orm.ui.editor.ORMDirectEditManager;
 
 /**
- * This {@link EditPart} is the controller for {@link Relation}s from type relatinship.
+ * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
  * 
- * @author Kay Bierzynski (initial development)
+ * @author Kay Bierzynski (initial development, implemented Relationship Implication, last changes
+ *         due to new model)
  * @author Lars Schuetze (refactoring)
  * @author David Gollasch (changes due to a new model)
  **/
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
+
+  private Label nameLabel = new Label();;
 
   /**
    * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
@@ -39,6 +52,9 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     List<NamedElement> children = new ArrayList<>(2);
     children.add(getRelationship().getTargetLabel());
     children.add(getRelationship().getSourceLabel());
+    if (getRelationship().getConnectionAnchor() != null) {
+      children.add(getRelationship().getConnectionAnchor());
+    }
     return children;
   }
 
@@ -47,8 +63,15 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    * 
    * @return ({@link Relationship}) getModel()
    * */
-  protected Relation getRelationship() {
+  public Relation getRelationship() {
     return (Relation) getModel();
+  }
+
+  @Override
+  protected void createEditPolicies() {
+    super.createEditPolicies();
+    // edit policy for handling requests of editing the named element name
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
   }
 
   /**
@@ -66,7 +89,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
-    if (childEditPart instanceof  ORMNamedElementEditPart) {
+    if (childEditPart instanceof ORMNamedElementEditPart) {
       ORMNamedElementEditPart labelEditPart = (ORMNamedElementEditPart) childEditPart;
       if (labelEditPart.getModel().equals(getRelationship().getSourceLabel())) {
         getRelationFigure().getLayoutManager().setConstraint(labelEditPart.getFigure(),
@@ -76,6 +99,52 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
             getConnectionLocator(getRelationFigure(), true));
       }
     }
+
+    if (childEditPart instanceof ORMSuperShapeEditPart) {
+      ConnectionLocator loc = new ConnectionLocator(getRelationFigure(), ConnectionLocator.MIDDLE);
+      getRelationFigure().getLayoutManager().setConstraint(
+          ((ORMSuperShapeEditPart) childEditPart).getFigure(), loc);
+    }
     super.addChildVisual(childEditPart, index);
   }
+
+  /**
+   * {@inheritDoc} In case the relation is from type relationship than the text of the name label is
+   * refreshed here.
+   */
+  @Override
+  protected void refreshVisuals() {
+    super.refreshVisuals();
+    nameLabel.setText(getRelationship().getName());
+  }
+
+  /** {@inheritDoc} */
+  @Override
+  public void performRequest(final Request req) {
+    // handle requests for direct editing the named element name
+    if (req.getType() == RequestConstants.REQ_DIRECT_EDIT) {
+      performDirectEditing();
+    }
+  }
+
+  /**
+   * This method initializes and starts the {@link ORMDirectEditManager} for direct editing the
+   * attribute name.
+   */
+  private void performDirectEditing() {
+    final ORMDirectEditManager manager =
+        new ORMDirectEditManager(this, TextCellEditor.class, new ORMCellEditorLocator(nameLabel),
+            nameLabel);
+    manager.show(); // refresh view
+  }
+  
+  /**
+   * A getter for name {@link Label} of this relationship.
+   * 
+   * @return nameLabel
+   * */
+  public Label getNameLabel() {
+    return nameLabel;
+  }
+
 }

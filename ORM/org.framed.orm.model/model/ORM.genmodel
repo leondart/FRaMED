@@ -9,7 +9,7 @@
   <genPackages prefix="Orm" basePackage="org.framed" disposableProviderFactory="true"
       interfacePackageSuffix="model" metaDataPackageSuffix="model" classPackageSuffix="model.impl"
       utilityPackageSuffix="model.util" providerPackageSuffix="model.provider" presentationPackageSuffix="model.presentation"
-      testsPackageSuffix="model.tests" ecorePackage="ORM.ecore#/">
+      testsPackageSuffix="model.tests" fileExtensions="graphical.crom" ecorePackage="ORM.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ORM.ecore#//Type">
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/CompartmentType"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/NaturalType"/>
@@ -26,6 +26,7 @@
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RoleGroup"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Group"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Fulfillment"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RelationshipImplication"/>
     </genEnums>
     <genClasses image="false" ecoreClass="ORM.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//NamedElement/name"/>
@@ -38,6 +39,7 @@
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Model/elements"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ORM.ecore#//Model/parent"/>
     </genClasses>
     <genClasses image="false" ecoreClass="ORM.ecore#//Relation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/target"/>
@@ -46,6 +48,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/sourceLabel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/targetLabel"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/referencedRelation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ORM.ecore#//Relation/referencedRoles"/>
     </genClasses>
     <genClasses ecoreClass="ORM.ecore#//Shape">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ORM.ecore#//Shape/firstSegment"/>

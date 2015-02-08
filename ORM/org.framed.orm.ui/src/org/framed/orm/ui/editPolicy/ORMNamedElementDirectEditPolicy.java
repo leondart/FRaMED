@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.DirectEditRequest;
@@ -53,6 +54,8 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     String value = (String) request.getCellEditor().getValue();
     if (getHostFigure() instanceof ORMShapeFigure) {
       ((ORMShapeFigure) getHostFigure()).getLabel().setText(value);
+    } else if (getHostFigure() instanceof PolylineConnection) {
+      ((ORMRelationshipEditPart) getHost()).getNameLabel().setText(value);
     } else {
       ((Label) getHostFigure()).setText(value);
     }
@@ -85,7 +88,10 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     return true;
   }
 
-
+  /**
+   * This method checks if the parent in the model tree of the {@link NamedElement}, whichs name is
+   * edited here, is a {@link Shape} from type rolegroup or roletype.
+   * */
   private boolean testForRoleTypeAndRoleGroup() {
     if (getHost().getParent() instanceof ORMSuperShapeEditPart) {
       Shape shape = (Shape) getHost().getParent().getModel();

@@ -101,6 +101,12 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
     return super.getCloneCommand(request);
   }
   
+  /**
+   * This method converts a draw2d Rectangle into a Rectangle from the graphical model.
+   * 
+   *  @param boundarie  org.eclipse.draw2d.geometry.Rectangle
+   *  @return rec org.framed.orm.geometry.Rectangle
+   * */
   protected org.framed.orm.geometry.Rectangle createModelReactangle(final Rectangle boundarie) {
     org.framed.orm.geometry.Rectangle rec = GeometryFactory.eINSTANCE.createRectangle();
 

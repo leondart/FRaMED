@@ -17,6 +17,7 @@ import org.eclipse.gef.tools.DirectEditManager;
  * 
  * @author Kay Bierzynski
  * @author Lars Schuetze (refactoring)
+ * @author David Gollasch(implemented check for text input)
  * */
 public class ORMDirectEditManager extends DirectEditManager {
 

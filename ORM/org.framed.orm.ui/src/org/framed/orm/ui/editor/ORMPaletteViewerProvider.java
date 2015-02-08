@@ -1,9 +1,7 @@
 package org.framed.orm.ui.editor;
 
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.gef.EditDomain;
-import org.eclipse.gef.ui.palette.PaletteContextMenuProvider;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
 

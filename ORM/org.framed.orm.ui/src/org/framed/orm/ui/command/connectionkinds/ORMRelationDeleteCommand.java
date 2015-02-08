@@ -1,6 +1,9 @@
 package org.framed.orm.ui.command.connectionkinds;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.gef.commands.Command;
@@ -8,6 +11,7 @@ import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
@@ -35,6 +39,24 @@ public class ORMRelationDeleteCommand extends Command {
    */
   private ArrayList<RelativePoint> bendpoints = new ArrayList<RelativePoint>();
 
+  /**
+   * A list, which contains all {@link Relation}s that are connected to the {@link Relation} to be
+   * removed. This list necessary for the case that the user wants to undo this command.
+   */
+  protected List<Relation> relations;
+
+  /**
+   * Sources for the {@link Relation}s that start or end at this {@link Relation}. This list
+   * necessary for the case that the user wants to undo this command.
+   */
+  private Map<Relation, ModelElement> sourceLinks;
+
+  /**
+   * Targets for the {@link Relation}s that start or end at this {@link Relation}. This list
+   * necessary for the case that the user wants to undo this command.
+   */
+  private Map<Relation, ModelElement> targetLinks;
+
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
@@ -42,6 +64,7 @@ public class ORMRelationDeleteCommand extends Command {
    */
   public ORMRelationDeleteCommand() {
     super.setLabel("ORMRelationDelete");
+    relations = new ArrayList<Relation>();
   }
 
   /**
@@ -57,8 +80,9 @@ public class ORMRelationDeleteCommand extends Command {
   /**
    * {@inheritDoc} In this method all the attributes of the {@link Relation} to be removed are
    * stored in variables in case that the user wants to undone this command. After this part the
-   * {@link Relation} is removed from the source, the {@link Model} and the target and all of
-   * it's {@link Bendpoint}s are deleted.
+   * {@link Relation} is removed from the source, the {@link Model} and the target and all of it's
+   * {@link Bendpoint}s are deleted. In case of {@link Relation} from relationship the connection
+   * anchor shape is deleted as well.
    * 
    */
   @Override
@@ -67,6 +91,10 @@ public class ORMRelationDeleteCommand extends Command {
     source = relation.getSource();
     target = relation.getTarget();
     bendpoints.addAll(relation.getBendpoints());
+    if (relation.getType().equals(Type.RELATIONSHIP)) {
+      detachLinks();
+      relation.getConnectionAnchor().setContainer(null);
+    }
 
     relation.setSource(null);
     relation.setTarget(null);
@@ -76,7 +104,8 @@ public class ORMRelationDeleteCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through the recreation/ invoking of the {@link Relation}
-   * into the model tree through setting it's attributes.
+   * into the model tree through setting it's attributes. In case of {@link Relation} from
+   * relationship the connection anchor shape is inovked into the modle tree as well.
    */
   @Override
   public void undo() {
@@ -84,6 +113,41 @@ public class ORMRelationDeleteCommand extends Command {
     relation.setTarget(target);
     relation.setContainer(parent);
     relation.getBendpoints().addAll(bendpoints);
+    if (relation.getType().equals(Type.RELATIONSHIP)) {
+      reattachLinks();
+      relation.getConnectionAnchor().setContainer(parent);
+    }
+  }
+
+
+  /**
+   * Detach/Delete all {@link Relation}s from this {@link Relation} and their source/target
+   * {@link Relation} and storing the connection information in local data structures.
+   */
+  protected void detachLinks() {
+    sourceLinks = new HashMap<Relation, ModelElement>();
+    targetLinks = new HashMap<Relation, ModelElement>();
+    relations.addAll(relation.getConnectionAnchor().getIncomingRelations());
+    relations.addAll(relation.getConnectionAnchor().getOutgoingRelations());
+    for (Relation relation : relations) {
+      sourceLinks.put(relation, relation.getSource());
+      targetLinks.put(relation, relation.getTarget());
+      relation.setSource(null);
+      relation.setTarget(null);
+      relation.setContainer(null);
+    }
+  }
+
+  /**
+   * Reattach/Recreate all {@link Relation}s to this {@link Relation} and their source/target
+   * {@link Relation}.
+   */
+  private void reattachLinks() {
+    for (Relation relation : relations) {
+      relation.setSource(sourceLinks.get(relation));
+      relation.setTarget(targetLinks.get(relation));
+      relation.setContainer(parent);
+    }
   }
 
   /**

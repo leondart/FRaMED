@@ -51,7 +51,6 @@ public class ORMGraphicalEditorActionBarContributor extends ActionBarContributor
 
   }
 
-  // is called from the ORMMultiPageEditor pageChange when user switch between editors
   /**
    * Sets the active editor for the contributor and updates the workbench actionbar.
    * 
