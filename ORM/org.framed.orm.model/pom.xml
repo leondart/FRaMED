@@ -6,7 +6,7 @@
     <relativePath>../org.framed.orm.build/pom.xml</relativePath>
     <groupId>org.framed</groupId>
     <artifactId>parent</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
   </parent>
 
   <artifactId>org.framed.orm.model</artifactId>

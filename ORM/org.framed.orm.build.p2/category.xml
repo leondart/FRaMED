@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.framed.orm.build.feature_2.0.0.qualifier.jar" id="org.framed.orm.build.feature" version="2.0.0.qualifier"/>
+   <feature url="features/org.framed.orm.build.feature_2.0.1.jar" id="org.framed.orm.build.feature" version="2.0.1"/>
 </site>

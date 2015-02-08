@@ -2,7 +2,7 @@
 <feature
       id="org.framed.orm.build.feature"
       label="FRaMED"
-      version="2.0.0"
+      version="2.0.1"
       provider-name="TU Dresden">
 
    <description url="http://www.example.com/description">
