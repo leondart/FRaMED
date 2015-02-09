@@ -9,7 +9,7 @@
   <genPackages prefix="Orm" basePackage="org.framed" disposableProviderFactory="true"
       interfacePackageSuffix="model" metaDataPackageSuffix="model" classPackageSuffix="model.impl"
       utilityPackageSuffix="model.util" providerPackageSuffix="model.provider" presentationPackageSuffix="model.presentation"
-      testsPackageSuffix="model.tests" fileExtensions="graphical.crom" ecorePackage="ORM.ecore#/">
+      testsPackageSuffix="model.tests" fileExtensions="crom_dia" ecorePackage="ORM.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ORM.ecore#//Type">
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/CompartmentType"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/NaturalType"/>
