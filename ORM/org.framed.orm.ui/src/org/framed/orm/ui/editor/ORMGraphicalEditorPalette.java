@@ -189,9 +189,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new CreationToolEntry("DataType", "Create a new DataType",
             new ORMDataTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
-    //TODOD: create datatype.png
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/naturaltype.png"));
+        "icons/datatype.png"));
     drawer.add(entry);
     addEntry("DataType", entry, true);
 
