@@ -25,101 +25,114 @@ import org.framed.orm.ui.utilities.ORMTextUtilities;
  */
 public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
-  static Dimension dynamicDimensions(Object obj) {
-    Dimension d = new Dimension();
+	static Dimension dynamicDimensions(Object obj) {
+		Dimension d = new Dimension();
 
-    d.setWidth(200);
+		d.setWidth(200);
 
-    if (obj == null) {
-      d.setHeight(ORMTextUtilities.charHeight(null) * 10); // charHeight * 10: title + 3 attributes
-                                                           // + 3 methods + 3 dots
-      return d;
-    }
+		if (obj == null) {
+			d.setHeight(ORMTextUtilities.charHeight(null) * 10); // charHeight *
+																	// 10: title
+																	// + 3
+																	// attributes
+																	// + 3
+																	// methods +
+																	// 3 dots
+			return d;
+		}
 
+		if (obj.equals(Type.ROLE_GROUP)) {
+			// offset + title + role height
+			d.setHeight(2 * ORMTextUtilities.charHeight(null)
+					+ dynamicDimensions(null).height());
+			d.setWidth(250);
+		} else {
+			// charHeight * 10: title + 3 attributes + 3 methods + 3 dots
+			d.setHeight(ORMTextUtilities.charHeight(null) * 10);
+		}
 
-      if (obj.equals(Type.ROLE_GROUP)) {
-        // offset + title + role height
-        d.setHeight(2 * ORMTextUtilities.charHeight(null) + dynamicDimensions(null).height());
-        d.setWidth(250);
-      } else {
-        // charHeight * 10: title + 3 attributes + 3 methods + 3 dots
-        d.setHeight(ORMTextUtilities.charHeight(null) * 10);
-      }
-    
+		return d;
+	}
 
-    return d;
-  }
+	@Override
+	protected Command createAddCommand(ChangeBoundsRequest request,
+			EditPart child, Object constraint) {
+		CompoundCommand result = new CompoundCommand();
 
-  @Override
-  protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
-    CompoundCommand result = new CompoundCommand();
-    @SuppressWarnings("unchecked")
-    List<AbstractGraphicalEditPart> parts = request.getEditParts();
-    Rectangle r = (Rectangle) constraint;
+		@SuppressWarnings("unchecked")
+		List<AbstractGraphicalEditPart> parts = request.getEditParts();
+		Rectangle r = (Rectangle) constraint;
 
-    for (AbstractGraphicalEditPart part : parts) {
-      Rectangle newBoundarie = r;
-      ORMAddCommand addCommand = new ORMAddCommand();
-      addCommand.setParent((Model) getHost().getModel());
-      addCommand.setChild((Shape) part.getModel());
-      if (part.getModel() instanceof Shape) {
-        Shape n = (Shape) part.getModel();
-        
-        org.framed.orm.geometry.Rectangle rec = n.getBoundaries();
-        int width = Math.abs(rec.getTopLeft().getX() - rec.getBottomRight().getX());
-        int heigth =   Math.abs( rec.getTopLeft().getY() - rec.getBottomRight().getY());
-        Dimension dim = new Dimension(width, heigth);
-        
-        newBoundarie = new Rectangle(r.getLocation(), dim);
-      }
-      addCommand.setBoundaries(createModelReactangle(newBoundarie));
-      addCommand.setLabel("Adding");
-      addCommand.setDebugLabel("Adding");
+		for (AbstractGraphicalEditPart part : parts) {
+			if (part.getModel() instanceof Shape) {
+				Rectangle newBoundarie = r;
+				ORMAddCommand addCommand = new ORMAddCommand();
+				addCommand.setParent((Model) getHost().getModel());
+				addCommand.setChild((Shape) part.getModel());
 
-      result.add(addCommand);
-    }
-    return result;
-  }
+				Shape n = (Shape) part.getModel();
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getCreateCommand(org.eclipse.gef.requests.
-   * CreateRequest)
-   */
-  @Override
-  protected Command getCreateCommand(CreateRequest request) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+				org.framed.orm.geometry.Rectangle rec = n.getBoundaries();
+				int width = Math.abs(rec.getTopLeft().getX()
+						- rec.getBottomRight().getX());
+				int heigth = Math.abs(rec.getTopLeft().getY()
+						- rec.getBottomRight().getY());
+				Dimension dim = new Dimension(width, heigth);
 
+				newBoundarie = new Rectangle(r.getLocation(), dim);
 
+				addCommand.setBoundaries(createModelReactangle(newBoundarie));
+				addCommand.setLabel("Adding");
+				addCommand.setDebugLabel("Adding");
 
-  @Override
-  protected Command getCloneCommand(ChangeBoundsRequest request) {
-    // TODO Auto-generated method stub
-    return super.getCloneCommand(request);
-  }
-  
-  /**
-   * This method converts a draw2d Rectangle into a Rectangle from the graphical model.
-   * 
-   *  @param boundarie  org.eclipse.draw2d.geometry.Rectangle
-   *  @return rec org.framed.orm.geometry.Rectangle
-   * */
-  protected org.framed.orm.geometry.Rectangle createModelReactangle(final Rectangle boundarie) {
-    org.framed.orm.geometry.Rectangle rec = GeometryFactory.eINSTANCE.createRectangle();
+				result.add(addCommand);
+			}
+		}
+		return result;
+	}
 
-    Point bottomRight = GeometryFactory.eINSTANCE.createPoint();
-    Point topLeft = GeometryFactory.eINSTANCE.createPoint();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.gef.editpolicies.LayoutEditPolicy#getCreateCommand(org.eclipse
+	 * .gef.requests. CreateRequest)
+	 */
+	@Override
+	protected Command getCreateCommand(CreateRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    bottomRight.setX(boundarie.getBottomRight().x());
-    bottomRight.setY(boundarie.getBottomRight().y());
-    topLeft.setX(boundarie.getTopLeft().x());
-    topLeft.setY(boundarie.getTopLeft().y());
+	@Override
+	protected Command getCloneCommand(ChangeBoundsRequest request) {
+		// TODO Auto-generated method stub
+		return super.getCloneCommand(request);
+	}
 
-    rec.setBottomRight(bottomRight);
-    rec.setTopLeft(topLeft);
-    return rec;
-  }
+	/**
+	 * This method converts a draw2d Rectangle into a Rectangle from the
+	 * graphical model.
+	 * 
+	 * @param boundarie
+	 *            org.eclipse.draw2d.geometry.Rectangle
+	 * @return rec org.framed.orm.geometry.Rectangle
+	 * */
+	protected org.framed.orm.geometry.Rectangle createModelReactangle(
+			final Rectangle boundarie) {
+		org.framed.orm.geometry.Rectangle rec = GeometryFactory.eINSTANCE
+				.createRectangle();
+
+		Point bottomRight = GeometryFactory.eINSTANCE.createPoint();
+		Point topLeft = GeometryFactory.eINSTANCE.createPoint();
+
+		bottomRight.setX(boundarie.getBottomRight().x());
+		bottomRight.setY(boundarie.getBottomRight().y());
+		topLeft.setX(boundarie.getTopLeft().x());
+		topLeft.setY(boundarie.getTopLeft().y());
+
+		rec.setBottomRight(bottomRight);
+		rec.setTopLeft(topLeft);
+		return rec;
+	}
 }

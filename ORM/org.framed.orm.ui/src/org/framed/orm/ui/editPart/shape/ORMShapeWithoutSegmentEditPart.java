@@ -16,23 +16,23 @@ import org.framed.orm.ui.figure.shapes.ORMRoleGroupFigure;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
- * This {@link EditPart} is the controller for a {@link Shape} from type group or compartmentype.
+ * This {@link EditPart} is the controller for a {@link Shape} from type group or role group.
  * 
  * @author Kay Bierzynski
  * */
 public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
 
   /**
-   * A {@link PartFigure} in which all {@link Shapes}s from type compartmenttype and group that the
+   * A {@link PartFigure} in which all {@link Shapes}s from type compartment type and group that
    * this groups {@link Model} contains are listed. A global variable is helpful, because this
    * {@link PartFigure} is used in the methods refreshVisual() and addChildVisual().
    */
   private PartFigure compartmentPart;
 
   /**
-   * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Model}. If
+   * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Model}. Whether
    * the figure of the {@link Model} or the compartmentPart is added to a Shape from type group
-   * depends on which version of group figure is used also if the user has steped in the group. or
+   * depends on which version of the group figure is used also if the user has steped in the group or
    * not.
    * 
    * */
