@@ -10,12 +10,14 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Segment;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
+import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
@@ -60,12 +62,17 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
     collectNamedElement.setText("...");
     collectionEle = new PartFigure();
   }
-
+  
   /** {@inheritDoc} A {@link Segment} has as a figure a {@link PartFigure}. */
   @Override
   protected IFigure createFigure() {
     return ORMFigureFactory.createFigure(this);
   }
+
+  @Override
+	public boolean isSelectable() {
+		return false;
+	}
 
   /**
    * {@inheritDoc} In case of this {@link EditPart} that would be the figure of {@link NamedElement}
@@ -260,6 +267,9 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void createEditPolicies() {
+	  // the ORMSegmentXYLayoutPolicy is added here(although it does nothing) so that attributes and operations are selectable
+	  installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
   }
+  
 
 }

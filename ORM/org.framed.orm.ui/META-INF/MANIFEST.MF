@@ -20,8 +20,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.xmi
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: org.framed.orm.ui.editPart,
+Export-Package: org.framed.orm.ui.command,
+ org.framed.orm.ui.command.connectionkinds,
+ org.framed.orm.ui.command.shapes,
+ org.framed.orm.ui.editPart,
  org.framed.orm.ui.editPart.shape,
  org.framed.orm.ui.editor,
+ org.framed.orm.ui.factory,
  org.framed.orm.ui.figure,
  org.framed.orm.ui.figure.shapes

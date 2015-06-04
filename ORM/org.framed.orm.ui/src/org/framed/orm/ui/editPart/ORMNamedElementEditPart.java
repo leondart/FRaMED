@@ -41,7 +41,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
     super();
     adapter = new ORMNamedElementAdapter();
   }
-
+  
   /*
    * (non-Javadoc)
    * 
@@ -64,7 +64,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
   protected void createEditPolicies() {
     // edit policy for handling requests of editing the named element name
     installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
-    // edit policy, which handels requests for deleting the namedlement, which is controlled
+    // edit policy, which handels requests for deleting the named element, which is controlled
     // through this edit part
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
   }
