@@ -146,14 +146,8 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
         contentPane.add(collect);
         collect.setToolTip(collection);
       }
-
-      int collectionSize = collection.getChildren().size();
-
-      if (collectionSize <= index - collectionSize) {
-        collection.add(childEditPart.getFigure(), 0);
-      } else {
-        collection.add(childEditPart.getFigure(), index - collectionSize);
-      }
+      // works only for the attribute/operation adding paradigm first to add is last in tool tip list
+      collection.add(childEditPart.getFigure(), 0);
 
     }
   }
