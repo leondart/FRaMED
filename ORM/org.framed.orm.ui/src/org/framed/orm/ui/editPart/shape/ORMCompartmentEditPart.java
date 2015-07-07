@@ -34,6 +34,10 @@ import org.framed.orm.ui.figure.shapes.PartFigure;
  * @author Kay Bierzynski
  * */
 public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
+	  /**
+	   * Defines the Number of Visible Roles per Compartment in the overview.
+	   */
+	  private final static int VisibleRoles=5; //TODO: Should be extracted to a Configuration File
 
 	/**
 	 * A {@link PartFigure} in which all {@link Shape}s from type role type and
@@ -169,7 +173,7 @@ public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
 
 					label.setText(labelText);
 					label.setToolTip(label2);
-					if (sizeList <= 3) {
+					if (sizeList <= VisibleRoles) {
 						rolePart.add(label);
 					} else {
 						collectLabels.add(label);
@@ -177,7 +181,7 @@ public class ORMCompartmentEditPart extends ORMShapeWithSegmentEditPart {
 				}
 			}
 
-			if (sizeList > 3) {
+			if (sizeList > VisibleRoles) {
 				collectLabel.setToolTip(collectLabels);
 				rolePart.add(collectLabel);
 			}

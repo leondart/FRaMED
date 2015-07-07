@@ -102,7 +102,7 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
         sizeList = compartmentPart.getChildren().size();
         label.setText(element.getName());
         label.setToolTip(label2);
-        if (sizeList <= 3) {
+        if (sizeList <= 3) { //TODO: Fix this number
           compartmentPart.add(label);
         } else {
           collectLabels.add(label);

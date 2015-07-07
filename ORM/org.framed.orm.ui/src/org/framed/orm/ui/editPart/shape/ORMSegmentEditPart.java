@@ -27,6 +27,10 @@ import org.framed.orm.ui.figure.shapes.PartFigure;
  * @author Kay Bierzynski
  * */
 public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
+  /**
+   * Defines the Number of Visible Children per Segment.
+   */
+  private final static int VisibleChildren=1024; //TODO: Should be extracted to a Configuration File
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -114,11 +118,11 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
   private void addChildToCorrectPosition(final int index, final GraphicalEditPart childEditPart,
       final IFigure contentPane, final Label collect, final PartFigure collection) {
 
-    if (index < 3) {
+    if (index < VisibleChildren) {
       // if the contentPane contains not more than index+1 children not more than three children
       // than total than the named element should be added at top of the attribute/method
       // list(contentPane) else the child is added on it's index
-      if (contentPane.getChildren().size() <= index + 1 && contentPane.getChildren().size() != 3) {
+      if (contentPane.getChildren().size() <= index + 1 && contentPane.getChildren().size() != VisibleChildren) {
         contentPane.add(childEditPart.getFigure(), 0);
       } else {
         contentPane.add(childEditPart.getFigure(), index);
@@ -128,15 +132,15 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
       // label that the collect label is added at the end of the contentPane, the collection is
       // added to the collect label as tootltip and the first added(to the contentPan) child figure
       // is removed from contentPane an added to the collection
-      if (contentPane.getChildren().size() >= 4
-          && !contentPane.getChildren().get(3).equals(collect)) {
+      if (contentPane.getChildren().size() >= (VisibleChildren+1)
+          && !contentPane.getChildren().get(VisibleChildren).equals(collect)) {
 
         contentPane.add(collect);
         collect.setToolTip(collection);
 
 
         IFigure childfig =
-            (IFigure) contentPane.getChildren().get(contentPane.getChildren().size() - 2);
+            (IFigure) contentPane.getChildren().get(contentPane.getChildren().size() - (VisibleChildren-1));
         contentPane.getChildren().remove(childfig);
         collection.add(childfig, 0);
       }
@@ -176,7 +180,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
 
       if (contentPane.getChildren().contains(collectNamedElement)) {
 
-        if (contentPane.getChildren().size() < 4) {
+        if (contentPane.getChildren().size() <= VisibleChildren) {
           IFigure child = (IFigure) collectionEle.getChildren().get(0);
           contentPane.remove(collectNamedElement);
           contentPane.add(child);
