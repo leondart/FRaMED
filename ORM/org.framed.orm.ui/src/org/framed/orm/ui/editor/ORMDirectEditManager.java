@@ -74,6 +74,7 @@ public class ORMDirectEditManager extends DirectEditManager {
 			String operation = identifier + "\\((" + parameter + "(,"
 					+ parameter + ")*)?\\):" + qualifiedIdentifier;
 			// <name>"("[Parameter(","Parameter)*]"):"<type>
+			String rolegroup = identifier +"([ ]*[(]"+ cardinality +"[)])?"; // name [ "(" cardinality ")" ]
 
 			Boolean matching = false;
 			this.isValidInput = matching;
@@ -86,14 +87,17 @@ public class ORMDirectEditManager extends DirectEditManager {
 			Matcher m_parameter = p_parameter.matcher(value);
 			Pattern p_cardinali = Pattern.compile(cardinality);
 			Matcher m_cardinali = p_cardinali.matcher(value);
+			Pattern p_rolegroup = Pattern.compile(rolegroup);
+			Matcher m_rolegroup = p_rolegroup.matcher(value);
 
 			/**
 			 * Distinguish the edit cell to choose the correct pattern to match
 			 * here
 			 */
-
+			
+            //TODO: this procedure is wrong, really really wrong. Fix it
 			if (m_operation.matches() || m_attribute.matches()
-					|| m_parameter.matches() || m_cardinali.matches()) {
+					|| m_parameter.matches() || m_cardinali.matches() || m_rolegroup.matches()) {
 				matching = true;
 			} else if (value == null || value.equals("")
 					|| value.equals("<...>")) {

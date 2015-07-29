@@ -62,7 +62,7 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
     	for (String r : rolenames) targetToolTip.add(new Label(r));
     	targetLabel.setText(Util.join(", ", rolenames));
     }
-    System.out.println(targetLabel.getText());
+    //System.out.println(targetLabel.getText());
   }
 
   /**
