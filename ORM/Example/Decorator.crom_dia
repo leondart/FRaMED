@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="DecoratorPattern" incomingRelations="//@elements.2">
+    <firstSegment/>
+    <secondSegment>
+      <elements name="callOperation(c:GenericComponent)"/>
+      <elements name="callNewOperation(c:GenericComponent)"/>
+    </secondSegment>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Component" outgoingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.8" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="operation()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="644" y="162"/>
+          <bottomRight x="884" y="268"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Decorator" incomingRelations="//@elements.0/@model/@elements.8" outgoingRelations="//@elements.0/@model/@elements.5" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="operation()"/>
+        </secondSegment>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="184" y="166"/>
+          <bottomRight x="407" y="267"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteDecorators(1...*)" incomingRelations="//@elements.0/@model/@elements.5" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteDecorator1" type="RoleType">
+            <firstSegment>
+              <elements name="newState:GenTyp1"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="operation()"/>
+              <elements name="newOperation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="10" y="13"/>
+              <bottomRight x="141" y="134"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteDecorator2" type="RoleType">
+            <firstSegment>
+              <elements name="newState:GenTyp2"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="operation()"/>
+              <elements name="newOperation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="142" y="13"/>
+              <bottomRight x="270" y="133"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteDecoratorN" type="RoleType">
+            <firstSegment>
+              <elements name="newState:GenTypN"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="operation()"/>
+              <elements name="newOperation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="295" y="13"/>
+              <bottomRight x="423" y="133"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="82" y="306"/>
+          <bottomRight x="518" y="482"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.10" source="//@elements.0/@model/@elements.0"/>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.3" source="//@elements.0/@model/@elements.1"/>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="useComponent" type="Relationship" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0" connectionAnchor="//@elements.0/@model/@elements.7">
+        <sourceLabel name="1...1"/>
+        <targetLabel name="0...*"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteComponents(1...1)" incomingRelations="//@elements.0/@model/@elements.4" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteComponent1" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="11" y="14"/>
+              <bottomRight x="142" y="132"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteComponent2" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="143" y="15"/>
+              <bottomRight x="275" y="133"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteComponentN" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="310" y="16"/>
+              <bottomRight x="444" y="135"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="525" y="307"/>
+          <bottomRight x="988" y="484"/>
+        </boundaries>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="836" y="137"/>
+      <bottomRight x="1114" y="403"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.2" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="260" y="221"/>
+      <bottomRight x="489" y="400"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" name="" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.10 //@elements.0/@model/@elements.3 //@elements.0/@model/@elements.1 //@elements.0/@model/@elements.0"/>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenType1" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="271" y="128"/>
+      <bottomRight x="423" y="196"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenType2" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="428" y="128"/>
+      <bottomRight x="586" y="198"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenTypeN" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="639" y="129"/>
+      <bottomRight x="817" y="200"/>
+    </boundaries>
+  </elements>
+</org.framed.orm.model:Model>

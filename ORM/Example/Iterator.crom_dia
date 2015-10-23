@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="IteratorPattern" incomingRelations="//@elements.3">
+    <firstSegment/>
+    <secondSegment>
+      <elements name="forAll(iteratorID:Integer, c:Command)"/>
+      <elements name="otherOperation(iteratorID:Integer)"/>
+      <elements name="currentItem(iteratorID:Integer)"/>
+      <elements name="noMoreItems(iteratorID:Integer)"/>
+      <elements name="nextItem(iteratorID:Integer)"/>
+      <elements name="firstItem(iteratorID:Integer)"/>
+      <elements name="ColOperation()"/>
+    </secondSegment>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Iterator" outgoingRelations="//@elements.0/@model/@elements.2 //@elements.0/@model/@elements.7" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="forAll(c:Command)"/>
+          <elements name="otherOperation()"/>
+          <elements name="getCurrentItem():GenType"/>
+          <elements name="nextItem():GenType"/>
+          <elements name="noMoreItems():Boolean"/>
+          <elements name="firstItem():GenType"/>
+          <elements name="getID():Integer"/>
+        </secondSegment>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="798" y="68"/>
+          <bottomRight x="1023" y="234"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteIterators(1...*)" incomingRelations="//@elements.0/@model/@elements.2" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ExternalIterator" type="RoleType">
+            <firstSegment>
+              <elements name="currentItem:GenType"/>
+              <elements name="ID:Integer"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="otherOperation()"/>
+              <elements name="getCurrentItem():GenType"/>
+              <elements name="noMoreItems():Boolean"/>
+              <elements name="nextItem():GenType"/>
+              <elements name="firstItem():GenType"/>
+              <elements name="getID():Integer"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="7" y="4"/>
+              <bottomRight x="168" y="187"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="Cursor" type="RoleType">
+            <firstSegment>
+              <elements name="currentItem:GenType"/>
+              <elements name="ID:Integer"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="getCurrentItem():GenType"/>
+              <elements name="getID():Integer"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="173" y="3"/>
+              <bottomRight x="342" y="127"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="InternalIterator" type="RoleType">
+            <firstSegment>
+              <elements name="currenItem:GenType"/>
+              <elements name="ID:Integer"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="forAll(c:Command)"/>
+              <elements name="getID():Integer"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="345" y="3"/>
+              <bottomRight x="489" y="127"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="666" y="272"/>
+          <bottomRight x="1163" y="501"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0"/>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Collection" incomingRelations="//@elements.0/@model/@elements.7" outgoingRelations="//@elements.0/@model/@elements.5" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="createIterator()"/>
+          <elements name="getItem(itemID:Integer)"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="318" y="68"/>
+          <bottomRight x="566" y="238"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteCollections(1...1)" incomingRelations="//@elements.0/@model/@elements.5" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteCollection1" type="RoleType">
+            <firstSegment>
+              <elements name="items:GenType"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="createIterator()"/>
+              <elements name="colOperation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="3" y="4"/>
+              <bottomRight x="147" y="106"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteCollection2" type="RoleType">
+            <firstSegment>
+              <elements name="items:GenType"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="createIterator()"/>
+              <elements name="colOperation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="147" y="4"/>
+              <bottomRight x="303" y="106"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteCollectionN" type="RoleType">
+            <firstSegment>
+              <elements name="items:GenType"/>
+            </firstSegment>
+            <secondSegment>
+              <elements name="createIterator()"/>
+              <elements name="colOperation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="306" y="3"/>
+              <bottomRight x="496" y="105"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+            <boundaries>
+              <topLeft y="1"/>
+              <bottomRight x="1"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="160" y="272"/>
+          <bottomRight x="659" y="414"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.4" source="//@elements.0/@model/@elements.3"/>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="Collection-Iterator" type="Relationship" target="//@elements.0/@model/@elements.3" source="//@elements.0/@model/@elements.0" connectionAnchor="//@elements.0/@model/@elements.6">
+        <sourceLabel name="0...*"/>
+        <targetLabel name="1...1"/>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="906" y="135"/>
+      <bottomRight x="1219" y="373"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericCollection&lt;GenType>" outgoingRelations="//@elements.3" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="312" y="264"/>
+      <bottomRight x="533" y="377"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenType" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="432" y="132"/>
+      <bottomRight x="538" y="206"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" name="" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.0 //@elements.0/@model/@elements.1 //@elements.0/@model/@elements.3 //@elements.0/@model/@elements.4"/>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Command" type="DataType">
+    <firstSegment>
+      <elements name="commandText:String"/>
+    </firstSegment>
+    <secondSegment>
+      <elements name="parseText()"/>
+    </secondSegment>
+    <boundaries>
+      <topLeft x="756" y="132"/>
+      <bottomRight x="899" y="205"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="String" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="648" y="132"/>
+      <bottomRight x="751" y="205"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Boolean" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="312" y="132"/>
+      <bottomRight x="423" y="208"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="Integer" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="540" y="132"/>
+      <bottomRight x="643" y="205"/>
+    </boundaries>
+  </elements>
+</org.framed.orm.model:Model>

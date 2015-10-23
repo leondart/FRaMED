@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="BridgePattern" incomingRelations="//@elements.2 //@elements.4">
+    <firstSegment/>
+    <secondSegment/>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Abstraction" incomingRelations="//@elements.0/@model/@elements.6" outgoingRelations="//@elements.0/@model/@elements.9 //@elements.0/@model/@elements.11" type="RoleType">
+        <firstSegment>
+          <elements name="defaultImplementation:GenericImplementation"/>
+        </firstSegment>
+        <secondSegment>
+          <elements name="operation()"/>
+          <elements name="setImplemenation(newImp:GenericImplementation)"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="430" y="95"/>
+          <bottomRight x="720" y="270"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Implementation" incomingRelations="//@elements.0/@model/@elements.9" outgoingRelations="//@elements.0/@model/@elements.12" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="operationImp()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="878" y="97"/>
+          <bottomRight x="1095" y="264"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteImplementations(1...1)" incomingRelations="//@elements.0/@model/@elements.12" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteImplementation1" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operationImp()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="11" y="19"/>
+              <bottomRight x="166" y="138"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteImplementation2" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operationImp()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="167" y="18"/>
+              <bottomRight x="322" y="138"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteImplementationN" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operationImp()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="354" y="18"/>
+              <bottomRight x="524" y="138"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="590" y="292"/>
+          <bottomRight x="1122" y="471"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAbstractions(1...1)" incomingRelations="//@elements.0/@model/@elements.11" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAbstraction1" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="8" y="16"/>
+              <bottomRight x="172" y="133"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAbstraction2" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="173" y="15"/>
+              <bottomRight x="329" y="133"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAbstractionM" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="379" y="16"/>
+              <bottomRight x="547" y="135"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="33" y="293"/>
+          <bottomRight x="586" y="471"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Client" outgoingRelations="//@elements.0/@model/@elements.6" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="callOperation()"/>
+        </secondSegment>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="35" y="95"/>
+          <bottomRight x="244" y="259"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="useAbstraction" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.4" connectionAnchor="//@elements.0/@model/@elements.5">
+        <sourceLabel name="0...*"/>
+        <targetLabel name="1...*"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="hasImplementation" type="Relationship" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0" connectionAnchor="//@elements.0/@model/@elements.8">
+        <sourceLabel name="0...*"/>
+        <targetLabel name="1...1"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.3" source="//@elements.0/@model/@elements.0"/>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.2" source="//@elements.0/@model/@elements.1"/>
+    </model>
+    <boundaries>
+      <topLeft x="830" y="87"/>
+      <bottomRight x="1152" y="390"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.2" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="265" y="182"/>
+      <bottomRight x="481" y="292"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.3 //@elements.0/@model/@elements.0"/>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericImplementation" outgoingRelations="//@elements.4" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="264" y="300"/>
+      <bottomRight x="482" y="408"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.3" referencedRoles="//@elements.3 //@elements.0/@model/@elements.2"/>
+</org.framed.orm.model:Model>

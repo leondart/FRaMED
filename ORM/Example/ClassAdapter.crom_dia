@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="Adapter Pattern" incomingRelations="//@elements.3 //@elements.4">
+    <firstSegment/>
+    <secondSegment>
+      <elements name="callOperation(c:GenericComponent)"/>
+      <elements name="callNewOperation(c:GenericComponent)"/>
+    </secondSegment>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Adapter" outgoingRelations="//@elements.0/@model/@elements.4" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="operation()"/>
+          <elements name="newOperation()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="286" y="153"/>
+          <bottomRight x="513" y="330"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Adaptee" incomingRelations="//@elements.0/@model/@elements.4" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="specificOperation()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="642" y="151"/>
+          <bottomRight x="880" y="333"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0"/>
+    </model>
+    <boundaries>
+      <topLeft x="655" y="192"/>
+      <bottomRight x="947" y="399"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.3" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="223" y="228"/>
+      <bottomRight x="430" y="312"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericAdaptee" outgoingRelations="//@elements.4" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="225" y="314"/>
+      <bottomRight x="431" y="400"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.0"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.2" referencedRoles="//@elements.0/@model/@elements.1"/>
+</org.framed.orm.model:Model>

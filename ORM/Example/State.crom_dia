@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="State Pattern" incomingRelations="//@elements.2">
+    <firstSegment/>
+    <secondSegment/>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Component" incomingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.9" outgoingRelations="//@elements.0/@model/@elements.12" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="operation()"/>
+          <elements name="changeState(newState:GenericState)"/>
+          <elements name="configure()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="51" y="168"/>
+          <bottomRight x="287" y="271"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="AbstractState" incomingRelations="//@elements.0/@model/@elements.11 //@elements.0/@model/@elements.12" outgoingRelations="//@elements.0/@model/@elements.4" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="operation()"/>
+          <elements name="changeState()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="598" y="172"/>
+          <bottomRight x="820" y="264"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="Component-State" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.1" connectionAnchor="//@elements.0/@model/@elements.3">
+        <sourceLabel name="1...1"/>
+        <targetLabel name="1...1"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteStates(0...*)" outgoingRelations="//@elements.0/@model/@elements.11" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteState1" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="17" y="5"/>
+              <bottomRight x="219" y="157"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteState2" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="226" y="5"/>
+              <bottomRight x="426" y="155"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteStateN" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="553" y="5"/>
+              <bottomRight x="754" y="156"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="324" y="344"/>
+          <bottomRight x="1096" y="540"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Client" outgoingRelations="//@elements.0/@model/@elements.9" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="callOperation()"/>
+          <elements name="configureComponent()"/>
+        </secondSegment>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="54" y="364"/>
+          <bottomRight x="286" y="462"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="useComponent" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.7" connectionAnchor="//@elements.0/@model/@elements.8">
+        <sourceLabel name="0...*"/>
+        <targetLabel name="1...*"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleImplication" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.6"/>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0">
+        <bendpoints>
+          <referencePoints x="288" y="220"/>
+          <referencePoints x="709" y="172"/>
+          <distances x="268" y="14"/>
+          <distances x="-272" y="16"/>
+        </bendpoints>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="820" y="116"/>
+      <bottomRight x="1122" y="380"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.2" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="283" y="171"/>
+      <bottomRight x="522" y="323"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.0 //@elements.0/@model/@elements.7 //@elements.0/@model/@elements.1 //@elements.0/@model/@elements.6"/>
+</org.framed.orm.model:Model>

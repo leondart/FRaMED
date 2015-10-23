@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="MediatorPattern" incomingRelations="//@elements.2">
+    <firstSegment/>
+    <secondSegment/>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Mediator" incomingRelations="//@elements.0/@model/@elements.7" outgoingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.9" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="notification(c:GenericComponent)"/>
+          <elements name="invokeColleagues()"/>
+        </secondSegment>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="400" y="145"/>
+          <bottomRight x="622" y="252"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteMediators(1...1)" incomingRelations="//@elements.0/@model/@elements.4" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteMediator1" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="invokeColleagues()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="12" y="6"/>
+              <bottomRight x="126" y="106"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteMediator2" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="invokeColleagues()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="132" y="6"/>
+              <bottomRight x="246" y="104"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteMediatorN" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="invokeColleagues()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="276" y="6"/>
+              <bottomRight x="388" y="104"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+            <boundaries>
+              <topLeft y="1"/>
+              <bottomRight x="1"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name="1...*"/>
+        <boundaries>
+          <topLeft x="308" y="284"/>
+          <bottomRight x="707" y="431"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Colleague" incomingRelations="//@elements.0/@model/@elements.8 //@elements.0/@model/@elements.9" outgoingRelations="//@elements.0/@model/@elements.7" type="RoleType">
+        <firstSegment/>
+        <secondSegment>
+          <elements name="notificate()"/>
+        </secondSegment>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="822" y="152"/>
+          <bottomRight x="1042" y="250"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteColleague(1...1)" outgoingRelations="//@elements.0/@model/@elements.8" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteColleague1" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name=""/>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="12" y="6"/>
+              <bottomRight x="134" y="106"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteColleague2" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="144" y="6"/>
+              <bottomRight x="268" y="103"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteColleagueN" type="RoleType">
+            <firstSegment/>
+            <secondSegment>
+              <elements name="operation()"/>
+            </secondSegment>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="300" y="6"/>
+              <bottomRight x="422" y="105"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="716" y="284"/>
+          <bottomRight x="1145" y="431"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0"/>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="Mediator-Colleague" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.2" connectionAnchor="//@elements.0/@model/@elements.6">
+        <sourceLabel name="0...*"/>
+        <targetLabel name="1...1"/>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.2" source="//@elements.0/@model/@elements.3"/>
+      <elements xsi:type="org.framed.orm.model:Relation" type="RoleProhibition" target="//@elements.0/@model/@elements.2" source="//@elements.0/@model/@elements.0">
+        <bendpoints>
+          <referencePoints x="502" y="173"/>
+          <referencePoints x="1013" y="92"/>
+          <distances x="298" y="15"/>
+          <distances x="-313" y="16"/>
+        </bendpoints>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="896" y="162"/>
+      <bottomRight x="1236" y="462"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.2" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="297" y="231"/>
+      <bottomRight x="512" y="399"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.2 //@elements.0/@model/@elements.3 //@elements.0/@model/@elements.0 //@elements.0/@model/@elements.1"/>
+</org.framed.orm.model:Model>

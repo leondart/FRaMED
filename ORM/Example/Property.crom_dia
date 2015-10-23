@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.framed.orm.model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.framed.orm.model="http://orm/1.0">
+  <elements xsi:type="org.framed.orm.model:Shape" name="PropertyPattern" incomingRelations="//@elements.3">
+    <firstSegment/>
+    <secondSegment>
+      <elements name="handleComponent(c:GenericComponent)"/>
+      <elements name="createProperty()"/>
+      <elements name="addProperty(c:GenericComponent, value:GenericDataType)"/>
+    </secondSegment>
+    <model>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+        <boundaries>
+          <topLeft y="1"/>
+          <bottomRight x="1"/>
+        </boundaries>
+      </elements>
+      <elements xsi:type="org.framed.orm.model:Shape" name="Properties(1...*)" type="RoleGroup">
+        <model>
+          <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+            <boundaries>
+              <topLeft y="1"/>
+              <bottomRight x="1"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="Property2" type="RoleType">
+            <firstSegment>
+              <elements name="value:GenericDataType2"/>
+            </firstSegment>
+            <secondSegment/>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="205" y="18"/>
+              <bottomRight x="393" y="135"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="Property1" type="RoleType">
+            <firstSegment>
+              <elements name="value:GenericDataType1"/>
+            </firstSegment>
+            <secondSegment/>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="13" y="18"/>
+              <bottomRight x="197" y="135"/>
+            </boundaries>
+          </elements>
+          <elements xsi:type="org.framed.orm.model:Shape" name="PropertyN" type="RoleType">
+            <firstSegment>
+              <elements name="value:GenericDataTypeN"/>
+            </firstSegment>
+            <secondSegment/>
+            <description name=""/>
+            <boundaries>
+              <topLeft x="507" y="17"/>
+              <bottomRight x="701" y="136"/>
+            </boundaries>
+          </elements>
+        </model>
+        <description name=""/>
+        <boundaries>
+          <topLeft x="131" y="68"/>
+          <bottomRight x="841" y="243"/>
+        </boundaries>
+      </elements>
+    </model>
+    <boundaries>
+      <topLeft x="872" y="63"/>
+      <bottomRight x="1223" y="334"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericDataType1" outgoingRelations="//@elements.7" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="355" y="380"/>
+      <bottomRight x="563" y="463"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.3" type="NaturalType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="352" y="113"/>
+      <bottomRight x="577" y="288"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.2" referencedRoles="//@elements.0/@model/@elements.5"/>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericDataType2" outgoingRelations="//@elements.8" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="580" y="376"/>
+      <bottomRight x="794" y="465"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericDataTypeN" outgoingRelations="//@elements.9" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="896" y="373"/>
+      <bottomRight x="1119" y="467"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Shape" name="GenericDataType" incomingRelations="//@elements.7 //@elements.8 //@elements.9" type="DataType">
+    <firstSegment/>
+    <secondSegment/>
+    <boundaries>
+      <topLeft x="631" y="248"/>
+      <bottomRight x="841" y="335"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.6" source="//@elements.1"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.6" source="//@elements.4"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.6" source="//@elements.5"/>
+</org.framed.orm.model:Model>
