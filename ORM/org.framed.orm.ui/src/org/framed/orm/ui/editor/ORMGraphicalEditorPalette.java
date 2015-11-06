@@ -14,6 +14,7 @@ import org.eclipse.gef.tools.SelectionTool;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Shape;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
+import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
@@ -24,6 +25,7 @@ import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
+import org.framed.orm.ui.factory.ORMReflexiveFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
 import org.framed.orm.ui.factory.ORMRelationshipImplicationFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
@@ -101,9 +103,12 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Role Equivalence", true);
       setEntryVisibility("Role Prohibition", true);
       setEntryVisibility("Relationship", true);
+      setEntryVisibility("Reflexive", true);
       setEntryVisibility("Irreflexive", true);
       setEntryVisibility("Total", true);
       setEntryVisibility("Cyclic", true);
+      setEntryVisibility("Acyclic", true);
+      
 
       setEntryVisibility("Compartment", false);
       setEntryVisibility("NaturalType", false);
@@ -118,9 +123,11 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Role Equivalence", false);
       setEntryVisibility("Role Prohibition", false);
       setEntryVisibility("Relationship", false);
+      setEntryVisibility("Reflexive", false);
       setEntryVisibility("Irreflexive", false);
       setEntryVisibility("Total", false);
       setEntryVisibility("Cyclic", false);
+      setEntryVisibility("Acyclic", false);
 
       setEntryVisibility("Compartment", true);
       setEntryVisibility("NaturalType", true);
@@ -337,6 +344,22 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         "icons/cyclic.png"));
     drawer.add(entry10);
     addEntry("Cyclic", entry10, false);
+    
+    CreationToolEntry entry11 =
+            new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
+                new ORMAcyclicFactory(), null, null);
+        entry11.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/cyclic.png"));
+        drawer.add(entry11);
+        addEntry("Acyclic", entry11, false);
+        
+    CreationToolEntry entry12 =
+            new ConnectionCreationToolEntry("Reflexive", "Create a new Reflexive Relation",
+                new ORMReflexiveFactory(), null, null);
+        entry12.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/cyclic.png"));
+        drawer.add(entry12);
+        addEntry("Reflexive", entry12, false);
 
     group.add(drawer);
   }

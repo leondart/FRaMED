@@ -63,7 +63,9 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       // Irreflexive Acyclic Total End
       if ((oSTCheck(request, Type.CYCLIC, Type.ROLE_TYPE, Type.ROLE_TYPE)
           || oSTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(
-            request, Type.TOTAL, Type.ROLE_TYPE, Type.ROLE_TYPE))
+            request, Type.TOTAL, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(
+            request, Type.ACYCLIC, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(
+            request, Type.REFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE))
           && tNotEqualSCheck(request)
           && hasARelationship(request, true) && !hasConstraintsKind(request)) {
         final ORMRelationshipConstraintCreateCommand result =
@@ -99,7 +101,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       // Irreflexive Acyclic Total start
       if ((oTCheck(request, Type.CYCLIC, Type.ROLE_TYPE)
           || oTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE) || oTCheck(request, Type.TOTAL,
-            Type.ROLE_TYPE)) && hasARelationship(request, false)) {
+            Type.ROLE_TYPE)|| oTCheck(request, Type.ACYCLIC, Type.ROLE_TYPE) || oTCheck(
+            request, Type.REFLEXIVE, Type.ROLE_TYPE)) && hasARelationship(request, false)) {
 
         final ORMRelationshipConstraintCreateCommand result =
             new ORMRelationshipConstraintCreateCommand();
@@ -368,6 +371,10 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           return true;
         if (request.getNewObjectType().equals(Type.CYCLIC) && rel.getType().equals(Type.CYCLIC))
           return true;
+        if (request.getNewObjectType().equals(Type.ACYCLIC) && rel.getType().equals(Type.ACYCLIC))
+            return true;
+        if (request.getNewObjectType().equals(Type.REFLEXIVE) && rel.getType().equals(Type.REFLEXIVE))
+            return true;
       }
     }
     return false;

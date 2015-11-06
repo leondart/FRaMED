@@ -80,7 +80,8 @@ public class ORMRelationDeleteBendpointCommand extends Command {
     relation.getBendpoints().remove(index);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)) {
+        || relation.getType().equals(Type.IRREFLEXIVE) || relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.REFLEXIVE)) {
 
       relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
       relCList.remove(relation);
@@ -108,7 +109,8 @@ public class ORMRelationDeleteBendpointCommand extends Command {
     relation.getBendpoints().add(index, relP);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)) {
+        || relation.getType().equals(Type.IRREFLEXIVE)|| relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.REFLEXIVE)) {
 
       for (Relation relC : relCList) {
         // RelativePoints cannot be shared between relations so we must create a relativepoint with

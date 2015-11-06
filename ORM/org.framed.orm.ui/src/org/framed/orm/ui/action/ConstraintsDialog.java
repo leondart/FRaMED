@@ -181,7 +181,7 @@ public class ConstraintsDialog extends Dialog {
     // the list
     // at the end test if the cyclic constraint is in the list, when not add the cyclic constraint
     // to the list
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
 
       boolean isInList = false;
       for (Relation constraint : constraints) {
@@ -193,6 +193,12 @@ public class ConstraintsDialog extends Dialog {
         }
         if (i == 2) {
             isInList = constraint.getType().equals(Type.CYCLIC);
+        }
+        if (i == 3) {
+            isInList = constraint.getType().equals(Type.ACYCLIC);
+        }
+        if (i == 4) {
+            isInList = constraint.getType().equals(Type.REFLEXIVE);
         }
         if(isInList){
           break;
@@ -216,7 +222,16 @@ public class ConstraintsDialog extends Dialog {
           relation.setName("cyclic");
           viewerContent.add(relation);
         }
-
+        if (i == 3) {
+        	relation.setType(Type.ACYCLIC);
+            relation.setName("acyclic");
+            viewerContent.add(relation);
+        }
+        if (i == 4) {
+        	relation.setType(Type.REFLEXIVE);
+            relation.setName("reflexive");
+            viewerContent.add(relation);
+        }
       }
     }
 

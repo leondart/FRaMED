@@ -182,7 +182,7 @@ public enum Type implements Enumerator {
                                                                                        * @generated
                                                                                        * @ordered
                                                                                        */
-  RELATIONSHIP_SHAPE_CHILD(16, "RelationshipShapeChild", "RelationshipShapeChild");
+  RELATIONSHIP_SHAPE_CHILD(16, "RelationshipShapeChild", "RelationshipShapeChild"),
 
   /**
    * The '<em><b>Compartment Type</b></em>' literal value.
@@ -197,6 +197,27 @@ public enum Type implements Enumerator {
    * @generated
    * @ordered
    */
+  
+  /**
+   * The '<em><b>Acyclic</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #ACYCLIC_VALUE
+   * @generated
+   * @ordered
+   */
+  ACYCLIC(17, "Acyclic", "Acyclic"),
+  
+  /**
+   * The '<em><b>Reflexive</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #REFLEXIVE_VALUE
+   * @generated
+   * @ordered
+   */
+  REFLEXIVE(18, "Reflexive", "Reflexive");
+  
   public static final int COMPARTMENT_TYPE_VALUE = 0;
 
   /**
@@ -438,17 +459,48 @@ public enum Type implements Enumerator {
    * @ordered
    */
   public static final int RELATIONSHIP_SHAPE_CHILD_VALUE = 16;
+  
+  /**
+   * The '<em><b>Acyclic</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Acyclic</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #ACYCLIC
+   * @model name="Acyclic"
+   * @generated
+   * @ordered
+   */
+  public static final int ACYCLIC_VALUE = 17;
 
+  /**
+   * The '<em><b>Reflexive</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Acyclic</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #REFLEXIVE
+   * @model name="Reflexive"
+   * @generated
+   * @ordered
+   */
+  public static final int REFLEXIVE_VALUE = 18;
+  
   /**
    * An array of all the '<em><b>Type</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
+  
   private static final Type[] VALUES_ARRAY = new Type[] {COMPARTMENT_TYPE, NATURAL_TYPE, ROLE_TYPE,
       DATA_TYPE, ROLE_IMPLICATION, ROLE_EQUIVALENCE, INHERITANCE, RELATIONSHIP, TOTAL, CYCLIC,
       IRREFLEXIVE, ROLE_PROHIBITION, ROLE_GROUP, GROUP, FULFILLMENT, RELATIONSHIP_IMPLICATION,
-      RELATIONSHIP_SHAPE_CHILD,};
+      RELATIONSHIP_SHAPE_CHILD, ACYCLIC, REFLEXIVE,};
 
   /**
    * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -532,6 +584,10 @@ public enum Type implements Enumerator {
         return RELATIONSHIP_IMPLICATION;
       case RELATIONSHIP_SHAPE_CHILD_VALUE:
         return RELATIONSHIP_SHAPE_CHILD;
+      case ACYCLIC_VALUE:
+          return ACYCLIC;
+      case REFLEXIVE_VALUE:
+          return REFLEXIVE;
     }
     return null;
   }

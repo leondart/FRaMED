@@ -75,6 +75,10 @@ public class ORMRelationCreateCommand extends Command {
         return testRelationshipConstraint();
       case Type.CYCLIC_VALUE:
         return testRelationshipConstraint();
+      case Type.ACYCLIC_VALUE:
+          return testRelationshipConstraint();
+      case Type.REFLEXIVE_VALUE:
+          return testRelationshipConstraint();
       default:
         return targetLabel == null && sourceLabel == null && refrencedRelations == null;
     }

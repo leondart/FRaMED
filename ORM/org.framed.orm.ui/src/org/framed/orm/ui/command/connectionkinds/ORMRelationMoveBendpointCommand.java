@@ -88,7 +88,8 @@ public class ORMRelationMoveBendpointCommand extends Command {
     relation.getBendpoints().set(index, relP);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)) {
+        || relation.getType().equals(Type.IRREFLEXIVE) || relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.REFLEXIVE)) {
 
       relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
       relCList.remove(relation);
@@ -141,7 +142,8 @@ public class ORMRelationMoveBendpointCommand extends Command {
     relation.getBendpoints().set(index, oldRelP);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)) {
+        || relation.getType().equals(Type.IRREFLEXIVE)|| relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.REFLEXIVE)) {
       for (Relation relC : relCList) {
         if (!relC.equals(relation)) {
           relC.getBendpoints().set(index, oldRelP);

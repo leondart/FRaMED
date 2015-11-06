@@ -45,8 +45,12 @@ public class ORMConnectionFigureFactory {
         return createRelationshipConstraintFigure(relation, editPart);
       case Type.IRREFLEXIVE_VALUE:
         return createRelationshipConstraintFigure(relation, editPart);
-      case Type.TOTAL_VALUE:
+      case Type.ACYCLIC_VALUE:
         return createRelationshipConstraintFigure(relation, editPart);
+      case Type.REFLEXIVE_VALUE:
+          return createRelationshipConstraintFigure(relation, editPart);
+      case Type.TOTAL_VALUE:
+          return createRelationshipConstraintFigure(relation, editPart);
       case Type.RELATIONSHIP_VALUE:
         return createRelationshipFigure((ORMRelationshipEditPart) editPart);
       case Type.ROLE_EQUIVALENCE_VALUE:

@@ -75,3 +75,19 @@ rule IrreflexiveRelation
 	guard : s.getType.getValue == 10 
 	
 } 
+
+rule AcyclicRelation
+	transform s : source!Relation
+	to t : target!Acyclic {
+	
+	guard : s.getType.getValue == 17 
+	
+} 
+
+rule ReflexiveRelation
+	transform s : source!Relation
+	to t : target!Reflexive {
+	
+	guard : s.getType.getValue == 18 
+	
+} 
