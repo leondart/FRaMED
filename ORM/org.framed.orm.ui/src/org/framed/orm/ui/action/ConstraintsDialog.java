@@ -181,60 +181,23 @@ public class ConstraintsDialog extends Dialog {
     // the list
     // at the end test if the cyclic constraint is in the list, when not add the cyclic constraint
     // to the list
-    for (int i = 0; i < 5; i++) {
-
-      boolean isInList = false;
-      for (Relation constraint : constraints) {
-        if (i == 0) {
-            isInList = constraint.getType().equals(Type.IRREFLEXIVE);
-        }
-        if (i == 1) {
-            isInList = constraint.getType().equals(Type.TOTAL);
-        }
-        if (i == 2) {
-            isInList = constraint.getType().equals(Type.CYCLIC);
-        }
-        if (i == 3) {
-            isInList = constraint.getType().equals(Type.ACYCLIC);
-        }
-        if (i == 4) {
-            isInList = constraint.getType().equals(Type.REFLEXIVE);
-        }
-        if(isInList){
-          break;
-        }
+	  
+      for (Type constraintType : Type.getConstraints()){
+    	  boolean isInList = false;
+    	  for (Relation constraint : constraints) {
+    		  isInList = constraint.getType().equals(constraintType);
+    		  if(isInList){
+    	          break;
+    	        }
+    	  }
+    	  
+    	  Relation relation = OrmFactory.eINSTANCE.createRelation();
+    	  if (!isInList) {
+    		  relation.setType(constraintType);
+    		  relation.setName(constraintType.getName());
+    		  viewerContent.add(relation);
+    	  }
       }
-      
-      Relation relation = OrmFactory.eINSTANCE.createRelation();
-      if (!isInList) {
-        if (i == 0) {
-          relation.setType(Type.IRREFLEXIVE);
-          relation.setName("irreflexive");
-          viewerContent.add(relation);
-        }
-        if (i == 1) {
-          relation.setType(Type.TOTAL);
-          relation.setName("total");
-          viewerContent.add(relation);
-        }
-        if (i == 2) {
-          relation.setType(Type.CYCLIC);
-          relation.setName("cyclic");
-          viewerContent.add(relation);
-        }
-        if (i == 3) {
-        	relation.setType(Type.ACYCLIC);
-            relation.setName("acyclic");
-            viewerContent.add(relation);
-        }
-        if (i == 4) {
-        	relation.setType(Type.REFLEXIVE);
-            relation.setName("reflexive");
-            viewerContent.add(relation);
-        }
-      }
-    }
-
   }
 
   /**

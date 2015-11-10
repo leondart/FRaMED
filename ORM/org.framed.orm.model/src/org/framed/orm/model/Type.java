@@ -500,7 +500,7 @@ public enum Type implements Enumerator {
   private static final Type[] VALUES_ARRAY = new Type[] {COMPARTMENT_TYPE, NATURAL_TYPE, ROLE_TYPE,
       DATA_TYPE, ROLE_IMPLICATION, ROLE_EQUIVALENCE, INHERITANCE, RELATIONSHIP, TOTAL, CYCLIC,
       IRREFLEXIVE, ROLE_PROHIBITION, ROLE_GROUP, GROUP, FULFILLMENT, RELATIONSHIP_IMPLICATION,
-      RELATIONSHIP_SHAPE_CHILD, ACYCLIC, REFLEXIVE,};
+      RELATIONSHIP_SHAPE_CHILD, ACYCLIC, REFLEXIVE};
 
   /**
    * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -661,6 +661,15 @@ public enum Type implements Enumerator {
   @Override
   public String toString() {
     return literal;
+  }
+  
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static Type[] getConstraints() {
+    return new Type[] {IRREFLEXIVE, REFLEXIVE, CYCLIC, ACYCLIC, TOTAL};
   }
 
 } //Type
