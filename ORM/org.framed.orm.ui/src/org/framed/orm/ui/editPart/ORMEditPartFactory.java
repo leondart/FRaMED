@@ -49,7 +49,7 @@ public class ORMEditPartFactory implements EditPartFactory {
       } else if (relation.getType().equals(Type.RELATIONSHIP)) {
         part = new ORMRelationshipEditPart();
       } else if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-          || relation.getType().equals(Type.IRREFLEXIVE)) {
+          || relation.getType().equals(Type.IRREFLEXIVE) || relation.getType().equals(Type.ACYCLIC) || relation.getType().equals(Type.REFLEXIVE)) {
         part = new ORMRelationshipConstraintEditPart();
       } else {
         part = new ORMRelationEditPart();
