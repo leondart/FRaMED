@@ -182,7 +182,7 @@ public class ConstraintsDialog extends Dialog {
     // at the end test if the cyclic constraint is in the list, when not add the cyclic constraint
     // to the list
 	  
-      for (Type constraintType : Type.getConstraints()){
+      for (Type constraintType : Type.getRelationshipConstraints()){
     	  boolean isInList = false;
     	  for (Relation constraint : constraints) {
     		  isInList = constraint.getType().equals(constraintType);

@@ -668,7 +668,7 @@ public enum Type implements Enumerator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public static Type[] getConstraints() {
+  public static Type[] getRelationshipConstraints() {
     return new Type[] {IRREFLEXIVE, REFLEXIVE, CYCLIC, ACYCLIC, TOTAL};
   }
 

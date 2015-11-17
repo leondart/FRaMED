@@ -70,6 +70,8 @@
     <eLiterals name="Fulfillment" value="14"/>
     <eLiterals name="RelationshipImplication" value="15" literal="RelationshipImplication"/>
     <eLiterals name="RelationshipShapeChild" value="16"/>
+    <eLiterals name="Acyclic" value="17"/>
+    <eLiterals name="Reflexive" value="18"/>
   </eClassifiers>
   <eSubpackages name="geometry" nsURI="http://orm.geometry/1.0" nsPrefix="org.framed.orm.model.geometry">
     <eClassifiers xsi:type="ecore:EClass" name="Point">
