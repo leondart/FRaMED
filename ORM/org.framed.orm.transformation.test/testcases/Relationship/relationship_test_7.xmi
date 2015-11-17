@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+    xmlns:org.framed.orm.model="http://orm/1.0"
+    xmlns:ts="http://org.framed/testmodel"
+    title="TestCase for cyclic, reflexive relationships"
+    description="TestCase for cyclic, reflexive relationships where one Naturaltype is referenced by a cyclic, reflexive relationship to another NaturalType">
+  <framedModel>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType1"
+        outgoingRelations="//@framedModel/@elements.2 //@framedModel/@elements.3 //@framedModel/@elements.4"
+        type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Shape"
+        name="NaturalType2"
+        incomingRelations="//@framedModel/@elements.2 //@framedModel/@elements.3 //@framedModel/@elements.4"
+        type="NaturalType"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        name="testRelation"
+        type="Relationship"
+        target="//@framedModel/@elements.1"
+        source="//@framedModel/@elements.0"
+        referencedRelation="//@framedModel/@elements.3 //@framedModel/@elements.4"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        name=""
+        type="Reflexive"
+        target="//@framedModel/@elements.1"
+        source="//@framedModel/@elements.0"/>
+    <elements
+        xsi:type="org.framed.orm.model:Relation"
+        type="Cyclic"
+        target="//@framedModel/@elements.1"
+        source="//@framedModel/@elements.0"/>
+  </framedModel>
+  <cromModel>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType1"
+        outgoing="//@cromModel/@relations.0"/>
+    <elements
+        xsi:type="crom_l1_composed:NaturalType"
+        name="NaturalType2"
+        incoming="//@cromModel/@relations.0"/>
+    <relations
+        xsi:type="crom_l1_composed:Relationship"
+        name="testRelation"/>
+    <relations
+        xsi:type="crom_l1_composed:Reflexive"
+        relation="//@cromModel/@relations.0"/>
+    <relations
+        xsi:type="crom_l1_composed:Cyclic"
+        relation="//@cromModel/@relations.0"/>
+  </cromModel>
+</ts:TestCase>
