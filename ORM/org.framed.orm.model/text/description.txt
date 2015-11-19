@@ -56,3 +56,6 @@ Package orm <http://orm/1.0>
     Literal Group = 13
     Literal Fulfillment = 14
     Literal RelationshipImplication = 15
+    Literal RelationshipShapeChild = 16
+    Literal Acyclic = 17
+    Literal Reflexive = 18
