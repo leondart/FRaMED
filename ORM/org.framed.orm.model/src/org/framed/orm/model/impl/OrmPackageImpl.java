@@ -608,6 +608,8 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     addEEnumLiteral(typeEEnum, Type.RELATIONSHIP);
     addEEnumLiteral(typeEEnum, Type.TOTAL);
     addEEnumLiteral(typeEEnum, Type.CYCLIC);
+    addEEnumLiteral(typeEEnum, Type.ACYCLIC);
+    addEEnumLiteral(typeEEnum, Type.REFLEXIVE);
     addEEnumLiteral(typeEEnum, Type.IRREFLEXIVE);
     addEEnumLiteral(typeEEnum, Type.ROLE_PROHIBITION);
     addEEnumLiteral(typeEEnum, Type.ROLE_GROUP);
