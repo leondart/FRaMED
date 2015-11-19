@@ -21,6 +21,8 @@
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Relationship"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Total"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Cyclic"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Acyclic"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Reflexive"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Irreflexive"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RoleProhibition"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RoleGroup"/>
