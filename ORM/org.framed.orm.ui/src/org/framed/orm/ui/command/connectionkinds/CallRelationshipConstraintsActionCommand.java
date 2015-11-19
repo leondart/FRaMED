@@ -11,7 +11,7 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
  * Through this command the {@link RelationshipConstraintsAction} is called. This command is called,
- * when the user selects the figure of a {@link Relation} from type total, cyclic or irreflexive and
+ * when the user selects the figure of a {@link Relation} from type total, cyclic, acyclic, reflexive or irreflexive and
  * the clicks on the delete button.(red X in the actionbar)
  * 
  * @author Kay Bierzynski
@@ -21,7 +21,7 @@ public class CallRelationshipConstraintsActionCommand extends Command {
   /** The {@link RelationshipConstraintsAction}, which called/invoked through this command. */
   private RelationshipConstraintsAction action;
   /**
-   * The {@link EditPart} of the {@link Relation} from the type total, cyclic or irreflexive, which
+   * The {@link EditPart} of the {@link Relation} from the type total, cyclic, acyclic, reflexive or irreflexive, which
    * the user has selected.
    */
   private EditPart editPart;

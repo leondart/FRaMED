@@ -9,7 +9,7 @@ import org.framed.orm.model.Relation;
 
 /**
  * This {@link EditPart} is the super/parent {@link EditPart} respectively super/parent controller
- * of all {@link Relation}s from type cyclic, total and irreflexive (aka relationshipConstraint) and
+ * of all {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive (aka relationshipConstraint) and
  * is required as all relationshipConstraints of a {@link Relation} from type relationship need to
  * be unified in a single figure. Furthermore, in case the user deletes/adds a
  * relationshipConstraint, the figure has to be updated.
@@ -20,11 +20,11 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
 
   /**
    * A {@link Label}, which contains all the {@link Relation}s names of the relations from type
-   * cyclic, total and irreflexive of a single {@link Relation} from type relationship.
+   * cyclic, total, acyclic, reflexive and irreflexive of a single {@link Relation} from type relationship.
    */
   private Label label = new Label();
   /**
-   * A string, which contains the initial text of a {@link Relation} from cyclic, total or
+   * A string, which contains the initial text of a {@link Relation} from cyclic, total, acyclic, reflexive or
    * irreflexive without unifying it with other relationshipConstraints.
    */
   private String textInitial;
@@ -47,7 +47,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
   }
 
   /**
-   * A setter for the initial text of a {@link Relation} from cyclic, total or irreflexive without
+   * A setter for the initial text of a {@link Relation} from cyclic, total, acyclic, reflexive or irreflexive without
    * unifying it with other relationshipConstraints.
    * 
    * @param initial {@link String}
@@ -61,7 +61,7 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
   /**
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} calls
    * {@link ORMRelationEditPart#refreshVisuals()}, "unifies the {@link Relation}s from type cyclic,
-   * total and irreflexive(aka relationshipConstraint) figures" of a single {@link Relation} from
+   * total, acyclic, reflexive and irreflexive(aka relationshipConstraint) figures" of a single {@link Relation} from
    * type relationship" and sets the visibility of the relationshipConstraint figure. The unifying
    * of the relationshipConstraint figures is done through combining the text/name of all the
    * relationshipConstraints in the {@link Label} of the relationshipConstraint figure of the first

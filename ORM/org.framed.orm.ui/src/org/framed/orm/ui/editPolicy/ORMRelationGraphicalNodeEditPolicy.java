@@ -71,7 +71,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * This method completes and return the creation commands for all {@link Relation}s except for
-   * {@link Relation}s from type cyclic, irreflexive and total.
+   * {@link Relation}s from type cyclic, irreflexive, acyclic, reflexive and total.
    * 
    * @return {@link ORMRelationCreateCommand}
    * */
@@ -84,7 +84,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * This method creates and return the creation command for all {@link Relation}s except the
-   * relations from type cyclic, total and irrflexive.
+   * relations from type cyclic, total, acyclic, reflexive and irrflexive.
    * 
    * @return {@link ORMRelationCreateCommand}
    * */

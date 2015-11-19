@@ -25,10 +25,10 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
   /**
    * This method creats and returns command for the deletion of {@link Relation}s. When the
    * {@link Relation}, which the user wants to be deleted, is from type relationship than the
-   * deletion command for the relationshipconstraints(Relations from type cyclic, total and
+   * deletion command for the relationshipconstraints(Relations from type cyclic, total, acyclic, reflexive and
    * irreflexive) of the relationship are created and returned as well, because a
    * relationshipConstraint can only exist with a relationship. When the {@link Relation}, which the
-   * user wants to be deleted, is a relationshipConstraint(Relations from type cyclic, total and
+   * user wants to be deleted, is a relationshipConstraint(Relations from type cyclic, total, acyclic, reflexive and
    * irreflexive) than the {@link CallRelationshipConstraintsActionCommand} is created and returned,
    * because the deletion of relationshipConstraints is spefically handled in this editor through
    * the {@link RelationshipConstraintsAction} and the {@link ConstraintsDialog}.
@@ -64,7 +64,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
 
   /**
    * This method creates and return the deletion commands for all {@link Relation}s except for
-   * {@link Relation}s from type cyclic, total and irreflexive.
+   * {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive.
    * 
    * @return {@link ORMRelationDeleteCommand}
    * */
@@ -76,7 +76,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
 
   /**
    * This method creates and return the deletion command for all {@link Relation}s from type cyclic,
-   * total and irreflexive.
+   * total, acyclic, reflexive and irreflexive.
    * 
    * @return {@link ORMRelationshipConstraintDeleteCommand }
    * */

@@ -71,9 +71,9 @@ public class ORMConnectionFigureFactory {
   }
 
   /**
-   * This method creates and returns the figure for {@link Relation}s from type cyclic, total and
+   * This method creates and returns the figure for {@link Relation}s from type cyclic, total, acyclic, reflexive and
    * irreflexive, which differs from relationshipConstraint to relationshipConstraint only in the
-   * text of the {@link Label}. A cyclic, total or irreflexive figure is dashed line with a
+   * text of the {@link Label}. A cyclic, total, acyclic, reflexive or irreflexive figure is dashed line with a
    * {@link Label}.
    * 
    * @return conn org.eclipse.draw2d.PolylineConnection

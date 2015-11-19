@@ -86,7 +86,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * This method checks if all variables, which are needed for the creation of a {@link Relation}
-   * from type cyclic, total or irreflexive.
+   * from type cyclic, total, acyclic, reflexive or irreflexive.
    * 
    * @return true when target and source label are null and refrencedRelations array is not null.
    * */

@@ -348,6 +348,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     CreationToolEntry entry11 =
             new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
                 new ORMAcyclicFactory(), null, null);
+    	//TODO: create new icon for acyclic relation
         entry11.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/cyclic.png"));
         drawer.add(entry11);
@@ -356,6 +357,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     CreationToolEntry entry12 =
             new ConnectionCreationToolEntry("Reflexive", "Create a new Reflexive Relation",
                 new ORMReflexiveFactory(), null, null);
+    	//TODO: create new icon for reflexive relation
         entry12.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/cyclic.png"));
         drawer.add(entry12);

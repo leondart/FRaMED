@@ -66,7 +66,7 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * {@inheritDoc} In this method all the attributes of the {@link Relation} from type total, cyclic
+   * {@inheritDoc} In this method all the attributes of the {@link Relation} from type total, cyclic, acyclic, reflexive
    * or irreflexive to be removed are stored in variables in case that the user wants to undone this
    * command. After this part the relationship constraint is removed from the source, the
    * {@link Model}, the {@link Relation} from type relationship and the target and all of it's
@@ -108,7 +108,7 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through the recreation/ invoking of the {@link Relation}
-   * from type total, cyclic or irreflexive into the model tree through setting it's attributes.
+   * from type total, cyclic, acyclic, reflexive or irreflexive into the model tree through setting it's attributes.
    * When another relationship constraint exists between source and target the relationship
    * constraint, which is readded, get it's {@link Bendpoint}s from their.
    */
@@ -156,7 +156,7 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * Setter for the {@link Relation} from type total, cyclic or irreflexive, which is
+   * Setter for the {@link Relation} from type total, cyclic, acyclic, reflexive or irreflexive, which is
    * deleted/removed in this command.
    * 
    * @param relation org.framed.orm.model.Relation
@@ -167,8 +167,8 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
 
   /**
    * Setter for the {@link EditPartViewer}, which is need to activiate the next {@link Relation}
-   * from type total, cyclic or irreflexive to make it's line visible after this he {@link Relation}
-   * from type total, cyclic or irreflexive is deleted.
+   * from type total, cyclic, acyclic, reflexive or irreflexive to make it's line visible after this he {@link Relation}
+   * from type total, cyclic, acyclic, reflexive or irreflexive is deleted.
    * 
    * @param epViewer org.eclipse.gef.EditPartViewer
    * */
