@@ -29,6 +29,7 @@
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Group"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Fulfillment"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RelationshipImplication"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RelationshipExclusion"/>
     </genEnums>
     <genClasses image="false" ecoreClass="ORM.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//NamedElement/name"/>

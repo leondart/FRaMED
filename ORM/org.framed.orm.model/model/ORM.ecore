@@ -72,6 +72,7 @@
     <eLiterals name="RelationshipShapeChild" value="16"/>
     <eLiterals name="Acyclic" value="17"/>
     <eLiterals name="Reflexive" value="18"/>
+    <eLiterals name="RelationshipExclusion" value="19" literal="RelationshipExclusion"/>
   </eClassifiers>
   <eSubpackages name="geometry" nsURI="http://orm.geometry/1.0" nsPrefix="org.framed.orm.model.geometry">
     <eClassifiers xsi:type="ecore:EClass" name="Point">

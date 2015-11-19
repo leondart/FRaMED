@@ -8,6 +8,7 @@ import "Group.etl";
 
 import "RoleConstraints.etl";
 import "RelationshipImplication.etl";
+import "RelationshipExclusion.etl";
 
 import "Inheritance.etl";
 import "Relationship.etl";

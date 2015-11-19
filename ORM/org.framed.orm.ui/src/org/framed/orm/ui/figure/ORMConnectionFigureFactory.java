@@ -59,6 +59,8 @@ public class ORMConnectionFigureFactory {
         return createRoleRelationshipImplicationFigure();
       case Type.RELATIONSHIP_IMPLICATION_VALUE:
         return createRoleRelationshipImplicationFigure();
+      //case Type.RELATIONSHIP_EXCLUSION_VALUE:
+        //  return createRoleRelationshipExclusionFigure();
       case Type.ROLE_PROHIBITION_VALUE:
         return createRoleProhibitonFigure();
       case Type.FULFILLMENT_VALUE:
@@ -159,7 +161,7 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
     return conn;
   }
-
+  
   /**
    * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
    * dashed line with a white arrow tip at target end of this connection.
@@ -181,6 +183,29 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
     return conn;
   }
+  
+
+  /**
+   * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
+   * dashed line with a white arrow tip at target end of this connection.
+   * 
+   * @return conn org.eclipse.draw2d.PolylineConnection
+  private static Figure createRoleRelationshipExclusionFigure() {
+    // create white arrow tip
+    PolygonDecoration poly = new PolygonDecoration();
+    poly.setAntialias(SWT.ON);
+    poly.setBackgroundColor(ColorConstants.white);
+    poly.setScale(5, 5);
+
+    PolylineConnection conn = new PolylineConnection();
+    conn.setAntialias(SWT.ON);
+    conn.setLineDash(new float[] {5.0f, 5.0f});
+    conn.setLineStyle(SWT.LINE_CUSTOM);
+    conn.setTargetDecoration(poly);
+    conn.setConnectionRouter(new BendpointConnectionRouter());
+    return conn;
+  }
+  */
 
   /**
    * Input template for the arrow tips so that the arrow tips are drawn inverted and open at the

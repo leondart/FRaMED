@@ -28,7 +28,9 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
-    if (oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP)
+	  //TODO: check if implementation is correct
+    if ((oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP) ||
+    	oSTCheck(request, Type.RELATIONSHIP_EXCLUSION, Type.RELATIONSHIP, Type.RELATIONSHIP)) 
         && tNotEqualSCheck(request)) {
       return setupConnectionCompleteCommand(request);
     }
@@ -42,7 +44,9 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   @Override
   protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-    if (oTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP)) {
+	  //TODO: check if implementation is correct
+    if (oTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP) ||
+    	oTCheck(request, Type.RELATIONSHIP_EXCLUSION, Type.RELATIONSHIP)) {
       Relation target = (Relation) request.getTargetEditPart().getModel();
       return setupConnectionStartCommand(request, target.getContainer());
     }

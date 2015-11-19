@@ -23,134 +23,134 @@ import org.framed.orm.geometry.*;
  * @generated
  */
 public class GeometrySwitch<T> extends Switch<T> {
-  /**
-   * The cached model package
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected static GeometryPackage modelPackage;
+	/**
+	 * The cached model package
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static GeometryPackage modelPackage;
 
-  /**
-   * Creates an instance of the switch.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public GeometrySwitch() {
-    if (modelPackage == null) {
-      modelPackage = GeometryPackage.eINSTANCE;
-    }
-  }
+	/**
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GeometrySwitch() {
+		if (modelPackage == null) {
+			modelPackage = GeometryPackage.eINSTANCE;
+		}
+	}
 
-  /**
-   * Checks whether this is a switch for the given package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @parameter ePackage the package in question.
-   * @return whether this is a switch for the given package.
-   * @generated
-   */
-  @Override
-  protected boolean isSwitchFor(EPackage ePackage) {
-    return ePackage == modelPackage;
-  }
+	/**
+	 * Checks whether this is a switch for the given package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
+	 * @generated
+	 */
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
+	}
 
-  /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
-   * @generated
-   */
-  @Override
-  protected T doSwitch(int classifierID, EObject theEObject) {
-    switch (classifierID) {
-      case GeometryPackage.POINT: {
-        Point point = (Point) theEObject;
-        T result = casePoint(point);
-        if (result == null)
-          result = defaultCase(theEObject);
-        return result;
-      }
-      case GeometryPackage.RECTANGLE: {
-        Rectangle rectangle = (Rectangle) theEObject;
-        T result = caseRectangle(rectangle);
-        if (result == null)
-          result = defaultCase(theEObject);
-        return result;
-      }
-      case GeometryPackage.RELATIVE_POINT: {
-        RelativePoint relativePoint = (RelativePoint) theEObject;
-        T result = caseRelativePoint(relativePoint);
-        if (result == null)
-          result = defaultCase(theEObject);
-        return result;
-      }
-      default:
-        return defaultCase(theEObject);
-    }
-  }
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
+		case GeometryPackage.POINT: {
+			Point point = (Point) theEObject;
+			T result = casePoint(point);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case GeometryPackage.RECTANGLE: {
+			Rectangle rectangle = (Rectangle) theEObject;
+			T result = caseRectangle(rectangle);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case GeometryPackage.RELATIVE_POINT: {
+			RelativePoint relativePoint = (RelativePoint) theEObject;
+			T result = caseRelativePoint(relativePoint);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
+		}
+	}
 
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Point</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Point</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePoint(Point object) {
-    return null;
-  }
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Point</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePoint(Point object) {
+		return null;
+	}
 
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Rectangle</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rectangle</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRectangle(Rectangle object) {
-    return null;
-  }
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rectangle</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rectangle</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRectangle(Rectangle object) {
+		return null;
+	}
 
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Relative Point</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Relative Point</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRelativePoint(RelativePoint object) {
-    return null;
-  }
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relative Point</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relative Point</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelativePoint(RelativePoint object) {
+		return null;
+	}
 
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch, but this is the last case anyway.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-   * @generated
-   */
-  @Override
-  public T defaultCase(EObject object) {
-    return null;
-  }
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch, but this is the last case anyway.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
+	@Override
+	public T defaultCase(EObject object) {
+		return null;
+	}
 
 } //GeometrySwitch

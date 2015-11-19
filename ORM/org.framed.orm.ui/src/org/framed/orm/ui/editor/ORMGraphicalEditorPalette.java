@@ -26,6 +26,7 @@ import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
 import org.framed.orm.ui.factory.ORMReflexiveFactory;
+import org.framed.orm.ui.factory.ORMRelationshipExclusionFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
 import org.framed.orm.ui.factory.ORMRelationshipImplicationFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
@@ -100,6 +101,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("RoleGroup", true);
       setEntryVisibility("Role Implication", true);
       setEntryVisibility("Relationship Implication", true);
+      setEntryVisibility("Relationship Exclusion", true);
       setEntryVisibility("Role Equivalence", true);
       setEntryVisibility("Role Prohibition", true);
       setEntryVisibility("Relationship", true);
@@ -120,6 +122,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("RoleGroup", false);
       setEntryVisibility("Role Implication", false);
       setEntryVisibility("Relationship Implication", false);
+      setEntryVisibility("Relationship Exclusion", false);
       setEntryVisibility("Role Equivalence", false);
       setEntryVisibility("Role Prohibition", false);
       setEntryVisibility("Relationship", false);
@@ -362,7 +365,16 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
             "icons/cyclic.png"));
         drawer.add(entry12);
         addEntry("Reflexive", entry12, false);
-
+        
+    CreationToolEntry entry13 =
+            new ConnectionCreationToolEntry("Relationship Exclusion",
+                "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(), null, null);
+    	//TODO: create new icon for relationship exclusion relation
+        entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/roleimplication.png"));
+        drawer.add(entry13);
+        addEntry("Relationship Exclusion", entry13, false);
+        
     group.add(drawer);
   }
 }

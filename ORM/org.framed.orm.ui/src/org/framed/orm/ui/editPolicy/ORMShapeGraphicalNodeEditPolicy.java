@@ -55,7 +55,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   @Override
   protected Command getConnectionCompleteCommand(final CreateConnectionRequest request) {
     Command retVal = null;
-    if (!request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)) {
+    if (!(request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)||
+    	  request.getNewObjectType().equals(Type.RELATIONSHIP_EXCLUSION))) {
       if (isCompleteOK(request)) {
         retVal = setupConnectionCompleteCommand(request);
       }
@@ -92,7 +93,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   protected Command getConnectionCreateCommand(final CreateConnectionRequest request) {
     Command retVal = null;
 
-    if (!request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)) {
+    if (!(request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION) ||
+    	  request.getNewObjectType().equals(Type.RELATIONSHIP_EXCLUSION))) {
       if (isStartOK(request)) {
         retVal =
             setupConnectionStartCommand(request, ((Shape) getHost().getModel()).getContainer());
