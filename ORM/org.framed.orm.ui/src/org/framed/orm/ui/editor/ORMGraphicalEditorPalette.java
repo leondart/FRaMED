@@ -320,7 +320,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         new ConnectionCreationToolEntry("Relationship Implication",
             "Create a new Relationship Implication Relation", new ORMRelationshipImplicationFactory(), null, null);
     entry7.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/roleimplication.png"));
+        "icons/relationshipimplication.png"));
     drawer.add(entry7);
     addEntry("Relationship Implication", entry7, false);
     
@@ -329,7 +329,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
                 "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(), null, null);
     	//TODO: create new icon for relationship exclusion relation
         entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/roleimplication.png"));
+            "icons/relationshipprohibition.png"));
         drawer.add(entry13);
         addEntry("Relationship Exclusion", entry13, false);
     
@@ -338,7 +338,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
                 new ORMReflexiveFactory(), null, null);
     	//TODO: create new icon for reflexive relation
         entry12.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/cyclic.png"));
+            "icons/reflexive.png"));
         drawer.add(entry12);
         addEntry("Reflexive", entry12, false);
         
@@ -371,7 +371,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
                 new ORMAcyclicFactory(), null, null);
     	//TODO: create new icon for acyclic relation
         entry11.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/cyclic.png"));
+            "icons/acyclic.png"));
         drawer.add(entry11);
         addEntry("Acyclic", entry11, false);
         
