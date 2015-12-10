@@ -323,7 +323,25 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         "icons/roleimplication.png"));
     drawer.add(entry7);
     addEntry("Relationship Implication", entry7, false);
-
+    
+    CreationToolEntry entry13 =
+            new ConnectionCreationToolEntry("Relationship Exclusion",
+                "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(), null, null);
+    	//TODO: create new icon for relationship exclusion relation
+        entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/roleimplication.png"));
+        drawer.add(entry13);
+        addEntry("Relationship Exclusion", entry13, false);
+    
+    CreationToolEntry entry12 =
+            new ConnectionCreationToolEntry("Reflexive", "Create a new Reflexive Relation",
+                new ORMReflexiveFactory(), null, null);
+    	//TODO: create new icon for reflexive relation
+        entry12.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+            "icons/cyclic.png"));
+        drawer.add(entry12);
+        addEntry("Reflexive", entry12, false);
+        
     CreationToolEntry entry8 =
         new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation",
             new ORMIrreflexiveFactory(), null, null);
@@ -357,24 +375,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         drawer.add(entry11);
         addEntry("Acyclic", entry11, false);
         
-    CreationToolEntry entry12 =
-            new ConnectionCreationToolEntry("Reflexive", "Create a new Reflexive Relation",
-                new ORMReflexiveFactory(), null, null);
-    	//TODO: create new icon for reflexive relation
-        entry12.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/cyclic.png"));
-        drawer.add(entry12);
-        addEntry("Reflexive", entry12, false);
-        
-    CreationToolEntry entry13 =
-            new ConnectionCreationToolEntry("Relationship Exclusion",
-                "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(), null, null);
-    	//TODO: create new icon for relationship exclusion relation
-        entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/roleimplication.png"));
-        drawer.add(entry13);
-        addEntry("Relationship Exclusion", entry13, false);
-        
+    //Currently Entry 1 to 13     
     group.add(drawer);
   }
 }
