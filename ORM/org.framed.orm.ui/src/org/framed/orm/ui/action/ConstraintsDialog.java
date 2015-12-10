@@ -23,6 +23,7 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
+import org.framed.orm.model.util.Util;
 
 /**
  * A dialog class for creating a dialog, which let the user choose the {@link Relation}s from type
@@ -178,7 +179,7 @@ public class ConstraintsDialog extends Dialog {
     // test if relationship constraints are in the list, if not add the missing
     // constraint to the list
 	  
-      for (Type constraintType : Type.getRelationshipConstraints()){
+      for (Type constraintType : Util.getRelationshipConstraints()){
     	  boolean isInList = false;
     	  for (Relation constraint : constraints) {
     		  isInList = constraint.getType().equals(constraintType);

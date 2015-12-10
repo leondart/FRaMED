@@ -697,10 +697,4 @@ public enum Type implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
-  public static Type[] getRelationshipConstraints() {
-	    return new Type[] {IRREFLEXIVE, REFLEXIVE, CYCLIC, ACYCLIC, TOTAL};
-	  }
-
-
 } //Type

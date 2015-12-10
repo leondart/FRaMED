@@ -185,7 +185,8 @@ public class ORMConnectionFigureFactory {
   }
   
 
-  /**
+  /** roleprohibition --> relationshipimplication
+   * 
    * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
    * dashed line with a white arrow tip at target end of this connection.
    * 
