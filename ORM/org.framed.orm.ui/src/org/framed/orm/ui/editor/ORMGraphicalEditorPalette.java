@@ -262,7 +262,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * This method creates the palett entrys for the creation of all {@link Relation} kinds and adds
+   * This method creates the palette entrys for the creation of all {@link Relation} kinds and adds
    * them to palett.
    */
   private void createConnectionsDrawer() {
