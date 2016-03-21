@@ -4,6 +4,7 @@ package org.framed.orm.ui.editor;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteDrawer;
@@ -177,8 +178,13 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    */
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
+    
+    /*
     CreationToolEntry entry =
         new CreationToolEntry("Compartment", "Create a new Compartment",
+            new ORMCompartmentTypeFactory(), null, null);
+    */
+    CombinedTemplateCreationEntry entry = new CombinedTemplateCreationEntry("Compartment", "Create a new Compartment",
             new ORMCompartmentTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -187,8 +193,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("Compartment", entry, true);
 
     entry =
-        new CreationToolEntry("NaturalType", "Create a new NaturalType",
-            new ORMNaturalTypeFactory(), null, null);
+          new CombinedTemplateCreationEntry("NaturalType", "Create a new NaturalType",
+              new ORMNaturalTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/naturaltype.png"));
@@ -196,7 +202,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("NaturalType", entry, true);
     
     entry =
-        new CreationToolEntry("DataType", "Create a new DataType",
+        new CombinedTemplateCreationEntry("DataType", "Create a new DataType",
             new ORMDataTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -205,7 +211,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("DataType", entry, true);
 
     entry =
-        new CreationToolEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,
+        new CombinedTemplateCreationEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,
             null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -214,7 +220,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("RoleType", entry, false);
 
     entry =
-        new CreationToolEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(),
+        new CombinedTemplateCreationEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(),
             null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -223,7 +229,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("RoleGroup", entry, false);
 
     entry =
-        new CreationToolEntry("Group", "Create a new Group", new ORMGroupFactory(), null, null);
+        new CombinedTemplateCreationEntry("Group", "Create a new Group", new ORMGroupFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
@@ -266,7 +272,6 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    * them to palett.
    */
   private void createConnectionsDrawer() {
-
     PaletteDrawer drawer = new PaletteDrawer("Connections");
     CreationToolEntry entry1 =
         new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation",

@@ -100,6 +100,7 @@ public class ORMConnectionFigureFactory {
     // the rootModel
     if (editP.getRoot().getContents() instanceof ORMCompartmentEditPart) {
       conn.add(editP.getLabel(), loc);
+      System.out.println("RelationshipFigure "+editP.getLabel().getText());
     }
     return conn;
   }
@@ -110,22 +111,33 @@ public class ORMConnectionFigureFactory {
    * through child model elements( {@link NamedElements}).
    * 
    * @return conn org.eclipse.draw2d.PolylineConnection
-   */
+   */ 
   private static Figure createRelationshipFigure(ORMRelationshipEditPart editPart) {
-    PolylineConnection connection = new PolylineConnection();
-    connection.setAntialias(SWT.ON);
+    //PolylineConnection connection = new PolylineConnection();
+	ORMConnectionMultiplePolyline connection = new ORMConnectionMultiplePolyline();
+	connection.setHasConstraint(true);
     connection.setConnectionRouter(new BendpointConnectionRouter());
 
     // add label to the connection
     ConnectionLocator loc = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
     loc.setRelativePosition(PositionConstants.NORTH);
     loc.setGap(5);
+    
+    ConnectionLocator locSouth = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
+    locSouth.setRelativePosition(PositionConstants.SOUTH);
+    locSouth.setGap(5);
 
     // this is needed, because when the label would be just added the label text could be seen in
     // the rootModel
     if (editPart.getRoot().getContents() instanceof ORMCompartmentEditPart) {
       editPart.getNameLabel().setText(editPart.getRelationship().getName());
       connection.add(editPart.getNameLabel(), loc);
+      
+      //editPart.getNameLabel().setText(editPart.getRelationship().getName());
+      Label lab = new Label();
+      lab.setText("CONSTRAINT");
+      connection.add(lab, locSouth);
+
     }
     return connection;
   }

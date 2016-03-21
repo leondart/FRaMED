@@ -28,10 +28,12 @@ import org.framed.orm.ui.editor.ORMDirectEditManager;
  *         due to new model)
  * @author Lars Schuetze (refactoring)
  * @author David Gollasch (changes due to a new model)
+ * @author Duc Dung Dam (added constraint label)
  **/
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
-  private Label nameLabel = new Label();;
+  private Label nameLabel = new Label();
+  private Label constraintLabel = new Label();
 
   /**
    * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
@@ -116,6 +118,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   protected void refreshVisuals() {
     super.refreshVisuals();
     nameLabel.setText(getRelationship().getName());
+    //constraintLabel.setText(getRelationship().getName());
   }
 
   /** {@inheritDoc} */
@@ -145,6 +148,15 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    * */
   public Label getNameLabel() {
     return nameLabel;
+  }
+  
+  /**
+   * A getter for constraint {@link Label} of this relationship.
+   * 
+   * @return constraintLabel
+   * */
+  public Label getConstraintLabel() {
+    return constraintLabel;
   }
 
 }

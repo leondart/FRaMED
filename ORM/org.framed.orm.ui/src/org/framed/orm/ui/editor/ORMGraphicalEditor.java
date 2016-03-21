@@ -18,6 +18,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
+import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
+import org.eclipse.gef.dnd.TransferDropTargetListener;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.DirectEditAction;
@@ -179,13 +182,19 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-		getGraphicalViewer().setContents(rootmodel);
+		GraphicalViewer viewer = getGraphicalViewer();
+		viewer.setContents(rootmodel);
 		((ORMMultiPageEditor) parentEditor)
 				.createCustomTitleForEditor(rootmodel);
 
 		// add the change notifier as listener
-		getGraphicalViewer().getEditDomain().getCommandStack()
+		viewer.getEditDomain().getCommandStack()
 				.addCommandStackEventListener(changeNotifier);
+		
+		// add drag and drop listener
+		 getGraphicalViewer().addDropTargetListener(new TemplateTransferDropTargetListener(viewer));
+		getEditDomain().getPaletteViewer().addDragSourceListener(
+			    new TemplateTransferDragSourceListener(getEditDomain().getPaletteViewer()));
 	}
 
 	/**
