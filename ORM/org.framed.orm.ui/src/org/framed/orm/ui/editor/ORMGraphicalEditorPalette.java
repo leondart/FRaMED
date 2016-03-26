@@ -272,6 +272,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    * them to palett.
    */
   private void createConnectionsDrawer() {
+
     PaletteDrawer drawer = new PaletteDrawer("Connections");
     CreationToolEntry entry1 =
         new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation",
@@ -338,47 +339,46 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         drawer.add(entry13);
         addEntry("Relationship Exclusion", entry13, false);
     
-    CreationToolEntry entry12 =
-            new ConnectionCreationToolEntry("Reflexive", "Create a new Reflexive Relation",
+    CombinedTemplateCreationEntry entry =
+            new CombinedTemplateCreationEntry("Reflexive", "Create a new Reflexive Relation",
                 new ORMReflexiveFactory(), null, null);
     	//TODO: create new icon for reflexive relation
-        entry12.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/reflexive.png"));
-        drawer.add(entry12);
-        addEntry("Reflexive", entry12, false);
+        drawer.add(entry);
+        addEntry("Reflexive", entry, false);
         
-    CreationToolEntry entry8 =
-        new ConnectionCreationToolEntry("Irreflexive", "Create a new Irreflexive Relation",
+    entry =
+        new CombinedTemplateCreationEntry("Irreflexive", "Create a new Irreflexive Relation",
             new ORMIrreflexiveFactory(), null, null);
-    entry8.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/irreflexive.png"));
-    drawer.add(entry8);
-    addEntry("Irreflexive", entry8, false);
+    drawer.add(entry);
+    addEntry("Irreflexive", entry, false);
 
-    CreationToolEntry entry9 =
-        new ConnectionCreationToolEntry("Total", "Create a new Total Relation",
+    entry =
+        new CombinedTemplateCreationEntry("Total", "Create a new Total Relation",
             new ORMTotalFactory(), null, null);
-    entry9
-        .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
-    drawer.add(entry9);
-    addEntry("Total", entry9, false);
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
+    drawer.add(entry);
+    addEntry("Total", entry, false);
 
-    CreationToolEntry entry10 =
-        new ConnectionCreationToolEntry("Cyclic", "Create a new Cyclic Relation",
+    entry =
+        new CombinedTemplateCreationEntry("Cyclic", "Create a new Cyclic Relation",
             new ORMCyclicFactory(), null, null);
-    entry10.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/cyclic.png"));
-    drawer.add(entry10);
-    addEntry("Cyclic", entry10, false);
+    drawer.add(entry);
+    addEntry("Cyclic", entry, false);
     
-    CreationToolEntry entry11 =
-            new ConnectionCreationToolEntry("Acyclic", "Create a new Acyclic Relation",
+    entry =
+            new CombinedTemplateCreationEntry("Acyclic", "Create a new Acyclic Relation",
                 new ORMAcyclicFactory(), null, null);
     	//TODO: create new icon for acyclic relation
-        entry11.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/acyclic.png"));
-        drawer.add(entry11);
-        addEntry("Acyclic", entry11, false);
+        drawer.add(entry);
+        addEntry("Acyclic", entry, false);
         
     //Currently Entry 1 to 13     
     group.add(drawer);

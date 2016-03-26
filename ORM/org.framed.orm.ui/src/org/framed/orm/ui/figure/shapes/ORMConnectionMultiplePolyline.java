@@ -1,4 +1,4 @@
-package org.framed.orm.ui.figure;
+package org.framed.orm.ui.figure.shapes;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
@@ -32,7 +32,7 @@ public class ORMConnectionMultiplePolyline extends PolylineConnection {
 		}
 	}
 	
-	protected void setHasConstraint(boolean bol){
+	public void setHasConstraint(boolean bol){
 		hasConstraint = bol;
 	}
 }

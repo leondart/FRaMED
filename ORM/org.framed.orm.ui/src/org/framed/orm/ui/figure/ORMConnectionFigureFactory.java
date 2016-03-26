@@ -20,6 +20,7 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMFulfillmentEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editPart.shape.ORMCompartmentEditPart;
+import org.framed.orm.ui.figure.shapes.ORMConnectionMultiplePolyline;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
@@ -37,7 +38,6 @@ public class ORMConnectionFigureFactory {
    * @return {@link Figure}
    * */
   public static Figure createConnectionFigure(EditPart editPart) {
-
     Relation relation = (Relation) editPart.getModel();
     int val = relation.getType().getValue();
     switch (val) {
@@ -100,7 +100,6 @@ public class ORMConnectionFigureFactory {
     // the rootModel
     if (editP.getRoot().getContents() instanceof ORMCompartmentEditPart) {
       conn.add(editP.getLabel(), loc);
-      System.out.println("RelationshipFigure "+editP.getLabel().getText());
     }
     return conn;
   }
@@ -119,24 +118,23 @@ public class ORMConnectionFigureFactory {
     connection.setConnectionRouter(new BendpointConnectionRouter());
 
     // add label to the connection
-    ConnectionLocator loc = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
-    loc.setRelativePosition(PositionConstants.NORTH);
-    loc.setGap(5);
+    ConnectionLocator locNameLabel = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
+    locNameLabel.setRelativePosition(PositionConstants.NORTH);
+    locNameLabel.setGap(5);
     
-    ConnectionLocator locSouth = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
-    locSouth.setRelativePosition(PositionConstants.SOUTH);
-    locSouth.setGap(5);
+    ConnectionLocator locConstraintLabel = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
+    locConstraintLabel.setRelativePosition(PositionConstants.SOUTH);
+    locConstraintLabel.setGap(5);
 
     // this is needed, because when the label would be just added the label text could be seen in
     // the rootModel
     if (editPart.getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      editPart.getNameLabel().setText(editPart.getRelationship().getName());
-      connection.add(editPart.getNameLabel(), loc);
       
-      //editPart.getNameLabel().setText(editPart.getRelationship().getName());
-      Label lab = new Label();
-      lab.setText("CONSTRAINT");
-      connection.add(lab, locSouth);
+       editPart.getNameLabel().setText(editPart.getRelationship().getName());
+       connection.add(editPart.getNameLabel(), locNameLabel);
+       
+       editPart.getConstraintLabel().setText(editPart.getRelationship().getName());
+       connection.add(editPart.getConstraintLabel(), locConstraintLabel);
 
     }
     return connection;

@@ -117,8 +117,16 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   @Override
   protected void refreshVisuals() {
     super.refreshVisuals();
+    List<Relation> constraints = new ArrayList<>();
+    constraints.addAll(getRelationship().getReferencedRelation());
+    
+    String strConstraints = "";
+    for (Relation r : constraints){
+    	strConstraints += r.getName()+", ";
+    }
+    
     nameLabel.setText(getRelationship().getName());
-    //constraintLabel.setText(getRelationship().getName());
+    constraintLabel.setText(strConstraints);
   }
 
   /** {@inheritDoc} */
