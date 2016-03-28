@@ -20,6 +20,7 @@ import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
+import org.framed.orm.ui.figure.shapes.ORMConnectionMultiplePolyline;
 
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
@@ -119,14 +120,27 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     super.refreshVisuals();
     List<Relation> constraints = new ArrayList<>();
     constraints.addAll(getRelationship().getReferencedRelation());
+    ORMConnectionMultiplePolyline conn = (ORMConnectionMultiplePolyline) getConnectionFigure();
     
     String strConstraints = "";
-    for (Relation r : constraints){
-    	strConstraints += r.getName()+", ";
+    if(constraints.size() == 0){
+    	conn.setHasConstraint(false);
+    }else{
+    	conn.setHasConstraint(true);
+    	for(int i=0; i<constraints.size(); i++){
+    		if(i==constraints.size()-1){
+    			strConstraints += constraints.get(i).getName();
+    		}else{
+    			strConstraints += constraints.get(i).getName()+", ";
+    		}
+    	}
     }
+    
+    conn.repaint();
     
     nameLabel.setText(getRelationship().getName());
     constraintLabel.setText(strConstraints);
+   
   }
 
   /** {@inheritDoc} */
