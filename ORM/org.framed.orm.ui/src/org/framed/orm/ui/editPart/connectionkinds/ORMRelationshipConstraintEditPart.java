@@ -71,45 +71,46 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
    */
   @Override
   public void refreshVisuals() {
-    super.refreshVisuals();
-
-
-    if (getTarget() != null && getSource() != null
-        && ((Relation) getModel()).getReferencedRelation().size() > 0) {
-      Relation relationship = ((Relation) getModel()).getReferencedRelation().get(0);
-      List<Relation> relCList = new ArrayList<Relation>();
-
-      relCList.addAll(relationship.getReferencedRelation());
-
-      if (relCList.size() != 0) {
-
-        // get the edit part, which controls the first relationconstraint that was created for the
-        // relationship
-        ORMRelationshipConstraintEditPart rep =
-            (ORMRelationshipConstraintEditPart) getViewer().getEditPartRegistry().get(
-                relCList.get(0));
-
-        if (rep != null) {
-          // the connection figure visibility must be settet here, because the refreshvisual from
-          // ORMRelationEditPart sets the figure visibility as well this is a problem insofar that
-          // only the first created relationshipconstraint should be visible
-          if (!rep.equals(this)) {
-            getConnectionFigure().setVisible(false);
-          } else {
-            getConnectionFigure().setVisible(true);
-          }
-
-          // if branch for the relationconstraints that not are first created relationconstraint
-          if (!rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
-            String oldText = rep.getLabel().getText();
-            rep.getLabel().setText(textInitial + " , " + oldText);
-          }
-          // if branch for the first created relationconstraint
-          if (rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
-            label.setText(textInitial);
-          }
-        }
-      }
-    }
+	  getConnectionFigure().setVisible(false);
+//    super.refreshVisuals();
+//
+//
+//    if (getTarget() != null && getSource() != null
+//        && ((Relation) getModel()).getReferencedRelation().size() > 0) {
+//      Relation relationship = ((Relation) getModel()).getReferencedRelation().get(0);
+//      List<Relation> relCList = new ArrayList<Relation>();
+//
+//      relCList.addAll(relationship.getReferencedRelation());
+//
+//      if (relCList.size() != 0) {
+//
+//        // get the edit part, which controls the first relationconstraint that was created for the
+//        // relationship
+//        ORMRelationshipConstraintEditPart rep =
+//            (ORMRelationshipConstraintEditPart) getViewer().getEditPartRegistry().get(
+//                relCList.get(0));
+//
+//        if (rep != null) {
+//          // the connection figure visibility must be settet here, because the refreshvisual from
+//          // ORMRelationEditPart sets the figure visibility as well this is a problem insofar that
+//          // only the first created relationshipconstraint should be visible
+//          if (!rep.equals(this)) {
+//            getConnectionFigure().setVisible(false);
+//          } else {
+//            getConnectionFigure().setVisible(true);
+//          }
+//
+//          // if branch for the relationconstraints that not are first created relationconstraint
+//          if (!rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
+//            String oldText = rep.getLabel().getText();
+//            rep.getLabel().setText(textInitial + " , " + oldText);
+//          }
+//          // if branch for the first created relationconstraint
+//          if (rep.equals(this) && !rep.getLabel().getText().contains(textInitial)) {
+//            label.setText(textInitial);
+//          }
+//        }
+//      }
+//    }
   }
 }
