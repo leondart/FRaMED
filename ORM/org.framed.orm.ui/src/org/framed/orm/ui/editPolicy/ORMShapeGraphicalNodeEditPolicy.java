@@ -287,8 +287,10 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         || (oSTCheck(request, Type.INHERITANCE, Type.DATA_TYPE, Type.DATA_TYPE) && tNotEqualSCheck(request))
         || (oSTCheck(request, Type.INHERITANCE, Type.COMPARTMENT_TYPE, Type.COMPARTMENT_TYPE) && tNotEqualSCheck(request))
         // Relationship Test End
+//        || (oSTCheck(request, Type.RELATIONSHIP, Type.ROLE_TYPE, Type.ROLE_TYPE)
+//            && tNotEqualSCheck(request) && !hasARelationship(request, true));
         || (oSTCheck(request, Type.RELATIONSHIP, Type.ROLE_TYPE, Type.ROLE_TYPE)
-            && tNotEqualSCheck(request) && !hasARelationship(request, true));
+                && tNotEqualSCheck(request));
   }
 
   /**
@@ -363,7 +365,6 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * @return boolean
    * */
   private boolean hasConstraintsKind(final CreateConnectionRequest request) {
-
     if (testedRelationship != null) {
       for (Relation rel : testedRelationship.getReferencedRelation()) {
         if (request.getNewObjectType().equals(Type.IRREFLEXIVE)
