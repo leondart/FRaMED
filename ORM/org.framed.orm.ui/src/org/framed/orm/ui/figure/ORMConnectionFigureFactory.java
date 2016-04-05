@@ -4,6 +4,7 @@ import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
 import org.eclipse.draw2d.ConnectionLocator;
+import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
@@ -42,13 +43,9 @@ public class ORMConnectionFigureFactory {
     int val = relation.getType().getValue();
     switch (val) {
       case Type.CYCLIC_VALUE:
-        return createRelationshipConstraintFigure(relation, editPart);
       case Type.IRREFLEXIVE_VALUE:
-        return createRelationshipConstraintFigure(relation, editPart);
       case Type.ACYCLIC_VALUE:
-        return createRelationshipConstraintFigure(relation, editPart);
       case Type.REFLEXIVE_VALUE:
-          return createRelationshipConstraintFigure(relation, editPart);
       case Type.TOTAL_VALUE:
           return createRelationshipConstraintFigure(relation, editPart);
       case Type.RELATIONSHIP_VALUE:
@@ -56,7 +53,6 @@ public class ORMConnectionFigureFactory {
       case Type.ROLE_EQUIVALENCE_VALUE:
         return createRoleEquivalenceFigure();
       case Type.ROLE_IMPLICATION_VALUE:
-        return createRoleRelationshipImplicationFigure();
       case Type.RELATIONSHIP_IMPLICATION_VALUE:
         return createRoleRelationshipImplicationFigure();
       case Type.RELATIONSHIP_EXCLUSION_VALUE:
@@ -89,7 +85,7 @@ public class ORMConnectionFigureFactory {
     PolylineConnection conn = new PolylineConnection();
     conn.setAntialias(SWT.ON);
     conn.setLineDash(new float[] {5.0f, 5.0f});
-    conn.setLineStyle(SWT.LINE_CUSTOM);;
+    conn.setLineStyle(SWT.LINE_CUSTOM);
     conn.setConnectionRouter(new BendpointConnectionRouter());
 
     // add label to the connection
@@ -116,7 +112,7 @@ public class ORMConnectionFigureFactory {
 	ORMConnectionMultiplePolyline connection = new ORMConnectionMultiplePolyline();
 	connection.setHasConstraint(true);
     connection.setConnectionRouter(new BendpointConnectionRouter());
-
+    
     // add label to the connection
     ConnectionLocator locNameLabel = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
     locNameLabel.setRelativePosition(PositionConstants.NORTH);
@@ -135,7 +131,6 @@ public class ORMConnectionFigureFactory {
        
        editPart.getConstraintLabel().setText(editPart.getRelationship().getName());
        connection.add(editPart.getConstraintLabel(), locConstraintLabel);
-
     }
     return connection;
   }
