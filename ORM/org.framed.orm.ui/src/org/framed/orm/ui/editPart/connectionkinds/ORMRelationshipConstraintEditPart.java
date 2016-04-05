@@ -69,9 +69,18 @@ public class ORMRelationshipConstraintEditPart extends ORMRelationEditPart {
    * visibilities of the other relationshipConstraint figures on false.
    * 
    */
+  /**
+   * 04.04.2016
+   * Duc Dung Dam
+   * Every constraint has an editpart and every editparts expect an connection figure as a return. 
+   * Because of changing the representation of constraints (constraints connection won't show as a separate line, but the 
+   * relationship connection will be modified ) these connection figures needs to be set invisible. 
+   */
+  
   @Override
   public void refreshVisuals() {
 	  getConnectionFigure().setVisible(false);
+	  
 //    super.refreshVisuals();
 //
 //

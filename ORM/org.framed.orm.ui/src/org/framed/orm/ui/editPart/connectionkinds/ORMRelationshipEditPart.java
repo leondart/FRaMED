@@ -82,8 +82,8 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    * 
    * @return ({@link PolylineConnection}) getFigure()
    * */
-  protected PolylineConnection getRelationFigure() {
-    return (PolylineConnection) getFigure();
+  protected ORMConnectionMultiplePolyline getRelationFigure() {
+    return (ORMConnectionMultiplePolyline) getFigure();
   }
 
   /**
@@ -135,9 +135,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     		}
     	}
     }
-    
-    conn.repaint();
-    
+       
     nameLabel.setText(getRelationship().getName());
     constraintLabel.setText(strConstraints);
    
