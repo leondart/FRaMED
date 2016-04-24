@@ -227,6 +227,12 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	 * 
 	 * Configures the keyboard shortcuts @see
 	 * org.framed.orm.ui.editor.ORMGraphicalEditor.configureKeyboardShortcuts()
+	 * 
+	 * Adds drag and drop listener for shape creation by dragging objects from 
+	 * palette to EditorViewer.
+	 * 
+	 * Adds mouse listener for handling onClick events on constraint entries. 
+	 * This will create a constraint for a current selected relationship.
 	 */
 	@Override
 	protected void configureGraphicalViewer() {

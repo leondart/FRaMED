@@ -11,7 +11,7 @@ import org.framed.orm.model.Relation;
 /**
  * 10.03.2016
  * This connection is used for the representation of relationship connections. 
- * It distinguished between having constraints and not.
+ * It distinguished between having constraints and none.
  * 
  * @author Duc Dung Dam
  * */
