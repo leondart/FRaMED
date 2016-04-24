@@ -14,6 +14,7 @@ import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.tools.SelectionTool;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMCyclicFactory;
@@ -37,6 +38,7 @@ import org.framed.orm.ui.factory.ORMRoleProhibitionFactory;
 import org.framed.orm.ui.factory.ORMRoleTypeFactory;
 import org.framed.orm.ui.factory.ORMTotalFactory;
 import org.framed.orm.ui.tool.CreationAndDirectEditTool;
+import org.framed.orm.ui.tool.CreationConstraintToolEntry;
 
 
 /**
@@ -339,9 +341,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         drawer.add(entry13);
         addEntry("Relationship Exclusion", entry13, false);
     
-    CombinedTemplateCreationEntry entry =
-            new CombinedTemplateCreationEntry("Reflexive", "Create a new Reflexive Relation",
-                new ORMReflexiveFactory(), null, null);
+        CreationConstraintToolEntry entry =
+            new CreationConstraintToolEntry("Reflexive", "Create a new Reflexive Relation",
+                new ORMReflexiveFactory(), null, null, Type.REFLEXIVE_VALUE);
     	//TODO: create new icon for reflexive relation
         entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/reflexive.png"));
@@ -349,31 +351,31 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         addEntry("Reflexive", entry, false);
         
     entry =
-        new CombinedTemplateCreationEntry("Irreflexive", "Create a new Irreflexive Relation",
-            new ORMIrreflexiveFactory(), null, null);
+        new CreationConstraintToolEntry("Irreflexive", "Create a new Irreflexive Relation",
+            new ORMIrreflexiveFactory(), null, null, Type.IRREFLEXIVE_VALUE);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/irreflexive.png"));
     drawer.add(entry);
     addEntry("Irreflexive", entry, false);
 
     entry =
-        new CombinedTemplateCreationEntry("Total", "Create a new Total Relation",
-            new ORMTotalFactory(), null, null);
+        new CreationConstraintToolEntry("Total", "Create a new Total Relation",
+            new ORMTotalFactory(), null, null, Type.TOTAL_VALUE);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
     drawer.add(entry);
     addEntry("Total", entry, false);
 
     entry =
-        new CombinedTemplateCreationEntry("Cyclic", "Create a new Cyclic Relation",
-            new ORMCyclicFactory(), null, null);
+        new CreationConstraintToolEntry("Cyclic", "Create a new Cyclic Relation",
+            new ORMCyclicFactory(), null, null, Type.CYCLIC_VALUE);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/cyclic.png"));
     drawer.add(entry);
     addEntry("Cyclic", entry, false);
     
     entry =
-            new CombinedTemplateCreationEntry("Acyclic", "Create a new Acyclic Relation",
-                new ORMAcyclicFactory(), null, null);
+            new CreationConstraintToolEntry("Acyclic", "Create a new Acyclic Relation",
+                new ORMAcyclicFactory(), null, null, Type.ACYCLIC_VALUE);
     	//TODO: create new icon for acyclic relation
         entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
             "icons/acyclic.png"));
