@@ -1,4 +1,4 @@
-package org.framed.orm.ui.tool;
+package org.framed.orm.ui.editor.palette;
 
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.requests.CreationFactory;

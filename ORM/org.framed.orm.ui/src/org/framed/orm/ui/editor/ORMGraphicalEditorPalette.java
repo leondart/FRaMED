@@ -16,6 +16,7 @@ import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
+import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
@@ -38,7 +39,6 @@ import org.framed.orm.ui.factory.ORMRoleProhibitionFactory;
 import org.framed.orm.ui.factory.ORMRoleTypeFactory;
 import org.framed.orm.ui.factory.ORMTotalFactory;
 import org.framed.orm.ui.tool.CreationAndDirectEditTool;
-import org.framed.orm.ui.tool.CreationConstraintToolEntry;
 
 
 /**

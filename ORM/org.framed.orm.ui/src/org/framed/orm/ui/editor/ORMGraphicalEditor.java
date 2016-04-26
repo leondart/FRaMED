@@ -23,6 +23,7 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
 import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
 import org.eclipse.gef.dnd.TransferDropTargetListener;
@@ -75,7 +76,7 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreate
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
-import org.framed.orm.ui.tool.CreationConstraintToolEntry;
+import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
 
 /**
  * The {@link GraphicalEditor} you can see. Interacts with the user and shows
@@ -279,7 +280,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 							Relation relationship = ep_relationship.getRelationship();
 							List<Relation> constraints = relationship.getReferencedRelation();
 							
-							System.out.println(relationship.getReferencedRelation().toString());
+							System.out.println("Relationship: "+relationship.getName());
+							System.out.println("Existing constraints: "+relationship.getReferencedRelation().toString());
 							Relation relation = OrmFactory.eINSTANCE.createRelation();
 							Type type = Type.get(((CreationConstraintToolEntry)editPart.getModel()).getTypeValue());
 							relation.setType(type);
@@ -300,6 +302,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 							}
 							
 							if (!constraintExist){
+								//CompoundCommand compoundCommand = new CompoundCommand();
+								
 								relationship.getReferencedRelation().add(relation);
 								ORMRelationshipConstraintCreateCommand command = new  ORMRelationshipConstraintCreateCommand();
 						        command.setRelation(relation);
@@ -309,11 +313,12 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 						        command.setSourceLabel(null);
 						        command.setTargetLabel(null);
 						        ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
-						        refrencedRelation.addAll(relationship.getReferencedRelation());
 						        refrencedRelation.add(relationship);
 						        command.setRefrencedRelations(refrencedRelation);
+						        //compoundCommand.add(command);
 						          
 						        getCommandStack().execute(command);
+						        //getCommandStack().execute(compoundCommand);
 							}
 						}
 					}	

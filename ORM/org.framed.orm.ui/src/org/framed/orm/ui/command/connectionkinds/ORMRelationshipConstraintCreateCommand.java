@@ -33,7 +33,10 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
    */
   @Override
   public void execute() {
+	System.out.println("Create relationship constraints");
+	
     relationship = refrencedRelations.get(0);
+    System.out.println("Relationship: "+relationship.getName());
     
     relation.setSource(source);
     relation.setTarget(target);

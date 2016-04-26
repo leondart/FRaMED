@@ -81,9 +81,14 @@ public class ConstraintsDialog extends Dialog {
   /** {@inheritDoc} */
   @Override
   protected Control createDialogArea(final Composite parent) {
+	System.out.println("CreateDialog");
+	for (Relation r: constraints){
+		System.out.println(r.getName());
+	}
+	  
     // the composite of the dialog as a variable to make the adding of the components to it easier
     Composite composite = (Composite) super.createDialogArea(parent);
-
+    
     // A list, which contains all the relationshipconstraints a user can choose.
     List<Relation> viewerContent = new ArrayList<Relation>();
     viewerContent.addAll(constraints);
