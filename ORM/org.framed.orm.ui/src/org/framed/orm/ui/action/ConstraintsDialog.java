@@ -92,9 +92,9 @@ public class ConstraintsDialog extends Dialog {
     // A list, which contains all the relationshipconstraints a user can choose.
     List<Relation> viewerContent = new ArrayList<Relation>();
     viewerContent.addAll(constraints);
-    if (viewerContent.size() < 3) {
-      addMissingConstraints(viewerContent);
-    }
+    
+    addMissingConstraints(viewerContent);
+
 
     // initialize chosenDeleteConstraints with all relations from type total, cyclic, acyclic, reflexive and irreflexive
     // so that we just need to remove the choosen constraints later to get the constraints
