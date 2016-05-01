@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.EventObject;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -452,15 +455,18 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	private boolean transformModel() {
 		// resolve target uri
 		URI sourceURI = cdResource.getURI();
-		String file = sourceURI.toFileString();
-		file = file.substring(0, file.lastIndexOf(File.separator));
-		String name = sourceURI.lastSegment();
-		name = name.substring(0, name.lastIndexOf("."));
-		name += ".crom";
-		file += "/" + name;
+		// Remove .crom_dia file extension
+		sourceURI = sourceURI.trimFileExtension();
+		// Add .crom file extension
+		sourceURI = sourceURI.appendFileExtension("crom");
 		
-		// create target resource
-		URI targetURI = URI.createFileURI(file);
+		// Get file path relative to workspace (needed for URI.createPlatformResourceURI)
+		Path path = new Path(sourceURI.toFileString());
+		IFile myFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+			
+		// create target resource (using createPlatformResourceURI 
+		// updates the project explorer to show the file upon initial save)
+		URI targetURI =	URI.createPlatformResourceURI(myFile.getFullPath().toString(), true);
 		ResourceSet set = new ResourceSetImpl();
 		Resource res = set.createResource(targetURI);
 
