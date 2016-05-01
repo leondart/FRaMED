@@ -291,12 +291,12 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 							for (Relation r : constraints){
 								if (r.getType().equals(type)){
 									constraintExist = true;
-//									System.out.println("Constraint already exist!");
-//									ORMRelationshipConstraintDeleteCommand command =
-//								              new ORMRelationshipConstraintDeleteCommand();
-//								    command.setRelation(r);
-//						            command.setEPViewer(ep.getViewer());
-//						            getCommandStack().execute(command);
+									System.out.println("Constraint delete!");
+									ORMRelationshipConstraintDeleteCommand command =
+								              new ORMRelationshipConstraintDeleteCommand();
+								    command.setRelation(r);
+						            command.setEPViewer(ep.getViewer());
+						            getCommandStack().execute(command);
 									break;
 								}
 							}

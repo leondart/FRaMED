@@ -176,7 +176,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
       getCommandStack().execute(compoundCommand);
 
       // after every run of the action the editPart must be reset, because actions are not
-      // initialized new every time when you call tham
+      // initialized new every time when you call them
       editPart = null;
     }
   }
