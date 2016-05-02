@@ -236,7 +236,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	 * palette to EditorViewer.
 	 * 
 	 * Adds mouse listener for handling onClick events on constraint entries. 
-	 * This will create a constraint for a current selected relationship.
+	 * This will create/delete a constraint for a current selected relationship.
 	 */
 	@Override
 	protected void configureGraphicalViewer() {
@@ -305,8 +305,6 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 							}
 							
 							if (!constraintExist){
-								//CompoundCommand compoundCommand = new CompoundCommand();
-								
 								relationship.getReferencedRelation().add(relation);
 								ORMRelationshipConstraintCreateCommand command = new  ORMRelationshipConstraintCreateCommand();
 						        command.setRelation(relation);
@@ -318,10 +316,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 						        ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
 						        refrencedRelation.add(relationship);
 						        command.setRefrencedRelations(refrencedRelation);
-						        //compoundCommand.add(command);
-						          
 						        getCommandStack().execute(command);
-						        //getCommandStack().execute(compoundCommand);
 							}
 						}
 					}	
