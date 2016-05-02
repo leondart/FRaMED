@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.framed.orm.model.Type;
+
 public final class Util {
 	
 	
@@ -39,6 +41,10 @@ public final class Util {
 	 Collection<U> c=new ArrayList<U>();
 	 for (T t : iterable) c.add(f.f(t));
 	 return c;
+ }
+ 
+ public static Type[] getRelationshipConstraints() {
+	    return new Type[] {Type.IRREFLEXIVE, Type.REFLEXIVE, Type.CYCLIC, Type.ACYCLIC, Type.TOTAL};
  }
  
 		 

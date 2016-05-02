@@ -36,7 +36,7 @@ public class ORMRelationCreateBendpointCommand extends Command {
   /** {@link Relation} to which the {@link Bendpoint} is added. */
   private Relation relation;
   /**
-   * A list, which contains all {@link Relation}s from type cyclic, total and irreflexive(aka
+   * A list, which contains all {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive(aka
    * RelationshipConstraint) from one {@link Relation} from type relationship. This list is needed
    * for the case the user wants to undone the adding(remove) of a {@link Bendpoint} to a
    * relationshipConstraint in such case {@link Bendpoint}s with the same coordiantes as the initial
@@ -59,7 +59,7 @@ public class ORMRelationCreateBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} is added to the selected {@link Relation}.
-   * Is the {@link Relation} from type cyclic, total and irrflexvie(aka RelationshipConstraint) than
+   * Is the {@link Relation} from type cyclic, total, acyclic, reflexive and irrflexvie(aka RelationshipConstraint) than
    * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} must be added to all
    * relationshipConstraints of the same {@link Relation} from type relationship as the
    * relationshipConstraint, which the user has selected. The reason for that is that only one line
@@ -87,7 +87,8 @@ public class ORMRelationCreateBendpointCommand extends Command {
     relation.getBendpoints().add(index, relP);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)) {
+        || relation.getType().equals(Type.IRREFLEXIVE)|| relation.getType().equals(Type.REFLEXIVE)
+        || relation.getType().equals(Type.ACYCLIC)) {
 
       relCList.addAll(relation.getReferencedRelation().get(0).getReferencedRelation());
       relCList.remove(relation);
@@ -124,7 +125,7 @@ public class ORMRelationCreateBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through removing the {@link Bendpoint} from the selected
-   * {@link Relation}. Is the {@link Relation} from type cyclic, total and irreflexive(aka
+   * {@link Relation}. Is the {@link Relation} from type cyclic, total, acyclic, reflexive and irreflexive(aka
    * relationConstraint) than {@link Bendpoint}s with same coordinates as the initial
    * {@link Bendpoint} must be removed from all relationshipConstraints of the same {@link Relation}
    * from type relationship as the relationshipConstraint, which the user has selected. The reason
@@ -138,7 +139,8 @@ public class ORMRelationCreateBendpointCommand extends Command {
     relation.getBendpoints().remove(index);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)) {
+        || relation.getType().equals(Type.IRREFLEXIVE)|| relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.REFLEXIVE)) {
 
       for (Relation relC : relCList) {
         if (!relC.equals(relation)) {

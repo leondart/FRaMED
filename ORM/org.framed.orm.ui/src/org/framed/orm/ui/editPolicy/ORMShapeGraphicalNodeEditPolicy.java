@@ -49,18 +49,19 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * {@inheritDoc}
    * 
    * @return {@link ORMRelationshipConstraintCreateCommand}( in case a {@link Relation} from type
-   *         cyclic, total or irreflexive should be created) or {@link ORMRelationCreateCommand}( in
+   *         cyclic, total, acyclic, reflexive or irreflexive should be created) or {@link ORMRelationCreateCommand}( in
    *         case any other Relation should be created)
    * */
   @Override
   protected Command getConnectionCompleteCommand(final CreateConnectionRequest request) {
     Command retVal = null;
-    if (!request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)) {
+    if (!(request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)||
+    	  request.getNewObjectType().equals(Type.RELATIONSHIP_EXCLUSION))) {
       if (isCompleteOK(request)) {
         retVal = setupConnectionCompleteCommand(request);
       }
 
-      // Irreflexive Acyclic Total End
+      // Irreflexive Acyclic Total Cyclic Reflexive End
       if ((oSTCheck(request, Type.CYCLIC, Type.ROLE_TYPE, Type.ROLE_TYPE)
           || oSTCheck(request, Type.IRREFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(
             request, Type.TOTAL, Type.ROLE_TYPE, Type.ROLE_TYPE) || oSTCheck(
@@ -85,14 +86,15 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * {@inheritDoc}
    * 
    * @return {@link ORMRelationshipConstraintCreateCommand}( in case a {@link Relation} from type
-   *         cyclic, total or irreflexive should be created) or {@link ORMRelationCreateCommand}( in
+   *         cyclic, total, acyclic, reflexive or irreflexive should be created) or {@link ORMRelationCreateCommand}( in
    *         case any other Relation should be created)
    * */
   @Override
   protected Command getConnectionCreateCommand(final CreateConnectionRequest request) {
     Command retVal = null;
 
-    if (!request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION)) {
+    if (!(request.getNewObjectType().equals(Type.RELATIONSHIP_IMPLICATION) ||
+    	  request.getNewObjectType().equals(Type.RELATIONSHIP_EXCLUSION))) {
       if (isStartOK(request)) {
         retVal =
             setupConnectionStartCommand(request, ((Shape) getHost().getModel()).getContainer());
@@ -182,7 +184,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method completes and return the creation commands for all {@link Relation}s except for
-   * {@link Relation}s from type cyclic, irreflexive and total.
+   * {@link Relation}s from type cyclic, irreflexive, acyclic, reflexive and total.
    * 
    * @return {@link ORMRelationCreateCommand}
    * */
@@ -196,7 +198,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method creates and return the creation command for all {@link Relation}s except the
-   * relations from type cyclic, total and irrflexive.
+   * relations from type cyclic, total, acyclic, reflexive and irrflexive.
    * 
    * @return {@link ORMRelationCreateCommand}
    * */
@@ -246,7 +248,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method tests if the conditions for the creation completion of a {@link Relation}
-   * kind(except {@link Relation}s from type total, irreflexive and cyclic) are fulfilled.
+   * kind(except {@link Relation}s from type total, irreflexive and cyclic, acyclic, reflexive) are fulfilled.
    * 
    * @return boolean
    * */
@@ -285,13 +287,15 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
         || (oSTCheck(request, Type.INHERITANCE, Type.DATA_TYPE, Type.DATA_TYPE) && tNotEqualSCheck(request))
         || (oSTCheck(request, Type.INHERITANCE, Type.COMPARTMENT_TYPE, Type.COMPARTMENT_TYPE) && tNotEqualSCheck(request))
         // Relationship Test End
+//        || (oSTCheck(request, Type.RELATIONSHIP, Type.ROLE_TYPE, Type.ROLE_TYPE)
+//            && tNotEqualSCheck(request) && !hasARelationship(request, true));
         || (oSTCheck(request, Type.RELATIONSHIP, Type.ROLE_TYPE, Type.ROLE_TYPE)
-            && tNotEqualSCheck(request) && !hasARelationship(request, true));
+                && tNotEqualSCheck(request));
   }
 
   /**
    * This method tests if the conditions for the creation start of a {@link Relation} kind(except
-   * {@link Relation}s from type total, cyclic and irreflexive) are fulfilled.
+   * {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive) are fulfilled.
    * 
    * @return boolean
    * */
@@ -355,13 +359,12 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method tests if between source edit part and traget edit part already exist a
-   * relationshipConstraint(total,irrflexive,cyclic) kind of the requested relationshipConstraint
+   * relationshipConstraint(total,irrflexive,cyclic, acyclic, reflexive) kind of the requested relationshipConstraint
    * kind.
    * 
    * @return boolean
    * */
   private boolean hasConstraintsKind(final CreateConnectionRequest request) {
-
     if (testedRelationship != null) {
       for (Relation rel : testedRelationship.getReferencedRelation()) {
         if (request.getNewObjectType().equals(Type.IRREFLEXIVE)

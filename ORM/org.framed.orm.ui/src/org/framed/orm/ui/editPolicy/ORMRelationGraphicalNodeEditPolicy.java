@@ -28,7 +28,9 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   @Override
   protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
-    if (oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP)
+	  //TODO: check if implementation is correct
+    if ((oSTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP, Type.RELATIONSHIP) ||
+    	oSTCheck(request, Type.RELATIONSHIP_EXCLUSION, Type.RELATIONSHIP, Type.RELATIONSHIP)) 
         && tNotEqualSCheck(request)) {
       return setupConnectionCompleteCommand(request);
     }
@@ -42,7 +44,9 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   @Override
   protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-    if (oTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP)) {
+	  //TODO: check if implementation is correct
+    if (oTCheck(request, Type.RELATIONSHIP_IMPLICATION, Type.RELATIONSHIP) ||
+    	oTCheck(request, Type.RELATIONSHIP_EXCLUSION, Type.RELATIONSHIP)) {
       Relation target = (Relation) request.getTargetEditPart().getModel();
       return setupConnectionStartCommand(request, target.getContainer());
     }
@@ -71,7 +75,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * This method completes and return the creation commands for all {@link Relation}s except for
-   * {@link Relation}s from type cyclic, irreflexive and total.
+   * {@link Relation}s from type cyclic, irreflexive, acyclic, reflexive and total.
    * 
    * @return {@link ORMRelationCreateCommand}
    * */
@@ -84,7 +88,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * This method creates and return the creation command for all {@link Relation}s except the
-   * relations from type cyclic, total and irrflexive.
+   * relations from type cyclic, total, acyclic, reflexive and irrflexive.
    * 
    * @return {@link ORMRelationCreateCommand}
    * */

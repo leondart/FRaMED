@@ -20,6 +20,7 @@ import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
+import org.framed.orm.ui.figure.shapes.ORMConnectionMultiplePolyline;
 
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
@@ -28,10 +29,12 @@ import org.framed.orm.ui.editor.ORMDirectEditManager;
  *         due to new model)
  * @author Lars Schuetze (refactoring)
  * @author David Gollasch (changes due to a new model)
+ * @author Duc Dung Dam (added constraint label)
  **/
 public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
-  private Label nameLabel = new Label();;
+  private Label nameLabel = new Label();
+  private Label constraintLabel = new Label();
 
   /**
    * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
@@ -79,8 +82,8 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    * 
    * @return ({@link PolylineConnection}) getFigure()
    * */
-  protected PolylineConnection getRelationFigure() {
-    return (PolylineConnection) getFigure();
+  protected ORMConnectionMultiplePolyline getRelationFigure() {
+    return (ORMConnectionMultiplePolyline) getFigure();
   }
 
   /**
@@ -115,7 +118,27 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   @Override
   protected void refreshVisuals() {
     super.refreshVisuals();
+    List<Relation> constraints = new ArrayList<>();
+    constraints.addAll(getRelationship().getReferencedRelation());
+    ORMConnectionMultiplePolyline conn = (ORMConnectionMultiplePolyline) getConnectionFigure();
+    
+    String strConstraints = "";
+    if(constraints.size() == 0){
+    	conn.setHasConstraint(false);
+    }else{
+    	conn.setHasConstraint(true);
+    	for(int i=0; i<constraints.size(); i++){
+    		if(i==constraints.size()-1){
+    			strConstraints += constraints.get(i).getName();
+    		}else{
+    			strConstraints += constraints.get(i).getName()+", ";
+    		}
+    	}
+    }
+       
     nameLabel.setText(getRelationship().getName());
+    constraintLabel.setText(strConstraints);
+   
   }
 
   /** {@inheritDoc} */
@@ -145,6 +168,15 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
    * */
   public Label getNameLabel() {
     return nameLabel;
+  }
+  
+  /**
+   * A getter for constraint {@link Label} of this relationship.
+   * 
+   * @return constraintLabel
+   * */
+  public Label getConstraintLabel() {
+    return constraintLabel;
   }
 
 }

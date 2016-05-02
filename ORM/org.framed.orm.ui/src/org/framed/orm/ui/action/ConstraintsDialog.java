@@ -23,10 +23,11 @@ import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
+import org.framed.orm.model.util.Util;
 
 /**
  * A dialog class for creating a dialog, which let the user choose the {@link Relation}s from type
- * total, cyclic and irreflexive for a {@link Relation} from type relationship.
+ * total, cyclic, acyclic, reflexive and irreflexive for a {@link Relation} from type relationship.
  * 
  * @author Kay Bierzynski (intial development)
  * @author Lars Schuetze
@@ -40,17 +41,17 @@ public class ConstraintsDialog extends Dialog {
   /** Variable for the dialog width. */
   private final static int SIZING_SELECTION_WIDGET_WIDTH = 300;
   /**
-   * A list, which contains all the {@link Relation}s from type total, cyclic and irreflexive a
+   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive a
    * relationship already has.
    */
   private List<Relation> constraints;
   /**
-   * A list, which contains all the {@link Relation}s from type total, cyclic and irreflexive the
+   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive the
    * user didn't choose in the dialog.
    */
   private final List<Relation> chosenDeleteConstraints;
   /**
-   * A list, which contains all the {@link Relation}s from type total, cyclic and irreflexive the
+   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive the
    * user did choose in the dialog.
    */
   private final List<Relation> chosenCreateConstraints;
@@ -80,22 +81,27 @@ public class ConstraintsDialog extends Dialog {
   /** {@inheritDoc} */
   @Override
   protected Control createDialogArea(final Composite parent) {
+	System.out.println("CreateDialog");
+	for (Relation r: constraints){
+		System.out.println(r.getName());
+	}
+	  
     // the composite of the dialog as a variable to make the adding of the components to it easier
     Composite composite = (Composite) super.createDialogArea(parent);
-
+    
     // A list, which contains all the relationshipconstraints a user can choose.
     List<Relation> viewerContent = new ArrayList<Relation>();
     viewerContent.addAll(constraints);
-    if (viewerContent.size() < 3) {
-      addMissingConstraints(viewerContent);
-    }
+    
+    addMissingConstraints(viewerContent);
 
-    // initialize chosenDeleteConstraints with all relations from type total, cyclic and irreflexive
+
+    // initialize chosenDeleteConstraints with all relations from type total, cyclic, acyclic, reflexive and irreflexive
     // so that we just need to remove the choosen constraints later to get the constraints
     // which should be deleted
     chosenDeleteConstraints.addAll(viewerContent);
 
-    // setup the table viewer, which lists the relations from type total, cyclic and irreflexive
+    // setup the table viewer, which lists the relations from type total, cyclic, acyclic, reflexive and irreflexive
     // a user can choose
     viewer = CheckboxTableViewer.newCheckList(composite, SWT.CHECK);
     viewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -109,7 +115,7 @@ public class ConstraintsDialog extends Dialog {
     viewer.setContentProvider(contentProvider);
     viewer.setInput(new ItemProvider(new OrmItemProviderAdapterFactory(), viewerContent));
 
-    // check all the relations from type total, cyclic and irreflexive, which the relation from type
+    // check all the relations from type total, cyclic, acyclic, reflexive and irreflexive, which the relation from type
     // relationship already has, so that the user know which constratints the relationship
     // already has
     for (Relation constraint : viewerContent) {
@@ -168,73 +174,32 @@ public class ConstraintsDialog extends Dialog {
 
 
   /**
-   * Add to the viewerContent the {@link Relation}s from type total, cyclic and irreflexive, which
+   * Add to the viewerContent the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive, which
    * the relationship not have, because the user should be able to choose between all of the
    * constraints.
    * 
    * @param viewerContent java.util.List<Relation>
    **/
   private void addMissingConstraints(final List<Relation> viewerContent) {
-    // first test if the irreflexive constraint is in the list, when not add the irreflexive
+    // test if relationship constraints are in the list, if not add the missing
     // constraint to the list
-    // after that test if the total constraint is in the list, when not add the total constraint to
-    // the list
-    // at the end test if the cyclic constraint is in the list, when not add the cyclic constraint
-    // to the list
-    for (int i = 0; i < 5; i++) {
-
-      boolean isInList = false;
-      for (Relation constraint : constraints) {
-        if (i == 0) {
-            isInList = constraint.getType().equals(Type.IRREFLEXIVE);
-        }
-        if (i == 1) {
-            isInList = constraint.getType().equals(Type.TOTAL);
-        }
-        if (i == 2) {
-            isInList = constraint.getType().equals(Type.CYCLIC);
-        }
-        if (i == 3) {
-            isInList = constraint.getType().equals(Type.ACYCLIC);
-        }
-        if (i == 4) {
-            isInList = constraint.getType().equals(Type.REFLEXIVE);
-        }
-        if(isInList){
-          break;
-        }
+	  
+      for (Type constraintType : Util.getRelationshipConstraints()){
+    	  boolean isInList = false;
+    	  for (Relation constraint : constraints) {
+    		  isInList = constraint.getType().equals(constraintType);
+    		  if(isInList){
+    	          break;
+    	        }
+    	  }
+    	  
+    	  Relation relation = OrmFactory.eINSTANCE.createRelation();
+    	  if (!isInList) {
+    		  relation.setType(constraintType);
+    		  relation.setName(constraintType.getName());
+    		  viewerContent.add(relation);
+    	  }
       }
-      
-      Relation relation = OrmFactory.eINSTANCE.createRelation();
-      if (!isInList) {
-        if (i == 0) {
-          relation.setType(Type.IRREFLEXIVE);
-          relation.setName("irreflexive");
-          viewerContent.add(relation);
-        }
-        if (i == 1) {
-          relation.setType(Type.TOTAL);
-          relation.setName("total");
-          viewerContent.add(relation);
-        }
-        if (i == 2) {
-          relation.setType(Type.CYCLIC);
-          relation.setName("cyclic");
-          viewerContent.add(relation);
-        }
-        if (i == 3) {
-        	relation.setType(Type.ACYCLIC);
-            relation.setName("acyclic");
-            viewerContent.add(relation);
-        }
-        if (i == 4) {
-        	relation.setType(Type.REFLEXIVE);
-            relation.setName("reflexive");
-            viewerContent.add(relation);
-        }
-      }
-    }
-
   }
 
   /**
@@ -250,7 +215,7 @@ public class ConstraintsDialog extends Dialog {
       chosenCreateConstraints.add((Relation) object);
     }
 
-    // remove constraints the use didn't choose from chosenDeleteConstraints list, which contains at
+    // remove constraints the user didn't choose from chosenDeleteConstraints list, which contains at
     // this moment
     // all the constraints
     chosenDeleteConstraints.removeAll(chosenCreateConstraints);

@@ -21,12 +21,15 @@
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Relationship"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Total"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Cyclic"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Acyclic"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Reflexive"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Irreflexive"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RoleProhibition"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RoleGroup"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Group"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/Fulfillment"/>
       <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RelationshipImplication"/>
+      <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//Type/RelationshipExclusion"/>
     </genEnums>
     <genClasses image="false" ecoreClass="ORM.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//NamedElement/name"/>

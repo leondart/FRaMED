@@ -8,7 +8,7 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
 
 /**
- * Through this command {@link Relation}s from type cyclic, total and irreflexive can be
+ * Through this command {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive can be
  * created(invoked into the model tree).
  * 
  * @author Kay Bierzynski
@@ -17,12 +17,12 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
 
   /**
    * The {@link Relation} from type relationship to which the
-   * relationshipConstraint(cyclic,total,irrflexive) belongs to.
+   * relationshipConstraint(cyclic,total,irrflexive, acyclic, reflexive) belongs to.
    */
   private Relation relationship;
 
   /**
-   * In this method the relationshipConstrain(cyclic,total,irreflexive) is created/ invoked into the
+   * In this method the relationshipConstrain(cyclic,total,irreflexive, acyclic, reflexive) is created/ invoked into the
    * model tree through setting it's parameter. After that when a relationshipConstrain already
    * exist beside the relationshipConstrain to be invoked all {@link Bendpoint}s from this
    * relationshipConstrain are added to the created relationshipConstrain as well. When more as one
@@ -33,7 +33,10 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
    */
   @Override
   public void execute() {
+	System.out.println("Create relationship constraints");
+	
     relationship = refrencedRelations.get(0);
+    System.out.println("Relationship: "+relationship.getName());
     
     relation.setSource(source);
     relation.setTarget(target);

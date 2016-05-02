@@ -15,7 +15,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipConstraintEditPart;
 
 /**
- * Through this command all {@link Relation}s except the {@link Relation}s from type cyclic, total
+ * Through this command all {@link Relation}s except the {@link Relation}s from type cyclic, total, acyclic, reflexive
  * and irreflexive(relationshipConstraints) can be deleted(removed from the model tree). The
  * relationshipConstraints need an extra command, because after every deletion of a
  * relationshipConstraint the {@link ORMRelationshipConstraintEditPart} of the other

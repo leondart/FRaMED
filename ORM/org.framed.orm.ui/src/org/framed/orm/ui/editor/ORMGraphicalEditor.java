@@ -2,10 +2,17 @@ package org.framed.orm.ui.editor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EventObject;
+import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -17,13 +24,22 @@ import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyStroke;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
+import org.eclipse.gef.dnd.TemplateTransferDropTargetListener;
+import org.eclipse.gef.dnd.TransferDropTargetListener;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
+import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.DirectEditAction;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ToggleGridAction;
 import org.eclipse.gef.ui.actions.ToggleSnapToGeometryAction;
+import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
@@ -32,6 +48,9 @@ import org.eclipse.gef.ui.properties.UndoablePropertySheetPage;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -43,6 +62,8 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.OrmFactory;
+import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.model.provider.OrmItemProviderAdapterFactory;
@@ -54,7 +75,11 @@ import org.framed.orm.ui.action.StepInAction;
 import org.framed.orm.ui.action.StepInNewPageAction;
 import org.framed.orm.ui.action.StepInNewTabAction;
 import org.framed.orm.ui.action.StepOutAction;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
+import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
+import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
+import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
 
 /**
  * The {@link GraphicalEditor} you can see. Interacts with the user and shows
@@ -62,6 +87,7 @@ import org.framed.orm.ui.editPart.ORMEditPartFactory;
  * 
  * @author Kay BierzynskiS
  * @author Paul Peschel
+ * @author Duc Dung Dam
  * */
 public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
@@ -179,12 +205,13 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-		getGraphicalViewer().setContents(rootmodel);
+		GraphicalViewer viewer = getGraphicalViewer();
+		viewer.setContents(rootmodel);
 		((ORMMultiPageEditor) parentEditor)
 				.createCustomTitleForEditor(rootmodel);
 
 		// add the change notifier as listener
-		getGraphicalViewer().getEditDomain().getCommandStack()
+		viewer.getEditDomain().getCommandStack()
 				.addCommandStackEventListener(changeNotifier);
 	}
 
@@ -204,14 +231,22 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	 * 
 	 * Configures the keyboard shortcuts @see
 	 * org.framed.orm.ui.editor.ORMGraphicalEditor.configureKeyboardShortcuts()
+	 * 
+	 * Adds drag and drop listener for shape creation by dragging objects from 
+	 * palette to EditorViewer.
+	 * 
+	 * Adds mouse listener for handling onClick events on constraint entries. 
+	 * This will create/delete a constraint for a current selected relationship.
 	 */
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
+		final GraphicalViewer viewer = getGraphicalViewer();
+		final PaletteViewer paletteViewer = getEditDomain().getPaletteViewer();
 
-		getGraphicalViewer().setEditPartFactory(new ORMEditPartFactory());
+		viewer.setEditPartFactory(new ORMEditPartFactory());
 		// set Contextmenu provider class + action registry
-		getGraphicalViewer().setContextMenu(
+		viewer.setContextMenu(
 				new ORMGraphicalEditorContextMenuProvider(getGraphicalViewer(),
 						getActionRegistry()));
 
@@ -223,6 +258,74 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
 		// set the shortcuts
 		configureKeyboardShortcuts();
+		
+
+		// add drag and drop listener
+		viewer.addDropTargetListener(new TemplateTransferDropTargetListener(viewer));
+		getEditDomain().getPaletteViewer().addDragSourceListener(
+			    new TemplateTransferDragSourceListener(getEditDomain().getPaletteViewer()));
+		//add the mouse listener
+		paletteViewer.getControl().addMouseListener(new MouseListener(){
+			Point p_temp;
+			@Override
+			public void mouseDown(MouseEvent e) {
+				p_temp = new Point(e.x,e.y);
+			}
+			
+			@Override
+			public void mouseUp(MouseEvent e) {
+				if (p_temp.equals(new Point(e.x,e.y))){
+					final EditPart editPart = paletteViewer.findObjectAt(new Point(e.x,e.y));
+					if (editPart instanceof EditPart && editPart.getModel() instanceof CreationConstraintToolEntry) {
+						EditPart ep = (EditPart) viewer.getSelectedEditParts().get(0);
+						if (ep instanceof ORMRelationshipEditPart) {
+							ORMRelationshipEditPart ep_relationship = (ORMRelationshipEditPart) ep; 
+							Relation relationship = ep_relationship.getRelationship();
+							List<Relation> constraints = relationship.getReferencedRelation();
+							
+							System.out.println("Relationship: "+relationship.getName());
+							System.out.println("Existing constraints: "+relationship.getReferencedRelation().toString());
+							Relation relation = OrmFactory.eINSTANCE.createRelation();
+							Type type = Type.get(((CreationConstraintToolEntry)editPart.getModel()).getTypeValue());
+							relation.setType(type);
+							relation.setName(type.getName());
+							
+							boolean constraintExist = false;
+							for (Relation r : constraints){
+								if (r.getType().equals(type)){
+									constraintExist = true;
+									System.out.println("Constraint delete!");
+									ORMRelationshipConstraintDeleteCommand command =
+								              new ORMRelationshipConstraintDeleteCommand();
+								    command.setRelation(r);
+						            command.setEPViewer(ep.getViewer());
+						            getCommandStack().execute(command);
+									break;
+								}
+							}
+							
+							if (!constraintExist){
+								relationship.getReferencedRelation().add(relation);
+								ORMRelationshipConstraintCreateCommand command = new  ORMRelationshipConstraintCreateCommand();
+						        command.setRelation(relation);
+						        command.setRelationContainer(relationship.getContainer());
+						        command.setSource((Shape) relationship.getSource());
+						        command.setTarget((Shape) relationship.getTarget());
+						        command.setSourceLabel(null);
+						        command.setTargetLabel(null);
+						        ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
+						        refrencedRelation.add(relationship);
+						        command.setRefrencedRelations(refrencedRelation);
+						        getCommandStack().execute(command);
+							}
+						}
+					}	
+				}
+			}
+			
+			@Override
+			public void mouseDoubleClick(MouseEvent e) {}
+		});
 	}
 
 	/**
@@ -347,15 +450,18 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 	private boolean transformModel() {
 		// resolve target uri
 		URI sourceURI = cdResource.getURI();
-		String file = sourceURI.toFileString();
-		file = file.substring(0, file.lastIndexOf(File.separator));
-		String name = sourceURI.lastSegment();
-		name = name.substring(0, name.lastIndexOf("."));
-		name += ".crom";
-		file += "/" + name;
+		// Remove .crom_dia file extension
+		sourceURI = sourceURI.trimFileExtension();
+		// Add .crom file extension
+		sourceURI = sourceURI.appendFileExtension("crom");
 		
-		// create target resource
-		URI targetURI = URI.createFileURI(file);
+		// Get file path relative to workspace (needed for URI.createPlatformResourceURI)
+		Path path = new Path(sourceURI.toFileString());
+		IFile myFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+			
+		// create target resource (using createPlatformResourceURI 
+		// updates the project explorer to show the file upon initial save)
+		URI targetURI =	URI.createPlatformResourceURI(myFile.getFullPath().toString(), true);
 		ResourceSet set = new ResourceSetImpl();
 		Resource res = set.createResource(targetURI);
 

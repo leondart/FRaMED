@@ -34,7 +34,7 @@ public class ORMRelationMoveBendpointCommand extends Command {
    */
   private Dimension newDimsource, newDimtarget;
   /**
-   * A list, which contains all {@link Relation}s from type cyclic, total and irreflexive(aka
+   * A list, which contains all {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive(aka
    * relationshipCOnstraints) from one {@link Relation} of the type relationship. This list is
    * needed for the case the user wants to undo the moving of a {@link Bendpoint} from a
    * relationshipConstraint. In such a case {@link Bendpoint}s with the same coordiantes as the
@@ -58,7 +58,7 @@ public class ORMRelationMoveBendpointCommand extends Command {
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} from the selected {@link Relation} is moved
    * to a new position and the old position is stored in case that user wants to undo the command.
-   * After that in case the {@link Relation} is from type cyclic, total or irrflexive(aka
+   * After that in case the {@link Relation} is from type cyclic, total, acyclic, reflexive or irrflexive(aka
    * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
    * {@link Bendpoint} from all relationshipConstraints of the same {@link Relationship} as the
    * relationshipConstraint, which the user has selected, must be moved to new coordinates as well.
@@ -127,7 +127,7 @@ public class ORMRelationMoveBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through moving the {@link Bendpoint} to the old position.
-   * Is the {@link Relation} from type cyclic, total or irrfelxive(aka relationshipConstraint) than
+   * Is the {@link Relation} from type cyclic, total, acyclic, reflexive or irrfelxive(aka relationshipConstraint) than
    * after the moving of the initial {@link Bendpoint} all {@link Bendpoint}s with same coordinates
    * as the initial {@link Bendpoint} from all relationshipConstraints of the same {@link Relation}
    * from type relationship as the relationshipConstraint, which the user has selected, must be
