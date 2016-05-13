@@ -5,5 +5,6 @@ FRaMED is the First Role Modeling EDitor allowing the graphical specification of
 by means of *compartments* (aka. *contexts*), *objects*, *roles*, and *relationships*.
 Additionally, it supports a varity of constraints upon roles and relationships. 
 
-See the <a href="https://github.com/leondart/FRaMED/wiki">wiki</a> for further information.
+See the [wiki](https://github.com/leondart/FRaMED/wiki) for further information.
 
+![Graphical user interface of FRaMED](https://github.com/leondart/FRaMED/wiki/img/ORMEditor_1.png)
