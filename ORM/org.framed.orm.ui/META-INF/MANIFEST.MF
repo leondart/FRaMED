@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui;bundle-version="2.9.0",
  org.eclipse.emf.common,
  org.framed.orm.transformation,
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ui.ide.application;bundle-version="1.0.501"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.framed.orm.ui.command,
