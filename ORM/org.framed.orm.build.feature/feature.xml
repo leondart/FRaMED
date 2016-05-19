@@ -17,32 +17,53 @@
       [Enter License Description here.]
    </license>
 
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.draw2d" version="3.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.framed.orm.model"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.framed.orm.model.edit"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.gef" version="3.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.9.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.8.101" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.emf.edit.ui" version="2.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.framed.orm.transformation"/>
+   </requires>
+
    <plugin
          id="org.framed.orm.model"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.3"
          unpack="false"/>
 
    <plugin
          id="org.framed.orm.model.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.3"
          unpack="false"/>
 
    <plugin
          id="org.framed.orm.model.editor"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.3"
          unpack="false"/>
 
    <plugin
          id="org.framed.orm.ui"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="2.0.3"
          unpack="false"/>
 
 </feature>
