@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.epsilon.eol.engine,
  org.eclipse.epsilon.emc.emf,
  org.eclipse.epsilon.eol.dt;bundle-version="1.2.0",
- org.eclipse.epsilon.etl.engine
+ org.eclipse.epsilon.etl.engine,
+ org.rosi.crom.metamodel;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.framed.orm.transformation
