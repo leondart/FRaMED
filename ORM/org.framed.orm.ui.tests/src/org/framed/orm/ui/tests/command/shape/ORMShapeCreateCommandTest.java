@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.framed.orm.geometry.Point;
 import org.framed.orm.geometry.Rectangle;
-import org.framed.orm.model.Configuration;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
@@ -529,18 +528,6 @@ public class ORMShapeCreateCommandTest {
         // TODO Auto-generated method stub
         return null;
       }
-
-      @Override
-      public Configuration getConfiguration() {
-        // TODO Auto-generated method stub
-        return null;
-      }
-
-      @Override
-      public void setConfiguration(Configuration value) {
-        // TODO Auto-generated method stub
-        
-      }
     });
     assertTrue(obj.canExecute());
   }
@@ -1044,18 +1031,6 @@ public class ORMShapeCreateCommandTest {
       public EList<ModelElement> getElements() {
         // TODO Auto-generated method stub
         return null;
-      }
-
-      @Override
-      public Configuration getConfiguration() {
-        // TODO Auto-generated method stub
-        return null;
-      }
-
-      @Override
-      public void setConfiguration(Configuration value) {
-        // TODO Auto-generated method stub
-        
       }
     });
     obj.execute();
@@ -1561,18 +1536,6 @@ public class ORMShapeCreateCommandTest {
       public EList<ModelElement> getElements() {
         // TODO Auto-generated method stub
         return null;
-      }
-
-      @Override
-      public Configuration getConfiguration() {
-        // TODO Auto-generated method stub
-        return null;
-      }
-
-      @Override
-      public void setConfiguration(Configuration value) {
-        // TODO Auto-generated method stub
-        
       }
     });
     obj.undo();
