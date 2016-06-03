@@ -14,61 +14,58 @@ import org.osgi.framework.Bundle;
 
 public abstract class EpsilonStandalone {
 
-	protected IEolExecutableModule module;
+  protected IEolExecutableModule module;
 
-	protected Object result;
+  protected Object result;
 
-	public abstract IEolExecutableModule createModule();
+  public abstract IEolExecutableModule createModule();
 
-	public abstract String getSource();
+  public abstract String getSource();
 
-	public abstract List<IModel> getModels() throws Exception;
+  public abstract List<IModel> getModels() throws Exception;
 
-	public void postProcess() {
-	};
+  public void postProcess() {};
 
-	public void preProcess() {
-	};
+  public void preProcess() {};
 
-	public void execute() throws Exception {
+  public void execute() throws Exception {
 
-		module = createModule();
-		module.parse(getTransformationFile());
+    module = createModule();
+    module.parse(getTransformationFile());
 
-		if (module.getParseProblems().size() > 0) {
-			System.err.println("Parse errors occured...");
-			for (ParseProblem problem : module.getParseProblems()) {
-				System.err.println(problem.toString());
-			}
-			System.exit(-1);
-		}
+    if (module.getParseProblems().size() > 0) {
+      System.err.println("Parse errors occured...");
+      for (ParseProblem problem : module.getParseProblems()) {
+        System.err.println(problem.toString());
+      }
+      System.exit(-1);
+    }
 
-		for (IModel model : getModels()) {
-			module.getContext().getModelRepository().addModel(model);
-		}
+    for (IModel model : getModels()) {
+      module.getContext().getModelRepository().addModel(model);
+    }
 
-		preProcess();
-		result = execute(module);
-		postProcess();
+    preProcess();
+    result = execute(module);
+    postProcess();
 
-		module.getContext().getModelRepository().dispose();
-	}
+    module.getContext().getModelRepository().dispose();
+  }
 
-	protected Object execute(IEolExecutableModule module)
-			throws EolRuntimeException {
-		return module.execute();
-	}
+  protected Object execute(IEolExecutableModule module) throws EolRuntimeException {
+    return module.execute();
+  }
 
-	private URI getTransformationFile() {
-		Bundle bundle = Platform.getBundle("org.framed.orm.transformation");
-		URL fileURL = bundle.getEntry(getSource());
-		
-		try {
-			return fileURL.toURI();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+  private URI getTransformationFile() {
+    Bundle bundle = Platform.getBundle("org.framed.orm.transformation");
+    URL fileURL = bundle.getEntry(getSource());
+
+    try {
+      return fileURL.toURI();
+    } catch (URISyntaxException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return null;
+  }
 }

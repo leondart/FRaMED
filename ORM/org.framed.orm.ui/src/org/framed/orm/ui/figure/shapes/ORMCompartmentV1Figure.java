@@ -10,20 +10,14 @@ import org.eclipse.swt.SWT;
 import org.framed.orm.model.Segment;
 
 /**
- * This figure is for {@link Shapes}s from type CompartmentType, where the user didn't step into. The figure looks in the
- * viewer/editor like this:
- * ______________
- * |____Name____|
- * |Attribute   |
- * |_List_______|
- * |Operation   |
- * |_List_______|
- * |  ROLES     |
- * |____________|
+ * This figure is for {@link Shapes}s from type CompartmentType, where the user didn't step into.
+ * The figure looks in the viewer/editor like this: ______________ |____Name____| |Attribute |
+ * |_List_______| |Operation | |_List_______| | ROLES | |____________|
  *
- * The roles list is added in the editparts. The right side and bottom side of
- * the figure have a border shadow.
- * The attribute list and operation list are added through child {@link Segment}s in the editparts.
+ * The roles list is added in the editparts. The right side and bottom side of the figure have a
+ * border shadow. The attribute list and operation list are added through child {@link Segment}s in
+ * the editparts.
+ * 
  * @author Kay Bierzynski
  * @author Lars Schuetze
  * */
@@ -36,9 +30,9 @@ public class ORMCompartmentV1Figure extends ORMShapeFigure {
   private final ShadowRectangle rectangle;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
-   * {@link Label})is added to basic rectangle. 
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
+   * {@link Label})is added to basic rectangle.
    * 
    * */
   public ORMCompartmentV1Figure() {

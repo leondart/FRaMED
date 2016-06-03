@@ -11,17 +11,14 @@ import org.eclipse.swt.SWT;
 import org.framed.orm.model.Segment;
 
 /**
- * This figure is for {@link Shapes}s from type Natrualtype. The figure looks in the viewer/editor like this:
+ * This figure is for {@link Shapes}s from type Natrualtype. The figure looks in the viewer/editor
+ * like this:
  * 
- * ______________
- * |____Name____|
- * |Attribute   |
- * |_List_______|
- * |Operation   |
- * |_List_______|
+ * ______________ |____Name____| |Attribute | |_List_______| |Operation | |_List_______|
  * 
- * The right side and bottom side of the figure have a border shadow.
- * The attribute list and operation list are added through child {@link Segment}s in the editparts.
+ * The right side and bottom side of the figure have a border shadow. The attribute list and
+ * operation list are added through child {@link Segment}s in the editparts.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMNaturalTypeFigure extends ORMShapeFigure {
@@ -33,8 +30,8 @@ public class ORMNaturalTypeFigure extends ORMShapeFigure {
   private final ShadowRectangle rectangle;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
    * {@link Label}) is added to the basic rectangle.
    * 
    * */

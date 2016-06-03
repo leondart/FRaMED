@@ -24,7 +24,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
   static int id = 0;
   private List<ORMGraphicalEditorPalette> observers = new ArrayList<ORMGraphicalEditorPalette>();
   private ORMGraphicalEditor parentEditor;
-  
+
   public EditorChangeNotifier(ORMGraphicalEditor parent) {
     ++id;
     setParentEditor(parent);
@@ -42,7 +42,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
     if (event.getCommand().getLabel() == null)
       return;
     String type = event.getCommand().getLabel();
-    
+
     /* notify all registered observers */
     Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
 
@@ -51,7 +51,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
     }
   }
 
-  public void editorTypeChanged(ORMGraphicalEditor.EditorType type){
+  public void editorTypeChanged(ORMGraphicalEditor.EditorType type) {
     /* notify all registered observers */
     Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
 
@@ -59,7 +59,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
       it.next().update(type);
     }
   }
-  
+
   public void register(ORMGraphicalEditorPalette observer) {
     if (!observers.contains(observer))
       observers.add(observer);
@@ -68,7 +68,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
   public void unregister(ORMGraphicalEditorPalette observer) {
     observers.remove(observer);
   }
-  
+
   public ORMGraphicalEditor getParentEditor() {
     return parentEditor;
   }

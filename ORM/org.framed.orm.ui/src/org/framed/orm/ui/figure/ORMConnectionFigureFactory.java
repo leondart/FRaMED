@@ -47,7 +47,7 @@ public class ORMConnectionFigureFactory {
       case Type.ACYCLIC_VALUE:
       case Type.REFLEXIVE_VALUE:
       case Type.TOTAL_VALUE:
-          return createRelationshipConstraintFigure(relation, editPart);
+        return createRelationshipConstraintFigure(relation, editPart);
       case Type.RELATIONSHIP_VALUE:
         return createRelationshipFigure((ORMRelationshipEditPart) editPart);
       case Type.ROLE_EQUIVALENCE_VALUE:
@@ -69,10 +69,10 @@ public class ORMConnectionFigureFactory {
   }
 
   /**
-   * This method creates and returns the figure for {@link Relation}s from type cyclic, total, acyclic, reflexive and
-   * irreflexive, which differs from relationshipConstraint to relationshipConstraint only in the
-   * text of the {@link Label}. A cyclic, total, acyclic, reflexive or irreflexive figure is dashed line with a
-   * {@link Label}.
+   * This method creates and returns the figure for {@link Relation}s from type cyclic, total,
+   * acyclic, reflexive and irreflexive, which differs from relationshipConstraint to
+   * relationshipConstraint only in the text of the {@link Label}. A cyclic, total, acyclic,
+   * reflexive or irreflexive figure is dashed line with a {@link Label}.
    * 
    * @return conn org.eclipse.draw2d.PolylineConnection
    * */
@@ -106,31 +106,32 @@ public class ORMConnectionFigureFactory {
    * through child model elements( {@link NamedElements}).
    * 
    * @return conn org.eclipse.draw2d.PolylineConnection
-   */ 
+   */
   private static Figure createRelationshipFigure(ORMRelationshipEditPart editPart) {
-    //PolylineConnection connection = new PolylineConnection();
-	ORMConnectionMultiplePolyline connection = new ORMConnectionMultiplePolyline();
-	connection.setHasConstraint(true);
+    // PolylineConnection connection = new PolylineConnection();
+    ORMConnectionMultiplePolyline connection = new ORMConnectionMultiplePolyline();
+    connection.setHasConstraint(true);
     connection.setConnectionRouter(new BendpointConnectionRouter());
-    
+
     // add label to the connection
     ConnectionLocator locNameLabel = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
     locNameLabel.setRelativePosition(PositionConstants.NORTH);
     locNameLabel.setGap(5);
-    
-    ConnectionLocator locConstraintLabel = new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
+
+    ConnectionLocator locConstraintLabel =
+        new ConnectionLocator(connection, ConnectionLocator.MIDDLE);
     locConstraintLabel.setRelativePosition(PositionConstants.SOUTH);
     locConstraintLabel.setGap(5);
 
     // this is needed, because when the label would be just added the label text could be seen in
     // the rootModel
     if (editPart.getRoot().getContents() instanceof ORMCompartmentEditPart) {
-      
-       editPart.getNameLabel().setText(editPart.getRelationship().getName());
-       connection.add(editPart.getNameLabel(), locNameLabel);
-       
-       editPart.getConstraintLabel().setText(editPart.getRelationship().getName());
-       connection.add(editPart.getConstraintLabel(), locConstraintLabel);
+
+      editPart.getNameLabel().setText(editPart.getRelationship().getName());
+      connection.add(editPart.getNameLabel(), locNameLabel);
+
+      editPart.getConstraintLabel().setText(editPart.getRelationship().getName());
+      connection.add(editPart.getConstraintLabel(), locConstraintLabel);
     }
     return connection;
   }
@@ -166,7 +167,7 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
     return conn;
   }
-  
+
   /**
    * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
    * dashed line with a white arrow tip at target end of this connection.
@@ -188,12 +189,12 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
     return conn;
   }
-  
+
 
   /**
    * 
-   * {@link Relations}s from type roleprohibition and relationshipexclusion have as figure a
-   * dashed line with a white arrow tip at target end of this connection.
+   * {@link Relations}s from type roleprohibition and relationshipexclusion have as figure a dashed
+   * line with a white arrow tip at target end of this connection.
    * 
    * @return conn org.eclipse.draw2d.PolylineConnection
    * */
@@ -204,7 +205,7 @@ public class ORMConnectionFigureFactory {
     poly1.setAntialias(SWT.ON);
     poly1.setBackgroundColor(ColorConstants.black);
     poly1.setScale(5, 5);
-    
+
     PolylineDecoration poly2 = new PolylineDecoration();
     poly2.setTemplate(INVERTED_TRIANGLE_TIP);
     poly2.setAntialias(SWT.ON);
@@ -220,7 +221,7 @@ public class ORMConnectionFigureFactory {
     conn.setConnectionRouter(new BendpointConnectionRouter());
     return conn;
   }
-  
+
 
   /**
    * Input template for the arrow tips so that the arrow tips are drawn inverted and open at the

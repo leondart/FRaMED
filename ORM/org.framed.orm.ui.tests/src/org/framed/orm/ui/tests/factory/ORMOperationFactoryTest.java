@@ -9,14 +9,14 @@ public class ORMOperationFactoryTest {
 
   @Test
   public void testGetNewObject() {
-	  ORMOperationFactory obj = new ORMOperationFactory();
-	  assertNotNull(obj.getNewObject());
+    ORMOperationFactory obj = new ORMOperationFactory();
+    assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-	  ORMOperationFactory obj = new ORMOperationFactory();
-	  assertNotNull(obj.getObjectType());
+    ORMOperationFactory obj = new ORMOperationFactory();
+    assertNotNull(obj.getObjectType());
   }
 
 }

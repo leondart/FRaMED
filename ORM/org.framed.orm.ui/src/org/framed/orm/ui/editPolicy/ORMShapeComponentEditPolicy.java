@@ -93,14 +93,14 @@ public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
    * @return {@link StepCommand}
    * */
   private StepCommand createStepOutCommand() {
-	  
-    final Model container = ((Shape)hostModel).getContainer();
-    
+
+    final Model container = ((Shape) hostModel).getContainer();
+
     final StepCommand command = new StepCommand();
     command.setEditPart(hostEditPart);
     command.setEditorPart(editorPart);
 
-                        
+
     if (container.getParent() == null) {
       command.setNewContent(container);
     } else {

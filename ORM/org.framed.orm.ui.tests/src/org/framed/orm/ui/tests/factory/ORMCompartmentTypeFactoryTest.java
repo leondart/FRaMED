@@ -9,14 +9,14 @@ public class ORMCompartmentTypeFactoryTest {
 
   @Test
   public void testGetNewObject() {
-	  ORMCompartmentTypeFactory obj = new ORMCompartmentTypeFactory();
-	  assertNotNull(obj.getNewObject());
+    ORMCompartmentTypeFactory obj = new ORMCompartmentTypeFactory();
+    assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-	  ORMCompartmentTypeFactory obj = new ORMCompartmentTypeFactory();
-	  assertNotNull(obj.getObjectType());
+    ORMCompartmentTypeFactory obj = new ORMCompartmentTypeFactory();
+    assertNotNull(obj.getObjectType());
   }
 
 }

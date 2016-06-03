@@ -12,14 +12,14 @@ import org.framed.orm.model.Type;
  * */
 public class ORMRoleTypeFactory implements CreationFactory {
 
-  @Override 
+  @Override
   public Object getNewObject() {
     Shape shape = OrmFactory.eINSTANCE.createShape();
     shape.setType(Type.ROLE_TYPE);
     return shape;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return Type.ROLE_TYPE;
   }

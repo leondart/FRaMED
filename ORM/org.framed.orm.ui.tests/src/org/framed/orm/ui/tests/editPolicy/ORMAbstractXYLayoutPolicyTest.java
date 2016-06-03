@@ -13,7 +13,7 @@ public class ORMAbstractXYLayoutPolicyTest {
 
   @Test
   public void testCreateModelReactangle() {
-	  assertTrue("Not yet implemented as it's an abstract class", true);
+    assertTrue("Not yet implemented as it's an abstract class", true);
   }
 
 }

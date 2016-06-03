@@ -30,10 +30,10 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
   private PartFigure compartmentPart;
 
   /**
-   * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Model}. Whether
-   * the figure of the {@link Model} or the compartmentPart is added to a Shape from type group
-   * depends on which version of the group figure is used also if the user has steped in the group or
-   * not.
+   * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Model}.
+   * Whether the figure of the {@link Model} or the compartmentPart is added to a Shape from type
+   * group depends on which version of the group figure is used also if the user has steped in the
+   * group or not.
    * 
    * */
   @Override
@@ -71,7 +71,7 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
         getFigure().add(((ORMNamedElementEditPart) childEditPart).getFigure(), BorderLayout.TOP);
       }
     }
-    
+
   }
 
   /**
@@ -102,7 +102,7 @@ public class ORMShapeWithoutSegmentEditPart extends ORMSuperShapeEditPart {
         sizeList = compartmentPart.getChildren().size();
         label.setText(element.getName());
         label.setToolTip(label2);
-        if (sizeList <= 3) { //TODO: Fix this number
+        if (sizeList <= 3) { // TODO: Fix this number
           compartmentPart.add(label);
         } else {
           collectLabels.add(label);

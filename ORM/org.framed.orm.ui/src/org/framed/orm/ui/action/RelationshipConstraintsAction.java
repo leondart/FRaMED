@@ -18,8 +18,9 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreate
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 
 /**
- * This action is for adding/removing {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive
- * to/from a {@link Relation} from type realtionship through a {@link ConstraintsDialog}.
+ * This action is for adding/removing {@link Relation}s from type total, cyclic, acyclic, reflexive
+ * and irreflexive to/from a {@link Relation} from type realtionship through a
+ * {@link ConstraintsDialog}.
  * 
  * @author Kay Bierzynski
  * */
@@ -30,8 +31,9 @@ public class RelationshipConstraintsAction extends SelectionAction {
   /**
    * The editpart of the {@link Relation} from type relationship to which the {@link Relation}s from
    * type total, cyclic, acyclic, reflexive and irreflexive are added or of a
-   * relationshipconstraint(Total,Cyclic, Acyclic, Reflexive, Irreflexive)( when the run method is called through the
-   * delete button(red X in the actionbar) through which we can get the relationship.
+   * relationshipconstraint(Total,Cyclic, Acyclic, Reflexive, Irreflexive)( when the run method is
+   * called through the delete button(red X in the actionbar) through which we can get the
+   * relationship.
    */
   private EditPart editPart;
 
@@ -51,10 +53,10 @@ public class RelationshipConstraintsAction extends SelectionAction {
   /**
    * Set method for setting the editpart of the {@link Relation} from type relationship. This method
    * is nessecary, because the run method of this action isn't only activated through the
-   * contextmenu. The run method is called as well when a {@link Relation}s from type total, cyclic, acyclic, reflexive
-   * or irreflexive is selected and the user is clicking on the delete button (red X in the
-   * actionbar) and when called liked this no element is selected from which we can get the
-   * editpart.
+   * contextmenu. The run method is called as well when a {@link Relation}s from type total, cyclic,
+   * acyclic, reflexive or irreflexive is selected and the user is clicking on the delete button
+   * (red X in the actionbar) and when called liked this no element is selected from which we can
+   * get the editpart.
    * 
    * @param editpart EditPart
    * */
@@ -90,10 +92,10 @@ public class RelationshipConstraintsAction extends SelectionAction {
    * In this method first the {@link ConstraintsDialog} is prepared and started. After the user has
    * closed the {@link ConstraintsDialog} through the cancel button this method is finished as well.
    * When the user has closed the {@link ConstraintsDialog} through the ok button the chosen
-   * {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive are added to the {@link Relation}
-   * from type relationship one after the another and all relationshipconstraints , which where not
-   * Chosen and belonged at the beginning to the relationship, are removed one after another from
-   * the relationship.
+   * {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive are added to the
+   * {@link Relation} from type relationship one after the another and all relationshipconstraints ,
+   * which where not Chosen and belonged at the beginning to the relationship, are removed one after
+   * another from the relationship.
    * 
    * */
   @Override
@@ -146,7 +148,8 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
       for (Relation relation : dialog.getChosenCreateConstraints()) {
         if (!constraints.contains(relation)) {
-          ORMRelationshipConstraintCreateCommand command = new  ORMRelationshipConstraintCreateCommand();
+          ORMRelationshipConstraintCreateCommand command =
+              new ORMRelationshipConstraintCreateCommand();
 
           command.setRelation(relation);
           command.setRelationContainer(rlship.getContainer());
@@ -157,7 +160,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
           ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
           refrencedRelation.add(rlship);
           command.setRefrencedRelations(refrencedRelation);
-          
+
 
           compoundCommand.add(command);
         }

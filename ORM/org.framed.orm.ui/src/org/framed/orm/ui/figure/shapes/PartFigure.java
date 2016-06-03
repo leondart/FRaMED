@@ -37,7 +37,7 @@ public class PartFigure extends Figure {
     }
 
     /** {@inheritDoc} */
-    public void paint(final IFigure figure,final Graphics graphics,final  Insets insets) {
+    public void paint(final IFigure figure, final Graphics graphics, final Insets insets) {
       graphics.drawLine(getPaintRectangle(figure, insets).getTopLeft(), tempRect.getTopRight());
     }
   }

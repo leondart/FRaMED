@@ -143,7 +143,8 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
     List contexts = new ArrayList();
     Model cd = (Model) getModel();
     // all children of compartmentdiagram are model elments
-    // only relations and the connection anchor shape(for now only the relationship_shape_child) are handled
+    // only relations and the connection anchor shape(for now only the relationship_shape_child) are
+    // handled
     // in other ways and because of that are not added as a model children
     for (ModelElement ele : cd.getElements()) {
       if (!(ele instanceof Relation)) {

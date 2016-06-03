@@ -11,16 +11,16 @@ import org.framed.orm.model.Type;
  * @author Kay Bierzynski
  * */
 public class ORMInheritanceFactory implements CreationFactory {
-	
-  @Override 
-  public Object getNewObject() {		
+
+  @Override
+  public Object getNewObject() {
     Relation relation = OrmFactory.eINSTANCE.createRelation();
     relation.setName(null);
     relation.setType(Type.INHERITANCE);
     return relation;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return Type.INHERITANCE;
   }

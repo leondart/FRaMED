@@ -66,12 +66,12 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * {@inheritDoc} In this method all the attributes of the {@link Relation} from type total, cyclic, acyclic, reflexive
-   * or irreflexive to be removed are stored in variables in case that the user wants to undone this
-   * command. After this part the relationship constraint is removed from the source, the
-   * {@link Model}, the {@link Relation} from type relationship and the target and all of it's
-   * {@link Bendpoint}s are deleted. At the end of the method all the remaining relationship
-   * constraint of the relationship are gathered in a list and the
+   * {@inheritDoc} In this method all the attributes of the {@link Relation} from type total,
+   * cyclic, acyclic, reflexive or irreflexive to be removed are stored in variables in case that
+   * the user wants to undone this command. After this part the relationship constraint is removed
+   * from the source, the {@link Model}, the {@link Relation} from type relationship and the target
+   * and all of it's {@link Bendpoint}s are deleted. At the end of the method all the remaining
+   * relationship constraint of the relationship are gathered in a list and the
    * {@link ORMRelationshipConstraintEditPart} of every relationship constraint in the list is
    * refreshed. The refreshing makes the line of the next relationship constraint visible.
    */
@@ -108,9 +108,9 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through the recreation/ invoking of the {@link Relation}
-   * from type total, cyclic, acyclic, reflexive or irreflexive into the model tree through setting it's attributes.
-   * When another relationship constraint exists between source and target the relationship
-   * constraint, which is readded, get it's {@link Bendpoint}s from their.
+   * from type total, cyclic, acyclic, reflexive or irreflexive into the model tree through setting
+   * it's attributes. When another relationship constraint exists between source and target the
+   * relationship constraint, which is readded, get it's {@link Bendpoint}s from their.
    */
   @Override
   public void undo() {
@@ -119,7 +119,7 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
     relation.setContainer(parent);
     relation.getReferencedRelation().add(relationship);
     relationship.getReferencedRelation().add(relation);
-    
+
     if (relationship.getReferencedRelation().size() != 0
         && relationship.getReferencedRelation().get(0).getBendpoints().size() != 0) {
       Relation rel = relationship.getReferencedRelation().get(0);
@@ -156,8 +156,8 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
   }
 
   /**
-   * Setter for the {@link Relation} from type total, cyclic, acyclic, reflexive or irreflexive, which is
-   * deleted/removed in this command.
+   * Setter for the {@link Relation} from type total, cyclic, acyclic, reflexive or irreflexive,
+   * which is deleted/removed in this command.
    * 
    * @param relation org.framed.orm.model.Relation
    * */
@@ -167,8 +167,8 @@ public class ORMRelationshipConstraintDeleteCommand extends Command {
 
   /**
    * Setter for the {@link EditPartViewer}, which is need to activiate the next {@link Relation}
-   * from type total, cyclic, acyclic, reflexive or irreflexive to make it's line visible after this he {@link Relation}
-   * from type total, cyclic, acyclic, reflexive or irreflexive is deleted.
+   * from type total, cyclic, acyclic, reflexive or irreflexive to make it's line visible after this
+   * he {@link Relation} from type total, cyclic, acyclic, reflexive or irreflexive is deleted.
    * 
    * @param epViewer org.eclipse.gef.EditPartViewer
    * */

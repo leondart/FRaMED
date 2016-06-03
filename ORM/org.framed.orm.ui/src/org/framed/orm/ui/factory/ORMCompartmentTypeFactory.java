@@ -11,17 +11,17 @@ import org.framed.orm.model.Type;
  * @author Kay Bierzynski
  * */
 public class ORMCompartmentTypeFactory implements CreationFactory {
-	
-  @Override 
-  public Object getNewObject() {		
+
+  @Override
+  public Object getNewObject() {
     Shape shape = OrmFactory.eINSTANCE.createShape();
     shape.setType(Type.COMPARTMENT_TYPE);
     return shape;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return Type.COMPARTMENT_TYPE;
   }
-  
+
 }

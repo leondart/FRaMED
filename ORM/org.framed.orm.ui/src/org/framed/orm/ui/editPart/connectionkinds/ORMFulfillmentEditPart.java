@@ -47,7 +47,8 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
    * targetToolTip depening on number of fulfilled roles to handle the cases where the user
    * adds/deletes names of the {@link Shapes}s from type roletype and rolegroup through the
    * {@link FulfillRolesAction}.
- * @return 
+   * 
+   * @return
    * 
    */
   @Override
@@ -57,12 +58,17 @@ public class ORMFulfillmentEditPart extends ORMRelationEditPart {
 
     targetLabel.setText("<...>");
     targetToolTip.removeAll();
-    if (! relation.getReferencedRoles().isEmpty()){
-        Iterable<String> rolenames=Util.map( new Foo<Shape,String>(){ public String f(Shape s){return s.getName();} }, relation.getReferencedRoles());
-    	for (String r : rolenames) targetToolTip.add(new Label(r));
-    	targetLabel.setText(Util.join(", ", rolenames));
+    if (!relation.getReferencedRoles().isEmpty()) {
+      Iterable<String> rolenames = Util.map(new Foo<Shape, String>() {
+        public String f(Shape s) {
+          return s.getName();
+        }
+      }, relation.getReferencedRoles());
+      for (String r : rolenames)
+        targetToolTip.add(new Label(r));
+      targetLabel.setText(Util.join(", ", rolenames));
     }
-    //System.out.println(targetLabel.getText());
+    // System.out.println(targetLabel.getText());
   }
 
   /**

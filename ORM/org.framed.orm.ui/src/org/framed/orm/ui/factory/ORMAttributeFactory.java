@@ -10,15 +10,15 @@ import org.framed.orm.model.OrmFactory;
  * @author Kay Bierzynski
  * */
 public class ORMAttributeFactory implements CreationFactory {
-  
+
   public static int attribute = 100;
-  
-  @Override 
-  public Object getNewObject() {		
+
+  @Override
+  public Object getNewObject() {
     return OrmFactory.eINSTANCE.createNamedElement();
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return attribute;
   }

@@ -29,9 +29,9 @@ public class ORMRelationDeleteBendpointCommand extends Command {
    */
   private RelativePoint relP;
   /**
-   * A list, which contains all {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive(aka
-   * RelationshipConstraints) from one {@link Relation} from type relationship. This list is needed
-   * for the case the user wants to undo the removing of a {@link Bendpoint} from a
+   * A list, which contains all {@link Relation}s from type cyclic, total, acyclic, reflexive and
+   * irreflexive(aka RelationshipConstraints) from one {@link Relation} from type relationship. This
+   * list is needed for the case the user wants to undo the removing of a {@link Bendpoint} from a
    * relationshipConstraint in such a case {@link Bendpoint}s with the same coordiantes as the
    * initial {@link Bendpoint} must be added to all relationshipConstraints of the same
    * {@link Relation} from type relationship as the relationshipConstraint, which the user has
@@ -65,14 +65,14 @@ public class ORMRelationDeleteBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} is removed from the selected
-   * {@link Relation}. Is the {@link Relation} from type cyclic, total, acyclic, reflexive and irreflexive(aka
-   * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
-   * {@link Bendpoint} must be removed from all relationshipConstraints of the same {@link Relation}
-   * from type relationship as the {relationshipConstraint, which the user has selected. The reason
-   * for that is that only one line of the relationshipConstraints is visible to the user and when
-   * the user deletes the relationshipConstraint, whose line is visible, than the line of the next
-   * relationshipConstraint must become visible at the same place with the same {@link Bendpoint}s
-   * as the line of the deleted relationshipConstraint.
+   * {@link Relation}. Is the {@link Relation} from type cyclic, total, acyclic, reflexive and
+   * irreflexive(aka relationshipConstraint) than {@link Bendpoint}s with same coordinates as the
+   * initial {@link Bendpoint} must be removed from all relationshipConstraints of the same
+   * {@link Relation} from type relationship as the {relationshipConstraint, which the user has
+   * selected. The reason for that is that only one line of the relationshipConstraints is visible
+   * to the user and when the user deletes the relationshipConstraint, whose line is visible, than
+   * the line of the next relationshipConstraint must become visible at the same place with the same
+   * {@link Bendpoint}s as the line of the deleted relationshipConstraint.
    */
   @Override
   public void execute() {
@@ -95,21 +95,21 @@ public class ORMRelationDeleteBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through adding the {@link Bendpoint} to the selected
-   * {@link Relation}. Is the {@link Relation} from type cyclic, total, acyclic, reflexive and irreflexive(aka
-   * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
-   * {@link Bendpoint} must be added to all relationshipConstraints of the same {@link Relation}
-   * from type relationship as the relationshipConstraint, which the user has selected. The reason
-   * for that is that only one line of the relationshipConstraints is visible to the user and when
-   * the user deletes the relationshipConstraint, whose line is visible, than the line of the next
-   * relationshipConstraint must become visible at the same place with the same {@link Bendpoint}s
-   * as the line of the deleted relationshipConstraint.
+   * {@link Relation}. Is the {@link Relation} from type cyclic, total, acyclic, reflexive and
+   * irreflexive(aka relationshipConstraint) than {@link Bendpoint}s with same coordinates as the
+   * initial {@link Bendpoint} must be added to all relationshipConstraints of the same
+   * {@link Relation} from type relationship as the relationshipConstraint, which the user has
+   * selected. The reason for that is that only one line of the relationshipConstraints is visible
+   * to the user and when the user deletes the relationshipConstraint, whose line is visible, than
+   * the line of the next relationshipConstraint must become visible at the same place with the same
+   * {@link Bendpoint}s as the line of the deleted relationshipConstraint.
    * */
   @Override
   public void undo() {
     relation.getBendpoints().add(index, relP);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)|| relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE) || relation.getType().equals(Type.ACYCLIC)
         || relation.getType().equals(Type.REFLEXIVE)) {
 
       for (Relation relC : relCList) {

@@ -123,4 +123,3 @@ public class StepAction extends SelectionAction {
   }
 
 }
-

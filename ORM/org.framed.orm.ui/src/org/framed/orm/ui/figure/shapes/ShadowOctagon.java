@@ -76,23 +76,23 @@ public class ShadowOctagon extends RectangleFigure {
     // Restore the start of the graphics object
     graphics.popState();
   }
-  
-  private PointList getPoints(Rectangle rec){
+
+  private PointList getPoints(Rectangle rec) {
     PointList octogon = new PointList(8);
-    
-    int hoffset =(rec.width/8);
-    int voffset =(rec.height/8);
-   
+
+    int hoffset = (rec.width / 8);
+    int voffset = (rec.height / 8);
+
 
     octogon.removeAllPoints();
-    octogon.addPoint(new Point(rec.x+hoffset,rec.y));
-    octogon.addPoint(new Point(rec.x-hoffset+rec.width,rec.y));
-    octogon.addPoint(new Point(rec.x+rec.width,rec.y+voffset));
-    octogon.addPoint(new Point(rec.x+rec.width,rec.y-voffset+rec.height));  
-    octogon.addPoint(new Point(rec.x-hoffset+rec.width,rec.y+rec.height));
-    octogon.addPoint(new Point(rec.x+hoffset,rec.y+rec.height));
-    octogon.addPoint(new Point(rec.x,rec.y-voffset+rec.height));
-    octogon.addPoint(new Point(rec.x,rec.y+voffset));
+    octogon.addPoint(new Point(rec.x + hoffset, rec.y));
+    octogon.addPoint(new Point(rec.x - hoffset + rec.width, rec.y));
+    octogon.addPoint(new Point(rec.x + rec.width, rec.y + voffset));
+    octogon.addPoint(new Point(rec.x + rec.width, rec.y - voffset + rec.height));
+    octogon.addPoint(new Point(rec.x - hoffset + rec.width, rec.y + rec.height));
+    octogon.addPoint(new Point(rec.x + hoffset, rec.y + rec.height));
+    octogon.addPoint(new Point(rec.x, rec.y - voffset + rec.height));
+    octogon.addPoint(new Point(rec.x, rec.y + voffset));
 
     return octogon;
   }

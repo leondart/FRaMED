@@ -29,8 +29,8 @@ public class ORMRelationshipFactory implements CreationFactory {
   public Object getObjectType() {
     return Type.RELATIONSHIP;
   }
-  
-  private Shape createRelationshipShapeChild(){
+
+  private Shape createRelationshipShapeChild() {
     Shape shape = OrmFactory.eINSTANCE.createShape();
     shape.setContainer(null);
     shape.setType(Type.RELATIONSHIP_SHAPE_CHILD);
@@ -39,7 +39,7 @@ public class ORMRelationshipFactory implements CreationFactory {
     shape.setFirstSegment(null);
     shape.setSecondSegment(null);
     shape.setDescription(null);
-    
+
     Rectangle rec = GeometryFactory.eINSTANCE.createRectangle();
 
     Point bottomRight = GeometryFactory.eINSTANCE.createPoint();
@@ -52,9 +52,9 @@ public class ORMRelationshipFactory implements CreationFactory {
 
     rec.setBottomRight(bottomRight);
     rec.setTopLeft(topLeft);
-    
+
     shape.setBoundaries(rec);
-    
+
     return shape;
   }
 }

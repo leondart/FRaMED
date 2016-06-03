@@ -10,18 +10,14 @@ import org.eclipse.swt.SWT;
 import org.framed.orm.model.Model;
 
 /**
- * This figure is for {@link Shape}s from type Group, where the user did step into. The figure looks in the
- * viewer/editor somewhat like this:
+ * This figure is for {@link Shape}s from type Group, where the user did step into. The figure looks
+ * in the viewer/editor somewhat like this:
  * 
- *  ___________________________
- * |___________Name____________|
- * |                           |
- * |       Child Model         |
- * |                           |
+ * ___________________________ |___________Name____________| | | | Child Model | | |
  * |___________________________|
  * 
- * The Child {@link Model} figure is added in editparts. The right side and bottom
- * side of the figure have a border shadow and the corners of the rectangle are round.
+ * The Child {@link Model} figure is added in editparts. The right side and bottom side of the
+ * figure have a border shadow and the corners of the rectangle are round.
  * 
  * @author Kay Bierzynski
  * */
@@ -34,9 +30,9 @@ public class ORMGroupV2Figure extends ORMShapeFigure {
   private final ShadowRoundedRectangle rectangle;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRoundedRectangle} is initialized and the
-   * child figure for the name( {@link Label}) is added to the basic rectangle.
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRoundedRectangle} is initialized and the child figure for the
+   * name( {@link Label}) is added to the basic rectangle.
    * */
   public ORMGroupV2Figure() {
 
@@ -56,7 +52,7 @@ public class ORMGroupV2Figure extends ORMShapeFigure {
     rectangle.setLayoutManager(layout);
 
     rectangle.setFill(false);
- 
+
     // add name figure
     rectangle.add(getLabel(), BorderLayout.TOP);
     rectangle.setAntialias(SWT.ON);

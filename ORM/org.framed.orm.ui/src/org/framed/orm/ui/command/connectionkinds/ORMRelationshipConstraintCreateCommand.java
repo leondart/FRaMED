@@ -8,8 +8,8 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
 
 /**
- * Through this command {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive can be
- * created(invoked into the model tree).
+ * Through this command {@link Relation}s from type cyclic, total, acyclic, reflexive and
+ * irreflexive can be created(invoked into the model tree).
  * 
  * @author Kay Bierzynski
  * */
@@ -22,22 +22,23 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
   private Relation relationship;
 
   /**
-   * In this method the relationshipConstrain(cyclic,total,irreflexive, acyclic, reflexive) is created/ invoked into the
-   * model tree through setting it's parameter. After that when a relationshipConstrain already
-   * exist beside the relationshipConstrain to be invoked all {@link Bendpoint}s from this
-   * relationshipConstrain are added to the created relationshipConstrain as well. When more as one
-   * {@link Relation} exists between the target and the source of the relationshipConstrain than a
-   * {@link Bendpoint} is added to the created relationshipConstrain to make the
-   * relationshipConstrain better visible/ acessesible to the user.
+   * In this method the relationshipConstrain(cyclic,total,irreflexive, acyclic, reflexive) is
+   * created/ invoked into the model tree through setting it's parameter. After that when a
+   * relationshipConstrain already exist beside the relationshipConstrain to be invoked all
+   * {@link Bendpoint}s from this relationshipConstrain are added to the created
+   * relationshipConstrain as well. When more as one {@link Relation} exists between the target and
+   * the source of the relationshipConstrain than a {@link Bendpoint} is added to the created
+   * relationshipConstrain to make the relationshipConstrain better visible/ acessesible to the
+   * user.
    * 
    */
   @Override
   public void execute() {
-	System.out.println("Create relationship constraints");
-	
+    System.out.println("Create relationship constraints");
+
     relationship = refrencedRelations.get(0);
-    System.out.println("Relationship: "+relationship.getName());
-    
+    System.out.println("Relationship: " + relationship.getName());
+
     relation.setSource(source);
     relation.setTarget(target);
     relation.setContainer(parent);
@@ -51,27 +52,27 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
       // same data
       for (RelativePoint relP : rel.getBendpoints()) {
         RelativePoint newRelP = GeometryFactory.eINSTANCE.createRelativePoint();
-        
-        org.framed.orm.geometry.Point sourceDis =  GeometryFactory.eINSTANCE.createPoint();
+
+        org.framed.orm.geometry.Point sourceDis = GeometryFactory.eINSTANCE.createPoint();
         sourceDis.setX(relP.getDistances().get(0).getX());
         sourceDis.setY(relP.getDistances().get(0).getY());
         newRelP.getDistances().add(sourceDis);
-        
-        org.framed.orm.geometry.Point targetDis =  GeometryFactory.eINSTANCE.createPoint();
+
+        org.framed.orm.geometry.Point targetDis = GeometryFactory.eINSTANCE.createPoint();
         targetDis.setX(relP.getDistances().get(1).getX());
         targetDis.setY(relP.getDistances().get(1).getY());
         newRelP.getDistances().add(targetDis);
-        
-        org.framed.orm.geometry.Point sourceRef =  GeometryFactory.eINSTANCE.createPoint();
+
+        org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
         sourceRef.setX(relP.getReferencePoints().get(0).getX());
         sourceRef.setY(relP.getReferencePoints().get(0).getY());
         newRelP.getReferencePoints().add(sourceRef);
-        
-        org.framed.orm.geometry.Point targetRef =  GeometryFactory.eINSTANCE.createPoint();
+
+        org.framed.orm.geometry.Point targetRef = GeometryFactory.eINSTANCE.createPoint();
         targetRef.setX(relP.getReferencePoints().get(1).getX());
         targetRef.setY(relP.getReferencePoints().get(1).getY());
         newRelP.getReferencePoints().add(targetRef);
-        
+
         relation.getBendpoints().add(newRelP);
       }
     }

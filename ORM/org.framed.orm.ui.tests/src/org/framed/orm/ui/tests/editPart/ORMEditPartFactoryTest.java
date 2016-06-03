@@ -25,145 +25,144 @@ public class ORMEditPartFactoryTest {
 
   @Test
   public void testCreateEditPart() {
-	  ORMEditPartFactory obj = new ORMEditPartFactory();
-	  EditPart ep = obj.createEditPart(null, new Model() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setParent(Shape value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Shape getParent() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<ModelElement> getElements() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  
-	  assertNotNull(ep);
-    
+    ORMEditPartFactory obj = new ORMEditPartFactory();
+    EditPart ep = obj.createEditPart(null, new Model() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setParent(Shape value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Shape getParent() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<ModelElement> getElements() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+
+    assertNotNull(ep);
+
   }
 
 }

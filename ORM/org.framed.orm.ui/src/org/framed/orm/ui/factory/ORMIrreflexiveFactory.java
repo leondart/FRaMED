@@ -10,9 +10,9 @@ import org.framed.orm.model.Type;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMIrreflexiveFactory implements CreationFactory{
-	
-  @Override 
+public class ORMIrreflexiveFactory implements CreationFactory {
+
+  @Override
   public Object getNewObject() {
     Relation relation = OrmFactory.eINSTANCE.createRelation();
     relation.setName("irreflexive");
@@ -20,7 +20,7 @@ public class ORMIrreflexiveFactory implements CreationFactory{
     return relation;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return Type.IRREFLEXIVE;
   }

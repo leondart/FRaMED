@@ -12,22 +12,15 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.framed.orm.model.Shape;
+
 /**
- * This figure is for {@link Shape}s from type COmpartmenType, where the user did step into. The figure looks in the
- * viewer/editor like this:
- * _____________________________
- * |___________Name____________|
- * |___B_____|                 |
- * |Attribute|                 |
- * |_List____|   Child Model   |
- * |Operation|                 |
- * | List    |                 |
- * |         |                 |
- * |_________|_________________|
+ * This figure is for {@link Shape}s from type COmpartmenType, where the user did step into. The
+ * figure looks in the viewer/editor like this: _____________________________
+ * |___________Name____________| |___B_____| | |Attribute| | |_List____| Child Model | |Operation| |
+ * | List | | | | | |_________|_________________|
  * 
  * B = button for expand/collapse the attribute and oepration segment. The {@link Model} figure is
- * added in editparts The right side and bottom side of the figure have a
- * border shadow.
+ * added in editparts The right side and bottom side of the figure have a border shadow.
  * 
  * @author Kay Bierzynski
  * */
@@ -55,8 +48,8 @@ public class ORMCompartmentV2Figure extends ORMShapeFigure {
   private final Image image;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRectangle} is initialized, expandable/collapsable
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRectangle} is initialized, expandable/collapsable
    * {@link PartFigure} rectangle2 is initialized and added to the basic rectangle, the
    * {@link Button} for the expandaning/collapsing is initialized and added to rectangle2, the child
    * figures for the name( {@link Label}) is added to the basic rectangle.
@@ -113,8 +106,8 @@ public class ORMCompartmentV2Figure extends ORMShapeFigure {
 
 
   /**
-   * A getter for the expandable/collapsable structure of this figure.
-   * Contains button, operation segment and attribute segment.
+   * A getter for the expandable/collapsable structure of this figure. Contains button, operation
+   * segment and attribute segment.
    * 
    * @return rectangle2 {@link PartFigure}
    * */

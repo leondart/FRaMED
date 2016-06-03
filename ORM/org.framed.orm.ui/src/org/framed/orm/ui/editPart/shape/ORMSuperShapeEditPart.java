@@ -185,7 +185,7 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
     figure.getLabel().setToolTip(new Label(model.getName()));
     if (!model.getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
       parent.setLayoutConstraint(this, figure, getConstraints());
-    } 
+    }
   }
 
   /** {@inheritDoc} */

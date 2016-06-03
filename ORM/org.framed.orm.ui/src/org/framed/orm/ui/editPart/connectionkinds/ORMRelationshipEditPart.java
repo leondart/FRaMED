@@ -121,24 +121,24 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
     List<Relation> constraints = new ArrayList<>();
     constraints.addAll(getRelationship().getReferencedRelation());
     ORMConnectionMultiplePolyline conn = (ORMConnectionMultiplePolyline) getConnectionFigure();
-    
+
     String strConstraints = "";
-    if(constraints.size() == 0){
-    	conn.setHasConstraint(false);
-    }else{
-    	conn.setHasConstraint(true);
-    	for(int i=0; i<constraints.size(); i++){
-    		if(i==constraints.size()-1){
-    			strConstraints += constraints.get(i).getName();
-    		}else{
-    			strConstraints += constraints.get(i).getName()+", ";
-    		}
-    	}
+    if (constraints.size() == 0) {
+      conn.setHasConstraint(false);
+    } else {
+      conn.setHasConstraint(true);
+      for (int i = 0; i < constraints.size(); i++) {
+        if (i == constraints.size() - 1) {
+          strConstraints += constraints.get(i).getName();
+        } else {
+          strConstraints += constraints.get(i).getName() + ", ";
+        }
+      }
     }
-       
+
     nameLabel.setText(getRelationship().getName());
     constraintLabel.setText(strConstraints);
-   
+
   }
 
   /** {@inheritDoc} */
@@ -160,7 +160,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
             nameLabel);
     manager.show(); // refresh view
   }
-  
+
   /**
    * A getter for name {@link Label} of this relationship.
    * 
@@ -169,7 +169,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   public Label getNameLabel() {
     return nameLabel;
   }
-  
+
   /**
    * A getter for constraint {@link Label} of this relationship.
    * 

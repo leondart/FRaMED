@@ -2,7 +2,9 @@ package org.framed.orm.ui.command.shapes;
 
 import org.framed.orm.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.framed.orm.model.Shape;;
+import org.framed.orm.model.Shape;
+
+;
 
 
 /**

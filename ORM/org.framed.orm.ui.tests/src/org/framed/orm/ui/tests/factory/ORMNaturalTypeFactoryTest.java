@@ -9,14 +9,14 @@ public class ORMNaturalTypeFactoryTest {
 
   @Test
   public void testGetNewObject() {
-	  ORMNaturalTypeFactory obj = new ORMNaturalTypeFactory();
-	  assertNotNull(obj.getNewObject());
+    ORMNaturalTypeFactory obj = new ORMNaturalTypeFactory();
+    assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-	  ORMNaturalTypeFactory obj = new ORMNaturalTypeFactory();
-	  assertNotNull(obj.getObjectType());
+    ORMNaturalTypeFactory obj = new ORMNaturalTypeFactory();
+    assertNotNull(obj.getObjectType());
   }
 
 }

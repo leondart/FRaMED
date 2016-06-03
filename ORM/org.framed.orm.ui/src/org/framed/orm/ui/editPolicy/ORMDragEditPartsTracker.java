@@ -15,7 +15,7 @@ public class ORMDragEditPartsTracker extends DragEditPartsTracker {
   public ORMDragEditPartsTracker(EditPart sourceEditPart) {
     super(sourceEditPart);
   }
-  
+
   /*
    * (non-Javadoc)
    * 

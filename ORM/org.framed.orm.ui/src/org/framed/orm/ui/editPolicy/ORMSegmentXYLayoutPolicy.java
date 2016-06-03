@@ -46,28 +46,28 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
       }
 
     }
-    
-    if (getHost().getModel() instanceof Segment) {
-    	Shape shape = (Shape)getHost().getParent().getModel();
-        if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
-          if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
-            final ORMAttributeOperationCreateCommand command =
-                new ORMAttributeOperationCreateCommand();
-            command.setParentSegment(shape.getFirstSegment());
-            command.setElement((NamedElement) (request.getNewObject()));
-            retVal = command;
-          }
 
-          if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
-            final ORMAttributeOperationCreateCommand command =
-                new ORMAttributeOperationCreateCommand();
-            command.setParentSegment(shape.getSecondSegment());
-            command.setElement((NamedElement) (request.getNewObject()));
-            retVal = command;
-          }
+    if (getHost().getModel() instanceof Segment) {
+      Shape shape = (Shape) getHost().getParent().getModel();
+      if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
+        if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
+          final ORMAttributeOperationCreateCommand command =
+              new ORMAttributeOperationCreateCommand();
+          command.setParentSegment(shape.getFirstSegment());
+          command.setElement((NamedElement) (request.getNewObject()));
+          retVal = command;
         }
 
+        if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
+          final ORMAttributeOperationCreateCommand command =
+              new ORMAttributeOperationCreateCommand();
+          command.setParentSegment(shape.getSecondSegment());
+          command.setElement((NamedElement) (request.getNewObject()));
+          retVal = command;
+        }
       }
+
+    }
     return retVal;
   }
 

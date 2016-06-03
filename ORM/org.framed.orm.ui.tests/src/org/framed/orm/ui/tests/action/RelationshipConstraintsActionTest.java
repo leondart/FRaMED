@@ -8,8 +8,8 @@ public class RelationshipConstraintsActionTest {
 
   @Test
   public void testCalculateEnabled() {
-	  assertTrue("This method should not be tested as it's not public", true);
-	    //fail("Not yet implemented, intended method is protected/private");
+    assertTrue("This method should not be tested as it's not public", true);
+    // fail("Not yet implemented, intended method is protected/private");
   }
 
 }

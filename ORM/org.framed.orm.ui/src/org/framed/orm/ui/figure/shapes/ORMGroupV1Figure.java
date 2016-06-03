@@ -11,18 +11,13 @@ import org.eclipse.swt.SWT;
 
 
 /**
- * This figure is for {@link Shapes} from type Group, where the user didn't step into. The figure looks in
- * the viewer/editor somewhat like this:
+ * This figure is for {@link Shapes} from type Group, where the user didn't step into. The figure
+ * looks in the viewer/editor somewhat like this:
  * 
- *  ____________
- * |____Name____|
- * | Compartment|
- * | List       |
- * |            |
- * |____________|
+ * ____________ |____Name____| | Compartment| | List | | | |____________|
  * 
- * The compartment list is added in the editparts. The right side and bottom side
- * of the figure have a border shadow and the corners of the rectangle are round.
+ * The compartment list is added in the editparts. The right side and bottom side of the figure have
+ * a border shadow and the corners of the rectangle are round.
  * 
  * @author Kay Bierzynski
  * */
@@ -35,9 +30,9 @@ public class ORMGroupV1Figure extends ORMShapeFigure {
   private final ShadowRoundedRectangle rectangle;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRoundedRectangle} is initialized
-   * and the child figure for the name( {@link Label}) is added to the basic rectangle.
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRoundedRectangle} is initialized and the child figure for the
+   * name( {@link Label}) is added to the basic rectangle.
    * */
   public ORMGroupV1Figure() {
 

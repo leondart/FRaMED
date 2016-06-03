@@ -29,1375 +29,1369 @@ public class ORMRelationCreateCommandTest {
 
   @Test
   public void testCanExecute() {
-	  ORMRelationCreateCommand obj = new ORMRelationCreateCommand();
-	  obj.setTarget(new Shape() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setName(String value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setType(Type value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setContainer(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Type getType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getOutgoingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getIncomingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setSecondSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setModel(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setFirstSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setDescription(NamedElement value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setBoundaries(Rectangle value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Segment getSecondSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getModel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Segment getFirstSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public NamedElement getDescription() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Rectangle getBoundaries() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  obj.setSource(new Shape() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setName(String value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setType(Type value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setContainer(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Type getType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getOutgoingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getIncomingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setSecondSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setModel(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setFirstSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setDescription(NamedElement value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setBoundaries(Rectangle value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Segment getSecondSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getModel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Segment getFirstSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public NamedElement getDescription() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Rectangle getBoundaries() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  obj.setRefrencedRelations(new ArrayList<Relation>());
-	  assertTrue(!obj.canExecute());
+    ORMRelationCreateCommand obj = new ORMRelationCreateCommand();
+    obj.setTarget(new Shape() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setName(String value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setType(Type value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setContainer(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Type getType() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getOutgoingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getIncomingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setSecondSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setModel(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setFirstSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setDescription(NamedElement value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setBoundaries(Rectangle value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Segment getSecondSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getModel() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Segment getFirstSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public NamedElement getDescription() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundaries() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+    obj.setSource(new Shape() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setName(String value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setType(Type value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setContainer(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Type getType() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getOutgoingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getIncomingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setSecondSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setModel(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setFirstSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setDescription(NamedElement value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setBoundaries(Rectangle value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Segment getSecondSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getModel() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Segment getFirstSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public NamedElement getDescription() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundaries() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+    obj.setRefrencedRelations(new ArrayList<Relation>());
+    assertTrue(!obj.canExecute());
   }
 
   @Test
   public void testExecute() {
-	  ORMRelationCreateCommand obj = new ORMRelationCreateCommand();
-	  obj.setTarget(new Shape() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setName(String value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setType(Type value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setContainer(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Type getType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getOutgoingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getIncomingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setSecondSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setModel(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setFirstSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setDescription(NamedElement value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setBoundaries(Rectangle value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Segment getSecondSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getModel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Segment getFirstSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public NamedElement getDescription() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Rectangle getBoundaries() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  obj.setSource(new Shape() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setName(String value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setType(Type value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setContainer(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Type getType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getOutgoingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getIncomingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setSecondSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setModel(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setFirstSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setDescription(NamedElement value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setBoundaries(Rectangle value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Segment getSecondSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getModel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Segment getFirstSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public NamedElement getDescription() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Rectangle getBoundaries() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  obj.setRefrencedRelations(new ArrayList<Relation>());
-	  obj.execute();
-	  assertTrue(true);
+    ORMRelationCreateCommand obj = new ORMRelationCreateCommand();
+    obj.setTarget(new Shape() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setName(String value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setType(Type value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setContainer(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Type getType() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getOutgoingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getIncomingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setSecondSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setModel(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setFirstSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setDescription(NamedElement value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setBoundaries(Rectangle value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Segment getSecondSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getModel() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Segment getFirstSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public NamedElement getDescription() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundaries() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+    obj.setSource(new Shape() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setName(String value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setType(Type value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setContainer(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Type getType() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getOutgoingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getIncomingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setSecondSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setModel(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setFirstSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setDescription(NamedElement value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setBoundaries(Rectangle value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Segment getSecondSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getModel() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Segment getFirstSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public NamedElement getDescription() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundaries() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+    obj.setRefrencedRelations(new ArrayList<Relation>());
+    obj.execute();
+    assertTrue(true);
   }
 
   @Test
   public void testUndo() {
-	  ORMRelationCreateCommand obj = new ORMRelationCreateCommand();
-	  obj.setTarget(new Shape() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setName(String value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setType(Type value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setContainer(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Type getType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getOutgoingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getIncomingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setSecondSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setModel(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setFirstSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setDescription(NamedElement value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setBoundaries(Rectangle value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Segment getSecondSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getModel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Segment getFirstSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public NamedElement getDescription() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Rectangle getBoundaries() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  obj.setSource(new Shape() {
-		
-		@Override
-		public void eSetDeliver(boolean arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eNotify(Notification arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public boolean eDeliver() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public EList<Adapter> eAdapters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void eUnset(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void eSet(EStructuralFeature arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Resource eResource() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public boolean eIsSet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public boolean eIsProxy() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Object eInvoke(EOperation arg0, EList<?> arg1)
-				throws InvocationTargetException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0, boolean arg1) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object eGet(EStructuralFeature arg0) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eCrossReferences() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<EObject> eContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EReference eContainmentFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EStructuralFeature eContainingFeature() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EObject eContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EClass eClass() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public TreeIterator<EObject> eAllContents() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setName(String value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setType(Type value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setContainer(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Type getType() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getOutgoingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public EList<Relation> getIncomingRelations() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getContainer() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public void setSecondSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setModel(Model value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setFirstSegment(Segment value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setDescription(NamedElement value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void setBoundaries(Rectangle value) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public Segment getSecondSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Model getModel() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Segment getFirstSegment() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public NamedElement getDescription() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Rectangle getBoundaries() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	});
-	  obj.setRefrencedRelations(new ArrayList<Relation>());
-	  obj.undo();
-	  assertTrue(true);
+    ORMRelationCreateCommand obj = new ORMRelationCreateCommand();
+    obj.setTarget(new Shape() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setName(String value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setType(Type value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setContainer(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Type getType() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getOutgoingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getIncomingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setSecondSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setModel(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setFirstSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setDescription(NamedElement value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setBoundaries(Rectangle value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Segment getSecondSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getModel() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Segment getFirstSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public NamedElement getDescription() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundaries() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+    obj.setSource(new Shape() {
+
+      @Override
+      public void eSetDeliver(boolean arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eNotify(Notification arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public boolean eDeliver() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public EList<Adapter> eAdapters() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void eUnset(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void eSet(EStructuralFeature arg0, Object arg1) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Resource eResource() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public boolean eIsSet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public boolean eIsProxy() {
+        // TODO Auto-generated method stub
+        return false;
+      }
+
+      @Override
+      public Object eInvoke(EOperation arg0, EList<?> arg1) throws InvocationTargetException {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0, boolean arg1) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Object eGet(EStructuralFeature arg0) {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eCrossReferences() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<EObject> eContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EReference eContainmentFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EStructuralFeature eContainingFeature() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EObject eContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EClass eClass() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public TreeIterator<EObject> eAllContents() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setName(String value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public String getName() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setType(Type value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setContainer(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Type getType() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getOutgoingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public EList<Relation> getIncomingRelations() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getContainer() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setSecondSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setModel(Model value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setFirstSegment(Segment value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setDescription(NamedElement value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public void setBoundaries(Rectangle value) {
+        // TODO Auto-generated method stub
+
+      }
+
+      @Override
+      public Segment getSecondSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Model getModel() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Segment getFirstSegment() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public NamedElement getDescription() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public Rectangle getBoundaries() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+    });
+    obj.setRefrencedRelations(new ArrayList<Relation>());
+    obj.undo();
+    assertTrue(true);
   }
 
 }

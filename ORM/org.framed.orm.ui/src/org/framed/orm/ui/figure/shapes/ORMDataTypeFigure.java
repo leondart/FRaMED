@@ -13,16 +13,12 @@ import org.eclipse.swt.widgets.Display;
 import org.framed.orm.model.Segment;
 
 /**
- * This figure is for {@link Shapes}s from type Datatype. The figure looks in the viewer/editor like this:
- *   ____________
- *  /____Name____\
- * | Attribute    |
- * |_List_________|
- * |Operation     |
- * \_List_______ /
+ * This figure is for {@link Shapes}s from type Datatype. The figure looks in the viewer/editor like
+ * this: ____________ /____Name____\ | Attribute | |_List_________| |Operation | \_List_______ /
  * 
- * The right side and bottom side of the figure have a border shadow.
- * The attribute list and operation list are added through child {@link Segment}s in the editparts.
+ * The right side and bottom side of the figure have a border shadow. The attribute list and
+ * operation list are added through child {@link Segment}s in the editparts.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMDataTypeFigure extends ORMShapeFigure {
@@ -34,8 +30,8 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
   private final ShadowOctagon rectangle;
 
   /**
-   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
+   * The constructor of this class, where the constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRectangle} is initialized and the child figures for the name(
    * {@link Label}) is added to the basic rectangle.
    * 
    * */
@@ -54,11 +50,11 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     rectangle.setLayoutManager(layout);
     rectangle.setOpaque(true);
     setOpaque(true);
-    
+
     // set name Label font
     Font font1 = new Font(Display.getCurrent(), "DataFigure", 8, SWT.ITALIC);
     getLabel().setFont(font1);
-    
+
     // add name figure
     rectangle.add(getLabel());
 
@@ -85,7 +81,6 @@ public class ORMDataTypeFigure extends ORMShapeFigure {
     setConstraint(rectangle, new Rectangle(0, 0, r.width(), r.height()));
   }
 
-  
-  
-  
+
+
 }

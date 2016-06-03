@@ -48,7 +48,7 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     command.setRelation((Relation) request.getSource().getModel());
     command.setDimension(p.getDifference(sourceP), p.getDifference(targetP));
     command.setIndex(request.getIndex());
-    
+
     org.framed.orm.geometry.Point sourceRef = GeometryFactory.eINSTANCE.createPoint();
     sourceRef.setX(sourceP.x());
     sourceRef.setY(sourceP.y());

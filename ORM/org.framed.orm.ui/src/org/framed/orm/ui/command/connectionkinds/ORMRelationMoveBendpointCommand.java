@@ -34,10 +34,10 @@ public class ORMRelationMoveBendpointCommand extends Command {
    */
   private Dimension newDimsource, newDimtarget;
   /**
-   * A list, which contains all {@link Relation}s from type cyclic, total, acyclic, reflexive and irreflexive(aka
-   * relationshipCOnstraints) from one {@link Relation} of the type relationship. This list is
-   * needed for the case the user wants to undo the moving of a {@link Bendpoint} from a
-   * relationshipConstraint. In such a case {@link Bendpoint}s with the same coordiantes as the
+   * A list, which contains all {@link Relation}s from type cyclic, total, acyclic, reflexive and
+   * irreflexive(aka relationshipCOnstraints) from one {@link Relation} of the type relationship.
+   * This list is needed for the case the user wants to undo the moving of a {@link Bendpoint} from
+   * a relationshipConstraint. In such a case {@link Bendpoint}s with the same coordiantes as the
    * initial {@link Bendpoint} from all relationshipConstraints of the same relationship as the
    * relationshipConstraint, which the user has selected, must be moved as well. The reason for that
    * is that only one line of the relationshipConstraints is visible to the user and when the user
@@ -58,13 +58,13 @@ public class ORMRelationMoveBendpointCommand extends Command {
   /**
    * {@inheritDoc} In this method the {@link Bendpoint} from the selected {@link Relation} is moved
    * to a new position and the old position is stored in case that user wants to undo the command.
-   * After that in case the {@link Relation} is from type cyclic, total, acyclic, reflexive or irrflexive(aka
-   * relationshipConstraint) than {@link Bendpoint}s with same coordinates as the initial
-   * {@link Bendpoint} from all relationshipConstraints of the same {@link Relationship} as the
-   * relationshipConstraint, which the user has selected, must be moved to new coordinates as well.
-   * The reason for that is that only one line of the relationshipConstraints is visible to the user
-   * and when the user deletes the relationshipConstraint, whose line is visible, than the line of
-   * the next relationshipConstraint must become visible at the same place with the same
+   * After that in case the {@link Relation} is from type cyclic, total, acyclic, reflexive or
+   * irrflexive(aka relationshipConstraint) than {@link Bendpoint}s with same coordinates as the
+   * initial {@link Bendpoint} from all relationshipConstraints of the same {@link Relationship} as
+   * the relationshipConstraint, which the user has selected, must be moved to new coordinates as
+   * well. The reason for that is that only one line of the relationshipConstraints is visible to
+   * the user and when the user deletes the relationshipConstraint, whose line is visible, than the
+   * line of the next relationshipConstraint must become visible at the same place with the same
    * {@link Bendpoint}s as the line of the deleted relationshipConstraint.
    */
   public void execute() {
@@ -127,22 +127,22 @@ public class ORMRelationMoveBendpointCommand extends Command {
 
   /**
    * {@inheritDoc} This command is undone through moving the {@link Bendpoint} to the old position.
-   * Is the {@link Relation} from type cyclic, total, acyclic, reflexive or irrfelxive(aka relationshipConstraint) than
-   * after the moving of the initial {@link Bendpoint} all {@link Bendpoint}s with same coordinates
-   * as the initial {@link Bendpoint} from all relationshipConstraints of the same {@link Relation}
-   * from type relationship as the relationshipConstraint, which the user has selected, must be
-   * moved back to the old position as well. The reason for that is that only one line of the
-   * relationshipConstraints is visible to the user and when the user deletes the
-   * relationshipConstraint, whose line is visible, than the line of the next relationshipConstraint
-   * must become visible at the same place with the same {@link Bendpoint}s as the line of the
-   * deleted relationshipConstraint.
+   * Is the {@link Relation} from type cyclic, total, acyclic, reflexive or irrfelxive(aka
+   * relationshipConstraint) than after the moving of the initial {@link Bendpoint} all
+   * {@link Bendpoint}s with same coordinates as the initial {@link Bendpoint} from all
+   * relationshipConstraints of the same {@link Relation} from type relationship as the
+   * relationshipConstraint, which the user has selected, must be moved back to the old position as
+   * well. The reason for that is that only one line of the relationshipConstraints is visible to
+   * the user and when the user deletes the relationshipConstraint, whose line is visible, than the
+   * line of the next relationshipConstraint must become visible at the same place with the same
+   * {@link Bendpoint}s as the line of the deleted relationshipConstraint.
    * */
   @Override
   public void undo() {
     relation.getBendpoints().set(index, oldRelP);
 
     if (relation.getType().equals(Type.TOTAL) || relation.getType().equals(Type.CYCLIC)
-        || relation.getType().equals(Type.IRREFLEXIVE)|| relation.getType().equals(Type.ACYCLIC)
+        || relation.getType().equals(Type.IRREFLEXIVE) || relation.getType().equals(Type.ACYCLIC)
         || relation.getType().equals(Type.REFLEXIVE)) {
       for (Relation relC : relCList) {
         if (!relC.equals(relation)) {

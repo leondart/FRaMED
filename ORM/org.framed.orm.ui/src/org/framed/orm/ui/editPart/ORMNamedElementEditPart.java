@@ -41,7 +41,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
     super();
     adapter = new ORMNamedElementAdapter();
   }
-  
+
   /*
    * (non-Javadoc)
    * 

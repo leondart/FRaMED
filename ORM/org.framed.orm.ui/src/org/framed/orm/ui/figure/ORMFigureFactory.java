@@ -89,8 +89,8 @@ public class ORMFigureFactory {
    * compartmentypes.
    * 
    * @param editpart {@link EditPart}
-   * @return {@link ORMCompartmentV1Figure}(when user not stepped into the compartmentype)
-   *            or {@link ORMCompartmentV2Figure}(when user stepped into the compartmentype)
+   * @return {@link ORMCompartmentV1Figure}(when user not stepped into the compartmentype) or
+   *         {@link ORMCompartmentV2Figure}(when user stepped into the compartmentype)
    * */
   private static Figure creatCompartmentTypeFigure(EditPart editpart) {
     // when the compartment editpart is not "opened"(steped in) use as figure
@@ -106,12 +106,11 @@ public class ORMFigureFactory {
   }
 
   /**
-   * This method created and returns a version of the figure for a {@link Shape} from type
-   * group.
+   * This method created and returns a version of the figure for a {@link Shape} from type group.
    * 
    * @param editpart {@link EditPart}
-   * @return {@link ORMGroupV1Figure}(when user not stepped into the group)
-   *            or {@link ORMGroupV2Figure}(when user stepped into the group)
+   * @return {@link ORMGroupV1Figure}(when user not stepped into the group) or
+   *         {@link ORMGroupV2Figure}(when user stepped into the group)
    * */
   private static Figure creatGroupFigure(EditPart editpart) {
     // when the group editpart is not "opened"(steped in) use as figure ORMGroupingV1Figure

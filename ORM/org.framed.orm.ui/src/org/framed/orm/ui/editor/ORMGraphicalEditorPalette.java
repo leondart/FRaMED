@@ -66,9 +66,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
     addGroup();
     addSelectionTool();
-     createComponentsDrawer();
-     createComponentPartsDrawer();
-     createConnectionsDrawer();
+    createComponentsDrawer();
+    createComponentPartsDrawer();
+    createConnectionsDrawer();
   }
 
   /**
@@ -113,7 +113,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Total", true);
       setEntryVisibility("Cyclic", true);
       setEntryVisibility("Acyclic", true);
-      
+
 
       setEntryVisibility("Compartment", false);
       setEntryVisibility("NaturalType", false);
@@ -180,13 +180,13 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    */
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");
-    
+
     /*
-    CreationToolEntry entry =
-        new CreationToolEntry("Compartment", "Create a new Compartment",
-            new ORMCompartmentTypeFactory(), null, null);
-    */
-    CombinedTemplateCreationEntry entry = new CombinedTemplateCreationEntry("Compartment", "Create a new Compartment",
+     * CreationToolEntry entry = new CreationToolEntry("Compartment", "Create a new Compartment",
+     * new ORMCompartmentTypeFactory(), null, null);
+     */
+    CombinedTemplateCreationEntry entry =
+        new CombinedTemplateCreationEntry("Compartment", "Create a new Compartment",
             new ORMCompartmentTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -195,14 +195,14 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("Compartment", entry, true);
 
     entry =
-          new CombinedTemplateCreationEntry("NaturalType", "Create a new NaturalType",
-              new ORMNaturalTypeFactory(), null, null);
+        new CombinedTemplateCreationEntry("NaturalType", "Create a new NaturalType",
+            new ORMNaturalTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/naturaltype.png"));
     drawer.add(entry);
     addEntry("NaturalType", entry, true);
-    
+
     entry =
         new CombinedTemplateCreationEntry("DataType", "Create a new DataType",
             new ORMDataTypeFactory(), null, null);
@@ -213,8 +213,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("DataType", entry, true);
 
     entry =
-        new CombinedTemplateCreationEntry("RoleType", "Create a new RoleType", new ORMRoleTypeFactory(), null,
-            null);
+        new CombinedTemplateCreationEntry("RoleType", "Create a new RoleType",
+            new ORMRoleTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roletype.png"));
@@ -222,8 +222,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("RoleType", entry, false);
 
     entry =
-        new CombinedTemplateCreationEntry("RoleGroup", "Create a new RoleGroup", new ORMRoleGroupFactory(),
-            null, null);
+        new CombinedTemplateCreationEntry("RoleGroup", "Create a new RoleGroup",
+            new ORMRoleGroupFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/rolegroup.png"));
@@ -231,7 +231,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     addEntry("RoleGroup", entry, false);
 
     entry =
-        new CombinedTemplateCreationEntry("Group", "Create a new Group", new ORMGroupFactory(), null, null);
+        new CombinedTemplateCreationEntry("Group", "Create a new Group", new ORMGroupFactory(),
+            null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
@@ -250,7 +251,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Operation", "Create a new Operation", new ORMOperationFactory(), null, null);
+        new CreationToolEntry("Operation", "Create a new Operation", new ORMOperationFactory(),
+            null, null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));
@@ -323,33 +325,35 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
         "icons/relationship.png"));
     drawer.add(entry6);
     addEntry("Relationship", entry6, false);
-    
+
     CreationToolEntry entry7 =
         new ConnectionCreationToolEntry("Relationship Implication",
-            "Create a new Relationship Implication Relation", new ORMRelationshipImplicationFactory(), null, null);
+            "Create a new Relationship Implication Relation",
+            new ORMRelationshipImplicationFactory(), null, null);
     entry7.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationshipimplication.png"));
     drawer.add(entry7);
     addEntry("Relationship Implication", entry7, false);
-    
+
     CreationToolEntry entry13 =
-            new ConnectionCreationToolEntry("Relationship Exclusion",
-                "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(), null, null);
-    	//TODO: create new icon for relationship exclusion relation
-        entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/relationshipprohibition.png"));
-        drawer.add(entry13);
-        addEntry("Relationship Exclusion", entry13, false);
-    
-        CreationConstraintToolEntry entry =
-            new CreationConstraintToolEntry("Reflexive", "Create a new Reflexive Relation",
-                new ORMReflexiveFactory(), null, null, Type.REFLEXIVE_VALUE);
-    	//TODO: create new icon for reflexive relation
-        entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/reflexive.png"));
-        drawer.add(entry);
-        addEntry("Reflexive", entry, false);
-        
+        new ConnectionCreationToolEntry("Relationship Exclusion",
+            "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(),
+            null, null);
+    // TODO: create new icon for relationship exclusion relation
+    entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/relationshipprohibition.png"));
+    drawer.add(entry13);
+    addEntry("Relationship Exclusion", entry13, false);
+
+    CreationConstraintToolEntry entry =
+        new CreationConstraintToolEntry("Reflexive", "Create a new Reflexive Relation",
+            new ORMReflexiveFactory(), null, null, Type.REFLEXIVE_VALUE);
+    // TODO: create new icon for reflexive relation
+    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+        "icons/reflexive.png"));
+    drawer.add(entry);
+    addEntry("Reflexive", entry, false);
+
     entry =
         new CreationConstraintToolEntry("Irreflexive", "Create a new Irreflexive Relation",
             new ORMIrreflexiveFactory(), null, null, Type.IRREFLEXIVE_VALUE);
@@ -368,21 +372,21 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry =
         new CreationConstraintToolEntry("Cyclic", "Create a new Cyclic Relation",
             new ORMCyclicFactory(), null, null, Type.CYCLIC_VALUE);
-    entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-        "icons/cyclic.png"));
+    entry
+        .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/cyclic.png"));
     drawer.add(entry);
     addEntry("Cyclic", entry, false);
-    
+
     entry =
-            new CreationConstraintToolEntry("Acyclic", "Create a new Acyclic Relation",
-                new ORMAcyclicFactory(), null, null, Type.ACYCLIC_VALUE);
-    	//TODO: create new icon for acyclic relation
-        entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
-            "icons/acyclic.png"));
-        drawer.add(entry);
-        addEntry("Acyclic", entry, false);
-        
-    //Currently Entry 1 to 13     
+        new CreationConstraintToolEntry("Acyclic", "Create a new Acyclic Relation",
+            new ORMAcyclicFactory(), null, null, Type.ACYCLIC_VALUE);
+    // TODO: create new icon for acyclic relation
+    entry.setSmallIcon(Activator
+        .imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/acyclic.png"));
+    drawer.add(entry);
+    addEntry("Acyclic", entry, false);
+
+    // Currently Entry 1 to 13
     group.add(drawer);
   }
 }

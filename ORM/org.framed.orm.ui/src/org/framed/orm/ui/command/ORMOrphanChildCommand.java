@@ -36,8 +36,8 @@ public class ORMOrphanChildCommand extends Command {
 
   @Override
   public void undo() {
-    
-      child.setContainer(parent);
+
+    child.setContainer(parent);
   }
 
   public void setChild(Shape child) {

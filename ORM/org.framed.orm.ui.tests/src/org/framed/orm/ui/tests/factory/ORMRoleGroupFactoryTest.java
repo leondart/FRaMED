@@ -9,14 +9,14 @@ public class ORMRoleGroupFactoryTest {
 
   @Test
   public void testGetNewObject() {
-	  ORMRoleGroupFactory obj = new ORMRoleGroupFactory();
-	  assertNotNull(obj.getNewObject());
+    ORMRoleGroupFactory obj = new ORMRoleGroupFactory();
+    assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-	  ORMRoleGroupFactory obj = new ORMRoleGroupFactory();
-	  assertNotNull(obj.getObjectType());
+    ORMRoleGroupFactory obj = new ORMRoleGroupFactory();
+    assertNotNull(obj.getObjectType());
   }
 
 }

@@ -88,8 +88,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   /**
    * This method creates a custom title for this editor out of resource file name, the genral model
-   * element term and the specific model/{@link Type} element name of the model element which is the content of
-   * the viewer of data/behaviour {@link ORMGraphicalEditor}.
+   * element term and the specific model/{@link Type} element name of the model element which is the
+   * content of the viewer of data/behaviour {@link ORMGraphicalEditor}.
    * */
   public void createCustomTitleForEditor(final Object model) {
 

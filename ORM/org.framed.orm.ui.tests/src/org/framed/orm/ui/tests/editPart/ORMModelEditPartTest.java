@@ -9,21 +9,21 @@ public class ORMModelEditPartTest {
 
   @Test
   public void testRefreshVisuals() {
-	  ORMModelEditPart obj = new ORMModelEditPart();
-	  obj.refreshVisuals();
-	  assertTrue(true);
+    ORMModelEditPart obj = new ORMModelEditPart();
+    obj.refreshVisuals();
+    assertTrue(true);
   }
 
   @Test
   public void testCreateFigure() {
-	  //it's not public
-	  assertTrue(true);
+    // it's not public
+    assertTrue(true);
   }
 
   @Test
   public void testGetModelChildren() {
-	  ORMModelEditPart obj = new ORMModelEditPart();
-	  assertNotNull(obj.getChildren());
+    ORMModelEditPart obj = new ORMModelEditPart();
+    assertNotNull(obj.getChildren());
   }
 
   @Test

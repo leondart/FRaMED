@@ -26,7 +26,7 @@ public class ORMNamedElementRenameCommand extends Command {
   public ORMNamedElementRenameCommand() {
     super.setLabel("ORMNamedElementRename");
   }
-  
+
   /**
    * This method tests if the conditions for executing this command are fulfilled,
    * 
@@ -34,7 +34,7 @@ public class ORMNamedElementRenameCommand extends Command {
    */
   @Override
   public boolean canExecute() {
-    return newName!=null;
+    return newName != null;
   }
 
   /**

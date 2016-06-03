@@ -10,18 +10,15 @@ import org.framed.orm.model.Shape;
 
 
 /**
- * This figure is for {@link Shape}s from type RoleType. The figure looks in the viewer/editor like this:
+ * This figure is for {@link Shape}s from type RoleType. The figure looks in the viewer/editor like
+ * this:
  * 
- * _Cardinality__
- * |____Name____|
- * |Attribute   |
- * |_List_______|
- * |Operation   |
- * |_List_______|
+ * _Cardinality__ |____Name____| |Attribute | |_List_______| |Operation | |_List_______|
  * 
  * The right side and bottom side of the figure have a border shadow and the corners of the
- * rectangle are round.
- * The attribute list and operation list are added through child {@link Segment}s in the editparts.
+ * rectangle are round. The attribute list and operation list are added through child
+ * {@link Segment}s in the editparts.
+ * 
  * @author Kay Bierzynski
  * */
 public class ORMRoleTypeFigure extends ORMShapeFigure {
@@ -34,14 +31,14 @@ public class ORMRoleTypeFigure extends ORMShapeFigure {
 
 
   /**
-   * The constructor of this class, where he constructor {@link ORMShapeFigure#ORMShapeFigure()}
-   * is called, the basic {@link ShadowRoundedRectangle} is initialized 
-   * and the child figures for the name( {@link Label}) is added to basic rectangle.
+   * The constructor of this class, where he constructor {@link ORMShapeFigure#ORMShapeFigure()} is
+   * called, the basic {@link ShadowRoundedRectangle} is initialized and the child figures for the
+   * name( {@link Label}) is added to basic rectangle.
    * 
    * */
   public ORMRoleTypeFigure() {
     super();
-    
+
     rectangle = new ShadowRoundedRectangle();
 
     ToolbarLayout layout = new ToolbarLayout();
@@ -56,7 +53,7 @@ public class ORMRoleTypeFigure extends ORMShapeFigure {
 
     // add name figure
     rectangle.add(getLabel());
-    
+
     add(rectangle, BorderLayout.CENTER);
   }
 

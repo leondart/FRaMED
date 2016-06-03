@@ -120,11 +120,11 @@ public class ORMShapeDeleteCommand extends Command {
   }
 
   /**
-   * Because a {@link Relation} from type rolegroup has a child model, which can contain other child models
-   * through role groups. Not only the {@link Relation}s connected to this roleGroup must be
+   * Because a {@link Relation} from type rolegroup has a child model, which can contain other child
+   * models through role groups. Not only the {@link Relation}s connected to this roleGroup must be
    * detached/deleted the {@link Relation}s connected to the children and their children of this
-   * roleGroup child model must be detached/deleted as well. For that reason the first thing, which is
-   * done in this method is to gather all children and their children of this roleGroup in a
+   * roleGroup child model must be detached/deleted as well. For that reason the first thing, which
+   * is done in this method is to gather all children and their children of this roleGroup in a
    * single list. After that the {@link Relation}s connected to children are added to relations
    * list.
    *

@@ -68,8 +68,8 @@ public class ORMAttributeOperationCreateCommand extends Command {
   }
 
   /**
-   * Setter of the attribute or operation, which should be created/invoked. The basis attribute or operation
-   * class is given by {@link ORMAttributeFactory} or {@link ORMOperationFactory}.
+   * Setter of the attribute or operation, which should be created/invoked. The basis attribute or
+   * operation class is given by {@link ORMAttributeFactory} or {@link ORMOperationFactory}.
    * 
    * @param element org.framed.orm.model.NamedElement
    */

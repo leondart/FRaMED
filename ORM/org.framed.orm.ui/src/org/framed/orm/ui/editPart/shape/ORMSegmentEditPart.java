@@ -30,7 +30,8 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
   /**
    * Defines the Number of Visible Children per Segment.
    */
-  private final static int VisibleChildren=1024; //TODO: Should be extracted to a Configuration File
+  private final static int VisibleChildren = 1024; // TODO: Should be extracted to a Configuration
+                                                   // File
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -66,7 +67,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
     collectNamedElement.setText("...");
     collectionEle = new PartFigure();
   }
-  
+
   /** {@inheritDoc} A {@link Segment} has as a figure a {@link PartFigure}. */
   @Override
   protected IFigure createFigure() {
@@ -74,9 +75,9 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
   }
 
   @Override
-	public boolean isSelectable() {
-		return false;
-	}
+  public boolean isSelectable() {
+    return false;
+  }
 
   /**
    * {@inheritDoc} In case of this {@link EditPart} that would be the figure of {@link NamedElement}
@@ -122,7 +123,8 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
       // if the contentPane contains not more than index+1 children not more than three children
       // than total than the named element should be added at top of the attribute/method
       // list(contentPane) else the child is added on it's index
-      if (contentPane.getChildren().size() <= index + 1 && contentPane.getChildren().size() != VisibleChildren) {
+      if (contentPane.getChildren().size() <= index + 1
+          && contentPane.getChildren().size() != VisibleChildren) {
         contentPane.add(childEditPart.getFigure(), 0);
       } else {
         contentPane.add(childEditPart.getFigure(), index);
@@ -132,7 +134,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
       // label that the collect label is added at the end of the contentPane, the collection is
       // added to the collect label as tootltip and the first added(to the contentPan) child figure
       // is removed from contentPane an added to the collection
-      if (contentPane.getChildren().size() >= (VisibleChildren+1)
+      if (contentPane.getChildren().size() >= (VisibleChildren + 1)
           && !contentPane.getChildren().get(VisibleChildren).equals(collect)) {
 
         contentPane.add(collect);
@@ -140,7 +142,8 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
 
 
         IFigure childfig =
-            (IFigure) contentPane.getChildren().get(contentPane.getChildren().size() - (VisibleChildren-1));
+            (IFigure) contentPane.getChildren().get(
+                contentPane.getChildren().size() - (VisibleChildren - 1));
         contentPane.getChildren().remove(childfig);
         collection.add(childfig, 0);
       }
@@ -150,7 +153,8 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
         contentPane.add(collect);
         collect.setToolTip(collection);
       }
-      // works only for the attribute/operation adding paradigm first to add is last in tool tip list
+      // works only for the attribute/operation adding paradigm first to add is last in tool tip
+      // list
       collection.add(childEditPart.getFigure(), 0);
 
     }
@@ -233,7 +237,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
   /**
    * The {@link Adapter} of this {@link EditPart}. An adapter is a receiver of notifications and is
    * typically associated with a Notifier via an AdapterFactory. This {@link Adapter} calls the
-   * refreshChildren() method when it gets a change notification.  
+   * refreshChildren() method when it gets a change notification.
    * */
   public class ORMSegmentAdapter implements Adapter {
 
@@ -265,9 +269,10 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
 
   @Override
   protected void createEditPolicies() {
-	  // the ORMSegmentXYLayoutPolicy is added here(although it does nothing) so that attributes and operations are selectable
-	  installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
+    // the ORMSegmentXYLayoutPolicy is added here(although it does nothing) so that attributes and
+    // operations are selectable
+    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
   }
-  
+
 
 }

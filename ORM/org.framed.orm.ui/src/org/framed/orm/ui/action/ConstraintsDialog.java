@@ -41,18 +41,18 @@ public class ConstraintsDialog extends Dialog {
   /** Variable for the dialog width. */
   private final static int SIZING_SELECTION_WIDGET_WIDTH = 300;
   /**
-   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive a
-   * relationship already has.
+   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive
+   * and irreflexive a relationship already has.
    */
   private List<Relation> constraints;
   /**
-   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive the
-   * user didn't choose in the dialog.
+   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive
+   * and irreflexive the user didn't choose in the dialog.
    */
   private final List<Relation> chosenDeleteConstraints;
   /**
-   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive the
-   * user did choose in the dialog.
+   * A list, which contains all the {@link Relation}s from type total, cyclic, acyclic, reflexive
+   * and irreflexive the user did choose in the dialog.
    */
   private final List<Relation> chosenCreateConstraints;
 
@@ -81,27 +81,29 @@ public class ConstraintsDialog extends Dialog {
   /** {@inheritDoc} */
   @Override
   protected Control createDialogArea(final Composite parent) {
-	System.out.println("CreateDialog");
-	for (Relation r: constraints){
-		System.out.println(r.getName());
-	}
-	  
+    System.out.println("CreateDialog");
+    for (Relation r : constraints) {
+      System.out.println(r.getName());
+    }
+
     // the composite of the dialog as a variable to make the adding of the components to it easier
     Composite composite = (Composite) super.createDialogArea(parent);
-    
+
     // A list, which contains all the relationshipconstraints a user can choose.
     List<Relation> viewerContent = new ArrayList<Relation>();
     viewerContent.addAll(constraints);
-    
+
     addMissingConstraints(viewerContent);
 
 
-    // initialize chosenDeleteConstraints with all relations from type total, cyclic, acyclic, reflexive and irreflexive
+    // initialize chosenDeleteConstraints with all relations from type total, cyclic, acyclic,
+    // reflexive and irreflexive
     // so that we just need to remove the choosen constraints later to get the constraints
     // which should be deleted
     chosenDeleteConstraints.addAll(viewerContent);
 
-    // setup the table viewer, which lists the relations from type total, cyclic, acyclic, reflexive and irreflexive
+    // setup the table viewer, which lists the relations from type total, cyclic, acyclic, reflexive
+    // and irreflexive
     // a user can choose
     viewer = CheckboxTableViewer.newCheckList(composite, SWT.CHECK);
     viewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -115,7 +117,8 @@ public class ConstraintsDialog extends Dialog {
     viewer.setContentProvider(contentProvider);
     viewer.setInput(new ItemProvider(new OrmItemProviderAdapterFactory(), viewerContent));
 
-    // check all the relations from type total, cyclic, acyclic, reflexive and irreflexive, which the relation from type
+    // check all the relations from type total, cyclic, acyclic, reflexive and irreflexive, which
+    // the relation from type
     // relationship already has, so that the user know which constratints the relationship
     // already has
     for (Relation constraint : viewerContent) {
@@ -174,32 +177,32 @@ public class ConstraintsDialog extends Dialog {
 
 
   /**
-   * Add to the viewerContent the {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive, which
-   * the relationship not have, because the user should be able to choose between all of the
-   * constraints.
+   * Add to the viewerContent the {@link Relation}s from type total, cyclic, acyclic, reflexive and
+   * irreflexive, which the relationship not have, because the user should be able to choose between
+   * all of the constraints.
    * 
    * @param viewerContent java.util.List<Relation>
    **/
   private void addMissingConstraints(final List<Relation> viewerContent) {
     // test if relationship constraints are in the list, if not add the missing
     // constraint to the list
-	  
-      for (Type constraintType : Util.getRelationshipConstraints()){
-    	  boolean isInList = false;
-    	  for (Relation constraint : constraints) {
-    		  isInList = constraint.getType().equals(constraintType);
-    		  if(isInList){
-    	          break;
-    	        }
-    	  }
-    	  
-    	  Relation relation = OrmFactory.eINSTANCE.createRelation();
-    	  if (!isInList) {
-    		  relation.setType(constraintType);
-    		  relation.setName(constraintType.getName());
-    		  viewerContent.add(relation);
-    	  }
+
+    for (Type constraintType : Util.getRelationshipConstraints()) {
+      boolean isInList = false;
+      for (Relation constraint : constraints) {
+        isInList = constraint.getType().equals(constraintType);
+        if (isInList) {
+          break;
+        }
       }
+
+      Relation relation = OrmFactory.eINSTANCE.createRelation();
+      if (!isInList) {
+        relation.setType(constraintType);
+        relation.setName(constraintType.getName());
+        viewerContent.add(relation);
+      }
+    }
   }
 
   /**
@@ -215,7 +218,8 @@ public class ConstraintsDialog extends Dialog {
       chosenCreateConstraints.add((Relation) object);
     }
 
-    // remove constraints the user didn't choose from chosenDeleteConstraints list, which contains at
+    // remove constraints the user didn't choose from chosenDeleteConstraints list, which contains
+    // at
     // this moment
     // all the constraints
     chosenDeleteConstraints.removeAll(chosenCreateConstraints);

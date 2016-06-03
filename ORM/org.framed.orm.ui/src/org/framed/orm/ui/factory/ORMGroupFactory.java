@@ -11,18 +11,17 @@ import org.framed.orm.model.Type;
  * @author Kay Bierzynski
  * */
 public class ORMGroupFactory implements CreationFactory {
-	
-  @Override 
-  public Object getNewObject() {		
+
+  @Override
+  public Object getNewObject() {
     Shape shape = OrmFactory.eINSTANCE.createShape();
     shape.setType(Type.GROUP);
     return shape;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return Type.GROUP;
   }
 
 }
-

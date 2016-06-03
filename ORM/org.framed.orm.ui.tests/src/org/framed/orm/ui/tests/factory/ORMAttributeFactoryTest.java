@@ -9,14 +9,14 @@ public class ORMAttributeFactoryTest {
 
   @Test
   public void testGetNewObject() {
-	  ORMAttributeFactory obj = new ORMAttributeFactory();
-	  assertNotNull(obj.getNewObject());
+    ORMAttributeFactory obj = new ORMAttributeFactory();
+    assertNotNull(obj.getNewObject());
   }
 
   @Test
   public void testGetObjectType() {
-	  ORMAttributeFactory obj = new ORMAttributeFactory();
-	  assertNotNull(obj.getObjectType());
+    ORMAttributeFactory obj = new ORMAttributeFactory();
+    assertNotNull(obj.getObjectType());
   }
 
 }

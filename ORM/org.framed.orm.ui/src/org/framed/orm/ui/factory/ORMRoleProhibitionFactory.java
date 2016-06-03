@@ -10,9 +10,9 @@ import org.framed.orm.model.Type;
  * 
  * @author Kay Bierzynski
  * */
-public class ORMRoleProhibitionFactory implements CreationFactory{
+public class ORMRoleProhibitionFactory implements CreationFactory {
 
-  @Override 
+  @Override
   public Object getNewObject() {
     Relation relation = OrmFactory.eINSTANCE.createRelation();
     relation.setName(null);
@@ -20,7 +20,7 @@ public class ORMRoleProhibitionFactory implements CreationFactory{
     return relation;
   }
 
-  @Override 
+  @Override
   public Object getObjectType() {
     return Type.ROLE_PROHIBITION;
   }
