@@ -18,7 +18,17 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.common,
  org.framed.orm.transformation,
  org.eclipse.emf.ecore.xmi,
- org.eclipse.ui.ide.application;bundle-version="1.0.501"
+ org.eclipse.ui.ide.application;bundle-version="1.0.501",
+ de.ovgu.featureide.fm.ui,
+ de.ovgu.featureide.core;bundle-version="3.0.1",
+ de.ovgu.featureide.core.runtime;bundle-version="3.0.1",
+ de.ovgu.featureide.deltaecore;bundle-version="1.0.0",
+ de.ovgu.featureide.fm.core;bundle-version="3.0.1",
+ de.ovgu.featureide.fm.extended.ui;bundle-version="1.0.0",
+ de.ovgu.featureide.ui;bundle-version="3.0.1",
+ de.ovgu.featureide.ui.mpl;bundle-version="2.7.5",
+ org.eclipse.ui.editors,
+ org.eclipse.jface.text;bundle-version="3.9.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.framed.orm.ui.command,
