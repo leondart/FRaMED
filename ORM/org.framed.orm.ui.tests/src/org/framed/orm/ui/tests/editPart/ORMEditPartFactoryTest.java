@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.EditPart;
+import org.framed.orm.model.Configuration;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Shape;
@@ -158,6 +159,18 @@ public class ORMEditPartFactoryTest {
       public EList<ModelElement> getElements() {
         // TODO Auto-generated method stub
         return null;
+      }
+
+      @Override
+      public Configuration getConfiguration() {
+        // TODO Auto-generated method stub
+        return null;
+      }
+
+      @Override
+      public void setConfiguration(Configuration value) {
+        // TODO Auto-generated method stub
+        
       }
     });
 
