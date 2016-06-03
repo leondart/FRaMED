@@ -14,17 +14,16 @@ import org.framed.orm.model.OrmPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.model.impl.NamedElementImpl#getName <em>Name</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.impl.NamedElementImpl#getName <em>Name</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class NamedElementImpl extends MinimalEObjectImpl.Container implements NamedElement {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected NamedElementImpl() {
@@ -33,7 +32,6 @@ public class NamedElementImpl extends MinimalEObjectImpl.Container implements Na
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -43,7 +41,6 @@ public class NamedElementImpl extends MinimalEObjectImpl.Container implements Na
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -53,7 +50,6 @@ public class NamedElementImpl extends MinimalEObjectImpl.Container implements Na
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getName() {
@@ -62,7 +58,6 @@ public class NamedElementImpl extends MinimalEObjectImpl.Container implements Na
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setName(String newName) {

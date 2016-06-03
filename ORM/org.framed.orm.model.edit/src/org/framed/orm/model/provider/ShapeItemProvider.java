@@ -27,9 +27,9 @@ import org.framed.orm.model.Shape;
  */
 public class ShapeItemProvider extends ModelElementItemProvider {
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public ShapeItemProvider(AdapterFactory adapterFactory) {
@@ -37,9 +37,9 @@ public class ShapeItemProvider extends ModelElementItemProvider {
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -52,12 +52,11 @@ public class ShapeItemProvider extends ModelElementItemProvider {
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -75,7 +74,6 @@ public class ShapeItemProvider extends ModelElementItemProvider {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -87,8 +85,8 @@ public class ShapeItemProvider extends ModelElementItemProvider {
   }
 
   /**
-   * This returns Shape.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns Shape.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -113,7 +111,6 @@ public class ShapeItemProvider extends ModelElementItemProvider {
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -134,9 +131,9 @@ public class ShapeItemProvider extends ModelElementItemProvider {
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
-   * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

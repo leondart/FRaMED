@@ -17,21 +17,20 @@ import org.framed.orm.model.Shape;
  * end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.model.impl.ShapeImpl#getFirstSegment <em>First Segment</em>}</li>
- * <li>{@link org.framed.orm.model.impl.ShapeImpl#getSecondSegment <em>Second Segment</em>}</li>
- * <li>{@link org.framed.orm.model.impl.ShapeImpl#getModel <em>Model</em>}</li>
- * <li>{@link org.framed.orm.model.impl.ShapeImpl#getDescription <em>Description</em>}</li>
- * <li>{@link org.framed.orm.model.impl.ShapeImpl#getBoundaries <em>Boundaries</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.impl.ShapeImpl#getFirstSegment <em>First Segment</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ShapeImpl#getSecondSegment <em>Second Segment</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ShapeImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ShapeImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ShapeImpl#getBoundaries <em>Boundaries</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class ShapeImpl extends ModelElementImpl implements Shape {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ShapeImpl() {
@@ -40,7 +39,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -50,7 +48,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Segment getFirstSegment() {
@@ -59,7 +56,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setFirstSegment(Segment newFirstSegment) {
@@ -68,7 +64,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Segment getSecondSegment() {
@@ -77,7 +72,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setSecondSegment(Segment newSecondSegment) {
@@ -86,7 +80,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Model getModel() {
@@ -95,7 +88,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setModel(Model newModel) {
@@ -104,7 +96,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NamedElement getDescription() {
@@ -113,7 +104,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setDescription(NamedElement newDescription) {
@@ -122,7 +112,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Rectangle getBoundaries() {
@@ -131,7 +120,6 @@ public class ShapeImpl extends ModelElementImpl implements Shape {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setBoundaries(Rectangle newBoundaries) {

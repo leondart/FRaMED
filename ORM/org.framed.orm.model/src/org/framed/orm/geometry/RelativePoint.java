@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.framed.orm.geometry.RelativePoint#getReferencePoints <em>Reference Points</em>}</li>
- * <li>{@link org.framed.orm.geometry.RelativePoint#getDistances <em>Distances</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.geometry.RelativePoint#getReferencePoints <em>Reference Points</em>}</li>
+ *   <li>{@link org.framed.orm.geometry.RelativePoint#getDistances <em>Distances</em>}</li>
+ * </ul>
  *
  * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint()
  * @model
@@ -24,14 +24,14 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface RelativePoint extends EObject {
   /**
-   * Returns the value of the '<em><b>Reference Points</b></em>' containment reference list. The
-   * list contents are of type {@link org.framed.orm.geometry.Point}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Reference Points</b></em>' containment reference list.
+   * The list contents are of type {@link org.framed.orm.geometry.Point}.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Reference Points</em>' reference list isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Reference Points</em>' containment reference list.
    * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_ReferencePoints()
    * @model containment="true" lower="2" upper="2"
@@ -40,14 +40,14 @@ public interface RelativePoint extends EObject {
   EList<Point> getReferencePoints();
 
   /**
-   * Returns the value of the '<em><b>Distances</b></em>' containment reference list. The list
-   * contents are of type {@link org.framed.orm.geometry.Point}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Distances</b></em>' containment reference list.
+   * The list contents are of type {@link org.framed.orm.geometry.Point}.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Distances</em>' containment reference list isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Distances</em>' containment reference list.
    * @see org.framed.orm.geometry.GeometryPackage#getRelativePoint_Distances()
    * @model containment="true" lower="2" upper="2"

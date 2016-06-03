@@ -12,11 +12,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.framed.orm.model.Model#getElements <em>Elements</em>}</li>
- * <li>{@link org.framed.orm.model.Model#getParent <em>Parent</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.Model#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.framed.orm.model.Model#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.framed.orm.model.Model#getConfiguration <em>Configuration</em>}</li>
+ * </ul>
  *
  * @see org.framed.orm.model.OrmPackage#getModel()
  * @model
@@ -62,13 +63,38 @@ public interface Model extends EObject {
   Shape getParent();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Model#getParent <em>Parent</em>}' container
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.Model#getParent <em>Parent</em>}' container reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Parent</em>' container reference.
    * @see #getParent()
    * @generated
    */
   void setParent(Shape value);
+
+  /**
+   * Returns the value of the '<em><b>Configuration</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Configuration</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Configuration</em>' reference.
+   * @see #setConfiguration(Configuration)
+   * @see org.framed.orm.model.OrmPackage#getModel_Configuration()
+   * @model required="true"
+   * @generated
+   */
+  Configuration getConfiguration();
+
+  /**
+   * Sets the value of the '{@link org.framed.orm.model.Model#getConfiguration <em>Configuration</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Configuration</em>' reference.
+   * @see #getConfiguration()
+   * @generated
+   */
+  void setConfiguration(Configuration value);
 
 } // Model

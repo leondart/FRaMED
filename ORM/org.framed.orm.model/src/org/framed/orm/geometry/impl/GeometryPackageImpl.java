@@ -21,40 +21,36 @@ import org.framed.orm.model.impl.OrmPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass pointEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass rectangleEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass relativePointEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
-   * value.
-   * <p>
-   * Note: the correct way to create the package is via the static factory method {@link #init
-   * init()}, which also performs initialization of the package, or returns the registered package,
-   * if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * package URI value.
+   * <p>Note: the correct way to create the package is via the static
+   * factory method {@link #init init()}, which also performs
+   * initialization of the package, or returns the registered package,
+   * if one already exists.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.framed.orm.geometry.GeometryPackage#eNS_URI
    * @see #init()
@@ -66,20 +62,16 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon
-   * which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    * 
-   * <p>
-   * This method is used to initialize {@link GeometryPackage#eINSTANCE} when that field is
-   * accessed. Clients should not invoke it directly. Instead, they should simply access that field
-   * to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <p>This method is used to initialize {@link GeometryPackage#eINSTANCE} when that field is accessed.
+   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -112,6 +104,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
     // Mark meta-data to indicate it can't be changed
     theGeometryPackage.freeze();
 
+
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(GeometryPackage.eNS_URI, theGeometryPackage);
     return theGeometryPackage;
@@ -119,7 +112,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getPoint() {
@@ -128,7 +120,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getPoint_X() {
@@ -137,7 +128,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getPoint_Y() {
@@ -146,7 +136,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getRectangle() {
@@ -155,7 +144,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRectangle_TopLeft() {
@@ -164,7 +152,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRectangle_BottomRight() {
@@ -173,7 +160,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getRelativePoint() {
@@ -182,7 +168,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelativePoint_ReferencePoints() {
@@ -191,7 +176,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelativePoint_Distances() {
@@ -200,7 +184,6 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public GeometryFactory getGeometryFactory() {
@@ -209,15 +192,14 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package. This method is guarded to have no affect on any
-   * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Creates the meta-model objects for the package.  This method is
+   * guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void createPackageContents() {
@@ -241,15 +223,14 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model. This method is guarded to have
-   * no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Complete the initialization of the package and its meta-model.  This
+   * method is guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void initializePackageContents() {

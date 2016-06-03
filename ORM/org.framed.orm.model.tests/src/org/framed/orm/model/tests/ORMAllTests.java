@@ -9,14 +9,12 @@ import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc --> A test suite for the '<em><b>ORM</b></em>' model. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ORMAllTests extends TestSuite {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static void main(String[] args) {
@@ -25,7 +23,6 @@ public class ORMAllTests extends TestSuite {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static Test suite() {
@@ -35,7 +32,6 @@ public class ORMAllTests extends TestSuite {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ORMAllTests(String name) {

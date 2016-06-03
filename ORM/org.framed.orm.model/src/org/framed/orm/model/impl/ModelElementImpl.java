@@ -15,22 +15,19 @@ import org.framed.orm.model.Type;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.model.impl.ModelElementImpl#getContainer <em>Container</em>}</li>
- * <li>{@link org.framed.orm.model.impl.ModelElementImpl#getIncomingRelations <em>Incoming Relations
- * </em>}</li>
- * <li>{@link org.framed.orm.model.impl.ModelElementImpl#getOutgoingRelations <em>Outgoing Relations
- * </em>}</li>
- * <li>{@link org.framed.orm.model.impl.ModelElementImpl#getType <em>Type</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getIncomingRelations <em>Incoming Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getOutgoingRelations <em>Outgoing Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ModelElementImpl#getType <em>Type</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class ModelElementImpl extends NamedElementImpl implements ModelElement {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ModelElementImpl() {
@@ -39,7 +36,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -49,7 +45,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Model getContainer() {
@@ -58,7 +53,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setContainer(Model newContainer) {
@@ -67,7 +61,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -77,7 +70,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -87,7 +79,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Type getType() {
@@ -96,7 +87,6 @@ public class ModelElementImpl extends NamedElementImpl implements ModelElement {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setType(Type newType) {

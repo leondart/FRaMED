@@ -2,34 +2,31 @@
  */
 package org.framed.orm.model.impl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Feature;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.Segment;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Segment</b></em>'. <!--
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Feature</b></em>'. <!--
  * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.SegmentImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.FeatureImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment {
+public class FeatureImpl extends MinimalEObjectImpl.Container implements Feature {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  protected SegmentImpl() {
+  protected FeatureImpl() {
     super();
   }
 
@@ -39,7 +36,7 @@ public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment
    */
   @Override
   protected EClass eStaticClass() {
-    return OrmPackage.Literals.SEGMENT;
+    return OrmPackage.Literals.FEATURE;
   }
 
   /**
@@ -55,9 +52,16 @@ public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
-  public EList<NamedElement> getElements() {
-    return (EList<NamedElement>) eGet(OrmPackage.Literals.SEGMENT__ELEMENTS, true);
+  public String getName() {
+    return (String) eGet(OrmPackage.Literals.FEATURE__NAME, true);
   }
 
-} // SegmentImpl
+  /**
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName) {
+    eSet(OrmPackage.Literals.FEATURE__NAME, newName);
+  }
+
+} // FeatureImpl

@@ -14,6 +14,8 @@ import org.framed.orm.geometry.GeometryPackage;
 
 import org.framed.orm.geometry.impl.GeometryPackageImpl;
 
+import org.framed.orm.model.Configuration;
+import org.framed.orm.model.Feature;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
@@ -26,68 +28,74 @@ import org.framed.orm.model.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass namedElementEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass modelElementEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass modelEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass relationEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass shapeEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass segmentEClass = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass featureEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass configurationEClass = null;
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EEnum typeEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package package URI
-   * value.
-   * <p>
-   * Note: the correct way to create the package is via the static factory method {@link #init
-   * init()}, which also performs initialization of the package, or returns the registered package,
-   * if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * package URI value.
+   * <p>Note: the correct way to create the package is via the static
+   * factory method {@link #init init()}, which also performs
+   * initialization of the package, or returns the registered package,
+   * if one already exists.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.framed.orm.model.OrmPackage#eNS_URI
    * @see #init()
@@ -99,20 +107,16 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon
-   * which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
    * 
-   * <p>
-   * This method is used to initialize {@link OrmPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain
-   * the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * <p>This method is used to initialize {@link OrmPackage#eINSTANCE} when that field is accessed.
+   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -145,6 +149,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     // Mark meta-data to indicate it can't be changed
     theOrmPackage.freeze();
 
+
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(OrmPackage.eNS_URI, theOrmPackage);
     return theOrmPackage;
@@ -152,7 +157,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getNamedElement() {
@@ -161,7 +165,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getNamedElement_Name() {
@@ -170,7 +173,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getModelElement() {
@@ -179,7 +181,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getModelElement_Container() {
@@ -188,7 +189,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getModelElement_IncomingRelations() {
@@ -197,7 +197,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getModelElement_OutgoingRelations() {
@@ -206,7 +205,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getModelElement_Type() {
@@ -215,7 +213,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getModel() {
@@ -224,7 +221,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getModel_Elements() {
@@ -233,7 +229,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getModel_Parent() {
@@ -241,8 +236,16 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModel_Configuration() {
+    return (EReference) modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getRelation() {
@@ -251,7 +254,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_Target() {
@@ -260,7 +262,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_Source() {
@@ -269,7 +270,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_Bendpoints() {
@@ -278,7 +278,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_SourceLabel() {
@@ -287,7 +286,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_TargetLabel() {
@@ -296,7 +294,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_ReferencedRelation() {
@@ -305,7 +302,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_ReferencedRoles() {
@@ -314,7 +310,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getRelation_ConnectionAnchor() {
@@ -323,7 +318,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getShape() {
@@ -332,7 +326,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getShape_FirstSegment() {
@@ -341,7 +334,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getShape_SecondSegment() {
@@ -350,7 +342,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getShape_Model() {
@@ -359,7 +350,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getShape_Description() {
@@ -368,7 +358,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getShape_Boundaries() {
@@ -377,7 +366,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getSegment() {
@@ -386,7 +374,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getSegment_Elements() {
@@ -394,8 +381,43 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFeature() {
+    return featureEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFeature_Name() {
+    return (EAttribute) featureEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConfiguration() {
+    return configurationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConfiguration_Features() {
+    return (EReference) configurationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EEnum getType() {
@@ -404,7 +426,6 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrmFactory getOrmFactory() {
@@ -413,15 +434,14 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package. This method is guarded to have no affect on any
-   * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Creates the meta-model objects for the package.  This method is
+   * guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void createPackageContents() {
@@ -442,6 +462,7 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     modelEClass = createEClass(MODEL);
     createEReference(modelEClass, MODEL__ELEMENTS);
     createEReference(modelEClass, MODEL__PARENT);
+    createEReference(modelEClass, MODEL__CONFIGURATION);
 
     relationEClass = createEClass(RELATION);
     createEReference(relationEClass, RELATION__TARGET);
@@ -463,21 +484,26 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     segmentEClass = createEClass(SEGMENT);
     createEReference(segmentEClass, SEGMENT__ELEMENTS);
 
+    featureEClass = createEClass(FEATURE);
+    createEAttribute(featureEClass, FEATURE__NAME);
+
+    configurationEClass = createEClass(CONFIGURATION);
+    createEReference(configurationEClass, CONFIGURATION__FEATURES);
+
     // Create enums
     typeEEnum = createEEnum(TYPE);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model. This method is guarded to have
-   * no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Complete the initialization of the package and its meta-model.  This
+   * method is guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void initializePackageContents() {
@@ -538,6 +564,9 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEReference(getModel_Parent(), this.getShape(), this.getShape_Model(), "parent", null, 0, 1,
         Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
         !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Configuration(), this.getConfiguration(), null, "configuration", null,
+        1, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE,
         IS_GENERATED_INSTANCE_CLASS);
@@ -592,6 +621,18 @@ public class OrmPackageImpl extends EPackageImpl implements OrmPackage {
     initEReference(getSegment_Elements(), this.getNamedElement(), null, "elements", null, 0, -1,
         Segment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
         !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE,
+        IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 0, 1, Feature.class,
+        !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+        IS_ORDERED);
+
+    initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT,
+        !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConfiguration_Features(), this.getFeature(), null, "features", null, 0, -1,
+        Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+        IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(typeEEnum, Type.class, "Type");

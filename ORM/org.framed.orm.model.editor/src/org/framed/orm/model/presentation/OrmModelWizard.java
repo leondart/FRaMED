@@ -66,8 +66,8 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   private static final String ENCODING = "UTF-8";
 
   /**
-   * The supported extensions for created files. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The supported extensions for created files.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays
@@ -75,38 +75,38 @@ public class OrmModelWizard extends Wizard implements INewWizard {
           "\\s*,\\s*")));
 
   /**
-   * A formatted list of supported file extensions, suitable for display. <!-- begin-user-doc -->
+   * A formatted list of supported file extensions, suitable for display.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final String FORMATTED_FILE_EXTENSIONS = ORMEditorPlugin.INSTANCE.getString(
       "_UI_OrmEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
   /**
-   * This caches an instance of the model package. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This caches an instance of the model package.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected OrmPackage ormPackage = OrmPackage.eINSTANCE;
 
   /**
-   * This caches an instance of the model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This caches an instance of the model factory.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected OrmFactory ormFactory = ormPackage.getOrmFactory();
 
   /**
-   * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This is the file creation page.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected OrmModelWizardNewFileCreationPage newFileCreationPage;
 
   /**
-   * This is the initial object creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This is the initial object creation page.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected OrmModelWizardInitialObjectCreationPage initialObjectCreationPage;
@@ -120,23 +120,23 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   protected IStructuredSelection selection;
 
   /**
-   * Remember the workbench during initialization. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Remember the workbench during initialization.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected IWorkbench workbench;
 
   /**
-   * Caches the names of the types that can be created as the root object. <!-- begin-user-doc -->
+   * Caches the names of the types that can be created as the root object.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected List<String> initialObjectNames;
 
   /**
-   * This just records the information. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This just records the information.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public void init(IWorkbench workbench, IStructuredSelection selection) {
@@ -262,14 +262,14 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * This is the one page of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This is the one page of the wizard.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public class OrmModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
     /**
-     * Pass in the selection. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Pass in the selection.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public OrmModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
@@ -277,9 +277,9 @@ public class OrmModelWizard extends Wizard implements INewWizard {
     }
 
     /**
-     * The framework calls this to see if the file is correct. <!-- begin-user-doc --> <!--
+     * The framework calls this to see if the file is correct.
+     * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -300,7 +300,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public IFile getModelFile() {
@@ -310,15 +309,14 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * This is the page where the type of object to create is selected. <!-- begin-user-doc --> <!--
+   * This is the page where the type of object to create is selected.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public class OrmModelWizardInitialObjectCreationPage extends WizardPage {
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Combo initialObjectField;
@@ -330,14 +328,13 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Combo encodingField;
 
     /**
-     * Pass in the selection. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Pass in the selection.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public OrmModelWizardInitialObjectCreationPage(String pageId) {
@@ -346,7 +343,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void createControl(Composite parent) {
@@ -419,7 +415,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected ModifyListener validator = new ModifyListener() {
@@ -430,7 +425,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected boolean validatePage() {
@@ -439,7 +433,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -458,7 +451,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getInitialObjectName() {
@@ -474,7 +466,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getEncoding() {
@@ -482,8 +473,8 @@ public class OrmModelWizard extends Wizard implements INewWizard {
     }
 
     /**
-     * Returns the label for the specified type name. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Returns the label for the specified type name.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected String getLabel(String typeName) {
@@ -497,7 +488,6 @@ public class OrmModelWizard extends Wizard implements INewWizard {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Collection<String> getEncodings() {
@@ -576,8 +566,8 @@ public class OrmModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * Get the file from the page. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Get the file from the page.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public IFile getModelFile() {

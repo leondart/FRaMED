@@ -18,6 +18,8 @@
         eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/container"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Shape"
         eOpposite="#//Shape/model"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
+        eType="#//Configuration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElement"
@@ -73,6 +75,13 @@
     <eLiterals name="Acyclic" value="17"/>
     <eLiterals name="Reflexive" value="18"/>
     <eLiterals name="RelationshipExclusion" value="19" literal="RelationshipExclusion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//Feature"/>
   </eClassifiers>
   <eSubpackages name="geometry" nsURI="http://orm.geometry/1.0" nsPrefix="org.framed.orm.model.geometry">
     <eClassifiers xsi:type="ecore:EClass" name="Point">

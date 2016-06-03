@@ -12,21 +12,19 @@ import org.framed.orm.geometry.Rectangle;
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Rectangle</b></em>'. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RectangleTest extends TestCase {
 
   /**
-   * The fixture for this Rectangle test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The fixture for this Rectangle test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected Rectangle fixture = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static void main(String[] args) {
@@ -34,9 +32,9 @@ public class RectangleTest extends TestCase {
   }
 
   /**
-   * Constructs a new Rectangle test case with the given name. <!-- begin-user-doc --> <!--
+   * Constructs a new Rectangle test case with the given name.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public RectangleTest(String name) {
@@ -44,8 +42,8 @@ public class RectangleTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Rectangle test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the fixture for this Rectangle test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void setFixture(Rectangle fixture) {
@@ -53,8 +51,8 @@ public class RectangleTest extends TestCase {
   }
 
   /**
-   * Returns the fixture for this Rectangle test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the fixture for this Rectangle test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected Rectangle getFixture() {
@@ -63,7 +61,6 @@ public class RectangleTest extends TestCase {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#setUp()
    * @generated
    */
@@ -74,7 +71,6 @@ public class RectangleTest extends TestCase {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#tearDown()
    * @generated
    */

@@ -21,9 +21,9 @@ import org.framed.orm.model.OrmPackage;
  */
 public class ModelElementItemProvider extends NamedElementItemProvider {
   /**
-   * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!--
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public ModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -31,9 +31,9 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
   }
 
   /**
-   * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!--
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -49,9 +49,9 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
   }
 
   /**
-   * This adds a property descriptor for the Incoming Relations feature. <!-- begin-user-doc -->
+   * This adds a property descriptor for the Incoming Relations feature.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addIncomingRelationsPropertyDescriptor(Object object) {
@@ -67,9 +67,9 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
   }
 
   /**
-   * This adds a property descriptor for the Outgoing Relations feature. <!-- begin-user-doc -->
+   * This adds a property descriptor for the Outgoing Relations feature.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addOutgoingRelationsPropertyDescriptor(Object object) {
@@ -101,8 +101,8 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
   }
 
   /**
-   * This returns ModelElement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This returns ModelElement.gif.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -127,7 +127,6 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
    * This handles model notifications by calling {@link #updateChildren} to update any cached
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -144,9 +143,9 @@ public class ModelElementItemProvider extends NamedElementItemProvider {
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that
-   * can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

@@ -22,19 +22,17 @@ import org.framed.orm.geometry.RelativePoint;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.geometry.impl.RelativePointImpl#getReferencePoints <em>Reference Points
- * </em>}</li>
- * <li>{@link org.framed.orm.geometry.impl.RelativePointImpl#getDistances <em>Distances</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.geometry.impl.RelativePointImpl#getReferencePoints <em>Reference Points</em>}</li>
+ *   <li>{@link org.framed.orm.geometry.impl.RelativePointImpl#getDistances <em>Distances</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class RelativePointImpl extends MinimalEObjectImpl.Container implements RelativePoint {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected RelativePointImpl() {
@@ -43,7 +41,6 @@ public class RelativePointImpl extends MinimalEObjectImpl.Container implements R
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -53,7 +50,6 @@ public class RelativePointImpl extends MinimalEObjectImpl.Container implements R
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -63,7 +59,6 @@ public class RelativePointImpl extends MinimalEObjectImpl.Container implements R
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -73,7 +68,6 @@ public class RelativePointImpl extends MinimalEObjectImpl.Container implements R
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")

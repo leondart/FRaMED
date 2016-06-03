@@ -6,6 +6,7 @@ package org.framed.orm.model.validation;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.framed.orm.model.Configuration;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Shape;
 
@@ -22,4 +23,6 @@ public interface ModelValidator {
   boolean validateElements(EList<ModelElement> value);
 
   boolean validateParent(Shape value);
+
+  boolean validateConfiguration(Configuration value);
 }

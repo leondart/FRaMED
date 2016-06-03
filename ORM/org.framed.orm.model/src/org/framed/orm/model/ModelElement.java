@@ -10,13 +10,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.framed.orm.model.ModelElement#getContainer <em>Container</em>}</li>
- * <li>{@link org.framed.orm.model.ModelElement#getIncomingRelations <em>Incoming Relations</em>}</li>
- * <li>{@link org.framed.orm.model.ModelElement#getOutgoingRelations <em>Outgoing Relations</em>}</li>
- * <li>{@link org.framed.orm.model.ModelElement#getType <em>Type</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.ModelElement#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.framed.orm.model.ModelElement#getIncomingRelations <em>Incoming Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.ModelElement#getOutgoingRelations <em>Outgoing Relations</em>}</li>
+ *   <li>{@link org.framed.orm.model.ModelElement#getType <em>Type</em>}</li>
+ * </ul>
  *
  * @see org.framed.orm.model.OrmPackage#getModelElement()
  * @model
@@ -43,9 +43,8 @@ public interface ModelElement extends NamedElement {
   Model getContainer();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.ModelElement#getContainer
-   * <em>Container</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.ModelElement#getContainer <em>Container</em>}' container reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Container</em>' container reference.
    * @see #getContainer()
    * @generated
@@ -53,15 +52,15 @@ public interface ModelElement extends NamedElement {
   void setContainer(Model value);
 
   /**
-   * Returns the value of the '<em><b>Incoming Relations</b></em>' reference list. The list contents
-   * are of type {@link org.framed.orm.model.Relation}. It is bidirectional and its opposite is '
-   * {@link org.framed.orm.model.Relation#getTarget <em>Target</em>}'. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Incoming Relations</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.model.Relation}.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Relation#getTarget <em>Target</em>}'.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Incoming Relations</em>' reference list isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Incoming Relations</em>' reference list.
    * @see org.framed.orm.model.OrmPackage#getModelElement_IncomingRelations()
    * @see org.framed.orm.model.Relation#getTarget
@@ -71,15 +70,15 @@ public interface ModelElement extends NamedElement {
   EList<Relation> getIncomingRelations();
 
   /**
-   * Returns the value of the '<em><b>Outgoing Relations</b></em>' reference list. The list contents
-   * are of type {@link org.framed.orm.model.Relation}. It is bidirectional and its opposite is '
-   * {@link org.framed.orm.model.Relation#getSource <em>Source</em>}'. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Outgoing Relations</b></em>' reference list.
+   * The list contents are of type {@link org.framed.orm.model.Relation}.
+   * It is bidirectional and its opposite is '{@link org.framed.orm.model.Relation#getSource <em>Source</em>}'.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Outgoing Relations</em>' reference list isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Outgoing Relations</em>' reference list.
    * @see org.framed.orm.model.OrmPackage#getModelElement_OutgoingRelations()
    * @see org.framed.orm.model.Relation#getSource
@@ -89,14 +88,14 @@ public interface ModelElement extends NamedElement {
   EList<Relation> getOutgoingRelations();
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are from the
-   * enumeration {@link org.framed.orm.model.Type}. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
+   * The literals are from the enumeration {@link org.framed.orm.model.Type}.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Type</em>' attribute isn't clear, there really should be more of a
    * description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Type</em>' attribute.
    * @see org.framed.orm.model.Type
    * @see #setType(Type)
@@ -107,9 +106,8 @@ public interface ModelElement extends NamedElement {
   Type getType();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.ModelElement#getType <em>Type</em>}'
-   * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.ModelElement#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' attribute.
    * @see org.framed.orm.model.Type
    * @see #getType()

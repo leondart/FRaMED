@@ -9,14 +9,12 @@ import org.framed.orm.model.OrmFactory;
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Model Element</b></em>'. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ModelElementTest extends NamedElementTest {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static void main(String[] args) {
@@ -24,9 +22,9 @@ public class ModelElementTest extends NamedElementTest {
   }
 
   /**
-   * Constructs a new Model Element test case with the given name. <!-- begin-user-doc --> <!--
+   * Constructs a new Model Element test case with the given name.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public ModelElementTest(String name) {
@@ -46,7 +44,6 @@ public class ModelElementTest extends NamedElementTest {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#setUp()
    * @generated
    */
@@ -57,7 +54,6 @@ public class ModelElementTest extends NamedElementTest {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#tearDown()
    * @generated
    */

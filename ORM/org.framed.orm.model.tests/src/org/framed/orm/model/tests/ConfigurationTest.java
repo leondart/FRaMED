@@ -6,56 +6,58 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import org.framed.orm.model.Model;
+import org.framed.orm.model.Configuration;
 import org.framed.orm.model.OrmFactory;
 
 /**
- * <!-- begin-user-doc --> A test case for the model object '<em><b>Model</b></em>'. <!--
+ * <!-- begin-user-doc --> A test case for the model object ' <em><b>Configuration</b></em>'. <!--
  * end-user-doc -->
  * @generated
  */
-public class ModelTest extends TestCase {
+public class ConfigurationTest extends TestCase {
 
   /**
-   * The fixture for this Model test case.
+   * The fixture for this Configuration test case.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  protected Model fixture = null;
+  protected Configuration fixture = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static void main(String[] args) {
-    TestRunner.run(ModelTest.class);
+    TestRunner.run(ConfigurationTest.class);
   }
 
   /**
-   * Constructs a new Model test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   * 
+   * Constructs a new Configuration test case with the given name.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * @generated
    */
-  public ModelTest(String name) {
+  public ConfigurationTest(String name) {
     super(name);
   }
 
   /**
-   * Sets the fixture for this Model test case.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Sets the fixture for this Configuration test case. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @generated
    */
-  protected void setFixture(Model fixture) {
+  protected void setFixture(Configuration fixture) {
     this.fixture = fixture;
   }
 
   /**
-   * Returns the fixture for this Model test case.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Returns the fixture for this Configuration test case. <!-- begin-user-doc --> <!-- end-user-doc
+   * -->
+   * 
    * @generated
    */
-  protected Model getFixture() {
+  protected Configuration getFixture() {
     return fixture;
   }
 
@@ -66,7 +68,7 @@ public class ModelTest extends TestCase {
    */
   @Override
   protected void setUp() throws Exception {
-    setFixture(OrmFactory.eINSTANCE.createModel());
+    setFixture(OrmFactory.eINSTANCE.createConfiguration());
   }
 
   /**
@@ -79,4 +81,4 @@ public class ModelTest extends TestCase {
     setFixture(null);
   }
 
-} // ModelTest
+} // ConfigurationTest

@@ -12,21 +12,19 @@ import org.framed.orm.model.Segment;
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Segment</b></em>'. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class SegmentTest extends TestCase {
 
   /**
-   * The fixture for this Segment test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The fixture for this Segment test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected Segment fixture = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static void main(String[] args) {
@@ -34,9 +32,9 @@ public class SegmentTest extends TestCase {
   }
 
   /**
-   * Constructs a new Segment test case with the given name. <!-- begin-user-doc --> <!--
+   * Constructs a new Segment test case with the given name.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public SegmentTest(String name) {
@@ -44,8 +42,8 @@ public class SegmentTest extends TestCase {
   }
 
   /**
-   * Sets the fixture for this Segment test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the fixture for this Segment test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected void setFixture(Segment fixture) {
@@ -53,8 +51,8 @@ public class SegmentTest extends TestCase {
   }
 
   /**
-   * Returns the fixture for this Segment test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the fixture for this Segment test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected Segment getFixture() {
@@ -63,7 +61,6 @@ public class SegmentTest extends TestCase {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#setUp()
    * @generated
    */
@@ -74,7 +71,6 @@ public class SegmentTest extends TestCase {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#tearDown()
    * @generated
    */

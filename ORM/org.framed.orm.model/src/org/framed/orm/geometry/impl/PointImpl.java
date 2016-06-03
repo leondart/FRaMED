@@ -14,18 +14,17 @@ import org.framed.orm.geometry.Point;
  * end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.geometry.impl.PointImpl#getX <em>X</em>}</li>
- * <li>{@link org.framed.orm.geometry.impl.PointImpl#getY <em>Y</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.geometry.impl.PointImpl#getX <em>X</em>}</li>
+ *   <li>{@link org.framed.orm.geometry.impl.PointImpl#getY <em>Y</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class PointImpl extends MinimalEObjectImpl.Container implements Point {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected PointImpl() {
@@ -34,7 +33,6 @@ public class PointImpl extends MinimalEObjectImpl.Container implements Point {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -44,7 +42,6 @@ public class PointImpl extends MinimalEObjectImpl.Container implements Point {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -54,7 +51,6 @@ public class PointImpl extends MinimalEObjectImpl.Container implements Point {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public int getX() {
@@ -63,7 +59,6 @@ public class PointImpl extends MinimalEObjectImpl.Container implements Point {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setX(int newX) {
@@ -72,7 +67,6 @@ public class PointImpl extends MinimalEObjectImpl.Container implements Point {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public int getY() {
@@ -81,7 +75,6 @@ public class PointImpl extends MinimalEObjectImpl.Container implements Point {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setY(int newY) {

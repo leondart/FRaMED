@@ -10,11 +10,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.framed.orm.geometry.Point#getX <em>X</em>}</li>
- * <li>{@link org.framed.orm.geometry.Point#getY <em>Y</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.geometry.Point#getX <em>X</em>}</li>
+ *   <li>{@link org.framed.orm.geometry.Point#getY <em>Y</em>}</li>
+ * </ul>
  *
  * @see org.framed.orm.geometry.GeometryPackage#getPoint()
  * @model
@@ -22,13 +22,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Point extends EObject {
   /**
-   * Returns the value of the '<em><b>X</b></em>' attribute. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>X</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>X</em>' attribute isn't clear, there really should be more of a
    * description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>X</em>' attribute.
    * @see #setX(int)
    * @see org.framed.orm.geometry.GeometryPackage#getPoint_X()
@@ -48,13 +48,13 @@ public interface Point extends EObject {
   void setX(int value);
 
   /**
-   * Returns the value of the '<em><b>Y</b></em>' attribute. <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Y</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Y</em>' attribute isn't clear, there really should be more of a
    * description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Y</em>' attribute.
    * @see #setY(int)
    * @see org.framed.orm.geometry.GeometryPackage#getPoint_Y()

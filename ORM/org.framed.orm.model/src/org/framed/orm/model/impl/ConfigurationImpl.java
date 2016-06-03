@@ -8,28 +8,28 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Configuration;
+import org.framed.orm.model.Feature;
 import org.framed.orm.model.OrmPackage;
-import org.framed.orm.model.Segment;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Segment</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.framed.orm.model.impl.SegmentImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ConfigurationImpl#getFeatures <em>Features</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment {
+public class ConfigurationImpl extends MinimalEObjectImpl.Container implements Configuration {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  protected SegmentImpl() {
+  protected ConfigurationImpl() {
     super();
   }
 
@@ -39,7 +39,7 @@ public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment
    */
   @Override
   protected EClass eStaticClass() {
-    return OrmPackage.Literals.SEGMENT;
+    return OrmPackage.Literals.CONFIGURATION;
   }
 
   /**
@@ -56,8 +56,8 @@ public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment
    * @generated
    */
   @SuppressWarnings("unchecked")
-  public EList<NamedElement> getElements() {
-    return (EList<NamedElement>) eGet(OrmPackage.Literals.SEGMENT__ELEMENTS, true);
+  public EList<Feature> getFeatures() {
+    return (EList<Feature>) eGet(OrmPackage.Literals.CONFIGURATION__FEATURES, true);
   }
 
-} // SegmentImpl
+} // ConfigurationImpl

@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.framed.orm.model.Configuration;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.OrmPackage;
@@ -18,18 +19,18 @@ import org.framed.orm.model.Shape;
  * end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.model.impl.ModelImpl#getElements <em>Elements</em>}</li>
- * <li>{@link org.framed.orm.model.impl.ModelImpl#getParent <em>Parent</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.impl.ModelImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ModelImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.ModelImpl#getConfiguration <em>Configuration</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ModelImpl() {
@@ -38,7 +39,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -48,7 +48,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -58,7 +57,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -68,7 +66,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Shape getParent() {
@@ -77,11 +74,28 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setParent(Shape newParent) {
     eSet(OrmPackage.Literals.MODEL__PARENT, newParent);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Configuration getConfiguration() {
+    return (Configuration) eGet(OrmPackage.Literals.MODEL__CONFIGURATION, true);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setConfiguration(Configuration newConfiguration) {
+    eSet(OrmPackage.Literals.MODEL__CONFIGURATION, newConfiguration);
   }
 
 } // ModelImpl

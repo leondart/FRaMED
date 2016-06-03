@@ -12,21 +12,19 @@ import org.framed.orm.geometry.RelativePoint;
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Relative Point</b></em>'. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RelativePointTest extends TestCase {
 
   /**
-   * The fixture for this Relative Point test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The fixture for this Relative Point test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected RelativePoint fixture = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static void main(String[] args) {
@@ -34,9 +32,9 @@ public class RelativePointTest extends TestCase {
   }
 
   /**
-   * Constructs a new Relative Point test case with the given name. <!-- begin-user-doc --> <!--
+   * Constructs a new Relative Point test case with the given name.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public RelativePointTest(String name) {
@@ -54,9 +52,9 @@ public class RelativePointTest extends TestCase {
   }
 
   /**
-   * Returns the fixture for this Relative Point test case. <!-- begin-user-doc --> <!--
+   * Returns the fixture for this Relative Point test case.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected RelativePoint getFixture() {
@@ -65,7 +63,6 @@ public class RelativePointTest extends TestCase {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#setUp()
    * @generated
    */
@@ -76,7 +73,6 @@ public class RelativePointTest extends TestCase {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#tearDown()
    * @generated
    */

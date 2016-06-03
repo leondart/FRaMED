@@ -1,6 +1,6 @@
 /**
  */
-package org.framed.orm.geometry.provider;
+package org.framed.orm.model.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,8 +10,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,20 +18,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.framed.orm.geometry.GeometryFactory;
-import org.framed.orm.geometry.GeometryPackage;
-import org.framed.orm.geometry.RelativePoint;
-
-import org.framed.orm.model.provider.ORMEditPlugin;
+import org.framed.orm.model.OrmPackage;
 
 /**
- * This is the item provider adapter for a {@link org.framed.orm.geometry.RelativePoint} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.framed.orm.model.Configuration} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class RelativePointItemProvider extends ItemProviderAdapter implements
+public class ConfigurationItemProvider extends ItemProviderAdapter implements
     IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider,
     IItemLabelProvider, IItemPropertySource {
   /**
@@ -42,7 +36,7 @@ public class RelativePointItemProvider extends ItemProviderAdapter implements
    * end-user-doc -->
    * @generated
    */
-  public RelativePointItemProvider(AdapterFactory adapterFactory) {
+  public ConfigurationItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -57,65 +51,35 @@ public class RelativePointItemProvider extends ItemProviderAdapter implements
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addReferencePointsPropertyDescriptor(object);
+      addFeaturesPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Reference Points feature.
+   * This adds a property descriptor for the Features feature.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * @generated
    */
-  protected void addReferencePointsPropertyDescriptor(Object object) {
+  protected void addFeaturesPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(
         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
         getResourceLocator(),
-        getString("_UI_RelativePoint_referencePoints_feature"),
-        getString("_UI_PropertyDescriptor_description",
-            "_UI_RelativePoint_referencePoints_feature", "_UI_RelativePoint_type"),
-        GeometryPackage.Literals.RELATIVE_POINT__REFERENCE_POINTS, true, false, true, null, null,
-        null));
+        getString("_UI_Configuration_features_feature"),
+        getString("_UI_PropertyDescriptor_description", "_UI_Configuration_features_feature",
+            "_UI_Configuration_type"), OrmPackage.Literals.CONFIGURATION__FEATURES, true, false,
+        true, null, null, null));
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(GeometryPackage.Literals.RELATIVE_POINT__DISTANCES);
-    }
-    return childrenFeatures;
-  }
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EStructuralFeature getChildFeature(Object object, Object child) {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
-
-    return super.getChildFeature(object, child);
-  }
-
-  /**
-   * This returns RelativePoint.gif.
+   * This returns Configuration.gif.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/RelativePoint"));
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Configuration"));
   }
 
   /**
@@ -126,7 +90,7 @@ public class RelativePointItemProvider extends ItemProviderAdapter implements
    */
   @Override
   public String getText(Object object) {
-    return getString("_UI_RelativePoint_type");
+    return getString("_UI_Configuration_type");
   }
 
   /**
@@ -138,13 +102,6 @@ public class RelativePointItemProvider extends ItemProviderAdapter implements
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(RelativePoint.class)) {
-      case GeometryPackage.RELATIVE_POINT__DISTANCES:
-        fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true,
-            false));
-        return;
-    }
     super.notifyChanged(notification);
   }
 
@@ -157,10 +114,6 @@ public class RelativePointItemProvider extends ItemProviderAdapter implements
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors
-        .add(createChildParameter(GeometryPackage.Literals.RELATIVE_POINT__DISTANCES,
-            GeometryFactory.eINSTANCE.createPoint()));
   }
 
   /**

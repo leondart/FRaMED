@@ -14,13 +14,12 @@ import org.framed.orm.geometry.*;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory {
   /**
-   * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static GeometryFactory init() {
@@ -37,8 +36,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
   }
 
   /**
-   * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public GeometryFactoryImpl() {
@@ -47,7 +46,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -67,7 +65,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Point createPoint() {
@@ -77,7 +74,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Rectangle createRectangle() {
@@ -87,7 +83,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public RelativePoint createRelativePoint() {
@@ -97,7 +92,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public GeometryPackage getGeometryPackage() {
@@ -106,7 +100,6 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @deprecated
    * @generated
    */

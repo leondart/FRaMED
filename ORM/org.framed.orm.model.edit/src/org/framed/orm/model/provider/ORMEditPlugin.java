@@ -14,22 +14,22 @@ import org.eclipse.emf.common.util.ResourceLocator;
  */
 public final class ORMEditPlugin extends EMFPlugin {
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static final ORMEditPlugin INSTANCE = new ORMEditPlugin();
 
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   private static Implementation plugin;
 
   /**
-   * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Create the instance.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public ORMEditPlugin() {
@@ -60,15 +60,15 @@ public final class ORMEditPlugin extends EMFPlugin {
   }
 
   /**
-   * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!--
+   * The actual implementation of the Eclipse <b>Plugin</b>.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public static class Implementation extends EclipsePlugin {
     /**
-     * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Creates an instance.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public Implementation() {

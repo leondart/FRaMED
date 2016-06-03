@@ -1,61 +1,61 @@
 /**
  */
-package org.framed.orm.geometry.tests;
+package org.framed.orm.model.tests;
 
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
-import org.framed.orm.geometry.GeometryFactory;
-import org.framed.orm.geometry.Point;
+import org.framed.orm.model.Feature;
+import org.framed.orm.model.OrmFactory;
 
 /**
- * <!-- begin-user-doc --> A test case for the model object '<em><b>Point</b></em>'. <!--
+ * <!-- begin-user-doc --> A test case for the model object ' <em><b>Feature</b></em>'. <!--
  * end-user-doc -->
  * @generated
  */
-public class PointTest extends TestCase {
+public class FeatureTest extends TestCase {
 
   /**
-   * The fixture for this Point test case.
+   * The fixture for this Feature test case.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  protected Point fixture = null;
+  protected Feature fixture = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static void main(String[] args) {
-    TestRunner.run(PointTest.class);
+    TestRunner.run(FeatureTest.class);
   }
 
   /**
-   * Constructs a new Point test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   * 
+   * Constructs a new Feature test case with the given name.
+   * <!-- begin-user-doc --> <!--
+   * end-user-doc -->
    * @generated
    */
-  public PointTest(String name) {
+  public FeatureTest(String name) {
     super(name);
   }
 
   /**
-   * Sets the fixture for this Point test case.
+   * Sets the fixture for this Feature test case.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  protected void setFixture(Point fixture) {
+  protected void setFixture(Feature fixture) {
     this.fixture = fixture;
   }
 
   /**
-   * Returns the fixture for this Point test case.
+   * Returns the fixture for this Feature test case.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
-  protected Point getFixture() {
+  protected Feature getFixture() {
     return fixture;
   }
 
@@ -66,7 +66,7 @@ public class PointTest extends TestCase {
    */
   @Override
   protected void setUp() throws Exception {
-    setFixture(GeometryFactory.eINSTANCE.createPoint());
+    setFixture(OrmFactory.eINSTANCE.createFeature());
   }
 
   /**
@@ -79,4 +79,4 @@ public class PointTest extends TestCase {
     setFixture(null);
   }
 
-} // PointTest
+} // FeatureTest

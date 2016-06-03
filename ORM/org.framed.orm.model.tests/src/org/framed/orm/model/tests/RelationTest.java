@@ -9,14 +9,12 @@ import org.framed.orm.model.Relation;
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Relation</b></em>'. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class RelationTest extends ModelElementTest {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static void main(String[] args) {
@@ -24,9 +22,9 @@ public class RelationTest extends ModelElementTest {
   }
 
   /**
-   * Constructs a new Relation test case with the given name. <!-- begin-user-doc --> <!--
+   * Constructs a new Relation test case with the given name.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public RelationTest(String name) {
@@ -34,8 +32,8 @@ public class RelationTest extends ModelElementTest {
   }
 
   /**
-   * Returns the fixture for this Relation test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the fixture for this Relation test case.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -45,7 +43,6 @@ public class RelationTest extends ModelElementTest {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#setUp()
    * @generated
    */
@@ -56,7 +53,6 @@ public class RelationTest extends ModelElementTest {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @see junit.framework.TestCase#tearDown()
    * @generated
    */

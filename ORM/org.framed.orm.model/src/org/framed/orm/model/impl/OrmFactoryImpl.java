@@ -15,13 +15,12 @@ import org.framed.orm.model.*;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   /**
-   * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static OrmFactory init() {
@@ -38,8 +37,8 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
-   * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public OrmFactoryImpl() {
@@ -48,7 +47,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -66,6 +64,10 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
         return createShape();
       case OrmPackage.SEGMENT:
         return createSegment();
+      case OrmPackage.FEATURE:
+        return createFeature();
+      case OrmPackage.CONFIGURATION:
+        return createConfiguration();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName()
             + "' is not a valid classifier");
@@ -74,7 +76,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -90,7 +91,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -106,7 +106,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NamedElement createNamedElement() {
@@ -116,7 +115,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ModelElement createModelElement() {
@@ -126,7 +124,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Model createModel() {
@@ -136,7 +133,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Relation createRelation() {
@@ -146,7 +142,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Shape createShape() {
@@ -156,7 +151,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Segment createSegment() {
@@ -165,8 +159,27 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Feature createFeature() {
+    FeatureImpl feature = new FeatureImpl();
+    return feature;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Configuration createConfiguration() {
+    ConfigurationImpl configuration = new ConfigurationImpl();
+    return configuration;
+  }
+
+  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Type createTypeFromString(EDataType eDataType, String initialValue) {
@@ -179,7 +192,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertTypeToString(EDataType eDataType, Object instanceValue) {
@@ -188,7 +200,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrmPackage getOrmPackage() {
@@ -197,7 +208,6 @@ public class OrmFactoryImpl extends EFactoryImpl implements OrmFactory {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @deprecated
    * @generated
    */

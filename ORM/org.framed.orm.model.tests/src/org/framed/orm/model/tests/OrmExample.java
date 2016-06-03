@@ -26,7 +26,6 @@ public class OrmExample {
   /**
    * <!-- begin-user-doc --> Load all the argument file paths or URIs as instances of the model.
    * <!-- end-user-doc -->
-   * 
    * @param args the file paths or URIs.
    * @generated
    */
@@ -92,7 +91,6 @@ public class OrmExample {
 
   /**
    * <!-- begin-user-doc --> Prints diagnostics with indentation. <!-- end-user-doc -->
-   * 
    * @param diagnostic the diagnostic to print.
    * @param indent the indentation for printing.
    * @generated

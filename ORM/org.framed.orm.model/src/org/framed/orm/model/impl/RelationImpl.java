@@ -19,26 +19,23 @@ import org.framed.orm.model.Shape;
  * end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getBendpoints <em>Bendpoints</em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getSourceLabel <em>Source Label</em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getTargetLabel <em>Target Label</em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getReferencedRelation <em>Referenced Relation
- * </em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getReferencedRoles <em>Referenced Roles</em>}</li>
- * <li>{@link org.framed.orm.model.impl.RelationImpl#getConnectionAnchor <em>Connection Anchor</em>}
- * </li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getBendpoints <em>Bendpoints</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getSourceLabel <em>Source Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getTargetLabel <em>Target Label</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getReferencedRelation <em>Referenced Relation</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getReferencedRoles <em>Referenced Roles</em>}</li>
+ *   <li>{@link org.framed.orm.model.impl.RelationImpl#getConnectionAnchor <em>Connection Anchor</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class RelationImpl extends ModelElementImpl implements Relation {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected RelationImpl() {
@@ -47,7 +44,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -57,7 +53,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ModelElement getTarget() {
@@ -66,7 +61,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTarget(ModelElement newTarget) {
@@ -75,7 +69,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ModelElement getSource() {
@@ -84,7 +77,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setSource(ModelElement newSource) {
@@ -93,7 +85,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -103,7 +94,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NamedElement getSourceLabel() {
@@ -112,7 +102,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setSourceLabel(NamedElement newSourceLabel) {
@@ -121,7 +110,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NamedElement getTargetLabel() {
@@ -130,7 +118,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTargetLabel(NamedElement newTargetLabel) {
@@ -139,7 +126,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -149,7 +135,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -159,7 +144,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Shape getConnectionAnchor() {
@@ -168,7 +152,6 @@ public class RelationImpl extends ModelElementImpl implements Relation {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setConnectionAnchor(Shape newConnectionAnchor) {

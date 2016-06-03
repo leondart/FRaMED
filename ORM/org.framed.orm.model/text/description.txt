@@ -19,6 +19,7 @@ Package orm <http://orm/1.0>
   Class Model
     Reference elements : ModelElement<<0..*>>
     Reference parent : Shape
+    Reference configuration : Configuration<<1..1>>
 
   Class Relation -> ModelElement
     Reference target : ModelElement
@@ -28,6 +29,7 @@ Package orm <http://orm/1.0>
     Reference targetLabel : NamedElement
     Reference referencedRelation : Relation<<0..*>>
     Reference referencedRoles : Shape<<0..*>>
+    Reference connectionAnchor : Shape
 
   Class Shape -> ModelElement
     Reference firstSegment : Segment
@@ -38,6 +40,12 @@ Package orm <http://orm/1.0>
 
   Class Segment
     Reference elements : NamedElement<<0..*>>
+
+  Class Feature
+    Attribute name : EString
+
+  Class Configuration
+    Reference features : Feature<<0..*>>
 
   Enum Type
     Literal CompartmentType = 0

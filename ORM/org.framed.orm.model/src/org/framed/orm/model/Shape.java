@@ -10,14 +10,14 @@ import org.framed.orm.geometry.Rectangle;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.framed.orm.model.Shape#getFirstSegment <em>First Segment</em>}</li>
- * <li>{@link org.framed.orm.model.Shape#getSecondSegment <em>Second Segment</em>}</li>
- * <li>{@link org.framed.orm.model.Shape#getModel <em>Model</em>}</li>
- * <li>{@link org.framed.orm.model.Shape#getDescription <em>Description</em>}</li>
- * <li>{@link org.framed.orm.model.Shape#getBoundaries <em>Boundaries</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.model.Shape#getFirstSegment <em>First Segment</em>}</li>
+ *   <li>{@link org.framed.orm.model.Shape#getSecondSegment <em>Second Segment</em>}</li>
+ *   <li>{@link org.framed.orm.model.Shape#getModel <em>Model</em>}</li>
+ *   <li>{@link org.framed.orm.model.Shape#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.framed.orm.model.Shape#getBoundaries <em>Boundaries</em>}</li>
+ * </ul>
  *
  * @see org.framed.orm.model.OrmPackage#getShape()
  * @model
@@ -42,9 +42,8 @@ public interface Shape extends ModelElement {
   Segment getFirstSegment();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Shape#getFirstSegment
-   * <em>First Segment</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.Shape#getFirstSegment <em>First Segment</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>First Segment</em>' containment reference.
    * @see #getFirstSegment()
    * @generated
@@ -69,9 +68,8 @@ public interface Shape extends ModelElement {
   Segment getSecondSegment();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Shape#getSecondSegment
-   * <em>Second Segment</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.Shape#getSecondSegment <em>Second Segment</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Second Segment</em>' containment reference.
    * @see #getSecondSegment()
    * @generated
@@ -98,9 +96,8 @@ public interface Shape extends ModelElement {
   Model getModel();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Shape#getModel <em>Model</em>}' containment
-   * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.Shape#getModel <em>Model</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Model</em>' containment reference.
    * @see #getModel()
    * @generated
@@ -125,9 +122,8 @@ public interface Shape extends ModelElement {
   NamedElement getDescription();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Shape#getDescription <em>Description</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.Shape#getDescription <em>Description</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Description</em>' containment reference.
    * @see #getDescription()
    * @generated
@@ -152,9 +148,8 @@ public interface Shape extends ModelElement {
   Rectangle getBoundaries();
 
   /**
-   * Sets the value of the '{@link org.framed.orm.model.Shape#getBoundaries <em>Boundaries</em>}'
-   * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Sets the value of the '{@link org.framed.orm.model.Shape#getBoundaries <em>Boundaries</em>}' containment reference.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @param value the new value of the '<em>Boundaries</em>' containment reference.
    * @see #getBoundaries()
    * @generated

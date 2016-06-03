@@ -11,16 +11,15 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Type</b></em>
  * ', and utility methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.framed.orm.model.OrmPackage#getType()
  * @model
  * @generated
  */
 public enum Type implements Enumerator {
   /**
-   * The '<em><b>Compartment Type</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Compartment Type</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #COMPARTMENT_TYPE_VALUE
    * @generated
    * @ordered
@@ -38,8 +37,8 @@ public enum Type implements Enumerator {
   NATURAL_TYPE(1, "NaturalType", "NaturalType"),
 
   /**
-   * The '<em><b>Role Type</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Role Type</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #ROLE_TYPE_VALUE
    * @generated
    * @ordered
@@ -47,8 +46,8 @@ public enum Type implements Enumerator {
   ROLE_TYPE(2, "RoleType", "RoleType"),
 
   /**
-   * The '<em><b>Data Type</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Data Type</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #DATA_TYPE_VALUE
    * @generated
    * @ordered
@@ -56,9 +55,9 @@ public enum Type implements Enumerator {
   DATA_TYPE(3, "DataType", "DataType"),
 
   /**
-   * The '<em><b>Role Implication</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Role Implication</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #ROLE_IMPLICATION_VALUE
    * @generated
    * @ordered
@@ -66,9 +65,9 @@ public enum Type implements Enumerator {
   ROLE_IMPLICATION(4, "RoleImplication", "RoleImplication"),
 
   /**
-   * The '<em><b>Role Equivalence</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Role Equivalence</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #ROLE_EQUIVALENCE_VALUE
    * @generated
    * @ordered
@@ -76,8 +75,8 @@ public enum Type implements Enumerator {
   ROLE_EQUIVALENCE(5, "RoleEquivalence", "RoleEquivalence"),
 
   /**
-   * The '<em><b>Inheritance</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Inheritance</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #INHERITANCE_VALUE
    * @generated
    * @ordered
@@ -95,8 +94,8 @@ public enum Type implements Enumerator {
   RELATIONSHIP(7, "Relationship", "Relationship"),
 
   /**
-   * The '<em><b>Total</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Total</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #TOTAL_VALUE
    * @generated
    * @ordered
@@ -104,8 +103,8 @@ public enum Type implements Enumerator {
   TOTAL(8, "Total", "Total"),
 
   /**
-   * The '<em><b>Cyclic</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Cyclic</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #CYCLIC_VALUE
    * @generated
    * @ordered
@@ -113,8 +112,8 @@ public enum Type implements Enumerator {
   CYCLIC(9, "Cyclic", "Cyclic"),
 
   /**
-   * The '<em><b>Irreflexive</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Irreflexive</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #IRREFLEXIVE_VALUE
    * @generated
    * @ordered
@@ -122,9 +121,9 @@ public enum Type implements Enumerator {
   IRREFLEXIVE(10, "Irreflexive", "Irreflexive"),
 
   /**
-   * The '<em><b>Role Prohibition</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Role Prohibition</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #ROLE_PROHIBITION_VALUE
    * @generated
    * @ordered
@@ -132,8 +131,8 @@ public enum Type implements Enumerator {
   ROLE_PROHIBITION(11, "RoleProhibition", "RoleProhibition"),
 
   /**
-   * The '<em><b>Role Group</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Role Group</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #ROLE_GROUP_VALUE
    * @generated
    * @ordered
@@ -141,8 +140,8 @@ public enum Type implements Enumerator {
   ROLE_GROUP(12, "RoleGroup", "RoleGroup"),
 
   /**
-   * The '<em><b>Group</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Group</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #GROUP_VALUE
    * @generated
    * @ordered
@@ -150,8 +149,8 @@ public enum Type implements Enumerator {
   GROUP(13, "Group", "Group"),
 
   /**
-   * The '<em><b>Fulfillment</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Fulfillment</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #FULFILLMENT_VALUE
    * @generated
    * @ordered
@@ -159,9 +158,9 @@ public enum Type implements Enumerator {
   FULFILLMENT(14, "Fulfillment", "Fulfillment"),
 
   /**
-   * The '<em><b>Relationship Implication</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Relationship Implication</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #RELATIONSHIP_IMPLICATION_VALUE
    * @generated
    * @ordered
@@ -169,9 +168,9 @@ public enum Type implements Enumerator {
   RELATIONSHIP_IMPLICATION(15, "RelationshipImplication", "RelationshipImplication"),
 
   /**
-   * The '<em><b>Relationship Shape Child</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Relationship Shape Child</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #RELATIONSHIP_SHAPE_CHILD_VALUE
    * @generated
    * @ordered
@@ -193,8 +192,8 @@ public enum Type implements Enumerator {
    */
 
   /**
-   * The '<em><b>Acyclic</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Acyclic</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #ACYCLIC_VALUE
    * @generated
    * @ordered
@@ -202,8 +201,8 @@ public enum Type implements Enumerator {
   ACYCLIC(17, "Acyclic", "Acyclic"),
 
   /**
-   * The '<em><b>Reflexive</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The '<em><b>Reflexive</b></em>' literal object.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see #REFLEXIVE_VALUE
    * @generated
    * @ordered
@@ -211,9 +210,9 @@ public enum Type implements Enumerator {
   REFLEXIVE(18, "Reflexive", "Reflexive"),
 
   /**
-   * The '<em><b>Relationship Exclusion</b></em>' literal object. <!-- begin-user-doc --> <!--
+   * The '<em><b>Relationship Exclusion</b></em>' literal object.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @see #RELATIONSHIP_EXCLUSION_VALUE
    * @generated
    * @ordered
@@ -222,13 +221,13 @@ public enum Type implements Enumerator {
 
   public static final int COMPARTMENT_TYPE_VALUE = 0;
   /**
-   * The '<em><b>Natural Type</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Natural Type</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Natural Type</b></em>' literal object isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #NATURAL_TYPE
    * @model name="NaturalType"
    * @generated
@@ -237,13 +236,13 @@ public enum Type implements Enumerator {
   public static final int NATURAL_TYPE_VALUE = 1;
 
   /**
-   * The '<em><b>Role Type</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Role Type</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Role Type</b></em>' literal object isn't clear, there really should
    * be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #ROLE_TYPE
    * @model name="RoleType"
    * @generated
@@ -252,13 +251,13 @@ public enum Type implements Enumerator {
   public static final int ROLE_TYPE_VALUE = 2;
 
   /**
-   * The '<em><b>Data Type</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Data Type</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Data Type</b></em>' literal object isn't clear, there really should
    * be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #DATA_TYPE
    * @model name="DataType"
    * @generated
@@ -267,13 +266,13 @@ public enum Type implements Enumerator {
   public static final int DATA_TYPE_VALUE = 3;
 
   /**
-   * The '<em><b>Role Implication</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Role Implication</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Role Implication</b></em>' literal object isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #ROLE_IMPLICATION
    * @model name="RoleImplication"
    * @generated
@@ -282,13 +281,13 @@ public enum Type implements Enumerator {
   public static final int ROLE_IMPLICATION_VALUE = 4;
 
   /**
-   * The '<em><b>Role Equivalence</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Role Equivalence</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Role Equivalence</b></em>' literal object isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #ROLE_EQUIVALENCE
    * @model name="RoleEquivalence"
    * @generated
@@ -297,13 +296,13 @@ public enum Type implements Enumerator {
   public static final int ROLE_EQUIVALENCE_VALUE = 5;
 
   /**
-   * The '<em><b>Inheritance</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Inheritance</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Inheritance</b></em>' literal object isn't clear, there really should
    * be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #INHERITANCE
    * @model name="Inheritance"
    * @generated
@@ -312,13 +311,13 @@ public enum Type implements Enumerator {
   public static final int INHERITANCE_VALUE = 6;
 
   /**
-   * The '<em><b>Relationship</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Relationship</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Relationship</b></em>' literal object isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #RELATIONSHIP
    * @model name="Relationship"
    * @generated
@@ -327,13 +326,13 @@ public enum Type implements Enumerator {
   public static final int RELATIONSHIP_VALUE = 7;
 
   /**
-   * The '<em><b>Total</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Total</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Total</b></em>' literal object isn't clear, there really should be
    * more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #TOTAL
    * @model name="Total"
    * @generated
@@ -342,13 +341,13 @@ public enum Type implements Enumerator {
   public static final int TOTAL_VALUE = 8;
 
   /**
-   * The '<em><b>Cyclic</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Cyclic</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Cyclic</b></em>' literal object isn't clear, there really should be
    * more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #CYCLIC
    * @model name="Cyclic"
    * @generated
@@ -357,13 +356,13 @@ public enum Type implements Enumerator {
   public static final int CYCLIC_VALUE = 9;
 
   /**
-   * The '<em><b>Irreflexive</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Irreflexive</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Irreflexive</b></em>' literal object isn't clear, there really should
    * be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #IRREFLEXIVE
    * @model name="Irreflexive"
    * @generated
@@ -372,13 +371,13 @@ public enum Type implements Enumerator {
   public static final int IRREFLEXIVE_VALUE = 10;
 
   /**
-   * The '<em><b>Role Prohibition</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Role Prohibition</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Role Prohibition</b></em>' literal object isn't clear, there really
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #ROLE_PROHIBITION
    * @model name="RoleProhibition"
    * @generated
@@ -387,13 +386,13 @@ public enum Type implements Enumerator {
   public static final int ROLE_PROHIBITION_VALUE = 11;
 
   /**
-   * The '<em><b>Role Group</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Role Group</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Role Group</b></em>' literal object isn't clear, there really should
    * be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #ROLE_GROUP
    * @model name="RoleGroup"
    * @generated
@@ -402,13 +401,13 @@ public enum Type implements Enumerator {
   public static final int ROLE_GROUP_VALUE = 12;
 
   /**
-   * The '<em><b>Group</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Group</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Group</b></em>' literal object isn't clear, there really should be
    * more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #GROUP
    * @model name="Group"
    * @generated
@@ -417,13 +416,13 @@ public enum Type implements Enumerator {
   public static final int GROUP_VALUE = 13;
 
   /**
-   * The '<em><b>Fulfillment</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Fulfillment</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Fulfillment</b></em>' literal object isn't clear, there really should
    * be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #FULFILLMENT
    * @model name="Fulfillment"
    * @generated
@@ -432,13 +431,13 @@ public enum Type implements Enumerator {
   public static final int FULFILLMENT_VALUE = 14;
 
   /**
-   * The '<em><b>Relationship Implication</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Relationship Implication</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Relationship Implication</b></em>' literal object isn't clear, there
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #RELATIONSHIP_IMPLICATION
    * @model name="RelationshipImplication"
    * @generated
@@ -447,13 +446,13 @@ public enum Type implements Enumerator {
   public static final int RELATIONSHIP_IMPLICATION_VALUE = 15;
 
   /**
-   * The '<em><b>Relationship Shape Child</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Relationship Shape Child</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Relationship Shape Child</b></em>' literal object isn't clear, there
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #RELATIONSHIP_SHAPE_CHILD
    * @model name="RelationshipShapeChild"
    * @generated
@@ -462,13 +461,13 @@ public enum Type implements Enumerator {
   public static final int RELATIONSHIP_SHAPE_CHILD_VALUE = 16;
 
   /**
-   * The '<em><b>Acyclic</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Acyclic</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Acyclic</b></em>' literal object isn't clear, there really should be
    * more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #ACYCLIC
    * @model name="Acyclic"
    * @generated
@@ -477,13 +476,13 @@ public enum Type implements Enumerator {
   public static final int ACYCLIC_VALUE = 17;
 
   /**
-   * The '<em><b>Reflexive</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Reflexive</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Acyclic</b></em>' literal object isn't clear, there really should be
    * more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #REFLEXIVE
    * @model name="Reflexive"
    * @generated
@@ -492,13 +491,13 @@ public enum Type implements Enumerator {
   public static final int REFLEXIVE_VALUE = 18;
 
   /**
-   * The '<em><b>Relationship Exclusion</b></em>' literal value. <!-- begin-user-doc -->
+   * The '<em><b>Relationship Exclusion</b></em>' literal value.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>Relationship Exclusion</b></em>' literal object isn't clear, there
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #RELATIONSHIP_EXCLUSION
    * @model name="RelationshipExclusion"
    * @generated
@@ -507,9 +506,9 @@ public enum Type implements Enumerator {
   public static final int RELATIONSHIP_EXCLUSION_VALUE = 19;
 
   /**
-   * An array of all the '<em><b>Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
+   * An array of all the '<em><b>Type</b></em>' enumerators.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
 
@@ -519,9 +518,9 @@ public enum Type implements Enumerator {
       RELATIONSHIP_SHAPE_CHILD, ACYCLIC, REFLEXIVE, RELATIONSHIP_EXCLUSION,};
 
   /**
-   * A public read-only list of all the '<em><b>Type</b></em>' enumerators. <!-- begin-user-doc -->
+   * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final List<Type> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -543,9 +542,11 @@ public enum Type implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Type</b></em>' literal with the specified name. <!-- begin-user-doc -->
+   * Returns the '<em><b>Type</b></em>' literal with the specified name.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
+   * @param name the name.
+   * @return the matching enumerator or <code>null</code>.
    * @generated
    */
   public static Type getByName(String name) {
@@ -612,28 +613,25 @@ public enum Type implements Enumerator {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final int value;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final String name;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final String literal;
 
   /**
-   * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Only this class can construct instances.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   private Type(int value, String name, String literal) {
@@ -644,7 +642,6 @@ public enum Type implements Enumerator {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public int getValue() {
@@ -653,7 +650,6 @@ public enum Type implements Enumerator {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getName() {
@@ -662,7 +658,6 @@ public enum Type implements Enumerator {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getLiteral() {

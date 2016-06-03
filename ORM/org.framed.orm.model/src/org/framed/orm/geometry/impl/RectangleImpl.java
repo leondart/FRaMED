@@ -15,18 +15,17 @@ import org.framed.orm.geometry.Rectangle;
  * end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.framed.orm.geometry.impl.RectangleImpl#getTopLeft <em>Top Left</em>}</li>
- * <li>{@link org.framed.orm.geometry.impl.RectangleImpl#getBottomRight <em>Bottom Right</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.framed.orm.geometry.impl.RectangleImpl#getTopLeft <em>Top Left</em>}</li>
+ *   <li>{@link org.framed.orm.geometry.impl.RectangleImpl#getBottomRight <em>Bottom Right</em>}</li>
+ * </ul>
  *
  * @generated
  */
 public class RectangleImpl extends MinimalEObjectImpl.Container implements Rectangle {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected RectangleImpl() {
@@ -35,7 +34,6 @@ public class RectangleImpl extends MinimalEObjectImpl.Container implements Recta
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -45,7 +43,6 @@ public class RectangleImpl extends MinimalEObjectImpl.Container implements Recta
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -55,7 +52,6 @@ public class RectangleImpl extends MinimalEObjectImpl.Container implements Recta
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Point getTopLeft() {
@@ -64,7 +60,6 @@ public class RectangleImpl extends MinimalEObjectImpl.Container implements Recta
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTopLeft(Point newTopLeft) {
@@ -73,7 +68,6 @@ public class RectangleImpl extends MinimalEObjectImpl.Container implements Recta
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Point getBottomRight() {
@@ -82,7 +76,6 @@ public class RectangleImpl extends MinimalEObjectImpl.Container implements Recta
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setBottomRight(Point newBottomRight) {

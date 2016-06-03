@@ -37,5 +37,7 @@ public interface RelationValidator {
 
   boolean validateReferencedRoles(EList<Shape> value);
 
+  boolean validateConnectionAnchor(Shape value);
+
   boolean validateReferencedRelation(Relation value);
 }

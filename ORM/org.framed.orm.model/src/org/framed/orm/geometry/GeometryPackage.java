@@ -18,44 +18,42 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.framed.orm.geometry.GeometryFactory
  * @model kind="package"
  * @generated
  */
 public interface GeometryPackage extends EPackage {
   /**
-   * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The package name.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   String eNAME = "geometry";
 
   /**
-   * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The package namespace URI.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   String eNS_URI = "http://orm.geometry/1.0";
 
   /**
-   * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The package namespace name.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   String eNS_PREFIX = "org.framed.orm.model.geometry";
 
   /**
-   * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The singleton instance of the package.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   GeometryPackage eINSTANCE = org.framed.orm.geometry.impl.GeometryPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.framed.orm.geometry.impl.PointImpl <em>Point</em>}'
-   * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The meta object id for the '{@link org.framed.orm.geometry.impl.PointImpl <em>Point</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see org.framed.orm.geometry.impl.PointImpl
    * @see org.framed.orm.geometry.impl.GeometryPackageImpl#getPoint()
    * @generated
@@ -81,27 +79,26 @@ public interface GeometryPackage extends EPackage {
   int POINT__Y = 1;
 
   /**
-   * The number of structural features of the '<em>Point</em>' class. <!-- begin-user-doc --> <!--
+   * The number of structural features of the '<em>Point</em>' class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int POINT_FEATURE_COUNT = 2;
 
   /**
-   * The number of operations of the '<em>Point</em>' class. <!-- begin-user-doc --> <!--
+   * The number of operations of the '<em>Point</em>' class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int POINT_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.framed.orm.geometry.impl.RectangleImpl
-   * <em>Rectangle</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The meta object id for the '{@link org.framed.orm.geometry.impl.RectangleImpl <em>Rectangle</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see org.framed.orm.geometry.impl.RectangleImpl
    * @see org.framed.orm.geometry.impl.GeometryPackageImpl#getRectangle()
    * @generated
@@ -109,9 +106,9 @@ public interface GeometryPackage extends EPackage {
   int RECTANGLE = 1;
 
   /**
-   * The feature id for the '<em><b>Top Left</b></em>' containment reference. <!-- begin-user-doc
+   * The feature id for the '<em><b>Top Left</b></em>' containment reference.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -127,27 +124,26 @@ public interface GeometryPackage extends EPackage {
   int RECTANGLE__BOTTOM_RIGHT = 1;
 
   /**
-   * The number of structural features of the '<em>Rectangle</em>' class. <!-- begin-user-doc -->
+   * The number of structural features of the '<em>Rectangle</em>' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int RECTANGLE_FEATURE_COUNT = 2;
 
   /**
-   * The number of operations of the '<em>Rectangle</em>' class. <!-- begin-user-doc --> <!--
+   * The number of operations of the '<em>Rectangle</em>' class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int RECTANGLE_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.framed.orm.geometry.impl.RelativePointImpl
-   * <em>Relative Point</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The meta object id for the '{@link org.framed.orm.geometry.impl.RelativePointImpl <em>Relative Point</em>}' class.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @see org.framed.orm.geometry.impl.RelativePointImpl
    * @see org.framed.orm.geometry.impl.GeometryPackageImpl#getRelativePoint()
    * @generated
@@ -173,18 +169,18 @@ public interface GeometryPackage extends EPackage {
   int RELATIVE_POINT__DISTANCES = 1;
 
   /**
-   * The number of structural features of the '<em>Relative Point</em>' class. <!-- begin-user-doc
+   * The number of structural features of the '<em>Relative Point</em>' class.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int RELATIVE_POINT_FEATURE_COUNT = 2;
 
   /**
-   * The number of operations of the '<em>Relative Point</em>' class. <!-- begin-user-doc --> <!--
+   * The number of operations of the '<em>Relative Point</em>' class.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -201,9 +197,8 @@ public interface GeometryPackage extends EPackage {
   EClass getPoint();
 
   /**
-   * Returns the meta object for the attribute '{@link org.framed.orm.geometry.Point#getX
-   * <em>X</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the meta object for the attribute '{@link org.framed.orm.geometry.Point#getX <em>X</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>X</em>'.
    * @see org.framed.orm.geometry.Point#getX()
    * @see #getPoint()
@@ -212,9 +207,8 @@ public interface GeometryPackage extends EPackage {
   EAttribute getPoint_X();
 
   /**
-   * Returns the meta object for the attribute '{@link org.framed.orm.geometry.Point#getY
-   * <em>Y</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the meta object for the attribute '{@link org.framed.orm.geometry.Point#getY <em>Y</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Y</em>'.
    * @see org.framed.orm.geometry.Point#getY()
    * @see #getPoint()
@@ -223,9 +217,8 @@ public interface GeometryPackage extends EPackage {
   EAttribute getPoint_Y();
 
   /**
-   * Returns the meta object for class '{@link org.framed.orm.geometry.Rectangle <em>Rectangle</em>}
-   * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the meta object for class '{@link org.framed.orm.geometry.Rectangle <em>Rectangle</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for class '<em>Rectangle</em>'.
    * @see org.framed.orm.geometry.Rectangle
    * @generated
@@ -233,10 +226,9 @@ public interface GeometryPackage extends EPackage {
   EClass getRectangle();
 
   /**
-   * Returns the meta object for the containment reference '
-   * {@link org.framed.orm.geometry.Rectangle#getTopLeft <em>Top Left</em>}'. <!-- begin-user-doc
+   * Returns the meta object for the containment reference '{@link org.framed.orm.geometry.Rectangle#getTopLeft <em>Top Left</em>}'.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference '<em>Top Left</em>'.
    * @see org.framed.orm.geometry.Rectangle#getTopLeft()
    * @see #getRectangle()
@@ -257,9 +249,8 @@ public interface GeometryPackage extends EPackage {
   EReference getRectangle_BottomRight();
 
   /**
-   * Returns the meta object for class '{@link org.framed.orm.geometry.RelativePoint
-   * <em>Relative Point</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Returns the meta object for class '{@link org.framed.orm.geometry.RelativePoint <em>Relative Point</em>}'.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @return the meta object for class '<em>Relative Point</em>'.
    * @see org.framed.orm.geometry.RelativePoint
    * @generated
@@ -267,10 +258,8 @@ public interface GeometryPackage extends EPackage {
   EClass getRelativePoint();
 
   /**
-   * Returns the meta object for the containment reference list '
-   * {@link org.framed.orm.geometry.RelativePoint#getReferencePoints <em>Reference Points</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.framed.orm.geometry.RelativePoint#getReferencePoints <em>Reference Points</em>}'.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Reference Points</em>'.
    * @see org.framed.orm.geometry.RelativePoint#getReferencePoints()
    * @see #getRelativePoint()
@@ -291,9 +280,9 @@ public interface GeometryPackage extends EPackage {
   EReference getRelativePoint_Distances();
 
   /**
-   * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!--
+   * Returns the factory that creates the instances of the model.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -309,14 +298,12 @@ public interface GeometryPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
     /**
-     * The meta object literal for the '{@link org.framed.orm.geometry.impl.PointImpl
-     * <em>Point</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * The meta object literal for the '{@link org.framed.orm.geometry.impl.PointImpl <em>Point</em>}' class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see org.framed.orm.geometry.impl.PointImpl
      * @see org.framed.orm.geometry.impl.GeometryPackageImpl#getPoint()
      * @generated
@@ -324,25 +311,24 @@ public interface GeometryPackage extends EPackage {
     EClass POINT = eINSTANCE.getPoint();
 
     /**
-     * The meta object literal for the '<em><b>X</b></em>' attribute feature. <!-- begin-user-doc
+     * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+     * <!-- begin-user-doc
      * --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     EAttribute POINT__X = eINSTANCE.getPoint_X();
 
     /**
-     * The meta object literal for the '<em><b>Y</b></em>' attribute feature. <!-- begin-user-doc
+     * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+     * <!-- begin-user-doc
      * --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     EAttribute POINT__Y = eINSTANCE.getPoint_Y();
 
     /**
-     * The meta object literal for the '{@link org.framed.orm.geometry.impl.RectangleImpl
-     * <em>Rectangle</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * The meta object literal for the '{@link org.framed.orm.geometry.impl.RectangleImpl <em>Rectangle</em>}' class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see org.framed.orm.geometry.impl.RectangleImpl
      * @see org.framed.orm.geometry.impl.GeometryPackageImpl#getRectangle()
      * @generated
@@ -352,7 +338,6 @@ public interface GeometryPackage extends EPackage {
     /**
      * The meta object literal for the '<em><b>Top Left</b></em>' containment reference feature.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference RECTANGLE__TOP_LEFT = eINSTANCE.getRectangle_TopLeft();
@@ -360,15 +345,13 @@ public interface GeometryPackage extends EPackage {
     /**
      * The meta object literal for the '<em><b>Bottom Right</b></em>' containment reference feature.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference RECTANGLE__BOTTOM_RIGHT = eINSTANCE.getRectangle_BottomRight();
 
     /**
-     * The meta object literal for the '{@link org.framed.orm.geometry.impl.RelativePointImpl
-     * <em>Relative Point</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * The meta object literal for the '{@link org.framed.orm.geometry.impl.RelativePointImpl <em>Relative Point</em>}' class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see org.framed.orm.geometry.impl.RelativePointImpl
      * @see org.framed.orm.geometry.impl.GeometryPackageImpl#getRelativePoint()
      * @generated
@@ -376,17 +359,15 @@ public interface GeometryPackage extends EPackage {
     EClass RELATIVE_POINT = eINSTANCE.getRelativePoint();
 
     /**
-     * The meta object literal for the '<em><b>Reference Points</b></em>' containment reference list
-     * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * The meta object literal for the '<em><b>Reference Points</b></em>' containment reference list feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     EReference RELATIVE_POINT__REFERENCE_POINTS = eINSTANCE.getRelativePoint_ReferencePoints();
 
     /**
-     * The meta object literal for the '<em><b>Distances</b></em>' containment reference list
-     * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * The meta object literal for the '<em><b>Distances</b></em>' containment reference list feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     EReference RELATIVE_POINT__DISTANCES = eINSTANCE.getRelativePoint_Distances();
