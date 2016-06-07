@@ -8,8 +8,24 @@ Bundle-Activator: org.framed.orm.model.provider.ORMEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.framed.orm.geometry.provider,
- org.framed.orm.model.provider
+Export-Package: org.framed.orm.featuremodel.provider;
+  uses:="org.framed.orm.featuremodel.util,
+   org.eclipse.emf.common.util,
+   org.eclipse.emf.edit.provider,
+   org.eclipse.emf.common.notify",
+ org.framed.orm.geometry.provider;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.common.util,
+   org.framed.orm.geometry.util,
+   org.eclipse.emf.edit.provider,
+   org.eclipse.emf.common.notify",
+ org.framed.orm.model.provider;
+  uses:="org.framed.orm.model.util,
+   org.eclipse.emf.ecore,
+   org.eclipse.emf.common.util,
+   org.eclipse.emf.common,
+   org.eclipse.emf.edit.provider,
+   org.eclipse.emf.common.notify"
 Require-Bundle: org.eclipse.core.runtime,
  org.framed.orm.model;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport

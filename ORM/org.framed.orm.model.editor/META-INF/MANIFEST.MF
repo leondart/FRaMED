@@ -8,7 +8,8 @@ Bundle-Activator: org.framed.orm.model.presentation.ORMEditorPlugin$Implementati
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.framed.orm.geometry.presentation,
+Export-Package: org.framed.orm.featuremodel.presentation,
+ org.framed.orm.geometry.presentation,
  org.framed.orm.model.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

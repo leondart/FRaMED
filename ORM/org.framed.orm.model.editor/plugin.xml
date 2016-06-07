@@ -62,4 +62,32 @@
             contributorClass="org.framed.orm.geometry.presentation.GeometryActionBarContributor">
       </editor>
    </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated ORM -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.framed.orm.featuremodel.presentation.FeaturemodelModelWizardID"
+            name="%_UI_FeaturemodelModelWizard_label"
+            class="org.framed.orm.featuremodel.presentation.FeaturemodelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FeaturemodelModelFile.gif">
+         <description>%_UI_FeaturemodelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated ORM -->
+      <editor
+            id="org.framed.orm.featuremodel.presentation.FeaturemodelEditorID"
+            name="%_UI_FeaturemodelEditor_label"
+            icon="icons/full/obj16/FeaturemodelModelFile.gif"
+            extensions="featuremodel"
+            class="org.framed.orm.featuremodel.presentation.FeaturemodelEditor"
+            contributorClass="org.framed.orm.featuremodel.presentation.FeaturemodelActionBarContributor">
+      </editor>
+   </extension>
 </plugin>

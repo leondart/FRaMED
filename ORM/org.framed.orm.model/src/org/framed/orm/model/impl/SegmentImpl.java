@@ -13,51 +13,58 @@ import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Segment;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Segment</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Segment</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.framed.orm.model.impl.SegmentImpl#getElements <em>Elements</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class SegmentImpl extends MinimalEObjectImpl.Container implements Segment {
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  protected SegmentImpl() {
-    super();
-  }
+public class SegmentImpl extends MinimalEObjectImpl.Container implements
+		Segment {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SegmentImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return OrmPackage.Literals.SEGMENT;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return OrmPackage.Literals.SEGMENT;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected int eStaticFeatureCount() {
-    return 0;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  public EList<NamedElement> getElements() {
-    return (EList<NamedElement>) eGet(OrmPackage.Literals.SEGMENT__ELEMENTS, true);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<NamedElement> getElements() {
+		return (EList<NamedElement>) eGet(
+				OrmPackage.Literals.SEGMENT__ELEMENTS, true);
+	}
 
-} // SegmentImpl
+} //SegmentImpl

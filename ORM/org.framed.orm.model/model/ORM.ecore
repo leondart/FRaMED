@@ -18,8 +18,8 @@
         eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/container"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Shape"
         eOpposite="#//Shape/model"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
-        eType="#//Configuration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="config" eType="#//featuremodel/Configuration"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ModelElement"
@@ -76,13 +76,6 @@
     <eLiterals name="Reflexive" value="18"/>
     <eLiterals name="RelationshipExclusion" value="19" literal="RelationshipExclusion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feature">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Configuration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="#//Feature"/>
-  </eClassifiers>
   <eSubpackages name="geometry" nsURI="http://orm.geometry/1.0" nsPrefix="org.framed.orm.model.geometry">
     <eClassifiers xsi:type="ecore:EClass" name="Point">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -99,6 +92,16 @@
           upperBound="2" eType="#//geometry/Point" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="distances" lowerBound="2"
           upperBound="2" eType="#//geometry/Point" containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="featuremodel" nsURI="http://orm.featuremodel/1.0" nsPrefix="org.framed.orm.model.featuremodel">
+    <eClassifiers xsi:type="ecore:EClass" name="Feature">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="" iD="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+          eType="#//featuremodel/Feature" containment="true"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
