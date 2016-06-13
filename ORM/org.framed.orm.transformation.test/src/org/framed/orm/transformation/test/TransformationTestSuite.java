@@ -110,7 +110,7 @@ public class TransformationTestSuite {
 			// if entry is directory load it recursively
 			if (testFile.isDirectory()) {
 				loadDirectory(list, testFile);
-			} else {
+			} else if (testFile.getName().endsWith("xmi")) {
 				// if entry is file try to load test file
 				TestCase testCase = loadTestCase(testFile);
 				if (testCase != null) {
@@ -144,6 +144,7 @@ public class TransformationTestSuite {
 		} catch (Exception e) {
 			System.err.println("Was not able to load testcase \""
 					+ testFile.toString() + "\" due : " + e.toString());
+			for (StackTraceElement el: e.getStackTrace()) System.err.println(el.toString());
 		}
 		return null;
 	}

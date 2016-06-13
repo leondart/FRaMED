@@ -41,6 +41,8 @@
         		</role>
       		</parts>
       		<relationships name="testRelation">
+				<first lower="0" holder="//@cromModel/@elements.0/@parts.0/@role"/>
+      			<second lower="0" holder="//@cromModel/@elements.0/@parts.1/@role"/>
       		</relationships>
       	</elements>
 	</cromModel>
