@@ -4,6 +4,7 @@ rule RelationshipExclusion
 
 	guard : s.getType.getValue == 19 // enum value RelationshipExclusion
 	
-	t.first ::= s.source;
-	t.second ::= s.target;
+	//does not work as RelationshipShapeChild has no ref to the actual Relationship
+	//t.first ::= s.source;
+	//t.second ::= s.target;
 }

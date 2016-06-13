@@ -43,19 +43,27 @@ rule CompartmentType
 							part.upper = cards[1];
 						}				
 					}	
-				}
-				
-				
+				}				
 				// add the new part to the compartment
 				n.getParts().add(part);
+			} else if (e.instanceOf(target!RelationshipImplication) or e.instanceOf(target!RelationshipExclusion)) { // INTER_RELATIONSHIP_CONSTRAINT
+				for (rst : source!Relation in children.elements){
+					if (rst.getType.getValue == 7){ // RELATIONSHIP
+						//Discover source and target Relationships of the inter relationship constraint
+						if (rst.connectionAnchor == elem.source)
+							e.first = rst.equivalent();
+						if (rst.connectionAnchor == elem.target)
+							e.second = rst.equivalent();
+					}						
+				}
+				n.getConstraints().add(e);	//add CONSTRAINTS as well			
 			} else if ( e.instanceOf(target!Constraint)) {		// CONSTRAINT
 				n.getConstraints().add(e);
 			} else if ( e.instanceOf(target!Relationship)) {	// RELATIONSHIP
 				n.getRelationships().add(e);
-			}		
+			}			
 		}
-	}
-	
+	}	
 }
 
 /**

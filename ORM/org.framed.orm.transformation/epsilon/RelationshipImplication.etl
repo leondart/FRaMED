@@ -3,7 +3,9 @@ rule RelationshipImplication
 	to t : target!RelationshipImplication {
 
 	guard : s.getType.getValue == 15 // enum value RelationshipImplication
-	
-	t.first ::= s.source;
-	t.second ::= s.target;
+		
+
+	//does not work as RelationshipShapeChild has no ref to the actual Relationship
+	//t.first = s.source.equivalent();
+	//t.second = s.target.equivalent();
 }
