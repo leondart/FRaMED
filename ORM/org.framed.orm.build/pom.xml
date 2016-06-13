@@ -21,6 +21,7 @@
 		<tycho.version>0.22.0</tycho.version>
 		<luna-repo.url>http://download.eclipse.org/releases/luna</luna-repo.url>
 		<epsilon-repo.url>http://download.eclipse.org/epsilon/updates/</epsilon-repo.url>
+		<featureide-repo.url>http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/deploy</featureide-repo.url>
 	</properties>
 
 	<repositories>
@@ -32,6 +33,11 @@
 		<repository>
 			<id>epsilon</id>
 			<url>${epsilon-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>featureide</id>
+			<url>${featureide-repo.url}</url>
 			<layout>p2</layout>
 		</repository>
 	</repositories>
@@ -88,6 +94,11 @@
 			<groupId>org.rosi.crom.metamodel</groupId>
 			<artifactId>org.rosi.crom.metamodel</artifactId>
 			<version>0.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>de.ovgu.featureide.fm.core</groupId>
+			<artifactId>de.ovgu.featureide.fm.core</artifactId>
+			<version>2.7.4.201506171554</version>
 		</dependency>
 	</dependencies>
 </project> 

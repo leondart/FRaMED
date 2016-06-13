@@ -1,13 +1,20 @@
 package org.framed.orm.ui.editor;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.EventObject;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,6 +39,14 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Type;
+import org.osgi.framework.Bundle;
+
+import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.configuration.Configuration;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
+import de.ovgu.featureide.fm.core.job.WorkMonitor;
+import de.ovgu.featureide.fm.ui.editors.configuration.ConfigJobManager;
 
 
 /**
@@ -45,14 +60,35 @@ import org.framed.orm.model.Type;
 public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectionListener,
     CommandStackListener, IResourceChangeListener {
 
+  
+  public FeatureModel featureModel = new FeatureModel();
+  
+  /**
+   * The file of the corresponding feature model.
+   */
+  File featureModelFile = null;
+  
+  private boolean autoSelectFeatures = true;
+  
+  private final ConfigJobManager configJobManager = new ConfigJobManager();
+
   /**
    * The behaviour {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
   private ORMGraphicalEditor behaviourEditor;
+  
+  public Configuration configuration;
   /**
    * The data {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
   private ORMGraphicalEditor dataEditor;
+  
+  private TestEditor testEditor;
+  
+  private TestEditor2 testEditor2;
+  
+  private TestEditor3 testEditor3;
+  
   /**
    * The {@link EditorChangeNotifier} of this editor.
    * */
@@ -153,12 +189,60 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
           e.getStatus());
     }
   }
+  
+  private void createTestEditorPage() {
+    try {
+      testEditor = new TestEditor();
+      testEditor.setMultiPageEditor(this);
+      int index = addPage(testEditor, getEditorInput());
+      setPageText(index, "TEST");
+    } catch (PartInitException e) {
+      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
+          e.getStatus());
+    }
+  }
+  
+  private void createTestEditorPage2() throws FileNotFoundException, UnsupportedModelException {
+    try {
+      testEditor2 = new TestEditor2();
+      setConfiguration();
+      testEditor2.setOrmMultiPageEditor(this);
+      int index = addPage(testEditor2, getEditorInput());
+      setPageText(index, "TEST2");
+    } catch (PartInitException e) {
+      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
+          e.getStatus());
+    }
+  }
+  
+  private void createTestEditorPage3() throws FileNotFoundException, UnsupportedModelException {
+    try {
+      testEditor3 = new TestEditor3();
+      setConfiguration();
+      testEditor3.setOrmMultiPageEditor(this);
+      int index = addPage(testEditor3, getEditorInput());
+      setPageText(index, "TEST_3");
+    } catch (PartInitException e) {
+      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
+          e.getStatus());
+    }
+  }
 
   /** {@inheritDoc} In this method the title image of this editor is set as well. */
   @Override
   protected void createPages() {
     createBehaviorEditorPage();
     createDataEditorPage();
+    //createTestEditorPage();
+    try {
+      createTestEditorPage3();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (UnsupportedModelException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
     // set TitleImage of this ORMMultiPageEditor with background color of the viewer of the
     // behaivorEditor
@@ -203,6 +287,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
         e.printStackTrace();
         resource = null;
       }
+    }
+    try {
+      readFeatureModel();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (UnsupportedModelException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 
@@ -270,6 +363,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   protected void pageChange(final int newPageIndex) {
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
+    System.out.println(activeEditor.getClass().getName());
+    if (activeEditor.getClass().getName().endsWith("TestEditor3"))
+      testEditor3.updateTree();
 
     IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
     if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
@@ -351,4 +447,54 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     getBehaviorEditor().getOwnViewer().setContents(obj);
     getDataEditor().getOwnViewer().setContents(obj);
   }
+  
+  private void setConfiguration() throws FileNotFoundException, UnsupportedModelException {
+    configuration = new Configuration(featureModel);
+    configuration.getPropagator().update(false, null, new WorkMonitor());
+    if (!isDirty()) {
+        doSave(null);
+    }
+}
+  
+  private void readFeatureModel() throws FileNotFoundException, UnsupportedModelException {
+//    IResource res = project.findMember("platform:/plugin/org.framed.orm.featuremodel/model.xml");
+    final FeatureModel featureModel = new FeatureModel();
+   // FileLocator.toFileURL(url)
+    
+               Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
+               URL fileURL = bundle.getEntry("model.xml");
+               try {
+                   featureModelFile = new File(FileLocator.resolve(fileURL).toURI());
+               } catch (URISyntaxException e1) {
+                  e1.printStackTrace();
+               } catch (IOException e1) {
+                   e1.printStackTrace();
+               };
+               
+    new XmlFeatureModelReader(featureModel).readFromFile(featureModelFile);
+    this.featureModel = featureModel;
+//    XmlFeatureModelReader featureModelReader = new XmlFeatureModelReader(featureModel);
+//    featureModelReader.readFromFile(file);
+//    featureModel = featureModelReader.getFeatureModel();
+    System.out.println("test");
+  }
+  public Configuration getConfiguration() {
+    return configuration;
+}
+  
+  public File getFeatureModelFile() {
+    return featureModelFile;
+  }
+
+  public void setFeatureModelFile(File featureModelFile) {
+    this.featureModelFile = featureModelFile;
+  }
+  
+  public ConfigJobManager getConfigJobManager() {
+    return configJobManager;
+}
+  
+  public boolean isAutoSelectFeatures() {
+    return autoSelectFeatures;
+}
 }
