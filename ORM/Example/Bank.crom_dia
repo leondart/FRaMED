@@ -9,8 +9,8 @@
     </firstSegment>
     <secondSegment/>
     <boundaries>
-      <topLeft x="81" y="166"/>
-      <bottomRight x="287" y="287"/>
+      <topLeft x="24" y="36"/>
+      <bottomRight x="231" y="158"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Company" outgoingRelations="//@elements.12" type="NaturalType">
@@ -22,24 +22,24 @@
     </firstSegment>
     <secondSegment/>
     <boundaries>
-      <topLeft x="83" y="422"/>
-      <bottomRight x="289" y="534"/>
+      <topLeft x="24" y="216"/>
+      <bottomRight x="231" y="329"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="String" type="DataType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="193" y="579"/>
-      <bottomRight x="396" y="628"/>
+      <topLeft x="27" y="360"/>
+      <bottomRight x="231" y="410"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Integer" type="DataType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="440" y="579"/>
-      <bottomRight x="645" y="631"/>
+      <topLeft x="252" y="360"/>
+      <bottomRight x="459" y="414"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Account" outgoingRelations="//@elements.13 //@elements.14" type="NaturalType">
@@ -54,24 +54,24 @@
       <elements name="decrease(amount:Money)"/>
     </secondSegment>
     <boundaries>
-      <topLeft x="982" y="407"/>
-      <bottomRight x="1195" y="552"/>
+      <topLeft x="816" y="336"/>
+      <bottomRight x="1032" y="493"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Boolean" type="DataType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="697" y="579"/>
-      <bottomRight x="901" y="630"/>
+      <topLeft x="480" y="360"/>
+      <bottomRight x="686" y="413"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Money" type="DataType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="984" y="576"/>
-      <bottomRight x="1188" y="633"/>
+      <topLeft x="480" y="432"/>
+      <bottomRight x="687" y="492"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Transaction" incomingRelations="//@elements.13" outgoingRelations="//@elements.15">
@@ -84,7 +84,7 @@
       <elements name="bind(source:Account, target:Account) : Boolean"/>
     </secondSegment>
     <model>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RoleGroup (1..1)" type="RoleGroup">
+      <elements xsi:type="org.framed.orm.model:Shape" name="Participants (1..1)" type="RoleGroup">
         <model>
           <elements xsi:type="org.framed.orm.model:Shape" name="Source" outgoingRelations="//@elements.7/@model/@elements.0/@model/@elements.2 //@elements.7/@model/@elements.0/@model/@elements.3" type="RoleType">
             <firstSegment/>
@@ -93,8 +93,8 @@
             </secondSegment>
             <description name="*"/>
             <boundaries>
-              <topLeft x="99" y="66"/>
-              <bottomRight x="300" y="217"/>
+              <topLeft x="24" y="26"/>
+              <bottomRight x="227" y="123"/>
             </boundaries>
           </elements>
           <elements xsi:type="org.framed.orm.model:Shape" name="Target" incomingRelations="//@elements.7/@model/@elements.0/@model/@elements.2 //@elements.7/@model/@elements.0/@model/@elements.3" type="RoleType">
@@ -104,41 +104,41 @@
             </secondSegment>
             <description name="*"/>
             <boundaries>
-              <topLeft x="584" y="70"/>
-              <bottomRight x="785" y="221"/>
+              <topLeft x="360" y="26"/>
+              <bottomRight x="565" y="125"/>
             </boundaries>
           </elements>
           <elements xsi:type="org.framed.orm.model:Relation" name="trans" type="Relationship" target="//@elements.7/@model/@elements.0/@model/@elements.1" source="//@elements.7/@model/@elements.0/@model/@elements.0" referencedRelation="//@elements.7/@model/@elements.0/@model/@elements.3">
             <sourceLabel name="1"/>
             <targetLabel name="1"/>
           </elements>
-          <elements xsi:type="org.framed.orm.model:Relation" name="irreflexive" type="Irreflexive" target="//@elements.7/@model/@elements.0/@model/@elements.1" source="//@elements.7/@model/@elements.0/@model/@elements.0" referencedRelation="//@elements.7/@model/@elements.0/@model/@elements.2">
+          <elements xsi:type="org.framed.orm.model:Relation" name="Irreflexive" type="Irreflexive" target="//@elements.7/@model/@elements.0/@model/@elements.1" source="//@elements.7/@model/@elements.0/@model/@elements.0" referencedRelation="//@elements.7/@model/@elements.0/@model/@elements.2">
             <bendpoints>
-              <referencePoints x="301" y="142"/>
-              <referencePoints x="685" y="70"/>
-              <distances x="247" y="36"/>
-              <distances x="-238" y="32"/>
+              <referencePoints x="227" y="102"/>
+              <referencePoints x="360" y="102"/>
+              <distances x="67" y="-20"/>
+              <distances/>
             </bendpoints>
           </elements>
         </model>
         <description name="2..2"/>
         <boundaries>
-          <topLeft x="150" y="172"/>
-          <bottomRight x="1010" y="464"/>
+          <topLeft x="19" y="18"/>
+          <bottomRight x="609" y="199"/>
         </boundaries>
       </elements>
     </model>
     <boundaries>
-      <topLeft x="923" y="85"/>
-      <bottomRight x="1254" y="343"/>
+      <topLeft x="816" y="96"/>
+      <bottomRight x="1036" y="265"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="DateTime" type="DataType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="194" y="651"/>
-      <bottomRight x="397" y="705"/>
+      <topLeft x="28" y="432"/>
+      <bottomRight x="232" y="487"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Bank" incomingRelations="//@elements.11 //@elements.12 //@elements.14 //@elements.15">
@@ -149,7 +149,7 @@
       <elements name="executeTransactions()"/>
     </secondSegment>
     <model>
-      <elements xsi:type="org.framed.orm.model:Shape" name="Consultant" outgoingRelations="//@elements.9/@model/@elements.4" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="Consultant" outgoingRelations="//@elements.9/@model/@elements.4 //@elements.9/@model/@elements.6" type="RoleType">
         <firstSegment>
           <elements name="phone : String"/>
         </firstSegment>
@@ -158,11 +158,11 @@
         </secondSegment>
         <description name="1..*"/>
         <boundaries>
-          <topLeft x="144" y="55"/>
-          <bottomRight x="345" y="206"/>
+          <topLeft x="31" y="30"/>
+          <bottomRight x="272" y="188"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="Customer" incomingRelations="//@elements.9/@model/@elements.4 //@elements.9/@model/@elements.3/@model/@elements.2" outgoingRelations="//@elements.9/@model/@elements.5" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="Customer" incomingRelations="//@elements.9/@model/@elements.4 //@elements.9/@model/@elements.3/@model/@elements.2 //@elements.9/@model/@elements.6" outgoingRelations="//@elements.9/@model/@elements.5" type="RoleType">
         <firstSegment>
           <elements name="name : String"/>
           <elements name="id : Integer"/>
@@ -177,11 +177,11 @@
         </secondSegment>
         <description name="*"/>
         <boundaries>
-          <topLeft x="147" y="459"/>
-          <bottomRight x="350" y="612"/>
+          <topLeft x="31" y="330"/>
+          <bottomRight x="272" y="547"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="Transaction" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="MoneyTransfer" type="RoleType">
         <firstSegment>
           <elements name="execution : DateTime"/>
         </firstSegment>
@@ -191,11 +191,11 @@
         </secondSegment>
         <description name="*"/>
         <boundaries>
-          <topLeft x="684" y="58"/>
-          <bottomRight x="887" y="211"/>
+          <topLeft x="451" y="30"/>
+          <bottomRight x="655" y="184"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RoleGroup (1..1)" type="RoleGroup">
+      <elements xsi:type="org.framed.orm.model:Shape" name="BankAccounts (1..1)" type="RoleGroup">
         <model>
           <elements xsi:type="org.framed.orm.model:Shape" name="CheckingsAccount" outgoingRelations="//@elements.9/@model/@elements.3/@model/@elements.2" type="RoleType">
             <firstSegment>
@@ -208,8 +208,8 @@
             </secondSegment>
             <description name="*"/>
             <boundaries>
-              <topLeft x="111" y="18"/>
-              <bottomRight x="313" y="170"/>
+              <topLeft x="12" y="14"/>
+              <bottomRight x="205" y="168"/>
             </boundaries>
           </elements>
           <elements xsi:type="org.framed.orm.model:Shape" name="SavingsAccount" incomingRelations="//@elements.9/@model/@elements.5" type="RoleType">
@@ -221,8 +221,8 @@
             </secondSegment>
             <description name="*"/>
             <boundaries>
-              <topLeft x="112" y="198"/>
-              <bottomRight x="314" y="350"/>
+              <topLeft x="12" y="194"/>
+              <bottomRight x="205" y="348"/>
             </boundaries>
           </elements>
           <elements xsi:type="org.framed.orm.model:Relation" name="own_ca" type="Relationship" target="//@elements.9/@model/@elements.1" source="//@elements.9/@model/@elements.3/@model/@elements.0">
@@ -232,11 +232,11 @@
         </model>
         <description name="*"/>
         <boundaries>
-          <topLeft x="675" y="262"/>
-          <bottomRight x="1078" y="659"/>
+          <topLeft x="439" y="210"/>
+          <bottomRight x="657" y="614"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Relation" name="advices" type="Relationship" target="//@elements.9/@model/@elements.1" source="//@elements.9/@model/@elements.0">
+      <elements xsi:type="org.framed.orm.model:Relation" name="advices" type="Relationship" target="//@elements.9/@model/@elements.1" source="//@elements.9/@model/@elements.0" referencedRelation="//@elements.9/@model/@elements.6">
         <sourceLabel name="*"/>
         <targetLabel name="1..*"/>
       </elements>
@@ -244,21 +244,36 @@
         <sourceLabel name="1..*"/>
         <targetLabel name="*"/>
       </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" name="Irreflexive" type="Irreflexive" target="//@elements.9/@model/@elements.1" source="//@elements.9/@model/@elements.0" referencedRelation="//@elements.9/@model/@elements.4">
+        <bendpoints>
+          <referencePoints x="152" y="189"/>
+          <referencePoints x="152" y="330"/>
+          <distances x="-20" y="71"/>
+          <distances/>
+        </bendpoints>
+      </elements>
     </model>
     <boundaries>
-      <topLeft x="513" y="85"/>
-      <bottomRight x="793" y="539"/>
+      <topLeft x="348" y="36"/>
+      <bottomRight x="630" y="337"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="Double" type="DataType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="442" y="651"/>
-      <bottomRight x="644" y="706"/>
+      <topLeft x="252" y="432"/>
+      <bottomRight x="456" y="489"/>
     </boundaries>
   </elements>
-  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.0" referencedRoles="//@elements.9/@model/@elements.0 //@elements.9/@model/@elements.1"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.0" referencedRoles="//@elements.9/@model/@elements.0 //@elements.9/@model/@elements.1">
+    <bendpoints>
+      <referencePoints x="489" y="187"/>
+      <referencePoints/>
+      <distances x="158" y="90"/>
+      <distances x="-203"/>
+    </bendpoints>
+  </elements>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.1" referencedRoles="//@elements.9/@model/@elements.1"/>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.7" source="//@elements.4" referencedRoles="//@elements.9/@model/@elements.3"/>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.9" source="//@elements.4" referencedRoles="//@elements.9/@model/@elements.3"/>
