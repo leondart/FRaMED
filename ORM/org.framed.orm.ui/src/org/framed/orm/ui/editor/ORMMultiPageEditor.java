@@ -83,11 +83,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * */
   private ORMGraphicalEditor dataEditor;
   
-  private TestEditor testEditor;
-  
-  private TestEditor2 testEditor2;
-  
-  private TestEditor3 testEditor3;
+  private FeatureModelConfigurationEditor featureModelConfigurationEditor;
   
   /**
    * The {@link EditorChangeNotifier} of this editor.
@@ -190,38 +186,14 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
   
-  private void createTestEditorPage() {
+ 
+  private void createFeatureModelConfigurationEditor() throws FileNotFoundException, UnsupportedModelException {
     try {
-      testEditor = new TestEditor();
-      testEditor.setMultiPageEditor(this);
-      int index = addPage(testEditor, getEditorInput());
-      setPageText(index, "TEST");
-    } catch (PartInitException e) {
-      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
-          e.getStatus());
-    }
-  }
-  
-  private void createTestEditorPage2() throws FileNotFoundException, UnsupportedModelException {
-    try {
-      testEditor2 = new TestEditor2();
+      featureModelConfigurationEditor = new FeatureModelConfigurationEditor();
       setConfiguration();
-      testEditor2.setOrmMultiPageEditor(this);
-      int index = addPage(testEditor2, getEditorInput());
-      setPageText(index, "TEST2");
-    } catch (PartInitException e) {
-      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
-          e.getStatus());
-    }
-  }
-  
-  private void createTestEditorPage3() throws FileNotFoundException, UnsupportedModelException {
-    try {
-      testEditor3 = new TestEditor3();
-      setConfiguration();
-      testEditor3.setOrmMultiPageEditor(this);
-      int index = addPage(testEditor3, getEditorInput());
-      setPageText(index, "TEST_3");
+      featureModelConfigurationEditor.setOrmMultiPageEditor(this);
+      int index = addPage(featureModelConfigurationEditor, getEditorInput());
+      setPageText(index, "Configuration");
     } catch (PartInitException e) {
       ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
           e.getStatus());
@@ -235,7 +207,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     createDataEditorPage();
     //createTestEditorPage();
     try {
-      createTestEditorPage3();
+      createFeatureModelConfigurationEditor();
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -364,8 +336,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
     System.out.println(activeEditor.getClass().getName());
-    if (activeEditor.getClass().getName().endsWith("TestEditor3"))
-      testEditor3.updateTree();
+    if (activeEditor.getClass().getName().endsWith("FeatureModelConfigurationEditor"))
+      featureModelConfigurationEditor.updateTree();
 
     IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
     if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
