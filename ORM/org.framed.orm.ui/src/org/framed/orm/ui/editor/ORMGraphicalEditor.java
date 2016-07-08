@@ -436,30 +436,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * 
    * @return true if transformation succeeds, otherwise false.
    */
-  private boolean transformModel() {
-    for (EObject e:rootmodel.eContents())
-      System.out.println(e.eContainingFeature());
-    for (ModelElement m :  rootmodel.getElements())
-      System.out.println(m.getName());
-    System.out.println(rootmodel.getFramedConfiguration().getFeatures());
-    for (FRaMEDFeature f :  rootmodel.getFramedConfiguration().getFeatures())
-      System.out.println(f.getName());
-    
-    
-    FRaMEDFeature f = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
-    f.setName("TESTF_");
-    rootmodel.getFramedConfiguration().getFeatures().add(f);
-    f = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
-    f.setName("TESTUUU");
-    rootmodel.getFramedConfiguration().getFeatures().add(f);
-    System.out.println("-> " + rootmodel.getFramedConfiguration().getFeatures());
-   // rootmodel.getConfig().getFeatures().clear();
-    System.out.println("--> " + rootmodel.getFramedConfiguration().getFeatures());
-    ((Model) cdResource.getContents().get(0)).setFramedConfiguration(rootmodel.getFramedConfiguration());
-    for (FRaMEDFeature f2:((Model) cdResource.getContents().get(0)).getFramedConfiguration().getFeatures())
-   System.out.println("-<"+f2.getName());
-    
-   
+  private boolean transformModel() {   
     // resolve target uri
     URI sourceURI = cdResource.getURI();
     // Remove .crom_dia file extension
