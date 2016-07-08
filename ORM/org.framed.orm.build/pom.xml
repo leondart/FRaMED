@@ -95,10 +95,10 @@
 			<artifactId>org.rosi.crom.metamodel</artifactId>
 			<version>0.1.0</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>de.ovgu.featureide.fm.core</groupId>
 			<artifactId>de.ovgu.featureide.fm.core</artifactId>
 			<version>2.7.4.201506171554</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 </project> 
