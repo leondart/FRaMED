@@ -18,93 +18,92 @@ import org.framed.orm.featuremodel.*;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FeaturemodelFactoryImpl extends EFactoryImpl implements
-		FeaturemodelFactory {
-	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static FeaturemodelFactory init() {
-		try {
-			FeaturemodelFactory theFeaturemodelFactory = (FeaturemodelFactory) EPackage.Registry.INSTANCE
-					.getEFactory(FeaturemodelPackage.eNS_URI);
-			if (theFeaturemodelFactory != null) {
-				return theFeaturemodelFactory;
-			}
-		} catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new FeaturemodelFactoryImpl();
-	}
+public class FeaturemodelFactoryImpl extends EFactoryImpl implements FeaturemodelFactory {
+  /**
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static FeaturemodelFactory init() {
+    try {
+      FeaturemodelFactory theFeaturemodelFactory =
+          (FeaturemodelFactory) EPackage.Registry.INSTANCE.getEFactory(FeaturemodelPackage.eNS_URI);
+      if (theFeaturemodelFactory != null) {
+        return theFeaturemodelFactory;
+      }
+    } catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new FeaturemodelFactoryImpl();
+  }
 
-	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FeaturemodelFactoryImpl() {
-		super();
-	}
+  /**
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FeaturemodelFactoryImpl() {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case FeaturemodelPackage.FEATURE:
-			return createFeature();
-		case FeaturemodelPackage.CONFIGURATION:
-			return createConfiguration();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
-		}
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EObject create(EClass eClass) {
+    switch (eClass.getClassifierID()) {
+      case FeaturemodelPackage.FRA_MED_FEATURE:
+        return createFRaMEDFeature();
+      case FeaturemodelPackage.FRA_MED_CONFIGURATION:
+        return createFRaMEDConfiguration();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName()
+            + "' is not a valid classifier");
+    }
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Feature createFeature() {
-		FeatureImpl feature = new FeatureImpl();
-		return feature;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FRaMEDFeature createFRaMEDFeature() {
+    FRaMEDFeatureImpl fRaMEDFeature = new FRaMEDFeatureImpl();
+    return fRaMEDFeature;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Configuration createConfiguration() {
-		ConfigurationImpl configuration = new ConfigurationImpl();
-		return configuration;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FRaMEDConfiguration createFRaMEDConfiguration() {
+    FRaMEDConfigurationImpl fRaMEDConfiguration = new FRaMEDConfigurationImpl();
+    return fRaMEDConfiguration;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FeaturemodelPackage getFeaturemodelPackage() {
-		return (FeaturemodelPackage) getEPackage();
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FeaturemodelPackage getFeaturemodelPackage() {
+    return (FeaturemodelPackage) getEPackage();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
-	@Deprecated
-	public static FeaturemodelPackage getPackage() {
-		return FeaturemodelPackage.eINSTANCE;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @deprecated
+   * @generated
+   */
+  @Deprecated
+  public static FeaturemodelPackage getPackage() {
+    return FeaturemodelPackage.eINSTANCE;
+  }
 
 } //FeaturemodelFactoryImpl

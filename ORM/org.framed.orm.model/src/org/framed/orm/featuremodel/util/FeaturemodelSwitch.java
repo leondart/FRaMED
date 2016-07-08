@@ -23,112 +23,112 @@ import org.framed.orm.featuremodel.*;
  * @generated
  */
 public class FeaturemodelSwitch<T> extends Switch<T> {
-	/**
-	 * The cached model package
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static FeaturemodelPackage modelPackage;
+  /**
+   * The cached model package
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected static FeaturemodelPackage modelPackage;
 
-	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FeaturemodelSwitch() {
-		if (modelPackage == null) {
-			modelPackage = FeaturemodelPackage.eINSTANCE;
-		}
-	}
+  /**
+   * Creates an instance of the switch.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FeaturemodelSwitch() {
+    if (modelPackage == null) {
+      modelPackage = FeaturemodelPackage.eINSTANCE;
+    }
+  }
 
-	/**
-	 * Checks whether this is a switch for the given package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
-	 * @return whether this is a switch for the given package.
-	 * @generated
-	 */
-	@Override
-	protected boolean isSwitchFor(EPackage ePackage) {
-		return ePackage == modelPackage;
-	}
+  /**
+   * Checks whether this is a switch for the given package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @parameter ePackage the package in question.
+   * @return whether this is a switch for the given package.
+   * @generated
+   */
+  @Override
+  protected boolean isSwitchFor(EPackage ePackage) {
+    return ePackage == modelPackage;
+  }
 
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case FeaturemodelPackage.FEATURE: {
-			Feature feature = (Feature) theEObject;
-			T result = caseFeature(feature);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case FeaturemodelPackage.CONFIGURATION: {
-			Configuration configuration = (Configuration) theEObject;
-			T result = caseConfiguration(configuration);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
-		}
-	}
+  /**
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @generated
+   */
+  @Override
+  protected T doSwitch(int classifierID, EObject theEObject) {
+    switch (classifierID) {
+      case FeaturemodelPackage.FRA_MED_FEATURE: {
+        FRaMEDFeature fRaMEDFeature = (FRaMEDFeature) theEObject;
+        T result = caseFRaMEDFeature(fRaMEDFeature);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      case FeaturemodelPackage.FRA_MED_CONFIGURATION: {
+        FRaMEDConfiguration fRaMEDConfiguration = (FRaMEDConfiguration) theEObject;
+        T result = caseFRaMEDConfiguration(fRaMEDConfiguration);
+        if (result == null)
+          result = defaultCase(theEObject);
+        return result;
+      }
+      default:
+        return defaultCase(theEObject);
+    }
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Feature</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFeature(Feature object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>FRa MED Feature</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>FRa MED Feature</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFRaMEDFeature(FRaMEDFeature object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConfiguration(Configuration object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>FRa MED Configuration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>FRa MED Configuration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFRaMEDConfiguration(FRaMEDConfiguration object) {
+    return null;
+  }
 
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-	 * @generated
-	 */
-	@Override
-	public T defaultCase(EObject object) {
-		return null;
-	}
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch, but this is the last case anyway.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+   * @generated
+   */
+  @Override
+  public T defaultCase(EObject object) {
+    return null;
+  }
 
 } //FeaturemodelSwitch

@@ -15,32 +15,32 @@ import junit.textui.TestRunner;
  */
 public class FeaturemodelTests extends TestSuite {
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(suite());
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static void main(String[] args) {
+    TestRunner.run(suite());
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static Test suite() {
-		TestSuite suite = new FeaturemodelTests("featuremodel Tests");
-		return suite;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static Test suite() {
+    TestSuite suite = new FeaturemodelTests("featuremodel Tests");
+    return suite;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FeaturemodelTests(String name) {
-		super(name);
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FeaturemodelTests(String name) {
+    super(name);
+  }
 
 } //FeaturemodelTests
