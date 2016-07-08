@@ -15,6 +15,7 @@
 		<module>../org.framed.orm.build.feature</module>
 		<module>../org.framed.orm.transformation</module>
 		<module>../org.framed.orm.transformation.test</module>
+		<module>../org.framed.orm.featuremodel</module>
 	</modules>
 
 	<properties>
