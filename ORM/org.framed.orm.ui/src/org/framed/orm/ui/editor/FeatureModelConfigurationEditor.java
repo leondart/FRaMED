@@ -2,9 +2,13 @@ package org.framed.orm.ui.editor;
 
 import static de.ovgu.featureide.fm.core.localization.StringTable.ARIAL;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -21,9 +25,13 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.framed.orm.featuremodel.FRaMEDConfiguration;
+import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeaturemodelFactory;
 
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FunctionalInterfaces;
@@ -56,9 +64,17 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 
   protected boolean dirty = false;
 
+  /**
+   * Saves the changes made to this editor.
+   */
   @Override
   public void doSave(IProgressMonitor monitor) {
-    // TODO Auto-generated method stub
+    boolean resourceSaved = saveGraphicalResource();
+    if (!resourceSaved) {
+      return;
+    }
+    dirty = false;
+    firePropertyChange(IEditorPart.PROP_DIRTY);
 
   }
 
@@ -66,6 +82,28 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   public void doSaveAs() {
     // TODO Auto-generated method stub
 
+  }
+  
+  /**
+   * Saves graphical resource (.crom_dia) handled by the dataEditor.
+   * Edits the FRaMED Configuration according to the changes in this editor. 
+   * 
+   * @return True if saving of model succeeds, otherwise false.
+   */
+  private boolean saveGraphicalResource() {
+    Resource currentResource = ormMultiPageEditor.getDataEditor().getCdResource();
+    if (currentResource == null) {
+      return false;
+    }
+
+    try {
+      currentResource.save(null);
+      return true;
+    } catch (IOException e) {
+      // TODO do something smarter.
+      e.printStackTrace();
+    }
+    return false;
   }
 
   @Override
@@ -76,8 +114,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 
   @Override
   public boolean isDirty() {
-    // TODO Auto-generated method stub
-    return false;
+    return dirty;
   }
 
   @Override
@@ -195,6 +232,35 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 
   protected void set(SelectableFeature feature, Selection selection) {
     ormMultiPageEditor.getConfiguration().setManual(feature, selection);
+    saveConfigurationToModel();
+  }
+  
+  private void saveConfigurationToModel() {
+    Configuration configuration = ormMultiPageEditor.getConfiguration();
+    FRaMEDConfiguration framedConfiguration = ormMultiPageEditor.getDataEditor().getRootmodel().getFramedConfiguration();
+    framedConfiguration.getFeatures().clear();
+    List<String> manuelleFeatureNamen = new ArrayList<String>();
+    System.out.println("----- Beginn manuell wählbare Features -----");
+    for (SelectableFeature s : configuration.getManualFeatures()) {
+      System.out.println("Manuelles Feature: " + s);
+      manuelleFeatureNamen.add(s.getName());
+    }
+    System.out.println("----- Ende manuell wählbare Features -----");
+    System.out.println("----- Beginn ausgewählte Features -----");
+    for (Feature f : configuration.getSelectedFeatures()) {
+      System.out.println("Ausgewähltes Feature: " + f + "; Manuell: "+ manuelleFeatureNamen.contains(f.getName()));
+      FRaMEDFeature myFeature = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
+      myFeature.setName(f.getName());
+      myFeature.setManuallySelected(manuelleFeatureNamen.contains(f.getName()));
+      framedConfiguration.getFeatures().add(myFeature);
+    }
+    System.out.println("----- Ende ausgewählte Features -----");
+    System.out.println("----- Beginn MODELL -----");
+    for (FRaMEDFeature f : framedConfiguration.getFeatures()) {
+      System.out.println(f.getName() + ", Manuell: "+ f.isManuallySelected());
+    }
+    System.out.println("----- Ende MODELL -----");
+    
   }
 
   @Override

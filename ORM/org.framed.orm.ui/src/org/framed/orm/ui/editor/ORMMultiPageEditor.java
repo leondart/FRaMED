@@ -15,6 +15,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -35,6 +37,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+import org.framed.orm.featuremodel.FRaMEDConfiguration;
+import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmPackage;
@@ -43,6 +47,7 @@ import org.osgi.framework.Bundle;
 
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.configuration.Configuration;
+import de.ovgu.featureide.fm.core.configuration.Selection;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 import de.ovgu.featureide.fm.core.job.WorkMonitor;
@@ -77,7 +82,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * */
   private ORMGraphicalEditor behaviourEditor;
   
-  public Configuration configuration;
+  /**
+   * Configuration according to FeatureIDE-structure
+   */
+  private Configuration configuration;
   /**
    * The data {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
@@ -190,7 +198,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private void createFeatureModelConfigurationEditor() throws FileNotFoundException, UnsupportedModelException {
     try {
       featureModelConfigurationEditor = new FeatureModelConfigurationEditor();
-      setConfiguration();
+      loadConfiguration();
+      //setConfiguration();
       featureModelConfigurationEditor.setOrmMultiPageEditor(this);
       int index = addPage(featureModelConfigurationEditor, getEditorInput());
       setPageText(index, "Configuration");
@@ -198,6 +207,31 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
           e.getStatus());
     }
+  }
+  
+  private void loadConfiguration() {
+    FRaMEDConfiguration framedConfiguration = dataEditor.getRootmodel().getFramedConfiguration();
+    configuration = new Configuration(featureModel);
+    configuration.getPropagator().update(false, null, new WorkMonitor());
+    EList<FRaMEDFeature> featuresToRemove = new BasicEList<FRaMEDFeature>();
+    if (framedConfiguration != null) {
+      for (FRaMEDFeature f : framedConfiguration.getFeatures()){
+        System.out.println("=> "+f.getName());
+        if (featureModel.getFeature(f.getName()) != null) {
+          configuration.setManual(f.getName(), Selection.SELECTED);
+        }
+        else {
+          featuresToRemove.add(f);
+        }
+      }
+      for (FRaMEDFeature toRemove : featuresToRemove) {
+        System.out.println("Entferne: "+toRemove.getName());
+        framedConfiguration.getFeatures().remove(toRemove);
+      }
+    }
+//    if (!isDirty()) {
+//        doSave(null);
+//    }
   }
 
   /** {@inheritDoc} In this method the title image of this editor is set as well. */
@@ -336,12 +370,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
     System.out.println(activeEditor.getClass().getName());
-    if (activeEditor.getClass().getName().endsWith("FeatureModelConfigurationEditor"))
+    if (activeEditor.getClass().getName().endsWith("FeatureModelConfigurationEditor")) {
       featureModelConfigurationEditor.updateTree();
-
-    IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-    if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
-      ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
+    }
+    else
+    {
+      IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
+      if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
+        ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
+      }
     }
   }
 

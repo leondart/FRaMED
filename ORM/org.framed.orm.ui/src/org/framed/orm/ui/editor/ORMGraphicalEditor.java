@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -61,7 +62,10 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
@@ -433,6 +437,29 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * @return true if transformation succeeds, otherwise false.
    */
   private boolean transformModel() {
+    for (EObject e:rootmodel.eContents())
+      System.out.println(e.eContainingFeature());
+    for (ModelElement m :  rootmodel.getElements())
+      System.out.println(m.getName());
+    System.out.println(rootmodel.getFramedConfiguration().getFeatures());
+    for (FRaMEDFeature f :  rootmodel.getFramedConfiguration().getFeatures())
+      System.out.println(f.getName());
+    
+    
+    FRaMEDFeature f = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
+    f.setName("TESTF_");
+    rootmodel.getFramedConfiguration().getFeatures().add(f);
+    f = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
+    f.setName("TESTUUU");
+    rootmodel.getFramedConfiguration().getFeatures().add(f);
+    System.out.println("-> " + rootmodel.getFramedConfiguration().getFeatures());
+   // rootmodel.getConfig().getFeatures().clear();
+    System.out.println("--> " + rootmodel.getFramedConfiguration().getFeatures());
+    ((Model) cdResource.getContents().get(0)).setFramedConfiguration(rootmodel.getFramedConfiguration());
+    for (FRaMEDFeature f2:((Model) cdResource.getContents().get(0)).getFramedConfiguration().getFeatures())
+   System.out.println("-<"+f2.getName());
+    
+   
     // resolve target uri
     URI sourceURI = cdResource.getURI();
     // Remove .crom_dia file extension
@@ -465,6 +492,25 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     }
 
     return false;
+  }
+  
+  /**
+   * Returns the rootmodel used in the graphical editor. Used in order to access the configuration.
+   *
+   * @return rootmodel of the graphical editor
+   */
+  public Model getRootmodel() {
+    return rootmodel;
+  }
+  
+
+  /**
+   * Returns the used resource. Used in order to save the configuration
+   * 
+   * @return cdResource of the editor
+   */
+  public Resource getCdResource() {
+    return cdResource;
   }
 
   /**
