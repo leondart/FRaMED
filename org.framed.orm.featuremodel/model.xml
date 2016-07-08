@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="4">
+		<struct>
+			<and abstract="true" mandatory="true" name="RML_Feature_Model">
+				<and abstract="true" mandatory="true" name="Role_Types">
+					<description>
+						
+					</description>
+					<or abstract="true" name="Role_Structure">
+						<feature mandatory="true" name="Role_Properties"/>
+						<feature mandatory="true" name="Role_Behavior"/>
+						<feature mandatory="true" name="Role_Inheritance"/>
+					</or>
+					<and abstract="true" mandatory="true" name="Playable">
+						<and abstract="true" mandatory="true" name="Players">
+							<feature mandatory="true" name="Naturals"/>
+							<feature name="Roles"/>
+							<feature name="Compartments"/>
+							<feature name="Dates"/>
+						</and>
+					</and>
+					<or abstract="true" name="Dependent">
+						<feature mandatory="true" name="On_Compartments"/>
+						<feature mandatory="true" name="On_Relationships"/>
+					</or>
+					<or abstract="true" name="Role_Constraints">
+						<feature mandatory="true" name="Role_Implication"/>
+						<feature mandatory="true" name="Role_Prohibition"/>
+						<feature mandatory="true" name="Role_Equivalence"/>
+						<feature mandatory="true" name="Group_Constraints"/>
+						<feature mandatory="true" name="Occurence_Constraints"/>
+					</or>
+				</and>
+				<and name="Relationships">
+					<or abstract="true" name="Relationship_Constraints">
+						<feature mandatory="true" name="Relationship_Cardinality"/>
+						<and mandatory="true" name="Intra_Relationship_Constraints">
+							<feature name="Parthood_Constraints"/>
+						</and>
+						<feature mandatory="true" name="Inter_Relationship_Constraints"/>
+					</or>
+				</and>
+				<and name="Compartment_Types">
+					<or abstract="true" name="Compartment_Structure">
+						<feature mandatory="true" name="Compartment_Properties"/>
+						<feature mandatory="true" name="Compartment_Behavior"/>
+						<feature mandatory="true" name="Compartment_Inheritance"/>
+					</or>
+					<and abstract="true" mandatory="true" name="Participants">
+						<feature name="Contains_Compartments"/>
+					</and>
+				</and>
+				<and name="Data_Types">
+					<feature name="Data_Type_Inheritance"/>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>Compartments</var>
+					<var>Compartment_Types</var>
+				</imp>
+			</rule>
+			<rule>
+				<eq>
+					<var>On_Relationships</var>
+					<var>Relationships</var>
+				</eq>
+			</rule>
+			<rule>
+				<eq>
+					<var>On_Compartments</var>
+					<var>Compartment_Types</var>
+				</eq>
+			</rule>
+			<rule>
+				<imp>
+					<var>Role_Implication</var>
+					<var>Role_Equivalence</var>
+				</imp>
+			</rule>
+			<rule>
+				<eq>
+					<var>Role_Behavior</var>
+					<var>Role_Properties</var>
+				</eq>
+			</rule>
+			<rule>
+				<eq>
+					<var>Compartment_Behavior</var>
+					<var>Compartment_Properties</var>
+				</eq>
+			</rule>
+			<rule>
+				<imp>
+					<var>Dates</var>
+					<var>Data_Types</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>
