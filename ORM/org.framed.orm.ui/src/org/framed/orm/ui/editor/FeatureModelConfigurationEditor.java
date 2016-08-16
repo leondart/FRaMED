@@ -157,8 +157,6 @@ public class FeatureModelConfigurationEditor extends EditorPart {
           final Object data = item.getData();
           if (data instanceof SelectableFeature) {
             final SelectableFeature feature = (SelectableFeature) item.getData();
-
-
             item.setChecked(true);
             switch (feature.getAutomatic()) {
               case SELECTED:
@@ -354,9 +352,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     final Configuration configuration = ormMultiPageEditor.getConfiguration();
     tree.removeAll();
     final TreeItem root = new TreeItem(tree, 0);
-
+    final SelectableFeature rootFeature = configuration.getRoot();
     root.setText(configuration.getRoot().getName());
     root.setData(configuration.getRoot());
+    refreshItem(root, rootFeature);
     itemMap.put(configuration.getRoot(), root);
     buildTree(root, configuration.getRoot().getChildren());
   }
