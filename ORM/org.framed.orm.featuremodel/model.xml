@@ -48,6 +48,7 @@
 					</or>
 					<and abstract="true" mandatory="true" name="Participants">
 						<feature name="Contains_Compartments"/>
+						<feature name="Playable_by_Defining_Compartment"/>
 					</and>
 				</and>
 				<and name="Data_Types">
