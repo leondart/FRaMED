@@ -66,13 +66,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     CommandStackListener, IResourceChangeListener {
 
   
-  public FeatureModel featureModel = new FeatureModel();
-  
-  /**
-   * The file of the corresponding feature model.
-   */
-  File featureModelFile = null;
-  
   private boolean autoSelectFeatures = true;
   
   private final ConfigJobManager configJobManager = new ConfigJobManager();
@@ -82,10 +75,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * */
   private ORMGraphicalEditor behaviourEditor;
   
-  /**
-   * Configuration according to FeatureIDE-structure
-   */
-  private Configuration configuration;
+
   /**
    * The data {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
@@ -197,8 +187,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
  
   private void createFeatureModelConfigurationEditor() throws FileNotFoundException, UnsupportedModelException {
     try {
-      featureModelConfigurationEditor = new FeatureModelConfigurationEditor();
-      loadConfiguration();
+      featureModelConfigurationEditor = new FeatureModelConfigurationEditor(this, resource);
       //setConfiguration();
       featureModelConfigurationEditor.setOrmMultiPageEditor(this);
       int index = addPage(featureModelConfigurationEditor, getEditorInput());
@@ -209,37 +198,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
   }
   
-  private void loadConfiguration() {
-    FRaMEDConfiguration framedConfiguration = dataEditor.getRootmodel().getFramedConfiguration();
-    configuration = new Configuration(featureModel);
-    configuration.getPropagator().update(false, null, new WorkMonitor());
-    EList<FRaMEDFeature> featuresToRemove = new BasicEList<FRaMEDFeature>();
-    if (framedConfiguration != null) {
-      for (FRaMEDFeature f : framedConfiguration.getFeatures()){
-        System.out.println("=> "+f.getName());
-        if (featureModel.getFeature(f.getName()) != null) {
-          configuration.setManual(f.getName(), Selection.SELECTED);
-        }
-        else {
-          featuresToRemove.add(f);
-        }
-      }
-      for (FRaMEDFeature toRemove : featuresToRemove) {
-        System.out.println("Entferne: "+toRemove.getName());
-        framedConfiguration.getFeatures().remove(toRemove);
-      }
-    }
-//    if (!isDirty()) {
-//        doSave(null);
-//    }
-  }
+ 
 
   /** {@inheritDoc} In this method the title image of this editor is set as well. */
   @Override
   protected void createPages() {
     createBehaviorEditorPage();
     createDataEditorPage();
-    //createTestEditorPage();
     try {
       createFeatureModelConfigurationEditor();
     } catch (FileNotFoundException e) {
@@ -293,15 +258,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
         e.printStackTrace();
         resource = null;
       }
-    }
-    try {
-      readFeatureModel();
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (UnsupportedModelException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
     }
   }
 
@@ -369,7 +325,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   protected void pageChange(final int newPageIndex) {
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
-    System.out.println(activeEditor.getClass().getName());
+    //update the tree if the new page is the configuration editor
     if (activeEditor.getClass().getName().endsWith("FeatureModelConfigurationEditor")) {
       featureModelConfigurationEditor.updateTree();
     }
@@ -457,48 +413,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     getDataEditor().getOwnViewer().setContents(obj);
   }
   
-  private void setConfiguration() throws FileNotFoundException, UnsupportedModelException {
-    configuration = new Configuration(featureModel);
-    configuration.getPropagator().update(false, null, new WorkMonitor());
-    if (!isDirty()) {
-        doSave(null);
-    }
-}
-  
-  private void readFeatureModel() throws FileNotFoundException, UnsupportedModelException {
-//    IResource res = project.findMember("platform:/plugin/org.framed.orm.featuremodel/model.xml");
-    final FeatureModel featureModel = new FeatureModel();
-   // FileLocator.toFileURL(url)
-    
-               Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
-               URL fileURL = bundle.getEntry("model.xml");
-               try {
-                   featureModelFile = new File(FileLocator.resolve(fileURL).toURI());
-               } catch (URISyntaxException e1) {
-                  e1.printStackTrace();
-               } catch (IOException e1) {
-                   e1.printStackTrace();
-               };
-               
-    new XmlFeatureModelReader(featureModel).readFromFile(featureModelFile);
-    this.featureModel = featureModel;
-//    XmlFeatureModelReader featureModelReader = new XmlFeatureModelReader(featureModel);
-//    featureModelReader.readFromFile(file);
-//    featureModel = featureModelReader.getFeatureModel();
-    System.out.println("test");
-  }
-  public Configuration getConfiguration() {
-    return configuration;
-}
-  
-  public File getFeatureModelFile() {
-    return featureModelFile;
-  }
 
-  public void setFeatureModelFile(File featureModelFile) {
-    this.featureModelFile = featureModelFile;
-  }
-  
   public ConfigJobManager getConfigJobManager() {
     return configJobManager;
 }

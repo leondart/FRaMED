@@ -2,13 +2,35 @@ package org.framed.orm.ui.editor;
 
 import static de.ovgu.featureide.fm.core.localization.StringTable.ARIAL;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -32,8 +54,11 @@ import org.eclipse.ui.part.EditorPart;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeaturemodelFactory;
+import org.framed.orm.model.Model;
+import org.osgi.framework.Bundle;
 
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.FunctionalInterfaces;
 import de.ovgu.featureide.fm.core.color.ColorPalette;
 import de.ovgu.featureide.fm.core.color.DefaultColorScheme;
@@ -42,6 +67,9 @@ import de.ovgu.featureide.fm.core.configuration.Configuration;
 import de.ovgu.featureide.fm.core.configuration.SelectableFeature;
 import de.ovgu.featureide.fm.core.configuration.Selection;
 import de.ovgu.featureide.fm.core.configuration.TreeElement;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
+import de.ovgu.featureide.fm.core.job.WorkMonitor;
 import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree;
 
 // import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree.Builder;
@@ -57,6 +85,38 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   protected static final Font treeItemSpecialFont = new Font(null, ARIAL, 8, SWT.BOLD);
 
   private ORMMultiPageEditor ormMultiPageEditor;
+  
+  /**
+   * Configuration according to FeatureIDE-structure
+   */
+  private Configuration configuration;
+  
+  /**
+   * The input {@link Resource} of this editor, which contains the emf model.
+   * */
+  private final Resource cdResource;
+  
+  /**
+   * The Root {@link Model}, which represents the root of the model tree and which is the first
+   * content for editor viewer.
+   * */
+  private Model rootmodel;
+  
+  /**
+   * The FramedConfiguration Model {@link Model}, which represents the root of the model tree. This does only
+   * contain the standard (most complete) Configuration.
+   **/
+  private Model standardConfigurationModel;
+
+  /**
+   * The actual feature model used for the configuration
+   */
+  public FeatureModel featureModel = new FeatureModel();
+  
+  /**
+   * The file of the corresponding feature model.
+   */
+  File featureModelFile = null;
 
   private Tree tree;
   protected final HashMap<SelectableFeature, TreeItem> itemMap =
@@ -64,11 +124,44 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 
   protected boolean dirty = false;
 
+  public FeatureModelConfigurationEditor(ORMMultiPageEditor ormMultiPageEditor, Resource resource) {
+    this.ormMultiPageEditor = ormMultiPageEditor;
+    this.cdResource = resource;
+    // Assign rootmodel
+    if (cdResource != null) {
+      rootmodel = (Model) cdResource.getContents().get(0);
+    } else
+      throw new NullPointerException("The resource could not be loaded.");
+
+    try {
+      readFeatureModel();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (UnsupportedModelException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    loadConfiguration();
+  }
+  
   /**
    * Saves the changes made to this editor.
    */
   @Override
   public void doSave(IProgressMonitor monitor) {
+    //if the internal representation (framed configuration) does not exist or contain features, create standard config 
+      FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
+      if (framedConfiguration == null || framedConfiguration.getFeatures() == null || framedConfiguration.getFeatures().size() < 1)       
+      try {
+        createStandardFramedConfiguration();
+      } catch (URISyntaxException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     boolean resourceSaved = saveGraphicalResource();
     if (!resourceSaved) {
       return;
@@ -91,7 +184,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * @return True if saving of model succeeds, otherwise false.
    */
   private boolean saveGraphicalResource() {
-    Resource currentResource = ormMultiPageEditor.getDataEditor().getCdResource();
+    Resource currentResource = getCdResource();
     if (currentResource == null) {
       return false;
     }
@@ -110,6 +203,53 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     setSite(site);
     setInput(input);
+    FRaMEDConfiguration framedConfiguration = rootmodel.getFramedConfiguration();
+    if (framedConfiguration == null || framedConfiguration.getFeatures() == null || framedConfiguration.getFeatures().size() < 1) {
+      try {
+        createStandardFramedConfiguration();
+      } catch (URISyntaxException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+  }
+
+  /**
+   * Retrieves the standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration} and applies the features to
+   * the runtime {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration}
+   * 
+   * @throws URISyntaxException
+   * @throws IOException
+   */
+  private void createStandardFramedConfiguration() throws URISyntaxException, IOException {
+    //Load standard configuration for framed
+    Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
+    URL fileURL = bundle.getEntry("/standardframedconfiguration/standardframedconfiguration.crom_dia");
+    ResourceSet resourceSet = new ResourceSetImpl();
+    Resource resource = resourceSet.createResource(URI.createURI(FileLocator.resolve(fileURL).toURI().toString()));
+    try {
+      resource.load(null);
+    } catch (IOException e) {
+      // TODO do something smarter.
+      e.printStackTrace();
+      resource = null;
+    }
+    
+    standardConfigurationModel = (Model)resource.getContents().get(0);  
+    rootmodel.setFramedConfiguration(FeaturemodelFactory.eINSTANCE.createFRaMEDConfiguration());
+    
+    //Apply each feature in the standard configuration to the FeatureIDE Configuration
+    for (FRaMEDFeature framedFeature : standardConfigurationModel.getFramedConfiguration().getFeatures()) {
+      if (framedFeature.isManuallySelected()) {
+        getConfiguration().setManual(framedFeature.getName(), Selection.SELECTED);
+      }
+      else {
+        getConfiguration().setManual(framedFeature.getName(), Selection.UNDEFINED);
+      }
+    }
   }
 
   @Override
@@ -175,6 +315,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     });
   }
 
+  private void applyStandardFramedConfigurationToConfiguration() {
+    
+  }
+  
   protected void changeSelection(final TreeItem item, final boolean select) {
     SelectableFeature feature = (SelectableFeature) item.getData();
     if (feature.getAutomatic() == Selection.UNDEFINED) {
@@ -195,7 +339,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
         setDirty();
       }
       if (ormMultiPageEditor.isAutoSelectFeatures()) {
-        TreeElement configRootFeature = ormMultiPageEditor.getConfiguration().getRoot();
+        TreeElement configRootFeature = getConfiguration().getRoot();
         updateSelections(itemMap.get(configRootFeature), configRootFeature.getChildren());
       } else {
         refreshItem(item, feature);
@@ -229,35 +373,43 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   }
 
   protected void set(SelectableFeature feature, Selection selection) {
-    ormMultiPageEditor.getConfiguration().setManual(feature, selection);
+    getConfiguration().setManual(feature, selection);
     saveConfigurationToModel();
   }
   
+  
+  public Configuration getConfiguration() {
+    return configuration;
+  }
+
+  public Resource getCdResource() {
+    return cdResource;
+  }
+
+  public Model getRootmodel() {
+    return rootmodel;
+  }
+  
+  /**
+   * Removes all existing Features in the current {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration},
+   * and adds the currently selected Features.
+   */
   private void saveConfigurationToModel() {
-    Configuration configuration = ormMultiPageEditor.getConfiguration();
-    FRaMEDConfiguration framedConfiguration = ormMultiPageEditor.getDataEditor().getRootmodel().getFramedConfiguration();
+    Configuration configuration = getConfiguration();
+    FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
+    //Remove all existing Features
     framedConfiguration.getFeatures().clear();
     List<String> manuelleFeatureNamen = new ArrayList<String>();
-    System.out.println("----- Beginn manuell wählbare Features -----");
     for (SelectableFeature s : configuration.getManualFeatures()) {
-      System.out.println("Manuelles Feature: " + s);
       manuelleFeatureNamen.add(s.getName());
     }
-    System.out.println("----- Ende manuell wählbare Features -----");
-    System.out.println("----- Beginn ausgewählte Features -----");
+    //Add each selected feature to the FramedConfiguration
     for (Feature f : configuration.getSelectedFeatures()) {
-      System.out.println("Ausgewähltes Feature: " + f + "; Manuell: "+ manuelleFeatureNamen.contains(f.getName()));
       FRaMEDFeature myFeature = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
       myFeature.setName(f.getName());
       myFeature.setManuallySelected(manuelleFeatureNamen.contains(f.getName()));
       framedConfiguration.getFeatures().add(myFeature);
     }
-    System.out.println("----- Ende ausgewählte Features -----");
-    System.out.println("----- Beginn MODELL -----");
-    for (FRaMEDFeature f : framedConfiguration.getFeatures()) {
-      System.out.println(f.getName() + ", Manuell: "+ f.isManuallySelected());
-    }
-    System.out.println("----- Ende MODELL -----");
     
   }
 
@@ -349,7 +501,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   }
 
   public void updateTree() {
-    final Configuration configuration = ormMultiPageEditor.getConfiguration();
+    final Configuration configuration = getConfiguration();
     tree.removeAll();
     final TreeItem root = new TreeItem(tree, 0);
     final SelectableFeature rootFeature = configuration.getRoot();
@@ -417,6 +569,52 @@ public class FeatureModelConfigurationEditor extends EditorPart {
         // }
       }
     }
+  }
+  
+  private void readFeatureModel() throws FileNotFoundException, UnsupportedModelException {
+//  IResource res = project.findMember("platform:/plugin/org.framed.orm.featuremodel/model.xml");
+  final FeatureModel featureModel = new FeatureModel();
+ // FileLocator.toFileURL(url)
+  
+             Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
+             URL fileURL = bundle.getEntry("model.xml");
+             try {
+                 featureModelFile = new File(FileLocator.resolve(fileURL).toURI());
+             } catch (URISyntaxException e1) {
+                e1.printStackTrace();
+             } catch (IOException e1) {
+                 e1.printStackTrace();
+             };
+             
+  new XmlFeatureModelReader(featureModel).readFromFile(featureModelFile);
+  this.featureModel = featureModel;
+//  XmlFeatureModelReader featureModelReader = new XmlFeatureModelReader(featureModel);
+//  featureModelReader.readFromFile(file);
+//  featureModel = featureModelReader.getFeatureModel();
+}
+  private void loadConfiguration() {
+    FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
+    configuration = new Configuration(featureModel);
+    configuration.getPropagator().update(false, null, new WorkMonitor());
+    EList<FRaMEDFeature> featuresToRemove = new BasicEList<FRaMEDFeature>();
+    //Check if the FeatureName used in the .crom_dia file 
+    //corresponds with an actually existing feature in the feature model
+    if (framedConfiguration != null) {
+      for (FRaMEDFeature f : framedConfiguration.getFeatures()){
+        if (featureModel.getFeature(f.getName()) != null) {
+          configuration.setManual(f.getName(), Selection.SELECTED);
+        }
+        else {
+          featuresToRemove.add(f);
+        }
+      }
+      for (FRaMEDFeature toRemove : featuresToRemove) {
+        framedConfiguration.getFeatures().remove(toRemove);
+      }
+    }
+//    if (!isDirty()) {
+//        doSave(null);
+//    }
   }
 
 }
