@@ -229,7 +229,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   private void createStandardFramedConfiguration() throws URISyntaxException, IOException {
     //Load standard configuration for framed
     Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
-    URL fileURL = bundle.getEntry("/standardframedconfiguration/standardframedconfiguration.crom_dia");
+    URL fileURL = bundle.getEntry("/standardframedconfiguration/standardFramedConfiguration.crom_dia");
     ResourceSet resourceSet = new ResourceSetImpl();
     Resource resource = resourceSet.createResource(URI.createURI(FileLocator.resolve(fileURL).toURI().toString()));
     try {
