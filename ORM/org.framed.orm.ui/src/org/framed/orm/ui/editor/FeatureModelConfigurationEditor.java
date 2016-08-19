@@ -117,6 +117,8 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * The file of the corresponding feature model.
    */
   File featureModelFile = null;
+  
+  private Label infoLabel;
 
   private Tree tree;
   protected final HashMap<SelectableFeature, TreeItem> itemMap =
@@ -345,6 +347,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
         refreshItem(item, feature);
       }
     }
+    updateInfoLabel();
 
 
   }
@@ -441,9 +444,9 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     gridData.horizontalAlignment = SWT.FILL;
     gridData.grabExcessHorizontalSpace = true;
     gridData.verticalAlignment = SWT.CENTER;
-    // infoLabel = new Label(compositeTop, SWT.NONE);
-    // infoLabel.setLayoutData(gridData);
-    // updateInfoLabel(Display.getCurrent());
+    infoLabel = new Label(compositeTop, SWT.NONE);
+    infoLabel.setLayoutData(gridData);
+    updateInfoLabel();
 
     // autoselect button
     // gridData = new GridData();
@@ -500,6 +503,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     createUITree(compositeBottom);
   }
 
+  private void updateInfoLabel() {
+    Boolean valid = configuration.isValid();
+    infoLabel.setText(valid? "VALID Configuration" : "INVALID Configuration");
+    infoLabel.setForeground(valid ? blue : red);    
+  }
+
   public void updateTree() {
     final Configuration configuration = getConfiguration();
     tree.removeAll();
@@ -510,6 +519,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     refreshItem(root, rootFeature);
     itemMap.put(configuration.getRoot(), root);
     buildTree(root, configuration.getRoot().getChildren());
+    updateInfoLabel();
   }
 
   private void buildTree(final TreeItem parent, final TreeElement[] children) {
