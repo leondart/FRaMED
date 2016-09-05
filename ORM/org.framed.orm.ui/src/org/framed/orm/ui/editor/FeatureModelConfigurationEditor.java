@@ -152,18 +152,16 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    */
   @Override
   public void doSave(IProgressMonitor monitor) {
-    //if the internal representation (framed configuration) does not exist or contain features, create standard config 
-      FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
-      if (framedConfiguration == null || framedConfiguration.getFeatures() == null || framedConfiguration.getFeatures().size() < 1)       
-      try {
-        createStandardFramedConfiguration();
-      } catch (URISyntaxException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+    //if the internal representation (framed configuration) does not exist or contain features, create standard config   
+    try {
+      createStandardFramedConfiguration();
+    } catch (URISyntaxException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     boolean resourceSaved = saveGraphicalResource();
     if (!resourceSaved) {
       return;
@@ -205,51 +203,58 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     setSite(site);
     setInput(input);
-    FRaMEDConfiguration framedConfiguration = rootmodel.getFramedConfiguration();
-    if (framedConfiguration == null || framedConfiguration.getFeatures() == null || framedConfiguration.getFeatures().size() < 1) {
-      try {
-        createStandardFramedConfiguration();
-      } catch (URISyntaxException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+    try {
+      createStandardFramedConfiguration();
+    } catch (URISyntaxException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
   }
 
   /**
-   * Retrieves the standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration} and applies the features to
-   * the runtime {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration}
+   * Retrieves the standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} and applies the features to
+   * the runtime-{@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}. 
+   * <br>
+   * The standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}
+   * is only created, if at least one of the following is true:
+   * <ul>
+   *    <li> The loaded {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} is null </li>
+   *    <li> The {@link org.eclipse.emf.common.util.EList <em>EList</em>} of {@link org.framed.orm.featuremodel.FRaMEDFeature <em>FRaMEDFeatures</em>} is null </li>
+   *    <li> The {@link org.eclipse.emf.common.util.EList <em>EList</em>} of {@link org.framed.orm.featuremodel.FRaMEDFeature <em>FRaMEDFeatures</em>} has less than one element</li>
    * 
    * @throws URISyntaxException
    * @throws IOException
    */
   private void createStandardFramedConfiguration() throws URISyntaxException, IOException {
-    //Load standard configuration for framed
-    Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
-    URL fileURL = bundle.getEntry("/standardframedconfiguration/standardFramedConfiguration.crom_dia");
-    ResourceSet resourceSet = new ResourceSetImpl();
-    Resource resource = resourceSet.createResource(URI.createURI(FileLocator.resolve(fileURL).toURI().toString()));
-    try {
-      resource.load(null);
-    } catch (IOException e) {
-      // TODO do something smarter.
-      e.printStackTrace();
-      resource = null;
-    }
-    
-    standardConfigurationModel = (Model)resource.getContents().get(0);  
-    rootmodel.setFramedConfiguration(FeaturemodelFactory.eINSTANCE.createFRaMEDConfiguration());
-    
-    //Apply each feature in the standard configuration to the FeatureIDE Configuration
-    for (FRaMEDFeature framedFeature : standardConfigurationModel.getFramedConfiguration().getFeatures()) {
-      if (framedFeature.isManuallySelected()) {
-        getConfiguration().setManual(framedFeature.getName(), Selection.SELECTED);
+    FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
+    if (framedConfiguration == null || framedConfiguration.getFeatures() == null || framedConfiguration.getFeatures().size() < 1) {
+      //Load standard configuration for framed
+      Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
+      URL fileURL = bundle.getEntry("/standardframedconfiguration/standardFramedConfiguration.crom_dia");
+      ResourceSet resourceSet = new ResourceSetImpl();
+      Resource resource = resourceSet.createResource(URI.createURI(FileLocator.resolve(fileURL).toURI().toString()));
+      try {
+        resource.load(null);
+      } catch (IOException e) {
+        // TODO do something smarter.
+        e.printStackTrace();
+        resource = null;
       }
-      else {
-        getConfiguration().setManual(framedFeature.getName(), Selection.UNDEFINED);
+      
+      standardConfigurationModel = (Model)resource.getContents().get(0);  
+      rootmodel.setFramedConfiguration(FeaturemodelFactory.eINSTANCE.createFRaMEDConfiguration());
+      
+      //Apply each feature in the standard configuration to the FeatureIDE Configuration
+      for (FRaMEDFeature framedFeature : standardConfigurationModel.getFramedConfiguration().getFeatures()) {
+        if (framedFeature.isManuallySelected()) {
+          getConfiguration().setManual(framedFeature.getName(), Selection.SELECTED);
+        }
+        else {
+          getConfiguration().setManual(framedFeature.getName(), Selection.UNDEFINED);
+        }
       }
     }
   }
@@ -377,7 +382,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 
   protected void set(SelectableFeature feature, Selection selection) {
     getConfiguration().setManual(feature, selection);
-    saveConfigurationToModel();
+    writeConfigurationToModel();
   }
   
   
@@ -394,26 +399,28 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   }
   
   /**
-   * Removes all existing Features in the current {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration},
-   * and adds the currently selected Features.
+   * Removes all existing {@link org.framed.orm.featuremodel.FRaMEDFeature FRaMEDFeature}s in the current 
+   * {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration FRaMEDConfiguration} and writes the currently selected ones to the
+   * {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration FRaMEDConfiguration} (and therefore to the model).
+   * <br>
+   * <em> Note that the graphical model is NOT saved in this step</em>
    */
-  private void saveConfigurationToModel() {
+  private void writeConfigurationToModel() {
     Configuration configuration = getConfiguration();
     FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
     //Remove all existing Features
     framedConfiguration.getFeatures().clear();
-    List<String> manuelleFeatureNamen = new ArrayList<String>();
+    List<String> manualFeatureNames = new ArrayList<String>();
     for (SelectableFeature s : configuration.getManualFeatures()) {
-      manuelleFeatureNamen.add(s.getName());
+      manualFeatureNames.add(s.getName());
     }
     //Add each selected feature to the FramedConfiguration
     for (Feature f : configuration.getSelectedFeatures()) {
       FRaMEDFeature myFeature = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
       myFeature.setName(f.getName());
-      myFeature.setManuallySelected(manuelleFeatureNamen.contains(f.getName()));
+      myFeature.setManuallySelected(manualFeatureNames.contains(f.getName()));
       framedConfiguration.getFeatures().add(myFeature);
-    }
-    
+    } 
   }
 
   @Override
@@ -581,6 +588,13 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     }
   }
   
+  
+  /**
+   * Reads the included Feature Model from the bundle org.framed.orm.featuremodel
+   * 
+   * @throws FileNotFoundException
+   * @throws UnsupportedModelException
+   */
   private void readFeatureModel() throws FileNotFoundException, UnsupportedModelException {
 //  IResource res = project.findMember("platform:/plugin/org.framed.orm.featuremodel/model.xml");
   final FeatureModel featureModel = new FeatureModel();
@@ -602,6 +616,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 //  featureModelReader.readFromFile(file);
 //  featureModel = featureModelReader.getFeatureModel();
 }
+  
+  /**
+   * Loads the {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} from the currently loaded 
+   * {@link org.framed.orm.model.Model <em>Model</em>} and creates the {@link de.ovgu.featureide.fm.core.configuration.Configuration
+   * <em>Configuration</em>} (from FeatureIDE) out of it.
+   */
   private void loadConfiguration() {
     FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
     configuration = new Configuration(featureModel);
