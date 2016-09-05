@@ -1,8 +1,12 @@
 package org.framed.orm.ui.editor;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
@@ -12,6 +16,9 @@ import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.tools.SelectionTool;
+import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeaturemodelFactory;
+import org.framed.orm.model.Model;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
@@ -54,22 +61,46 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   private final Map<String, Boolean> entryVisibility;
   /** A {@link HashMap}, which matchs to every palett entry a string id. */
   private final Map<String, CreationToolEntry> entries;
+  
+  private final Map<String, Set<Type>> configToPaletteMapping;
+  private Model rootmodel;
+  
+  private Set<Type> paletteElementsVisibleAccordingToConfig;
 
   /**
-   * The constructor of this class, where the palett is build and entryVisibility and entries
+   * The constructor of this class, where the palette is build and entryVisibility and entries
    * variables are initialized.
+   * @param configToPaletteMapping2 
+   * @param rootmodel 
+   * @param rootmodel 
    * */
-  public ORMGraphicalEditorPalette() {
-
+  public ORMGraphicalEditorPalette(Map<String, Set<Type>> configToPaletteMapping, Model rootmodel) {
     entryVisibility = new HashMap<String, Boolean>();
     entries = new HashMap<String, CreationToolEntry>();
-
+    
+    this.configToPaletteMapping = configToPaletteMapping;
+    this.rootmodel = rootmodel;
+    paletteElementsVisibleAccordingToConfig = new HashSet<Type>();
+    
+    fillpaletteElementsVisibleAccordingToConfig();
+    
     addGroup();
     addSelectionTool();
     createComponentsDrawer();
     createComponentPartsDrawer();
     createConnectionsDrawer();
   }
+
+
+  private void fillpaletteElementsVisibleAccordingToConfig() {
+    paletteElementsVisibleAccordingToConfig.clear();
+    for (FRaMEDFeature feature : rootmodel.getFramedConfiguration().getFeatures()) {
+      for (Type t : configToPaletteMapping.get(feature.getName())) {
+        paletteElementsVisibleAccordingToConfig.add(t);
+      }
+    }    
+  }
+
 
   /**
    * This method add a palett entry with sting id/name to the entries map.
@@ -81,9 +112,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
   private void setEntryVisibility(final String name, final Boolean visibility) {
-    entryVisibility.put(name, visibility);
+    entryVisibility.put(name, visibility && paletteElementsVisibleAccordingToConfig.contains(Type.getByName(name)));
     if (entries.size() != 0 && entries.get(name) != null) {
-      entries.get(name).setVisible(visibility.booleanValue());
+      entries.get(name).setVisible(visibility.booleanValue() && paletteElementsVisibleAccordingToConfig.contains(Type.getByName(name)));
     }
   }
 
@@ -100,26 +131,26 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /** This method sets the visibility of all palett entrys depending on the variable visible. */
   public void setRoleEntriesVisibility(final boolean visible) {
     if (visible) {
-      setEntryVisibility("RoleType", true);
-      setEntryVisibility("RoleGroup", true);
-      setEntryVisibility("Role Implication", true);
-      setEntryVisibility("Relationship Implication", true);
-      setEntryVisibility("Relationship Exclusion", true);
-      setEntryVisibility("Role Equivalence", true);
-      setEntryVisibility("Role Prohibition", true);
-      setEntryVisibility("Relationship", true);
-      setEntryVisibility("Reflexive", true);
-      setEntryVisibility("Irreflexive", true);
-      setEntryVisibility("Total", true);
-      setEntryVisibility("Cyclic", true);
-      setEntryVisibility("Acyclic", true);
+    setEntryVisibility("RoleType", true); //2
+    setEntryVisibility("RoleGroup", true); //12
+    setEntryVisibility("Role Implication", true); //4
+    setEntryVisibility("Relationship Implication", true);//15
+    setEntryVisibility("Relationship Exclusion", true);//19
+    setEntryVisibility("Role Equivalence", true);//5
+    setEntryVisibility("Role Prohibition", true);//11
+    setEntryVisibility("Relationship", true);//7
+    setEntryVisibility("Reflexive", true);//18
+    setEntryVisibility("Irreflexive", true);//10
+    setEntryVisibility("Total", true);//8
+    setEntryVisibility("Cyclic", true);//9
+    setEntryVisibility("Acyclic", true);//17
 
 
-      setEntryVisibility("Compartment", false);
-      setEntryVisibility("NaturalType", false);
-      setEntryVisibility("DataType", false);
-      setEntryVisibility("Group", false);
-      setEntryVisibility("Fulfilment", false);
+    setEntryVisibility("Compartment", false);//0
+    setEntryVisibility("NaturalType", false);//1
+    setEntryVisibility("DataType", false);//3
+    setEntryVisibility("Group", false);//13
+    setEntryVisibility("Fulfilment", false);//14
     } else {
       setEntryVisibility("RoleType", false);
       setEntryVisibility("RoleGroup", false);
@@ -144,9 +175,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
 
-
   /** This method updates the visibility of the all palett entrys. */
   public void update(final ORMGraphicalEditor.EditorType type) {
+    fillpaletteElementsVisibleAccordingToConfig();
     if (type.equals(EditorType.COMPARTMENT)) {
       setRoleEntriesVisibility(false);
     } else {
@@ -156,12 +187,13 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** ! Update function for EditorChangeNotifier */
   public void update(final String type) {
+    fillpaletteElementsVisibleAccordingToConfig();
     if (type.equals("StepOutNewPage")) {
       setRoleEntriesVisibility(false);
     }
   }
 
-  /** This method add the {@link SelectionTool} to the palett. */
+  /** This method add the {@link SelectionTool} to the palette. */
   private void addSelectionTool() {
     SelectionToolEntry entry = new SelectionToolEntry();
     group.add(entry);

@@ -5,7 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -39,6 +45,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmPackage;
@@ -56,8 +63,8 @@ import de.ovgu.featureide.fm.ui.editors.configuration.ConfigJobManager;
 
 /**
  * 
- * This {@link MultiPageEditorPart} has as pages the behaviour {@link ORMGraphicalEditor} and the
- * data {@link ORMGraphicalEditor}.
+ * This {@link MultiPageEditorPart} has as pages the behaviour {@link ORMGraphicalEditor}, the
+ * data {@link ORMGraphicalEditor}, and the {@link FeatureModelConfigurationEditor}.
  * 
  * @author Kay Bierzynski
  * @author Lars Schütze
@@ -96,6 +103,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * creation of custom title for this edito.
    */
   private String inputFilename;
+  
+  private Map<String, Set<Type>> configToPaletteMapping;
 
   /**
    * The constructor of this class, where {@link MultiPageEditorPart#MultiPageEditorPart()} is
@@ -107,7 +116,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     inputFilename = "";
     changeNotifier = null;
     ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
+
   }
+
 
   /**
    * A setter for the {@link EditorChangeNotifier} of this editor.
@@ -159,7 +170,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    */
   private void createBehaviorEditorPage() {
     try {
-      behaviourEditor = new ORMGraphicalEditor(this, resource, false);
+      behaviourEditor = new ORMGraphicalEditor(this, resource, false, configToPaletteMapping);
       int index = addPage(behaviourEditor, getEditorInput());
       setPageText(index, "Behavior");
     } catch (PartInitException e) {
@@ -175,7 +186,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    */
   private void createDataEditorPage() {
     try {
-      dataEditor = new ORMGraphicalEditor(this, resource, true);
+      dataEditor = new ORMGraphicalEditor(this, resource, true, configToPaletteMapping);
       int index = addPage(dataEditor, getEditorInput());
       setPageText(index, "Data");
     } catch (PartInitException e) {
@@ -203,6 +214,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   /** {@inheritDoc} In this method the title image of this editor is set as well. */
   @Override
   protected void createPages() {
+    //Necessary to initialize it here, as the constructor of ORMMultiPageEditor is called after createPages()
+    configToPaletteMapping = new HashMap<String, Set<Type>>();
+    initializeConfigToPaletteMapping();
+    
     createBehaviorEditorPage();
     createDataEditorPage();
     try {
@@ -331,11 +346,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
     else
     {
+      //call the update editor type function in order to update the palette entry visibility as well
+      ORMGraphicalEditor editor = (ORMGraphicalEditor) activeEditor;
+      editor.pageChanged();
       IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
       if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
         ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
       }
     }
+    
   }
 
   /**
@@ -421,4 +440,127 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   public boolean isAutoSelectFeatures() {
     return autoSelectFeatures;
 }
+  
+  
+  private void initializeConfigToPaletteMapping() {
+
+    //RML_Feature_Model
+    fillConfigToPaletteMapping("RML_Feature_Model", Type.ACYCLIC, Type.CYCLIC);
+    
+    //Role_Types
+    fillConfigToPaletteMapping("Role_Types", Type.DATA_TYPE, Type.GROUP);
+    
+    //Role_Structure
+    fillConfigToPaletteMapping("Role_Structure", Type.ROLE_EQUIVALENCE);
+   
+    //Role_Properties
+    fillConfigToPaletteMapping("Role_Properties", Type.ROLE_GROUP);
+    
+    //Role_Behavior
+    fillConfigToPaletteMapping("Role_Behavior", Type.FULFILLMENT);
+    
+    //Role_Inheritance
+    fillConfigToPaletteMapping("Role_Inheritance", Type.COMPARTMENT_TYPE);
+    
+    //Playable
+    fillConfigToPaletteMapping("Playable", Type.ACYCLIC);
+    
+    //Players
+    fillConfigToPaletteMapping("Players");
+    
+    //Naturals
+    fillConfigToPaletteMapping("Naturals");
+    
+    //Roles
+    fillConfigToPaletteMapping("Roles", Type.COMPARTMENT_TYPE, Type.GROUP, Type.ACYCLIC, Type.RELATIONSHIP_EXCLUSION);
+    
+    //Compartments
+    fillConfigToPaletteMapping("Compartments", Type.REFLEXIVE);
+    
+    //Dates
+    fillConfigToPaletteMapping("Dates", Type.RELATIONSHIP_SHAPE_CHILD);
+    
+    //Dependent
+    fillConfigToPaletteMapping("Dependent");
+    
+    //On_Compartments
+    fillConfigToPaletteMapping("On_Compartments", Type.COMPARTMENT_TYPE);
+
+    //On_Relationships
+    fillConfigToPaletteMapping("On_Relationships", Type.RELATIONSHIP, Type.RELATIONSHIP_IMPLICATION);
+    
+    //Role_Constraints
+    fillConfigToPaletteMapping("Role_Constraints", Type.ACYCLIC);
+    
+    //Role_Implication
+    fillConfigToPaletteMapping("Role_Implication", Type.FULFILLMENT);
+    
+    //Role_Prohibition
+    fillConfigToPaletteMapping("Role_Prohibition", Type.ACYCLIC);
+    
+    //Role_Equivalence
+    fillConfigToPaletteMapping("Role_Equivalence", Type.REFLEXIVE);
+    
+    //Group_Constraints
+    fillConfigToPaletteMapping("Group_Constraints", Type.FULFILLMENT);
+    
+    //Occurence_Constraints
+    fillConfigToPaletteMapping("Occurence_Constraints", Type.ROLE_EQUIVALENCE);
+    
+    //Relationships
+    fillConfigToPaletteMapping("Relationships", Type.DATA_TYPE);
+    
+    //Relationship_Constraints
+    fillConfigToPaletteMapping("Relationship_Constraints", Type.COMPARTMENT_TYPE);
+    
+    //Relationship_Cardinality
+    fillConfigToPaletteMapping("Relationship_Cardinality");
+    
+    //Intra_Relationship_Constraints
+    fillConfigToPaletteMapping("Intra_Relationship_Constraints");
+    
+    //Parthood_Constraints
+    fillConfigToPaletteMapping("Parthood_Constraints");
+    
+    //Inter_Relationship_Constraints
+    fillConfigToPaletteMapping("Inter_Relationship_Constraints");
+    
+    //Compartment_Types
+    fillConfigToPaletteMapping("Compartment_Types", Type.COMPARTMENT_TYPE);
+
+    //Compartment_Structure
+    fillConfigToPaletteMapping("Compartment_Structure", Type.CYCLIC);
+    
+    //Compartment_Properties
+    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP);
+    
+    //Compartment_Behavior
+    fillConfigToPaletteMapping("Compartment_Behavior", Type.GROUP);
+    
+    //Compartment_Inheritance
+    fillConfigToPaletteMapping("Compartment_Inheritance");
+    
+    //Participants
+    fillConfigToPaletteMapping("Participants", Type.ROLE_EQUIVALENCE);
+    
+    //Contains_Compartments
+    fillConfigToPaletteMapping("Contains_Compartments", Type.COMPARTMENT_TYPE);
+    
+    //Playable_by_Defining_Compartment
+    fillConfigToPaletteMapping("Playable_by_Defining_Compartment", Type.GROUP);
+    
+    //Data_Types
+    fillConfigToPaletteMapping("Data_Types", Type.DATA_TYPE);
+    
+    //Data_Type_Inheritance
+    fillConfigToPaletteMapping("Data_Type_Inheritance", Type.DATA_TYPE);
+  }
+  
+  private void fillConfigToPaletteMapping(String framedFeatureConfigName, Type... paletteEntryNames){
+    Set<Type> templateSet = new HashSet<Type>();
+    for (Type t : paletteEntryNames) {
+      templateSet.add(t);
+    }
+    configToPaletteMapping.put(framedFeatureConfigName, templateSet);
+  }
 }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EventObject;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -131,21 +133,29 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * */
   private final EditorChangeNotifier changeNotifier;
   /**
-   * The {@link EditorType} of this editor, which need to change the visibility of palett entrys.
+   * The {@link EditorType} of this editor, which needs to change the visibility of palett entries.
    * */
   private EditorType editorType;
+  
+  /**
+   * Maps the name of a {@link org.framed.orm.featuremodel.FRaMEDFeature FRaMEDFeature} to a List of palette entries.
+   */
+  private Map<String, Set<Type>> configToPaletteMapping;
 
   /**
-   * The constructor of this class. The most of the gloabal variables are initialized here and the
-   * {@link EditDomain} ot the editor is set here as well.
+   * The constructor of this class. The most of the global variables are initialized here and the
+   * {@link EditDomain} of the editor is set here as well.
    * */
-  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag) {
-
+  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag, Map<String, Set<Type>> configToPaletteMapping2) {
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
     changeNotifier = new EditorChangeNotifier(this);
     editorType = EditorType.COMPARTMENT; // standard is compartment
+    this.configToPaletteMapping = configToPaletteMapping2;
+    if (cdResource != null) {
+      rootmodel = (Model) cdResource.getContents().get(0);
+    }
 
     setEditDomain(new DefaultEditDomain(this));
   }
@@ -350,7 +360,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    */
   @Override
   protected PaletteRoot getPaletteRoot() {
-    ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette();
+    ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette(configToPaletteMapping, rootmodel);
 
     changeNotifier.register(tmp); // register the palette for editor changes
     if (getEditorType() == EditorType.ROLES) { // if we show only roles
@@ -576,6 +586,10 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
       return propertyPage;
     }
     return super.getAdapter(type);
+  }
+  
+  public void pageChanged() {
+    changeNotifier.editorTypeChanged(editorType);
   }
 
   /**
