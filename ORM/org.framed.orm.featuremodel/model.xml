@@ -99,6 +99,22 @@
 					<var>Data_Types</var>
 				</imp>
 			</rule>
+			<rule>
+				<imp>
+					<var>RML_Feature_Model</var>
+					<not>
+						<var>Roles</var>
+					</not>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>RML_Feature_Model</var>
+					<not>
+						<var>Contains_Compartments</var>
+					</not>
+				</imp>
+			</rule>
 		</constraints>
 		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
 		<comments/>
