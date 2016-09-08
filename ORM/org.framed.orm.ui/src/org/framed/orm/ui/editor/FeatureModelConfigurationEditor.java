@@ -145,6 +145,16 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       e.printStackTrace();
     }
     loadConfiguration();
+    
+    try {
+      createStandardFramedConfiguration();
+    } catch (URISyntaxException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
   
   /**
@@ -203,15 +213,6 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   public void init(IEditorSite site, IEditorInput input) throws PartInitException {
     setSite(site);
     setInput(input);
-    try {
-      createStandardFramedConfiguration();
-    } catch (URISyntaxException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
   }
 
   /**
@@ -224,6 +225,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    *    <li> The loaded {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} is null </li>
    *    <li> The {@link org.eclipse.emf.common.util.EList <em>EList</em>} of {@link org.framed.orm.featuremodel.FRaMEDFeature <em>FRaMEDFeatures</em>} is null </li>
    *    <li> The {@link org.eclipse.emf.common.util.EList <em>EList</em>} of {@link org.framed.orm.featuremodel.FRaMEDFeature <em>FRaMEDFeatures</em>} has less than one element</li>
+   * </ul>
    * 
    * @throws URISyntaxException
    * @throws IOException
@@ -630,7 +632,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     //Check if the FeatureName used in the .crom_dia file 
     //corresponds with an actually existing feature in the feature model
     if (framedConfiguration != null) {
-      for (FRaMEDFeature f : framedConfiguration.getFeatures()){
+      for (FRaMEDFeature f : framedConfiguration.getFeatures()) {
         if (featureModel.getFeature(f.getName()) != null) {
           configuration.setManual(f.getName(), Selection.SELECTED);
         }
