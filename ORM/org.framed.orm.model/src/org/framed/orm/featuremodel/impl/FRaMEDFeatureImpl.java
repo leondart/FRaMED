@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.featuremodel.FeaturemodelPackage;
 
 /**
@@ -58,8 +59,8 @@ public class FRaMEDFeatureImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName() {
-    return (String) eGet(FeaturemodelPackage.Literals.FRA_MED_FEATURE__NAME, true);
+  public FeatureName getName() {
+    return (FeatureName) eGet(FeaturemodelPackage.Literals.FRA_MED_FEATURE__NAME, true);
   }
 
   /**
@@ -67,7 +68,7 @@ public class FRaMEDFeatureImpl extends MinimalEObjectImpl.Container implements F
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName) {
+  public void setName(FeatureName newName) {
     eSet(FeaturemodelPackage.Literals.FRA_MED_FEATURE__NAME, newName);
   }
 

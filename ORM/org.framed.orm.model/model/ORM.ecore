@@ -97,14 +97,53 @@
   <eSubpackages name="featuremodel" nsURI="http://orm.featuremodel/1.0" nsPrefix="org.framed.orm.model.featuremodel">
     <eClassifiers xsi:type="ecore:EClass" name="FRaMEDFeature">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral="" iD="true"/>
+          eType="#//featuremodel/FeatureName" defaultValueLiteral="RML_Feature_Model"
+          iD="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="manuallySelected" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FRaMEDConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
           eType="#//featuremodel/FRaMEDFeature" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FeatureName">
+      <eLiterals name="RML_Feature_Model"/>
+      <eLiterals name="Role_Types" value="1"/>
+      <eLiterals name="Role_Structure" value="2"/>
+      <eLiterals name="Role_Properties" value="3"/>
+      <eLiterals name="Role_Behavior" value="4"/>
+      <eLiterals name="Role_Inheritance" value="5"/>
+      <eLiterals name="Playable" value="6"/>
+      <eLiterals name="Players" value="7"/>
+      <eLiterals name="Naturals" value="8"/>
+      <eLiterals name="Roles" value="9"/>
+      <eLiterals name="Compartments" value="10"/>
+      <eLiterals name="Dates" value="11"/>
+      <eLiterals name="Dependent" value="12"/>
+      <eLiterals name="On_Compartments" value="13"/>
+      <eLiterals name="On_Relationships" value="14"/>
+      <eLiterals name="Role_Constraints" value="15"/>
+      <eLiterals name="Role_Implication" value="16"/>
+      <eLiterals name="Role_Prohibition" value="17"/>
+      <eLiterals name="Role_Equivalence" value="18"/>
+      <eLiterals name="Group_Constraints" value="19"/>
+      <eLiterals name="Occurrence_Constraints" value="20"/>
+      <eLiterals name="Relationships" value="21"/>
+      <eLiterals name="Relationship_Constraints" value="22"/>
+      <eLiterals name="Relationship_Cardinality" value="23"/>
+      <eLiterals name="Intra_Relationship_Constraints" value="24"/>
+      <eLiterals name="Parthood_Constraints" value="25"/>
+      <eLiterals name="Inter_Relationship_Constraints" value="26"/>
+      <eLiterals name="Compartment_Types" value="27"/>
+      <eLiterals name="Compartment_Structure" value="28"/>
+      <eLiterals name="Compartment_Properties" value="29"/>
+      <eLiterals name="Compartment_Behavior" value="30"/>
+      <eLiterals name="Compartment_Inheritance" value="31"/>
+      <eLiterals name="Participants" value="32"/>
+      <eLiterals name="Contains_Compartments" value="33"/>
+      <eLiterals name="Playable_by_Defining_Compartment" value="34"/>
+      <eLiterals name="Data_Types" value="35"/>
+      <eLiterals name="Data_Type_Inheritance" value="36"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

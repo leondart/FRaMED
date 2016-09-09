@@ -3,6 +3,7 @@
 package org.framed.orm.featuremodel.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -71,6 +72,38 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue) {
+    switch (eDataType.getClassifierID()) {
+      case FeaturemodelPackage.FEATURE_NAME:
+        return createFeatureNameFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName()
+            + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue) {
+    switch (eDataType.getClassifierID()) {
+      case FeaturemodelPackage.FEATURE_NAME:
+        return convertFeatureNameToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName()
+            + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FRaMEDFeature createFRaMEDFeature() {
     FRaMEDFeatureImpl fRaMEDFeature = new FRaMEDFeatureImpl();
     return fRaMEDFeature;
@@ -84,6 +117,28 @@ public class FeaturemodelFactoryImpl extends EFactoryImpl implements Featuremode
   public FRaMEDConfiguration createFRaMEDConfiguration() {
     FRaMEDConfigurationImpl fRaMEDConfiguration = new FRaMEDConfigurationImpl();
     return fRaMEDConfiguration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FeatureName createFeatureNameFromString(EDataType eDataType, String initialValue) {
+    FeatureName result = FeatureName.get(initialValue);
+    if (result == null)
+      throw new IllegalArgumentException("The value '" + initialValue
+          + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertFeatureNameToString(EDataType eDataType, Object instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

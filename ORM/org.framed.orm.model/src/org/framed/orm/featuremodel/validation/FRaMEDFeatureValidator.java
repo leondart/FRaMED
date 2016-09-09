@@ -4,6 +4,8 @@
  */
 package org.framed.orm.featuremodel.validation;
 
+import org.framed.orm.featuremodel.FeatureName;
+
 
 /**
  * A sample validator interface for {@link org.framed.orm.featuremodel.FRaMEDFeature}.
@@ -13,6 +15,8 @@ package org.framed.orm.featuremodel.validation;
  */
 public interface FRaMEDFeatureValidator {
   boolean validate();
+
+  boolean validateName(FeatureName value);
 
   boolean validateName(String value);
 

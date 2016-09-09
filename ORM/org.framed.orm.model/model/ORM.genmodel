@@ -84,6 +84,45 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Featuremodel" basePackage="org.framed.orm" disposableProviderFactory="true"
         ecorePackage="ORM.ecore#//featuremodel">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="ORM.ecore#//featuremodel/FeatureName">
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/RML_Feature_Model"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Types"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Structure"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Properties"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Behavior"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Inheritance"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Playable"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Players"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Naturals"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Roles"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Compartments"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Dates"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Dependent"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/On_Compartments"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/On_Relationships"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Implication"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Prohibition"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Role_Equivalence"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Group_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Occurrence_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Relationships"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Relationship_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Relationship_Cardinality"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Intra_Relationship_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Parthood_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Inter_Relationship_Constraints"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Compartment_Types"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Compartment_Structure"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Compartment_Properties"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Compartment_Behavior"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Compartment_Inheritance"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Participants"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Contains_Compartments"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Playable_by_Defining_Compartment"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Data_Types"/>
+        <genEnumLiterals ecoreEnumLiteral="ORM.ecore#//featuremodel/FeatureName/Data_Type_Inheritance"/>
+      </genEnums>
       <genClasses ecoreClass="ORM.ecore#//featuremodel/FRaMEDFeature">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//featuremodel/FRaMEDFeature/name"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ORM.ecore#//featuremodel/FRaMEDFeature/manuallySelected"/>

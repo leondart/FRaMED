@@ -4,6 +4,7 @@ package org.framed.orm.featuremodel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -141,6 +142,17 @@ public interface FeaturemodelPackage extends EPackage {
 
 
   /**
+   * The meta object id for the '{@link org.framed.orm.featuremodel.FeatureName <em>Feature Name</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.framed.orm.featuremodel.FeatureName
+   * @see org.framed.orm.featuremodel.impl.FeaturemodelPackageImpl#getFeatureName()
+   * @generated
+   */
+  int FEATURE_NAME = 2;
+
+
+  /**
    * Returns the meta object for class '{@link org.framed.orm.featuremodel.FRaMEDFeature <em>FRa MED Feature</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -192,6 +204,16 @@ public interface FeaturemodelPackage extends EPackage {
    * @generated
    */
   EReference getFRaMEDConfiguration_Features();
+
+  /**
+   * Returns the meta object for enum '{@link org.framed.orm.featuremodel.FeatureName <em>Feature Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Feature Name</em>'.
+   * @see org.framed.orm.featuremodel.FeatureName
+   * @generated
+   */
+  EEnum getFeatureName();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -259,6 +281,16 @@ public interface FeaturemodelPackage extends EPackage {
      * @generated
      */
     EReference FRA_MED_CONFIGURATION__FEATURES = eINSTANCE.getFRaMEDConfiguration_Features();
+
+    /**
+     * The meta object literal for the '{@link org.framed.orm.featuremodel.FeatureName <em>Feature Name</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.framed.orm.featuremodel.FeatureName
+     * @see org.framed.orm.featuremodel.impl.FeaturemodelPackageImpl#getFeatureName()
+     * @generated
+     */
+    EEnum FEATURE_NAME = eINSTANCE.getFeatureName();
 
   }
 

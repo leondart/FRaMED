@@ -4,11 +4,13 @@ package org.framed.orm.featuremodel.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.featuremodel.FeaturemodelPackage;
 import org.framed.orm.geometry.GeometryPackage;
@@ -36,6 +38,13 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
    * @generated
    */
   private EClass fRaMEDConfigurationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum featureNameEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -164,6 +173,15 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
    * <!-- end-user-doc -->
    * @generated
    */
+  public EEnum getFeatureName() {
+    return featureNameEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public FeaturemodelFactory getFeaturemodelFactory() {
     return (FeaturemodelFactory) getEFactoryInstance();
   }
@@ -194,6 +212,9 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
 
     fRaMEDConfigurationEClass = createEClass(FRA_MED_CONFIGURATION);
     createEReference(fRaMEDConfigurationEClass, FRA_MED_CONFIGURATION__FEATURES);
+
+    // Create enums
+    featureNameEEnum = createEEnum(FEATURE_NAME);
   }
 
   /**
@@ -229,8 +250,8 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
     // Initialize classes, features, and operations; add parameters
     initEClass(fRaMEDFeatureEClass, FRaMEDFeature.class, "FRaMEDFeature", !IS_ABSTRACT,
         !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFRaMEDFeature_Name(), ecorePackage.getEString(), "name", "", 1, 1,
-        FRaMEDFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID,
+    initEAttribute(getFRaMEDFeature_Name(), this.getFeatureName(), "name", "RML_Feature_Model", 1,
+        1, FRaMEDFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID,
         IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFRaMEDFeature_ManuallySelected(), ecorePackage.getEBoolean(),
         "manuallySelected", null, 1, 1, FRaMEDFeature.class, !IS_TRANSIENT, !IS_VOLATILE,
@@ -241,6 +262,46 @@ public class FeaturemodelPackageImpl extends EPackageImpl implements Featuremode
     initEReference(getFRaMEDConfiguration_Features(), this.getFRaMEDFeature(), null, "features",
         null, 0, -1, FRaMEDConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
         IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(featureNameEEnum, FeatureName.class, "FeatureName");
+    addEEnumLiteral(featureNameEEnum, FeatureName.RML_FEATURE_MODEL);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_TYPES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_STRUCTURE);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_PROPERTIES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_BEHAVIOR);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_INHERITANCE);
+    addEEnumLiteral(featureNameEEnum, FeatureName.PLAYABLE);
+    addEEnumLiteral(featureNameEEnum, FeatureName.PLAYERS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.NATURALS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.COMPARTMENTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.DATES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.DEPENDENT);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ON_COMPARTMENTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ON_RELATIONSHIPS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_IMPLICATION);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_PROHIBITION);
+    addEEnumLiteral(featureNameEEnum, FeatureName.ROLE_EQUIVALENCE);
+    addEEnumLiteral(featureNameEEnum, FeatureName.GROUP_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.OCCURRENCE_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.RELATIONSHIPS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.RELATIONSHIP_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.RELATIONSHIP_CARDINALITY);
+    addEEnumLiteral(featureNameEEnum, FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.PARTHOOD_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.INTER_RELATIONSHIP_CONSTRAINTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.COMPARTMENT_TYPES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.COMPARTMENT_STRUCTURE);
+    addEEnumLiteral(featureNameEEnum, FeatureName.COMPARTMENT_PROPERTIES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.COMPARTMENT_BEHAVIOR);
+    addEEnumLiteral(featureNameEEnum, FeatureName.COMPARTMENT_INHERITANCE);
+    addEEnumLiteral(featureNameEEnum, FeatureName.PARTICIPANTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.CONTAINS_COMPARTMENTS);
+    addEEnumLiteral(featureNameEEnum, FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT);
+    addEEnumLiteral(featureNameEEnum, FeatureName.DATA_TYPES);
+    addEEnumLiteral(featureNameEEnum, FeatureName.DATA_TYPE_INHERITANCE);
   }
 
 } //FeaturemodelPackageImpl

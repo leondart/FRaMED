@@ -24,7 +24,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface FRaMEDFeature extends EObject {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * The default value is <code>""</code>.
+   * The default value is <code>"RML_Feature_Model"</code>.
+   * The literals are from the enumeration {@link org.framed.orm.featuremodel.FeatureName}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -32,22 +33,24 @@ public interface FRaMEDFeature extends EObject {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
+   * @see org.framed.orm.featuremodel.FeatureName
+   * @see #setName(FeatureName)
    * @see org.framed.orm.featuremodel.FeaturemodelPackage#getFRaMEDFeature_Name()
-   * @model default="" id="true" required="true"
+   * @model default="RML_Feature_Model" id="true" required="true"
    * @generated
    */
-  String getName();
+  FeatureName getName();
 
   /**
    * Sets the value of the '{@link org.framed.orm.featuremodel.FRaMEDFeature#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
+   * @see org.framed.orm.featuremodel.FeatureName
    * @see #getName()
    * @generated
    */
-  void setName(String value);
+  void setName(FeatureName value);
 
   /**
    * Returns the value of the '<em><b>Manually Selected</b></em>' attribute.
