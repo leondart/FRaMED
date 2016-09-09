@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.script.ScriptException;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
@@ -24,6 +27,7 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
+import org.framed.orm.ui.expression.FeatureExpression;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
 import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
@@ -62,25 +66,26 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /** A {@link HashMap}, which matchs to every palett entry a string id. */
   private final Map<String, CreationToolEntry> entries;
   
-  private final Map<String, Set<Type>> configToPaletteMapping;
+  private final Map<FeatureExpression, Set<String>> configToPaletteMapping;
   private Model rootmodel;
   
-  private Set<Type> paletteElementsVisibleAccordingToConfig;
+  private Set<String> paletteElementsVisibleAccordingToConfig;
 
   /**
    * The constructor of this class, where the palette is build and entryVisibility and entries
    * variables are initialized.
-   * @param configToPaletteMapping2 
+   * @param configToPaletteMapping 
    * @param rootmodel 
    * @param rootmodel 
+   * @throws ScriptException 
    * */
-  public ORMGraphicalEditorPalette(Map<String, Set<Type>> configToPaletteMapping, Model rootmodel) {
+  public ORMGraphicalEditorPalette(Map<FeatureExpression, Set<String>> configToPaletteMapping, Model rootmodel) throws ScriptException {
     entryVisibility = new HashMap<String, Boolean>();
     entries = new HashMap<String, CreationToolEntry>();
     
     this.configToPaletteMapping = configToPaletteMapping;
     this.rootmodel = rootmodel;
-    paletteElementsVisibleAccordingToConfig = new HashSet<Type>();
+    paletteElementsVisibleAccordingToConfig = new HashSet<String>();
     
     fillpaletteElementsVisibleAccordingToConfig();
     
@@ -92,13 +97,29 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
 
-  private void fillpaletteElementsVisibleAccordingToConfig() {
+  private void fillpaletteElementsVisibleAccordingToConfig() throws ScriptException {
     paletteElementsVisibleAccordingToConfig.clear();
-    for (FRaMEDFeature feature : rootmodel.getFramedConfiguration().getFeatures()) {
-      for (Type t : configToPaletteMapping.get(feature.getName())) {
-        paletteElementsVisibleAccordingToConfig.add(t);
+   // EList<FRaMEDFeature> framedFeatures = rootmodel.getFramedConfiguration().getFeatures();
+    long gesamt = 0;
+    for (FeatureExpression ex : configToPaletteMapping.keySet()) {
+      long startTime = System.nanoTime();
+      if (ex.evaluate(rootmodel.getFramedConfiguration())) {
+        for (String s : configToPaletteMapping.get(ex)) {
+          paletteElementsVisibleAccordingToConfig.add(s);
+        }
       }
-    }    
+      long endTime = System.nanoTime();
+
+      long duration = (endTime - startTime); 
+      gesamt += duration;
+      System.out.println(ex.toString() + ": " + duration/1000000);
+    }
+      System.out.println("Gesamt: " + gesamt/1000000);
+//    for (FRaMEDFeature feature : rootmodel.getFramedConfiguration().getFeatures()) {
+////      for (String s : configToPaletteMapping.get(feature.getName())) {
+////        paletteElementsVisibleAccordingToConfig.add(s);
+////      }
+//      }    
   }
 
 
@@ -112,9 +133,10 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
   private void setEntryVisibility(final String name, final Boolean visibility) {
-    entryVisibility.put(name, visibility && paletteElementsVisibleAccordingToConfig.contains(Type.getByName(name)));
+    Boolean zwei = paletteElementsVisibleAccordingToConfig.contains(name);
+    entryVisibility.put(name, visibility  && paletteElementsVisibleAccordingToConfig.contains(name));
     if (entries.size() != 0 && entries.get(name) != null) {
-      entries.get(name).setVisible(visibility.booleanValue() && paletteElementsVisibleAccordingToConfig.contains(Type.getByName(name)));
+      entries.get(name).setVisible(visibility.booleanValue()&& paletteElementsVisibleAccordingToConfig.contains(name));
     }
   }
 
@@ -172,12 +194,21 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("Group", true);
       setEntryVisibility("Fulfilment", true);
     }
+    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
+    for (CreationToolEntry c : entries.values())
+      System.out.println(c.getLabel()+" visible: "+ c.isVisible());
+    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
   }
 
 
   /** This method updates the visibility of the all palett entrys. */
   public void update(final ORMGraphicalEditor.EditorType type) {
-    fillpaletteElementsVisibleAccordingToConfig();
+    try {
+      fillpaletteElementsVisibleAccordingToConfig();
+    } catch (ScriptException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     if (type.equals(EditorType.COMPARTMENT)) {
       setRoleEntriesVisibility(false);
     } else {
@@ -187,7 +218,12 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** ! Update function for EditorChangeNotifier */
   public void update(final String type) {
-    fillpaletteElementsVisibleAccordingToConfig();
+    try {
+      fillpaletteElementsVisibleAccordingToConfig();
+    } catch (ScriptException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     if (type.equals("StepOutNewPage")) {
       setRoleEntriesVisibility(false);
     }
@@ -218,57 +254,57 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
      * new ORMCompartmentTypeFactory(), null, null);
      */
     CombinedTemplateCreationEntry entry =
-        new CombinedTemplateCreationEntry("Compartment", "Create a new Compartment",
+        new CombinedTemplateCreationEntry(PaletteEntry.COMPARTMENT.getName(), "Create a new Compartment",
             new ORMCompartmentTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/compartment.png"));
     drawer.add(entry);
-    addEntry("Compartment", entry, true);
+    addEntry(PaletteEntry.COMPARTMENT.getName(), entry, true);
 
     entry =
-        new CombinedTemplateCreationEntry("NaturalType", "Create a new NaturalType",
+        new CombinedTemplateCreationEntry(PaletteEntry.NATURAL_TYPE.getName(), "Create a new NaturalType",
             new ORMNaturalTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/naturaltype.png"));
     drawer.add(entry);
-    addEntry("NaturalType", entry, true);
+    addEntry(PaletteEntry.NATURAL_TYPE.getName(), entry, true);
 
     entry =
-        new CombinedTemplateCreationEntry("DataType", "Create a new DataType",
+        new CombinedTemplateCreationEntry(PaletteEntry.DATA_TYPE.getName(), "Create a new DataType",
             new ORMDataTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/datatype.png"));
     drawer.add(entry);
-    addEntry("DataType", entry, true);
+    addEntry(PaletteEntry.DATA_TYPE.getName(), entry, true);
 
     entry =
-        new CombinedTemplateCreationEntry("RoleType", "Create a new RoleType",
+        new CombinedTemplateCreationEntry(PaletteEntry.ROLE_TYPE.getName(), "Create a new RoleType",
             new ORMRoleTypeFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roletype.png"));
     drawer.add(entry);
-    addEntry("RoleType", entry, false);
+    addEntry(PaletteEntry.ROLE_TYPE.getName(), entry, false);
 
     entry =
-        new CombinedTemplateCreationEntry("RoleGroup", "Create a new RoleGroup",
+        new CombinedTemplateCreationEntry(PaletteEntry.ROLE_GROUP.getName(), "Create a new RoleGroup",
             new ORMRoleGroupFactory(), null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/rolegroup.png"));
     drawer.add(entry);
-    addEntry("RoleGroup", entry, false);
+    addEntry(PaletteEntry.ROLE_GROUP.getName(), entry, false);
 
     entry =
-        new CombinedTemplateCreationEntry("Group", "Create a new Group", new ORMGroupFactory(),
+        new CombinedTemplateCreationEntry(PaletteEntry.GROUP.getName(), "Create a new Group", new ORMGroupFactory(),
             null, null);
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
-    addEntry("Group", entry, true);
+    addEntry(PaletteEntry.GROUP.getName(), entry, true);
 
     group.add(drawer);
   }
@@ -283,140 +319,140 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     PaletteDrawer drawer = new PaletteDrawer("Parts");
 
     CreationToolEntry entry1 =
-        new CreationToolEntry("Operation", "Create a new Operation", new ORMOperationFactory(),
+        new CreationToolEntry(PaletteEntry.OPERATION.getName(), "Create a new Operation", new ORMOperationFactory(),
             null, null);
     entry1.setToolClass(CreationAndDirectEditTool.class);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));
     drawer.add(entry1);
-    addEntry("Methode", entry1, true);
+    addEntry(PaletteEntry.OPERATION.getName(), entry1, true);
 
     CreationToolEntry entry2 =
-        new CreationToolEntry("Attribute", "Create a new Attribute", new ORMAttributeFactory(),
+        new CreationToolEntry(PaletteEntry.ATTRIBUTE.getName(), "Create a new Attribute", new ORMAttributeFactory(),
             null, null);
     entry2.setToolClass(CreationAndDirectEditTool.class);
     entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EAttribute.gif"));
     drawer.add(entry2);
-    addEntry("Attribute", entry2, true);
+    addEntry(PaletteEntry.ATTRIBUTE.getName(), entry2, true);
 
     group.add(drawer);
   }
 
   /**
-   * This method creates the palette entrys for the creation of all {@link Relation} kinds and adds
-   * them to palett.
+   * This method creates the palette entries for the creation of all {@link Relation} kinds and adds
+   * them to palette.
    */
   private void createConnectionsDrawer() {
 
     PaletteDrawer drawer = new PaletteDrawer("Connections");
     CreationToolEntry entry1 =
-        new ConnectionCreationToolEntry("Fulfilment", "Create a new Fulfilment Relation",
+        new ConnectionCreationToolEntry(PaletteEntry.FULFILLMENT.getName(), "Create a new Fulfillment Relation",
             new ORMFulfillmentFactory(), null, null);
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/fulfilment.png"));
     drawer.add(entry1);
-    addEntry("Fulfilment", entry1, true);
+    addEntry(PaletteEntry.FULFILLMENT.getName(), entry1, true);
 
     CreationToolEntry entry2 =
-        new ConnectionCreationToolEntry("Role Implication",
+        new ConnectionCreationToolEntry(PaletteEntry.ROLE_IMPLICATION.getName(),
             "Create a new Role Implication Relation", new ORMRoleImplicationFactory(), null, null);
     entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roleimplication.png"));
     drawer.add(entry2);
-    addEntry("Role Implication", entry2, false);
+    addEntry(PaletteEntry.ROLE_IMPLICATION.getName(), entry2, false);
 
     CreationToolEntry entry3 =
-        new ConnectionCreationToolEntry("Role Equivalence",
+        new ConnectionCreationToolEntry(PaletteEntry.ROLE_EQUIVALENCE.getName(),
             "Create a new Role Equivalence Relation", new ORMRoleEquivalenceFactory(), null, null);
     entry3.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roleequivalence.png"));
     drawer.add(entry3);
-    addEntry("Role Equivalence", entry3, false);
+    addEntry(PaletteEntry.ROLE_EQUIVALENCE.getName(), entry3, false);
 
     CreationToolEntry entry4 =
-        new ConnectionCreationToolEntry("Role Prohibition",
+        new ConnectionCreationToolEntry(PaletteEntry.ROLE_PROHIBITION.getName(),
             "Create a new Role Prohibition Relation", new ORMRoleProhibitionFactory(), null, null);
     entry4.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roleprohibition.png"));
     drawer.add(entry4);
-    addEntry("Role Prohibition", entry4, false);
+    addEntry(PaletteEntry.ROLE_PROHIBITION.getName(), entry4, false);
 
     CreationToolEntry entry5 =
-        new ConnectionCreationToolEntry("Inheritance", "Create a new Inheritance Relation",
+        new ConnectionCreationToolEntry(PaletteEntry.INHERITANCE.getName(), "Create a new Inheritance Relation",
             new ORMInheritanceFactory(), null, null);
     entry5.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/inheritance.png"));
     drawer.add(entry5);
-    addEntry("Inheritance", entry5, true);
+    addEntry(PaletteEntry.INHERITANCE.getName(), entry5, true);
 
     CreationToolEntry entry6 =
-        new ConnectionCreationToolEntry("Relationship", "Create a new Relationship Relation",
+        new ConnectionCreationToolEntry(PaletteEntry.RELATIONSHIP.getName(), "Create a new Relationship Relation",
             new ORMRelationshipFactory(), null, null);
     entry6.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationship.png"));
     drawer.add(entry6);
-    addEntry("Relationship", entry6, false);
+    addEntry(PaletteEntry.RELATIONSHIP.getName(), entry6, false);
 
     CreationToolEntry entry7 =
-        new ConnectionCreationToolEntry("Relationship Implication",
+        new ConnectionCreationToolEntry(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(),
             "Create a new Relationship Implication Relation",
             new ORMRelationshipImplicationFactory(), null, null);
     entry7.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationshipimplication.png"));
     drawer.add(entry7);
-    addEntry("Relationship Implication", entry7, false);
+    addEntry(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), entry7, false);
 
     CreationToolEntry entry13 =
-        new ConnectionCreationToolEntry("Relationship Exclusion",
+        new ConnectionCreationToolEntry(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(),
             "Create a new Relationship Exclusion Relation", new ORMRelationshipExclusionFactory(),
             null, null);
     // TODO: create new icon for relationship exclusion relation
     entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationshipprohibition.png"));
     drawer.add(entry13);
-    addEntry("Relationship Exclusion", entry13, false);
+    addEntry(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), entry13, false);
 
     CreationConstraintToolEntry entry =
-        new CreationConstraintToolEntry("Reflexive", "Create a new Reflexive Relation",
+        new CreationConstraintToolEntry(PaletteEntry.REFLEXIVE.getName(), "Create a new Reflexive Relation",
             new ORMReflexiveFactory(), null, null, Type.REFLEXIVE_VALUE);
     // TODO: create new icon for reflexive relation
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/reflexive.png"));
     drawer.add(entry);
-    addEntry("Reflexive", entry, false);
+    addEntry(PaletteEntry.REFLEXIVE.getName(), entry, false);
 
     entry =
-        new CreationConstraintToolEntry("Irreflexive", "Create a new Irreflexive Relation",
+        new CreationConstraintToolEntry(PaletteEntry.IRREFLEXIVE.getName(), "Create a new Irreflexive Relation",
             new ORMIrreflexiveFactory(), null, null, Type.IRREFLEXIVE_VALUE);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/irreflexive.png"));
     drawer.add(entry);
-    addEntry("Irreflexive", entry, false);
+    addEntry(PaletteEntry.IRREFLEXIVE.getName(), entry, false);
 
     entry =
-        new CreationConstraintToolEntry("Total", "Create a new Total Relation",
+        new CreationConstraintToolEntry(PaletteEntry.TOTAL.getName(), "Create a new Total Relation",
             new ORMTotalFactory(), null, null, Type.TOTAL_VALUE);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
     drawer.add(entry);
-    addEntry("Total", entry, false);
+    addEntry(PaletteEntry.TOTAL.getName(), entry, false);
 
     entry =
-        new CreationConstraintToolEntry("Cyclic", "Create a new Cyclic Relation",
+        new CreationConstraintToolEntry(PaletteEntry.CYCLIC.getName(), "Create a new Cyclic Relation",
             new ORMCyclicFactory(), null, null, Type.CYCLIC_VALUE);
     entry
         .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/cyclic.png"));
     drawer.add(entry);
-    addEntry("Cyclic", entry, false);
+    addEntry(PaletteEntry.CYCLIC.getName(), entry, false);
 
     entry =
-        new CreationConstraintToolEntry("Acyclic", "Create a new Acyclic Relation",
+        new CreationConstraintToolEntry(PaletteEntry.ACYCLIC.getName(), "Create a new Acyclic Relation",
             new ORMAcyclicFactory(), null, null, Type.ACYCLIC_VALUE);
     // TODO: create new icon for acyclic relation
     entry.setSmallIcon(Activator
         .imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/acyclic.png"));
     drawer.add(entry);
-    addEntry("Acyclic", entry, false);
+    addEntry(PaletteEntry.ACYCLIC.getName(), entry, false);
 
     // Currently Entry 1 to 13
     group.add(drawer);

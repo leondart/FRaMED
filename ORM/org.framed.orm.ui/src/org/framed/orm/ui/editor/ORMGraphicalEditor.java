@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.script.ScriptException;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -86,6 +88,7 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDelete
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
+import org.framed.orm.ui.expression.FeatureExpression;
 
 /**
  * The {@link GraphicalEditor} you can see. Interacts with the user and shows the contents.
@@ -140,19 +143,20 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   /**
    * Maps the name of a {@link org.framed.orm.featuremodel.FRaMEDFeature FRaMEDFeature} to a List of palette entries.
    */
-  private Map<String, Set<Type>> configToPaletteMapping;
+  private Map<FeatureExpression, Set<String>> configToPaletteMapping;
 
   /**
    * The constructor of this class. The most of the global variables are initialized here and the
    * {@link EditDomain} of the editor is set here as well.
    * */
-  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag, Map<String, Set<Type>> configToPaletteMapping2) {
+  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag, 
+      Map<FeatureExpression, Set<String>> configToPaletteMapping) {
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
     changeNotifier = new EditorChangeNotifier(this);
     editorType = EditorType.COMPARTMENT; // standard is compartment
-    this.configToPaletteMapping = configToPaletteMapping2;
+    this.configToPaletteMapping = configToPaletteMapping;
     if (cdResource != null) {
       rootmodel = (Model) cdResource.getContents().get(0);
     }
@@ -360,7 +364,13 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    */
   @Override
   protected PaletteRoot getPaletteRoot() {
-    ORMGraphicalEditorPalette tmp = new ORMGraphicalEditorPalette(configToPaletteMapping, rootmodel);
+    ORMGraphicalEditorPalette tmp = null;
+    try {
+      tmp = new ORMGraphicalEditorPalette(configToPaletteMapping, rootmodel);
+    } catch (ScriptException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
 
     changeNotifier.register(tmp); // register the palette for editor changes
     if (getEditorType() == EditorType.ROLES) { // if we show only roles

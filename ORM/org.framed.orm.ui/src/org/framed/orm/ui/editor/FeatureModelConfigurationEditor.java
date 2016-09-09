@@ -53,6 +53,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
 import org.osgi.framework.Bundle;
@@ -111,7 +112,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   /**
    * The actual feature model used for the configuration
    */
-  public FeatureModel featureModel = new FeatureModel();
+  private FeatureModel featureModel = new FeatureModel();
   
   /**
    * The file of the corresponding feature model.
@@ -252,10 +253,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       //Apply each feature in the standard configuration to the FeatureIDE Configuration
       for (FRaMEDFeature framedFeature : standardConfigurationModel.getFramedConfiguration().getFeatures()) {
         if (framedFeature.isManuallySelected()) {
-          getConfiguration().setManual(framedFeature.getName(), Selection.SELECTED);
+          getConfiguration().setManual(framedFeature.getName().getLiteral(), Selection.SELECTED);
         }
         else {
-          getConfiguration().setManual(framedFeature.getName(), Selection.UNDEFINED);
+          getConfiguration().setManual(framedFeature.getName().getLiteral(), Selection.UNDEFINED);
         }
       }
     }
@@ -419,8 +420,8 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     //Add each selected feature to the FramedConfiguration
     for (Feature f : configuration.getSelectedFeatures()) {
       FRaMEDFeature myFeature = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
-      myFeature.setName(f.getName());
-      myFeature.setManuallySelected(manualFeatureNames.contains(f.getName()));
+      myFeature.setName(FeatureName.getByName(f.getName()));
+      myFeature.setManuallySelected(manualFeatureNames.contains(FeatureName.getByName(f.getName())));
       framedConfiguration.getFeatures().add(myFeature);
     } 
   }
@@ -633,8 +634,8 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     //corresponds with an actually existing feature in the feature model
     if (framedConfiguration != null) {
       for (FRaMEDFeature f : framedConfiguration.getFeatures()) {
-        if (featureModel.getFeature(f.getName()) != null) {
-          configuration.setManual(f.getName(), Selection.SELECTED);
+        if (featureModel.getFeature(f.getName().getLiteral()) != null) {
+          configuration.setManual(f.getName().getLiteral(), Selection.SELECTED);
         }
         else {
           featuresToRemove.add(f);
@@ -647,6 +648,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 //    if (!isDirty()) {
 //        doSave(null);
 //    }
+  }
+
+  public FeatureModel getFeatureModel() {
+    return featureModel;
   }
 
 }
