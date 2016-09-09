@@ -20,7 +20,7 @@
     <features name="Role_Prohibition" manuallySelected="true"/>
     <features name="Role_Equivalence"/>
     <features name="Group_Constraints" manuallySelected="true"/>
-    <features name="Occurence_Constraints" manuallySelected="true"/>
+    <features name="Occurrence_Constraints" manuallySelected="true"/>
     <features name="Relationships"/>
     <features name="Relationship_Constraints"/>
     <features name="Relationship_Cardinality" manuallySelected="true"/>
