@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.framed.orm.featuremodel.FRaMEDFeature;
+import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.featuremodel.FeaturemodelPackage;
 
 import org.framed.orm.model.provider.ORMEditPlugin;
@@ -115,7 +116,8 @@ public class FRaMEDFeatureItemProvider extends ItemProviderAdapter implements
    */
   @Override
   public String getText(Object object) {
-    String label = ((FRaMEDFeature) object).getName();
+    FeatureName labelValue = ((FRaMEDFeature) object).getName();
+    String label = labelValue == null ? null : labelValue.toString();
     return label == null || label.length() == 0 ? getString("_UI_FRaMEDFeature_type")
         : getString("_UI_FRaMEDFeature_type") + " " + label;
   }
