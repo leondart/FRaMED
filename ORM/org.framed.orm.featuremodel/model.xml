@@ -28,7 +28,7 @@
 						<feature mandatory="true" name="Role_Prohibition"/>
 						<feature mandatory="true" name="Role_Equivalence"/>
 						<feature mandatory="true" name="Group_Constraints"/>
-						<feature mandatory="true" name="Occurence_Constraints"/>
+						<feature mandatory="true" name="Occurrence_Constraints"/>
 					</or>
 				</and>
 				<and name="Relationships">
