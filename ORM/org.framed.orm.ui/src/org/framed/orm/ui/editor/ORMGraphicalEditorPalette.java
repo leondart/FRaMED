@@ -62,9 +62,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** The {@link PaletteGroup} to which all {@link PaletteDrawer}s are added. */
   private PaletteGroup group;
-  /** A {@link HashMap}, which contains all visibility flags of the palett entry. */
+  /** A {@link HashMap}, which contains all visibility flags of the palette entry. */
   private final Map<String, Boolean> entryVisibility;
-  /** A {@link HashMap}, which matchs to every palett entry a string id. */
+  /** A {@link HashMap}, which matches to every palette entry a string id. */
   private final Map<String, CreationToolEntry> entries;
   
   private final Map<FeatureExpression, Set<String>> configToPaletteMapping;
@@ -76,10 +76,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   private Set<String> paletteElementsVisibleAccordingToConfig;
 
   /**
-   * The constructor of this class, where the palette is build with its entries and the entryVisibility is set.
-   * variables are initialized.
+   * The constructor of this class, where the palette is build with its entries, and the entryVisibility is set.
+   * 
    * @param configToPaletteMapping 
-   * @param rootmodel 
    * @param rootmodel 
    * @throws ScriptException 
    * */
@@ -141,10 +140,10 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
   private void setEntryVisibility(final String name, final Boolean visibility) {
-    Boolean zwei = paletteElementsVisibleAccordingToConfig.contains(name);
-    entryVisibility.put(name, visibility  && paletteElementsVisibleAccordingToConfig.contains(name));
+    boolean wert =  paletteElementsVisibleAccordingToConfig.contains(name);
+    entryVisibility.put(name, visibility && paletteElementsVisibleAccordingToConfig.contains(name));
     if (entries.size() != 0 && entries.get(name) != null) {
-      entries.get(name).setVisible(visibility.booleanValue()&& paletteElementsVisibleAccordingToConfig.contains(name));
+      entries.get(name).setVisible(visibility.booleanValue() && paletteElementsVisibleAccordingToConfig.contains(name));
     }
   }
 
@@ -180,7 +179,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     setEntryVisibility("NaturalType", false);//1
     setEntryVisibility("DataType", false);//3
     setEntryVisibility("Group", false);//13
-    setEntryVisibility("Fulfilment", false);//14
+    setEntryVisibility("Fulfillment", false);//14
     } else {
       setEntryVisibility("RoleType", false);
       setEntryVisibility("RoleGroup", false);
@@ -200,7 +199,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
       setEntryVisibility("NaturalType", true);
       setEntryVisibility("DataType", true);
       setEntryVisibility("Group", true);
-      setEntryVisibility("Fulfilment", true);
+      setEntryVisibility("Fulfillment", true);
     }
     System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
     for (CreationToolEntry c : entries.values())
@@ -209,7 +208,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
 
-  /** This method updates the visibility of the all palett entrys. */
+  /** This method updates the visibility of the all palette entries
+   *  according to the current configuration.
+   **/
   public void update(final ORMGraphicalEditor.EditorType type) {
     try {
       fillpaletteElementsVisibleAccordingToConfig();
@@ -224,7 +225,10 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     }
   }
 
-  /** ! Update function for EditorChangeNotifier */
+  /** ! Update function for EditorChangeNotifier 
+   *   This method updates the visibility of the all palette entries
+   *  according to the current configuration.
+   **/
   public void update(final String type) {
     try {
       fillpaletteElementsVisibleAccordingToConfig();

@@ -1,5 +1,9 @@
 package org.framed.orm.ui.expression;
 
+/**
+ * Fallback for Expression nodes, which are not Feature Names. Can be used for {@link FeatureExpression}s by using the toString()-method.
+ * @author Marc Kandler 
+ **/
 public enum ExpressionNode {
 
   LB (0, "("),
