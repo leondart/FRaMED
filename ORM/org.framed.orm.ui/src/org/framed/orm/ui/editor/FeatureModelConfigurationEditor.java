@@ -393,12 +393,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       if (!dirty) {
         setDirty();
       }
-      if (ormMultiPageEditor.isAutoSelectFeatures()) {
-        TreeElement configRootFeature = getConfiguration().getRoot();
-        updateSelections(itemMap.get(configRootFeature), configRootFeature.getChildren());
-      } else {
-        refreshItem(item, feature);
-      }
+//      if (ormMultiPageEditor.isAutoSelectFeatures()) {
+      TreeElement configRootFeature = getConfiguration().getRoot();
+      updateSelections(itemMap.get(configRootFeature), configRootFeature.getChildren());
+//      } else {
+//        refreshItem(item, feature);
+//      }
     }
     updateInfoLabel();
 
@@ -478,7 +478,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     for (Feature f : configuration.getSelectedFeatures()) {
       FRaMEDFeature myFeature = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
       myFeature.setName(FeatureName.getByName(f.getName()));
-      myFeature.setManuallySelected(manualFeatureNames.contains(FeatureName.getByName(f.getName())));
+      myFeature.setManuallySelected(manualFeatureNames.contains(FeatureName.getByName(f.getName()).getLiteral()));
       framedConfiguration.getFeatures().add(myFeature);
     } 
   }
