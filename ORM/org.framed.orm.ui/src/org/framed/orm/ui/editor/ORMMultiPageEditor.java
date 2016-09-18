@@ -74,6 +74,7 @@ import de.ovgu.featureide.fm.ui.editors.configuration.ConfigJobManager;
  * 
  * @author Kay Bierzynski
  * @author Lars SchÃ¼tze
+ * @author Marc Kandler
  * */
 public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectionListener,
     CommandStackListener, IResourceChangeListener {
@@ -94,6 +95,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * */
   private ORMGraphicalEditor dataEditor;
   
+  /**
+   * The {@link FeatureModelConfigurationEditor} which handles everything related to the Configuration. 
+   */
   private FeatureModelConfigurationEditor featureModelConfigurationEditor;
   
   /**
@@ -110,6 +114,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    */
   private String inputFilename;
   
+  /**
+   * A Mapping for a {@link org.framed.orm.ui.expression.FeatureExpression FeatureExpression} to a Set of Strings which represents
+   * names of PaletteEntries.
+   */
   private Map<FeatureExpression, Set<String>> configToPaletteMapping;
 
   /**
@@ -171,8 +179,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   }
 
   /**
-   * This method creates the beahvior {@link ORMGraphicalEditor} and adds the behaviour editor as a
-   * page to this editor.
+   * This method creates the beahvior {@link ORMGraphicalEditor}.
    */
   private void createBehaviorEditorPage() {
 //    try {
@@ -187,8 +194,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
 
   /**
-   * This method creates the data {@link ORMGraphicalEditor} and adds the behaviour data as a page
-   * to this editor.
+   * This method creates the data {@link ORMGraphicalEditor}.
    */
   private void createDataEditorPage() {
 //    try {
@@ -202,6 +208,11 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   }
   
  
+  /**
+   * This method creates the {@link FeatureModelConfigurationEditor}.
+   * @throws FileNotFoundException
+   * @throws UnsupportedModelException
+   */
   private void createFeatureModelConfigurationEditor() throws FileNotFoundException, UnsupportedModelException {
 //    try {
       featureModelConfigurationEditor = new FeatureModelConfigurationEditor(this, resource);
@@ -217,7 +228,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   
  
 
-  /** {@inheritDoc} In this method the title image of this editor is set as well. */
+  /** {@inheritDoc} 
+   * This method calls the methods to create the editors and adds them as pages.
+   * In this method the title image of this editor is set as well. 
+   * */
   @Override
   protected void createPages() {
     //Necessary to initialize it here, as the constructor of ORMMultiPageEditor is called after createPages()
@@ -363,7 +377,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   }
 
   /**
-   * {@inheritDoc} This method needs to be overriden so that when you switch between the editors the
+   * {@inheritDoc} 
+   * Updates the Tree used in the {@link FeatureModelConfigurationEditor} we switch from another editor to it.
+   * Otherwise, we update the palette entry visibility.
+   * This method needs to be overwritten so that when you switch between the editors the
    * actionbarcontributer takes the actionregistry/graphicalViewer/CommandStack from the active
    * editor.
    * */
@@ -472,10 +489,21 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     return autoSelectFeatures;
 }
   
-  
+  /**
+   * Initializes the mapping from a {@link FeatureExpression} to the respective palette entries.
+   * This method should be executed here (other places possible as well), 
+   * as we do not want to create this mapping multiple times to save resources.
+   * </br>
+   * If the {@link FeatureExpression} is evaluated to true, the respective palette entries are visible.
+   * @throws ScriptException
+   */
   private void initializeConfigToPaletteMapping() throws ScriptException {
 
     FeatureModel featureModel = featureModelConfigurationEditor.getFeatureModel();
+    FeatureExpression ex = new FeatureExpression(featureModel, 
+        ExpressionNode.LB.toString() + ExpressionNode.NOT + FeatureName.RML_FEATURE_MODEL + ExpressionNode.RB);
+    
+    ex = new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")");
 //    FeatureExpression ex = new FeatureExpression(featureModel, 
 //        FeatureName.RML_FEATURE_MODEL, ExpressionNode.AND, FeatureName.ROLE_TYPES);
 //    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
@@ -490,172 +518,195 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 //         ExpressionNode.NOT, FeatureName.RML_FEATURE_MODEL,ExpressionNode.RB, ExpressionNode.AND, FeatureName.ROLE_TYPES);
 //    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
 //    System.out.println(ex.toString());
+    //Test:
+    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")"));
+    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.COMPARTMENTS+")"));
+    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "("+FeatureName.COMPARTMENTS+" && "+FeatureName.DATA_TYPES+")"
+        +"&& !"+FeatureName.COMPARTMENT_BEHAVIOR + "|| ("+FeatureName.RML_FEATURE_MODEL + " && " + FeatureName.ROLE_TYPES + ")"));
+    
+    fillConfigToPaletteMapping(new FeatureExpression(featureModel, 
+        FeatureName.RML_FEATURE_MODEL + "||" + FeatureName.ROLE_TYPES +
+        "||" + FeatureName.ROLE_STRUCTURE + "||" + FeatureName.ROLE_PROPERTIES + "||" + FeatureName.ROLE_BEHAVIOR + "||" + FeatureName.ROLE_INHERITANCE 
+        + "||" + FeatureName.PLAYABLE + "||" + FeatureName.PLAYERS + "||" + FeatureName.NATURALS + "||" + FeatureName.ROLES + "||" + FeatureName.COMPARTMENTS
+        + "||" + FeatureName.DATES + "||" + FeatureName.DEPENDENT + "||" + FeatureName.ON_COMPARTMENTS + "||" + FeatureName.ON_RELATIONSHIPS + "||" + FeatureName.ROLE_CONSTRAINTS
+        + "||" + FeatureName.ROLE_IMPLICATION + "||" + FeatureName.ROLE_PROHIBITION + "||" + FeatureName.ROLE_EQUIVALENCE + "||" + FeatureName.GROUP_CONSTRAINTS + "||" + FeatureName.OCCURRENCE_CONSTRAINTS
+        + "||" + FeatureName.RELATIONSHIPS + "||" + FeatureName.RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.RELATIONSHIP_CARDINALITY + "||" + FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS
+        + "||" + FeatureName.PARTHOOD_CONSTRAINTS + "||" + FeatureName.INTER_RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.COMPARTMENT_TYPES + "||" + FeatureName.COMPARTMENT_STRUCTURE
+        + "||" + FeatureName.COMPARTMENT_PROPERTIES + "||" + FeatureName.COMPARTMENT_BEHAVIOR + "||" + 
+        FeatureName.COMPARTMENT_INHERITANCE + "&&" + FeatureName.PARTICIPANTS
+        + "&&" + FeatureName.CONTAINS_COMPARTMENTS + "&&" + FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT + "&&" + FeatureName.DATA_TYPES + "&&" + FeatureName.DATA_TYPE_INHERITANCE));
+    
     
     //RML_Feature_Model
     fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL));
-    //fillConfigToPaletteMapping("RML_Feature_Model");
-    
-    //Role_Types
-    fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_TYPES));
-    //fillConfigToPaletteMapping("Role_Types");
-    
-    //Role_Structure
-    fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_STRUCTURE));
-//    fillConfigToPaletteMapping("Role_Structure");
-//   
-//    //Role_Properties
+//    //fillConfigToPaletteMapping("RML_Feature_Model");
+//    
+//    //Role_Types
+      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_TYPES));
+//    //fillConfigToPaletteMapping("Role_Types");
+//    
+//    //Role_Structure
+      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_STRUCTURE));
+////    fillConfigToPaletteMapping("Role_Structure");
+////   
+////    //Role_Properties
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROPERTIES), PaletteEntry.ATTRIBUTE);
-//    fillConfigToPaletteMapping("Role_Properties" );//Attributes, 
-//  //Drag&Drop, siehe unten bzgl. Attributes
-//    
-//    //Role_Behavior
+////    fillConfigToPaletteMapping("Role_Properties" );//Attributes, 
+////  //Drag&Drop, siehe unten bzgl. Attributes
+////    
+////    //Role_Behavior
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_BEHAVIOR), PaletteEntry.OPERATION);
-//    fillConfigToPaletteMapping("Role_Behavior", Type.FULFILLMENT);//Operations
-//    //Drag&Drop, siehe unten bzgl. Operations
-//    
-//    //Role_Inheritance
+////    fillConfigToPaletteMapping("Role_Behavior", Type.FULFILLMENT);//Operations
+////    //Drag&Drop, siehe unten bzgl. Operations
+////    
+////    //Role_Inheritance
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_INHERITANCE), PaletteEntry.INHERITANCE);
-//    fillConfigToPaletteMapping("Role_Inheritance", Type.INHERITANCE);// Inheritance (Step-In Ansicht)
-//    //Editpolicy: Erlaubt ziehen von Vererbungsrelation zwischen Rollentypen
-//    
-//    //Playable
+////    fillConfigToPaletteMapping("Role_Inheritance", Type.INHERITANCE);// Inheritance (Step-In Ansicht)
+////    //Editpolicy: Erlaubt ziehen von Vererbungsrelation zwischen Rollentypen
+////    
+////    //Playable
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYABLE));
-//    fillConfigToPaletteMapping("Playable"); //Keins
-//    
-//    //Players
+////    fillConfigToPaletteMapping("Playable"); //Keins
+////    
+////    //Players
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYERS));
-//    fillConfigToPaletteMapping("Players"); //Keins
-//    
-//    //Naturals
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.NATURALS));
-//    fillConfigToPaletteMapping("Naturals"); //Keins
-//    
-//    //Roles
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLES), PaletteEntry.FULFILLMENT);
-//    fillConfigToPaletteMapping("Roles"); //(Step-in Ansicht) ist "Fills" (Fulfilment) (ggf. korrigieren) zu sehen
-//    //Editpolicy: Fill ziehen zwischen Rollentyp und Compartment, Impliziert containts_compartments
-//    
-//    //Compartments
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENTS));
-//    fillConfigToPaletteMapping("Compartments", Type.REFLEXIVE);//Keine
-//    
-//    //Dates
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATES));
-//    fillConfigToPaletteMapping("Dates", Type.RELATIONSHIP_SHAPE_CHILD);// Keine
-//    
-//    //Dependent
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DEPENDENT));
-//    fillConfigToPaletteMapping("Dependent");//Keins
-//    
-//    //On_Compartments
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ON_COMPARTMENTS));
-//    fillConfigToPaletteMapping("On_Compartments");//Keins
-//
-//    //On_Relationships
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ON_RELATIONSHIPS));
-//    fillConfigToPaletteMapping("On_Relationships");//Keins
-//    
-//    //Role_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_CONSTRAINTS));
-//    fillConfigToPaletteMapping("Role_Constraints", Type.ACYCLIC);//Keins
-//    
-//    //Role_Implication
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_IMPLICATION), PaletteEntry.ROLE_IMPLICATION);
-//    fillConfigToPaletteMapping("Role_Implication", Type.FULFILLMENT);//(Step-in Ansicht) Role Implication
-//    
-//    //Role_Prohibition
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROHIBITION), PaletteEntry.ROLE_PROHIBITION);
-//    fillConfigToPaletteMapping("Role_Prohibition", Type.ACYCLIC); //(Step-in Ansicht)  Role Prohibition
-//    
-//    //Role_Equivalence
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_EQUIVALENCE), PaletteEntry.ROLE_EQUIVALENCE);
-//    fillConfigToPaletteMapping("Role_Equivalence", Type.REFLEXIVE);// (Step-in Ansicht) Role Equivalence 
-//    
-//    //Group_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.GROUP_CONSTRAINTS), PaletteEntry.ROLE_GROUP);
-//    fillConfigToPaletteMapping("Group_Constraints", Type.FULFILLMENT); //Role Group
-//    
-//    //Occurence_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.OCCURRENCE_CONSTRAINTS));
-//    fillConfigToPaletteMapping("Occurence_Constraints", Type.ROLE_EQUIVALENCE);//Keine
-//    //Label über Rollentypen
-//    
-//    //Relationships
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIPS), PaletteEntry.RELATIONSHIP);
-//    fillConfigToPaletteMapping("Relationships", Type.DATA_TYPE); //Relationship
-//    //Editpolicy: Erlaubt Zeichnen von Relationships zwischen Rollentypen
-//    
-//    //Relationship_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIP_CONSTRAINTS));
-//    fillConfigToPaletteMapping("Relationship_Constraints", Type.COMPARTMENT_TYPE);//Keins
-//    
-//    //Relationship_Cardinality
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIP_CARDINALITY));
-//    fillConfigToPaletteMapping("Relationship_Cardinality");//Keins
-//    //Sind Labels an den Enden der Relationship (Müssten auf leer gesetzt werden)
-//    
-//    //Intra_Relationship_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS), PaletteEntry.REFLEXIVE, 
+////    fillConfigToPaletteMapping("Players"); //Keins
+////    
+////    //Naturals
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.NATURALS));
+////    fillConfigToPaletteMapping("Naturals"); //Keins
+////    
+////    //Roles
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLES), PaletteEntry.FULFILLMENT);
+////    fillConfigToPaletteMapping("Roles"); //(Step-in Ansicht) ist "Fills" (Fulfilment) (ggf. korrigieren) zu sehen
+////    //Editpolicy: Fill ziehen zwischen Rollentyp und Compartment, Impliziert containts_compartments
+////    
+////    //Compartments
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENTS));
+////    fillConfigToPaletteMapping("Compartments", Type.REFLEXIVE);//Keine
+////    
+////    //Dates
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATES));
+////    fillConfigToPaletteMapping("Dates", Type.RELATIONSHIP_SHAPE_CHILD);// Keine
+////    
+////    //Dependent
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DEPENDENT));
+////    fillConfigToPaletteMapping("Dependent");//Keins
+////    
+////    //On_Compartments
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ON_COMPARTMENTS));
+////    fillConfigToPaletteMapping("On_Compartments");//Keins
+////
+////    //On_Relationships
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ON_RELATIONSHIPS));
+////    fillConfigToPaletteMapping("On_Relationships");//Keins
+////    
+////    //Role_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_CONSTRAINTS));
+////    fillConfigToPaletteMapping("Role_Constraints", Type.ACYCLIC);//Keins
+////    
+////    //Role_Implication
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_IMPLICATION), PaletteEntry.ROLE_IMPLICATION);
+////    fillConfigToPaletteMapping("Role_Implication", Type.FULFILLMENT);//(Step-in Ansicht) Role Implication
+////    
+////    //Role_Prohibition
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROHIBITION), PaletteEntry.ROLE_PROHIBITION);
+////    fillConfigToPaletteMapping("Role_Prohibition", Type.ACYCLIC); //(Step-in Ansicht)  Role Prohibition
+////    
+////    //Role_Equivalence
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_EQUIVALENCE), PaletteEntry.ROLE_EQUIVALENCE);
+////    fillConfigToPaletteMapping("Role_Equivalence", Type.REFLEXIVE);// (Step-in Ansicht) Role Equivalence 
+////    
+////    //Group_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.GROUP_CONSTRAINTS), PaletteEntry.ROLE_GROUP);
+////    fillConfigToPaletteMapping("Group_Constraints", Type.FULFILLMENT); //Role Group
+////    
+////    //Occurence_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.OCCURRENCE_CONSTRAINTS));
+////    fillConfigToPaletteMapping("Occurence_Constraints", Type.ROLE_EQUIVALENCE);//Keine
+////    //Label über Rollentypen
+////    
+////    //Relationships
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIPS), PaletteEntry.RELATIONSHIP);
+////    fillConfigToPaletteMapping("Relationships", Type.DATA_TYPE); //Relationship
+////    //Editpolicy: Erlaubt Zeichnen von Relationships zwischen Rollentypen
+////    
+////    //Relationship_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIP_CONSTRAINTS));
+////    fillConfigToPaletteMapping("Relationship_Constraints", Type.COMPARTMENT_TYPE);//Keins
+////    
+////    //Relationship_Cardinality
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIP_CARDINALITY));
+////    fillConfigToPaletteMapping("Relationship_Cardinality");//Keins
+////    //Sind Labels an den Enden der Relationship (Müssten auf leer gesetzt werden)
+////    
+////    //Intra_Relationship_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS), PaletteEntry.REFLEXIVE, 
           PaletteEntry.IRREFLEXIVE, PaletteEntry.TOTAL, PaletteEntry.CYCLIC, PaletteEntry.ACYCLIC);
-//    fillConfigToPaletteMapping("Intra_Relationship_Constraints"); //reflexiv, irreflexiv, total, zyklisch, azyklisch
-//    
-//    //Parthood_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTHOOD_CONSTRAINTS));
-//    fillConfigToPaletteMapping("Parthood_Constraints");//Keins
-//    
-//    //Inter_Relationship_Constraints
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTER_RELATIONSHIP_CONSTRAINTS), 
-          PaletteEntry.RELATIONSHIP_IMPLICATION, PaletteEntry.RELATIONSHIP_EXCLUSION);
-//    fillConfigToPaletteMapping("Inter_Relationship_Constraints");// relationshipImplication, relationshipExclusion
-//    
-//    //Compartment_Types
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_TYPES), PaletteEntry.COMPARTMENT);
-//TODO:      
-      //fillConfigToPaletteMapping(new FeatureExpression(featureModel, ExpressionNode.NOT, FeatureName.COMPARTMENT_TYPES), ROLEMODEL);
-//    fillConfigToPaletteMapping("Compartment_Types");//Compartment, wenn nicht aktiviert, dann RoleModel (gibts noch nicht?)
-//
-//    //Compartment_Structure
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_STRUCTURE));
-//    fillConfigToPaletteMapping("Compartment_Structure");//Keins
-//    
-//    //Compartment_Properties
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_PROPERTIES), PaletteEntry.GROUP);
-//    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP);//Beide Ansichten: Attributes
-//    //Editpolicyänderung: Drag&Drop von Attributen auf Compartment Modellelemente
-//    
-//    //Compartment_Behavior
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_BEHAVIOR), PaletteEntry.OPERATION);
-//    fillConfigToPaletteMapping("Compartment_Behavior", Type.GROUP);//Beide Ansichten: Operation
-//    ////Editpolicyänderung: Drag&Drop von Operationen auf Compartment Modellelemente
-//    
-//    //Compartment_Inheritance
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_INHERITANCE), PaletteEntry.INHERITANCE);
-//    fillConfigToPaletteMapping("Compartment_Inheritance"); //Inheritance
-//    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
-//    
-//    //Participants
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTICIPANTS));
-//    fillConfigToPaletteMapping("Participants");//Keins
-//    
-//    //Contains_Compartments
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.CONTAINS_COMPARTMENTS));
-//    fillConfigToPaletteMapping("Contains_Compartments");//Keins (Ausgrauen, wird später hinzugefügt)
-//    
-//    //Playable_by_Defining_Compartment
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT));
-//    fillConfigToPaletteMapping("Playable_by_Defining_Compartment", Type.GROUP);//Keins
-//    //Editpolicyänderung (Wenn aktiviert, dann funktioniert Fulfilment von Compartment zu selbem Compartment)
-//    
-//    //Data_Types
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPES), PaletteEntry.DATA_TYPE);
-//    fillConfigToPaletteMapping("Data_Types", Type.DATA_TYPE); //DataType
-//    
-//    //Data_Type_Inheritance
-      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPE_INHERITANCE), PaletteEntry.INHERITANCE);
-//    fillConfigToPaletteMapping("Data_Type_Inheritance", Type.DATA_TYPE);//Step-Out: Inheritance
-//    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
+////    fillConfigToPaletteMapping("Intra_Relationship_Constraints"); //reflexiv, irreflexiv, total, zyklisch, azyklisch
+////    
+////    //Parthood_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTHOOD_CONSTRAINTS));
+////    fillConfigToPaletteMapping("Parthood_Constraints");//Keins
+////    
+////    //Inter_Relationship_Constraints
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTER_RELATIONSHIP_CONSTRAINTS), 
+            PaletteEntry.RELATIONSHIP_IMPLICATION, PaletteEntry.RELATIONSHIP_EXCLUSION);
+////    fillConfigToPaletteMapping("Inter_Relationship_Constraints");// relationshipImplication, relationshipExclusion
+////    
+////    //Compartment_Types
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_TYPES), PaletteEntry.COMPARTMENT);
+////TODO in der Zukunft:      
+//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, ExpressionNode.NOT.getLiteral() + FeatureName.COMPARTMENT_TYPES), ROLEMODEL);
+////    fillConfigToPaletteMapping("Compartment_Types");//Compartment, wenn nicht aktiviert, dann RoleModel (gibts noch nicht?)
+////
+////    //Compartment_Structure
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_STRUCTURE));
+////    fillConfigToPaletteMapping("Compartment_Structure");//Keins
+////    
+////    //Compartment_Properties
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_PROPERTIES), PaletteEntry.GROUP);
+////    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP);//Beide Ansichten: Attributes
+////    //Editpolicyänderung: Drag&Drop von Attributen auf Compartment Modellelemente
+////    
+////    //Compartment_Behavior
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_BEHAVIOR), PaletteEntry.OPERATION);
+////    fillConfigToPaletteMapping("Compartment_Behavior", Type.GROUP);//Beide Ansichten: Operation
+////    ////Editpolicyänderung: Drag&Drop von Operationen auf Compartment Modellelemente
+////    
+////    //Compartment_Inheritance
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_INHERITANCE), PaletteEntry.INHERITANCE);
+////    fillConfigToPaletteMapping("Compartment_Inheritance"); //Inheritance
+////    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
+////    
+////    //Participants
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTICIPANTS));
+////    fillConfigToPaletteMapping("Participants");//Keins
+////    
+////    //Contains_Compartments
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.CONTAINS_COMPARTMENTS));
+////    fillConfigToPaletteMapping("Contains_Compartments");//Keins (Ausgrauen, wird später hinzugefügt)
+////    
+////    //Playable_by_Defining_Compartment
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT));
+////    fillConfigToPaletteMapping("Playable_by_Defining_Compartment", Type.GROUP);//Keins
+////    //Editpolicyänderung (Wenn aktiviert, dann funktioniert Fulfilment von Compartment zu selbem Compartment)
+////    
+////    //Data_Types
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPES), PaletteEntry.DATA_TYPE);
+////    fillConfigToPaletteMapping("Data_Types", Type.DATA_TYPE); //DataType
+////    
+////    //Data_Type_Inheritance
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPE_INHERITANCE), PaletteEntry.INHERITANCE);
+////    fillConfigToPaletteMapping("Data_Type_Inheritance", Type.DATA_TYPE);//Step-Out: Inheritance
+////    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
   }
   
+  /**
+   * Fills the map with {@link FeatureExpression}s and the respective {@link PaletteEntry PaletteEntries}.
+   * @param framedFeatureExpression
+   * @param paletteEntries
+   */
   private void fillConfigToPaletteMapping(FeatureExpression framedFeatureExpression, PaletteEntry... paletteEntries){
     Set<String> templateSet = new HashSet<String>();
     for (PaletteEntry p : paletteEntries) {
