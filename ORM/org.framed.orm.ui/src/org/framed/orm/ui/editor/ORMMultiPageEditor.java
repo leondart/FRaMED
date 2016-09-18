@@ -1,36 +1,25 @@
 package org.framed.orm.ui.editor;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.script.ScriptException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.commands.CommandStackListener;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -45,25 +34,16 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-import org.framed.orm.featuremodel.FRaMEDConfiguration;
-import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeatureName;
-import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
-import org.framed.orm.model.Shape;
 import org.framed.orm.model.OrmPackage;
+import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.expression.ExpressionNode;
-import org.framed.orm.ui.expression.ExpressionMorpher;
 import org.framed.orm.ui.expression.FeatureExpression;
-import org.osgi.framework.Bundle;
 
 import de.ovgu.featureide.fm.core.FeatureModel;
-import de.ovgu.featureide.fm.core.configuration.Configuration;
-import de.ovgu.featureide.fm.core.configuration.Selection;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
-import de.ovgu.featureide.fm.core.job.WorkMonitor;
 import de.ovgu.featureide.fm.ui.editors.configuration.ConfigJobManager;
 
 

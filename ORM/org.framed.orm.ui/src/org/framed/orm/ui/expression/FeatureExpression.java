@@ -1,10 +1,8 @@
 package org.framed.orm.ui.expression;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import javax.script.Bindings;
 import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -14,16 +12,21 @@ import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeatureName;
 
-import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
-import de.ovgu.featureide.fm.core.configuration.Configuration;
 
+/**
+ * A Feature Expression is a String which represents an expression consisting of operators and features.
+ * 
+ * @author Marc Kandler
+ *
+ */
 public class FeatureExpression {
   private String featureExpression;
   boolean singleLiteral;
   
   /**
-   * Constructor for a new FeatureExpression, which consists of a arbitrary expression given. Checks the validity of the expression.
+   * Constructor for a new FeatureExpression, which consists of an arbitrary expression given. 
+   * Checks the validity of the expression.
    * 
    * @param featureModel
    * @param featureExpression
@@ -55,7 +58,7 @@ public class FeatureExpression {
 
 
   /**
-   * Checks a given String expression for validity by replacing all ({@link org.framed.orm.featuremodel.FeatureName FeatureName}s) with
+   * Checks a given String expression for validity by replacing all ({@link org.framed.orm.featuremodel.FeatureName FeatureName}s) with the boolean value
    * false and evaluating the resulting expression.
    * 
    * @param featureExpression
@@ -68,8 +71,8 @@ public class FeatureExpression {
     System.out.println(featureExpression + "\n ===> Morphed Expression Constructor: "+morphedExpression);
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
     try {
+      @SuppressWarnings("unused")
       Object o = engine.eval(morphedExpression);
-      //Boolean wert = (boolean)engine.eval(morphedExpression);
     } catch (ScriptException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -79,7 +82,15 @@ public class FeatureExpression {
   }
 
   
-
+  
+  /**
+   * Evaluates the expression by checking it against the {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}.
+   * Each {@link FeatureName} is replaced by a boolean value with bindings of the used JavaScript-engine.
+   * 
+   * @param fRaMEDConfiguration
+   * @return
+   * @throws ScriptException
+   */
   public boolean evaluate(FRaMEDConfiguration fRaMEDConfiguration) throws ScriptException {
     List<String> fRaMEDConfigurationFeatureNames = new ArrayList<String>();
     //create a list of all Feature Names as Strings within the framedConfiguration

@@ -53,9 +53,10 @@ import org.framed.orm.ui.tool.CreationAndDirectEditTool;
 
 
 /**
- * This class provides the palett and it's entrys for the {@link ORMGraphicalEditor}.
+ * This class provides the palette and its entries for the {@link ORMGraphicalEditor}.
  * 
  * @author Kay Bierzynski
+ * @author Marc Kandler
  * */
 public class ORMGraphicalEditorPalette extends PaletteRoot {
 
@@ -69,10 +70,13 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   private final Map<FeatureExpression, Set<String>> configToPaletteMapping;
   private Model rootmodel;
   
+  /**
+   * A {@link Set} of the names of palette elements, which are visible according to the current {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}.
+   */
   private Set<String> paletteElementsVisibleAccordingToConfig;
 
   /**
-   * The constructor of this class, where the palette is build and entryVisibility and entries
+   * The constructor of this class, where the palette is build with its entries and the entryVisibility is set.
    * variables are initialized.
    * @param configToPaletteMapping 
    * @param rootmodel 
@@ -97,6 +101,10 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
 
+  /**
+   * This method evaluates the provided {@link FeatureExpression}s in order to determine which palette entries are to be set visible.
+   * @throws ScriptException
+   */
   private void fillpaletteElementsVisibleAccordingToConfig() throws ScriptException {
     paletteElementsVisibleAccordingToConfig.clear();
    // EList<FRaMEDFeature> framedFeatures = rootmodel.getFramedConfiguration().getFeatures();
@@ -124,7 +132,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
 
   /**
-   * This method add a palett entry with sting id/name to the entries map.
+   * This method add a palette entry with sting id/name to the entries map.
    * */
   private void addEntry(final String name, final CreationToolEntry entry, final Boolean visibility) {
     entries.put(name, entry);
@@ -141,7 +149,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * A getter for the visibility of a palett entry.
+   * A getter for the visibility of a palette entry.
    * 
    * @return boolean
    * */
@@ -243,8 +251,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   }
 
   /**
-   * This method creates the palett entrys for the creation of all {@link Shape} kinds and adds them
-   * to palett.
+   * This method creates the palette entries for the creation of all {@link Shape} kinds and adds them
+   * to palette.
    */
   private void createComponentsDrawer() {
     PaletteDrawer drawer = new PaletteDrawer("Componenten");

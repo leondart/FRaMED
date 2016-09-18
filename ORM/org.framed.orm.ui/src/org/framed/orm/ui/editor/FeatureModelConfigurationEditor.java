@@ -56,6 +56,7 @@ import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
+import org.framed.orm.ui.expression.FeatureExpression;
 import org.osgi.framework.Bundle;
 
 import de.ovgu.featureide.fm.core.Feature;
@@ -75,6 +76,13 @@ import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree;
 
 // import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree.Builder;
 
+/**
+ * This editor is responsible for everything related to the configuration of FRaMED. It mainly
+ * displays the underlying configuration visually in form of a {@link Tree} and updates any changes in the selection.
+ * 
+ * @author Marc Kandler
+ *
+ */
 public class FeatureModelConfigurationEditor extends EditorPart {
 
   protected static final Color gray = new Color(null, 140, 140, 140);
@@ -85,6 +93,9 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   protected static final Font treeItemStandardFont = new Font(null, ARIAL, 8, SWT.NORMAL);
   protected static final Font treeItemSpecialFont = new Font(null, ARIAL, 8, SWT.BOLD);
 
+  /**
+   * The parent {@link MultiPageEditorPart} of this editor.
+   */
   private ORMMultiPageEditor ormMultiPageEditor;
   
   /**
@@ -119,14 +130,41 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    */
   File featureModelFile = null;
   
+  /**
+   * The info label which represents the current status of the configuration
+   */
   private Label infoLabel;
 
+  /**
+   * The tree which represents the feature model visually
+   */
   private Tree tree;
+  
+  /**
+   * A mapping from a Feature to the respective item of the tree (internal to visual mapping).
+   */
   protected final HashMap<SelectableFeature, TreeItem> itemMap =
       new HashMap<SelectableFeature, TreeItem>();
 
+  /**
+   * Current change status of this editor. if there are unsaved changes, the dirty-flag is set to true.
+   */
   protected boolean dirty = false;
 
+  /**
+   * Creates this editor and performs the following:
+   * <ul>
+   *    <li>Reads the included FeatureModel of FRaMED</li>
+   *    <li>Loads the {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} from the
+   *    {@link org.eclipse.emf.ecore.resource.Resource Resource} and creates the {@link de.ovgu.featureide.fm.core.configuration.Configuration
+   * <em>Configuration</em>} out of it </li>
+   *    <li> Creates a standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} if the previous step did not successfully load a usable configuration </li>
+   * </ul> 
+   * 
+   * 
+   * @param ormMultiPageEditor
+   * @param resource
+   */
   public FeatureModelConfigurationEditor(ORMMultiPageEditor ormMultiPageEditor, Resource resource) {
     this.ormMultiPageEditor = ormMultiPageEditor;
     this.cdResource = resource;
@@ -159,7 +197,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   }
   
   /**
-   * Saves the changes made to this editor.
+   * Saves the changes made to this editor and creates a standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} if necessary.
    */
   @Override
   public void doSave(IProgressMonitor monitor) {
@@ -294,6 +332,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     return ormMultiPageEditor;
   }
 
+  /**
+   * Creates the visual representation of the Feature Model and the respective {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}.
+   * Attaches a selection-listener to the Tree.
+   * 
+   * @param parent
+   */
   protected void createUITree(Composite parent) {
     tree = new Tree(parent, SWT.CHECK);
     tree.addSelectionListener(new SelectionListener() {
@@ -324,11 +368,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       }
     });
   }
-
-  private void applyStandardFramedConfigurationToConfiguration() {
-    
-  }
   
+  /**
+   * Performs the adjustments necessary if the selection changes.
+   * @param item
+   * @param select
+   */
   protected void changeSelection(final TreeItem item, final boolean select) {
     SelectableFeature feature = (SelectableFeature) item.getData();
     if (feature.getAutomatic() == Selection.UNDEFINED) {
@@ -361,6 +406,11 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   }
 
 
+  /**
+   * Sets the visible state of the {@link TreeItem} which represents a feature from the configuration.
+   * @param item
+   * @param feature
+   */
   protected void refreshItem(TreeItem item, SelectableFeature feature) {
     item.setBackground(null);
     item.setFont(treeItemStandardFont);
@@ -383,6 +433,13 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     }
   }
 
+  /**
+   * Sets the selected feature in the {@link de.ovgu.featureide.fm.core.configuration.Configuration Configuration} 
+   * (provided by FeatureIDE), which then performs the necessary changes (constraints like inclusions). Furthermore, this method writes
+   * the current configuration to the model.
+   * @param feature
+   * @param selection
+   */
   protected void set(SelectableFeature feature, Selection selection) {
     getConfiguration().setManual(feature, selection);
     writeConfigurationToModel();
@@ -426,6 +483,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     } 
   }
 
+  
   @Override
   public void createPartControl(Composite parent) {
     // parent composite
@@ -513,12 +571,18 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     createUITree(compositeBottom);
   }
 
+  /**
+   * Updates the info label according to the status of the current {@link de.ovgu.featureide.fm.core.configuration.Configuration Configuration}
+   */
   private void updateInfoLabel() {
     Boolean valid = configuration.isValid();
     infoLabel.setText(valid? "VALID Configuration" : "INVALID Configuration");
     infoLabel.setForeground(valid ? blue : red);    
   }
 
+  /**
+   * Updates and builds the tree.
+   */
   public void updateTree() {
     final Configuration configuration = getConfiguration();
     tree.removeAll();
@@ -532,6 +596,11 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     updateInfoLabel();
   }
 
+  /**
+   * Builds the tree starting from the root element of the {@link de.ovgu.featureide.fm.core.configuration.Configuration Configuration}.
+   * @param parent
+   * @param children
+   */
   private void buildTree(final TreeItem parent, final TreeElement[] children) {
     for (int i = 0; i < children.length; i++) {
       final TreeElement child = children[i];
@@ -559,6 +628,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     parent.setExpanded(true);
   }
 
+  /**
+   * Updates the whole tree by checking each {@link TreeItem} if it is still in the current {@link de.ovgu.featureide.fm.core.configuration.Configuration Configuration}
+   * and updating its status respectively.
+   * @param parent
+   * @param children
+   */
   private void updateSelections(final TreeItem parent, final TreeElement[] children) {
     for (int i = 0; i < children.length; i++) {
       final TreeElement child = children[i];
@@ -645,9 +720,6 @@ public class FeatureModelConfigurationEditor extends EditorPart {
         framedConfiguration.getFeatures().remove(toRemove);
       }
     }
-//    if (!isDirty()) {
-//        doSave(null);
-//    }
   }
 
   public FeatureModel getFeatureModel() {

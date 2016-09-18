@@ -1,5 +1,10 @@
 package org.framed.orm.ui.editor;
 
+/**
+ * An enum representing the names of all Palette Entries
+ * @author Marc Kandler
+ *
+ */
 public enum PaletteEntry {
 
   ROLE_TYPE ("RoleType"),
