@@ -160,47 +160,52 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /** This method sets the visibility of all palett entrys depending on the variable visible. */
   public void setRoleEntriesVisibility(final boolean visible) {
     if (visible) {
-    setEntryVisibility("RoleType", true); //2
-    setEntryVisibility("RoleGroup", true); //12
-    setEntryVisibility("Role Implication", true); //4
-    setEntryVisibility("Relationship Implication", true);//15
-    setEntryVisibility("Relationship Exclusion", true);//19
-    setEntryVisibility("Role Equivalence", true);//5
-    setEntryVisibility("Role Prohibition", true);//11
-    setEntryVisibility("Relationship", true);//7
-    setEntryVisibility("Reflexive", true);//18
-    setEntryVisibility("Irreflexive", true);//10
-    setEntryVisibility("Total", true);//8
-    setEntryVisibility("Cyclic", true);//9
-    setEntryVisibility("Acyclic", true);//17
+    setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), true); //2x
+    setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), true); //12x
+    setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), true); //4x
+    setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), true);//15x
+    setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), true);//19x
+    setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), true);//5x
+    setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), true);//11x
+    setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), true);//7x
+    setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), true);//18x
+    setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), true);//10x
+    setEntryVisibility(PaletteEntry.TOTAL.getName(), true);//8x
+    setEntryVisibility(PaletteEntry.CYCLIC.getName(), true);//9x
+    setEntryVisibility(PaletteEntry.ACYCLIC.getName(), true);//17x
 
 
-    setEntryVisibility("Compartment", false);//0
-    setEntryVisibility("NaturalType", false);//1
-    setEntryVisibility("DataType", false);//3
-    setEntryVisibility("Group", false);//13
-    setEntryVisibility("Fulfillment", false);//14
+    setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), false);//0x
+    setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), false);//1x
+    setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), false);//3x
+    setEntryVisibility(PaletteEntry.GROUP.getName(), false);//13x
+    setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), false);//14x
     } else {
-      setEntryVisibility("RoleType", false);
-      setEntryVisibility("RoleGroup", false);
-      setEntryVisibility("Role Implication", false);
-      setEntryVisibility("Relationship Implication", false);
-      setEntryVisibility("Relationship Exclusion", false);
-      setEntryVisibility("Role Equivalence", false);
-      setEntryVisibility("Role Prohibition", false);
-      setEntryVisibility("Relationship", false);
-      setEntryVisibility("Reflexive", false);
-      setEntryVisibility("Irreflexive", false);
-      setEntryVisibility("Total", false);
-      setEntryVisibility("Cyclic", false);
-      setEntryVisibility("Acyclic", false);
+      setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), false);
+      setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), false);
+      setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), false);
+      setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), false);
+      setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), false);
+      setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), false);
+      setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), false);
+      setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), false);
+      setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), false);
+      setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), false);
+      setEntryVisibility(PaletteEntry.TOTAL.getName(), false);
+      setEntryVisibility(PaletteEntry.CYCLIC.getName(), false);
+      setEntryVisibility(PaletteEntry.ACYCLIC.getName(), false);
 
-      setEntryVisibility("Compartment", true);
-      setEntryVisibility("NaturalType", true);
-      setEntryVisibility("DataType", true);
-      setEntryVisibility("Group", true);
-      setEntryVisibility("Fulfillment", true);
+      setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), true);
+      setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), true);
+      setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), true);
+      setEntryVisibility(PaletteEntry.GROUP.getName(), true);
+      setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), true);
     }
+    //We need to set them true here, so these entries can be checked by the setEntryVisibility method against the 
+    //configuration-evaluation results
+    setEntryVisibility(PaletteEntry.ATTRIBUTE.getName(), true);
+    setEntryVisibility(PaletteEntry.OPERATION.getName(), true);
+    setEntryVisibility(PaletteEntry.INHERITANCE.getName(), true);
     System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
     for (CreationToolEntry c : entries.values())
       System.out.println(c.getLabel()+" visible: "+ c.isVisible());
