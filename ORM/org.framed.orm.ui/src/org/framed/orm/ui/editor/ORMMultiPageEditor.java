@@ -480,42 +480,45 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private void initializeConfigToPaletteMapping() throws ScriptException {
 
     FeatureModel featureModel = featureModelConfigurationEditor.getFeatureModel();
-    FeatureExpression ex = new FeatureExpression(featureModel, 
-        ExpressionNode.LB.toString() + ExpressionNode.NOT + FeatureName.RML_FEATURE_MODEL + ExpressionNode.RB);
-    
-    ex = new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")");
 //    FeatureExpression ex = new FeatureExpression(featureModel, 
-//        FeatureName.RML_FEATURE_MODEL, ExpressionNode.AND, FeatureName.ROLE_TYPES);
-//    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
-//    System.out.println(ex.toString());
+//        ExpressionNode.LB.toString() + ExpressionNode.NOT + FeatureName.RML_FEATURE_MODEL + ExpressionNode.RB);
 //    
-//    ex = new FeatureExpression(featureModelConfigurationEditor.getFeatureModel(), 
-//        FeatureName.RML_FEATURE_MODEL, ExpressionNode.OR, FeatureName.ROLE_TYPES);
-//    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
-//    System.out.println(ex.toString());
+//    ex = new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")");
+////    FeatureExpression ex = new FeatureExpression(featureModel, 
+////        FeatureName.RML_FEATURE_MODEL, ExpressionNode.AND, FeatureName.ROLE_TYPES);
+////    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
+////    System.out.println(ex.toString());
+////    
+////    ex = new FeatureExpression(featureModelConfigurationEditor.getFeatureModel(), 
+////        FeatureName.RML_FEATURE_MODEL, ExpressionNode.OR, FeatureName.ROLE_TYPES);
+////    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
+////    System.out.println(ex.toString());
+////    
+////    ex = new FeatureExpression(featureModelConfigurationEditor.getFeatureModel(), ExpressionNode.LB,
+////         ExpressionNode.NOT, FeatureName.RML_FEATURE_MODEL,ExpressionNode.RB, ExpressionNode.AND, FeatureName.ROLE_TYPES);
+////    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
+////    System.out.println(ex.toString());
+//    //Test:
+//    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")"));
+//    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.COMPARTMENTS+")"));
+//    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "("+FeatureName.COMPARTMENTS+" && "+FeatureName.DATA_TYPES+")"
+//        +"&& !"+FeatureName.COMPARTMENT_BEHAVIOR + "|| ("+FeatureName.RML_FEATURE_MODEL + " && " + FeatureName.ROLE_TYPES + ")"));
 //    
-//    ex = new FeatureExpression(featureModelConfigurationEditor.getFeatureModel(), ExpressionNode.LB,
-//         ExpressionNode.NOT, FeatureName.RML_FEATURE_MODEL,ExpressionNode.RB, ExpressionNode.AND, FeatureName.ROLE_TYPES);
-//    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
-//    System.out.println(ex.toString());
-    //Test:
-    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")"));
-    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.COMPARTMENTS+")"));
-    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "("+FeatureName.COMPARTMENTS+" && "+FeatureName.DATA_TYPES+")"
-        +"&& !"+FeatureName.COMPARTMENT_BEHAVIOR + "|| ("+FeatureName.RML_FEATURE_MODEL + " && " + FeatureName.ROLE_TYPES + ")"));
+//    fillConfigToPaletteMapping(new FeatureExpression(featureModel, 
+//        FeatureName.RML_FEATURE_MODEL + "||" + FeatureName.ROLE_TYPES +
+//        "||" + FeatureName.ROLE_STRUCTURE + "||" + FeatureName.ROLE_PROPERTIES + "||" + FeatureName.ROLE_BEHAVIOR + "||" + FeatureName.ROLE_INHERITANCE 
+//        + "||" + FeatureName.PLAYABLE + "||" + FeatureName.PLAYERS + "||" + FeatureName.NATURALS + "||" + FeatureName.ROLES + "||" + FeatureName.COMPARTMENTS
+//        + "||" + FeatureName.DATES + "||" + FeatureName.DEPENDENT + "||" + FeatureName.ON_COMPARTMENTS + "||" + FeatureName.ON_RELATIONSHIPS + "||" + FeatureName.ROLE_CONSTRAINTS
+//        + "||" + FeatureName.ROLE_IMPLICATION + "||" + FeatureName.ROLE_PROHIBITION + "||" + FeatureName.ROLE_EQUIVALENCE + "||" + FeatureName.GROUP_CONSTRAINTS + "||" + FeatureName.OCCURRENCE_CONSTRAINTS
+//        + "||" + FeatureName.RELATIONSHIPS + "||" + FeatureName.RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.RELATIONSHIP_CARDINALITY + "||" + FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS
+//        + "||" + FeatureName.PARTHOOD_CONSTRAINTS + "||" + FeatureName.INTER_RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.COMPARTMENT_TYPES + "||" + FeatureName.COMPARTMENT_STRUCTURE
+//        + "||" + FeatureName.COMPARTMENT_PROPERTIES + "||" + FeatureName.COMPARTMENT_BEHAVIOR + "||" + 
+//        FeatureName.COMPARTMENT_INHERITANCE + "&&" + FeatureName.PARTICIPANTS
+//        + "&&" + FeatureName.CONTAINS_COMPARTMENTS + "&&" + FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT + "&&" + FeatureName.DATA_TYPES + "&&" + FeatureName.DATA_TYPE_INHERITANCE));
     
-    fillConfigToPaletteMapping(new FeatureExpression(featureModel, 
-        FeatureName.RML_FEATURE_MODEL + "||" + FeatureName.ROLE_TYPES +
-        "||" + FeatureName.ROLE_STRUCTURE + "||" + FeatureName.ROLE_PROPERTIES + "||" + FeatureName.ROLE_BEHAVIOR + "||" + FeatureName.ROLE_INHERITANCE 
-        + "||" + FeatureName.PLAYABLE + "||" + FeatureName.PLAYERS + "||" + FeatureName.NATURALS + "||" + FeatureName.ROLES + "||" + FeatureName.COMPARTMENTS
-        + "||" + FeatureName.DATES + "||" + FeatureName.DEPENDENT + "||" + FeatureName.ON_COMPARTMENTS + "||" + FeatureName.ON_RELATIONSHIPS + "||" + FeatureName.ROLE_CONSTRAINTS
-        + "||" + FeatureName.ROLE_IMPLICATION + "||" + FeatureName.ROLE_PROHIBITION + "||" + FeatureName.ROLE_EQUIVALENCE + "||" + FeatureName.GROUP_CONSTRAINTS + "||" + FeatureName.OCCURRENCE_CONSTRAINTS
-        + "||" + FeatureName.RELATIONSHIPS + "||" + FeatureName.RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.RELATIONSHIP_CARDINALITY + "||" + FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS
-        + "||" + FeatureName.PARTHOOD_CONSTRAINTS + "||" + FeatureName.INTER_RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.COMPARTMENT_TYPES + "||" + FeatureName.COMPARTMENT_STRUCTURE
-        + "||" + FeatureName.COMPARTMENT_PROPERTIES + "||" + FeatureName.COMPARTMENT_BEHAVIOR + "||" + 
-        FeatureName.COMPARTMENT_INHERITANCE + "&&" + FeatureName.PARTICIPANTS
-        + "&&" + FeatureName.CONTAINS_COMPARTMENTS + "&&" + FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT + "&&" + FeatureName.DATA_TYPES + "&&" + FeatureName.DATA_TYPE_INHERITANCE));
-    
+    //True-Expression for always visible palette entries
+    fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL), PaletteEntry.NATURAL_TYPE, 
+        PaletteEntry.ROLE_TYPE);
     
     //RML_Feature_Model
     fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL));
