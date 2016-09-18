@@ -518,7 +518,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     
     //True-Expression for always visible palette entries
     fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL), PaletteEntry.NATURAL_TYPE, 
-        PaletteEntry.ROLE_TYPE);
+        PaletteEntry.ROLE_TYPE, PaletteEntry.GROUP);
     
     //RML_Feature_Model
     fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL));
@@ -648,7 +648,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////    fillConfigToPaletteMapping("Compartment_Structure");//Keins
 ////    
 ////    //Compartment_Properties
-        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_PROPERTIES), PaletteEntry.GROUP);
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_PROPERTIES), PaletteEntry.ATTRIBUTE);
 ////    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP);//Beide Ansichten: Attributes
 ////    //Editpolicyänderung: Drag&Drop von Attributen auf Compartment Modellelemente
 ////    
