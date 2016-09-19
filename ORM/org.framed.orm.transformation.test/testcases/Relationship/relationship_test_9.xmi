@@ -6,55 +6,89 @@
     xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
     xmlns:org.framed.orm.model="http://orm/1.0"
     xmlns:ts="http://org.framed/testmodel"
-    title="TestCase for cyclic,irreflexive relationships"
-    description="TestCase for cyclic,irreflexive relationships where one Naturaltype is referenced by a cyclic,irreflexive relationship to another NaturalType">
+    title="TestCase for cyclic,total relationships"
+    description="TestCase for cyclic,total relationships where one RoleType is referenced by a cyclic,total relationship to another RoleType">
   <framedModel>
-    <elements
-        xsi:type="org.framed.orm.model:Shape"
-        name="NaturalType1"
-        outgoingRelations="//@framedModel/@elements.2 //@framedModel/@elements.3 //@framedModel/@elements.4"
-        type="NaturalType"/>
-    <elements
-        xsi:type="org.framed.orm.model:Shape"
-        name="NaturalType2"
-        incomingRelations="//@framedModel/@elements.2 //@framedModel/@elements.3 //@framedModel/@elements.4"
-        type="NaturalType"/>
-    <elements
-        xsi:type="org.framed.orm.model:Relation"
-        name="testRelation"
-        type="Relationship"
-        target="//@framedModel/@elements.1"
-        source="//@framedModel/@elements.0"
-        referencedRelation="//@framedModel/@elements.3 //@framedModel/@elements.4"/>
-    <elements
-        xsi:type="org.framed.orm.model:Relation"
-        name=""
-        type="Irreflexive"
-        target="//@framedModel/@elements.1"
-        source="//@framedModel/@elements.0"/>
-    <elements
-        xsi:type="org.framed.orm.model:Relation"
-        type="Cyclic"
-        target="//@framedModel/@elements.1"
-        source="//@framedModel/@elements.0"/>
-  </framedModel>
-  <cromModel>
-    <elements
-        xsi:type="crom_l1_composed:NaturalType"
-        name="NaturalType1"
-        outgoing="//@cromModel/@relations.0"/>
-    <elements
-        xsi:type="crom_l1_composed:NaturalType"
-        name="NaturalType2"
-        incoming="//@cromModel/@relations.0"/>
-    <relations
-        xsi:type="crom_l1_composed:Relationship"
-        name="testRelation"/>
-    <relations
-        xsi:type="crom_l1_composed:Irreflexive"
-        relation="//@cromModel/@relations.0"/>
-    <relations
-        xsi:type="crom_l1_composed:Cyclic"
-        relation="//@cromModel/@relations.0"/>
-  </cromModel>
+		<elements xsi:type="org.framed.orm.model:Shape" name="NT"
+			outgoingRelations="//@framedModel/@elements.2" type="NaturalType">
+			<firstSegment />
+			<secondSegment />
+		</elements>
+		<elements xsi:type="org.framed.orm.model:Shape" name="CT"
+			incomingRelations="//@framedModel/@elements.2">
+			<firstSegment />
+			<secondSegment />
+			<model>
+				<elements xsi:type="org.framed.orm.model:Shape" name="RT1"
+					incomingRelations="//@framedModel/@elements.1/@model/@elements.3 //@framedModel/@elements.1/@model/@elements.6 //@framedModel/@elements.1/@model/@elements.7"
+					type="RoleType">
+					<firstSegment />
+					<secondSegment />
+					<description name="*" />
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Shape" name="RT2"
+					outgoingRelations="//@framedModel/@elements.1/@model/@elements.3 //@framedModel/@elements.1/@model/@elements.6 //@framedModel/@elements.1/@model/@elements.7"
+					type="RoleType">
+					<firstSegment />
+					<secondSegment />
+					<description name="*" />
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Shape" name=""
+					type="RelationshipShapeChild">
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Relation" name="rst"
+					type="Relationship" target="//@framedModel/@elements.1/@model/@elements.0"
+					source="//@framedModel/@elements.1/@model/@elements.1"
+					referencedRelation="//@framedModel/@elements.1/@model/@elements.6 //@framedModel/@elements.1/@model/@elements.7"
+					connectionAnchor="//@framedModel/@elements.1/@model/@elements.2">
+					<sourceLabel name="*" />
+					<targetLabel name="*" />
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Shape" name=""
+					type="RelationshipShapeChild">
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Shape" name=""
+					type="RelationshipShapeChild">
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Relation" name="Irreflexive"
+					type="Irreflexive" target="//@framedModel/@elements.1/@model/@elements.0"
+					source="//@framedModel/@elements.1/@model/@elements.1"
+					referencedRelation="//@framedModel/@elements.1/@model/@elements.3">
+				</elements>
+				<elements xsi:type="org.framed.orm.model:Relation" name="Total"
+					type="Total" target="//@framedModel/@elements.1/@model/@elements.0"
+					source="//@framedModel/@elements.1/@model/@elements.1"
+					referencedRelation="//@framedModel/@elements.1/@model/@elements.3">
+				</elements>
+			</model>
+		</elements>
+		<elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment"
+			target="//@framedModel/@elements.1" source="//@framedModel/@elements.0"
+			referencedRoles="//@framedModel/@elements.1/@model/@elements.0 //@framedModel/@elements.1/@model/@elements.1" />
+	</framedModel>
+	<cromModel>
+		<elements xsi:type="crom_l1_composed:NaturalType" name="NT" />
+		<elements xsi:type="crom_l1_composed:CompartmentType" name="CT">
+			<parts>
+				<role xsi:type="crom_l1_composed:RoleType" name="RT1"
+					incoming="//@cromModel/@elements.1/@relationships.0" />
+			</parts>
+			<parts>
+				<role xsi:type="crom_l1_composed:RoleType" name="RT2"
+					outgoing="//@cromModel/@elements.1/@relationships.0" />
+			</parts>
+			<relationships name="rst">
+				<first holder="//@cromModel/@elements.1/@parts.1/@role" />
+				<second holder="//@cromModel/@elements.1/@parts.0/@role" />
+			</relationships>
+			<constraints xsi:type="crom_l1_composed:Irreflexive"
+				relation="//@cromModel/@elements.1/@relationships.0" />
+			<constraints xsi:type="crom_l1_composed:Total"
+				relation="//@cromModel/@elements.1/@relationships.0" />
+		</elements>
+		<relations xsi:type="crom_l1_composed:Fulfillment"
+			filled="//@cromModel/@elements.1/@parts.0/@role" filler="//@cromModel/@elements.0" />
+		<relations xsi:type="crom_l1_composed:Fulfillment"
+			filled="//@cromModel/@elements.1/@parts.1/@role" filler="//@cromModel/@elements.0" />
+	</cromModel>
 </ts:TestCase>

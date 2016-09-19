@@ -9,7 +9,7 @@
             default="true"
             extensions="crom_dia"
             id="ORMEditor.editorID"
-            name="ORM GEF Editor">
+            name="First Role Modeling Editor">
       </editor>
    </extension>
 

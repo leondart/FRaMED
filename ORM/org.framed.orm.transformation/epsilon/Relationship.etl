@@ -1,6 +1,31 @@
 /**
  * Transforms a relation with type INHERITANCE.
  */
+
+operation getPlace(card : String,holder:target!RoleType) : target!Place {
+	var place = new target!Place;
+	place.lower = 0;
+	place.upper = -1;
+	if(card.isDefined()) {
+		var cards = parseCardinality(card);
+		if(cards.size()==1)
+			place.lower = cards[0];
+		if(cards.size()>1){
+			place.lower = cards[0];
+			place.upper = cards[1];
+		}				
+	}
+	if(holder.isDefined()){
+		place.holder = holder;
+	}
+	return place;
+}
+
+operation getPlace(card : String,holder:target!RigidType) : target!Place {
+	fail("Place can only reference role types as placeholders!");
+}
+
+
 rule Relationship
 	transform s : source!Relation
 	to t : target!Relationship {
@@ -9,21 +34,25 @@ rule Relationship
 	
 	t.name = s.name;
 	
-	if(s.sourceLabel.isDefined()) {
-		var card = s.sourceLabel.name;
-		var place = getCardinality(card);
-		if(not(place==null)) {
-			t.first = place;
-		}
+	/*Place should always be defined*/
+	var card = "0..*";
+	if(s.sourceLabel.isDefined()){
+		card=s.sourceLabel.name;
+	}
+	var place = getPlace(card,s.getSource.equivalent());
+	if(not(place==null)) {
+		t.setFirst(place);
 	}
 	
-	if(s.targetLabel.isDefined()) {
-		var card = s.targetLabel.name;
-		var place = getCardinality(card);
-		if(not(place==null)) {
-			t.second = place;
-		}
+	//Place should always be defined
+	card="0..*";
+	if(s.targetLabel.isDefined()){
+		card=s.targetLabel.name;
 	}
+	place = getPlace(card,s.getTarget.equivalent());
+	if(not(place==null)) {
+		t.setSecond(place);
+	}	
 	
 	//t.first - place from label
 	//t.second - place from label
@@ -35,21 +64,6 @@ rule Relationship
 		var referenced = r.equivalent();
 		referenced.setRelation(t);
 	}
-}
-
-operation getCardinality(card : String) : target!Place {
-	if(card.isDefined()) {
-		var cards = parseCardinality(card);
-		if(cards.size() > 0) {
-			var place = new target!Place;
-			place.lower = cards[0];
-			if(cards.size()>1) {
-				place.upper = cards[1];
-			}
-			return place;
-		}
-	}
-	return null;
 }
 
 rule TotalRelation

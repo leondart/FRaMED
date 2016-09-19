@@ -10,13 +10,13 @@
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated ORM -->
       <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            id="org.framed.orm.wizard.category"
             name="%_UI_Wizard_category"/>
       <wizard
             id="org.framed.orm.model.presentation.OrmModelWizardID"
             name="%_UI_OrmModelWizard_label"
             class="org.framed.orm.model.presentation.OrmModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.framed.orm.wizard.category"
             icon="icons/full/obj16/OrmModelFile.gif">
          <description>%_UI_OrmModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -38,13 +38,13 @@
    <extension point="org.eclipse.ui.newWizards">
       <!-- @generated ORM -->
       <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            id="org.framed.orm.wizard.category"
             name="%_UI_Wizard_category"/>
       <wizard
             id="org.framed.orm.geometry.presentation.GeometryModelWizardID"
             name="%_UI_GeometryModelWizard_label"
             class="org.framed.orm.geometry.presentation.GeometryModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.framed.orm.wizard.category"
             icon="icons/full/obj16/GeometryModelFile.gif">
          <description>%_UI_GeometryModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

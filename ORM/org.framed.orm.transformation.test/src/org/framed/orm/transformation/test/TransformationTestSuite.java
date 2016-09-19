@@ -76,6 +76,7 @@ public class TransformationTestSuite {
 
     File file = null;
 
+
     // if bundle is available this test runs as plugin junit test
     Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
     if (bundle != null) {
@@ -90,27 +91,29 @@ public class TransformationTestSuite {
     loadDirectory(list, file);
     return list;
   }
+	/**
+	 * Loads all {@link TestCase} of the given directory
+	 * 
+	 * @param list
+	 *            List of {@link TestCase}
+	 * @param file
+	 *            Current directory
+	 */
+	private static void loadDirectory(List<Object[]> list, File file) {
+		for (File testFile : file.listFiles()) {
+			// if entry is directory load it recursively
+			if (testFile.isDirectory()) {
+				loadDirectory(list, testFile);
+			} else if (testFile.getName().endsWith("xmi")) {
+				// if entry is file try to load test file
+				TestCase testCase = loadTestCase(testFile);
+				if (testCase != null) {
+					list.add(new Object[] { testCase, testFile.getName() });
+				}
+			}
+		}
+	}
 
-  /**
-   * Loads all {@link TestCase} of the given directory
-   * 
-   * @param list List of {@link TestCase}
-   * @param file Current directory
-   */
-  private static void loadDirectory(List<Object[]> list, File file) {
-    for (File testFile : file.listFiles()) {
-      // if entry is directory load it recursively
-      if (testFile.isDirectory()) {
-        loadDirectory(list, testFile);
-      } else {
-        // if entry is file try to load test file
-        TestCase testCase = loadTestCase(testFile);
-        if (testCase != null) {
-          list.add(new Object[] {testCase, testFile.getName()});
-        }
-      }
-    }
-  }
 
   /**
    * loads the {@link TestCase} of the specified {@link File}.
@@ -124,18 +127,19 @@ public class TransformationTestSuite {
       ResourceSet set = new ResourceSetImpl();
       Resource res = set.createResource(URI.createFileURI(testFile.toString()));
       res.load(Collections.EMPTY_MAP);
-
-      // if there are file contents in this directory
-      if (res.getContents().size() > 0 && res.getContents().get(0) instanceof TestCase) {
-        // load test file and add it to test list
-        return (TestCase) res.getContents().get(0);
-      }
-    } catch (Exception e) {
-      System.err.println("Was not able to load testcase \"" + testFile.toString() + "\" due : "
-          + e.toString());
-    }
-    return null;
-  }
+			// if there are file contents in this directory
+			if (res.getContents().size() > 0
+					&& res.getContents().get(0) instanceof TestCase) {
+				// load test file and add it to test list
+				return (TestCase) res.getContents().get(0);
+			}
+		} catch (Exception e) {
+			System.err.println("Was not able to load testcase \""
+					+ testFile.toString() + "\" due : " + e.toString());
+			for (StackTraceElement el: e.getStackTrace()) System.err.println(el.toString());
+		}
+		return null;
+	}
 
   /**
    * current {@link TestCase}

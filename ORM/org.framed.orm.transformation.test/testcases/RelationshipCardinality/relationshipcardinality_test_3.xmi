@@ -6,8 +6,8 @@
     xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
     xmlns:org.framed.orm.model="http://orm/1.0"
     xmlns:ts="http://org.framed/testmodel"
-    title="Simple TestCase for Relationships"
-    description="Simple TestCase for Relationships">
+    title="TestCase for Relationship Cardinality (1..*)"
+    description="TestCase for Relationship Cardinality (1..*) (2..*)">
 <framedModel>
 		<elements xsi:type="org.framed.orm.model:Shape" name="CT">
 			<firstSegment />
@@ -34,8 +34,8 @@
 					type="Relationship" target="//@framedModel/@elements.0/@model/@elements.0"
 					source="//@framedModel/@elements.0/@model/@elements.1"
 					connectionAnchor="//@framedModel/@elements.0/@model/@elements.2">
-					<sourceLabel name="*" />
-					<targetLabel name="*" />
+					<sourceLabel name="1..*" />
+					<targetLabel name="2..*" />
 				</elements>
 			</model>
 		</elements>
@@ -51,8 +51,8 @@
 					outgoing="//@cromModel/@elements.0/@relationships.0" />
 			</parts>
 			<relationships name="rst">
-				<first holder="//@cromModel/@elements.0/@parts.1/@role" />
-				<second holder="//@cromModel/@elements.0/@parts.0/@role" />
+				<first lower="1"  holder="//@cromModel/@elements.0/@parts.1/@role" />
+				<second lower="2" holder="//@cromModel/@elements.0/@parts.0/@role" />
 			</relationships>
 		</elements>
 	</cromModel>
