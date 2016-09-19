@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.geometry.Rectangle;
-import org.framed.orm.model.Configuration;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
@@ -390,13 +390,13 @@ public class ORMOrphanChildCommandTest {
       }
 
       @Override
-      public Configuration getConfiguration() {
+      public FRaMEDConfiguration getFramedConfiguration() {
         // TODO Auto-generated method stub
         return null;
       }
 
       @Override
-      public void setConfiguration(Configuration value) {
+      public void setFramedConfiguration(FRaMEDConfiguration value) {
         // TODO Auto-generated method stub
         
       }
@@ -766,13 +766,13 @@ public class ORMOrphanChildCommandTest {
       }
 
       @Override
-      public Configuration getConfiguration() {
+      public FRaMEDConfiguration getFramedConfiguration() {
         // TODO Auto-generated method stub
         return null;
       }
 
       @Override
-      public void setConfiguration(Configuration value) {
+      public void setFramedConfiguration(FRaMEDConfiguration value) {
         // TODO Auto-generated method stub
         
       }
@@ -1142,14 +1142,15 @@ public class ORMOrphanChildCommandTest {
         return null;
       }
 
+
       @Override
-      public Configuration getConfiguration() {
+      public FRaMEDConfiguration getFramedConfiguration() {
         // TODO Auto-generated method stub
         return null;
       }
 
       @Override
-      public void setConfiguration(Configuration value) {
+      public void setFramedConfiguration(FRaMEDConfiguration value) {
         // TODO Auto-generated method stub
         
       }
