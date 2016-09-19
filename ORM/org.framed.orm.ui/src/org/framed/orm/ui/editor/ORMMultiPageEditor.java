@@ -15,6 +15,7 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -79,6 +80,16 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * The {@link FeatureModelConfigurationEditor} which handles everything related to the Configuration. 
    */
   private FeatureModelConfigurationEditor featureModelConfigurationEditor;
+  
+  /**
+   * The {@link ReadOnlyEditor} responsible for displaying the content of the .crom file.
+   * */
+  private ReadOnlyEditor cromEditor;
+  
+  /**
+   * The {@link ReadOnlyEditor} responsible for displaying the content of the .crom_dia file
+   * */
+  private ReadOnlyEditor cromDiaEditor;
   
   /**
    * The {@link EditorChangeNotifier} of this editor.
@@ -206,6 +217,22 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 //    }
   }
   
+  /**
+   * This method creates the crom {@link ReadOnlyEdior} and adds the crom data as a page
+   * to this editor.
+   */
+  private void createCromReadOnlyEditorPage() {
+    cromEditor = new ReadOnlyEditor();
+  }
+  
+  /**
+   * This method creates the crom_dia {@link ReadOnlyEdior} and adds the crom_dia data as a page
+   * to this editor.
+   */
+  private void createCromDiaReadOnlyEditorPage() {
+    cromDiaEditor = new ReadOnlyEditor();
+  }
+  
  
 
   /** {@inheritDoc} 
@@ -238,6 +265,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     
     createBehaviorEditorPage();
     createDataEditorPage();
+    createCromDiaReadOnlyEditorPage();
+    createCromReadOnlyEditorPage();
 
     //In order to keep the order of the pages(Behavior, Data, Configuration) in the editor, 
     //we need to create the pages after calling the respective Editor constructors
@@ -249,6 +278,18 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       setPageText(index, "Data");
       index = addPage(featureModelConfigurationEditor, getEditorInput());    
       setPageText(index, "Configuration");
+      index = addPage(cromDiaEditor, getEditorInput());
+      setPageText(index, "CROM_DIA");
+      
+      //To get the .crom-file, we have to take the current editorinput and derive the desired file from it
+      URI uri = resource.getURI();
+      uri = uri.trimFileExtension();
+      uri = uri.appendFileExtension("crom");
+      Path path = new Path(uri.toFileString());
+      IFile myFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
+      IFileEditorInput cromDiaEditorInput = new FileEditorInput(myFile);
+      index = addPage(cromEditor, cromDiaEditorInput);
+      setPageText(index, "CROM");
     } catch (PartInitException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -373,13 +414,16 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       featureModelConfigurationEditor.updateTree();
     }
     else
-    {
-      //call the update editor type function in order to update the palette entry visibility as well
-      ORMGraphicalEditor editor = (ORMGraphicalEditor) activeEditor;
-      editor.pageChanged();
-      IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
-      if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
-        ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
+      { 
+      //If the target editor is one of the graphical editors
+      if (activeEditor instanceof ORMGraphicalEditor) {
+        //call the update editor type function in order to update the palette entry visibility as well
+        ORMGraphicalEditor editor = (ORMGraphicalEditor) activeEditor;
+        editor.pageChanged();
+        IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
+        if (contributor != null && contributor instanceof ORMGraphicalEditorActionBarContributor) {
+          ((ORMGraphicalEditorActionBarContributor) contributor).setActiveEditor(activeEditor);
+        }
       }
     }
     
