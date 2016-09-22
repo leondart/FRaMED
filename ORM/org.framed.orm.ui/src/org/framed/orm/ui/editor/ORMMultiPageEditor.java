@@ -101,7 +101,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private Resource resource;
   /**
    * The name of the file, which contains the model resources. This variable is necessary for the
-   * creation of custom title for this edito.
+   * creation of custom title for this editor.
    */
   private String inputFilename;
   
@@ -110,6 +110,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * names of PaletteEntries.
    */
   private Map<FeatureExpression, Set<String>> configToPaletteMapping;
+  
+  private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
+  
+  private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
 
   /**
    * The constructor of this class, where {@link MultiPageEditorPart#MultiPageEditorPart()} is
@@ -135,7 +139,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   /**
    * This method creates a custom title for this editor out of resource file name, the genral model
    * element term and the specific model/{@link Type} element name of the model element which is the
-   * content of the viewer of data/behaviour {@link ORMGraphicalEditor}.
+   * content of the viewer of data/behavior {@link ORMGraphicalEditor}.
    * */
   public void createCustomTitleForEditor(final Object model) {
 
@@ -170,7 +174,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   }
 
   /**
-   * This method creates the beahvior {@link ORMGraphicalEditor}.
+   * This method creates the behavior {@link ORMGraphicalEditor}.
    */
   private void createBehaviorEditorPage() {
 //    try {
@@ -578,17 +582,17 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////   
 ////    //Role_Properties
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROPERTIES), PaletteEntry.ATTRIBUTE);
-////    fillConfigToPaletteMapping("Role_Properties" );//Attributes, 
+////    fillConfigToPaletteMapping("Role_Properties" );//Attributes , Stepout immer, Stepin spezifisch
 ////  //Drag&Drop, siehe unten bzgl. Attributes
 ////    
 ////    //Role_Behavior
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_BEHAVIOR), PaletteEntry.OPERATION);
-////    fillConfigToPaletteMapping("Role_Behavior", Type.FULFILLMENT);//Operations
+////    fillConfigToPaletteMapping("Role_Behavior", Type.FULFILLMENT);//Operations, stepout immer
 ////    //Drag&Drop, siehe unten bzgl. Operations
 ////    
 ////    //Role_Inheritance
       fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_INHERITANCE), PaletteEntry.INHERITANCE);
-////    fillConfigToPaletteMapping("Role_Inheritance", Type.INHERITANCE);// Inheritance (Step-In Ansicht)
+////    fillConfigToPaletteMapping("Role_Inheritance", Type.INHERITANCE);// Inheritance (Step-In Ansicht), stepout immer
 ////    //Editpolicy: Erlaubt ziehen von Vererbungsrelation zwischen Rollentypen
 ////    
 ////    //Playable
@@ -606,6 +610,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////    //Roles
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLES), PaletteEntry.FULFILLMENT);
 ////    fillConfigToPaletteMapping("Roles"); //(Step-in Ansicht) ist "Fills" (Fulfilment) (ggf. korrigieren) zu sehen
+        //stepout immer, stepin wenn contains_comp aktiviert (Implikation)
 ////    //Editpolicy: Fill ziehen zwischen Rollentyp und Compartment, Impliziert containts_compartments
 ////    
 ////    //Compartments
@@ -635,18 +640,22 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////    //Role_Implication
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_IMPLICATION), PaletteEntry.ROLE_IMPLICATION);
 ////    fillConfigToPaletteMapping("Role_Implication", Type.FULFILLMENT);//(Step-in Ansicht) Role Implication
+        //Stepout AUS (nie)
 ////    
 ////    //Role_Prohibition
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROHIBITION), PaletteEntry.ROLE_PROHIBITION);
 ////    fillConfigToPaletteMapping("Role_Prohibition", Type.ACYCLIC); //(Step-in Ansicht)  Role Prohibition
+        //Stepout AUS
 ////    
 ////    //Role_Equivalence
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_EQUIVALENCE), PaletteEntry.ROLE_EQUIVALENCE);
 ////    fillConfigToPaletteMapping("Role_Equivalence", Type.REFLEXIVE);// (Step-in Ansicht) Role Equivalence 
+        //stepout aus
 ////    
 ////    //Group_Constraints
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.GROUP_CONSTRAINTS), PaletteEntry.ROLE_GROUP);
 ////    fillConfigToPaletteMapping("Group_Constraints", Type.FULFILLMENT); //Role Group
+        //nur stepin
 ////    
 ////    //Occurence_Constraints
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.OCCURRENCE_CONSTRAINTS));
@@ -655,7 +664,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////    
 ////    //Relationships
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIPS), PaletteEntry.RELATIONSHIP);
-////    fillConfigToPaletteMapping("Relationships", Type.DATA_TYPE); //Relationship
+////    fillConfigToPaletteMapping("Relationships", Type.DATA_TYPE); //Relationship nur stepin
 ////    //Editpolicy: Erlaubt Zeichnen von Relationships zwischen Rollentypen
 ////    
 ////    //Relationship_Constraints
@@ -671,6 +680,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS), PaletteEntry.REFLEXIVE, 
           PaletteEntry.IRREFLEXIVE, PaletteEntry.TOTAL, PaletteEntry.CYCLIC, PaletteEntry.ACYCLIC);
 ////    fillConfigToPaletteMapping("Intra_Relationship_Constraints"); //reflexiv, irreflexiv, total, zyklisch, azyklisch
+        //nur stepin
 ////    
 ////    //Parthood_Constraints
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTHOOD_CONSTRAINTS));
@@ -680,9 +690,11 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTER_RELATIONSHIP_CONSTRAINTS), 
             PaletteEntry.RELATIONSHIP_IMPLICATION, PaletteEntry.RELATIONSHIP_EXCLUSION);
 ////    fillConfigToPaletteMapping("Inter_Relationship_Constraints");// relationshipImplication, relationshipExclusion
+        //nur stepin
 ////    
 ////    //Compartment_Types
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_TYPES), PaletteEntry.COMPARTMENT);
+        //stepout und comp_types => sichtbar, stepin && contains_comp ==> sichtbar
 ////TODO in der Zukunft:      
 //      fillConfigToPaletteMapping(new FeatureExpression(featureModel, ExpressionNode.NOT.getLiteral() + FeatureName.COMPARTMENT_TYPES), ROLEMODEL);
 ////    fillConfigToPaletteMapping("Compartment_Types");//Compartment, wenn nicht aktiviert, dann RoleModel (gibts noch nicht?)
@@ -693,17 +705,20 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////    
 ////    //Compartment_Properties
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_PROPERTIES), PaletteEntry.ATTRIBUTE);
-////    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP);//Beide Ansichten: Attributes
+////    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP); 
+        //top level immer, stepin wenn role_prop || compartment_prop
 ////    //Editpolicyänderung: Drag&Drop von Attributen auf Compartment Modellelemente
 ////    
 ////    //Compartment_Behavior
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_BEHAVIOR), PaletteEntry.OPERATION);
-////    fillConfigToPaletteMapping("Compartment_Behavior", Type.GROUP);//Beide Ansichten: Operation
+////    fillConfigToPaletteMapping("Compartment_Behavior", Type.GROUP);
+      //top level immer, stepin wenn role_beh || compartment_beh
 ////    ////Editpolicyänderung: Drag&Drop von Operationen auf Compartment Modellelemente
 ////    
 ////    //Compartment_Inheritance
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_INHERITANCE), PaletteEntry.INHERITANCE);
 ////    fillConfigToPaletteMapping("Compartment_Inheritance"); //Inheritance
+        //stepout immer, stepin wenn (role_inheritance || (compartment_inheritance && contains_compartments))
 ////    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
 ////    
 ////    //Participants
@@ -721,11 +736,11 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 ////    
 ////    //Data_Types
         fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPES), PaletteEntry.DATA_TYPE);
-////    fillConfigToPaletteMapping("Data_Types", Type.DATA_TYPE); //DataType
+////    fillConfigToPaletteMapping("Data_Types", Type.DATA_TYPE); //DataType (nur stepout)
 ////    
 ////    //Data_Type_Inheritance
-        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPE_INHERITANCE), PaletteEntry.INHERITANCE);
-////    fillConfigToPaletteMapping("Data_Type_Inheritance", Type.DATA_TYPE);//Step-Out: Inheritance
+        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPE_INHERITANCE));
+////    fillConfigToPaletteMapping("Data_Type_Inheritance", Type.DATA_TYPE);//hat keinen Einfluss!
 ////    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
   }
   
@@ -741,4 +756,11 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     }
     configToPaletteMapping.put(framedFeatureExpression, templateSet);
   }
+  
+  private void fillPaletteEntryVisibility(Map<PaletteEntry, FeatureExpression> map, PaletteEntry paletteEntry, FeatureExpression framedFeatureExpression) {
+    if (map == null || paletteEntry == null)
+      throw new NullPointerException();
+    map.put(paletteEntry, framedFeatureExpression);
+    }
+  
 }
