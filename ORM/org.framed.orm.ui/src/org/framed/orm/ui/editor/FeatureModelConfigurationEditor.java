@@ -297,6 +297,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
           getConfiguration().setManual(framedFeature.getName().getLiteral(), Selection.UNDEFINED);
         }
       }
+      writeConfigurationToModel();
     }
   }
 
