@@ -22,7 +22,8 @@ import de.ovgu.featureide.fm.core.FeatureModel;
  */
 public class FeatureExpression {
   private String featureExpression;
-  boolean singleLiteral;
+  boolean singleNameLiteral = false;;
+  boolean isBoolean = false;
   
   /**
    * Constructor for a new FeatureExpression, which consists of an arbitrary expression given. 
@@ -31,8 +32,7 @@ public class FeatureExpression {
    * @param featureModel
    * @param featureExpression
    */
-  public FeatureExpression(FeatureModel featureModel, String featureExpression) {
-    singleLiteral = false;
+  public FeatureExpression(String featureExpression) {
     if (featureExpression != null) {
       this.featureExpression = featureExpression;
       checkForExpressionValidity(featureExpression);
@@ -47,13 +47,18 @@ public class FeatureExpression {
    * @param featureModel
    * @param featureName
    */
-  public FeatureExpression(FeatureModel featureModel, FeatureName featureName) {
-    singleLiteral = true;
+  public FeatureExpression(FeatureName featureName) {
+    singleNameLiteral = true;
     if (featureName != null) {
       this.featureExpression = featureName.toString();
       checkForExpressionValidity(featureName.toString());
     } else
       throw new NullPointerException();
+  }
+  
+  public FeatureExpression(boolean value) {
+    isBoolean = true;
+    this.featureExpression = String.valueOf(value);
   }
 
 
@@ -65,6 +70,7 @@ public class FeatureExpression {
    */
   private void checkForExpressionValidity(String featureExpression) {
     String morphedExpression = featureExpression;
+    //replace each Feature name within the expression with the literal "false"
     for (FeatureName f : FeatureName.values()){
       morphedExpression = morphedExpression.replaceAll("(?<!_)" + f.getName() + "(?!_)", "false");
     }
@@ -77,9 +83,9 @@ public class FeatureExpression {
       // TODO Auto-generated catch block
       e.printStackTrace();
       throw new IllegalArgumentException("The specified Expression is not valid: " + featureExpression + " (" + morphedExpression + ")");
-    }
-    
+    } 
   }
+
 
   
   
@@ -99,7 +105,7 @@ public class FeatureExpression {
     }
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
     //Shortcut to save resources if we already know the expression is only a single literal
-    if (singleLiteral) {
+    if (singleNameLiteral) {
       if (fRaMEDConfigurationFeatureNames.contains(featureExpression)) {
         engine.put(featureExpression, true);
       } 
@@ -107,7 +113,8 @@ public class FeatureExpression {
         engine.put(featureExpression, false);
       }
     }
-    else {
+    else  
+      if (!singleNameLiteral && !isBoolean){
       //check for each existing feature name, if the current configuration does include it
       for (FeatureName f : FeatureName.VALUES) {
         if (fRaMEDConfigurationFeatureNames.contains(f.getName())) {
@@ -128,8 +135,15 @@ public class FeatureExpression {
       Object o = engine.eval(featureExpression); 
       System.out.println(featureExpression +" ==> " + o);
       System.out.println(morph + " ==> " + o);
-    }
-    boolean val =(boolean)engine.eval(featureExpression);  
+    } else
+      if (isBoolean) {
+        if (featureExpression.equals(Boolean.toString(true)))
+        return true;
+        if (featureExpression.equals(Boolean.toString(false)))
+        return false;
+      }
+    System.out.println("Kurz vor AUswertung: "+ featureExpression);
+    boolean val = (boolean)engine.eval(featureExpression);  
     return val;
   }
   

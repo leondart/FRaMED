@@ -19,6 +19,7 @@ import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.tools.SelectionTool;
+import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
@@ -50,6 +51,7 @@ import org.framed.orm.ui.factory.ORMRoleProhibitionFactory;
 import org.framed.orm.ui.factory.ORMRoleTypeFactory;
 import org.framed.orm.ui.factory.ORMTotalFactory;
 import org.framed.orm.ui.tool.CreationAndDirectEditTool;
+import org.sat4j.tools.xplain.Explainer;
 
 
 /**
@@ -62,18 +64,22 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /** The {@link PaletteGroup} to which all {@link PaletteDrawer}s are added. */
   private PaletteGroup group;
-  /** A {@link HashMap}, which contains all visibility flags of the palette entry. */
+  /** A {@link HashMap}, which contains all visibility flags of the palette entries. */
   private final Map<String, Boolean> entryVisibility;
   /** A {@link HashMap}, which matches to every palette entry a string id. */
-  private final Map<String, CreationToolEntry> entries;
+  private final Map<PaletteEntry, CreationToolEntry> entries;
   
-  private final Map<FeatureExpression, Set<String>> configToPaletteMapping;
+//  private final Map<FeatureExpression, Set<String>> configToPaletteMapping;
   private Model rootmodel;
   
   /**
    * A {@link Set} of the names of palette elements, which are visible according to the current {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}.
    */
   private Set<String> paletteElementsVisibleAccordingToConfig;
+  
+  private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
+  
+  private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
 
   /**
    * The constructor of this class, where the palette is build with its entries, and the entryVisibility is set.
@@ -82,15 +88,19 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    * @param rootmodel 
    * @throws ScriptException 
    * */
-  public ORMGraphicalEditorPalette(Map<FeatureExpression, Set<String>> configToPaletteMapping, Model rootmodel) throws ScriptException {
+  public ORMGraphicalEditorPalette(Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility, 
+      Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility, Model rootmodel) throws ScriptException {
     entryVisibility = new HashMap<String, Boolean>();
-    entries = new HashMap<String, CreationToolEntry>();
+    entries = new HashMap<PaletteEntry, CreationToolEntry>();
     
-    this.configToPaletteMapping = configToPaletteMapping;
+    //this.configToPaletteMapping = configToPaletteMapping;
+    this.stepOUTPaletteVisibility = stepOUTPaletteVisibility;
+    this.stepINPaletteVisibility = stepINPaletteVisibility;
     this.rootmodel = rootmodel;
     paletteElementsVisibleAccordingToConfig = new HashSet<String>();
     
-    fillpaletteElementsVisibleAccordingToConfig();
+    //fillpaletteElementsVisibleAccordingToConfig();
+    setPaletteEntriesVisibility(true);
     
     addGroup();
     addSelectionTool();
@@ -104,48 +114,49 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    * This method evaluates the provided {@link FeatureExpression}s in order to determine which palette entries are to be set visible.
    * @throws ScriptException
    */
-  private void fillpaletteElementsVisibleAccordingToConfig() throws ScriptException {
-    paletteElementsVisibleAccordingToConfig.clear();
-   // EList<FRaMEDFeature> framedFeatures = rootmodel.getFramedConfiguration().getFeatures();
-    long gesamt = 0;
-    for (FeatureExpression ex : configToPaletteMapping.keySet()) {
-      long startTime = System.nanoTime();
-      if (ex.evaluate(rootmodel.getFramedConfiguration())) {
-        for (String s : configToPaletteMapping.get(ex)) {
-          paletteElementsVisibleAccordingToConfig.add(s);
-        }
-      }
-      long endTime = System.nanoTime();
-
-      long duration = (endTime - startTime); 
-      gesamt += duration;
-      System.out.println(ex.toString() + ": " + duration/1000000);
-    }
-      System.out.println("Gesamt: " + gesamt/1000000);
+//  private void fillpaletteElementsVisibleAccordingToConfig() throws ScriptException {
+//    paletteElementsVisibleAccordingToConfig.clear();
+//   // EList<FRaMEDFeature> framedFeatures = rootmodel.getFramedConfiguration().getFeatures();
+//    long gesamt = 0;
+//    
+//    for (FeatureExpression ex : configToPaletteMapping.keySet()) {
+//      long startTime = System.nanoTime();
+//      if (ex.evaluate(rootmodel.getFramedConfiguration())) {
+//        for (String s : configToPaletteMapping.get(ex)) {
+//          paletteElementsVisibleAccordingToConfig.add(s);
+//        }
+//      }
+//      long endTime = System.nanoTime();
+//
+//      long duration = (endTime - startTime); 
+//      gesamt += duration;
+//      System.out.println(ex.toString() + ": " + duration/1000000);
+//    }
+//      System.out.println("Gesamt: " + gesamt/1000000);
 //    for (FRaMEDFeature feature : rootmodel.getFramedConfiguration().getFeatures()) {
 ////      for (String s : configToPaletteMapping.get(feature.getName())) {
 ////        paletteElementsVisibleAccordingToConfig.add(s);
 ////      }
 //      }    
-  }
+//  }
 
 
   /**
    * This method add a palette entry with sting id/name to the entries map.
    * */
-  private void addEntry(final String name, final CreationToolEntry entry, final Boolean visibility) {
-    entries.put(name, entry);
-    setEntryVisibility(name, visibility);
+  private void addEntry(final PaletteEntry paletteEntry, final CreationToolEntry entry, final Boolean visibility) {
+    entries.put(paletteEntry, entry);
+//    setEntryVisibility(name, visibility);
   }
 
   /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
-  private void setEntryVisibility(final String name, final Boolean visibility) {
-    boolean wert =  paletteElementsVisibleAccordingToConfig.contains(name);
-    entryVisibility.put(name, visibility && paletteElementsVisibleAccordingToConfig.contains(name));
-    if (entries.size() != 0 && entries.get(name) != null) {
-      entries.get(name).setVisible(visibility.booleanValue() && paletteElementsVisibleAccordingToConfig.contains(name));
-    }
-  }
+//  private void setEntryVisibility(final String name, final Boolean visibility) {
+//    boolean wert =  paletteElementsVisibleAccordingToConfig.contains(name);
+//    entryVisibility.put(name, visibility && paletteElementsVisibleAccordingToConfig.contains(name));
+//    if (entries.size() != 0 && entries.get(name) != null) {
+//      entries.get(name).setVisible(visibility.booleanValue() && paletteElementsVisibleAccordingToConfig.contains(name));
+//    }
+//  }
 
   /**
    * A getter for the visibility of a palette entry.
@@ -155,78 +166,132 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   private boolean getEntryVisisbility(final String name) {
     return entryVisibility.get(name).booleanValue();
   }
-
-
-  /** This method sets the visibility of all palett entrys depending on the variable visible. */
-  public void setRoleEntriesVisibility(final boolean visible) {
-    if (visible) {
-    setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), true); //2x
-    setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), true); //12x
-    setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), true); //4x
-    setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), true);//15x
-    setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), true);//19x
-    setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), true);//5x
-    setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), true);//11x
-    setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), true);//7x
-    setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), true);//18x
-    setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), true);//10x
-    setEntryVisibility(PaletteEntry.TOTAL.getName(), true);//8x
-    setEntryVisibility(PaletteEntry.CYCLIC.getName(), true);//9x
-    setEntryVisibility(PaletteEntry.ACYCLIC.getName(), true);//17x
-
-
-    setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), false);//0x
-    setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), false);//1x
-    setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), false);//3x
-    setEntryVisibility(PaletteEntry.GROUP.getName(), false);//13x
-    setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), false);//14x
-    } else {
-      setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), false);
-      setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), false);
-      setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), false);
-      setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), false);
-      setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), false);
-      setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), false);
-      setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), false);
-      setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), false);
-      setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), false);
-      setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), false);
-      setEntryVisibility(PaletteEntry.TOTAL.getName(), false);
-      setEntryVisibility(PaletteEntry.CYCLIC.getName(), false);
-      setEntryVisibility(PaletteEntry.ACYCLIC.getName(), false);
-
-      setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), true);
-      setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), true);
-      setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), true);
-      setEntryVisibility(PaletteEntry.GROUP.getName(), true);
-      setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), true);
-    }
-    //We need to set them true here, so these entries can be checked by the setEntryVisibility method against the 
-    //configuration-evaluation results
-    setEntryVisibility(PaletteEntry.ATTRIBUTE.getName(), true);
-    setEntryVisibility(PaletteEntry.OPERATION.getName(), true);
-    setEntryVisibility(PaletteEntry.INHERITANCE.getName(), true);
-    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
+  
+  public void setPaletteEntriesVisibility(final boolean topLevelPage) {
+    Map<PaletteEntry, FeatureExpression> mapToUse = new HashMap<PaletteEntry, FeatureExpression>();
+    mapToUse = topLevelPage ? stepOUTPaletteVisibility : stepINPaletteVisibility;
+    FRaMEDConfiguration fRaMEDConfiguration = rootmodel.getFramedConfiguration();
+    
+    //Go through all palette entries
+    for (PaletteEntry paletteEntry: entries.keySet()) {
+      //if the current palette entry is not in the map which we use to determine visibility (i.e. it is never visible)
+      if (!mapToUse.containsKey(paletteEntry)) {
+        //set this entry's visibility to false
+        entryVisibility.put(paletteEntry.getName(), false);
+        if (entries.size() != 0 && entries.get(paletteEntry) != null) {
+          entries.get(paletteEntry).setVisible(false);
+        }
+      }
+      else {
+        //if the current palette entry IS in the visibility map, we have to evaluate the corresponding expression
+        FeatureExpression expression = mapToUse.get(paletteEntry);
+        boolean visibility = false;
+        try {
+          visibility = expression.evaluate(fRaMEDConfiguration);
+        } catch (ScriptException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        entryVisibility.put(paletteEntry.getName(), visibility);
+        if (entries.size() != 0 && entries.get(paletteEntry) != null) {
+          entries.get(paletteEntry).setVisible(visibility);
+        }
+      }
+      
+    System.out.println("------------ Beginn1 SetRolesEntryVisibility (toplevel: "+topLevelPage +" )----------");
     for (CreationToolEntry c : entries.values())
       System.out.println(c.getLabel()+" visible: "+ c.isVisible());
     System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
+    }
+    
+//    
+//    for (PaletteEntry paletteEntry : mapToUse.keySet()) {
+//      FeatureExpression expression = mapToUse.get(paletteEntry);
+//      boolean visibility = false;
+//      try {
+//        visibility = expression.evaluate(fRaMEDConfiguration);
+//      } catch (ScriptException e) {
+//        // TODO Auto-generated catch block
+//        e.printStackTrace();
+//      }
+//      entryVisibility.put(paletteEntry.getName(), visibility);
+//      if (entries.size() != 0 && entries.get(paletteEntry.getName()) != null) {
+//        entries.get(paletteEntry.getName()).setVisible(visibility);
+//      }
+//    }
   }
+
+
+  /** This method sets the visibility of all palett entrys depending on the variable visible. */
+//  public void setRoleEntriesVisibility(final boolean visible) {
+//    if (visible) {
+//    setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), true); //2x
+//    setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), true); //12x
+//    setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), true); //4x
+//    setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), true);//15x
+//    setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), true);//19x
+//    setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), true);//5x
+//    setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), true);//11x
+//    setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), true);//7x
+//    setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), true);//18x
+//    setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), true);//10x
+//    setEntryVisibility(PaletteEntry.TOTAL.getName(), true);//8x
+//    setEntryVisibility(PaletteEntry.CYCLIC.getName(), true);//9x
+//    setEntryVisibility(PaletteEntry.ACYCLIC.getName(), true);//17x
+//
+//
+//    setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), false);//0x
+//    setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), false);//1x
+//    setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), false);//3x
+//    setEntryVisibility(PaletteEntry.GROUP.getName(), false);//13x
+//    setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), false);//14x
+//    } else {
+//      setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), false);
+//      setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), false);
+//      setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), false);
+//      setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), false);
+//      setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), false);
+//      setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), false);
+//      setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), false);
+//      setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), false);
+//      setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), false);
+//      setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), false);
+//      setEntryVisibility(PaletteEntry.TOTAL.getName(), false);
+//      setEntryVisibility(PaletteEntry.CYCLIC.getName(), false);
+//      setEntryVisibility(PaletteEntry.ACYCLIC.getName(), false);
+//
+//      setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), true);
+//      setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), true);
+//      setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), true);
+//      setEntryVisibility(PaletteEntry.GROUP.getName(), true);
+//      setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), true);
+//    }
+//    //We need to set them true here, so these entries can be checked by the setEntryVisibility method against the 
+//    //configuration-evaluation results
+//    setEntryVisibility(PaletteEntry.ATTRIBUTE.getName(), true);
+//    setEntryVisibility(PaletteEntry.OPERATION.getName(), true);
+//    setEntryVisibility(PaletteEntry.INHERITANCE.getName(), true);
+//    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
+//    for (CreationToolEntry c : entries.values())
+//      System.out.println(c.getLabel()+" visible: "+ c.isVisible());
+//    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
+//  }
 
 
   /** This method updates the visibility of the all palette entries
    *  according to the current configuration.
    **/
   public void update(final ORMGraphicalEditor.EditorType type) {
-    try {
-      fillpaletteElementsVisibleAccordingToConfig();
-    } catch (ScriptException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+//    try {
+//      fillpaletteElementsVisibleAccordingToConfig();
+//    } catch (ScriptException e) {
+//      // TODO Auto-generated catch block
+//      e.printStackTrace();
+//    }
     if (type.equals(EditorType.COMPARTMENT)) {
-      setRoleEntriesVisibility(false);
+      setPaletteEntriesVisibility(true);
     } else {
-      setRoleEntriesVisibility(true);
+      setPaletteEntriesVisibility(false);
     }
   }
 
@@ -235,14 +300,14 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    *  according to the current configuration.
    **/
   public void update(final String type) {
-    try {
-      fillpaletteElementsVisibleAccordingToConfig();
-    } catch (ScriptException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+//    try {
+//      fillpaletteElementsVisibleAccordingToConfig();
+//    } catch (ScriptException e) {
+//      // TODO Auto-generated catch block
+//      e.printStackTrace();
+//    }
     if (type.equals("StepOutNewPage")) {
-      setRoleEntriesVisibility(false);
+      setPaletteEntriesVisibility(true);
     }
   }
 
@@ -277,7 +342,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/compartment.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.COMPARTMENT.getName(), entry, true);
+    addEntry(PaletteEntry.COMPARTMENT, entry, true);
 
     entry =
         new CombinedTemplateCreationEntry(PaletteEntry.NATURAL_TYPE.getName(), "Create a new NaturalType",
@@ -286,7 +351,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/naturaltype.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.NATURAL_TYPE.getName(), entry, true);
+    addEntry(PaletteEntry.NATURAL_TYPE, entry, true);
 
     entry =
         new CombinedTemplateCreationEntry(PaletteEntry.DATA_TYPE.getName(), "Create a new DataType",
@@ -295,7 +360,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/datatype.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.DATA_TYPE.getName(), entry, true);
+    addEntry(PaletteEntry.DATA_TYPE, entry, true);
 
     entry =
         new CombinedTemplateCreationEntry(PaletteEntry.ROLE_TYPE.getName(), "Create a new RoleType",
@@ -304,7 +369,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roletype.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.ROLE_TYPE.getName(), entry, false);
+    addEntry(PaletteEntry.ROLE_TYPE, entry, false);
 
     entry =
         new CombinedTemplateCreationEntry(PaletteEntry.ROLE_GROUP.getName(), "Create a new RoleGroup",
@@ -313,7 +378,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/rolegroup.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.ROLE_GROUP.getName(), entry, false);
+    addEntry(PaletteEntry.ROLE_GROUP, entry, false);
 
     entry =
         new CombinedTemplateCreationEntry(PaletteEntry.GROUP.getName(), "Create a new Group", new ORMGroupFactory(),
@@ -321,7 +386,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setToolClass(CreationAndDirectEditTool.class);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.GROUP.getName(), entry, true);
+    addEntry(PaletteEntry.GROUP, entry, true);
 
     group.add(drawer);
   }
@@ -342,7 +407,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EOperation.gif"));
     drawer.add(entry1);
-    addEntry(PaletteEntry.OPERATION.getName(), entry1, true);
+    addEntry(PaletteEntry.OPERATION, entry1, true);
 
     CreationToolEntry entry2 =
         new CreationToolEntry(PaletteEntry.ATTRIBUTE.getName(), "Create a new Attribute", new ORMAttributeFactory(),
@@ -351,7 +416,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/EAttribute.gif"));
     drawer.add(entry2);
-    addEntry(PaletteEntry.ATTRIBUTE.getName(), entry2, true);
+    addEntry(PaletteEntry.ATTRIBUTE, entry2, true);
 
     group.add(drawer);
   }
@@ -369,7 +434,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry1.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/fulfilment.png"));
     drawer.add(entry1);
-    addEntry(PaletteEntry.FULFILLMENT.getName(), entry1, true);
+    addEntry(PaletteEntry.FULFILLMENT, entry1, true);
 
     CreationToolEntry entry2 =
         new ConnectionCreationToolEntry(PaletteEntry.ROLE_IMPLICATION.getName(),
@@ -377,7 +442,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry2.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roleimplication.png"));
     drawer.add(entry2);
-    addEntry(PaletteEntry.ROLE_IMPLICATION.getName(), entry2, false);
+    addEntry(PaletteEntry.ROLE_IMPLICATION, entry2, false);
 
     CreationToolEntry entry3 =
         new ConnectionCreationToolEntry(PaletteEntry.ROLE_EQUIVALENCE.getName(),
@@ -385,7 +450,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry3.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roleequivalence.png"));
     drawer.add(entry3);
-    addEntry(PaletteEntry.ROLE_EQUIVALENCE.getName(), entry3, false);
+    addEntry(PaletteEntry.ROLE_EQUIVALENCE, entry3, false);
 
     CreationToolEntry entry4 =
         new ConnectionCreationToolEntry(PaletteEntry.ROLE_PROHIBITION.getName(),
@@ -393,7 +458,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry4.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/roleprohibition.png"));
     drawer.add(entry4);
-    addEntry(PaletteEntry.ROLE_PROHIBITION.getName(), entry4, false);
+    addEntry(PaletteEntry.ROLE_PROHIBITION, entry4, false);
 
     CreationToolEntry entry5 =
         new ConnectionCreationToolEntry(PaletteEntry.INHERITANCE.getName(), "Create a new Inheritance Relation",
@@ -401,7 +466,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry5.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/inheritance.png"));
     drawer.add(entry5);
-    addEntry(PaletteEntry.INHERITANCE.getName(), entry5, true);
+    addEntry(PaletteEntry.INHERITANCE, entry5, true);
 
     CreationToolEntry entry6 =
         new ConnectionCreationToolEntry(PaletteEntry.RELATIONSHIP.getName(), "Create a new Relationship Relation",
@@ -409,7 +474,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry6.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationship.png"));
     drawer.add(entry6);
-    addEntry(PaletteEntry.RELATIONSHIP.getName(), entry6, false);
+    addEntry(PaletteEntry.RELATIONSHIP, entry6, false);
 
     CreationToolEntry entry7 =
         new ConnectionCreationToolEntry(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(),
@@ -418,7 +483,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry7.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationshipimplication.png"));
     drawer.add(entry7);
-    addEntry(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), entry7, false);
+    addEntry(PaletteEntry.RELATIONSHIP_IMPLICATION, entry7, false);
 
     CreationToolEntry entry13 =
         new ConnectionCreationToolEntry(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(),
@@ -428,7 +493,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry13.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/relationshipprohibition.png"));
     drawer.add(entry13);
-    addEntry(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), entry13, false);
+    addEntry(PaletteEntry.RELATIONSHIP_EXCLUSION, entry13, false);
 
     CreationConstraintToolEntry entry =
         new CreationConstraintToolEntry(PaletteEntry.REFLEXIVE.getName(), "Create a new Reflexive Relation",
@@ -437,7 +502,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/reflexive.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.REFLEXIVE.getName(), entry, false);
+    addEntry(PaletteEntry.REFLEXIVE, entry, false);
 
     entry =
         new CreationConstraintToolEntry(PaletteEntry.IRREFLEXIVE.getName(), "Create a new Irreflexive Relation",
@@ -445,14 +510,14 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
         "icons/irreflexive.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.IRREFLEXIVE.getName(), entry, false);
+    addEntry(PaletteEntry.IRREFLEXIVE, entry, false);
 
     entry =
         new CreationConstraintToolEntry(PaletteEntry.TOTAL.getName(), "Create a new Total Relation",
             new ORMTotalFactory(), null, null, Type.TOTAL_VALUE);
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/total.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.TOTAL.getName(), entry, false);
+    addEntry(PaletteEntry.TOTAL, entry, false);
 
     entry =
         new CreationConstraintToolEntry(PaletteEntry.CYCLIC.getName(), "Create a new Cyclic Relation",
@@ -460,7 +525,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry
         .setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/cyclic.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.CYCLIC.getName(), entry, false);
+    addEntry(PaletteEntry.CYCLIC, entry, false);
 
     entry =
         new CreationConstraintToolEntry(PaletteEntry.ACYCLIC.getName(), "Create a new Acyclic Relation",
@@ -469,7 +534,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator
         .imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/acyclic.png"));
     drawer.add(entry);
-    addEntry(PaletteEntry.ACYCLIC.getName(), entry, false);
+    addEntry(PaletteEntry.ACYCLIC, entry, false);
 
     // Currently Entry 1 to 13
     group.add(drawer);

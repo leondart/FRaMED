@@ -130,20 +130,25 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   /**
    * Maps the name of a {@link org.framed.orm.featuremodel.FRaMEDFeature FRaMEDFeature} to a List of palette entries.
    */
-  private Map<FeatureExpression, Set<String>> configToPaletteMapping;
+  //private Map<FeatureExpression, Set<String>> configToPaletteMapping;
+  
+  private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
+  
+  private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
 
   /**
    * The constructor of this class. The most of the global variables are initialized here and the
    * {@link EditDomain} of the editor is set here as well.
    * */
   public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag, 
-      Map<FeatureExpression, Set<String>> configToPaletteMapping) {
+      Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility, Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility) {
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
     changeNotifier = new EditorChangeNotifier(this);
     editorType = EditorType.COMPARTMENT; // standard is compartment
-    this.configToPaletteMapping = configToPaletteMapping;
+    this.stepOUTPaletteVisibility = stepOUTPaletteVisibility;
+    this.stepINPaletteVisibility = stepINPaletteVisibility;
     if (cdResource != null) {
       rootmodel = (Model) cdResource.getContents().get(0);
     }
@@ -353,7 +358,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   protected PaletteRoot getPaletteRoot() {
     ORMGraphicalEditorPalette tmp = null;
     try {
-      tmp = new ORMGraphicalEditorPalette(configToPaletteMapping, rootmodel);
+      tmp = new ORMGraphicalEditorPalette(stepOUTPaletteVisibility, stepINPaletteVisibility, rootmodel);
     } catch (ScriptException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -361,11 +366,11 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
     changeNotifier.register(tmp); // register the palette for editor changes
     if (getEditorType() == EditorType.ROLES) { // if we show only roles
-      tmp.setRoleEntriesVisibility(true); // show only palette entries
+      tmp.setPaletteEntriesVisibility(false); // show only palette entries
       // belonging to roles
     } else {
       // compartments
-      tmp.setRoleEntriesVisibility(false); // show only palette entries
+      tmp.setPaletteEntriesVisibility(true); // show only palette entries
       // belonging to compartment
     }
 
