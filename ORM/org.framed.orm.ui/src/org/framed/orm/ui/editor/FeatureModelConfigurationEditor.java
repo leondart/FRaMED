@@ -78,23 +78,23 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * The parent {@link MultiPageEditorPart} of this editor.
    */
   private ORMMultiPageEditor ormMultiPageEditor;
-  
+
   /**
    * Configuration according to FeatureIDE-structure
    */
   private Configuration configuration;
-  
+
   /**
    * The input {@link Resource} of this editor, which contains the emf model.
    * */
   private final Resource cdResource;
-  
+
   /**
    * The Root {@link Model}, which represents the root of the model tree and which is the first
    * content for editor viewer.
    * */
   private Model rootmodel;
-  
+
   /**
    * The FramedConfiguration Model {@link Model}, which represents the root of the model tree. This does only
    * contain the standard (most complete) Configuration.
@@ -105,12 +105,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * The actual feature model used for the configuration
    */
   private FeatureModel featureModel = new FeatureModel();
-  
+
   /**
    * The file of the corresponding feature model.
    */
   File featureModelFile = null;
-  
+
   /**
    * The info label which represents the current status of the configuration
    */
@@ -120,7 +120,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * The tree which represents the feature model visually
    */
   private Tree tree;
-  
+
   /**
    * A mapping from a Feature to the respective item of the tree (internal to visual mapping).
    */
@@ -165,7 +165,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       e.printStackTrace();
     }
     loadConfiguration();
-    
+
     try {
       createStandardFramedConfiguration();
     } catch (URISyntaxException e) {
@@ -176,13 +176,14 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       e.printStackTrace();
     }
   }
-  
+
   /**
    * Saves the changes made to this editor and creates a standard {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} if necessary.
    */
   @Override
   public void doSave(IProgressMonitor monitor) {
-    //if the internal representation (framed configuration) does not exist or contain features, create standard config   
+    // if the internal representation (framed configuration) does not exist or contain features,
+    // create standard config
     try {
       createStandardFramedConfiguration();
     } catch (URISyntaxException e) {
@@ -206,7 +207,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     // TODO Auto-generated method stub
 
   }
-  
+
   /**
    * Saves graphical resource (.crom_dia) handled by the dataEditor.
    * Edits the FRaMED Configuration according to the changes in this editor. 
@@ -252,12 +253,16 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    */
   private void createStandardFramedConfiguration() throws URISyntaxException, IOException {
     FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
-    if (framedConfiguration == null || framedConfiguration.getFeatures() == null || framedConfiguration.getFeatures().size() < 1) {
-      //Load standard configuration for framed
+    if (framedConfiguration == null || framedConfiguration.getFeatures() == null
+        || framedConfiguration.getFeatures().size() < 1) {
+      // Load standard configuration for framed
       Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
-      URL fileURL = bundle.getEntry("/standardframedconfiguration/standardFramedConfiguration.crom_dia");
+      URL fileURL =
+          bundle.getEntry("/standardframedconfiguration/standardFramedConfiguration.crom_dia");
       ResourceSet resourceSet = new ResourceSetImpl();
-      Resource resource = resourceSet.createResource(URI.createURI(FileLocator.resolve(fileURL).toURI().toString()));
+      Resource resource =
+          resourceSet
+              .createResource(URI.createURI(FileLocator.resolve(fileURL).toURI().toString()));
       try {
         resource.load(null);
       } catch (IOException e) {
@@ -265,16 +270,16 @@ public class FeatureModelConfigurationEditor extends EditorPart {
         e.printStackTrace();
         resource = null;
       }
-      
-      standardConfigurationModel = (Model)resource.getContents().get(0);  
+
+      standardConfigurationModel = (Model) resource.getContents().get(0);
       rootmodel.setFramedConfiguration(FeaturemodelFactory.eINSTANCE.createFRaMEDConfiguration());
-      
-      //Apply each feature in the standard configuration to the FeatureIDE Configuration
-      for (FRaMEDFeature framedFeature : standardConfigurationModel.getFramedConfiguration().getFeatures()) {
+
+      // Apply each feature in the standard configuration to the FeatureIDE Configuration
+      for (FRaMEDFeature framedFeature : standardConfigurationModel.getFramedConfiguration()
+          .getFeatures()) {
         if (framedFeature.isManuallySelected()) {
           getConfiguration().setManual(framedFeature.getName().getLiteral(), Selection.SELECTED);
-        }
-        else {
+        } else {
           getConfiguration().setManual(framedFeature.getName().getLiteral(), Selection.UNDEFINED);
         }
       }
@@ -360,7 +365,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       }
     });
   }
-  
+
   /**
    * Performs the adjustments necessary if the selection changes.
    * @param item
@@ -385,12 +390,12 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       if (!dirty) {
         setDirty();
       }
-//      if (ormMultiPageEditor.isAutoSelectFeatures()) {
+      // if (ormMultiPageEditor.isAutoSelectFeatures()) {
       TreeElement configRootFeature = getConfiguration().getRoot();
       updateSelections(itemMap.get(configRootFeature), configRootFeature.getChildren());
-//      } else {
-//        refreshItem(item, feature);
-//      }
+      // } else {
+      // refreshItem(item, feature);
+      // }
     }
     updateInfoLabel();
 
@@ -436,8 +441,8 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     getConfiguration().setManual(feature, selection);
     writeConfigurationToModel();
   }
-  
-  
+
+
   /**
    * Getter for the currently used {@link Configuration}.
    * 
@@ -447,10 +452,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     return configuration;
   }
 
-/**
- * Getter for the resource used in this editor.
- * @return
- */
+  /**
+   * Getter for the resource used in this editor.
+   * @return
+   */
   public Resource getCdResource() {
     return cdResource;
   }
@@ -462,7 +467,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   public Model getRootmodel() {
     return rootmodel;
   }
-  
+
   /**
    * Removes all existing {@link org.framed.orm.featuremodel.FRaMEDFeature FRaMEDFeature}s in the current 
    * {@link org.framed.orm.featuremodel.impl.FRaMEDConfiguration FRaMEDConfiguration} and writes the currently selected ones to the
@@ -473,22 +478,23 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   private void writeConfigurationToModel() {
     Configuration configuration = getConfiguration();
     FRaMEDConfiguration framedConfiguration = getRootmodel().getFramedConfiguration();
-    //Remove all existing Features
+    // Remove all existing Features
     framedConfiguration.getFeatures().clear();
     List<String> manualFeatureNames = new ArrayList<String>();
     for (SelectableFeature s : configuration.getManualFeatures()) {
       manualFeatureNames.add(s.getName());
     }
-    //Add each selected feature to the FramedConfiguration
+    // Add each selected feature to the FramedConfiguration
     for (Feature f : configuration.getSelectedFeatures()) {
       FRaMEDFeature myFeature = FeaturemodelFactory.eINSTANCE.createFRaMEDFeature();
       myFeature.setName(FeatureName.getByName(f.getName()));
-      myFeature.setManuallySelected(manualFeatureNames.contains(FeatureName.getByName(f.getName()).getLiteral()));
+      myFeature.setManuallySelected(manualFeatureNames.contains(FeatureName.getByName(f.getName())
+          .getLiteral()));
       framedConfiguration.getFeatures().add(myFeature);
-    } 
+    }
   }
 
-  
+
   @Override
   public void createPartControl(Composite parent) {
     // parent composite
@@ -520,10 +526,11 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     infoLabel = new Label(compositeTop, SWT.NONE);
     infoLabel.setLayoutData(gridData);
     updateInfoLabel();
-    
-    //TODO: This block was commented out in FeatureIDE v2.7.5. I did not check if there was a necissity for this, so this might be used
-    //in the future.
-    
+
+    // TODO: This block was commented out in FeatureIDE v2.7.5. I did not check if there was a
+    // necissity for this, so this might be used
+    // in the future.
+
     // autoselect button
     // gridData = new GridData();
     // gridData.horizontalAlignment = SWT.RIGHT;
@@ -584,8 +591,8 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    */
   private void updateInfoLabel() {
     Boolean valid = configuration.isValid();
-    infoLabel.setText(valid? "VALID Configuration" : "INVALID Configuration");
-    infoLabel.setForeground(valid ? blue : red);    
+    infoLabel.setText(valid ? "VALID Configuration" : "INVALID Configuration");
+    infoLabel.setForeground(valid ? blue : red);
   }
 
   /**
@@ -657,8 +664,8 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       }
     }
   }
-  
-  
+
+
   /**
    * Reads the included Feature Model from the bundle org.framed.orm.featuremodel
    * 
@@ -666,22 +673,22 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * @throws UnsupportedModelException
    */
   private void readFeatureModel() throws FileNotFoundException, UnsupportedModelException {
-  final FeatureModel featureModel = new FeatureModel();
-  
-             Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
-             URL fileURL = bundle.getEntry("model.xml");
-             try {
-                 featureModelFile = new File(FileLocator.resolve(fileURL).toURI());
-             } catch (URISyntaxException e1) {
-                e1.printStackTrace();
-             } catch (IOException e1) {
-                 e1.printStackTrace();
-             };
-             
-  new XmlFeatureModelReader(featureModel).readFromFile(featureModelFile);
-  this.featureModel = featureModel;
-}
-  
+    final FeatureModel featureModel = new FeatureModel();
+
+    Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
+    URL fileURL = bundle.getEntry("model.xml");
+    try {
+      featureModelFile = new File(FileLocator.resolve(fileURL).toURI());
+    } catch (URISyntaxException e1) {
+      e1.printStackTrace();
+    } catch (IOException e1) {
+      e1.printStackTrace();
+    };
+
+    new XmlFeatureModelReader(featureModel).readFromFile(featureModelFile);
+    this.featureModel = featureModel;
+  }
+
   /**
    * Loads the {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>} from the currently loaded 
    * {@link org.framed.orm.model.Model <em>Model</em>} and creates the {@link de.ovgu.featureide.fm.core.configuration.Configuration
@@ -692,14 +699,13 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     configuration = new Configuration(featureModel);
     configuration.getPropagator().update(false, null, new WorkMonitor());
     EList<FRaMEDFeature> featuresToRemove = new BasicEList<FRaMEDFeature>();
-    //Check if the FeatureName used in the .crom_dia file 
-    //corresponds with an actually existing feature in the feature model
+    // Check if the FeatureName used in the .crom_dia file
+    // corresponds with an actually existing feature in the feature model
     if (framedConfiguration != null) {
       for (FRaMEDFeature f : framedConfiguration.getFeatures()) {
         if (featureModel.getFeature(f.getName().getLiteral()) != null) {
           configuration.setManual(f.getName().getLiteral(), Selection.SELECTED);
-        }
-        else {
+        } else {
           featuresToRemove.add(f);
         }
       }

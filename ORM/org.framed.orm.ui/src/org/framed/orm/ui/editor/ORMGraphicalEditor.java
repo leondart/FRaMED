@@ -127,14 +127,14 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * The {@link EditorType} of this editor, which needs to change the visibility of palett entries.
    * */
   private EditorType editorType;
-  
+
 
   /**
    * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
    * for the entry to be visible in the step-OUT perspective.
    */
   private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
-  
+
   /**
    * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
    * for the entry to be visible in the step-IN perspective.
@@ -152,8 +152,9 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * @param stepOUTPaletteVisibility
    * @param stepINPaletteVisibility
    */
-  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag, 
-      Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility, Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility) {
+  public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag,
+      Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility,
+      Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility) {
     isEditorData = flag;
     parentEditor = editor;
     cdResource = resource;
@@ -369,7 +370,9 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   protected PaletteRoot getPaletteRoot() {
     ORMGraphicalEditorPalette tmp = null;
     try {
-      tmp = new ORMGraphicalEditorPalette(stepOUTPaletteVisibility, stepINPaletteVisibility, rootmodel);
+      tmp =
+          new ORMGraphicalEditorPalette(stepOUTPaletteVisibility, stepINPaletteVisibility,
+              rootmodel);
     } catch (ScriptException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -459,7 +462,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * 
    * @return true if transformation succeeds, otherwise false.
    */
-  private boolean transformModel() {   
+  private boolean transformModel() {
     // resolve target uri
     URI sourceURI = cdResource.getURI();
     // Remove .crom_dia file extension
@@ -493,7 +496,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
     return false;
   }
-  
+
   /**
    * Returns the rootmodel used in the graphical editor. Used in order to access the configuration.
    *
@@ -502,7 +505,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
   public Model getRootmodel() {
     return rootmodel;
   }
-  
+
 
   /**
    * Returns the used resource. Used in order to save the configuration
@@ -600,7 +603,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     }
     return super.getAdapter(type);
   }
-  
+
   public void pageChanged() {
     changeNotifier.editorTypeChanged(editorType);
   }

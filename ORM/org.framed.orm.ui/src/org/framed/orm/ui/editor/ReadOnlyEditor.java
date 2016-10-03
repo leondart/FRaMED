@@ -7,30 +7,30 @@ import org.eclipse.ui.editors.text.TextEditor;
  * @author Marc Kandler
  *
  */
-public class ReadOnlyEditor extends TextEditor{
+public class ReadOnlyEditor extends TextEditor {
 
-    public ReadOnlyEditor() {
-        super();
-    }
-    
-    @Override
-    public boolean isEditable() {
-        return false;
-    }
+  public ReadOnlyEditor() {
+    super();
+  }
 
-    @Override
-    public boolean isEditorInputModifiable() {
-        return false;
-    }
+  @Override
+  public boolean isEditable() {
+    return false;
+  }
 
-    @Override
-    public boolean isEditorInputReadOnly() {
-        return true;
-    }
+  @Override
+  public boolean isEditorInputModifiable() {
+    return false;
+  }
 
-    @Override
-    public boolean isDirty() {
-        return false;
-    }
-    
+  @Override
+  public boolean isEditorInputReadOnly() {
+    return true;
+  }
+
+  @Override
+  public boolean isDirty() {
+    return false;
+  }
+
 }

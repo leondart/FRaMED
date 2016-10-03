@@ -3,7 +3,6 @@ package org.framed.orm.ui.expression;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -11,8 +10,6 @@ import javax.script.ScriptException;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeatureName;
-
-import de.ovgu.featureide.fm.core.configuration.Configuration;
 
 /**
  * A Feature Expression is a String which represents an expression consisting of operators and features.
@@ -25,17 +22,17 @@ public class FeatureExpression {
    * The String-representation of the FeatureExpression
    */
   private String featureExpression;
-  
+
   /**
    * Flag for this expression being a single literal consisting of a {@link FeatureName}
    */
   boolean singleNameLiteral = false;
-  
+
   /**
    * Flag for this expression being a single boolean literal.
    */
   boolean isBoolean = false;
-  
+
   /**
    * Constructor for a new FeatureExpression, which consists of an arbitrary expression given. 
    * Checks the validity of the expression.
@@ -64,7 +61,7 @@ public class FeatureExpression {
     } else
       throw new NullPointerException();
   }
-  
+
   /**
    * Constructor for a FeatureExpression which is only a single boolean literal. Therefore it does not need to be checked for validity.
    */
@@ -82,9 +79,10 @@ public class FeatureExpression {
    */
   private void checkForExpressionValidity(String featureExpression) {
     String morphedExpression = featureExpression;
-    //replace each Feature name within the expression with the literal "false"
-    //Be careful, as some FeatureNames are parts of other FeatureNames. This is why the regex was necessary
-    for (FeatureName f : FeatureName.values()){
+    // replace each Feature name within the expression with the literal "false"
+    // Be careful, as some FeatureNames are parts of other FeatureNames. This is why the regex was
+    // necessary
+    for (FeatureName f : FeatureName.values()) {
       morphedExpression = morphedExpression.replaceAll("(?<!_)" + f.getName() + "(?!_)", "false");
     }
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
@@ -94,13 +92,13 @@ public class FeatureExpression {
     } catch (ScriptException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
-      throw new IllegalArgumentException("The specified Expression is not valid: " + featureExpression + " (" + morphedExpression + ")");
-    } 
+      throw new IllegalArgumentException("The specified Expression is not valid: "
+          + featureExpression + " (" + morphedExpression + ")");
+    }
   }
 
 
-  
-  
+
   /**
    * Evaluates the expression by checking it against the {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}.
    * Each {@link FeatureName} is replaced by a boolean value with bindings of the used JavaScript-engine.
@@ -111,43 +109,38 @@ public class FeatureExpression {
    */
   public boolean evaluate(FRaMEDConfiguration fRaMEDConfiguration) throws ScriptException {
     List<String> fRaMEDConfigurationFeatureNames = new ArrayList<String>();
-    //create a list of all Feature Names as Strings within the framedConfiguration
+    // create a list of all Feature Names as Strings within the framedConfiguration
     for (FRaMEDFeature feature : fRaMEDConfiguration.getFeatures()) {
       fRaMEDConfigurationFeatureNames.add(feature.getName().getName());
     }
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
-    //Shortcut to save resources if we already know the expression is only a single literal
+    // Shortcut to save resources if we already know the expression is only a single literal
     if (singleNameLiteral) {
       if (fRaMEDConfigurationFeatureNames.contains(featureExpression)) {
         engine.put(featureExpression, true);
-      } 
-      else {
+      } else {
         engine.put(featureExpression, false);
       }
-    }
-    else  
-      if (!singleNameLiteral && !isBoolean){
-      //check for each existing feature name, if the current configuration does include it
+    } else if (!singleNameLiteral && !isBoolean) {
+      // check for each existing feature name, if the current configuration does include it
       for (FeatureName f : FeatureName.VALUES) {
         if (fRaMEDConfigurationFeatureNames.contains(f.getName())) {
           engine.put(f.getName(), true);
-        }
-        else {
+        } else {
           engine.put(f.getName(), false);
         }
       }
-    } else
-      if (isBoolean) {
-        if (featureExpression.equals(Boolean.toString(true)))
+    } else if (isBoolean) {
+      if (featureExpression.equals(Boolean.toString(true)))
         return true;
-        if (featureExpression.equals(Boolean.toString(false)))
+      if (featureExpression.equals(Boolean.toString(false)))
         return false;
-      }
-    boolean val = (boolean)engine.eval(featureExpression);  
+    }
+    boolean val = (boolean) engine.eval(featureExpression);
     return val;
   }
-  
-  
+
+
   @Override
   public String toString() {
     return featureExpression;

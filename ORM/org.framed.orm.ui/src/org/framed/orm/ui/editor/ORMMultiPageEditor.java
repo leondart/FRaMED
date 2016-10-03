@@ -41,6 +41,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.expression.ExpressionNode;
 import org.framed.orm.ui.expression.FeatureExpression;
 
+import de.ovgu.featureide.fm.core.configuration.Configuration;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 
@@ -67,28 +68,28 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * The behavior {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
   private ORMGraphicalEditor behaviourEditor;
-  
+
 
   /**
    * The data {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
   private ORMGraphicalEditor dataEditor;
-  
+
   /**
    * The {@link FeatureModelConfigurationEditor} which handles everything related to the Configuration. 
    */
   private FeatureModelConfigurationEditor featureModelConfigurationEditor;
-  
+
   /**
    * The {@link ReadOnlyEditor} responsible for displaying the content of the .crom file.
    * */
   private ReadOnlyEditor cromEditor;
-  
+
   /**
    * The {@link ReadOnlyEditor} responsible for displaying the content of the .crom_dia file
    * */
   private ReadOnlyEditor cromDiaEditor;
-  
+
   /**
    * The {@link EditorChangeNotifier} of this editor.
    * */
@@ -102,13 +103,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * creation of custom title for this editor.
    */
   private String inputFilename;
-  
+
   /**
    * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
    * for the entry to be visible in the step-OUT perspective.
    */
   private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
-  
+
   /**
    * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
    * for the entry to be visible in the step-IN perspective.
@@ -177,7 +178,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * This method creates the behavior {@link ORMGraphicalEditor}.
    */
   private void createBehaviorEditorPage() {
-      behaviourEditor = new ORMGraphicalEditor(this, resource, false, stepOUTPaletteVisibility, stepINPaletteVisibility);
+    behaviourEditor =
+        new ORMGraphicalEditor(this, resource, false, stepOUTPaletteVisibility,
+            stepINPaletteVisibility);
   }
 
 
@@ -185,19 +188,22 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * This method creates the data {@link ORMGraphicalEditor}.
    */
   private void createDataEditorPage() {
-      dataEditor = new ORMGraphicalEditor(this, resource, true, stepOUTPaletteVisibility, stepINPaletteVisibility);
+    dataEditor =
+        new ORMGraphicalEditor(this, resource, true, stepOUTPaletteVisibility,
+            stepINPaletteVisibility);
   }
-  
- 
+
+
   /**
    * This method creates the {@link FeatureModelConfigurationEditor}.
    * @throws FileNotFoundException
    * @throws UnsupportedModelException
    */
-  private void createFeatureModelConfigurationEditor() throws FileNotFoundException, UnsupportedModelException {
-      featureModelConfigurationEditor = new FeatureModelConfigurationEditor(this, resource);
+  private void createFeatureModelConfigurationEditor() throws FileNotFoundException,
+      UnsupportedModelException {
+    featureModelConfigurationEditor = new FeatureModelConfigurationEditor(this, resource);
   }
-  
+
   /**
    * This method creates the crom {@link ReadOnlyEdior} and adds the crom data as a page
    * to this editor.
@@ -205,7 +211,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private void createCromReadOnlyEditorPage() {
     cromEditor = new ReadOnlyEditor();
   }
-  
+
   /**
    * This method creates the crom_dia {@link ReadOnlyEdior} and adds the crom_dia data as a page
    * to this editor.
@@ -213,8 +219,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private void createCromDiaReadOnlyEditorPage() {
     cromDiaEditor = new ReadOnlyEditor();
   }
-  
- 
+
+
 
   /** {@inheritDoc} 
    * This method calls the methods to create the editors and adds them as pages.
@@ -222,13 +228,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * */
   @Override
   protected void createPages() {
-    //Necessary to initialize it here, as the constructor of ORMMultiPageEditor is called after createPages()
-   // configToPaletteMapping = new HashMap<FeatureExpression, Set<String>>();
+    // Necessary to initialize it here, as the constructor of ORMMultiPageEditor is called after
+    // createPages()
+    // configToPaletteMapping = new HashMap<FeatureExpression, Set<String>>();
     stepOUTPaletteVisibility = new HashMap<PaletteEntry, FeatureExpression>();
     stepINPaletteVisibility = new HashMap<PaletteEntry, FeatureExpression>();
-    
-    //It is necessary to create the FeatureModelConfigurationEditor first, because the graphical editors
-    //(behavior and data) rely on the standardFramedConfiguration which is created in that editor
+
+    // It is necessary to create the FeatureModelConfigurationEditor first, because the graphical
+    // editors
+    // (behavior and data) rely on the standardFramedConfiguration which is created in that editor
     try {
       createFeatureModelConfigurationEditor();
     } catch (FileNotFoundException e) {
@@ -244,26 +252,27 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
-    
+
     createBehaviorEditorPage();
     createDataEditorPage();
     createCromDiaReadOnlyEditorPage();
     createCromReadOnlyEditorPage();
 
-    //In order to keep the order of the pages(Behavior, Data, Configuration) in the editor, 
-    //we need to create the pages after calling the respective Editor constructors
+    // In order to keep the order of the pages(Behavior, Data, Configuration) in the editor,
+    // we need to create the pages after calling the respective Editor constructors
     int index;
     try {
       index = addPage(behaviourEditor, getEditorInput());
       setPageText(index, "Behavior");
       index = addPage(dataEditor, getEditorInput());
       setPageText(index, "Data");
-      index = addPage(featureModelConfigurationEditor, getEditorInput());    
+      index = addPage(featureModelConfigurationEditor, getEditorInput());
       setPageText(index, "Configuration");
       index = addPage(cromDiaEditor, getEditorInput());
       setPageText(index, "CROM_DIA");
-      
-      //To get the .crom-file, we have to take the current editorinput and derive the desired file from it
+
+      // To get the .crom-file, we have to take the current editorinput and derive the desired file
+      // from it
       URI uri = resource.getURI();
       uri = uri.trimFileExtension();
       uri = uri.appendFileExtension("crom");
@@ -391,15 +400,14 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   protected void pageChange(final int newPageIndex) {
     super.pageChange(newPageIndex);
     IEditorPart activeEditor = getEditor(newPageIndex);
-    //update the tree if the new page is the configuration editor
+    // update the tree if the new page is the configuration editor
     if (activeEditor.getClass().getName().endsWith("FeatureModelConfigurationEditor")) {
       featureModelConfigurationEditor.updateTree();
-    }
-    else
-      { 
-      //If the target editor is one of the graphical editors
+    } else {
+      // If the target editor is one of the graphical editors
       if (activeEditor instanceof ORMGraphicalEditor) {
-        //call the update editor type function in order to update the palette entry visibility as well
+        // call the update editor type function in order to update the palette entry visibility as
+        // well
         ORMGraphicalEditor editor = (ORMGraphicalEditor) activeEditor;
         editor.pageChanged();
         IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
@@ -408,7 +416,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
         }
       }
     }
-    
+
   }
 
   /**
@@ -486,47 +494,67 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     getDataEditor().getOwnViewer().setContents(obj);
   }
 
-  
+
   /**
    * Initialized the mapping from a Palette Entry to the {@link FeatureExpression} which has to be evaluated to true
    * in order for the palette entry to be visible.
    * We differentiate between the top-level view ("Step-Out") and the detailed view (Step-In), as depending on the state
    * different Palette Entries are visible.
    * 
+   * </br></br>
+   * Please note that there are three possible ways to create a {@link FeatureExpression}.
+   * 
    * </br>
    * The Key of the respective map (Palette Entry) is visible in the editor, if the Value ({@link FeatureExpression}) can be evaluated to true.
    * @throws ScriptException
    */
   private void initializePaletteVisibilityMappings() throws ScriptException {
-    //Step-Out Visibility
-    stepOUTPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(FeatureName.COMPARTMENT_TYPES));
+    // Step-Out Visibility
+    stepOUTPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(
+        FeatureName.COMPARTMENT_TYPES));
     stepOUTPaletteVisibility.put(PaletteEntry.NATURAL_TYPE, new FeatureExpression(true));
-    stepOUTPaletteVisibility.put(PaletteEntry.DATA_TYPE, new FeatureExpression(FeatureName.DATA_TYPES));
+    stepOUTPaletteVisibility.put(PaletteEntry.DATA_TYPE, new FeatureExpression(
+        FeatureName.DATA_TYPES));
     stepOUTPaletteVisibility.put(PaletteEntry.GROUP, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.FULFILLMENT, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(true));
-    
-    //Step-In Visibility
+
+    // Step-In Visibility
     stepINPaletteVisibility.put(PaletteEntry.ROLE_TYPE, new FeatureExpression(true));
-    stepINPaletteVisibility.put(PaletteEntry.ROLE_GROUP, new FeatureExpression(FeatureName.GROUP_CONSTRAINTS));
-    stepINPaletteVisibility.put(PaletteEntry.ROLE_IMPLICATION, new FeatureExpression(FeatureName.ROLE_IMPLICATION));
-    stepINPaletteVisibility.put(PaletteEntry.RELATIONSHIP_IMPLICATION, new FeatureExpression(FeatureName.INTER_RELATIONSHIP_CONSTRAINTS));
-    stepINPaletteVisibility.put(PaletteEntry.RELATIONSHIP_EXCLUSION, new FeatureExpression(FeatureName.INTER_RELATIONSHIP_CONSTRAINTS));
-    stepINPaletteVisibility.put(PaletteEntry.ROLE_EQUIVALENCE, new FeatureExpression(FeatureName.ROLE_EQUIVALENCE));
-    stepINPaletteVisibility.put(PaletteEntry.ROLE_PROHIBITION, new FeatureExpression(FeatureName.ROLE_PROHIBITION));
-    stepINPaletteVisibility.put(PaletteEntry.RELATIONSHIP, new FeatureExpression(FeatureName.RELATIONSHIPS));
-    FeatureExpression expression = new FeatureExpression(FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS);
+    stepINPaletteVisibility.put(PaletteEntry.ROLE_GROUP, new FeatureExpression(
+        FeatureName.GROUP_CONSTRAINTS));
+    stepINPaletteVisibility.put(PaletteEntry.ROLE_IMPLICATION, new FeatureExpression(
+        FeatureName.ROLE_IMPLICATION));
+    stepINPaletteVisibility.put(PaletteEntry.RELATIONSHIP_IMPLICATION, new FeatureExpression(
+        FeatureName.INTER_RELATIONSHIP_CONSTRAINTS));
+    stepINPaletteVisibility.put(PaletteEntry.RELATIONSHIP_EXCLUSION, new FeatureExpression(
+        FeatureName.INTER_RELATIONSHIP_CONSTRAINTS));
+    stepINPaletteVisibility.put(PaletteEntry.ROLE_EQUIVALENCE, new FeatureExpression(
+        FeatureName.ROLE_EQUIVALENCE));
+    stepINPaletteVisibility.put(PaletteEntry.ROLE_PROHIBITION, new FeatureExpression(
+        FeatureName.ROLE_PROHIBITION));
+    stepINPaletteVisibility.put(PaletteEntry.RELATIONSHIP, new FeatureExpression(
+        FeatureName.RELATIONSHIPS));
+    FeatureExpression expression =
+        new FeatureExpression(FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS);
     stepINPaletteVisibility.put(PaletteEntry.REFLEXIVE, expression);
     stepINPaletteVisibility.put(PaletteEntry.IRREFLEXIVE, expression);
     stepINPaletteVisibility.put(PaletteEntry.TOTAL, expression);
     stepINPaletteVisibility.put(PaletteEntry.CYCLIC, expression);
     stepINPaletteVisibility.put(PaletteEntry.ACYCLIC, expression);
-    stepINPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(FeatureName.CONTAINS_COMPARTMENTS));
-    stepINPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(FeatureName.ROLE_BEHAVIOR + ExpressionNode.OR.getLiteral() + FeatureName.COMPARTMENT_BEHAVIOR));
-    stepINPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(FeatureName.ROLE_PROPERTIES + ExpressionNode.OR.getLiteral() + FeatureName.COMPARTMENT_PROPERTIES));
-    stepINPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(FeatureName.ROLE_INHERITANCE + " || (" + FeatureName.COMPARTMENT_INHERITANCE + "&&"+ FeatureName.CONTAINS_COMPARTMENTS + ")"));
-   
-  }  
+    stepINPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(
+        FeatureName.CONTAINS_COMPARTMENTS));
+    stepINPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(
+        FeatureName.ROLE_BEHAVIOR + ExpressionNode.OR.getLiteral()
+            + FeatureName.COMPARTMENT_BEHAVIOR));
+    stepINPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(
+        FeatureName.ROLE_PROPERTIES + ExpressionNode.OR.getLiteral()
+            + FeatureName.COMPARTMENT_PROPERTIES));
+    stepINPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(
+        FeatureName.ROLE_INHERITANCE + " || (" + FeatureName.COMPARTMENT_INHERITANCE + "&&"
+            + FeatureName.CONTAINS_COMPARTMENTS + ")"));
+
+  }
 }
