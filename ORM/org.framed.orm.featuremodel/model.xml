@@ -101,18 +101,8 @@
 			</rule>
 			<rule>
 				<imp>
-					<var>RML_Feature_Model</var>
-					<not>
-						<var>Roles</var>
-					</not>
-				</imp>
-			</rule>
-			<rule>
-				<imp>
-					<var>RML_Feature_Model</var>
-					<not>
-						<var>Contains_Compartments</var>
-					</not>
+					<var>Contains_Compartments</var>
+					<var>Roles</var>
 				</imp>
 			</rule>
 		</constraints>
