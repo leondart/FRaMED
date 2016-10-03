@@ -4,9 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.EventObject;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import javax.script.ScriptException;
 
@@ -43,30 +41,30 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.expression.ExpressionNode;
 import org.framed.orm.ui.expression.FeatureExpression;
 
-import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-import de.ovgu.featureide.fm.ui.editors.configuration.ConfigJobManager;
 
 
 /**
  * 
- * This {@link MultiPageEditorPart} has as pages the behaviour {@link ORMGraphicalEditor}, the
- * data {@link ORMGraphicalEditor}, and the {@link FeatureModelConfigurationEditor}.
+ * This {@link MultiPageEditorPart} is responsible for creating and managing all pages of FRaMED.
+ * The following pages exist:
+ * <ul> 
+ *  <li>Behavior ({@link ORMGraphicalEditor})</li> 
+ *  <li>Data ({@link ORMGraphicalEditor})</li>
+ *  <li>Configuration ({@link FeatureModelConfigurationEditor}) </li>
+ *  <li>CROM ({@link ReadOnlyEditor})</li>
+ *  <li>CROM_DIA ({@link ReadOnlyEditor})</li> 
+ * </ul>
  * 
  * @author Kay Bierzynski
- * @author Lars SchÃ¼tze
+ * @author Lars Schütze
  * @author Marc Kandler
  * */
 public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectionListener,
     CommandStackListener, IResourceChangeListener {
 
-  
-  private boolean autoSelectFeatures = true;
-  
-  private final ConfigJobManager configJobManager = new ConfigJobManager();
-
   /**
-   * The behaviour {@link ORMGraphicalEditor}, which is manages through this editor.
+   * The behavior {@link ORMGraphicalEditor}, which is manages through this editor.
    * */
   private ORMGraphicalEditor behaviourEditor;
   
@@ -106,13 +104,15 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private String inputFilename;
   
   /**
-   * A Mapping for a {@link org.framed.orm.ui.expression.FeatureExpression FeatureExpression} to a Set of Strings which represents
-   * names of PaletteEntries.
+   * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
+   * for the entry to be visible in the step-OUT perspective.
    */
-  //private Map<FeatureExpression, Set<String>> configToPaletteMapping;
-  
   private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
   
+  /**
+   * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
+   * for the entry to be visible in the step-IN perspective.
+   */
   private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
 
   /**
@@ -177,14 +177,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * This method creates the behavior {@link ORMGraphicalEditor}.
    */
   private void createBehaviorEditorPage() {
-//    try {
       behaviourEditor = new ORMGraphicalEditor(this, resource, false, stepOUTPaletteVisibility, stepINPaletteVisibility);
-//      int index = addPage(behaviourEditor, getEditorInput());
-//      setPageText(index, "Behavior");
-//    } catch (PartInitException e) {
-//      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
-//          e.getStatus());
-//    }
   }
 
 
@@ -192,14 +185,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * This method creates the data {@link ORMGraphicalEditor}.
    */
   private void createDataEditorPage() {
-//    try {
       dataEditor = new ORMGraphicalEditor(this, resource, true, stepOUTPaletteVisibility, stepINPaletteVisibility);
-//      int index = addPage(dataEditor, getEditorInput());
-//      setPageText(index, "Data");
-//    } catch (PartInitException e) {
-//      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
-//          e.getStatus());
-//    }
   }
   
  
@@ -209,16 +195,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * @throws UnsupportedModelException
    */
   private void createFeatureModelConfigurationEditor() throws FileNotFoundException, UnsupportedModelException {
-//    try {
       featureModelConfigurationEditor = new FeatureModelConfigurationEditor(this, resource);
-      //setConfiguration();
-      //featureModelConfigurationEditor.setOrmMultiPageEditor(this);
-//      int index = addPage(featureModelConfigurationEditor, getEditorInput());
-//      setPageText(index, "Configuration");
-//    } catch (PartInitException e) {
-//      ErrorDialog.openError(getSite().getShell(), "Error creating nested orm editor", null,
-//          e.getStatus());
-//    }
   }
   
   /**
@@ -508,28 +485,19 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     getBehaviorEditor().getOwnViewer().setContents(obj);
     getDataEditor().getOwnViewer().setContents(obj);
   }
-  
 
-  public ConfigJobManager getConfigJobManager() {
-    return configJobManager;
-}
-  
-  public boolean isAutoSelectFeatures() {
-    return autoSelectFeatures;
-}
   
   /**
-   * Initializes the mapping from a {@link FeatureExpression} to the respective palette entries.
-   * This method should be executed here (other places possible as well), 
-   * as we do not want to create this mapping multiple times to save resources.
+   * Initialized the mapping from a Palette Entry to the {@link FeatureExpression} which has to be evaluated to true
+   * in order for the palette entry to be visible.
+   * We differentiate between the top-level view ("Step-Out") and the detailed view (Step-In), as depending on the state
+   * different Palette Entries are visible.
+   * 
    * </br>
-   * If the {@link FeatureExpression} is evaluated to true, the respective palette entries are visible.
+   * The Key of the respective map (Palette Entry) is visible in the editor, if the Value ({@link FeatureExpression}) can be evaluated to true.
    * @throws ScriptException
    */
   private void initializePaletteVisibilityMappings() throws ScriptException {
-
-    FeatureModel featureModel = featureModelConfigurationEditor.getFeatureModel();
-    
     //Step-Out Visibility
     stepOUTPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(FeatureName.COMPARTMENT_TYPES));
     stepOUTPaletteVisibility.put(PaletteEntry.NATURAL_TYPE, new FeatureExpression(true));
@@ -558,236 +526,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     stepINPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(FeatureName.CONTAINS_COMPARTMENTS));
     stepINPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(FeatureName.ROLE_BEHAVIOR + ExpressionNode.OR.getLiteral() + FeatureName.COMPARTMENT_BEHAVIOR));
     stepINPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(FeatureName.ROLE_PROPERTIES + ExpressionNode.OR.getLiteral() + FeatureName.COMPARTMENT_PROPERTIES));
-    stepINPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(FeatureName.ROLE_INHERITANCE + " || (" + FeatureName.COMPARTMENT_INHERITANCE + ")"));
-    
-////    FeatureExpression ex = new FeatureExpression(featureModel, 
-////        ExpressionNode.LB.toString() + ExpressionNode.NOT + FeatureName.RML_FEATURE_MODEL + ExpressionNode.RB);
-////    
-////    ex = new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")");
-//////    FeatureExpression ex = new FeatureExpression(featureModel, 
-//////        FeatureName.RML_FEATURE_MODEL, ExpressionNode.AND, FeatureName.ROLE_TYPES);
-//////    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
-//////    System.out.println(ex.toString());
-//////    
-//////    ex = new FeatureExpression(featureModelConfigurationEditor.getFeatureModel(), 
-//////        FeatureName.RML_FEATURE_MODEL, ExpressionNode.OR, FeatureName.ROLE_TYPES);
-//////    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
-//////    System.out.println(ex.toString());
-//////    
-//////    ex = new FeatureExpression(featureModelConfigurationEditor.getFeatureModel(), ExpressionNode.LB,
-//////         ExpressionNode.NOT, FeatureName.RML_FEATURE_MODEL,ExpressionNode.RB, ExpressionNode.AND, FeatureName.ROLE_TYPES);
-//////    System.out.println(ex.evaluate(featureModelConfigurationEditor.getConfiguration()));
-//////    System.out.println(ex.toString());
-////    //Test:
-////    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.ON_COMPARTMENTS+")"));
-////    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "(!"+FeatureName.COMPARTMENTS+")"));
-////    fillConfigToPaletteMapping(new FeatureExpression(featureModel, "("+FeatureName.COMPARTMENTS+" && "+FeatureName.DATA_TYPES+")"
-////        +"&& !"+FeatureName.COMPARTMENT_BEHAVIOR + "|| ("+FeatureName.RML_FEATURE_MODEL + " && " + FeatureName.ROLE_TYPES + ")"));
-////    
-////    fillConfigToPaletteMapping(new FeatureExpression(featureModel, 
-////        FeatureName.RML_FEATURE_MODEL + "||" + FeatureName.ROLE_TYPES +
-////        "||" + FeatureName.ROLE_STRUCTURE + "||" + FeatureName.ROLE_PROPERTIES + "||" + FeatureName.ROLE_BEHAVIOR + "||" + FeatureName.ROLE_INHERITANCE 
-////        + "||" + FeatureName.PLAYABLE + "||" + FeatureName.PLAYERS + "||" + FeatureName.NATURALS + "||" + FeatureName.ROLES + "||" + FeatureName.COMPARTMENTS
-////        + "||" + FeatureName.DATES + "||" + FeatureName.DEPENDENT + "||" + FeatureName.ON_COMPARTMENTS + "||" + FeatureName.ON_RELATIONSHIPS + "||" + FeatureName.ROLE_CONSTRAINTS
-////        + "||" + FeatureName.ROLE_IMPLICATION + "||" + FeatureName.ROLE_PROHIBITION + "||" + FeatureName.ROLE_EQUIVALENCE + "||" + FeatureName.GROUP_CONSTRAINTS + "||" + FeatureName.OCCURRENCE_CONSTRAINTS
-////        + "||" + FeatureName.RELATIONSHIPS + "||" + FeatureName.RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.RELATIONSHIP_CARDINALITY + "||" + FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS
-////        + "||" + FeatureName.PARTHOOD_CONSTRAINTS + "||" + FeatureName.INTER_RELATIONSHIP_CONSTRAINTS + "||" + FeatureName.COMPARTMENT_TYPES + "||" + FeatureName.COMPARTMENT_STRUCTURE
-////        + "||" + FeatureName.COMPARTMENT_PROPERTIES + "||" + FeatureName.COMPARTMENT_BEHAVIOR + "||" + 
-////        FeatureName.COMPARTMENT_INHERITANCE + "&&" + FeatureName.PARTICIPANTS
-////        + "&&" + FeatureName.CONTAINS_COMPARTMENTS + "&&" + FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT + "&&" + FeatureName.DATA_TYPES + "&&" + FeatureName.DATA_TYPE_INHERITANCE));
-//    
-//    //True-Expression for always visible palette entries
-//    fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL), PaletteEntry.NATURAL_TYPE, 
-//        PaletteEntry.ROLE_TYPE, PaletteEntry.GROUP);
-//    
-//    //RML_Feature_Model
-//    fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RML_FEATURE_MODEL));
-////    //fillConfigToPaletteMapping("RML_Feature_Model");
-////    
-////    //Role_Types
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_TYPES));
-////    //fillConfigToPaletteMapping("Role_Types");
-////    
-////    //Role_Structure
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_STRUCTURE));
-//////    fillConfigToPaletteMapping("Role_Structure");
-//////   
-//////    //Role_Properties
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROPERTIES), PaletteEntry.ATTRIBUTE);
-//////    fillConfigToPaletteMapping("Role_Properties" );//Attributes , Stepout immer, Stepin spezifisch
-//////  //Drag&Drop, siehe unten bzgl. Attributes
-//////    
-//////    //Role_Behavior
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_BEHAVIOR), PaletteEntry.OPERATION);
-//////    fillConfigToPaletteMapping("Role_Behavior", Type.FULFILLMENT);//Operations, stepout immer
-//////    //Drag&Drop, siehe unten bzgl. Operations
-//////    
-//////    //Role_Inheritance
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_INHERITANCE), PaletteEntry.INHERITANCE);
-//////    fillConfigToPaletteMapping("Role_Inheritance", Type.INHERITANCE);// Inheritance (Step-In Ansicht), stepout immer
-//////    //Editpolicy: Erlaubt ziehen von Vererbungsrelation zwischen Rollentypen
-//////    
-//////    //Playable
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYABLE));
-//////    fillConfigToPaletteMapping("Playable"); //Keins
-//////    
-//////    //Players
-//      fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYERS));
-//////    fillConfigToPaletteMapping("Players"); //Keins
-//////    
-//////    //Naturals
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.NATURALS));
-//////    fillConfigToPaletteMapping("Naturals"); //Keins
-//////    
-//////    //Roles
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLES), PaletteEntry.FULFILLMENT);
-//////    fillConfigToPaletteMapping("Roles"); //(Step-in Ansicht) ist "Fills" (Fulfilment) (ggf. korrigieren) zu sehen
-//        //stepout immer, stepin wenn contains_comp aktiviert (Implikation)
-//////    //Editpolicy: Fill ziehen zwischen Rollentyp und Compartment, Impliziert containts_compartments
-//////    
-//////    //Compartments
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENTS));
-//////    fillConfigToPaletteMapping("Compartments", Type.REFLEXIVE);//Keine
-//////    
-//////    //Dates
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATES));
-//////    fillConfigToPaletteMapping("Dates", Type.RELATIONSHIP_SHAPE_CHILD);// Keine
-//////    
-//////    //Dependent
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DEPENDENT));
-//////    fillConfigToPaletteMapping("Dependent");//Keins
-//////    
-//////    //On_Compartments
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ON_COMPARTMENTS));
-//////    fillConfigToPaletteMapping("On_Compartments");//Keins
-//////
-//////    //On_Relationships
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ON_RELATIONSHIPS));
-//////    fillConfigToPaletteMapping("On_Relationships");//Keins
-//////    
-//////    //Role_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_CONSTRAINTS));
-//////    fillConfigToPaletteMapping("Role_Constraints", Type.ACYCLIC);//Keins
-//////    
-//////    //Role_Implication
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_IMPLICATION), PaletteEntry.ROLE_IMPLICATION);
-//////    fillConfigToPaletteMapping("Role_Implication", Type.FULFILLMENT);//(Step-in Ansicht) Role Implication
-//        //Stepout AUS (nie)
-//////    
-//////    //Role_Prohibition
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_PROHIBITION), PaletteEntry.ROLE_PROHIBITION);
-//////    fillConfigToPaletteMapping("Role_Prohibition", Type.ACYCLIC); //(Step-in Ansicht)  Role Prohibition
-//        //Stepout AUS
-//////    
-//////    //Role_Equivalence
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.ROLE_EQUIVALENCE), PaletteEntry.ROLE_EQUIVALENCE);
-//////    fillConfigToPaletteMapping("Role_Equivalence", Type.REFLEXIVE);// (Step-in Ansicht) Role Equivalence 
-//        //stepout aus
-//////    
-//////    //Group_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.GROUP_CONSTRAINTS), PaletteEntry.ROLE_GROUP);
-//////    fillConfigToPaletteMapping("Group_Constraints", Type.FULFILLMENT); //Role Group
-//        //nur stepin
-//////    
-//////    //Occurence_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.OCCURRENCE_CONSTRAINTS));
-//////    fillConfigToPaletteMapping("Occurence_Constraints", Type.ROLE_EQUIVALENCE);//Keine
-//////    //Label über Rollentypen
-//////    
-//////    //Relationships
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIPS), PaletteEntry.RELATIONSHIP);
-//////    fillConfigToPaletteMapping("Relationships", Type.DATA_TYPE); //Relationship nur stepin
-//////    //Editpolicy: Erlaubt Zeichnen von Relationships zwischen Rollentypen
-//////    
-//////    //Relationship_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIP_CONSTRAINTS));
-//////    fillConfigToPaletteMapping("Relationship_Constraints", Type.COMPARTMENT_TYPE);//Keins
-//////    
-//////    //Relationship_Cardinality
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.RELATIONSHIP_CARDINALITY));
-//////    fillConfigToPaletteMapping("Relationship_Cardinality");//Keins
-//////    //Sind Labels an den Enden der Relationship (Müssten auf leer gesetzt werden)
-//////    
-//////    //Intra_Relationship_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTRA_RELATIONSHIP_CONSTRAINTS), PaletteEntry.REFLEXIVE, 
-//          PaletteEntry.IRREFLEXIVE, PaletteEntry.TOTAL, PaletteEntry.CYCLIC, PaletteEntry.ACYCLIC);
-//////    fillConfigToPaletteMapping("Intra_Relationship_Constraints"); //reflexiv, irreflexiv, total, zyklisch, azyklisch
-//        //nur stepin
-//////    
-//////    //Parthood_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTHOOD_CONSTRAINTS));
-//////    fillConfigToPaletteMapping("Parthood_Constraints");//Keins
-//////    
-//////    //Inter_Relationship_Constraints
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.INTER_RELATIONSHIP_CONSTRAINTS), 
-//            PaletteEntry.RELATIONSHIP_IMPLICATION, PaletteEntry.RELATIONSHIP_EXCLUSION);
-//////    fillConfigToPaletteMapping("Inter_Relationship_Constraints");// relationshipImplication, relationshipExclusion
-//        //nur stepin
-//////    
-//////    //Compartment_Types
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_TYPES), PaletteEntry.COMPARTMENT);
-//        //stepout und comp_types => sichtbar, stepin && contains_comp ==> sichtbar
-//////TODO in der Zukunft:      
-////      fillConfigToPaletteMapping(new FeatureExpression(featureModel, ExpressionNode.NOT.getLiteral() + FeatureName.COMPARTMENT_TYPES), ROLEMODEL);
-//////    fillConfigToPaletteMapping("Compartment_Types");//Compartment, wenn nicht aktiviert, dann RoleModel (gibts noch nicht?)
-//////
-//////    //Compartment_Structure
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_STRUCTURE));
-//////    fillConfigToPaletteMapping("Compartment_Structure");//Keins
-//////    
-//////    //Compartment_Properties
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_PROPERTIES), PaletteEntry.ATTRIBUTE);
-//////    fillConfigToPaletteMapping("Compartment_Properties", Type.GROUP); 
-//        //top level immer, stepin wenn role_prop || compartment_prop
-//////    //Editpolicyänderung: Drag&Drop von Attributen auf Compartment Modellelemente
-//////    
-//////    //Compartment_Behavior
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_BEHAVIOR), PaletteEntry.OPERATION);
-//////    fillConfigToPaletteMapping("Compartment_Behavior", Type.GROUP);
-//      //top level immer, stepin wenn role_beh || compartment_beh
-//////    ////Editpolicyänderung: Drag&Drop von Operationen auf Compartment Modellelemente
-//////    
-//////    //Compartment_Inheritance
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.COMPARTMENT_INHERITANCE), PaletteEntry.INHERITANCE);
-//////    fillConfigToPaletteMapping("Compartment_Inheritance"); //Inheritance
-//        //stepout immer, stepin wenn (role_inheritance || (compartment_inheritance && contains_compartments))
-//////    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
-//////    
-//////    //Participants
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PARTICIPANTS));
-//////    fillConfigToPaletteMapping("Participants");//Keins
-//////    
-//////    //Contains_Compartments
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.CONTAINS_COMPARTMENTS));
-//////    fillConfigToPaletteMapping("Contains_Compartments");//Keins (Ausgrauen, wird später hinzugefügt)
-//////    
-//////    //Playable_by_Defining_Compartment
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.PLAYABLE_BY_DEFINING_COMPARTMENT));
-//////    fillConfigToPaletteMapping("Playable_by_Defining_Compartment", Type.GROUP);//Keins
-//////    //Editpolicyänderung (Wenn aktiviert, dann funktioniert Fulfilment von Compartment zu selbem Compartment)
-//////    
-//////    //Data_Types
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPES), PaletteEntry.DATA_TYPE);
-//////    fillConfigToPaletteMapping("Data_Types", Type.DATA_TYPE); //DataType (nur stepout)
-//////    
-//////    //Data_Type_Inheritance
-//        fillConfigToPaletteMapping(new FeatureExpression(featureModel, FeatureName.DATA_TYPE_INHERITANCE));
-//////    fillConfigToPaletteMapping("Data_Type_Inheritance", Type.DATA_TYPE);//hat keinen Einfluss!
-//////    //Editpolicyänderung: Erlaubt Ziehen von Inheritance-Relation zwischen Datentypen
-  }
-  
-  /**
-   * Fills the map with {@link FeatureExpression}s and the respective {@link PaletteEntry PaletteEntries}.
-   * @param framedFeatureExpression
-   * @param paletteEntries
-   */
-//  private void fillConfigToPaletteMapping(FeatureExpression framedFeatureExpression, PaletteEntry... paletteEntries){
-//    Set<String> templateSet = new HashSet<String>();
-//    for (PaletteEntry p : paletteEntries) {
-//      templateSet.add(p.getName());
-//    }
-//    configToPaletteMapping.put(framedFeatureExpression, templateSet);
-//  }
-  
-  
+    stepINPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(FeatureName.ROLE_INHERITANCE + " || (" + FeatureName.COMPARTMENT_INHERITANCE + "&&"+ FeatureName.CONTAINS_COMPARTMENTS + ")"));
+   
+  }  
 }

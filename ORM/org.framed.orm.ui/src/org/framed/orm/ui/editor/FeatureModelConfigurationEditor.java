@@ -5,29 +5,18 @@ import static de.ovgu.featureide.fm.core.localization.StringTable.ARIAL;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -40,10 +29,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorInput;
@@ -51,20 +37,16 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.part.MultiPageEditorPart;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
-import org.framed.orm.ui.expression.FeatureExpression;
 import org.osgi.framework.Bundle;
 
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
-import de.ovgu.featureide.fm.core.FunctionalInterfaces;
-import de.ovgu.featureide.fm.core.color.ColorPalette;
-import de.ovgu.featureide.fm.core.color.DefaultColorScheme;
-import de.ovgu.featureide.fm.core.color.FeatureColor;
 import de.ovgu.featureide.fm.core.configuration.Configuration;
 import de.ovgu.featureide.fm.core.configuration.SelectableFeature;
 import de.ovgu.featureide.fm.core.configuration.Selection;
@@ -72,7 +54,6 @@ import de.ovgu.featureide.fm.core.configuration.TreeElement;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 import de.ovgu.featureide.fm.core.job.WorkMonitor;
-import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree;
 
 // import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree.Builder;
 
@@ -320,15 +301,25 @@ public class FeatureModelConfigurationEditor extends EditorPart {
 
   }
 
+  /**
+   * Sets the state of the editor to dirty. This results in the eclipse workspace displaying that a saveable change has been made.
+   */
   public void setDirty() {
     dirty = true;
     firePropertyChange(PROP_DIRTY);
   }
 
+  /**
+   * Sets the parent of this editor.
+   */
   public void setOrmMultiPageEditor(ORMMultiPageEditor editor) {
     this.ormMultiPageEditor = editor;
   }
 
+  /**
+   * Gets the parent of this editor.
+   * @return The {@link ORMMultiPageEditor} parent of this editor.
+   */
   public ORMMultiPageEditor getOrmMultiPageEditor() {
     return ormMultiPageEditor;
   }
@@ -447,14 +438,27 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   }
   
   
+  /**
+   * Getter for the currently used {@link Configuration}.
+   * 
+   * @return The currently used {@link Configuration}.
+   */
   public Configuration getConfiguration() {
     return configuration;
   }
 
+/**
+ * Getter for the resource used in this editor.
+ * @return
+ */
   public Resource getCdResource() {
     return cdResource;
   }
 
+  /**
+   * Getter for the model used in this editor.
+   * @return
+   */
   public Model getRootmodel() {
     return rootmodel;
   }
@@ -516,7 +520,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     infoLabel = new Label(compositeTop, SWT.NONE);
     infoLabel.setLayoutData(gridData);
     updateInfoLabel();
-
+    
+    //TODO: This block was commented out in FeatureIDE v2.7.5. I did not check if there was a necissity for this, so this might be used
+    //in the future.
+    
     // autoselect button
     // gridData = new GridData();
     // gridData.horizontalAlignment = SWT.RIGHT;
@@ -647,22 +654,6 @@ public class FeatureModelConfigurationEditor extends EditorPart {
             break;
           }
         }
-        // if (!currentFeature.getFeature().isHidden()) {
-        // TreeItem childNode = null;
-        // // This try for the case that the parent item is already disposed.
-        // try {
-        // childNode = new TreeItem(parent, 0);
-        // } catch (Exception e) {
-        //
-        // return;
-        // }
-        // childNode.setText(currentFeature.getFeature().getDisplayName());
-        // childNode.setData(currentFeature);
-        // refreshItem(childNode, currentFeature);
-        // itemMap.put(currentFeature, childNode);
-        // if (currentFeature.hasChildren()) {
-        // buildTree2(childNode, currentFeature.getChildren());
-        // }
       }
     }
   }
@@ -675,9 +666,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * @throws UnsupportedModelException
    */
   private void readFeatureModel() throws FileNotFoundException, UnsupportedModelException {
-//  IResource res = project.findMember("platform:/plugin/org.framed.orm.featuremodel/model.xml");
   final FeatureModel featureModel = new FeatureModel();
- // FileLocator.toFileURL(url)
   
              Bundle bundle = Platform.getBundle("org.framed.orm.featuremodel");
              URL fileURL = bundle.getEntry("model.xml");
@@ -691,9 +680,6 @@ public class FeatureModelConfigurationEditor extends EditorPart {
              
   new XmlFeatureModelReader(featureModel).readFromFile(featureModelFile);
   this.featureModel = featureModel;
-//  XmlFeatureModelReader featureModelReader = new XmlFeatureModelReader(featureModel);
-//  featureModelReader.readFromFile(file);
-//  featureModel = featureModelReader.getFeatureModel();
 }
   
   /**
@@ -723,6 +709,10 @@ public class FeatureModelConfigurationEditor extends EditorPart {
     }
   }
 
+  /**
+   * Getter for the used {@link FeatureModel}.
+   * @return The used {@link FeatureModel}
+   */
   public FeatureModel getFeatureModel() {
     return featureModel;
   }

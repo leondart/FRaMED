@@ -12,7 +12,7 @@ import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.featuremodel.FeatureName;
 
-import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.configuration.Configuration;
 
 /**
  * A Feature Expression is a String which represents an expression consisting of operators and features.
@@ -21,15 +21,25 @@ import de.ovgu.featureide.fm.core.FeatureModel;
  *
  */
 public class FeatureExpression {
+  /**
+   * The String-representation of the FeatureExpression
+   */
   private String featureExpression;
-  boolean singleNameLiteral = false;;
+  
+  /**
+   * Flag for this expression being a single literal consisting of a {@link FeatureName}
+   */
+  boolean singleNameLiteral = false;
+  
+  /**
+   * Flag for this expression being a single boolean literal.
+   */
   boolean isBoolean = false;
   
   /**
    * Constructor for a new FeatureExpression, which consists of an arbitrary expression given. 
    * Checks the validity of the expression.
    * 
-   * @param featureModel
    * @param featureExpression
    */
   public FeatureExpression(String featureExpression) {
@@ -44,7 +54,6 @@ public class FeatureExpression {
    * Constructor for a new FeatureExpression, consisting of a single literal ({@link org.framed.orm.featuremodel.FeatureName FeatureName}).
    * Checks the validity of the expression.
    *  
-   * @param featureModel
    * @param featureName
    */
   public FeatureExpression(FeatureName featureName) {
@@ -56,6 +65,9 @@ public class FeatureExpression {
       throw new NullPointerException();
   }
   
+  /**
+   * Constructor for a FeatureExpression which is only a single boolean literal. Therefore it does not need to be checked for validity.
+   */
   public FeatureExpression(boolean value) {
     isBoolean = true;
     this.featureExpression = String.valueOf(value);
@@ -71,10 +83,10 @@ public class FeatureExpression {
   private void checkForExpressionValidity(String featureExpression) {
     String morphedExpression = featureExpression;
     //replace each Feature name within the expression with the literal "false"
+    //Be careful, as some FeatureNames are parts of other FeatureNames. This is why the regex was necessary
     for (FeatureName f : FeatureName.values()){
       morphedExpression = morphedExpression.replaceAll("(?<!_)" + f.getName() + "(?!_)", "false");
     }
-    System.out.println(featureExpression + "\n ===> Morphed Expression Constructor: "+morphedExpression);
     ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
     try {
       @SuppressWarnings("unused")
@@ -124,17 +136,6 @@ public class FeatureExpression {
           engine.put(f.getName(), false);
         }
       }
-      System.out.println("############ Beginn Bindings #########");
-      String morph = featureExpression;
-      for (String s : engine.getBindings(ScriptContext.ENGINE_SCOPE).keySet()) {
-        System.out.println(s + ": "+engine.get(s));
-        morph = morph.replaceAll("(?<!_)" + s+ "(?!_)", engine.get(s).toString());
-        System.out.println("---> Morph: "+morph);
-      }
-      System.out.println("############ Ende Bindings #########");   
-      Object o = engine.eval(featureExpression); 
-      System.out.println(featureExpression +" ==> " + o);
-      System.out.println(morph + " ==> " + o);
     } else
       if (isBoolean) {
         if (featureExpression.equals(Boolean.toString(true)))
@@ -142,7 +143,6 @@ public class FeatureExpression {
         if (featureExpression.equals(Boolean.toString(false)))
         return false;
       }
-    System.out.println("Kurz vor AUswertung: "+ featureExpression);
     boolean val = (boolean)engine.eval(featureExpression);  
     return val;
   }

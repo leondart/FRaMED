@@ -83,6 +83,7 @@ import org.framed.orm.ui.expression.FeatureExpression;
  * @author Kay BierzynskiS
  * @author Paul Peschel
  * @author Duc Dung Dam
+ * @author Marc Kandler
  * */
 public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
@@ -127,19 +128,30 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * */
   private EditorType editorType;
   
+
   /**
-   * Maps the name of a {@link org.framed.orm.featuremodel.FRaMEDFeature FRaMEDFeature} to a List of palette entries.
+   * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
+   * for the entry to be visible in the step-OUT perspective.
    */
-  //private Map<FeatureExpression, Set<String>> configToPaletteMapping;
-  
   private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
   
+  /**
+   * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
+   * for the entry to be visible in the step-IN perspective.
+   */
   private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
+
 
   /**
    * The constructor of this class. The most of the global variables are initialized here and the
    * {@link EditDomain} of the editor is set here as well.
-   * */
+   * 
+   * @param editor The parent editor
+   * @param resource The currently used resource
+   * @param flag Flag indicating the state of the editor
+   * @param stepOUTPaletteVisibility
+   * @param stepINPaletteVisibility
+   */
   public ORMGraphicalEditor(final IEditorPart editor, final Resource resource, final boolean flag, 
       Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility, Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility) {
     isEditorData = flag;
@@ -152,7 +164,6 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     if (cdResource != null) {
       rootmodel = (Model) cdResource.getContents().get(0);
     }
-
     setEditDomain(new DefaultEditDomain(this));
   }
 

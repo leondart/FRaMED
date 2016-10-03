@@ -69,37 +69,44 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /** A {@link HashMap}, which matches to every palette entry a string id. */
   private final Map<PaletteEntry, CreationToolEntry> entries;
   
-//  private final Map<FeatureExpression, Set<String>> configToPaletteMapping;
+  /**
+   * The model of the currently used file.
+   * 
+   */
   private Model rootmodel;
   
   /**
-   * A {@link Set} of the names of palette elements, which are visible according to the current {@link org.framed.orm.featuremodel.FRaMEDConfiguration <em>FRaMEDConfiguration</em>}.
+   * In this editor only used to pass on as parameter.
+   * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
+   * for the entry to be visible in the step-OUT perspective.
    */
-  private Set<String> paletteElementsVisibleAccordingToConfig;
-  
   private Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility;
   
+  /**
+   * In this editor only used to pass on as parameter.
+   * A Map to store the Palette Entries (Key) and the respective {@link FeatureExpression} which has to be evaluated to true
+   * for the entry to be visible in the step-IN perspective.
+   */
   private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
 
-  /**
-   * The constructor of this class, where the palette is build with its entries, and the entryVisibility is set.
-   * 
-   * @param configToPaletteMapping 
-   * @param rootmodel 
-   * @throws ScriptException 
-   * */
+ /**
+ * This palette belongs to a {@link ORMGraphicalEditor} and represents the palette of possible editor elements to choose from.
+ * In this constructor all Palette Entries are created and the visibility of the palette elements is set according to the configuration.
+ * 
+ * @param stepOUTPaletteVisibility Pre-filled map with the Palette Entry and the {@link FeatureExpression} which makes this entry visible in the editor in the step-OUT state. 
+ * @param stepINPaletteVisibility Pre-filled map with the Palette Entry and the {@link FeatureExpression} which makes this entry visible in the editor in the step-IN state.
+ * @param rootmodel
+ * @throws ScriptException
+ */
   public ORMGraphicalEditorPalette(Map<PaletteEntry, FeatureExpression> stepOUTPaletteVisibility, 
       Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility, Model rootmodel) throws ScriptException {
     entryVisibility = new HashMap<String, Boolean>();
     entries = new HashMap<PaletteEntry, CreationToolEntry>();
     
-    //this.configToPaletteMapping = configToPaletteMapping;
     this.stepOUTPaletteVisibility = stepOUTPaletteVisibility;
     this.stepINPaletteVisibility = stepINPaletteVisibility;
     this.rootmodel = rootmodel;
-    paletteElementsVisibleAccordingToConfig = new HashSet<String>();
     
-    //fillpaletteElementsVisibleAccordingToConfig();
     setPaletteEntriesVisibility(true);
     
     addGroup();
@@ -109,54 +116,12 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     createConnectionsDrawer();
   }
 
-
-  /**
-   * This method evaluates the provided {@link FeatureExpression}s in order to determine which palette entries are to be set visible.
-   * @throws ScriptException
-   */
-//  private void fillpaletteElementsVisibleAccordingToConfig() throws ScriptException {
-//    paletteElementsVisibleAccordingToConfig.clear();
-//   // EList<FRaMEDFeature> framedFeatures = rootmodel.getFramedConfiguration().getFeatures();
-//    long gesamt = 0;
-//    
-//    for (FeatureExpression ex : configToPaletteMapping.keySet()) {
-//      long startTime = System.nanoTime();
-//      if (ex.evaluate(rootmodel.getFramedConfiguration())) {
-//        for (String s : configToPaletteMapping.get(ex)) {
-//          paletteElementsVisibleAccordingToConfig.add(s);
-//        }
-//      }
-//      long endTime = System.nanoTime();
-//
-//      long duration = (endTime - startTime); 
-//      gesamt += duration;
-//      System.out.println(ex.toString() + ": " + duration/1000000);
-//    }
-//      System.out.println("Gesamt: " + gesamt/1000000);
-//    for (FRaMEDFeature feature : rootmodel.getFramedConfiguration().getFeatures()) {
-////      for (String s : configToPaletteMapping.get(feature.getName())) {
-////        paletteElementsVisibleAccordingToConfig.add(s);
-////      }
-//      }    
-//  }
-
-
   /**
    * This method add a palette entry with sting id/name to the entries map.
    * */
   private void addEntry(final PaletteEntry paletteEntry, final CreationToolEntry entry, final Boolean visibility) {
     entries.put(paletteEntry, entry);
-//    setEntryVisibility(name, visibility);
   }
-
-  /** This method sets the visibility of an entry in the entryVisibility map and in the palette. */
-//  private void setEntryVisibility(final String name, final Boolean visibility) {
-//    boolean wert =  paletteElementsVisibleAccordingToConfig.contains(name);
-//    entryVisibility.put(name, visibility && paletteElementsVisibleAccordingToConfig.contains(name));
-//    if (entries.size() != 0 && entries.get(name) != null) {
-//      entries.get(name).setVisible(visibility.booleanValue() && paletteElementsVisibleAccordingToConfig.contains(name));
-//    }
-//  }
 
   /**
    * A getter for the visibility of a palette entry.
@@ -167,8 +132,15 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     return entryVisibility.get(name).booleanValue();
   }
   
+  /**
+   * This method sets the visibility of the palette entries according to the current configuration as well as the state of the editor
+   * (step-IN vs. step-OUT).
+   * 
+   * @param topLevelPage True if the current state of the editor is the step-OUT view. Otherwise false.
+   */
   public void setPaletteEntriesVisibility(final boolean topLevelPage) {
     Map<PaletteEntry, FeatureExpression> mapToUse = new HashMap<PaletteEntry, FeatureExpression>();
+    //At this point we decide which of the two maps we are going to use
     mapToUse = topLevelPage ? stepOUTPaletteVisibility : stepINPaletteVisibility;
     FRaMEDConfiguration fRaMEDConfiguration = rootmodel.getFramedConfiguration();
     
@@ -197,97 +169,14 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
           entries.get(paletteEntry).setVisible(visibility);
         }
       }
-      
-    System.out.println("------------ Beginn1 SetRolesEntryVisibility (toplevel: "+topLevelPage +" )----------");
-    for (CreationToolEntry c : entries.values())
-      System.out.println(c.getLabel()+" visible: "+ c.isVisible());
-    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
     }
-    
-//    
-//    for (PaletteEntry paletteEntry : mapToUse.keySet()) {
-//      FeatureExpression expression = mapToUse.get(paletteEntry);
-//      boolean visibility = false;
-//      try {
-//        visibility = expression.evaluate(fRaMEDConfiguration);
-//      } catch (ScriptException e) {
-//        // TODO Auto-generated catch block
-//        e.printStackTrace();
-//      }
-//      entryVisibility.put(paletteEntry.getName(), visibility);
-//      if (entries.size() != 0 && entries.get(paletteEntry.getName()) != null) {
-//        entries.get(paletteEntry.getName()).setVisible(visibility);
-//      }
-//    }
   }
 
-
-  /** This method sets the visibility of all palett entrys depending on the variable visible. */
-//  public void setRoleEntriesVisibility(final boolean visible) {
-//    if (visible) {
-//    setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), true); //2x
-//    setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), true); //12x
-//    setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), true); //4x
-//    setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), true);//15x
-//    setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), true);//19x
-//    setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), true);//5x
-//    setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), true);//11x
-//    setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), true);//7x
-//    setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), true);//18x
-//    setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), true);//10x
-//    setEntryVisibility(PaletteEntry.TOTAL.getName(), true);//8x
-//    setEntryVisibility(PaletteEntry.CYCLIC.getName(), true);//9x
-//    setEntryVisibility(PaletteEntry.ACYCLIC.getName(), true);//17x
-//
-//
-//    setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), false);//0x
-//    setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), false);//1x
-//    setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), false);//3x
-//    setEntryVisibility(PaletteEntry.GROUP.getName(), false);//13x
-//    setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), false);//14x
-//    } else {
-//      setEntryVisibility(PaletteEntry.ROLE_TYPE.getName(), false);
-//      setEntryVisibility(PaletteEntry.ROLE_GROUP.getName(), false);
-//      setEntryVisibility(PaletteEntry.ROLE_IMPLICATION.getName(), false);
-//      setEntryVisibility(PaletteEntry.RELATIONSHIP_IMPLICATION.getName(), false);
-//      setEntryVisibility(PaletteEntry.RELATIONSHIP_EXCLUSION.getName(), false);
-//      setEntryVisibility(PaletteEntry.ROLE_EQUIVALENCE.getName(), false);
-//      setEntryVisibility(PaletteEntry.ROLE_PROHIBITION.getName(), false);
-//      setEntryVisibility(PaletteEntry.RELATIONSHIP.getName(), false);
-//      setEntryVisibility(PaletteEntry.REFLEXIVE.getName(), false);
-//      setEntryVisibility(PaletteEntry.IRREFLEXIVE.getName(), false);
-//      setEntryVisibility(PaletteEntry.TOTAL.getName(), false);
-//      setEntryVisibility(PaletteEntry.CYCLIC.getName(), false);
-//      setEntryVisibility(PaletteEntry.ACYCLIC.getName(), false);
-//
-//      setEntryVisibility(PaletteEntry.COMPARTMENT.getName(), true);
-//      setEntryVisibility(PaletteEntry.NATURAL_TYPE.getName(), true);
-//      setEntryVisibility(PaletteEntry.DATA_TYPE.getName(), true);
-//      setEntryVisibility(PaletteEntry.GROUP.getName(), true);
-//      setEntryVisibility(PaletteEntry.FULFILLMENT.getName(), true);
-//    }
-//    //We need to set them true here, so these entries can be checked by the setEntryVisibility method against the 
-//    //configuration-evaluation results
-//    setEntryVisibility(PaletteEntry.ATTRIBUTE.getName(), true);
-//    setEntryVisibility(PaletteEntry.OPERATION.getName(), true);
-//    setEntryVisibility(PaletteEntry.INHERITANCE.getName(), true);
-//    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
-//    for (CreationToolEntry c : entries.values())
-//      System.out.println(c.getLabel()+" visible: "+ c.isVisible());
-//    System.out.println("------------ Ende1 SetRolesEntryVisibility----------");
-//  }
-
-
+  
   /** This method updates the visibility of the all palette entries
    *  according to the current configuration.
    **/
   public void update(final ORMGraphicalEditor.EditorType type) {
-//    try {
-//      fillpaletteElementsVisibleAccordingToConfig();
-//    } catch (ScriptException e) {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
     if (type.equals(EditorType.COMPARTMENT)) {
       setPaletteEntriesVisibility(true);
     } else {
@@ -300,12 +189,6 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
    *  according to the current configuration.
    **/
   public void update(final String type) {
-//    try {
-//      fillpaletteElementsVisibleAccordingToConfig();
-//    } catch (ScriptException e) {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
     if (type.equals("StepOutNewPage")) {
       setPaletteEntriesVisibility(true);
     }
