@@ -1,16 +1,11 @@
 package org.framed.orm.ui.editor;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.script.ScriptException;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
@@ -20,26 +15,25 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.tools.SelectionTool;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
-import org.framed.orm.featuremodel.FRaMEDFeature;
-import org.framed.orm.featuremodel.FeaturemodelFactory;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
 import org.framed.orm.ui.expression.FeatureExpression;
 import org.framed.orm.ui.factory.ORMAcyclicFactory;
-import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMCompartmentTypeFactory;
+import org.framed.orm.ui.factory.ORMCyclicFactory;
 import org.framed.orm.ui.factory.ORMDataTypeFactory;
 import org.framed.orm.ui.factory.ORMFulfillmentFactory;
 import org.framed.orm.ui.factory.ORMGroupFactory;
 import org.framed.orm.ui.factory.ORMInheritanceFactory;
 import org.framed.orm.ui.factory.ORMIrreflexiveFactory;
-import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMNaturalTypeFactory;
+import org.framed.orm.ui.factory.ORMOperationFactory;
 import org.framed.orm.ui.factory.ORMReflexiveFactory;
 import org.framed.orm.ui.factory.ORMRelationshipExclusionFactory;
 import org.framed.orm.ui.factory.ORMRelationshipFactory;
@@ -51,7 +45,6 @@ import org.framed.orm.ui.factory.ORMRoleProhibitionFactory;
 import org.framed.orm.ui.factory.ORMRoleTypeFactory;
 import org.framed.orm.ui.factory.ORMTotalFactory;
 import org.framed.orm.ui.tool.CreationAndDirectEditTool;
-import org.sat4j.tools.xplain.Explainer;
 
 
 /**

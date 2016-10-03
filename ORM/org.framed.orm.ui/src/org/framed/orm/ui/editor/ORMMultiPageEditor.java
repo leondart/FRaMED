@@ -41,7 +41,6 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.expression.ExpressionNode;
 import org.framed.orm.ui.expression.FeatureExpression;
 
-import de.ovgu.featureide.fm.core.configuration.Configuration;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 
