@@ -519,6 +519,8 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     stepOUTPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(true));
+    stepOUTPaletteVisibility.put(PaletteEntry.ROLE_MODEL, new FeatureExpression(
+    		ExpressionNode.NOT.getLiteral() + FeatureName.COMPARTMENT_TYPES));
 
     // Step-In Visibility
     stepINPaletteVisibility.put(PaletteEntry.ROLE_TYPE, new FeatureExpression(true));
@@ -554,6 +556,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     stepINPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(
         FeatureName.ROLE_INHERITANCE + " || (" + FeatureName.COMPARTMENT_INHERITANCE + "&&"
             + FeatureName.CONTAINS_COMPARTMENTS + ")"));
-
+    stepINPaletteVisibility.put(PaletteEntry.ROLE_MODEL, new FeatureExpression(
+    		ExpressionNode.NOT.getLiteral() + FeatureName.COMPARTMENT_TYPES));
   }
 }

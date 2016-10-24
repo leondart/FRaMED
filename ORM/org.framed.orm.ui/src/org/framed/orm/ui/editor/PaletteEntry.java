@@ -12,7 +12,7 @@ public enum PaletteEntry {
       "Role Equivalence"), ROLE_PROHIBITION("Role Prohibition"), RELATIONSHIP("Relationship"), REFLEXIVE(
       "Reflexive"), IRREFLEXIVE("Irreflexive"), TOTAL("Total"), CYCLIC("Cyclic"), ACYCLIC("Acyclic"), COMPARTMENT(
       "Compartment"), NATURAL_TYPE("Natural Type"), DATA_TYPE("Data_Type"), GROUP("Group"), FULFILLMENT(
-      "Fulfillment"), OPERATION("Operation"), ATTRIBUTE("Attribute"), INHERITANCE("Inheritance");
+      "Fulfillment"), OPERATION("Operation"), ATTRIBUTE("Attribute"), INHERITANCE("Inheritance"), ROLE_MODEL("Role Model");
 
   private String name;
 
