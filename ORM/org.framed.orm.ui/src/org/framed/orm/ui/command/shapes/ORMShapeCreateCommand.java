@@ -120,8 +120,6 @@ public class ORMShapeCreateCommand extends Command {
    */
   @Override
   public void undo() {
-
-    shape.setBoundaries(null);
     shape.setContainer(null);
     shape.setFirstSegment(null);
     shape.setSecondSegment(null);
