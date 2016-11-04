@@ -272,6 +272,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
             new CombinedTemplateCreationEntry(PaletteEntry.ROLE_MODEL.getName(), "Create a new Role Model",
                 null, null, null);
         entry.setToolClass(CreationAndDirectEditTool.class);
+        entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+                "icons/compartment.png"));
         drawer.add(entry);
         addEntry(PaletteEntry.ROLE_MODEL, entry, true);
     
