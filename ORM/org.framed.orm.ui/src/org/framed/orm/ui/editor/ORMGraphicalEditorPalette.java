@@ -41,6 +41,7 @@ import org.framed.orm.ui.factory.ORMRelationshipImplicationFactory;
 import org.framed.orm.ui.factory.ORMRoleEquivalenceFactory;
 import org.framed.orm.ui.factory.ORMRoleGroupFactory;
 import org.framed.orm.ui.factory.ORMRoleImplicationFactory;
+import org.framed.orm.ui.factory.ORMRoleModelFactory;
 import org.framed.orm.ui.factory.ORMRoleProhibitionFactory;
 import org.framed.orm.ui.factory.ORMRoleTypeFactory;
 import org.framed.orm.ui.factory.ORMTotalFactory;
@@ -267,10 +268,9 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     drawer.add(entry);
     addEntry(PaletteEntry.GROUP, entry, true);
     
-    //Palette entry ROLE_MODEL which does nothing at the moment.
     entry =
             new CombinedTemplateCreationEntry(PaletteEntry.ROLE_MODEL.getName(), "Create a new Role Model",
-                null, null, null);
+                new ORMRoleModelFactory(), null, null);
         entry.setToolClass(CreationAndDirectEditTool.class);
         entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
                 "icons/compartment.png"));
