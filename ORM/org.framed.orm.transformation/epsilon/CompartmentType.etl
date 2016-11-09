@@ -3,21 +3,27 @@ import "CardinalityParser.eol";
 
 pre CompartmentType {
 	var compartmentTypes : OrderedSet(source!Shape);
+	var compartment_on=false;
 }
 
 /**
  * Transforms a shape with type COMPARTMENT_TYPE.
  */
+@lazy 
 rule CompartmentType
 	transform t : source!Shape
 	to n : target!CompartmentType {
 
 	guard : t.getType.getValue == 0 // enum value COMPARTMENT_TYPE
 
-	n.name = t.name;
-
-	compartmentTypes.add(t);
+	for(f in t.~features) {
+		if(f.name.toString()="Compartment_Types") {
+			compartment_on=true;
+		}	
+	}
 	
+	compartmentTypes.add(t);
+
 	// iterate over all children of the compartment type
 	var children = t.getModel();
 	if (not (children == null)) {	
@@ -63,7 +69,10 @@ rule CompartmentType
 				n.getRelationships().add(e);
 			}			
 		}
-	}	
+	}
+	
+	if(compartment_on) n.name = t.name;
+	else n.name = "Role Model";	
 }
 
 /**
@@ -79,8 +88,10 @@ post CompartmentType {
 		if (not n.isDefined() or not t.isDefined()) {
 			continue;
 		}
-
-		t.addAttributes(n);
-		t.addOperations(n);
+		
+		if(compartment_on) {
+			t.addAttributes(n);
+			t.addOperations(n);
+		}	
 	}
 }

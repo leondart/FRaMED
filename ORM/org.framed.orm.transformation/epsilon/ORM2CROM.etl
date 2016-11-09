@@ -23,6 +23,11 @@ rule ORM2CROM
 	to crom : target!Model {
 	guard : mym.parent == null
 	
+	var featuresList = mym.framedConfiguration.features;
+	for(e in mym.elements) {
+		e.~features=featuresList;
+	}
+	
 	for(shape : source!Shape in mym.elements) {
 		var x = shape.equivalent();
 		if(not ((x == null) or x.instanceOf(target!AbstractRole))) {

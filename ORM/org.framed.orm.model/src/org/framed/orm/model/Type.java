@@ -216,18 +216,8 @@ public enum Type implements Enumerator {
    * @generated
    * @ordered
    */
-  RELATIONSHIP_EXCLUSION(19, "RelationshipExclusion", "RelationshipExclusion"),
+  RELATIONSHIP_EXCLUSION(19, "RelationshipExclusion", "RelationshipExclusion");
 
-  /**
-   * The '<em><b>Role Model</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #ROLE_MODEL_VALUE
-   * @generated
-   * @ordered
-   */
-  ROLE_MODEL(20, "RoleModel", "RoleModel");
-  
   /**
    * The '<em><b>Compartment Type</b></em>' literal value.
    * <!-- begin-user-doc -->
@@ -528,21 +518,6 @@ public enum Type implements Enumerator {
    */
   public static final int RELATIONSHIP_EXCLUSION_VALUE = 19;
 
-  /**
-   * The '<em><b>Role Model</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>Role Model</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @see #ROLE_MODEL
-   * @model name="RoleModel"
-   * @generated
-   * @ordered
-   */
-  public static final int ROLE_MODEL_VALUE = 20;
-  
   /**
    * An array of all the '<em><b>Type</b></em>' enumerators.
    * <!-- begin-user-doc -->
