@@ -11,15 +11,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.core.internal.resources.IManager;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -54,6 +59,9 @@ import de.ovgu.featureide.fm.core.configuration.TreeElement;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 import de.ovgu.featureide.fm.core.job.WorkMonitor;
+
+import org.framed.orm.ui.command.configurations.FeatureModelConfigurationEditorChangeCommand;
+
 
 // import de.ovgu.featureide.fm.ui.editors.configuration.AsyncTree.Builder;
 
@@ -309,7 +317,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
   /**
    * Sets the state of the editor to dirty. This results in the eclipse workspace displaying that a saveable change has been made.
    */
-  public void setDirty() {
+  public void setDirty() { 
     dirty = true;
     firePropertyChange(PROP_DIRTY);
   }
@@ -365,14 +373,23 @@ public class FeatureModelConfigurationEditor extends EditorPart {
       }
     });
   }
-
+  
   /**
    * Performs the adjustments necessary if the selection changes.
    * @param item
    * @param select
    */
-  protected void changeSelection(final TreeItem item, final boolean select) {
-    SelectableFeature feature = (SelectableFeature) item.getData();
+  public void changeSelection(final TreeItem item, final boolean select) {
+	  FeatureModelConfigurationEditorChangeCommand cmd = new FeatureModelConfigurationEditorChangeCommand();
+
+	  cmd.setEditor(this);
+	  cmd.setItem(item);
+	  cmd.setSelect(select);
+	  this.ormMultiPageEditor.getBehaviorEditor().getCommandStack().execute(cmd);   
+  }
+  
+public void  setSelection(final TreeItem item, final boolean select) {
+	  SelectableFeature feature = (SelectableFeature) item.getData();
     if (feature.getAutomatic() == Selection.UNDEFINED) {
       switch (feature.getManual()) {
         case SELECTED:
@@ -438,7 +455,7 @@ public class FeatureModelConfigurationEditor extends EditorPart {
    * @param selection
    */
   protected void set(SelectableFeature feature, Selection selection) {
-    getConfiguration().setManual(feature, selection);
+	getConfiguration().setManual(feature, selection);
     writeConfigurationToModel();
   }
 

@@ -166,6 +166,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     }
     setEditDomain(new DefaultEditDomain(this));
   }
+  
+  public CommandStack getCommandStack() {return super.getCommandStack();}
 
   /**
    * A getter for the editor type of this editor.
