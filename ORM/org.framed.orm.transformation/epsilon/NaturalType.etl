@@ -7,6 +7,7 @@ pre NaturalType {
 /**
  * Transforms a shape with type NATURAL_TYPE.
  */
+ @lazy 
 rule NaturalType
 	transform t : source!Shape
 	to n : target!NaturalType {

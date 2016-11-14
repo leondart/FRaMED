@@ -7,6 +7,7 @@ pre RoleType {
 /**
  * Transforms a shape with type ROLE_TYPE.
  */
+ @lazy 
 rule RoleType
 	transform t : source!Shape
 	to n : target!RoleType {

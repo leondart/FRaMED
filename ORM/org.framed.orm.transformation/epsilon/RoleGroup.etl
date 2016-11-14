@@ -1,5 +1,6 @@
 import "CardinalityParser.eol";
 
+@lazy 
 rule RoleGroup
 	transform s : source!Shape
 	to t : target!RoleGroup {	

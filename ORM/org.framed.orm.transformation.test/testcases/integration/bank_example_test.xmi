@@ -209,6 +209,10 @@
 		<elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment"
 			target="//@framedModel/@elements.2" source="//@framedModel/@elements.5"
 			referencedRoles="//@framedModel/@elements.4/@model/@elements.0" />
+		<framedConfiguration>
+    		<features/>	
+    		<features name="Compartment_Types"/>
+    	</framedConfiguration>  
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:NaturalType" name="Person">

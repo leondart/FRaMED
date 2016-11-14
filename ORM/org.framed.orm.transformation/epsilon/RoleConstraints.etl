@@ -1,4 +1,5 @@
 @abstract
+@lazy 
 rule RoleConstraint
 	transform t : source!Relation
 	to n : target!RoleConstraint {	
@@ -7,6 +8,7 @@ rule RoleConstraint
 }
 
 // RoleImplication
+@lazy 
 rule RoleImplication
 	transform t : source!Relation
 	to n : target!RoleImplication 
@@ -15,6 +17,7 @@ rule RoleImplication
 }
 
 // RoleProhibition
+@lazy 
 rule RoleProhibition
 	transform t : source!Relation
 	to n : target!RoleProhibition 
@@ -23,6 +26,7 @@ rule RoleProhibition
 }
 
 // RoleEquivalence
+@lazy 
 rule RoleEquivalence
 	transform t : source!Relation
 	to n : target!RoleEquivalence 

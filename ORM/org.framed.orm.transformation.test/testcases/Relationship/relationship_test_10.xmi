@@ -48,6 +48,10 @@
 		<elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment"
 			target="//@framedModel/@elements.1" source="//@framedModel/@elements.0"
 			referencedRoles="//@framedModel/@elements.1/@model/@elements.0 //@framedModel/@elements.1/@model/@elements.1" />
+		<framedConfiguration>
+    		<features/>	
+    		<features name="Compartment_Types"/>
+    	</framedConfiguration> 
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:NaturalType" name="NT" />

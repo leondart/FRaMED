@@ -18,6 +18,10 @@
 		      </elements>
 		    </model>    
   		</elements>
+  		<framedConfiguration>
+    		<features/>	
+    		<features name="Compartment_Types"/>
+    	</framedConfiguration>>
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:Group" name="GroupTest">			

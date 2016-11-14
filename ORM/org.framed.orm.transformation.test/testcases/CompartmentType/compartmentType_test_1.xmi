@@ -17,8 +17,8 @@
 		<elements xsi:type="org.framed.orm.model:Shape" name="CompType2"
 			type="CompartmentType" />
 		<framedConfiguration>
-    		<features/>
-    		<features name="Compartment_Types"/>	
+    		<features/>	
+    		<features name="Compartment_Types"/>
     	</framedConfiguration>	
 	</framedModel>
 	<cromModel>

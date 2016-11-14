@@ -7,6 +7,7 @@ pre DataType {
 /**
  * Transforms a shape with type DATA_TYPE.
  */
+@lazy 
 rule DataType
 	transform t : source!Shape
 	to n : target!DataType {

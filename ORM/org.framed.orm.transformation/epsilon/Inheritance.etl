@@ -19,6 +19,7 @@ operation Any transformInheritance(s : source!Relation, t : target!Inheritance) 
 /**
  * Transforms a relation with type INHERITANCE between two elements of type COMPARTMENT_TYPE.
  */
+@lazy 
 rule CompartmentInheritance
 	transform s : source!Relation
 	to t : target!CompartmentInheritance {
@@ -33,6 +34,7 @@ rule CompartmentInheritance
 /**
  * Transforms a relation with type INHERITANCE between two elements of type NATURAL_TYPE.
  */
+@lazy 
 rule NaturalInheritance
 	transform s : source!Relation
 	to t : target!NaturalInheritance {
@@ -40,13 +42,14 @@ rule NaturalInheritance
 	guard : s.getType.getValue == 6 // enum value INHERITANCE
 		and s.getSource.getType.getValue == 1 // NATURAL_TYPE
 		and s.getTarget.getType.getValue == 1 // NATURAL_TYPE
-	
+
 	transformInheritance(s, t);
 }
 
 /**
  * Transforms a relation with type INHERITANCE between two elements of type ROLE_TYPE.
  */
+@lazy  
 rule RoleInheritance
 	transform s : source!Relation
 	to t : target!RoleInheritance {
@@ -61,6 +64,7 @@ rule RoleInheritance
 /**
  * Transforms a relation with type INHERITANCE between two elements of type DATA_TYPE.
  */
+@lazy  
 rule DataInheritance
 	transform s : source!Relation
 	to t : target!DataInheritance {

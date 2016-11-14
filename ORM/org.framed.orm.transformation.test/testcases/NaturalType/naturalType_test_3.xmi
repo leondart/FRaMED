@@ -20,6 +20,10 @@
 		</elements>
 		<elements xsi:type="org.framed.orm.model:Shape" name="NaturalType2"
 			type="NaturalType" />
+		<framedConfiguration>
+    		<features/>	
+    		<features name="Compartment_Types"/>
+    	</framedConfiguration> 	
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:NaturalType" name="NaturalType1">

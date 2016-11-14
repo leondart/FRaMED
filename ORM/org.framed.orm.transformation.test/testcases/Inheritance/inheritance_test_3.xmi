@@ -31,6 +31,10 @@
         type="Inheritance"
         target="//@framedModel/@elements.3"
         source="//@framedModel/@elements.0"/>
+    <framedConfiguration>
+    	<features/>	
+    	<features name="Compartment_Types"/>
+    </framedConfiguration>   
   </framedModel>
   <cromModel>
     <elements

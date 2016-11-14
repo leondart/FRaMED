@@ -1,3 +1,4 @@
+@lazy 
 rule RelationshipExclusion
 	transform s : source!Relation
 	to t : target!RelationshipExclusion {

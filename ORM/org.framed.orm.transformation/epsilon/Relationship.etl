@@ -25,7 +25,7 @@ operation getPlace(card : String,holder:target!RigidType) : target!Place {
 	fail("Place can only reference role types as placeholders!");
 }
 
-
+@lazy 
 rule Relationship
 	transform s : source!Relation
 	to t : target!Relationship {
@@ -66,6 +66,7 @@ rule Relationship
 	}
 }
 
+@lazy 
 rule TotalRelation
 	transform s : source!Relation
 	to t : target!Total {
@@ -74,6 +75,7 @@ rule TotalRelation
 	
 }
 
+@lazy 
 rule CyclicRelation
 	transform s : source!Relation
 	to t : target!Cyclic {
@@ -82,6 +84,7 @@ rule CyclicRelation
 	
 }  
 
+@lazy 
 rule IrreflexiveRelation
 	transform s : source!Relation
 	to t : target!Irreflexive {
@@ -90,6 +93,7 @@ rule IrreflexiveRelation
 	
 } 
 
+@lazy 
 rule AcyclicRelation
 	transform s : source!Relation
 	to t : target!Acyclic {
@@ -98,6 +102,7 @@ rule AcyclicRelation
 	
 } 
 
+@lazy 
 rule ReflexiveRelation
 	transform s : source!Relation
 	to t : target!Reflexive {

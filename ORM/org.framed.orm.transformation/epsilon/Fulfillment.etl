@@ -1,4 +1,4 @@
-
+@lazy 
 rule Fulfillment
 	transform t : source!Relation
 	to n : Sequence(target!Fulfillment) {

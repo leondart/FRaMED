@@ -32,6 +32,10 @@
             type="RoleType"/>
       </model>
     </elements>
+    <framedConfiguration>
+    	<features/>	
+    	<features name="Compartment_Types"/>
+    </framedConfiguration>
   </framedModel>
   <cromModel>
     <elements

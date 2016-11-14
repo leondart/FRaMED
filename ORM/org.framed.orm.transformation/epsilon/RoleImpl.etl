@@ -1,4 +1,4 @@
-
+@lazy 
 rule RoleImpl
 	transform t : source!Relation
 	to n : target!RoleImplication {

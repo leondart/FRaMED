@@ -1,3 +1,4 @@
+@lazy 
 rule Group
 	transform s : source!Shape
 	to t : target!Group {	
