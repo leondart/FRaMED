@@ -21,7 +21,7 @@
 	<properties>
 		<tycho.version>0.22.0</tycho.version>
 		<luna-repo.url>http://download.eclipse.org/releases/luna</luna-repo.url>
-		<epsilon-repo.url>http://archive.eclipse.org/epsilon/1.2/updates/</epsilon-repo.url>
+		<epsilon-repo.url>http://archive.eclipse.org/epsilon/1.2/updates</epsilon-repo.url>
 		<featureide-repo.url>http://wwwiti.cs.uni-magdeburg.de/iti_db/research/featureide/deploy</featureide-repo.url>
 	</properties>
 
