@@ -27,6 +27,10 @@
             		target="//@framedModel/@elements.0/@model/@elements.1"/>
       		</model>
     	</elements>
+    	<framedConfiguration>
+    		<features/>
+    		<features name="Compartment_Types"/>	
+    	</framedConfiguration>
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:CompartmentType" name="Bank">      
