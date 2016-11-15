@@ -104,7 +104,11 @@ public class ORMShapeCreateCommand extends Command {
    */
   @Override
   public void execute() {
-    shape.setName("<...>");
+	//distinguish RoleModel and Compartment Type if the type of shape is Compartment Type
+	//if name is already "Role Model" dont change it, else set it to "<...>"  
+	if(shape.getType().getValue()==Type.COMPARTMENT_TYPE_VALUE){
+		if(!(shape.getName().equals("Role Model"))) shape.setName("<...>");
+	} else shape.setName("<...>"); 	
     shape.setBoundaries(boundarie);
     shape.setContainer(parent);
     shape.setFirstSegment(attributeSegment);

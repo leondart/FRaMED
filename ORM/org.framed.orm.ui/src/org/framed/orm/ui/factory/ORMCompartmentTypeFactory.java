@@ -16,6 +16,8 @@ public class ORMCompartmentTypeFactory implements CreationFactory {
   public Object getNewObject() {
     Shape shape = OrmFactory.eINSTANCE.createShape();
     shape.setType(Type.COMPARTMENT_TYPE);
+    //setName here to distinguish Role Model and Compartment Type
+    shape.setName("Compartment Type");
     return shape;
   }
 
