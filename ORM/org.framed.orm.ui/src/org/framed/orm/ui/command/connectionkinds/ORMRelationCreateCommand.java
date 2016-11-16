@@ -11,6 +11,7 @@ import org.eclipse.gef.commands.Command;
 import org.framed.orm.geometry.GeometryFactory;
 import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
@@ -18,7 +19,7 @@ import org.framed.orm.model.Type;
 
 /**
  * Through this command all {@link Relation}s can be created(invoked into the model tree).
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMRelationCreateCommand extends Command {
@@ -32,7 +33,7 @@ public class ORMRelationCreateCommand extends Command {
   /** The source label of the {@link Relation} to be created. */
   private NamedElement sourceLabel;
   /** A list of refrences on other {@link Relation}s. */
-  protected ArrayList<Relation> refrencedRelations;
+  protected ArrayList<Relation> referencedRelations;
 
   /**
    * The {@link Relation} to be created. The basis type of the {@link Relation} is given by a
@@ -44,7 +45,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
-   * 
+   *
    */
   public ORMRelationCreateCommand() {
     super.setLabel("ORMRelationCreate");
@@ -54,7 +55,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * This method tests if the conditions for executing this command are fulfilled,
-   * 
+   *
    * @return true if the parameter target, source, relation and parent are set.
    */
   @Override
@@ -68,7 +69,7 @@ public class ORMRelationCreateCommand extends Command {
 
     switch (val) {
       case Type.RELATIONSHIP_VALUE:
-        return targetLabel != null && sourceLabel != null && refrencedRelations == null;
+        return targetLabel != null && sourceLabel != null && referencedRelations == null;
       case Type.IRREFLEXIVE_VALUE:
         return testRelationshipConstraint();
       case Type.TOTAL_VALUE:
@@ -79,20 +80,50 @@ public class ORMRelationCreateCommand extends Command {
         return testRelationshipConstraint();
       case Type.REFLEXIVE_VALUE:
         return testRelationshipConstraint();
+      case Type.INHERITANCE_VALUE:
+          return testInheritanceConstraint();
       default:
-        return targetLabel == null && sourceLabel == null && refrencedRelations == null;
+        return targetLabel == null && sourceLabel == null && referencedRelations == null;
     }
+  }
+
+  /*
+   * check whether ModelElement target and source have a cycle in inheritance-relation
+   */
+  private boolean checkCycle(ModelElement target, ModelElement source) {
+	  if(source.equals(target)) return false;
+
+	  for(Relation relation : source.getIncomingRelations()) {
+		  if(relation.getType().getValue() == Type.INHERITANCE_VALUE) {
+			  if(!checkCycle(target, relation.getSource())) {
+				  return false;
+			  }
+		  }
+	  }
+	  return true;
+  }
+
+  /**
+   * This method checks if all variables, which are needed for the creation of a Inheritance {@link Relation}
+   * are not cyclic.
+   *
+   * @return true when target and source label are null and refrencedRelations array is not null.
+   * */
+  private boolean testInheritanceConstraint() {
+	    if(targetLabel != null || sourceLabel != null || referencedRelations != null)
+	    	return false;
+	    return checkCycle(target, source);
   }
 
   /**
    * This method checks if all variables, which are needed for the creation of a {@link Relation}
    * from type cyclic, total, acyclic, reflexive or irreflexive.
-   * 
+   *
    * @return true when target and source label are null and refrencedRelations array is not null.
    * */
   private boolean testRelationshipConstraint() {
-    if (targetLabel == null && sourceLabel == null && refrencedRelations != null) {
-      return refrencedRelations.size() == 1;
+    if (targetLabel == null && sourceLabel == null && referencedRelations != null) {
+      return referencedRelations.size() == 1;
     }
     return false;
   }
@@ -105,14 +136,14 @@ public class ORMRelationCreateCommand extends Command {
    * source and target of the {@link Relation} are not equal and more as one {@link Relation} exists
    * between the target and the source than a {@link Bendpoint} is added to the created
    * {@link Relation} to make the {@link Relation} better visibile/ acessesible to the user.
-   * 
+   *
    */
   @Override
   public void execute() {
     relation.setSourceLabel(sourceLabel);
     relation.setTargetLabel(targetLabel);
-    if (refrencedRelations != null) {
-      relation.getReferencedRelation().addAll(refrencedRelations);
+    if (referencedRelations != null) {
+      relation.getReferencedRelation().addAll(referencedRelations);
     }
     relation.setSource(source);
     relation.setTarget(target);
@@ -141,7 +172,7 @@ public class ORMRelationCreateCommand extends Command {
    * {@inheritDoc} This command is undone through removing the created {@link Relation} from the
    * source, the {@link Model} and the target and through deleting all the {@link Bendpoint}s of the
    * {@link Relation}.
-   * 
+   *
    */
   @Override
   public void undo() {
@@ -158,7 +189,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * This method is for determining the number of {@link Relation}s between the source and target.
-   * 
+   *
    * @return number of relations between source and target.
    * */
   protected int getRelationCount() {
@@ -320,7 +351,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the source of the {@link Relation}.
-   * 
+   *
    * @param source org.framed.orm.model.Shape
    * */
   public void setSource(final Shape source) {
@@ -329,7 +360,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the target of the {@link Relation}.
-   * 
+   *
    * @param target org.framed.orm.model.Shape
    * */
   public void setTarget(final Shape target) {
@@ -338,7 +369,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the {@link Relation}, which is created/invoked in this command.
-   * 
+   *
    * @param relation org.framed.orm.model.Relation
    * */
   public void setRelation(final Relation relation) {
@@ -347,7 +378,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the {@link Model} to which {@link Relation} should be added.
-   * 
+   *
    * @param relcon org.framed.orm.model.Model
    * */
   public void setRelationContainer(final Model relcon) {
@@ -356,7 +387,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the target {@link NamedElement}/Label of the {@link Relation} which will be created.
-   * 
+   *
    * @param targetLabel {@link org.framed.orm.model.NamedElement}
    * */
   public void setTargetLabel(NamedElement targetLabel) {
@@ -365,7 +396,7 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the source {@link NamedElement}/Label of the {@link Relation} which will be created.
-   * 
+   *
    * @param sourceLabel {@link org.framed.orm.model.NamedElement}
    * */
   public void setSourceLabel(NamedElement sourceLabel) {
@@ -374,10 +405,10 @@ public class ORMRelationCreateCommand extends Command {
 
   /**
    * Setter for the refrenced relation array of the {@link Relation} which will be created.
-   * 
+   *
    * @param ArrayList<Relation> refrencedRelations
    * */
   public void setRefrencedRelations(ArrayList<Relation> refrencedRelations) {
-    this.refrencedRelations = refrencedRelations;
+    this.referencedRelations = refrencedRelations;
   }
 }

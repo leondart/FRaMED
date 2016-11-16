@@ -4,7 +4,6 @@ import org.eclipse.draw2d.BendpointConnectionRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionEndpointLocator;
 import org.eclipse.draw2d.ConnectionLocator;
-import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PolygonDecoration;
@@ -26,7 +25,7 @@ import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
  * This class serves as a facade/factory for creating figures for different {@link Relation} types.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMConnectionFigureFactory {
@@ -34,7 +33,7 @@ public class ORMConnectionFigureFactory {
   /**
    * This method takes a {@link EditPart} as input and return the correct figure depending on which
    * kind of model element the edit part controls.
-   * 
+   *
    * @param editpart {@link EditPart}
    * @return {@link Figure}
    * */
@@ -73,7 +72,7 @@ public class ORMConnectionFigureFactory {
    * acyclic, reflexive and irreflexive, which differs from relationshipConstraint to
    * relationshipConstraint only in the text of the {@link Label}. A cyclic, total, acyclic,
    * reflexive or irreflexive figure is dashed line with a {@link Label}.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    * */
   private static Figure createRelationshipConstraintFigure(Relation relation, EditPart editpart) {
@@ -104,7 +103,7 @@ public class ORMConnectionFigureFactory {
    * {@link Relation}s from type relationship have as figure a drawn through line with two
    * {@link Label}s at both ends and Label in the middle for it's name. The {@link Label} are added
    * through child model elements( {@link NamedElements}).
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    */
   private static Figure createRelationshipFigure(ORMRelationshipEditPart editPart) {
@@ -140,7 +139,7 @@ public class ORMConnectionFigureFactory {
   /**
    * {@link Relation}s from type roleequivalence have as figure a dashed line with a white arrow
    * tips at both connection ends.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    */
   private static Figure createRoleEquivalenceFigure() {
@@ -171,7 +170,7 @@ public class ORMConnectionFigureFactory {
   /**
    * {@link Relations}s from type roleimplication and relationshipimplication have as figure a
    * dashed line with a white arrow tip at target end of this connection.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    */
   private static Figure createRoleRelationshipImplicationFigure() {
@@ -192,10 +191,10 @@ public class ORMConnectionFigureFactory {
 
 
   /**
-   * 
+   *
    * {@link Relations}s from type roleprohibition and relationshipexclusion have as figure a dashed
    * line with a white arrow tip at target end of this connection.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    * */
   private static Figure createRoleRelationshipExclusionFigure() {
@@ -239,7 +238,7 @@ public class ORMConnectionFigureFactory {
   /**
    * {@link Relation}s from type roleprohibition have as figure a dased line with two inverted and
    * open arrow tips at both ends of this connection.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    */
   private static Figure createRoleProhibitonFigure() {
@@ -273,7 +272,7 @@ public class ORMConnectionFigureFactory {
    * {@link Label} at the connection end that contains the names of the {@link Shape}s from type
    * roletype and rolegroup that are fulfilled from the source of this fulfillment and a black arrow
    * tip at the target end of the connection.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    */
   private static Figure createFulfillmentFigure(Relation relation, EditPart editPart) {
@@ -326,7 +325,7 @@ public class ORMConnectionFigureFactory {
   /**
    * {@link Relation}s from type inheritance have as figure a drawn through line with a white arrow
    * tip at target end of this connection.
-   * 
+   *
    * @return conn org.eclipse.draw2d.PolylineConnection
    */
   private static Figure createInheritanceFigure() {
