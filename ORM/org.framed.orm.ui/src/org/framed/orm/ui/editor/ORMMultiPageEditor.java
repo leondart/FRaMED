@@ -45,17 +45,17 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 
 /**
- * 
+ *
  * This {@link MultiPageEditorPart} is responsible for creating and managing all pages of FRaMED.
  * The following pages exist:
- * <ul> 
- *  <li>Behavior ({@link ORMGraphicalEditor})</li> 
+ * <ul>
+ *  <li>Behavior ({@link ORMGraphicalEditor})</li>
  *  <li>Data ({@link ORMGraphicalEditor})</li>
  *  <li>Configuration ({@link FeatureModelConfigurationEditor}) </li>
  *  <li>CROM ({@link ReadOnlyEditor})</li>
- *  <li>CROM_DIA ({@link ReadOnlyEditor})</li> 
+ *  <li>CROM_DIA ({@link ReadOnlyEditor})</li>
  * </ul>
- * 
+ *
  * @author Kay Bierzynski
  * @author Lars Schütze
  * @author Marc Kandler
@@ -75,7 +75,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   private ORMGraphicalEditor dataEditor;
 
   /**
-   * The {@link FeatureModelConfigurationEditor} which handles everything related to the Configuration. 
+   * The {@link FeatureModelConfigurationEditor} which handles everything related to the Configuration.
    */
   private FeatureModelConfigurationEditor featureModelConfigurationEditor;
 
@@ -160,7 +160,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   /**
    * A getter for name of input resource file.
-   * 
+   *
    * @return inputFilename String
    * */
   public String getInputFileName() {
@@ -221,9 +221,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
 
 
-  /** {@inheritDoc} 
+  /** {@inheritDoc}
    * This method calls the methods to create the editors and adds them as pages.
-   * In this method the title image of this editor is set as well. 
+   * In this method the title image of this editor is set as well.
    * */
   @Override
   protected void createPages() {
@@ -388,7 +388,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
   }
 
   /**
-   * {@inheritDoc} 
+   * {@inheritDoc}
    * Updates the Tree used in the {@link FeatureModelConfigurationEditor} we switch from another editor to it.
    * Otherwise, we update the palette entry visibility.
    * This method needs to be overwritten so that when you switch between the editors the
@@ -462,7 +462,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   /**
    * A getter for behaviour editor, which registered by this editor.
-   * 
+   *
    * @reutrn {@link ORMGraphicalEditor}
    * */
   public ORMGraphicalEditor getBehaviorEditor() {
@@ -471,7 +471,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   /**
    * A getter for data editor, which registered by this editor.
-   * 
+   *
    * @reutrn {@link ORMGraphicalEditor}
    * */
   public ORMGraphicalEditor getDataEditor() {
@@ -480,7 +480,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
 
   /**
    * Sets the object obj as content in the behavior editor and data editor
-   * 
+   *
    * @param obj The object which will be set as content
    */
   public void setContents(final Object obj) {
@@ -499,10 +499,10 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * in order for the palette entry to be visible.
    * We differentiate between the top-level view ("Step-Out") and the detailed view (Step-In), as depending on the state
    * different Palette Entries are visible.
-   * 
+   *
    * </br></br>
    * Please note that there are three possible ways to create a {@link FeatureExpression}.
-   * 
+   *
    * </br>
    * The Key of the respective map (Palette Entry) is visible in the editor, if the Value ({@link FeatureExpression}) can be evaluated to true.
    * @throws ScriptException
@@ -515,7 +515,9 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     stepOUTPaletteVisibility.put(PaletteEntry.DATA_TYPE, new FeatureExpression(
         FeatureName.DATA_TYPES));
     stepOUTPaletteVisibility.put(PaletteEntry.GROUP, new FeatureExpression(true));
-    stepOUTPaletteVisibility.put(PaletteEntry.FULFILLMENT, new FeatureExpression(true));
+    stepOUTPaletteVisibility.put(PaletteEntry.FULFILLMENT, new FeatureExpression(
+            FeatureName.DATES));
+
     stepOUTPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.INHERITANCE, new FeatureExpression(true));
