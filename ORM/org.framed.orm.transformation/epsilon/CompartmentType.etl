@@ -71,8 +71,7 @@ rule CompartmentType
 		}
 	}
 	
-	if(compartment_on) n.name = t.name;
-	else n.name = "Role Model";	
+	n.name = t.name;
 }
 
 /**
