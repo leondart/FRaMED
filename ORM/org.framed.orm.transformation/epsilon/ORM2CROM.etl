@@ -18,7 +18,7 @@ operation Any println() : Any {
 	("Printing : " + self)->println();
 }
 
-operation Any setFeatureMap() : Map<String, Boolean> {
+operation Any setFeatureMap() : Map {
 	self.put("Role_Types",false); self.put("Role_Structure",false); 
 	self.put("Role_Properties",false); self.put("Role_Behavior",false); 
 	self.put("Role_Inheritance",false); self.put("Playable",false);
@@ -43,7 +43,7 @@ rule ORM2CROM
 	to crom : target!Model {
 	guard : mym.parent == null
 	
-	var featureMap : Map<String, Boolean>;
+	var featureMap : Map;
 	featureMap.setFeatureMap();
 	for(f in mym.framedConfiguration.features) {
 		featureMap.put(f.getName().asString(), true);
