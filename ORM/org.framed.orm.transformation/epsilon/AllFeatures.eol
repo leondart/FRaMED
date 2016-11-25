@@ -1,0 +1,39 @@
+//Set of all available features
+operation getAllFeatures() : Set { 
+	var set : Set;
+	set.add("Role_Types");
+	set.add("Role_Structure");
+	set.add("Role_Properties");
+	set.add("Role_Behavior");
+	set.add("Role_Inheritance");
+	set.add("Playable");
+	set.add("Players");
+	set.add("Naturals");
+	set.add("Compartments");
+	set.add("Dates");
+	set.add("Dependent");
+	set.add("On_Compartments");
+	set.add("On_Relationships");
+	set.add("Role_Constraints");
+	set.add("Role_Implication");
+	set.add("Role_Prohibition");
+	set.add("Role_Equivalence");
+	set.add("Group_Constraints");
+	set.add("Occurrence_Constraints");
+	set.add("Relationships");
+	set.add("Relationship_Constraints");
+	set.add("Relationship_Cardinality");
+	set.add("Intra_Relationship_Constraints");
+	set.add("Parthood_Constraints");
+	set.add("Inter_Relationship_Constraints");
+	set.add("Compartment_Types");
+	set.add("Compartment_Structure");
+	set.add("Compartment_Properties");
+	set.add("Compartment_Behavior");
+	set.add("Compartment_Inheritance");
+	set.add("Participants");
+	set.add("Playable_by_Defining_Compartment");
+	set.add("Data_Types");
+	set.add("Data_Type_Inheritance");
+	return set;
+}

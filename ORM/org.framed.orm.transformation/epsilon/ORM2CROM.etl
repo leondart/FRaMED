@@ -14,28 +14,14 @@ import "Inheritance.etl";
 import "Relationship.etl";
 import "Fulfillment.etl";
 
+import "AllFeatures.eol";
+
 operation Any println() : Any { 
 	("Printing : " + self)->println();
 }
 
 operation Any setFeatureMap() : Map {
-	self.put("Role_Types",false); self.put("Role_Structure",false); 
-	self.put("Role_Properties",false); self.put("Role_Behavior",false); 
-	self.put("Role_Inheritance",false); self.put("Playable",false);
-	self.put("Players",false); self.put("Naturals",false); 
-	self.put("Compartments",false); self.put("Dates",false); 
-	self.put("Dependent",false); self.put("On_Compartments",false);
-	self.put("On_Relationships",false); self.put("Role_Constraints",false); 
-	self.put("Role_Implication",false); self.put("Role_Prohibition",false); 
-	self.put("Role_Equivalence",false); self.put("Group_Constraints",false);
-	self.put("Occurrence_Constraints",false); self.put("Relationships",false); 
-	self.put("Relationship_Constraints",false); self.put("Relationship_Cardinality",false);
-	self.put("Intra_Relationship_Constraints",false); self.put("Parthood_Constraints",false);
-	self.put("Inter_Relationship_Constraints",false); self.put("Compartment_Types",false); 
-	self.put("Compartment_Structure",false); self.put("Compartment_Properties",false);
-	self.put("Compartment_Behavior",false); self.put("Compartment_Inheritance",false);
-	self.put("Participants",false); self.put("Playable_by_Defining_Compartment",false);
-	self.put("Data_Types",false); self.put("Data_Type_Inheritance",false);
+	for(s : String in getAllFeatures()) self.put(s, false);
 }
 
 rule ORM2CROM
