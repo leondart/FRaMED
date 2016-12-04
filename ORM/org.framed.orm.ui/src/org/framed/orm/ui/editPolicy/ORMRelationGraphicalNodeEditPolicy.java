@@ -21,7 +21,18 @@ import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
  * */
 public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
-  /**
+	
+	private EditPolicyHandler editPolicyHandler;
+	
+	
+  public ORMRelationGraphicalNodeEditPolicy(
+			EditPolicyHandler editPolicyHandler) {
+	  this.editPolicyHandler = editPolicyHandler;
+	  
+		// TODO Auto-generated constructor stub
+	}
+
+/**
    * {@inheritDoc}
    * 
    * @return {@link ORMRelationCreateCommand} or null(when no condition is fufilled)
@@ -94,7 +105,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   private ORMRelationCreateCommand setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
-    final ORMRelationCreateCommand result = new ORMRelationCreateCommand();
+    final ORMRelationCreateCommand result = new ORMRelationCreateCommand(this.editPolicyHandler);
     result.setSource(((Relation) getHost().getModel()).getConnectionAnchor());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);

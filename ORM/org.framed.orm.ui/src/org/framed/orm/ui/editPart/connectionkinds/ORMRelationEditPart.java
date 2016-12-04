@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.NodeEditPart;
@@ -33,6 +34,7 @@ import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
 import org.framed.orm.ui.editPolicy.ORMRelationBendpointEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationConnectionEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMRelationGraphicalNodeEditPolicy;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.ORMConnectionFigureFactory;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
@@ -68,12 +70,15 @@ public class ORMRelationEditPart extends AbstractConnectionEditPart implements N
   /** {@inheritDoc} */
   @Override
   protected void createEditPolicies() {	  
-    installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new ConnectionEndpointEditPolicy());
+	 
+	ORMGraphicalEditor editor = (ORMGraphicalEditor) ((DefaultEditDomain)this.getViewer().getEditDomain()).getEditorPart();
+	  
+	installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new ConnectionEndpointEditPolicy());
     // edit policy, which handle the creation of relations
     installEditPolicy(EditPolicy.CONNECTION_ROLE, new ORMRelationConnectionEditPolicy());
     // edit policy, which the creation, moving and deletion of bendpoints on a relation
     installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new ORMRelationBendpointEditPolicy());
-    installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMRelationGraphicalNodeEditPolicy());
+    installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMRelationGraphicalNodeEditPolicy(editor.getEditPolicyHandler()));
   }
 
   /**

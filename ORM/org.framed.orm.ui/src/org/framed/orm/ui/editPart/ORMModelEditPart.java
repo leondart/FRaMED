@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToGrid;
@@ -27,6 +28,7 @@ import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.editPolicy.ORMContainerEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMModelXYLayoutPolicy;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.shapes.ORMCompartmentV2Figure;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.shapes.ORMRootModelFigure;
@@ -36,8 +38,9 @@ import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
  * This {@link EditPart} is the controller for the model element {@link Model}.
  * 
  * @author Kay Bierzynski
+ * @param <IEditorPart>
  * */
-public class ORMModelEditPart extends AbstractGraphicalEditPart {
+public class ORMModelEditPart<IEditorPart> extends AbstractGraphicalEditPart {
 
   /**
    * The {@link Adapter} of this controller, which recieves the notifications from the viewer/user.
@@ -132,6 +135,7 @@ public class ORMModelEditPart extends AbstractGraphicalEditPart {
   protected void createEditPolicies() {
     // edit policy, which handles the creation of the children of the compartment diagram and the
     // adding of the children to the compartment diagram
+	  
     installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMModelXYLayoutPolicy());
     installEditPolicy(EditPolicy.CONTAINER_ROLE, new ORMContainerEditPolicy());
     installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());

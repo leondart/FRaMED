@@ -73,6 +73,7 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreate
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
 import org.framed.orm.ui.expression.FeatureExpression;
 
@@ -139,6 +140,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * for the entry to be visible in the step-IN perspective.
    */
   private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
+  
+  private EditPolicyHandler editPolicyHandler;
 
 
   /**
@@ -165,6 +168,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
       rootmodel = (Model) cdResource.getContents().get(0);
     }
     setEditDomain(new DefaultEditDomain(this));
+    
+    this.editPolicyHandler = new EditPolicyHandler();
   }
   
   public CommandStack getCommandStack() {return super.getCommandStack();}
@@ -318,7 +323,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
               if (!constraintExist) {
                 relationship.getReferencedRelation().add(relation);
                 ORMRelationshipConstraintCreateCommand command =
-                    new ORMRelationshipConstraintCreateCommand();
+                    new ORMRelationshipConstraintCreateCommand(ORMGraphicalEditor.this.getEditPolicyHandler());
                 command.setRelation(relation);
                 command.setRelationContainer(relationship.getContainer());
                 command.setSource((Shape) relationship.getSource());
@@ -705,6 +710,9 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     public void setPropertyValue(final Object id, final Object value) {
       source.setPropertyValue(id, value);
     }
+  }
+  public EditPolicyHandler getEditPolicyHandler() {
+	  return this.editPolicyHandler;
   }
 
 }

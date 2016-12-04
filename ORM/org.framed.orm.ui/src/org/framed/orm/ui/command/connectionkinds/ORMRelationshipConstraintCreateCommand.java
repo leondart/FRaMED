@@ -6,6 +6,7 @@ import org.framed.orm.geometry.GeometryFactory;
 import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 
 /**
  * Through this command {@link Relation}s from type cyclic, total, acyclic, reflexive and
@@ -15,7 +16,14 @@ import org.framed.orm.model.Relation;
  * */
 public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCommand {
 
-  /**
+	
+  public ORMRelationshipConstraintCreateCommand(
+			EditPolicyHandler editPolicyHandler) {
+		super(editPolicyHandler);
+		// TODO Auto-generated constructor stub
+	}
+
+/**
    * The {@link Relation} from type relationship to which the
    * relationshipConstraint(cyclic,total,irrflexive, acyclic, reflexive) belongs to.
    */

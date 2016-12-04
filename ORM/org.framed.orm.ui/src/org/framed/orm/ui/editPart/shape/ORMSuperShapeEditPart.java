@@ -72,6 +72,7 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
   @Override
   public void createEditPolicies() {
     if (!((Shape) getModel()).getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
+
       // edit policy for handling requests of editing the shape name
       installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
       installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
@@ -81,7 +82,7 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
       // the ORMNodeGraphicalNodeEditPolicy shouldn't be installes for shapes from type
       // compartmenttype and group, where the user stepped into
       if (!(getParent() instanceof ScalableRootEditPart)) {
-        installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMShapeGraphicalNodeEditPolicy());
+        installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ORMShapeGraphicalNodeEditPolicy(this));
       }
     }
   }

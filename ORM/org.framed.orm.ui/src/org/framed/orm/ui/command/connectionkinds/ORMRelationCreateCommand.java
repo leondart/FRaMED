@@ -16,6 +16,7 @@ import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 
 /**
  * Through this command all {@link Relation}s can be created(invoked into the model tree).
@@ -43,14 +44,18 @@ public class ORMRelationCreateCommand extends Command {
   /** The {@link Model} to which the {@link Relation} should be added. */
   protected Model parent;
 
+  private EditPolicyHandler editPolicyHandler;
+  
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
+ * @param editPolicyHandler 
    *
    */
-  public ORMRelationCreateCommand() {
+  public ORMRelationCreateCommand(EditPolicyHandler editPolicyHandler) {
     super.setLabel("ORMRelationCreate");
     targetLabel = null;
     sourceLabel = null;
+    this.editPolicyHandler = editPolicyHandler;
   }
 
   /**
@@ -62,35 +67,32 @@ public class ORMRelationCreateCommand extends Command {
   public boolean canExecute() {
 
     if (relation == null || target == null || parent == null || source == null) {
-      return false;
+    	return false;
     }
-
+    
     int val = relation.getType().getValue();
-
     switch (val) {
       case Type.RELATIONSHIP_VALUE:
-        return targetLabel != null && sourceLabel != null && referencedRelations == null;
+    	  if(!(targetLabel != null && sourceLabel != null && referencedRelations == null)) return false;
       case Type.IRREFLEXIVE_VALUE:
-        return testRelationshipConstraint();
       case Type.TOTAL_VALUE:
-        return testRelationshipConstraint();
       case Type.CYCLIC_VALUE:
-        return testRelationshipConstraint();
       case Type.ACYCLIC_VALUE:
-        return testRelationshipConstraint();
       case Type.REFLEXIVE_VALUE:
-        return testRelationshipConstraint();
       case Type.INHERITANCE_VALUE:
-          return testInheritanceConstraint();
+    	  if(targetLabel != null || sourceLabel != null || referencedRelations != null)
+    		  return false;
       default:
-        return targetLabel == null && sourceLabel == null && referencedRelations == null;
+        if(!(targetLabel == null && sourceLabel == null && referencedRelations == null)) return false;
     }
+
+    return editPolicyHandler.canExecute(this);
   }
 
   /*
    * check whether ModelElement target and source have a cycle in inheritance-relation
    */
-  private boolean checkCycle(ModelElement target, ModelElement source) {
+  public final boolean checkCycle(ModelElement target, ModelElement source) {
 	  if(source.equals(target)) return false;
 
 	  for(Relation relation : source.getIncomingRelations()) {
@@ -101,31 +103,6 @@ public class ORMRelationCreateCommand extends Command {
 		  }
 	  }
 	  return true;
-  }
-
-  /**
-   * This method checks if all variables, which are needed for the creation of a Inheritance {@link Relation}
-   * are not cyclic.
-   *
-   * @return true when target and source label are null and refrencedRelations array is not null.
-   * */
-  private boolean testInheritanceConstraint() {
-	    if(targetLabel != null || sourceLabel != null || referencedRelations != null)
-	    	return false;
-	    return checkCycle(target, source);
-  }
-
-  /**
-   * This method checks if all variables, which are needed for the creation of a {@link Relation}
-   * from type cyclic, total, acyclic, reflexive or irreflexive.
-   *
-   * @return true when target and source label are null and refrencedRelations array is not null.
-   * */
-  private boolean testRelationshipConstraint() {
-    if (targetLabel == null && sourceLabel == null && referencedRelations != null) {
-      return referencedRelations.size() == 1;
-    }
-    return false;
   }
 
   /**
@@ -377,6 +354,20 @@ public class ORMRelationCreateCommand extends Command {
   }
 
   /**
+   * Setter for the {@link Relation}, which is created/invoked in this command.
+   *
+   * @param relation org.framed.orm.model.Relation
+   * */
+  public Relation getRelation() {
+    return this.relation;
+  }
+  
+  public ArrayList<Relation> getReferencedRelations(){
+	  return referencedRelations;
+  }
+
+  
+  /**
    * Setter for the {@link Model} to which {@link Relation} should be added.
    *
    * @param relcon org.framed.orm.model.Model
@@ -411,4 +402,13 @@ public class ORMRelationCreateCommand extends Command {
   public void setRefrencedRelations(ArrayList<Relation> refrencedRelations) {
     this.referencedRelations = refrencedRelations;
   }
+
+public ModelElement getSource() {
+	// TODO Auto-generated method stub
+	return source;
+}
+public ModelElement getTarget() {
+	// TODO Auto-generated method stub
+	return target;
+}
 }

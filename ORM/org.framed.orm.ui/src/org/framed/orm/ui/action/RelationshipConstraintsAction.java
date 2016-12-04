@@ -2,6 +2,7 @@ package org.framed.orm.ui.action;
 
 import java.util.ArrayList;
 
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.ui.actions.SelectionAction;
@@ -16,6 +17,7 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.CallRelationshipConstraintsActionCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
  * This action is for adding/removing {@link Relation}s from type total, cyclic, acyclic, reflexive
@@ -146,10 +148,12 @@ public class RelationshipConstraintsAction extends SelectionAction {
     else if (returnCode == Window.OK) {
       CompoundCommand compoundCommand = new CompoundCommand();
 
+  	ORMGraphicalEditor editor = (ORMGraphicalEditor) ((DefaultEditDomain)this.editPart.getViewer().getEditDomain()).getEditorPart();
+
       for (Relation relation : dialog.getChosenCreateConstraints()) {
         if (!constraints.contains(relation)) {
           ORMRelationshipConstraintCreateCommand command =
-              new ORMRelationshipConstraintCreateCommand();
+              new ORMRelationshipConstraintCreateCommand(editor.getEditPolicyHandler());
 
           command.setRelation(relation);
           command.setRelationContainer(rlship.getContainer());

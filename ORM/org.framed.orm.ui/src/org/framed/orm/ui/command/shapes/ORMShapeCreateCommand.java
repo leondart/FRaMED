@@ -48,7 +48,7 @@ public class ORMShapeCreateCommand extends Command {
   protected Shape shape;
   /**
    * A {@link Rectangle}, which represents the boundaries of the {@link Shape}. The boundaries
-   * describes the width and heigth of the {@link Shape} in the viewer.
+   * describes the width and height of the {@link Shape} in the viewer.
    */
   private Rectangle boundarie;
 
@@ -73,7 +73,7 @@ public class ORMShapeCreateCommand extends Command {
     }
 
     int val = shape.getType().getValue();
-
+    
     switch (val) {
       case Type.COMPARTMENT_TYPE_VALUE:
         return attributeSegment != null && operationSegment != null && childmodel != null

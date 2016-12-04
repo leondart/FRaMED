@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
@@ -18,6 +19,7 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
 import org.framed.orm.ui.editPart.ORMModelEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
@@ -33,7 +35,19 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * */
   private Relation testedRelationship = null;
 
-  /**
+  private ORMGraphicalEditor editor;
+  
+  public ORMShapeGraphicalNodeEditPolicy(
+		EditPart host) {
+	  
+	    editor =
+	            (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain()).getEditorPart();
+
+	  
+	// TODO Auto-generated constructor stub
+}
+
+/**
    * {@inheritDoc} The feedback is only shown when the target edit part model is not the model
    * parent of the source edit part model. (this restriction is important for the creation of
    * {@link Relation}s in a {@link Shape} from type role group)
@@ -108,7 +122,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
             Type.ROLE_TYPE)) && hasARelationship(request, false)) {
 
         final ORMRelationshipConstraintCreateCommand result =
-            new ORMRelationshipConstraintCreateCommand();
+            new ORMRelationshipConstraintCreateCommand(editor.getEditPolicyHandler());
         result.setSource((Shape) getHost().getModel());
         result.setRelation((Relation) request.getNewObject());
         request.setStartCommand(result);
@@ -205,7 +219,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * */
   private ORMRelationCreateCommand setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
-    final ORMRelationCreateCommand result = new ORMRelationCreateCommand();
+	  
+    final ORMRelationCreateCommand result = new ORMRelationCreateCommand(editor.getEditPolicyHandler());
     result.setSource((Shape) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);

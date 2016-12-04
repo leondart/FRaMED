@@ -27,7 +27,6 @@ import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
  * */
 public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
-
   /**
    * {@inheritDoc} Constraints means here boundaries.
    * 
