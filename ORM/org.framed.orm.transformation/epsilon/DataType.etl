@@ -12,7 +12,7 @@ rule DataType
 	transform t : source!Shape
 	to n : target!DataType {
 
-	guard : t.getType.getValue == 3 // enum value DATA_TYPE
+	guard : t.getType.getValue == 3 and t.~features.get("Data_Types") // enum value DATA_TYPE
 
 	n.name = t.name;
 

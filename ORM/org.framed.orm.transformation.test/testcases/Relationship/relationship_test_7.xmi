@@ -66,9 +66,44 @@
 			target="//@framedModel/@elements.1" source="//@framedModel/@elements.0"
 			referencedRoles="//@framedModel/@elements.1/@model/@elements.0 //@framedModel/@elements.1/@model/@elements.1" />
 		<framedConfiguration>
-    		<features/>	
-    		<features name="Compartment_Types"/>
-    	</framedConfiguration> 	
+    		<features/>
+   			<features name="Role_Types"/>
+    		<features name="Role_Structure"/>
+    		<features name="Role_Properties" manuallySelected="true"/>
+			<features name="Role_Behavior"/>
+			<features name="Role_Inheritance" manuallySelected="true"/>
+		    <features name="Playable"/>
+			<features name="Players"/>
+			<features name="Naturals"/>
+			<features name="Roles"/>
+			<features name="Compartments" manuallySelected="true"/>
+			<features name="Dates" manuallySelected="true"/>
+		    <features name="Dependent"/>
+		    <features name="On_Compartments"/>
+		    <features name="On_Relationships"/>
+		    <features name="Role_Constraints"/>
+		    <features name="Role_Implication" manuallySelected="true"/>
+		    <features name="Role_Prohibition" manuallySelected="true"/>
+		    <features name="Role_Equivalence"/>
+		    <features name="Group_Constraints" manuallySelected="true"/>
+		    <features name="Occurrence_Constraints" manuallySelected="true"/>
+		    <features name="Relationships"/>
+		    <features name="Relationship_Constraints"/>
+		    <features name="Relationship_Cardinality" manuallySelected="true"/>
+		    <features name="Intra_Relationship_Constraints"/>
+		    <features name="Parthood_Constraints" manuallySelected="true"/>
+		    <features name="Inter_Relationship_Constraints" manuallySelected="true"/>
+		    <features name="Compartment_Types"/>
+		    <features name="Compartment_Structure"/>
+		    <features name="Compartment_Properties" manuallySelected="true"/>
+		    <features name="Compartment_Behavior"/>
+		    <features name="Compartment_Inheritance" manuallySelected="true"/>
+		    <features name="Participants"/>
+		    <features name="Contains_Compartments" manuallySelected="true"/>
+		    <features name="Playable_by_Defining_Compartment" manuallySelected="true"/>
+		    <features name="Data_Types"/>
+		    <features name="Data_Type_Inheritance" manuallySelected="true"/>
+  		</framedConfiguration> 	
 	</framedModel>
 	<cromModel>
 		<elements xsi:type="crom_l1_composed:NaturalType" name="NT" />

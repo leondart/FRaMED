@@ -3,7 +3,6 @@ import "CardinalityParser.eol";
 
 pre CompartmentType {
 	var compartmentTypes : OrderedSet(source!Shape);
-	var compartment_on;
 }
 
 /**
@@ -16,7 +15,6 @@ rule CompartmentType
 
 	guard : t.getType.getValue == 0 // enum value COMPARTMENT_TYPE
 
-	compartment_on=t.~features.get("Compartment_Types");
 	compartmentTypes.add(t);
 
 	// iterate over all children of the compartment type
@@ -83,9 +81,9 @@ post CompartmentType {
 			continue;
 		}
 
-		if(compartment_on) {
-			t.addAttributes(n);
-			t.addOperations(n);
+		if(t.~features.get("Compartment_Types") and t.~features.get("Compartment_Structure")) {
+			if(t.~features.get("Compartment_Properties")) t.addAttributes(n);
+			if(t.~features.get("Compartment_Behavior")) t.addOperations(n);
 		}	
 	}
 }
