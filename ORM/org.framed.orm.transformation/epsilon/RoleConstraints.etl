@@ -14,6 +14,7 @@ rule RoleImplication
 	to n : target!RoleImplication 
 	extends RoleConstraint {
 	guard : t.getType.getValue == 4 // enum value RoleImplication
+		and t.~features.get("Role_Implication") //feature
 }
 
 // RoleProhibition
@@ -22,7 +23,8 @@ rule RoleProhibition
 	transform t : source!Relation
 	to n : target!RoleProhibition 
 	extends RoleConstraint {
-	guard : t.getType.getValue == 11 // enum value RoleProhibition
+	guard : t.getType.getValue == 11 // enum value RoleImplication
+		and t.~features.get("Role_Prohibition") //feature
 }
 
 // RoleEquivalence
@@ -32,4 +34,5 @@ rule RoleEquivalence
 	to n : target!RoleEquivalence 
 	extends RoleConstraint {
 	guard : t.getType.getValue == 5 // enum value RoleEquivalence
+		and t.~features.get("Role_Equivalence") //feature
 }

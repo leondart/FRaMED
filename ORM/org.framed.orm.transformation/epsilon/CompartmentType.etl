@@ -17,9 +17,12 @@ rule CompartmentType
 
 	compartmentTypes.add(t);
 
-	// iterate over all children of the compartment type
 	var children = t.getModel();
-	if (not (children == null)) {	
+	if (not (children == null)) {
+		for(e in children.elements) e.~features=t.~features;
+	
+		
+		// iterate over all children of the compartment type	
 		for (elem : source!ModelElement in children.elements) {
 			
 			var e = elem.equivalent();

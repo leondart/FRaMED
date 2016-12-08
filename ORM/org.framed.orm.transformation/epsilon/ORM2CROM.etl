@@ -34,9 +34,8 @@ rule ORM2CROM
 	for(f in mym.framedConfiguration.features) {
 		featureMap.put(f.getName().asString(), true);
 	}
-	for(e in mym.elements) {
-		e.~features=featureMap;
-	}
+	for(e in mym.elements) e.~features=featureMap;
+
 	
 	for(shape : source!Shape in mym.elements) {
 		var x = shape.equivalent();

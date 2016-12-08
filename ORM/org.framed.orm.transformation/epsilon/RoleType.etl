@@ -33,7 +33,9 @@ post RoleType {
 			continue;
 		}
 
-		t.addAttributes(n);
-		t.addOperations(n);
+		if(t.~features.get("Role_Structure")) {
+			if(t.~features.get("Role_Properties")) t.addAttributes(n);
+			if(t.~features.get("Role_Behavior")) t.addOperations(n);
+		}	
 	}
 }

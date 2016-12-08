@@ -24,9 +24,12 @@ rule CompartmentInheritance
 	transform s : source!Relation
 	to t : target!CompartmentInheritance {
 
-	guard : s.getType.getValue == 6 // enum value INHERITANCE
+	guard : s.getType.getValue == 6 //enum value INHERITANCE 
 		and s.getSource.getType.getValue == 0 // COMPARTMENT_TYPE
 		and s.getTarget.getType.getValue == 0 // COMPARTMENT_TYPE
+		and s.~features.get("Compartment_Types") // FEATURES 
+		and s.~features.get("Compartment_Structure") 
+		and s.~features.get("Compartment_Inheritance")
 		
 	transformInheritance(s, t);
 }
@@ -57,6 +60,8 @@ rule RoleInheritance
 	guard : s.getType.getValue == 6 // enum value INHERITANCE
 		and s.getSource.getType.getValue == 2 // ROLE_TYPE
 		and s.getTarget.getType.getValue == 2 // ROLE_TYPE
+		and s.~features.get("Role_Structure") // FEATURES
+		and s.~features.get("Role_Inheritance")
 	
 	transformInheritance(s, t);
 }
@@ -72,6 +77,8 @@ rule DataInheritance
 	guard : s.getType.getValue == 6 // enum value INHERITANCE
 		and s.getSource.getType.getValue == 3 // DATA_TYPE
 		and s.getTarget.getType.getValue == 3 // DATA_TYPE
+		and s.~features.get("Data_Types") //FEATURES
+		and s.~features.get("Data_Type_Inheritance")
 	
 	transformInheritance(s, t);
 }
