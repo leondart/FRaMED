@@ -71,19 +71,27 @@ public class ORMRelationCreateCommand extends Command {
     }
     
     int val = relation.getType().getValue();
+    System.out.println("Test for"+val);
     switch (val) {
       case Type.RELATIONSHIP_VALUE:
-    	  if(!(targetLabel != null && sourceLabel != null && referencedRelations == null)) return false;
+    	  if(targetLabel == null || sourceLabel == null || referencedRelations != null)
+    		  return false;
+    	  break;
       case Type.IRREFLEXIVE_VALUE:
       case Type.TOTAL_VALUE:
       case Type.CYCLIC_VALUE:
       case Type.ACYCLIC_VALUE:
       case Type.REFLEXIVE_VALUE:
+    	  System.out.println("should not be entered for 7:"+val);
+    	  if(targetLabel != null || sourceLabel != null || referencedRelations == null)
+    		  return false;
+    	  break;
       case Type.INHERITANCE_VALUE:
     	  if(targetLabel != null || sourceLabel != null || referencedRelations != null)
     		  return false;
+    	  break;
       default:
-        if(!(targetLabel == null && sourceLabel == null && referencedRelations == null)) return false;
+        if(targetLabel != null || sourceLabel != null || referencedRelations != null) return false;
     }
 
     return editPolicyHandler.canExecute(this);
