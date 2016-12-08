@@ -82,7 +82,6 @@ public class ORMRelationCreateCommand extends Command {
       case Type.CYCLIC_VALUE:
       case Type.ACYCLIC_VALUE:
       case Type.REFLEXIVE_VALUE:
-    	  System.out.println("should not be entered for 7:"+val);
     	  if(targetLabel != null || sourceLabel != null || referencedRelations == null)
     		  return false;
     	  break;
