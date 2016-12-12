@@ -33,9 +33,9 @@ post RoleType {
 			continue;
 		}
 
-		if(t.~features.get("Role_Structure")) {
-			if(t.~features.get("Role_Properties")) t.addAttributes(n);
-			if(t.~features.get("Role_Behavior")) t.addOperations(n);
+		if(t.~features.get("Role_Behavior")) { //feature Role_Behavior implies feature Role_Properties and Role_Structure (not to check)
+			t.addAttributes(n);
+			t.addOperations(n);
 		}	
 	}
 }

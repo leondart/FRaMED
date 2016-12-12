@@ -12,7 +12,7 @@ rule RoleGroup
 	}
 	
 	var desc = s.name;
-	if (not (desc == null)) {
+	if (not (desc == null) and s.~features.get("Group_Constraints")) { //feature Group_Constraints implies feature Role_Constraints (not to check)
 		var cards = parseCardinality(desc);
 		if(cards.size()>0) {
 			t.lower = cards[0];
@@ -20,7 +20,7 @@ rule RoleGroup
 		if(cards.size()>1) {
 			t.upper = cards[1];
 		}
-	}
+	} 
 	
 	var children = s.`model`;
 	if (not (children == null)) {
