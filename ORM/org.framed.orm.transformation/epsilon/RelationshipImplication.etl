@@ -3,7 +3,7 @@ rule RelationshipImplication
 	transform s : source!Relation
 	to t : target!RelationshipImplication {
 
-	guard : s.getType.getValue == 15 // enum value RelationshipImplication
+	guard : s.getType.getValue == 15 and s.~features.get("Inter_Relationship_Constraints") // enum value RelationshipImplication
 		
 
 	//does not work as RelationshipShapeChild has no ref to the actual Relationship

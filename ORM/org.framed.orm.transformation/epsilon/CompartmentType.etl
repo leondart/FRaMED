@@ -84,7 +84,7 @@ post CompartmentType {
 			continue;
 		}
 
-		if(t.~features.get("Compartment_Behavior")) { //feature Compartment_Behavior implies feature Compartment_Properties
+		if(t.~features.get("Compartment_Behavior")) { //feature Compartment_Behavior implies feature Compartment_Properties (not to check)
 			t.addAttributes(n);
 		    t.addOperations(n);
 		}	

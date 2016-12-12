@@ -71,7 +71,6 @@ public class ORMRelationCreateCommand extends Command {
     }
     
     int val = relation.getType().getValue();
-    System.out.println("Test for"+val);
     switch (val) {
       case Type.RELATIONSHIP_VALUE:
     	  if(targetLabel == null || sourceLabel == null || referencedRelations != null)

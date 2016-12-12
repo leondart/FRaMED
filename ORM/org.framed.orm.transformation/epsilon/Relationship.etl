@@ -30,40 +30,47 @@ rule Relationship
 	transform s : source!Relation
 	to t : target!Relationship {
 
-	guard : s.getType.getValue == 7 // enum value RELATIONSHIP
+	guard : s.getType.getValue == 7 and s.~features.get("Relationships") // enum value RELATIONSHIP
 	
 	t.name = s.name;
 	
-	/*Place should always be defined*/
-	var card = "0..*";
-	if(s.sourceLabel.isDefined()){
-		card=s.sourceLabel.name;
-	}
-	var place = getPlace(card,s.getSource.equivalent());
-	if(not(place==null)) {
+	if(s.~features.get("Relationship_Cardinality")) { // feature Relationship_Cardinality implies feature Relationship_Constraints (not to check)	
+		//Place should always be defined
+		var card = "0..*";
+		if(s.sourceLabel.isDefined()){
+			card=s.sourceLabel.name;
+		}
+		var place = getPlace(card,s.getSource.equivalent());
+		if(not(place==null)) {
+			t.setFirst(place);
+		}
+		
+		//Place should always be defined
+		card="0..*";
+		if(s.targetLabel.isDefined()){
+			card=s.targetLabel.name;
+		}
+		place = getPlace(card,s.getTarget.equivalent());
+		if(not(place==null)) {
+			t.setSecond(place);
+		}
+	} else {
+		place = getPlace("0...*",s.getSource.equivalent());
 		t.setFirst(place);
-	}
-	
-	//Place should always be defined
-	card="0..*";
-	if(s.targetLabel.isDefined()){
-		card=s.targetLabel.name;
-	}
-	place = getPlace(card,s.getTarget.equivalent());
-	if(not(place==null)) {
+		place = getPlace("0...*",s.getTarget.equivalent());
 		t.setSecond(place);
-	}	
+	}		
+		
+		//t.first - place from label
+		//t.second - place from label
+		
+		s.getSource.equivalent().getOutgoing.add(t);
+		s.getTarget.equivalent().getIncoming.add(t);
 	
-	//t.first - place from label
-	//t.second - place from label
-	
-	s.getSource.equivalent().getOutgoing.add(t);
-	s.getTarget.equivalent().getIncoming.add(t);
-
-	for (r : source!Relation in s.referencedRelation) {
-		var referenced = r.equivalent();
-		referenced.setRelation(t);
-	}
+		for (r : source!Relation in s.referencedRelation) {
+			var referenced = r.equivalent();
+			if(not(referenced == null))referenced.setRelation(t);
+		}
 }
 
 @lazy 
@@ -71,7 +78,7 @@ rule TotalRelation
 	transform s : source!Relation
 	to t : target!Total {
 	
-	guard : s.getType.getValue == 8 
+	guard : s.getType.getValue == 8 and s.~features.get("Intra_Relationship_Constraints")
 	
 }
 
@@ -80,7 +87,7 @@ rule CyclicRelation
 	transform s : source!Relation
 	to t : target!Cyclic {
 	
-	guard : s.getType.getValue == 9 
+	guard : s.getType.getValue == 9 and s.~features.get("Intra_Relationship_Constraints") 
 	
 }  
 
@@ -89,7 +96,7 @@ rule IrreflexiveRelation
 	transform s : source!Relation
 	to t : target!Irreflexive {
 	
-	guard : s.getType.getValue == 10 
+	guard : s.getType.getValue == 10 and s.~features.get("Intra_Relationship_Constraints") 
 	
 } 
 
@@ -98,15 +105,15 @@ rule AcyclicRelation
 	transform s : source!Relation
 	to t : target!Acyclic {
 	
-	guard : s.getType.getValue == 17 
+	guard : s.getType.getValue == 17 and s.~features.get("Intra_Relationship_Constraints") 
 	
 } 
 
 @lazy 
 rule ReflexiveRelation
-	transform s : source!Relation
+	transform s : source!Relation 
 	to t : target!Reflexive {
 	
-	guard : s.getType.getValue == 18 
+	guard : s.getType.getValue == 18 and s.~features.get("Intra_Relationship_Constraints") 
 	
 } 
