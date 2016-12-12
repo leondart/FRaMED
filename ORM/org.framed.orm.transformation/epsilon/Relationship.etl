@@ -55,7 +55,7 @@ rule Relationship
 			t.setSecond(place);
 		}
 	} else {
-		place = getPlace("0...*",s.getSource.equivalent());
+		var place = getPlace("0...*",s.getSource.equivalent());
 		t.setFirst(place);
 		place = getPlace("0...*",s.getTarget.equivalent());
 		t.setSecond(place);

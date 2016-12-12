@@ -15,7 +15,7 @@ rule RoleType
 	guard : t.getType.getValue == 2 // enum value ROLE_TYPE
 
 	n.name = t.name;
-
+	
 	roleTypes.add(t);
 }
 

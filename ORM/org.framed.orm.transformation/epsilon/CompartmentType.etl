@@ -27,7 +27,7 @@ rule CompartmentType
 			
 			var e = elem.equivalent();
 			if (e == null) { continue; }
-			if ( e.instanceOf(target!AbstractRole)) { 			// ROLE
+			if (e.instanceOf(target!AbstractRole)) { 			// ROLE
 				// create a new part with the role
 				var part = new target!Part;
 				part.role = e;
@@ -35,7 +35,7 @@ rule CompartmentType
 				
 				// parse the lower and upper bound from the role
 				var desc = elem.description;
-				if (not (desc == null)) {
+				if (not (desc == null) and t.~features.get("Occurrence_Constraints")) {
 					var card = desc.name;
 					var cards = parseCardinality(card);
 					
