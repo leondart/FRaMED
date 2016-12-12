@@ -1,3 +1,16 @@
+operation toTransform(t : source!Relation) : Boolean {
+	//check source of fulfillment and fitting feature
+	switch(t.source.getType.getValue) {
+		case 0: if(t.~features.get("Compartments")) {
+					if(not(t.source==t.target)) return true;
+					if((t.source==t.target and t.~features.get("Playable_by_Defining_Compartment"))) return true;
+				}
+		case 1: return true;
+		case 3: if(t.~features.get("Dates")) return true;
+	}
+	return false;
+}
+
 @lazy 
 rule Fulfillment
 	transform t : source!Relation
@@ -5,15 +18,7 @@ rule Fulfillment
 	
 	guard : t.getType.getValue == 14 // enum value Fulfillment
 	
-	var transformed=false;
-	//check source of fulfillment and fitting feature
-	if(t.source.getType.getValue == 0 and t.~features.get("Compartments")) {
-		if((t.source==t.target and t.~features.get("Playable_by_Defining_Compartment")) or not(t.source==t.target)) transformed=true;
-	}
-	if(t.source.getType.getValue == 1) transformed=true;
-	if(t.source.getType.getValue == 3 and t.~features.get("Dates")) transformed=true;
-	
-	if(transformed){
+	if(toTransform(t)){
 		for(role : source!Shape in t.referencedRoles) {
 			var fulfillment = new target!Fulfillment;
 			fulfillment.filler ::= t.source;
