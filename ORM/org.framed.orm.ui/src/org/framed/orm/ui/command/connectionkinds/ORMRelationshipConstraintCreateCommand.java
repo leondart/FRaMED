@@ -1,27 +1,20 @@
 package org.framed.orm.ui.command.connectionkinds;
 
+import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.framed.orm.geometry.GeometryFactory;
 import org.framed.orm.geometry.RelativePoint;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
-import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 
 /**
  * Through this command {@link Relation}s from type cyclic, total, acyclic, reflexive and
  * irreflexive can be created(invoked into the model tree).
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCommand {
-
-	
-  public ORMRelationshipConstraintCreateCommand(
-			EditPolicyHandler editPolicyHandler) {
-		super(editPolicyHandler);
-		// TODO Auto-generated constructor stub
-	}
 
 /**
    * The {@link Relation} from type relationship to which the
@@ -38,7 +31,7 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
    * the source of the relationshipConstrain than a {@link Bendpoint} is added to the created
    * relationshipConstrain to make the relationshipConstrain better visible/ acessesible to the
    * user.
-   * 
+   *
    */
   @Override
   public void execute() {
@@ -98,7 +91,7 @@ public class ORMRelationshipConstraintCreateCommand extends ORMRelationCreateCom
    * This command is undone through removing the created relationshipConstrain from the source, the
    * {@link Model}, the {@link Relation} from type relationship and the target and through deleting
    * all the {@link Bendpoint}s of the relationshipConstrain.
-   * 
+   *
    */
   @Override
   public void undo() {

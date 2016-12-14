@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.framed.orm.ui.editPolicy;
 
@@ -17,7 +17,7 @@ import org.framed.orm.ui.command.ORMOrphanChildCommand;
 
 /**
  * @author Lars Schuetze
- * 
+ *
  */
 public class ORMContainerEditPolicy extends ContainerEditPolicy {
 
@@ -29,7 +29,7 @@ public class ORMContainerEditPolicy extends ContainerEditPolicy {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * org.eclipse.gef.editpolicies.ContainerEditPolicy#getOrphanChildrenCommand(org.eclipse.gef.requests
    * .GroupRequest)
@@ -47,7 +47,9 @@ public class ORMContainerEditPolicy extends ContainerEditPolicy {
       orphan.setParent((Model) this.getHost().getModel());
       orphan.setLabel("Reparenting");
 
-      result.add(orphan);
+      EditPolicyCommandDecorator<ORMOrphanChildCommand> cmd = new EditPolicyCommandDecorator<>(orphan);
+
+      result.add(cmd);
     }
     return result.unwrap();
   }

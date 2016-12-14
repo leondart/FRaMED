@@ -19,7 +19,7 @@ import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
  * of an EditPart directly (as opposed to in the Properties View) in the Viewer using a
  * org.eclipse.jface.viewers.CellEditor. This EditPolicy is typically installed using
  * org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
@@ -27,7 +27,7 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
   /**
    * {@inheritDoc} In this specific EditPolicy the command, which is returned, is for renaming of a
    * {@link NamedElement}.
-   * 
+   *
    * @return command org.framed.orm.ui.command.ORMNamedElementRenameCommand
    * */
   @Override
@@ -38,7 +38,9 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     String newName = (String) request.getCellEditor().getValue();
     command.setNewName(newName);
 
-    return command;
+    EditPolicyCommandDecorator<ORMNamedElementRenameCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+    return cmd;
   }
 
   /** {@inheritDoc} */

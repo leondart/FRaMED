@@ -1,7 +1,5 @@
 package org.framed.orm.ui.editPolicy;
 
-import java.util.ArrayList;
-
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
@@ -10,31 +8,30 @@ import org.framed.orm.model.Model;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
-import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
 
 /**
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
  * {@link Relation}s between other {@link Relation}s and creates and returns the necessary commands
  * for that purpose. NewObject = O/o SourceEditPart = S/s TargetEditPart = T/t Model = M/m
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
-	
+
 	private EditPolicyHandler editPolicyHandler;
-	
-	
+
+
   public ORMRelationGraphicalNodeEditPolicy(
 			EditPolicyHandler editPolicyHandler) {
 	  this.editPolicyHandler = editPolicyHandler;
-	  
+
 		// TODO Auto-generated constructor stub
 	}
 
 /**
    * {@inheritDoc}
-   * 
+   *
    * @return {@link ORMRelationCreateCommand} or null(when no condition is fufilled)
    * */
   @Override
@@ -50,7 +47,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return {@link ORMRelationCreateCommand} or null(when no condition is fufilled)
    * */
   @Override
@@ -66,7 +63,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return null
    * */
   @Override
@@ -76,7 +73,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return null
    * */
   @Override
@@ -87,28 +84,29 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   /**
    * This method completes and return the creation commands for all {@link Relation}s except for
    * {@link Relation}s from type cyclic, irreflexive, acyclic, reflexive and total.
-   * 
+   *
    * @return {@link ORMRelationCreateCommand}
    * */
-  private ORMRelationCreateCommand setupConnectionCompleteCommand(
+  private EditPolicyCommandDecorator setupConnectionCompleteCommand(
       final CreateConnectionRequest request) {
-    final ORMRelationCreateCommand result = (ORMRelationCreateCommand) request.getStartCommand();
-    result.setTarget(((Relation) getHost().getModel()).getConnectionAnchor());
+    final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator) request.getStartCommand();
+    result.getCmd().setTarget(((Relation) getHost().getModel()).getConnectionAnchor());
     return result;
   }
 
   /**
    * This method creates and return the creation command for all {@link Relation}s except the
    * relations from type cyclic, total, acyclic, reflexive and irrflexive.
-   * 
+   *
    * @return {@link ORMRelationCreateCommand}
    * */
-  private ORMRelationCreateCommand setupConnectionStartCommand(
+  private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
-    final ORMRelationCreateCommand result = new ORMRelationCreateCommand(this.editPolicyHandler);
-    result.setSource(((Relation) getHost().getModel()).getConnectionAnchor());
-    result.setRelation((Relation) request.getNewObject());
-    result.setRelationContainer(container);
+    final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = new EditPolicyCommandDecorator<ORMRelationCreateCommand>(new ORMRelationCreateCommand());
+    result.setEditPolicyHandler(editPolicyHandler);
+    result.getCmd().setSource(((Relation) getHost().getModel()).getConnectionAnchor());
+    result.getCmd().setRelation((Relation) request.getNewObject());
+    result.getCmd().setRelationContainer(container);
 
     request.setStartCommand(result);
     return result;
@@ -118,7 +116,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * This method tests if the type of the new object given by the request equals the objecttype, the
    * source edit part model type given by the request equals the sourcetype and the target edit part
    * model type given by the request equals of targettype.
-   * 
+   *
    * @fullname newObjectSourceEditPartTargetEditPartCheck
    * @return boolean
    * */
@@ -134,7 +132,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   /**
    * This method tests if the new object given by the request equals objecttype and the target edit
    * part model type given by the request equals targettype.
-   * 
+   *
    * @fullname newObjectTargetEditPartCheck
    * @return boolean
    * */
@@ -147,7 +145,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
   /**
    * This method tests if the source edit part given by the request doesn't equals the target edit
    * part given by the request.
-   * 
+   *
    * @fullname targetEditPartNotEqualSourceEditPartCheck
    * @return boolean
    * */

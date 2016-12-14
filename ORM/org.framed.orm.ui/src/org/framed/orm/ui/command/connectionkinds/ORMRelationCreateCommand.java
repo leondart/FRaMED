@@ -16,7 +16,6 @@ import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 
 /**
  * Through this command all {@link Relation}s can be created(invoked into the model tree).
@@ -44,18 +43,15 @@ public class ORMRelationCreateCommand extends Command {
   /** The {@link Model} to which the {@link Relation} should be added. */
   protected Model parent;
 
-  private EditPolicyHandler editPolicyHandler;
-  
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
- * @param editPolicyHandler 
+ * @param editPolicyHandler
    *
    */
-  public ORMRelationCreateCommand(EditPolicyHandler editPolicyHandler) {
+  public ORMRelationCreateCommand() {
     super.setLabel("ORMRelationCreate");
     targetLabel = null;
     sourceLabel = null;
-    this.editPolicyHandler = editPolicyHandler;
   }
 
   /**
@@ -69,7 +65,7 @@ public class ORMRelationCreateCommand extends Command {
     if (relation == null || target == null || parent == null || source == null) {
     	return false;
     }
-    
+
     int val = relation.getType().getValue();
     switch (val) {
       case Type.RELATIONSHIP_VALUE:
@@ -92,7 +88,7 @@ public class ORMRelationCreateCommand extends Command {
         if(targetLabel != null || sourceLabel != null || referencedRelations != null) return false;
     }
 
-    return editPolicyHandler.canExecute(this);
+    return true;
   }
 
   /*
@@ -367,12 +363,12 @@ public class ORMRelationCreateCommand extends Command {
   public Relation getRelation() {
     return this.relation;
   }
-  
+
   public ArrayList<Relation> getReferencedRelations(){
 	  return referencedRelations;
   }
 
-  
+
   /**
    * Setter for the {@link Model} to which {@link Relation} should be added.
    *

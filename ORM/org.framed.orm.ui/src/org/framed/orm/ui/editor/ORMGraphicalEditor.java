@@ -73,13 +73,14 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreate
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
 import org.framed.orm.ui.editPart.ORMEditPartFactory;
 import org.framed.orm.ui.editPart.connectionkinds.ORMRelationshipEditPart;
+import org.framed.orm.ui.editPolicy.EditPolicyCommandDecorator;
 import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 import org.framed.orm.ui.editor.palette.CreationConstraintToolEntry;
 import org.framed.orm.ui.expression.FeatureExpression;
 
 /**
  * The {@link GraphicalEditor} you can see. Interacts with the user and shows the contents.
- * 
+ *
  * @author Kay BierzynskiS
  * @author Paul Peschel
  * @author Duc Dung Dam
@@ -140,14 +141,14 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
    * for the entry to be visible in the step-IN perspective.
    */
   private Map<PaletteEntry, FeatureExpression> stepINPaletteVisibility;
-  
+
   private EditPolicyHandler editPolicyHandler;
 
 
   /**
    * The constructor of this class. The most of the global variables are initialized here and the
    * {@link EditDomain} of the editor is set here as well.
-   * 
+   *
    * @param editor The parent editor
    * @param resource The currently used resource
    * @param flag Flag indicating the state of the editor
@@ -168,15 +169,16 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
       rootmodel = (Model) cdResource.getContents().get(0);
     }
     setEditDomain(new DefaultEditDomain(this));
-    
+
     this.editPolicyHandler = new EditPolicyHandler();
   }
-  
-  public CommandStack getCommandStack() {return super.getCommandStack();}
+
+  @Override
+public CommandStack getCommandStack() {return super.getCommandStack();}
 
   /**
    * A getter for the editor type of this editor.
-   * 
+   *
    * @return {@link EditorType}
    * */
   public EditorType getEditorType() {
@@ -185,7 +187,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * A getter for the viewer of this editor.
-   * 
+   *
    * @return {@link GraphicalViewer}
    * */
   public GraphicalViewer getOwnViewer() {
@@ -194,7 +196,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * A getter for the parenteditor({@link ORMMultiPageEditor}) of this editor.
-   * 
+   *
    * @return parentEditor {@link IEditorPart}
    * */
   public IEditorPart getParentEditor() {
@@ -203,7 +205,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * A getter for the isEditorData flag.
-   * 
+   *
    * @return isEditorData boolean
    * */
   public boolean getIsEditorData() {
@@ -212,7 +214,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * A getter for action registry of this editor.
-   * 
+   *
    * @return {@link ActionRegistry}
    * */
   public ActionRegistry getEditorActionRegistry() {
@@ -235,21 +237,21 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * Configures the graphical viewer.
-   * 
+   *
    * Sets org.framed.orm.ui.editPart.ORMEditPartFactory.ORMEditPartFactory(),
    * org.framed.orm.ui.editor .ORMGraphicalEditorContextMenuProvider.
    * ORMGraphicalEditorContextMenuProvider(EditPartViewer, ActionRegistry).
-   * 
+   *
    * Registers button actions of grid (org.eclipse.gef.ui.actions.ToggleGridAction
    * .ToggleGridAction(GraphicalViewer) ) and snap to geometry (org.eclipse.gef
    * .ui.actions.ToggleSnapToGeometryAction.ToggleSnapToGeometryAction( GraphicalViewer) )
-   * 
+   *
    * Configures the keyboard shortcuts @see
    * org.framed.orm.ui.editor.ORMGraphicalEditor.configureKeyboardShortcuts()
-   * 
+   *
    * Adds drag and drop listener for shape creation by dragging objects from palette to
    * EditorViewer.
-   * 
+   *
    * Adds mouse listener for handling onClick events on constraint entries. This will create/delete
    * a constraint for a current selected relationship.
    */
@@ -322,17 +324,18 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
               if (!constraintExist) {
                 relationship.getReferencedRelation().add(relation);
-                ORMRelationshipConstraintCreateCommand command =
-                    new ORMRelationshipConstraintCreateCommand(ORMGraphicalEditor.this.getEditPolicyHandler());
-                command.setRelation(relation);
-                command.setRelationContainer(relationship.getContainer());
-                command.setSource((Shape) relationship.getSource());
-                command.setTarget((Shape) relationship.getTarget());
-                command.setSourceLabel(null);
-                command.setTargetLabel(null);
+                EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> command =
+                    new EditPolicyCommandDecorator<>(new ORMRelationshipConstraintCreateCommand());
+                command.setEditPolicyHandler(ORMGraphicalEditor.this.getEditPolicyHandler());
+                command.getCmd().setRelation(relation);
+                command.getCmd().setRelationContainer(relationship.getContainer());
+                command.getCmd().setSource((Shape) relationship.getSource());
+                command.getCmd().setTarget((Shape) relationship.getTarget());
+                command.getCmd().setSourceLabel(null);
+                command.getCmd().setTargetLabel(null);
                 ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
                 refrencedRelation.add(relationship);
-                command.setRefrencedRelations(refrencedRelation);
+                command.getCmd().setRefrencedRelations(refrencedRelation);
                 getCommandStack().execute(command);
               }
             }
@@ -465,7 +468,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * Transforms the graphical model into an instance of crom model.
-   * 
+   *
    * @return true if transformation succeeds, otherwise false.
    */
   private boolean transformModel() {
@@ -515,7 +518,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * Returns the used resource. Used in order to save the configuration
-   * 
+   *
    * @return cdResource of the editor
    */
   public Resource getCdResource() {
@@ -524,7 +527,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * Saves the graphical resource.
-   * 
+   *
    * @return True if saving of model succeeds, otherwise false.
    */
   private boolean saveGraphicalResource() {
@@ -650,8 +653,8 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
 
   /**
    * A property source which unwraps values that are wrapped in an EMF {@link PropertyValueWrapper}
-   * 
-   * 
+   *
+   *
    */
   public class UnwrappingPropertySource implements IPropertySource {
     private final IPropertySource source;

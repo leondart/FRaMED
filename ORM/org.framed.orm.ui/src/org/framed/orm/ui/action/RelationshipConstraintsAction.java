@@ -17,13 +17,14 @@ import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.CallRelationshipConstraintsActionCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintCreateCommand;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationshipConstraintDeleteCommand;
+import org.framed.orm.ui.editPolicy.EditPolicyCommandDecorator;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
  * This action is for adding/removing {@link Relation}s from type total, cyclic, acyclic, reflexive
  * and irreflexive to/from a {@link Relation} from type realtionship through a
  * {@link ConstraintsDialog}.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class RelationshipConstraintsAction extends SelectionAction {
@@ -43,7 +44,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
   /**
    * Constructor of RelationshipConstraintsAction, where the id of the action and the text, which is
    * shown for example in the context menu, is set .
-   * 
+   *
    * @param part org.eclipse.ui.IWorkbenchPart
    * */
   public RelationshipConstraintsAction(final IWorkbenchPart part) {
@@ -59,7 +60,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
    * acyclic, reflexive or irreflexive is selected and the user is clicking on the delete button
    * (red X in the actionbar) and when called liked this no element is selected from which we can
    * get the editpart.
-   * 
+   *
    * @param editpart EditPart
    * */
   public void setEditPart(final EditPart editPart) {
@@ -69,7 +70,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
   /**
    * {@inheritDoc} This action is enabled when the selected element is a {@link Relation} from type
    * relationship.
-   * 
+   *
    * */
   @Override
   protected boolean calculateEnabled() {
@@ -98,7 +99,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
    * {@link Relation} from type relationship one after the another and all relationshipconstraints ,
    * which where not Chosen and belonged at the beginning to the relationship, are removed one after
    * another from the relationship.
-   * 
+   *
    * */
   @Override
   public void run() {
@@ -152,19 +153,19 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
       for (Relation relation : dialog.getChosenCreateConstraints()) {
         if (!constraints.contains(relation)) {
-          ORMRelationshipConstraintCreateCommand command =
-              new ORMRelationshipConstraintCreateCommand(editor.getEditPolicyHandler());
+        	EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> command =
+              new EditPolicyCommandDecorator<>(new ORMRelationshipConstraintCreateCommand());
+          command.setEditPolicyHandler(editor.getEditPolicyHandler());
 
-          command.setRelation(relation);
-          command.setRelationContainer(rlship.getContainer());
-          command.setSource((Shape) rlship.getSource());
-          command.setTarget((Shape) rlship.getTarget());
-          command.setSourceLabel(null);
-          command.setTargetLabel(null);
+          command.getCmd().setRelation(relation);
+          command.getCmd().setRelationContainer(rlship.getContainer());
+          command.getCmd().setSource((Shape) rlship.getSource());
+          command.getCmd().setTarget((Shape) rlship.getTarget());
+          command.getCmd().setSourceLabel(null);
+          command.getCmd().setTargetLabel(null);
           ArrayList<Relation> refrencedRelation = new ArrayList<Relation>();
           refrencedRelation.add(rlship);
-          command.setRefrencedRelations(refrencedRelation);
-
+          command.getCmd().setRefrencedRelations(refrencedRelation);
 
           compoundCommand.add(command);
         }

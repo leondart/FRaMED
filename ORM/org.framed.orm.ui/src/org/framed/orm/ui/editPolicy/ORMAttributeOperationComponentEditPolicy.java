@@ -10,7 +10,7 @@ import org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeOperatio
 /**
  * This {@link ComponentEditPolicy} handles requests for the deletion of attributes and operations
  * and returns and creates the deletion commands.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMAttributeOperationComponentEditPolicy extends ComponentEditPolicy {
@@ -18,7 +18,7 @@ public class ORMAttributeOperationComponentEditPolicy extends ComponentEditPolic
   /**
    * {@inheritDoc} In this EditPolicy this method creates and returns a command for deleting a
    * attribute or operation.
-   * 
+   *
    * @return command
    *         org.framed.orm.ui.command.AttributeOperationCommands.ORMAttributeOperationDeleteCommand
    */
@@ -28,7 +28,8 @@ public class ORMAttributeOperationComponentEditPolicy extends ComponentEditPolic
       ORMAttributeOperationDeleteCommand command = new ORMAttributeOperationDeleteCommand();
       command.setElement((NamedElement) getHost().getModel());
       command.setParentSegment((Segment) getHost().getParent().getModel());
-      return command;
+      EditPolicyCommandDecorator<ORMAttributeOperationDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
+      return cmd;
     }
     return null;
   }

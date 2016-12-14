@@ -25,7 +25,7 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
  * This {@link GraphicalNodeEditPolicy} handles request for the creations of all kinds of
  * {@link Relation}s between {@link Shape}s and creates and returns the necessary commands for that
  * purpose. NewObject = O/o SourceEditPart = S/s TargetEditPart = T/t
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
@@ -36,14 +36,14 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   private Relation testedRelationship = null;
 
   private ORMGraphicalEditor editor;
-  
+
   public ORMShapeGraphicalNodeEditPolicy(
 		EditPart host) {
-	  
+
 	    editor =
 	            (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain()).getEditorPart();
 
-	  
+
 	// TODO Auto-generated constructor stub
 }
 
@@ -61,7 +61,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return {@link ORMRelationshipConstraintCreateCommand}( in case a {@link Relation} from type
    *         cyclic, total, acyclic, reflexive or irreflexive should be created) or
    *         {@link ORMRelationCreateCommand}( in case any other Relation should be created)
@@ -83,12 +83,12 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
             Type.REFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE))
           && tNotEqualSCheck(request)
           && hasARelationship(request, true) && !hasConstraintsKind(request)) {
-        final ORMRelationshipConstraintCreateCommand result =
-            (ORMRelationshipConstraintCreateCommand) request.getStartCommand();
-        result.setTarget((Shape) getHost().getModel());
+        final EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> result =
+            (EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand>) request.getStartCommand();
+        result.getCmd().setTarget((Shape) getHost().getModel());
         ArrayList<Relation> refrencedRelations = new ArrayList<Relation>();
         refrencedRelations.add(testedRelationship);
-        result.setRefrencedRelations(refrencedRelations);
+        result.getCmd().setRefrencedRelations(refrencedRelations);
 
         retVal = result;
       }
@@ -98,7 +98,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return {@link ORMRelationshipConstraintCreateCommand}( in case a {@link Relation} from type
    *         cyclic, total, acyclic, reflexive or irreflexive should be created) or
    *         {@link ORMRelationCreateCommand}( in case any other Relation should be created)
@@ -121,13 +121,14 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           || oTCheck(request, Type.ACYCLIC, Type.ROLE_TYPE) || oTCheck(request, Type.REFLEXIVE,
             Type.ROLE_TYPE)) && hasARelationship(request, false)) {
 
-        final ORMRelationshipConstraintCreateCommand result =
-            new ORMRelationshipConstraintCreateCommand(editor.getEditPolicyHandler());
-        result.setSource((Shape) getHost().getModel());
-        result.setRelation((Relation) request.getNewObject());
+        final EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> result =
+            new EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand>(new ORMRelationshipConstraintCreateCommand());
+        result.setEditPolicyHandler(editor.getEditPolicyHandler());
+        result.getCmd().setSource((Shape) getHost().getModel());
+        result.getCmd().setRelation((Relation) request.getNewObject());
         request.setStartCommand(result);
 
-        result.setRelationContainer(((Shape) getHost().getModel()).getContainer());
+        result.getCmd().setRelationContainer(((Shape) getHost().getModel()).getContainer());
 
         retVal = result;
       }
@@ -138,7 +139,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return null
    * */
   @Override
@@ -148,7 +149,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @return null
    * */
   @Override
@@ -160,7 +161,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * This method tests if the type of the new object given by the request equals the objecttype, the
    * source edit part model type given by the request equals the sourcetype and the target edit part
    * model type given by the request equals of targettype.
-   * 
+   *
    * @fullname newObjectSourceEditPartTargetEditPartCheck
    * @return boolean
    * */
@@ -176,7 +177,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * This method tests if the new object given by the request equals objecttype and the target edit
    * part model type given by the request equals targettype.
-   * 
+   *
    * @fullname newObjectTargetEditPartCheck
    * @return boolean
    * */
@@ -189,7 +190,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * This method tests if the source edit part given by the request doesn't equals the target edit
    * part given by the request.
-   * 
+   *
    * @fullname targetEditPartNotEqualSourceEditPartCheck
    * @return boolean
    * */
@@ -200,13 +201,13 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * This method completes and return the creation commands for all {@link Relation}s except for
    * {@link Relation}s from type cyclic, irreflexive, acyclic, reflexive and total.
-   * 
+   *
    * @return {@link ORMRelationCreateCommand}
    * */
-  private ORMRelationCreateCommand setupConnectionCompleteCommand(
+  private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionCompleteCommand(
       final CreateConnectionRequest request) {
-    final ORMRelationCreateCommand result = (ORMRelationCreateCommand) request.getStartCommand();
-    result.setTarget((Shape) getHost().getModel());
+    final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator<ORMRelationCreateCommand>)request.getStartCommand();
+    result.getCmd().setTarget((Shape) getHost().getModel());
     return result;
   }
 
@@ -214,13 +215,13 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * This method creates and return the creation command for all {@link Relation}s except the
    * relations from type cyclic, total, acyclic, reflexive and irrflexive.
-   * 
+   *
    * @return {@link ORMRelationCreateCommand}
    * */
-  private ORMRelationCreateCommand setupConnectionStartCommand(
+  private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
-	  
-    final ORMRelationCreateCommand result = new ORMRelationCreateCommand(editor.getEditPolicyHandler());
+
+	ORMRelationCreateCommand result = new ORMRelationCreateCommand();
     result.setSource((Shape) getHost().getModel());
     result.setRelation((Relation) request.getNewObject());
     result.setRelationContainer(container);
@@ -234,14 +235,17 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       result.setTargetLabel(ele2);
       ((Relation) request.getNewObject()).getConnectionAnchor().setContainer(container);
     }
-    request.setStartCommand(result);
-    return result;
+    final EditPolicyCommandDecorator<ORMRelationCreateCommand> ret = new EditPolicyCommandDecorator<>(result);
+    ret.setEditPolicyHandler(editor.getEditPolicyHandler());
+
+    request.setStartCommand(ret);
+    return ret;
   }
 
 
   /**
    * This method tests if target edit part model is the parent model of the source edit part model.
-   * 
+   *
    * @return boolean
    * */
   public boolean parentTest(final EditPart target, final EditPart source) {
@@ -266,7 +270,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * This method tests if the conditions for the creation completion of a {@link Relation}
    * kind(except {@link Relation}s from type total, irreflexive and cyclic, acyclic, reflexive) are
    * fulfilled.
-   * 
+   *
    * @return boolean
    * */
   public boolean isCompleteOK(final CreateConnectionRequest request) {
@@ -312,7 +316,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * This method tests if the conditions for the creation start of a {@link Relation} kind(except
    * {@link Relation}s from type total, cyclic, acyclic, reflexive and irreflexive) are fulfilled.
-   * 
+   *
    * @return boolean
    * */
   public boolean isStartOK(final CreateConnectionRequest request) {
@@ -340,7 +344,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method tests if target edit part model is a child model of the source edit part model.
-   * 
+   *
    * @return boolean
    * */
   public boolean childrenTest(final EditPart target, final EditPart source) {
@@ -377,7 +381,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * This method tests if between source edit part and traget edit part already exist a
    * relationshipConstraint(total,irrflexive,cyclic, acyclic, reflexive) kind of the requested
    * relationshipConstraint kind.
-   * 
+   *
    * @return boolean
    * */
   private boolean hasConstraintsKind(final CreateConnectionRequest request) {
@@ -403,7 +407,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
   /**
    * This method tests if between source edit part and traget edit part already exist a
    * {@link Relation} from type relationship.
-   * 
+   *
    * @return boolean
    * */
   private boolean hasARelationship(final CreateConnectionRequest request, final boolean isTargetTest) {

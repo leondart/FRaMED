@@ -21,7 +21,7 @@ import org.framed.orm.ui.utilities.ORMTextUtilities;
 
 /**
  * @author Lars Schuetze
- * 
+ *
  */
 public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
@@ -81,7 +81,9 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
         addCommand.setLabel("Adding");
         addCommand.setDebugLabel("Adding");
 
-        result.add(addCommand);
+        EditPolicyCommandDecorator<ORMAddCommand> cmd = new EditPolicyCommandDecorator<>(addCommand);
+
+        result.add(cmd);
       }
     }
     return result;
@@ -89,7 +91,7 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getCreateCommand(org.eclipse .gef.requests.
    * CreateRequest)
    */
@@ -107,7 +109,7 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
 
   /**
    * This method converts a draw2d Rectangle into a Rectangle from the graphical model.
-   * 
+   *
    * @param boundarie org.eclipse.draw2d.geometry.Rectangle
    * @return rec org.framed.orm.geometry.Rectangle
    * */

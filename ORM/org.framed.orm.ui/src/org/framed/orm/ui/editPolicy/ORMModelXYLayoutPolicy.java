@@ -11,9 +11,9 @@ import org.eclipse.gef.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.NamedElement;
+import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Segment;
 import org.framed.orm.model.Shape;
-import org.framed.orm.model.OrmFactory;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.shapes.ORMShapeChangeBoundariesCommand;
 import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
@@ -22,14 +22,14 @@ import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
  * This {@link XYLayoutEditPolicy} handels request for creation and boundarie changes of all kinds
  * {@link Shapes}s in a {@link Model} and returns and creates the nessecary commands for the
  * creation and boundarie change.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
   /**
    * {@inheritDoc} Constraints means here boundaries.
-   * 
+   *
    * @return {@link ORMShapeChangeBoundariesCommand}
    * */
   @Override
@@ -39,7 +39,9 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     command.setShape((Shape) child.getModel());
     command.setNewBoundaries(createModelReactangle((Rectangle) newBoundarie));
 
-    return command;
+    EditPolicyCommandDecorator<ORMShapeChangeBoundariesCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+    return cmd;
   }
 
   /**
@@ -126,7 +128,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
   /**
    * This method creates and return a description of a {@link Shape}.
-   * 
+   *
    * @return element {@link NamedElement}
    * */
   private NamedElement createDescription() {
@@ -138,7 +140,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
   /**
    * This method creates and returns a {@link Segment} of a {@link Shape}.
-   * 
+   *
    * @return {@link Segment}
    * */
   private Segment createSegment() {
@@ -147,7 +149,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
   /**
    * This method creates and returns a child {@link Model} of a {@link Shape}.
-   * 
+   *
    * @return {@link Model}
    * */
   private Model createChildModel() {
@@ -157,11 +159,11 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
   /**
    * This method creates, set ups and return the {@link ORMShapeCreateCommand} for a new
    * {@link Shape}.
-   * 
+   *
    * @param request {@link CreateRequest}, attributeSegment {@link Segment}, operationsSegment
    *        {@link Segment}, description {@link NamedElement}, childmodel {@link Model}
    * */
-  private ORMShapeCreateCommand setUpCreateCommand(final CreateRequest request,
+  private     EditPolicyCommandDecorator setUpCreateCommand(final CreateRequest request,
       Segment attributeSegment, Segment operationSegment, NamedElement description, Model childmodel) {
 
     ORMShapeCreateCommand command = new ORMShapeCreateCommand();
@@ -177,6 +179,8 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     command.setChildmodel(childmodel);
     command.setDescription(description);
 
-    return command;
+    EditPolicyCommandDecorator<ORMShapeCreateCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+    return cmd;
   }
 }

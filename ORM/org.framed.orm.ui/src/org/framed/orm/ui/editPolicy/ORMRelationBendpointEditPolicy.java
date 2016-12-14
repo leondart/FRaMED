@@ -17,17 +17,17 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationMoveBendpointCommand
 /**
  * Used to add {@link Bendpoint} handles on a ConnectionEditPart. The bendpoints are handeled
  * through the creation and returning of creation, deletion and moving command for Bendpoints.
- * 
+ *
  * BendpointEditPolicy will automatically observe the org.eclipse.draw2d.Connection figure. If the
  * number of bends in the Connection changes, the handles will be updated.
- * 
+ *
  * @author Kay Bierzynski
  */
 public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
 
   /**
    * This method creats and returns a command for the creation of a {@link Bendpoint}.
-   * 
+   *
    * @return {@link ORMRelationCreateBendpointCommand}
    */
   @Override
@@ -58,12 +58,14 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     sourceRef.setY(targetP.y());
     command.setTargetRefence(targetRef);
 
-    return command;
+    EditPolicyCommandDecorator<ORMRelationCreateBendpointCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+    return cmd;
   }
 
   /**
    * This method creats and returns a command for changing the position of a {@link Bendpoint}.
-   * 
+   *
    * @return {@link ORMRelationMoveBendpointCommand}
    */
   @Override
@@ -84,20 +86,22 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     command.setNewDimension(p.getDifference(sourceP), p.getDifference(targetP));
     command.setIndex(request.getIndex());
 
-    return command;
+    EditPolicyCommandDecorator<ORMRelationMoveBendpointCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+    return cmd;
   }
 
   /**
    * This method creats and returns a command for the deletion of a {@link Bendpoint}.
-   * 
+   *
    * @return {@link ORMRelationDeleteBendpointCommand}
    */
   @Override
   protected Command getDeleteBendpointCommand(final BendpointRequest request) {
-    final ORMRelationDeleteBendpointCommand command = new ORMRelationDeleteBendpointCommand();
-
-    command.setRelation((Relation) request.getSource().getModel());
-    command.setIndex(request.getIndex());
+    final EditPolicyCommandDecorator<ORMRelationDeleteBendpointCommand> command = new EditPolicyCommandDecorator<>(new ORMRelationDeleteBendpointCommand());
+    //command.setEditPolicyHandler();
+    command.getCmd().setRelation((Relation) request.getSource().getModel());
+    command.getCmd().setIndex(request.getIndex());
     return command;
   }
 

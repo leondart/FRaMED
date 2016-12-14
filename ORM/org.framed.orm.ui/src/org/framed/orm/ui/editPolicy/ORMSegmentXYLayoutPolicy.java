@@ -13,7 +13,7 @@ import org.framed.orm.ui.factory.ORMOperationFactory;
 /**
  * This {@link XYLayoutEditPolicy} handles request for creation of attributes and operation in a
  * {@link Segment} and returns and creates the necessary commands for the creation.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
@@ -29,18 +29,18 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
       Shape shape = (Shape) getHost().getModel();
       if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
         if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
-          final ORMAttributeOperationCreateCommand command =
-              new ORMAttributeOperationCreateCommand();
-          command.setParentSegment(shape.getFirstSegment());
-          command.setElement((NamedElement) (request.getNewObject()));
+          final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
+              new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
+          command.getCmd().setParentSegment(shape.getFirstSegment());
+          command.getCmd().setElement((NamedElement) (request.getNewObject()));
           retVal = command;
         }
 
         if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
-          final ORMAttributeOperationCreateCommand command =
-              new ORMAttributeOperationCreateCommand();
-          command.setParentSegment(shape.getSecondSegment());
-          command.setElement((NamedElement) (request.getNewObject()));
+            final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
+                    new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
+          command.getCmd().setParentSegment(shape.getSecondSegment());
+          command.getCmd().setElement((NamedElement) (request.getNewObject()));
           retVal = command;
         }
       }
@@ -51,18 +51,18 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
       Shape shape = (Shape) getHost().getParent().getModel();
       if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
         if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
-          final ORMAttributeOperationCreateCommand command =
-              new ORMAttributeOperationCreateCommand();
-          command.setParentSegment(shape.getFirstSegment());
-          command.setElement((NamedElement) (request.getNewObject()));
+            final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
+                    new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
+          command.getCmd().setParentSegment(shape.getFirstSegment());
+          command.getCmd().setElement((NamedElement) (request.getNewObject()));
           retVal = command;
         }
 
         if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
-          final ORMAttributeOperationCreateCommand command =
-              new ORMAttributeOperationCreateCommand();
-          command.setParentSegment(shape.getSecondSegment());
-          command.setElement((NamedElement) (request.getNewObject()));
+            final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
+                    new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
+          command.getCmd().setParentSegment(shape.getSecondSegment());
+          command.getCmd().setElement((NamedElement) (request.getNewObject()));
           retVal = command;
         }
       }
