@@ -20,11 +20,6 @@ public class EditPolicyCommandDecorator<T extends Command> extends Command {
 		myCommand = cmd;
 	}
 
-	@Override
-	public boolean canRedo() {
-		return this.myCommand.canRedo();
-	}
-
 	/**
 	 * @return <code>true</code> if the command can be executed
 	 */
