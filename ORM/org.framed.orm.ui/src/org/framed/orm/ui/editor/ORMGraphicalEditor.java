@@ -317,7 +317,9 @@ public CommandStack getCommandStack() {return super.getCommandStack();}
                       new ORMRelationshipConstraintDeleteCommand();
                   command.setRelation(r);
                   command.setEPViewer(ep.getViewer());
-                  getCommandStack().execute(command);
+                  EditPolicyCommandDecorator<ORMRelationshipConstraintDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+                  getCommandStack().execute(cmd);
                   break;
                 }
               }

@@ -177,7 +177,9 @@ public class RelationshipConstraintsAction extends SelectionAction {
               new ORMRelationshipConstraintDeleteCommand();
           command.setRelation(relation);
           command.setEPViewer(editPart.getViewer());
-          compoundCommand.add(command);
+          EditPolicyCommandDecorator<ORMRelationshipConstraintDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
+
+          compoundCommand.add(cmd);
         }
       }
 

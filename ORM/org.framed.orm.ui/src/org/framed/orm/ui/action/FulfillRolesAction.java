@@ -18,9 +18,9 @@ import org.framed.orm.ui.command.FulfillRolesCommand;
 /**
  * This action is for adding to a {@link Relation} from type fulfillment the {@link Shapes}s from
  * type roletype and rolegroup ,which the source of the fufillment fulfills.
- * 
+ *
  * @author Kay Bierzynski
- * 
+ *
  */
 public class FulfillRolesAction extends SelectionAction {
 
@@ -31,7 +31,7 @@ public class FulfillRolesAction extends SelectionAction {
   /**
    * Constructor of FulfillRolesAction, where the id of the action and the text, which is shown for
    * example in the context menu, is set .
-   * 
+   *
    * @param part org.eclipse.ui.IWorkbenchPart
    * */
   public FulfillRolesAction(IWorkbenchPart part) {
@@ -73,7 +73,7 @@ public class FulfillRolesAction extends SelectionAction {
    * the {@link RolesDialog} through the cancel button this method is finished as well. When the
    * user has closed the {@link RolesDialog} through the ok button the choosen roles are added all
    * at once to the fulfillment through the {@link FulfillRolesCommand}.
-   * 
+   *
    * */
   @Override
   public void run() {
@@ -101,7 +101,7 @@ public class FulfillRolesAction extends SelectionAction {
 
     dialog.setRoles(roles);
 
-    // add all role types and role groups wich are already "fulfilled" through the Fulfillment to a
+    // add all role types and role groups which are already "fulfilled" through the Fulfillment to a
     // list
     ArrayList<Shape> fulfilledRoles = new ArrayList<Shape>(ful.getReferencedRoles());
     dialog.setFulfilledRoles(fulfilledRoles);
@@ -121,8 +121,8 @@ public class FulfillRolesAction extends SelectionAction {
       FulfillRolesCommand command = new FulfillRolesCommand();
       command.setFulfillment(ful);
       command.setRoles(dialog.getFulfilledRoles());
-      // manaul execution of the command to the spare effort of creating a special request, which
-      // can hold all choosen roles
+      // manual execution of the command to the spare effort of creating a special request, which
+      // can hold all chosen roles
       editPart.getViewer().getEditDomain().getCommandStack().execute(command);
     }
   }
