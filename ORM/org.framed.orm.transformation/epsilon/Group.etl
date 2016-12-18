@@ -8,6 +8,7 @@ rule Group
 	
 	var children = s.`model`;
 	if (not (children == null)) {
+		for(e in children.elements) e.~features=s.~features;
 		for (elem : source!ModelElement in children.elements) {
 			var e = elem.equivalent();
 			t.getElements().add(e);

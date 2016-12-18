@@ -28,23 +28,6 @@ rule RoleGroup
 		for (elem : source!ModelElement in children.elements) {
 			var e = elem.equivalent();
 			
-			// parse the lower and upper bound from the role
-			/*if(e.instanceOf(target!AbstractRole)) {	
-				
-				var desc = elem.description;
-				if (not (desc == null) and s.~features.get("Occurrence_Constraints")) {
-					var card = desc.name;
-					var cards = parseCardinality(card);
-						
-					if(cards.size()>0) {
-						e.lower = cards[0];
-						if(cards.size()>1) {
-							e.upper = cards[1];
-						}				
-					}	
-				}
-			}*/	
-			
 			if (e.instanceOf(target!RoleGroupElement)) {
 				t.getElements().add(e);				
 			} else if(e.instanceOf(target!Relation)) {

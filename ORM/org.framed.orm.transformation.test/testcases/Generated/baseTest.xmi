@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ts:TestCase xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
+	xmlns:org.framed.orm.model="http://orm/1.0" xmlns:ts="http://org.framed/testmodel">
+	<title>
+		Base test case for generation of feature dependant tests.
+	</title>
+	<description>
+		This test is the basic test case which is used to generate other test dependant on the feature model.
+		It verifies as much as possible model elements.
+	</description>
+	<framedModel>
+		<elements xsi:type="org.framed.orm.model:Shape" name="CompartmentA">
+		    <firstSegment/>
+		    <secondSegment/>
+		    <model/>
+		    <boundaries>
+		      <topLeft x="848" y="158"/>
+		      <bottomRight x="1050" y="310"/>
+		    </boundaries>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Shape" name="SubDataA" outgoingRelations="//@framedModel/@elements.6" type="DataType">
+		    <firstSegment/>
+		    <secondSegment>
+		      <elements name="validateData() : Boolean"/>
+		    </secondSegment>
+		    <boundaries>
+		      <topLeft x="88" y="86"/>
+		      <bottomRight x="289" y="237"/>
+		    </boundaries>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Shape" name="DataA" incomingRelations="//@framedModel/@elements.6" type="DataType">
+		    <firstSegment>
+		      <elements name="Data1 : String"/>
+		      <elements name="Data2 : Integer"/>
+		    </firstSegment>
+		    <secondSegment>
+		      <elements name="validateData() : Boolean"/>
+		    </secondSegment>
+		    <boundaries>
+		      <topLeft x="426" y="84"/>
+		      <bottomRight x="629" y="237"/>
+		    </boundaries>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Shape" name="SubNaturalA" outgoingRelations="//@framedModel/@elements.5" type="NaturalType">
+		    <firstSegment>
+		      <elements name="AttributeSubNatA : String"/>
+		    </firstSegment>
+		    <secondSegment/>
+		    <boundaries>
+		      <topLeft x="86" y="261"/>
+		      <bottomRight x="288" y="413"/>
+		    </boundaries>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@framedModel/@elements.5" type="NaturalType">
+		    <firstSegment>
+		      <elements name="AttributeNatA : String"/>
+		    </firstSegment>
+		    <secondSegment>
+		      <elements name="OperationNatA()"/>
+		    </secondSegment>
+		    <boundaries>
+		      <topLeft x="425" y="264"/>
+		      <bottomRight x="625" y="414"/>
+		    </boundaries>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@framedModel/@elements.4" source="//@framedModel/@elements.3"/>
+		  <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@framedModel/@elements.2" source="//@framedModel/@elements.1"/>
+		  <elements xsi:type="org.framed.orm.model:Shape" name="GroupA" type="Group">
+		    <model>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="NaturalB" type="NaturalType">
+		        <firstSegment>
+		          <elements name="AttributeNatB : String"/>
+		        </firstSegment>
+		        <secondSegment>
+		          <elements name="OperationNatB() : Integer"/>
+		        </secondSegment>
+		        <boundaries>
+		          <topLeft x="215" y="184"/>
+		          <bottomRight x="415" y="334"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="DataB" type="DataType">
+		        <firstSegment>
+		          <elements name="value : Float"/>
+		        </firstSegment>
+		        <secondSegment/>
+		        <boundaries>
+		          <topLeft x="548" y="183"/>
+		          <bottomRight x="750" y="335"/>
+		        </boundaries>
+		      </elements>
+		    </model>
+		    <boundaries>
+		      <topLeft x="90" y="441"/>
+		      <bottomRight x="290" y="591"/>
+		    </boundaries>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB">
+		    <firstSegment/>
+		    <secondSegment/>
+		    <model>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="RoleA" outgoingRelations="//@framedModel/@elements.8/@model/@elements.5 //@framedModel/@elements.8/@model/@elements.11 //@framedModel/@elements.8/@model/@elements.14 //@framedModel/@elements.8/@model/@elements.16 //@framedModel/@elements.8/@model/@elements.19 //@framedModel/@elements.8/@model/@elements.20" type="RoleType">
+		        <firstSegment>
+		          <elements name="AttributeRoleA : Boolean"/>
+		        </firstSegment>
+		        <secondSegment/>
+		        <description name="0..1"/>
+		        <boundaries>
+		          <topLeft x="234" y="116"/>
+		          <bottomRight x="437" y="269"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="RoleB" incomingRelations="//@framedModel/@elements.8/@model/@elements.5 //@framedModel/@elements.8/@model/@elements.16" outgoingRelations="//@framedModel/@elements.8/@model/@elements.7 //@framedModel/@elements.8/@model/@elements.17" type="RoleType">
+		        <firstSegment>
+		          <elements name="AttributeRoleB : String"/>
+		        </firstSegment>
+		        <secondSegment>
+		          <elements name="OperationRoleB()"/>
+		        </secondSegment>
+		        <description name="1..1"/>
+		        <boundaries>
+		          <topLeft x="639" y="116"/>
+		          <bottomRight x="845" y="272"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="RoleC" incomingRelations="//@framedModel/@elements.8/@model/@elements.9 //@framedModel/@elements.8/@model/@elements.11 //@framedModel/@elements.8/@model/@elements.18 //@framedModel/@elements.8/@model/@elements.20" type="RoleType">
+		        <firstSegment/>
+		        <secondSegment/>
+		        <description name="1..*"/>
+		        <boundaries>
+		          <topLeft x="234" y="374"/>
+		          <bottomRight x="436" y="526"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="RoleD" incomingRelations="//@framedModel/@elements.8/@model/@elements.7 //@framedModel/@elements.8/@model/@elements.14 //@framedModel/@elements.8/@model/@elements.17 //@framedModel/@elements.8/@model/@elements.19" outgoingRelations="//@framedModel/@elements.8/@model/@elements.9 //@framedModel/@elements.8/@model/@elements.18" type="RoleType">
+		        <firstSegment>
+		          <elements name="AttributeRoleD : Integer"/>
+		        </firstSegment>
+		        <secondSegment/>
+		        <description name="*"/>
+		        <boundaries>
+		          <topLeft x="642" y="374"/>
+		          <bottomRight x="845" y="527"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" outgoingRelations="//@framedModel/@elements.8/@model/@elements.21" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="RelA" type="Relationship" target="//@framedModel/@elements.8/@model/@elements.1" source="//@framedModel/@elements.8/@model/@elements.0" referencedRelation="//@framedModel/@elements.8/@model/@elements.16" connectionAnchor="//@framedModel/@elements.8/@model/@elements.4">
+		        <sourceLabel name="1..1"/>
+		        <targetLabel name="*"/>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="RelB" type="Relationship" target="//@framedModel/@elements.8/@model/@elements.3" source="//@framedModel/@elements.8/@model/@elements.1" referencedRelation="//@framedModel/@elements.8/@model/@elements.17" connectionAnchor="//@framedModel/@elements.8/@model/@elements.6">
+		        <sourceLabel name="0..1"/>
+		        <targetLabel name="1..*"/>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" incomingRelations="//@framedModel/@elements.8/@model/@elements.22" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="RelC" type="Relationship" target="//@framedModel/@elements.8/@model/@elements.2" source="//@framedModel/@elements.8/@model/@elements.3" referencedRelation="//@framedModel/@elements.8/@model/@elements.18" connectionAnchor="//@framedModel/@elements.8/@model/@elements.8">
+		        <sourceLabel name="1..*"/>
+		        <targetLabel name="1..1"/>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" outgoingRelations="//@framedModel/@elements.8/@model/@elements.22" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="RelD" type="Relationship" target="//@framedModel/@elements.8/@model/@elements.2" source="//@framedModel/@elements.8/@model/@elements.0" referencedRelation="//@framedModel/@elements.8/@model/@elements.20" connectionAnchor="//@framedModel/@elements.8/@model/@elements.10">
+		        <sourceLabel name="*"/>
+		        <targetLabel name="*"/>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" incomingRelations="//@framedModel/@elements.8/@model/@elements.21" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="RelE" type="Relationship" target="//@framedModel/@elements.8/@model/@elements.3" source="//@framedModel/@elements.8/@model/@elements.0" referencedRelation="//@framedModel/@elements.8/@model/@elements.19" connectionAnchor="//@framedModel/@elements.8/@model/@elements.13">
+		        <sourceLabel name="*"/>
+		        <targetLabel name="*"/>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+		        <boundaries>
+		          <topLeft y="1"/>
+		          <bottomRight x="1"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="Reflexive" type="Reflexive" target="//@framedModel/@elements.8/@model/@elements.1" source="//@framedModel/@elements.8/@model/@elements.0" referencedRelation="//@framedModel/@elements.8/@model/@elements.5">
+		        <bendpoints>
+		          <referencePoints x="438" y="193"/>
+		          <referencePoints x="639" y="194"/>
+		          <distances x="-121" y="1"/>
+		          <distances/>
+		        </bendpoints>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="Irreflexive" type="Irreflexive" target="//@framedModel/@elements.8/@model/@elements.3" source="//@framedModel/@elements.8/@model/@elements.1" referencedRelation="//@framedModel/@elements.8/@model/@elements.7">
+		        <bendpoints>
+		          <referencePoints x="742" y="273"/>
+		          <referencePoints x="744" y="374"/>
+		          <distances x="-21" y="51"/>
+		          <distances/>
+		        </bendpoints>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="Total" type="Total" target="//@framedModel/@elements.8/@model/@elements.2" source="//@framedModel/@elements.8/@model/@elements.3" referencedRelation="//@framedModel/@elements.8/@model/@elements.9">
+		        <bendpoints>
+		          <referencePoints x="642" y="451"/>
+		          <referencePoints x="437" y="450"/>
+		          <distances x="-122"/>
+		          <distances/>
+		        </bendpoints>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="Cyclic" type="Cyclic" target="//@framedModel/@elements.8/@model/@elements.3" source="//@framedModel/@elements.8/@model/@elements.0" referencedRelation="//@framedModel/@elements.8/@model/@elements.14">
+		        <bendpoints>
+		          <referencePoints x="336" y="270"/>
+		          <referencePoints x="744" y="374"/>
+		          <distances x="-224" y="52"/>
+		          <distances/>
+		        </bendpoints>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" name="Acyclic" type="Acyclic" target="//@framedModel/@elements.8/@model/@elements.2" source="//@framedModel/@elements.8/@model/@elements.0" referencedRelation="//@framedModel/@elements.8/@model/@elements.11">
+		        <bendpoints>
+		          <referencePoints x="336" y="270"/>
+		          <referencePoints x="335" y="374"/>
+		          <distances x="-20" y="52"/>
+		          <distances/>
+		        </bendpoints>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Relation" type="RelationshipImplication" target="//@framedModel/@elements.8/@model/@elements.13" source="//@framedModel/@elements.8/@model/@elements.4"/>
+		      <elements xsi:type="org.framed.orm.model:Relation" type="RelationshipExclusion" target="//@framedModel/@elements.8/@model/@elements.8" source="//@framedModel/@elements.8/@model/@elements.10"/>
+		    </model>
+		    <boundaries>
+		      <topLeft x="850" y="363"/>
+		      <bottomRight x="1052" y="515"/>
+		    </boundaries>
+		  </elements>
+	  <framedConfiguration>
+	    <features/>
+	    <features name="Role_Types"/>
+	    <features name="Role_Structure"/>
+	    <features name="Role_Properties" manuallySelected="true"/>
+	    <features name="Role_Behavior"/>
+	    <features name="Role_Inheritance" manuallySelected="true"/>
+	    <features name="Playable"/>
+	    <features name="Players"/>
+	    <features name="Naturals"/>
+	    <features name="Compartments" manuallySelected="true"/>
+	    <features name="Dates" manuallySelected="true"/>
+	    <features name="Dependent"/>
+	    <features name="On_Compartments"/>
+	    <features name="On_Relationships"/>
+	    <features name="Role_Constraints"/>
+	    <features name="Role_Implication" manuallySelected="true"/>
+	    <features name="Role_Prohibition" manuallySelected="true"/>
+	    <features name="Role_Equivalence"/>
+	    <features name="Group_Constraints" manuallySelected="true"/>
+	    <features name="Occurrence_Constraints" manuallySelected="true"/>
+	    <features name="Relationships"/>
+	    <features name="Relationship_Constraints"/>
+	    <features name="Relationship_Cardinality" manuallySelected="true"/>
+	    <features name="Intra_Relationship_Constraints"/>
+	    <features name="Parthood_Constraints" manuallySelected="true"/>
+	    <features name="Inter_Relationship_Constraints" manuallySelected="true"/>
+	    <features name="Compartment_Types"/>
+	    <features name="Compartment_Structure"/>
+	    <features name="Compartment_Properties" manuallySelected="true"/>
+	    <features name="Compartment_Behavior"/>
+	    <features name="Compartment_Inheritance" manuallySelected="true"/>
+	    <features name="Participants"/>
+	    <features name="Playable_by_Defining_Compartment" manuallySelected="true"/>
+	    <features name="Data_Types"/>
+	    <features name="Data_Type_Inheritance" manuallySelected="true"/>
+	  </framedConfiguration>
+	</framedModel>
+	<cromModel>
+		<elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentA"/>
+		  <elements xsi:type="crom_l1_composed:DataType" name="SubDataA" outgoing="//@cromModel/@relations.1">
+		    <operations name="validateData"/>
+		  </elements>
+		  <elements xsi:type="crom_l1_composed:DataType" name="DataA" incoming="//@cromModel/@relations.1">
+		    <attributes name="Data1"/>
+		    <attributes name="Data2"/>
+		    <operations name="validateData"/>
+		  </elements>
+		  <elements xsi:type="crom_l1_composed:NaturalType" name="SubNaturalA" outgoing="//@cromModel/@relations.0">
+		    <attributes name="AttributeSubNatA"/>
+		  </elements>
+		  <elements xsi:type="crom_l1_composed:NaturalType" name="NaturalA" incoming="//@cromModel/@relations.0">
+		    <attributes name="AttributeNatA"/>
+		    <operations name="OperationNatA"/>
+		  </elements>
+		  <elements xsi:type="crom_l1_composed:Group" name="GroupA">
+		    <elements xsi:type="crom_l1_composed:NaturalType" name="NaturalB">
+		      <attributes name="AttributeNatB"/>
+		      <operations name="OperationNatB"/>
+		    </elements>
+		    <elements xsi:type="crom_l1_composed:DataType" name="DataB">
+		      <attributes name="value"/>
+		    </elements>
+		  </elements>
+		  <elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentB">
+		    <parts upper="1">
+		      <role xsi:type="crom_l1_composed:RoleType" name="RoleA" outgoing="//@cromModel/@elements.6/@relationships.0 //@cromModel/@elements.6/@relationships.3 //@cromModel/@elements.6/@relationships.4">
+		        <attributes name="AttributeRoleA"/>
+		      </role>
+		    </parts>
+		    <parts lower="1" upper="1">
+		      <role xsi:type="crom_l1_composed:RoleType" name="RoleB" incoming="//@cromModel/@elements.6/@relationships.0" outgoing="//@cromModel/@elements.6/@relationships.1">
+		        <attributes name="AttributeRoleB"/>
+		        <operations name="OperationRoleB"/>
+		      </role>
+		    </parts>
+		    <parts lower="1">
+		      <role xsi:type="crom_l1_composed:RoleType" name="RoleC" incoming="//@cromModel/@elements.6/@relationships.2 //@cromModel/@elements.6/@relationships.3"/>
+		    </parts>
+		    <parts>
+		      <role xsi:type="crom_l1_composed:RoleType" name="RoleD" incoming="//@cromModel/@elements.6/@relationships.1 //@cromModel/@elements.6/@relationships.4" outgoing="//@cromModel/@elements.6/@relationships.2">
+		        <attributes name="AttributeRoleD"/>
+		      </role>
+		    </parts>
+		    <relationships name="RelA">
+		      <first lower="1" upper="1" holder="//@cromModel/@elements.6/@parts.0/@role"/>
+		      <second holder="//@cromModel/@elements.6/@parts.1/@role"/>
+		    </relationships>
+		    <relationships name="RelB">
+		      <first upper="1" holder="//@cromModel/@elements.6/@parts.1/@role"/>
+		      <second lower="1" holder="//@cromModel/@elements.6/@parts.3/@role"/>
+		    </relationships>
+		    <relationships name="RelC">
+		      <first lower="1" holder="//@cromModel/@elements.6/@parts.3/@role"/>
+		      <second lower="1" upper="1" holder="//@cromModel/@elements.6/@parts.2/@role"/>
+		    </relationships>
+		    <relationships name="RelD">
+		      <first holder="//@cromModel/@elements.6/@parts.0/@role"/>
+		      <second holder="//@cromModel/@elements.6/@parts.2/@role"/>
+		    </relationships>
+		    <relationships name="RelE">
+		      <first holder="//@cromModel/@elements.6/@parts.0/@role"/>
+		      <second holder="//@cromModel/@elements.6/@parts.3/@role"/>
+		    </relationships>
+		    <constraints xsi:type="crom_l1_composed:Reflexive" relation="//@cromModel/@elements.6/@relationships.0"/>
+		    <constraints xsi:type="crom_l1_composed:Irreflexive" relation="//@cromModel/@elements.6/@relationships.1"/>
+		    <constraints xsi:type="crom_l1_composed:Total" relation="//@cromModel/@elements.6/@relationships.2"/>
+		    <constraints xsi:type="crom_l1_composed:Cyclic" relation="//@cromModel/@elements.6/@relationships.4"/>
+		    <constraints xsi:type="crom_l1_composed:Acyclic" relation="//@cromModel/@elements.6/@relationships.3"/>
+		    <constraints xsi:type="crom_l1_composed:RelationshipImplication" first="//@cromModel/@elements.6/@relationships.0" second="//@cromModel/@elements.6/@relationships.4"/>
+		    <constraints xsi:type="crom_l1_composed:RelationshipExclusion" first="//@cromModel/@elements.6/@relationships.3" second="//@cromModel/@elements.6/@relationships.2"/>
+		  </elements>
+		  <relations xsi:type="crom_l1_composed:NaturalInheritance" super="//@cromModel/@elements.4" sub="//@cromModel/@elements.3"/>
+		  <relations xsi:type="crom_l1_composed:DataInheritance" super="//@cromModel/@elements.2" sub="//@cromModel/@elements.1"/>
+	</cromModel>
+</ts:TestCase>	  
