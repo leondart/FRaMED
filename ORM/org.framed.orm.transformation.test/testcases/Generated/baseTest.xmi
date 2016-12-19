@@ -3,9 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:crom_l1_composed="platform:/resource/org.rosi.crom.metamodel/"
 	xmlns:org.framed.orm.model="http://orm/1.0" xmlns:ts="http://org.framed/testmodel">
-	<title>
-		Base test case for generation of feature dependant tests.
-	</title>
+	<title>Base test case for generation of feature dependant tests</title>
 	<description>
 		This test is the basic test case which is used to generate other test dependant on the feature model.
 		It verifies as much as possible model elements.

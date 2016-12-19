@@ -43,6 +43,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.osgi.framework.Bundle;
 
+import testgenerator.TestGenerator;
 import crom_l1_composed.Model;
 
 /**
@@ -63,6 +64,11 @@ public class TransformationTestSuite {
    * File uri of crom model. This file is created during tests and delete afterwards.
    */
   private static final URI FRAMED_FILE_URI = URI.createFileURI("framed_model.xmi");
+  
+  /**
+   * 
+   */
+  private static TestGenerator TEST_GENERATOR = new TestGenerator();
 
   /**
    * Loads all {@link TestCase}s from the "testcases" directory of this plugin.
@@ -73,10 +79,8 @@ public class TransformationTestSuite {
   @Parameterized.Parameters(name = "{index} : file={1}")
   public static Collection<Object[]> getTestCases() throws Exception {
     List<Object[]> list = new LinkedList<Object[]>();
-
     File file = null;
-
-
+    
     // if bundle is available this test runs as plugin junit test
     Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
     if (bundle != null) {
@@ -99,7 +103,7 @@ public class TransformationTestSuite {
 	 * @param file
 	 *            Current directory
 	 */
-	private static void loadDirectory(List<Object[]> list, File file) {
+	private static void loadDirectory(List<Object[]> list, File file) throws IOException {
 		for (File testFile : file.listFiles()) {
 			// if entry is directory load it recursively
 			if (testFile.isDirectory()) {
@@ -122,7 +126,7 @@ public class TransformationTestSuite {
    * @param testFile
    */
   private static TestCase loadTestCase(File testFile) {
-    try {
+	  try {
       // load each testcase
       ResourceSet set = new ResourceSetImpl();
       Resource res = set.createResource(URI.createFileURI(testFile.toString()));
@@ -151,20 +155,23 @@ public class TransformationTestSuite {
    * 
    * @param testCase current {@link TestCase}
    * @param _bla JUnit needs this, but we dont use it.
+ * @throws Exception 
    */
-  public TransformationTestSuite(TestCase testCase, String _bla) {
+  public TransformationTestSuite(TestCase testCase, String _bla) throws Exception {
     this.testCase = testCase;
+    /*TO ELABORATE*/
+    /*if(testCase.getTitle().equals("Base test case for generation of feature dependant tests")) TEST_GENERATOR.loadBaseTest(testCase);*/
   }
 
   /**
    * test method
-   * 
-   * @throws IOException
+ * @throws IOException 
+ * @throws Exception 
    */
   @Test
   public void doTest() throws IOException {
     TransformationExecutor exe = new TransformationExecutor();
-
+    
     // setup tmp resource
     Resource[] resources = initResources(testCase);
     exe.setSourceModelFile(resources[0]);
