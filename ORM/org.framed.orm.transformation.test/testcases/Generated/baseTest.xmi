@@ -11,13 +11,106 @@
 		It verifies as much as possible model elements.
 	</description>
 	<framedModel>
-		<elements xsi:type="org.framed.orm.model:Shape" name="CompartmentA">
-		    <firstSegment/>
-		    <secondSegment/>
-		    <model/>
+		<elements xsi:type="org.framed.orm.model:Shape" name="CompartmentA" incomingRelations="//@framedModel/@elements.10 //@framedModel/@elements.11 //@framedModel/@elements.12 //@framedModel/@elements.13" outgoingRelations="//@framedModel/@elements.12">
+		    <firstSegment>
+		      <elements name="AttributeCompartmentA : String"/>
+		    </firstSegment>
+		    <secondSegment>
+		      <elements name="OperationCompartmentA(input : Boolean)"/>
+		    </secondSegment>
+		    <model>
+			      <elements xsi:type="org.framed.orm.model:Shape" name="RoleF" type="RoleType">
+		        <firstSegment/>
+		        <secondSegment>
+		          <elements name="OperationRoleE(input : Integer) : String"/>
+		        </secondSegment>
+		        <description name="1..*"/>
+		        <boundaries>
+		          <topLeft x="824" y="345"/>
+		          <bottomRight x="1061" y="500"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="RoleE" type="RoleType">
+		        <firstSegment>
+		          <elements name="AttributeRoleE : Integer"/>
+		        </firstSegment>
+		        <secondSegment>
+		          <elements name="OperationRoleE(input : Integer) : String"/>
+		        </secondSegment>
+		        <description name="0..1"/>
+		        <boundaries>
+		          <topLeft x="824" y="71"/>
+		          <bottomRight x="1059" y="224"/>
+		        </boundaries>
+		      </elements>
+		      <elements xsi:type="org.framed.orm.model:Shape" name="RoleGroupA (1..*)" type="RoleGroup">
+		        <model>
+		          <elements xsi:type="org.framed.orm.model:Shape" name="RoleG" incomingRelations="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.3" outgoingRelations="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.4" type="RoleType">
+		            <firstSegment/>
+		            <secondSegment/>
+		            <description name="*"/>
+		            <boundaries>
+		              <topLeft x="38" y="22"/>
+		              <bottomRight x="241" y="175"/>
+		            </boundaries>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Shape" name="RoleH" outgoingRelations="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.3 //@framedModel/@elements.0/@model/@elements.2/@model/@elements.7" type="RoleType">
+		            <firstSegment/>
+		            <secondSegment/>
+		            <description name="*"/>
+		            <boundaries>
+		              <topLeft x="437" y="22"/>
+		              <bottomRight x="641" y="176"/>
+		            </boundaries>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Shape" name="RoleJ" incomingRelations="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.4 //@framedModel/@elements.0/@model/@elements.2/@model/@elements.9" type="RoleType">
+		            <firstSegment/>
+		            <secondSegment/>
+		            <description name="*"/>
+		            <boundaries>
+		              <topLeft x="37" y="237"/>
+		              <bottomRight x="244" y="394"/>
+		            </boundaries>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Relation" type="RoleImplication" target="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.0" source="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.1"/>
+		          <elements xsi:type="org.framed.orm.model:Relation" type="RoleProhibition" target="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.2" source="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.0"/>
+		          <elements xsi:type="org.framed.orm.model:Shape" name="RoleK" incomingRelations="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.7" outgoingRelations="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.9" type="RoleType">
+		            <firstSegment/>
+		            <secondSegment/>
+		            <description name="*"/>
+		            <boundaries>
+		              <topLeft x="435" y="238"/>
+		              <bottomRight x="644" y="397"/>
+		            </boundaries>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+		            <boundaries>
+		              <topLeft y="1"/>
+		              <bottomRight x="1"/>
+		            </boundaries>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Relation" name="RelF" type="Relationship" target="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.5" source="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.1" connectionAnchor="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.6">
+		            <sourceLabel name="0..1"/>
+		            <targetLabel name="1..*"/>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
+		            <boundaries>
+		              <topLeft y="1"/>
+		              <bottomRight x="1"/>
+		            </boundaries>
+		          </elements>
+		          <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.2" source="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.5"/>
+		        </model>
+		        <description name="1..1"/>
+		        <boundaries>
+		          <topLeft x="59" y="68"/>
+		          <bottomRight x="752" y="518"/>
+		        </boundaries>
+		      </elements>
+		    </model>
 		    <boundaries>
 		      <topLeft x="848" y="158"/>
-		      <bottomRight x="1050" y="310"/>
+		      <bottomRight x="1102" y="312"/>
 		    </boundaries>
 		  </elements>
 		  <elements xsi:type="org.framed.orm.model:Shape" name="SubDataA" outgoingRelations="//@framedModel/@elements.6" type="DataType">
@@ -30,7 +123,7 @@
 		      <bottomRight x="289" y="237"/>
 		    </boundaries>
 		  </elements>
-		  <elements xsi:type="org.framed.orm.model:Shape" name="DataA" incomingRelations="//@framedModel/@elements.6" type="DataType">
+		  <elements xsi:type="org.framed.orm.model:Shape" name="DataA" incomingRelations="//@framedModel/@elements.6" outgoingRelations="//@framedModel/@elements.10" type="DataType">
 		    <firstSegment>
 		      <elements name="Data1 : String"/>
 		      <elements name="Data2 : Integer"/>
@@ -53,7 +146,7 @@
 		      <bottomRight x="288" y="413"/>
 		    </boundaries>
 		  </elements>
-		  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@framedModel/@elements.5" type="NaturalType">
+		  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@framedModel/@elements.5" outgoingRelations="//@framedModel/@elements.9 //@framedModel/@elements.11" type="NaturalType">
 		    <firstSegment>
 		      <elements name="AttributeNatA : String"/>
 		    </firstSegment>
@@ -97,7 +190,7 @@
 		      <bottomRight x="290" y="591"/>
 		    </boundaries>
 		  </elements>
-		  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB">
+		  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB" incomingRelations="//@framedModel/@elements.9" outgoingRelations="//@framedModel/@elements.13">
 		    <firstSegment/>
 		    <secondSegment/>
 		    <model>
@@ -255,6 +348,30 @@
 		      <bottomRight x="1052" y="515"/>
 		    </boundaries>
 		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@framedModel/@elements.8" source="//@framedModel/@elements.4" referencedRoles="//@framedModel/@elements.8/@model/@elements.0 //@framedModel/@elements.8/@model/@elements.1 //@framedModel/@elements.8/@model/@elements.2 //@framedModel/@elements.8/@model/@elements.3"/>
+		  <elements xsi:type="org.framed.orm.model:Relation" name="" type="Fulfillment" target="//@framedModel/@elements.0" source="//@framedModel/@elements.2" referencedRoles="//@framedModel/@elements.0/@model/@elements.1 //@framedModel/@elements.0/@model/@elements.0"/>
+		  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@framedModel/@elements.0" source="//@framedModel/@elements.4" referencedRoles="//@framedModel/@elements.0/@model/@elements.2"/>
+		  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@framedModel/@elements.0" source="//@framedModel/@elements.0" referencedRoles="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.5">
+		    <bendpoints>
+		      <referencePoints x="848" y="158"/>
+		      <referencePoints x="848" y="158"/>
+		      <distances y="183"/>
+		      <distances/>
+		    </bendpoints>
+		    <bendpoints>
+		      <referencePoints x="848" y="158"/>
+		      <referencePoints x="848" y="158"/>
+		      <distances x="166" y="92"/>
+		      <distances x="166" y="92"/>
+		    </bendpoints>
+		    <bendpoints>
+		      <referencePoints x="848" y="158"/>
+		      <referencePoints x="848" y="158"/>
+		      <distances x="164" y="2"/>
+		      <distances x="164" y="2"/>
+		    </bendpoints>
+		  </elements>
+		  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@framedModel/@elements.0" source="//@framedModel/@elements.8" referencedRoles="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.1"/>
 	  <framedConfiguration>
 	    <features/>
 	    <features name="Role_Types"/>
@@ -294,7 +411,42 @@
 	  </framedConfiguration>
 	</framedModel>
 	<cromModel>
-		<elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentA"/>
+		<elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentA">
+		    <attributes name="AttributeCompartmentA"/>
+		    <operations name="OperationCompartmentA">
+		      <params name="input"/>
+		    </operations>
+		    <parts lower="1">
+		      <role xsi:type="crom_l1_composed:RoleType" name="RoleF">
+		        <operations name="OperationRoleE">
+		          <params name="input"/>
+		        </operations>
+		      </role>
+		    </parts>
+		    <parts upper="1">
+		      <role xsi:type="crom_l1_composed:RoleType" name="RoleE">
+		        <attributes name="AttributeRoleE"/>
+		        <operations name="OperationRoleE">
+		          <params name="input"/>
+		        </operations>
+		      </role>
+		    </parts>
+		    <parts lower="1" upper="1">
+		      <role xsi:type="crom_l1_composed:RoleGroup" name="RoleGroupA" lower="1">
+		        <elements xsi:type="crom_l1_composed:RoleType" name="RoleG"/>
+		        <elements xsi:type="crom_l1_composed:RoleType" name="RoleH" outgoing="//@cromModel/@elements.0/@relationships.0"/>
+		        <elements xsi:type="crom_l1_composed:RoleType" name="RoleJ"/>
+		        <elements xsi:type="crom_l1_composed:RoleType" name="RoleK" incoming="//@cromModel/@elements.0/@relationships.0"/>
+		      </role>
+		    </parts>
+		    <relationships name="RelF">
+		      <first upper="1" holder="//@cromModel/@elements.0/@parts.2/@role/@elements.1"/>
+		      <second lower="1" holder="//@cromModel/@elements.0/@parts.2/@role/@elements.3"/>
+		    </relationships>
+		    <constraints xsi:type="crom_l1_composed:RoleImplication" first="//@cromModel/@elements.0/@parts.2/@role/@elements.1" second="//@cromModel/@elements.0/@parts.2/@role/@elements.0"/>
+		    <constraints xsi:type="crom_l1_composed:RoleProhibition" first="//@cromModel/@elements.0/@parts.2/@role/@elements.0" second="//@cromModel/@elements.0/@parts.2/@role/@elements.2"/>
+		    <constraints xsi:type="crom_l1_composed:RoleEquivalence" first="//@cromModel/@elements.0/@parts.2/@role/@elements.3" second="//@cromModel/@elements.0/@parts.2/@role/@elements.2"/>
+		  </elements>
 		  <elements xsi:type="crom_l1_composed:DataType" name="SubDataA" outgoing="//@cromModel/@relations.1">
 		    <operations name="validateData"/>
 		  </elements>
@@ -369,5 +521,14 @@
 		  </elements>
 		  <relations xsi:type="crom_l1_composed:NaturalInheritance" super="//@cromModel/@elements.4" sub="//@cromModel/@elements.3"/>
 		  <relations xsi:type="crom_l1_composed:DataInheritance" super="//@cromModel/@elements.2" sub="//@cromModel/@elements.1"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.0/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.1/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.2/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.3/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.1/@role" filler="//@cromModel/@elements.2"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.0/@role" filler="//@cromModel/@elements.2"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.2/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.2/@role/@elements.3" filler="//@cromModel/@elements.0"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.2/@role/@elements.1" filler="//@cromModel/@elements.6"/>
 	</cromModel>
 </ts:TestCase>	  
