@@ -43,7 +43,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.osgi.framework.Bundle;
 
-import testgenerator.TestGenerator;
+import testgeneration.TestGenerator;
 import crom_l1_composed.Model;
 
 /**
@@ -160,7 +160,7 @@ public class TransformationTestSuite {
   public TransformationTestSuite(TestCase testCase, String _bla) throws Exception {
     this.testCase = testCase;
     /*TO ELABORATE*/
-    /*if(testCase.getTitle().equals("Base test case for generation of feature dependant tests")) TEST_GENERATOR.loadBaseTest(testCase);*/
+    //if(testCase.getTitle().equals("Base test case for generation of feature dependant tests")) TEST_GENERATOR.generateTestCases(testCase);
   }
 
   /**
