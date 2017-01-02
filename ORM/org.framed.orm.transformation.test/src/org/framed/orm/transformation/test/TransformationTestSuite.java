@@ -160,7 +160,7 @@ public class TransformationTestSuite {
   public TransformationTestSuite(TestCase testCase, String _bla) throws Exception {
     this.testCase = testCase;
     /*TO ELABORATE*/
-    //if(testCase.getTitle().equals("Base test case for generation of feature dependant tests")) TEST_GENERATOR.generateTestCases(testCase);
+    //if(testCase.getTitle().equals("Base test case for generation of feature dependant tests")) TEST_GENERATOR.generateTestCases();
   }
 
   /**
