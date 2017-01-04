@@ -1,11 +1,10 @@
 package testgeneration;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
+ * @author Kevin Kassin
  * This class generate valid feature configurations in compact manner to test transformations.
  */
 
@@ -70,8 +69,8 @@ public class ConfigGenerator {
 		   (str_config.charAt(14)=='1' && str_config.charAt(13)=='0')|| //Compartment is implied by its child elements  
 		   (str_config.charAt(15)=='1' && str_config.charAt(13)=='0')||
 		   (str_config.charAt(16)=='1' && str_config.charAt(13)=='0')||
-		   (reducedFeaturesOn!=0 && reducedFeaturesOn<=9)			 || //configurations with 0 or more than 5 reduced Features
-		   (differenceToConfigBefore<=8)								//configuration differs on more than 4 places to the one accepted before
+		   (reducedFeaturesOn!=0 && reducedFeaturesOn<=9)			 || //configurations with 0 or more than 9 reduced Features
+		   (differenceToConfigBefore<=8)								//configuration differs on more than 8 places to the one accepted before
 		) return false; 
 		else {configBefore=str_config; return true; }
 	}

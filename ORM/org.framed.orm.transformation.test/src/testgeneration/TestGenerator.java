@@ -1,10 +1,8 @@
 package testgeneration;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ import java.util.List;
 import org.framed.orm.transformation.test.model.test.TestCase;
 
 /**
+ * @author Kevin Kassin
  * This generates test cases in the folder "Generated" based on baseTest.xmi 
  */
 public class TestGenerator {
@@ -33,7 +32,10 @@ public class TestGenerator {
 		
 		for(String config : configList) {
 		    String specificContent = new String(str_baseContent);
+		    //delete feature entries in framed model depending on configuration
 		    specificContent = editFeatureConfiguration(specificContent, config);
+		    //change crom model depending on configuration
+		    specificContent = editCromModel(specificContent, config);
 		    //delete empty lines
 		    specificContent = specificContent.replaceAll("(?m)^[ \t]*\r?\n", "");
 		    try { 
@@ -53,7 +55,8 @@ public class TestGenerator {
 			specificContent = specificContent.replaceAll("<features name=\"Role_Structure\"/>", " ");
 		if(config.charAt(0)=='0') {
 			specificContent = specificContent.replaceAll("<features name=\"Role_Behavior\"/>", " ");
-			specificContent = specificContent.replaceAll("<features name=\"Role_Properties\" manuallySelected=\"true\"/>", " "); }	
+			specificContent = specificContent.replaceAll("<features name=\"Role_Properties\" manuallySelected=\"true\"/>", " ");
+			}	
 		if(config.charAt(1)=='0') 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Inheritance\" manuallySelected=\"true\"/>", " ");
 		if(config.charAt(2)=='0') 
@@ -84,8 +87,9 @@ public class TestGenerator {
 			specificContent = specificContent.replaceAll("<features name=\"Relationship_Constraints\"/>", " ");
 		if(config.charAt(10)=='0') 
 			specificContent = specificContent.replaceAll("<features name=\"Relationship_Cardinality\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(11)=='0') 
+		if(config.charAt(11)=='0') {
 			specificContent = specificContent.replaceAll("<features name=\"Intra_Relationship_Constraints\"/>", " ");
+			specificContent = specificContent.replaceAll("<features name=\"Parthood_Constraints\" manuallySelected=\"true\"/>", " "); }
 		if(config.charAt(12)=='0') 
 			specificContent = specificContent.replaceAll("<features name=\"Inter_Relationship_Constraints\" manuallySelected=\"true\"/>", " ");
 		if(config.charAt(13)=='0') 
@@ -106,4 +110,26 @@ public class TestGenerator {
 			specificContent = specificContent.replaceAll("<features name=\"Data_Type_Inheritance\" manuallySelected=\"true\"/>", " ");
 		return specificContent;
 	}
+	
+	public String editCromModel(String specificContent, String config) {
+		if(config.charAt(0)=='0') { //Role_Behavior, Role_Properties
+			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\""))
+				+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\" outgoing=\"//@elements.4/@relationships.0 //@elements.4/@relationships.3 //@elements.4/@relationships.4\"/>\n \t\t\t"	
+				+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\"")));
+			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleB\""))
+					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleB\" incoming=\"//@cromModel/@elements.6/@relationships.0\" outgoing=\"//@cromModel/@elements.6/@relationships.1\"/>\n \t\t\t"	
+					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleB\"")));
+			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleD\""))
+					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleD\" incoming=\"//@cromModel/@elements.6/@relationships.1 //@cromModel/@elements.6/@relationships.4\" outgoing=\"//@cromModel/@elements.6/@relationships.2\"/>\n \t\t\t"	
+					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\"")));
+			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\""))
+					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\">\n \t\t\t"	
+					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\"")));
+			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleF\""))
+					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleF\"/>\n \t\t\t"	
+					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleF\"")));
+		}
+		return specificContent;
+	}
+	
 }
