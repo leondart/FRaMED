@@ -1,6 +1,9 @@
-package testgeneration;
+package org.framed.orm.transformation.test.model.test.testgeneration;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,7 +11,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.framed.orm.transformation.test.model.test.TestCase;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
+
 
 /**
  * @author Kevin Kassin
@@ -20,16 +26,19 @@ public class TestGenerator {
 	 * This method takes the basic test case to generate test cases influenced by an feature configuration.
 	 * @param testcase
 	 * @throws IOException 
+	 * @throws URISyntaxException 
 	 */
-	public void generateTestCases() throws IOException {
+	public void generateTestCases() throws IOException, URISyntaxException {
 		List<String> configList = new ArrayList<String>();
-		
 		ConfigGenerator configGenerator = new ConfigGenerator();
-		configList = configGenerator.generateConfigurations(500);
-		
-		byte[] byte_baseContent = Files.readAllBytes(Paths.get("./testcases/Generated/baseTest.xmi"));
+		Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
+		File file;
+	    
+		URL fileURL = bundle.getEntry("testcases/Generated/baseTest.xmi");
+		byte[] byte_baseContent = Files.readAllBytes(Paths.get(FileLocator.resolve(fileURL).toURI()));
 		String str_baseContent = new String(byte_baseContent, StandardCharsets.UTF_8);
 		
+		configList = configGenerator.generateConfigurations(500);
 		for(String config : configList) {
 		    String specificContent = new String(str_baseContent);
 		    //delete feature entries in framed model depending on configuration
@@ -39,10 +48,10 @@ public class TestGenerator {
 		    //delete empty lines
 		    specificContent = specificContent.replaceAll("(?m)^[ \t]*\r?\n", "");
 		    try { 
-		    	Files.write(Paths.get("./testcases/Generated/" + config + ".xmi"), 
-		    	specificContent.getBytes(StandardCharsets.UTF_8), 
-		    	StandardOpenOption.CREATE);
-		    } catch(IOException e) {System.err.println(e);}	
+				Files.write(Paths.get(bundle.getLocation().substring(16) + "testcases/Generated/" + config + ".xmi"), 
+					specificContent.getBytes(StandardCharsets.UTF_8), 
+					StandardOpenOption.CREATE);
+		    } catch(Exception e) {System.err.println(e);}	
 		}	    
 	}
 	
@@ -112,7 +121,7 @@ public class TestGenerator {
 	}
 	
 	public String editCromModel(String specificContent, String config) {
-		if(config.charAt(0)=='0') { //Role_Behavior, Role_Properties
+		/*if(config.charAt(0)=='0') { //Role_Behavior, Role_Properties
 			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\""))
 				+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\" outgoing=\"//@elements.4/@relationships.0 //@elements.4/@relationships.3 //@elements.4/@relationships.4\"/>\n \t\t\t"	
 				+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\"")));
@@ -123,12 +132,12 @@ public class TestGenerator {
 					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleD\" incoming=\"//@cromModel/@elements.6/@relationships.1 //@cromModel/@elements.6/@relationships.4\" outgoing=\"//@cromModel/@elements.6/@relationships.2\"/>\n \t\t\t"	
 					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\"")));
 			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\""))
-					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\">\n \t\t\t"	
+					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\"/>\n \t\t\t"	
 					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleE\"")));
 			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleF\""))
 					+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleF\"/>\n \t\t\t"	
 					+ specificContent.substring(specificContent.indexOf("</parts>", specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleF\"")));
-		}
+		}*/
 		return specificContent;
 	}
 	

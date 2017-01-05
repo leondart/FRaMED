@@ -1,4 +1,4 @@
-package testgeneration;
+package org.framed.orm.transformation.test.model.test.testgeneration;
 
 import java.util.ArrayList;
 import java.util.List;

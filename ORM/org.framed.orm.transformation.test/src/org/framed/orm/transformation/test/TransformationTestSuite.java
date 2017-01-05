@@ -37,13 +37,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.framed.orm.transformation.TransformationExecutor;
 import org.framed.orm.transformation.test.model.test.TestCase;
+import org.framed.orm.transformation.test.model.test.testgeneration.TestGenerator;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.osgi.framework.Bundle;
 
-import testgeneration.TestGenerator;
 import crom_l1_composed.Model;
 
 /**
@@ -81,6 +81,8 @@ public class TransformationTestSuite {
     List<Object[]> list = new LinkedList<Object[]>();
     File file = null;
     
+    //TEST_GENERATOR.generateTestCases();
+   
     // if bundle is available this test runs as plugin junit test
     Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
     if (bundle != null) {
@@ -159,8 +161,6 @@ public class TransformationTestSuite {
    */
   public TransformationTestSuite(TestCase testCase, String _bla) throws Exception {
     this.testCase = testCase;
-    /*TO ELABORATE*/
-    //if(testCase.getTitle().equals("Base test case for generation of feature dependant tests")) TEST_GENERATOR.generateTestCases();
   }
 
   /**
