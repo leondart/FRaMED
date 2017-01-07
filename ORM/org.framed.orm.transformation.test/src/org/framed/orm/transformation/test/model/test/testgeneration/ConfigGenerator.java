@@ -1,6 +1,7 @@
 package org.framed.orm.transformation.test.model.test.testgeneration;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 
 /**
@@ -41,54 +42,91 @@ public class ConfigGenerator {
 	/**
 	 * used to save the prior valid configuration
 	 */
-	public String configBefore;
+	public BitSet configBefore;
 	
+	/**
+	 * constructor
+	 */
 	public ConfigGenerator() {
 		configBefore=null;
 	}
 	
 	/**
-	 * This checks a configuration if it is valid.
-	 * @param str_config 
-	 * @return boolean if configuration is valid
+	 * This method transforms a BitSet to a String
+	 * @param bitSet_config
+	 * @return configuration in form of a bit string
 	 */
-	public boolean validCheck(String str_config) {
-		int reducedFeaturesOn=0, differenceToConfigBefore=0;
-		for(int i=0; i<reducedFeatures; i++) if(str_config.charAt(i)=='1') reducedFeaturesOn++;
-		if(configBefore!=null) {
-			for(int i=0; i<reducedFeatures; i++) {
-				if(str_config.charAt(i)!=configBefore.charAt(i)) differenceToConfigBefore++;
+	public String bitSetToString(BitSet bitSet_config) {
+		String str_config="";
+		for(int i=0; i<ConfigGenerator.reducedFeatures; i++) str_config = str_config + "0";
+		for(int i=0; i<ConfigGenerator.reducedFeatures; i++) {
+			if(bitSet_config.get(i)) { 
+				if(i==0) str_config = "1" + str_config.substring(1);
+				else if(i==ConfigGenerator.reducedFeatures) str_config = str_config.substring(0, ConfigGenerator.reducedFeatures-1) + "1";
+					 else str_config = str_config.substring(0, i) + "1" + str_config.substring(i+1);
 			}	
-		} else differenceToConfigBefore=reducedFeatures+1;
-		if((str_config.charAt(2)=='1' && str_config.charAt(13)=='0') || //Compartments implies Compartment_Types
-		   (str_config.charAt(4)=='1' && str_config.charAt(6)=='0')  || //Role_Implication implies Role_Equivalence		
-		   (str_config.charAt(3)=='1' && str_config.charAt(17)=='0') || //Dates implies Data_Types 	
-		   (str_config.charAt(10)=='1' && str_config.charAt(9)=='0') || //Relationship is implied by its child elements
-		   (str_config.charAt(11)=='1' && str_config.charAt(9)=='0') ||
-		   (str_config.charAt(12)=='1' && str_config.charAt(9)=='0') ||
-		   (str_config.charAt(14)=='1' && str_config.charAt(13)=='0')|| //Compartment is implied by its child elements  
-		   (str_config.charAt(15)=='1' && str_config.charAt(13)=='0')||
-		   (str_config.charAt(16)=='1' && str_config.charAt(13)=='0')||
-		   (reducedFeaturesOn!=0 && reducedFeaturesOn<=9)			 || //configurations with 0 or more than 9 reduced Features
-		   (differenceToConfigBefore<=8)								//configuration differs on more than 8 places to the one accepted before
-		) return false; 
-		else {configBefore=str_config; return true; }
+		}
+		return str_config;
 	}
 	
 	/**
-	 * This creates a limited amount of valid configurations;
-	 * @param limit
+	 * This method shifts the values of a BitSet to most right bits
+	 * @param bitset
+	 * @return shifted BitSet 
+	 */
+	public BitSet shiftBitSet(BitSet bitset) {
+		BitSet bitSetCopy = new BitSet(19);
+		int j=bitset.length()-1;
+		for(int i=reducedFeatures-bitset.length(); i<reducedFeatures; i++) {
+			if(bitset.get(j)) bitSetCopy.set(i);
+			j--;
+		}
+		return bitSetCopy;
+	}
+	
+	/**
+	 * This method checks if a configuration is valid.
+	 * @param str_config 
+	 * @return boolean if configuration is valid
+	 */
+	public boolean validCheck(BitSet bitSet_config) {
+		int reducedFeaturesOn=0, differenceToConfigBefore=0;
+		//count number of choosed reduced features
+		for(int i=0; i<reducedFeatures; i++) if(bitSet_config.get(i)) reducedFeaturesOn++;
+		//copy config and xor BitSets to count differences
+		BitSet configCopy = new BitSet(19);
+		for(int i=0; i<reducedFeatures; i++) {if(bitSet_config.get(i)) configCopy.set(i);} 
+		if(configBefore!=null) {configCopy.xor(configBefore); differenceToConfigBefore = configCopy.cardinality();}	
+		else differenceToConfigBefore=reducedFeatures+1;
+		if((bitSet_config.get(2) && !(bitSet_config.get(13))) || //Compartments implies Compartment_Types
+		   (bitSet_config.get(4) && !(bitSet_config.get(6)))  || //Role_Implication implies Role_Equivalence		
+		   (bitSet_config.get(3) && !(bitSet_config.get(17))) || //Dates implies Data_Types 	
+		   (bitSet_config.get(10) && !(bitSet_config.get(9))) || //Relationship is implied by its child elements
+		   (bitSet_config.get(11) && !(bitSet_config.get(9))) ||
+		   (bitSet_config.get(12) && !(bitSet_config.get(9))) ||
+		   (bitSet_config.get(14) && !(bitSet_config.get(13)))|| //Compartment is implied by its child elements  
+		   (bitSet_config.get(15) && !(bitSet_config.get(13)))||
+		   (bitSet_config.get(16) && !(bitSet_config.get(13)))||
+		   (reducedFeaturesOn!=0 && reducedFeaturesOn<=9)|| //configurations with 0 or more than 9 reduced Features
+		   (differenceToConfigBefore<=8)					//configuration differs on more than 8 places to the one accepted before
+		) return false; 
+		else { configBefore=bitSet_config; return true; }
+	}
+	
+	/**
+	 * This method creates valid configurations;
 	 * @return List of valid configurations
 	 */
-	public List<String> generateConfigurations(int limit) {
-		int config = 0b0000000000000000000, i = 0;
-		List<String> configList = new ArrayList<String>();
-		if(limit==0) limit=0b1111111111111111111;
-		while(i<limit) {
-			//Add leading zeros to the binary number in string format
-			String str_config=("0000000000000000000" + Integer.toBinaryString(config)).substring(Integer.toBinaryString(config).length());
-			if(validCheck(str_config)) {configList.add(str_config); i++;}
-			config++;
+	public List<BitSet> generateConfigurations() {
+		int int_config = 0b0000000000000000000;
+		List<BitSet> configList = new ArrayList<BitSet>();
+		BitSet bitSet_config = new BitSet(19);
+	
+		while(int_config<=0b1111111111111111111) {
+			bitSet_config = BitSet.valueOf(new long[]{int_config});
+			bitSet_config = shiftBitSet(bitSet_config);
+			if(validCheck(bitSet_config)) {configList.add(bitSet_config);}
+			int_config++; 
 		}
 		return configList;
 	}

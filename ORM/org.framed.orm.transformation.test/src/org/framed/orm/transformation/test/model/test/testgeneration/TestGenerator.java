@@ -1,6 +1,5 @@
 package org.framed.orm.transformation.test.model.test.testgeneration;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -9,8 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
@@ -29,17 +28,18 @@ public class TestGenerator {
 	 * @throws URISyntaxException 
 	 */
 	public void generateTestCases() throws IOException, URISyntaxException {
-		List<String> configList = new ArrayList<String>();
+		List<BitSet> configList = new ArrayList<BitSet>();
 		ConfigGenerator configGenerator = new ConfigGenerator();
 		Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
-		File file;
 	    
 		URL fileURL = bundle.getEntry("testcases/Generated/baseTest.xmi");
 		byte[] byte_baseContent = Files.readAllBytes(Paths.get(FileLocator.resolve(fileURL).toURI()));
 		String str_baseContent = new String(byte_baseContent, StandardCharsets.UTF_8);
 		
-		configList = configGenerator.generateConfigurations(500);
-		for(String config : configList) {
+		configList = configGenerator.generateConfigurations();
+		int i=0;
+		for(BitSet config : configList) {
+			i++;
 		    String specificContent = new String(str_baseContent);
 		    //delete feature entries in framed model depending on configuration
 		    specificContent = editFeatureConfiguration(specificContent, config);
@@ -47,80 +47,77 @@ public class TestGenerator {
 		    specificContent = editCromModel(specificContent, config);
 		    //delete empty lines
 		    specificContent = specificContent.replaceAll("(?m)^[ \t]*\r?\n", "");
+		    String str_config = configGenerator.bitSetToString(config);
 		    try { 
-				Files.write(Paths.get(bundle.getLocation().substring(16) + "testcases/Generated/" + config + ".xmi"), 
+				Files.write(Paths.get(bundle.getLocation().substring(16) + "testcases/Generated/" + str_config + ".xmi"), 
 					specificContent.getBytes(StandardCharsets.UTF_8), 
 					StandardOpenOption.CREATE);
 		    } catch(Exception e) {System.err.println(e);}	
 		}	    
 	}
 	
-	/**
-	 * This method deletes features entries in the framed model of the generated test cases
-	 * @param specificContent
-	 */
-	public String editFeatureConfiguration(String specificContent, String config) {
-		if(config.charAt(0)=='0' && config.charAt(1)=='0') 
+	public String editFeatureConfiguration(String specificContent, BitSet config) {
+		if(!config.get(0) && !config.get(1)) 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Structure\"/>", " ");
-		if(config.charAt(0)=='0') {
+		if(!config.get(0)) {
 			specificContent = specificContent.replaceAll("<features name=\"Role_Behavior\"/>", " ");
 			specificContent = specificContent.replaceAll("<features name=\"Role_Properties\" manuallySelected=\"true\"/>", " ");
 			}	
-		if(config.charAt(1)=='0') 
+		if(!config.get(1)) 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Inheritance\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(2)=='0') 
+		if(!config.get(2)) 
 			specificContent = specificContent.replaceAll("<features name=\"Compartments\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(3)=='0') 
+		if(!config.get(3)) 
 			specificContent = specificContent.replaceAll("<features name=\"Dates\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(13)=='0' && config.charAt(9)=='0') 
+		if(!config.get(13) && !config.get(9)) 
 			specificContent = specificContent.replaceAll("<features name=\"Dependent\"/>", " ");
-		if(config.charAt(13)=='0') 
+		if(!config.get(13)) 
 			specificContent = specificContent.replaceAll("<features name=\"On_Compartments\"/>", " ");
-		if(config.charAt(9)=='0') 
+		if(!config.get(9)) 
 			specificContent = specificContent.replaceAll("<features name=\"On_Relationships\"/>", " ");
-		if(config.charAt(4)=='0' && config.charAt(5)=='0' && config.charAt(6)=='0' && config.charAt(7)=='0' && config.charAt(8)=='0') 
+		if(!config.get(4) && !config.get(5) && !config.get(6) && !config.get(7) && !config.get(8)) 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Constraints\"/>", " ");
-		if(config.charAt(4)=='0') 
+		if(!config.get(4)) 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Implication\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(5)=='0') 
+		if(!config.get(5)) 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Prohibition\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(6)=='0') 
+		if(!config.get(6)) 
 			specificContent = specificContent.replaceAll("<features name=\"Role_Equivalence\"/>", " ");
-		if(config.charAt(7)=='0') 
+		if(!config.get(7)) 
 			specificContent = specificContent.replaceAll("<features name=\"Group_Constraints\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(8)=='0') 
+		if(!config.get(8)) 
 			specificContent = specificContent.replaceAll("<features name=\"Occurrence_Constraints\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(9)=='0') 
+		if(!config.get(9)) 
 			specificContent = specificContent.replaceAll("<features name=\"Relationships\"/>", " ");
-		if(config.charAt(10)=='0' && config.charAt(11)=='0' && config.charAt(12)=='0') 
+		if(!config.get(10) && !config.get(11) && !config.get(12)) 
 			specificContent = specificContent.replaceAll("<features name=\"Relationship_Constraints\"/>", " ");
-		if(config.charAt(10)=='0') 
+		if(!config.get(10)) 
 			specificContent = specificContent.replaceAll("<features name=\"Relationship_Cardinality\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(11)=='0') {
+		if(!config.get(11)) {
 			specificContent = specificContent.replaceAll("<features name=\"Intra_Relationship_Constraints\"/>", " ");
 			specificContent = specificContent.replaceAll("<features name=\"Parthood_Constraints\" manuallySelected=\"true\"/>", " "); }
-		if(config.charAt(12)=='0') 
+		if(!config.get(12)) 
 			specificContent = specificContent.replaceAll("<features name=\"Inter_Relationship_Constraints\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(13)=='0') 
+		if(!config.get(13)) 
 			specificContent = specificContent.replaceAll("<features name=\"Compartment_Types\"/>", " ");
-		if(config.charAt(14)=='0' && config.charAt(15)=='0') 
+		if(!config.get(14) && !config.get(15)) 
 			specificContent = specificContent.replaceAll("<features name=\"Compartment_Structure\"/>", " ");
-		if(config.charAt(14)=='0') {
+		if(!config.get(14)) {
 			specificContent = specificContent.replaceAll("<features name=\"Compartment_Properties\" manuallySelected=\"true\"/>", " ");
 			specificContent = specificContent.replaceAll("<features name=\"Compartment_Behavior\"/>", " "); }
-		if(config.charAt(15)=='0') 
+		if(!config.get(15)) 
 			specificContent = specificContent.replaceAll("<features name=\"Compartment_Inheritance\" manuallySelected=\"true\"/>", " ");
-		if(config.charAt(16)=='0') { 
+		if(!config.get(16)) { 
 			specificContent = specificContent.replaceAll("<features name=\"Participants\"/>", " ");
 			specificContent = specificContent.replaceAll("<features name=\"Playable_by_Defining_Compartment\" manuallySelected=\"true\"/>", " "); }
-		if(config.charAt(17)=='0') 
+		if(!config.get(17)) 
 			specificContent = specificContent.replaceAll("<features name=\"Data_Types\"/>", " ");
-		if(config.charAt(18)=='0') 
+		if(!config.get(18)) 
 			specificContent = specificContent.replaceAll("<features name=\"Data_Type_Inheritance\" manuallySelected=\"true\"/>", " ");
 		return specificContent;
 	}
 	
-	public String editCromModel(String specificContent, String config) {
+	public String editCromModel(String specificContent, BitSet config) {
 		/*if(config.charAt(0)=='0') { //Role_Behavior, Role_Properties
 			specificContent = specificContent.substring(0, specificContent.indexOf("<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\""))
 				+ "<role xsi:type=\"crom_l1_composed:RoleType\" name=\"RoleA\" outgoing=\"//@elements.4/@relationships.0 //@elements.4/@relationships.3 //@elements.4/@relationships.4\"/>\n \t\t\t"	
