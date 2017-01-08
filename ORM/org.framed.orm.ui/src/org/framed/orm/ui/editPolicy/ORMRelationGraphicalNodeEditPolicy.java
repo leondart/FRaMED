@@ -5,6 +5,7 @@ import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.framed.orm.model.Model;
+import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
@@ -122,9 +123,9 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   private boolean oSTCheck(final CreateConnectionRequest request, final Type objecttype,
       final Type sourcetype, final Type targettype) {
-    Relation source = (Relation) request.getSourceEditPart().getModel();
-    Relation target = (Relation) request.getTargetEditPart().getModel();
-    return request.getNewObjectType().equals(objecttype) && targettype.equals(target.getType())
+	    ModelElement source = (ModelElement) request.getSourceEditPart().getModel();
+	    ModelElement target = (ModelElement) request.getTargetEditPart().getModel();
+	    return request.getNewObjectType().equals(objecttype) && targettype.equals(target.getType())
         && sourcetype.equals(source.getType());
   }
 
