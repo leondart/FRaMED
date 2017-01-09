@@ -10,9 +10,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
+
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 
 /**
@@ -26,8 +29,9 @@ public class TestGenerator {
 	 * @param testcase
 	 * @throws IOException 
 	 * @throws URISyntaxException 
+	 * @throws UnsupportedModelException 
 	 */
-	public void generateTestCases() throws IOException, URISyntaxException {
+	public void generateTestCases() throws IOException, URISyntaxException, UnsupportedModelException {
 		List<BitSet> configList = new ArrayList<BitSet>();
 		ConfigGenerator configGenerator = new ConfigGenerator();
 		Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
@@ -37,9 +41,8 @@ public class TestGenerator {
 		String str_baseContent = new String(byte_baseContent, StandardCharsets.UTF_8);
 		
 		configList = configGenerator.generateConfigurations();
-		int i=0;
 		for(BitSet config : configList) {
-			i++;
+			//copy baseContent
 		    String specificContent = new String(str_baseContent);
 		    //delete feature entries in framed model depending on configuration
 		    specificContent = editFeatureConfiguration(specificContent, config);
