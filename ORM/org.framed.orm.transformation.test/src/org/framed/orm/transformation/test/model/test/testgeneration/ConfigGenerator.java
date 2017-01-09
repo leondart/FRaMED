@@ -7,9 +7,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.List;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
+
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.configuration.Configuration;
 import de.ovgu.featureide.fm.core.configuration.SelectableFeature;
@@ -280,10 +283,11 @@ public class ConfigGenerator {
 	 * @throws FileNotFoundException 
 	 */
 	public List<BitSet> generateConfigurations() throws FileNotFoundException, UnsupportedModelException {
+		
 		int int_config = 0b0000000000000000000;
 		List<BitSet> configList = new ArrayList<BitSet>();
 		BitSet bitSet_config = new BitSet(19);
-	
+		
 		readFeatureModel();
 		while(int_config<=0b1111111111111111111) {
 			bitSet_config = BitSet.valueOf(new long[]{int_config});
