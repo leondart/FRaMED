@@ -10,13 +10,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
-
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
-
 
 /**
  * @author Kevin Kassin

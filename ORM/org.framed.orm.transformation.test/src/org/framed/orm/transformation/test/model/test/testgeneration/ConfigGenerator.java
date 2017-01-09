@@ -7,18 +7,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.BitSet;
-import java.util.List;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
-import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.osgi.framework.Bundle;
-
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.configuration.Configuration;
 import de.ovgu.featureide.fm.core.configuration.SelectableFeature;
 import de.ovgu.featureide.fm.core.configuration.Selection;
-import de.ovgu.featureide.fm.core.configuration.SelectionNotPossibleException;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 
@@ -293,10 +288,7 @@ public class ConfigGenerator {
 		while(int_config<=0b1111111111111111111) {
 			bitSet_config = BitSet.valueOf(new long[]{int_config});
 			bitSet_config = shiftBitSet(bitSet_config);
-			if(validCheck(bitSet_config)) {
-				System.out.println(bitSetToString(bitSet_config));
-				configList.add(bitSet_config);
-			}
+			if(validCheck(bitSet_config)) configList.add(bitSet_config);
 			int_config++; 
 		}
 		/*
