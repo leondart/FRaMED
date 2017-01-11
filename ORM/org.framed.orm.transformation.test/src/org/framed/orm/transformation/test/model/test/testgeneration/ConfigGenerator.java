@@ -287,7 +287,7 @@ public class ConfigGenerator {
 		int int_config = 0b0000000000000000000;
 		List<BitSet> configList = new ArrayList<BitSet>();
 		BitSet bitSet_config = new BitSet(19);
-		
+		/*
 		readFeatureModel();
 		while(int_config<=0b1111111111111111111) {
 			bitSet_config = BitSet.valueOf(new long[]{int_config});
@@ -295,47 +295,18 @@ public class ConfigGenerator {
 			if(validCheck(bitSet_config)) configList.add(bitSet_config);
 			int_config++; 
 		}
-		/*
-		int_config = 0b1111110110000100001;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b1011101100000101101;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b1001100000001111111;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b0110110011111100000;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b0011110000000111111;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b1111111001110100001;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b1111111111111111111;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b0000000000000000000;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b0000111110000011111;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);
-		int_config = 0b0101100111110000011;
-		bitSet_config = BitSet.valueOf(new long[]{int_config});
-		bitSet_config = shiftBitSet(bitSet_config);
-		configList.add(bitSet_config);*/
+		*/
+
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0000000000000000000})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111110110000100010})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1011101100000101100})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1001100000001111111})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0110110011111100000})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0011110000000111111})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111001110100010})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111111111111111})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0000111110000011111})));
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0101100111110000011})));
 		return configList;
 	}
 }
