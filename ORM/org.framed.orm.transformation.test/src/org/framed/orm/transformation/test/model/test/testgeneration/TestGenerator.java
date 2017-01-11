@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -30,6 +31,8 @@ import org.framed.orm.model.ModelElement;
 import org.framed.orm.transformation.test.model.test.TestCase;
 import org.osgi.framework.Bundle;
 
+import crom_l1_composed.Constraint;
+import crom_l1_composed.Part;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 /**
@@ -141,8 +144,86 @@ public class TestGenerator {
 	}
 	
 	public TestCase editCromModel(TestCase testCase, BitSet config) {
+		EList<crom_l1_composed.ModelElement> cromElements = testCase.getCromModel().getElements();
+		
+		//Role_Properties, Role_Behavior  TO FIX FOR ROLE_GROUPS
+		if(!config.get(0)) {
+			//find compartment types
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					//find roles
+					for(Part part : ((crom_l1_composed.CompartmentType) element).getParts()) {
+						if(part.getRole() instanceof crom_l1_composed.RoleType) {	
+							//delete attributes and operation
+							((crom_l1_composed.RoleType) part.getRole()).getAttributes().clear();
+							((crom_l1_composed.RoleType) part.getRole()).getOperations().clear();
+		}}}}}	
+		
+		//Role_Inheritance
+		if(!config.get(1)) {
+			//RoleInheritance transformation to implement correct
+		}
+		
+		//Compartments
+		if(!config.get(2)) {
+			//find compartment types
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					//delete attributes and operation
+					((crom_l1_composed.CompartmentType) element).getAttributes().clear();
+					((crom_l1_composed.CompartmentType) element).getOperations().clear();
+		}}}
+		
+		//Dates
+		if(!config.get(3)) {
+			//find fulfillments
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.Fulfillment) {
+					//delete fulfilment if filler is data type
+					if(((crom_l1_composed.Fulfillment) element).getFiller() instanceof crom_l1_composed.DataType)
+						cromElements.remove(cromElements.indexOf(element));
+		}}}
+		
+		//Role_Implication
+		if(!config.get(4)) {
+			changeRoleConstraints("RoleImplication", cromElements);
+		}	
+				
+		//Role_Prohibition
+		if(!config.get(5)) {
+			changeRoleConstraints("RoleProhibition", cromElements);
+		}	
+				
+		//Role_Equivalence
+		if(!config.get(6)) {
+			changeRoleConstraints("RoleEquivalence", cromElements);
+		}	
+		
 		return testCase;
 	}
+	
+	public static void changeRoleConstraints(String constraintType, EList<crom_l1_composed.ModelElement> cromElements) {
+		EList<Constraint> constraints;
+		ArrayList<Constraint> toDelete;
+		
+		//find compartment types
+		for(crom_l1_composed.ModelElement element : cromElements) {
+			if(element instanceof crom_l1_composed.CompartmentType) {
+				//find constraints
+				constraints = ((crom_l1_composed.CompartmentType) element).getConstraints();
+				toDelete = new ArrayList<Constraint>();
+				for(Constraint constraint : constraints) {
+					//find role implications
+					if(constraint instanceof crom_l1_composed.RoleImplication && constraintType.equals("RoleImplication"))
+						toDelete.add(constraint);
+					if(constraint instanceof crom_l1_composed.RoleProhibition && constraintType.equals("RoleProhibition"))
+						toDelete.add(constraint);
+					if(constraint instanceof crom_l1_composed.RoleEquivalence && constraintType.equals("RoleEquivalence"))
+						toDelete.add(constraint);
+				}
+				//delete role implication
+				for(Constraint constraint : toDelete) constraints.remove(constraints.indexOf(constraint));
+	}}}
 	
 	/**
 	 * loads the {@link TestCase} of the specified {@link File}.
