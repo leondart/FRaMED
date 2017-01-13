@@ -81,7 +81,7 @@ public class TransformationTestSuite {
     List<Object[]> list = new LinkedList<Object[]>();
     File file = null;
     
-    //TEST_GENERATOR.generateTestCases();
+    TEST_GENERATOR.generateTestCases();
    
     // if bundle is available this test runs as plugin junit test
     Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");

@@ -13,6 +13,8 @@ import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
@@ -54,7 +56,7 @@ public class TestGenerator {
 		List<BitSet> configList = new ArrayList<BitSet>();
 		configGenerator = new ConfigGenerator();
 		Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
-	    URL fileURL = bundle.getEntry("testcases/XGenerated/baseTest.xmi");
+	    URL fileURL = bundle.getEntry("testcases/Generated/baseTest.xmi");
 		File file = new File(FileLocator.resolve(fileURL).toURI());
 		String str_config;
 		
@@ -73,8 +75,8 @@ public class TestGenerator {
 		    
 		    str_config=configGenerator.bitSetToString(config);
 		
-			if(str_config.equals("1011101100000101101")) System.out.println(testCase.getDescription());
-		    createTestFile(testCase, URI.createFileURI(bundle.getLocation().substring(16) + "testcases/XGenerated/" + str_config + ".xmi"));
+			URI a = URI.createFileURI("testcases/Generated/" + str_config + ".xmi");
+			createTestFile(testCase, a);
 		}      
 	}
 	
@@ -272,7 +274,7 @@ public class TestGenerator {
 	    
 	    return res1;
 	  }
-	
+	 
 	/**
 	 * This method calculates the  
 	 * @param featureName
