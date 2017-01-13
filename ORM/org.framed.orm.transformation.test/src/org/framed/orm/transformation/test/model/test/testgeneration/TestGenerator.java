@@ -20,9 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.transformation.test.model.test.TestCase;
 import org.osgi.framework.Bundle;
-
-import crom_l1_composed.Constraint;
-import crom_l1_composed.Part;
+import crom_l1_composed.*;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
 /**
@@ -143,11 +141,16 @@ public class TestGenerator {
 				if(element instanceof crom_l1_composed.CompartmentType) {
 					//find roles
 					for(Part part : ((crom_l1_composed.CompartmentType) element).getParts()) {
-						if(part.getRole() instanceof crom_l1_composed.RoleType) {	
-							//delete attributes and operation
-							((crom_l1_composed.RoleType) part.getRole()).getAttributes().clear();
-							((crom_l1_composed.RoleType) part.getRole()).getOperations().clear();
-		}}}}}	
+						if(part.getRole() instanceof crom_l1_composed.RoleType) 
+							DeleteAttributesAndOperationFromRole((crom_l1_composed.RoleType) part.getRole());
+						if(part.getRole() instanceof crom_l1_composed.RoleGroup) {
+							//iterate over RoleGroup elements
+							for(RoleGroupElement roleGroupElement : ((crom_l1_composed.RoleGroup) part.getRole()).getElements()) {
+								if(roleGroupElement instanceof crom_l1_composed.RoleType)
+									DeleteAttributesAndOperationFromRole((crom_l1_composed.RoleType) roleGroupElement);
+								if(roleGroupElement instanceof crom_l1_composed.RoleGroup)
+									TraverseInRoleGroups((crom_l1_composed.RoleGroup) roleGroupElement);
+		}}}}}}	
 		
 		//Role_Inheritance
 		if(!config.get(1)) {
@@ -214,6 +217,20 @@ public class TestGenerator {
 				//delete role implication
 				for(Constraint constraint : toDelete) constraints.remove(constraints.indexOf(constraint));
 	}}}
+
+	public static void DeleteAttributesAndOperationFromRole(crom_l1_composed.RoleType role) {
+		role.getAttributes().clear();
+		role.getOperations().clear();
+	}
+	
+	public static void TraverseInRoleGroups(crom_l1_composed.RoleGroup roleGroup) {
+		for(RoleGroupElement roleGroupElement : roleGroup.getElements()) {
+			if(roleGroupElement instanceof crom_l1_composed.RoleType)
+				DeleteAttributesAndOperationFromRole((crom_l1_composed.RoleType) roleGroupElement);
+			if(roleGroupElement instanceof crom_l1_composed.RoleGroup)
+				TraverseInRoleGroups((crom_l1_composed.RoleGroup) roleGroupElement);
+		}	
+	}
 	
 	/**
 	 * loads the {@link TestCase} of the specified {@link File}.

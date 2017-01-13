@@ -144,7 +144,7 @@
 		      <bottomRight x="288" y="413"/>
 		    </boundaries>
 		  </elements>
-		  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@framedModel/@elements.5" outgoingRelations="//@framedModel/@elements.9 //@framedModel/@elements.11" type="NaturalType">
+		  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@framedModel/@elements.5" outgoingRelations="//@framedModel/@elements.9 //@framedModel/@elements.11 //@framedModel/@elements.16" type="NaturalType">
 		    <firstSegment>
 		      <elements name="AttributeNatA : String"/>
 		    </firstSegment>
@@ -188,7 +188,7 @@
 		      <bottomRight x="290" y="591"/>
 		    </boundaries>
 		  </elements>
-		  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB" incomingRelations="//@framedModel/@elements.9" outgoingRelations="//@framedModel/@elements.13">
+		  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB" incomingRelations="//@framedModel/@elements.9 //@framedModel/@elements.15" outgoingRelations="//@framedModel/@elements.13">
 		    <firstSegment/>
 		    <secondSegment/>
 		    <model>
@@ -370,6 +370,19 @@
 		    </bendpoints>
 		  </elements>
 		  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@framedModel/@elements.0" source="//@framedModel/@elements.8" referencedRoles="//@framedModel/@elements.0/@model/@elements.2/@model/@elements.1"/>
+	  	  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentC" incomingRelations="//@framedModel/@elements.16" outgoingRelations="//@framedModel/@elements.15">
+			<firstSegment/>
+				<secondSegment>
+					<elements name="OperationCompartmentC(input : Boolean)"/>
+				</secondSegment>
+			<model/>
+				<boundaries>
+					<topLeft x="410" y="434"/>
+					<bottomRight x="656" y="589"/>
+				</boundaries>
+		</elements>
+		<elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@framedModel/@elements.8" source="//@framedModel/@elements.14"/>
+		<elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@framedModel/@elements.14" source="//@framedModel/@elements.4" referencedRoles="//@framedModel/@elements.8/@model/@elements.0 //@framedModel/@elements.8/@model/@elements.1 //@framedModel/@elements.8/@model/@elements.2 //@framedModel/@elements.8/@model/@elements.3"/>	
 	  <framedConfiguration>
 	    <features/>
 	    <features name="Role_Types"/>
@@ -469,7 +482,7 @@
 		      <attributes name="value"/>
 		    </elements>
 		  </elements>
-		  <elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentB">
+		  <elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentB" incoming="//@cromModel/@relations.11">
 		    <parts upper="1">
 		      <role xsi:type="crom_l1_composed:RoleType" name="RoleA" outgoing="//@cromModel/@elements.6/@relationships.0 //@cromModel/@elements.6/@relationships.3 //@cromModel/@elements.6/@relationships.4">
 		        <attributes name="AttributeRoleA"/>
@@ -517,6 +530,11 @@
 		    <constraints xsi:type="crom_l1_composed:RelationshipImplication" first="//@cromModel/@elements.6/@relationships.0" second="//@cromModel/@elements.6/@relationships.4"/>
 		    <constraints xsi:type="crom_l1_composed:RelationshipExclusion" first="//@cromModel/@elements.6/@relationships.3" second="//@cromModel/@elements.6/@relationships.2"/>
 		  </elements>
+		  <elements xsi:type="crom_l1_composed:CompartmentType" name="CompartmentC" outgoing="//@cromModel/@relations.11">
+			<operations name="OperationCompartmentC">
+				<params name="input"/>
+			</operations>
+		  </elements>
 		  <relations xsi:type="crom_l1_composed:NaturalInheritance" super="//@cromModel/@elements.4" sub="//@cromModel/@elements.3"/>
 		  <relations xsi:type="crom_l1_composed:DataInheritance" super="//@cromModel/@elements.2" sub="//@cromModel/@elements.1"/>
 		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.0/@role" filler="//@cromModel/@elements.4"/>
@@ -528,5 +546,10 @@
 		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.2/@role" filler="//@cromModel/@elements.4"/>
 		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.2/@role/@elements.3" filler="//@cromModel/@elements.0"/>
 		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.0/@parts.2/@role/@elements.1" filler="//@cromModel/@elements.6"/>
+		  <relations xsi:type="crom_l1_composed:CompartmentInheritance" super="//@cromModel/@elements.6" sub="//@cromModel/@elements.7"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.0/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.1/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.2/@role" filler="//@cromModel/@elements.4"/>
+		  <relations xsi:type="crom_l1_composed:Fulfillment" filled="//@cromModel/@elements.6/@parts.3/@role" filler="//@cromModel/@elements.4"/>	
 	</cromModel>
 </ts:TestCase>	  
