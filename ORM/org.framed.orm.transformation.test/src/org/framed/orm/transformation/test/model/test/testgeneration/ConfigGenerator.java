@@ -296,7 +296,8 @@ public class ConfigGenerator {
 			int_config++; 
 		}
 		*/
-		/*
+		
+		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111111111111111})));
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0000000000000000000})));
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111110110000100010})));
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1011101100000101100})));
@@ -304,12 +305,9 @@ public class ConfigGenerator {
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0110110011111100000})));
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0011110000000111111})));
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111001110100010})));
-		*/
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111111111111111})));
-		/*
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0000111110000011111})));
 		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0101100111110000011})));
-		*/
+	
 		return configList;
 	}
 }

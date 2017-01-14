@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.transformation.test.model.test.TestCase;
 import org.osgi.framework.Bundle;
+
 import crom_l1_composed.*;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 
@@ -61,8 +63,8 @@ public class TestGenerator {
 		    
 		    str_config=configGenerator.bitSetToString(config);
 		
-			URI a = URI.createFileURI("testcases/Generated/" + str_config + ".xmi");
-			createTestFile(testCase, a);
+			URI fileURI = URI.createFileURI("testcases/Generated/" + str_config + ".xmi");
+			createTestFile(testCase, fileURI);
 		}      
 	}
 	
@@ -133,8 +135,15 @@ public class TestGenerator {
 	
 	public TestCase editCromModel(TestCase testCase, BitSet config) {
 		EList<crom_l1_composed.ModelElement> cromElements = testCase.getCromModel().getElements();
+		List<crom_l1_composed.ModelElement> ElementsToDelete = new ArrayList<crom_l1_composed.ModelElement>(); 
+		List<crom_l1_composed.ModelElement> ElementsToDeleteFromGroup = new ArrayList<crom_l1_composed.ModelElement>(); 
+		List<Constraint> ConstraintsToDelete = new ArrayList<Constraint>();
+		List<Relation> RelationsToDelete = new ArrayList<Relation>();
+		List<Relationship> RelationshipsToDelete = new ArrayList<Relationship>();
 		
-		//Role_Properties, Role_Behavior  TO FIX FOR ROLE_GROUPS
+	//Properties and Behavior
+	//-----------------------	
+		//Role_Properties, Role_Behavior
 		if(!config.get(0)) {
 			//find compartment types
 			for(crom_l1_composed.ModelElement element : cromElements) {
@@ -152,45 +161,217 @@ public class TestGenerator {
 									TraverseInRoleGroups((crom_l1_composed.RoleGroup) roleGroupElement);
 		}}}}}}	
 		
+		//Compartment_Types, Compartment_Behavior, Compartment_Properties
+		if(!config.get(14)) {
+			//find compartments
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				//delete the attributes and operations
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					((crom_l1_composed.CompartmentType) element).getAttributes().clear();
+					((crom_l1_composed.CompartmentType) element).getOperations().clear();
+		}}}
+	
+	//Constraints
+	//-----------	
+		//Role_Implication
+		if(!config.get(4)) {
+			changeRoleConstraints("RoleImplication", cromElements);
+		}	
+						
+		//Role_Prohibition
+		if(!config.get(5)) {
+			changeRoleConstraints("RoleProhibition", cromElements);
+		}	
+						
+		//Role_Equivalence
+		if(!config.get(6)) {
+			changeRoleConstraints("RoleEquivalence", cromElements);
+		}
+				
+		//Group_Constraints
+		if(!config.get(7)) {
+			//find compartment types
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					//find roleGroups
+					for(Part part : ((crom_l1_composed.CompartmentType) element).getParts()) {
+						if(part.getRole() instanceof crom_l1_composed.RoleGroup) {
+							//delete group constraints
+							((crom_l1_composed.RoleGroup) part.getRole()).setLower(0);
+							((crom_l1_composed.RoleGroup) part.getRole()).setUpper(-1);
+		}}}}}
+				
+		//Occurence_Constraints
+		if(!config.get(8)) {
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					//find parts
+					for(Part part : ((crom_l1_composed.CompartmentType) element).getParts()) {
+						//delete occurence constraints
+						part.setLower(0);
+						part.setUpper(-1);
+		}}}}
+				
+		//Relationship
+		if(!config.get(9)) {
+			//find all relationships, delete them
+			for(crom_l1_composed.ModelElement element : cromElements) {	
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					for(Relationship relationship : ((crom_l1_composed.CompartmentType) element).getRelationships())		
+						RelationshipsToDelete.add(relationship);	
+					for(Relationship relation : RelationshipsToDelete)
+						((crom_l1_composed.CompartmentType) element).getRelationships().remove(relation);
+			}}}
+			
+		//Relationship_Cardinality
+		if(!config.get(10)) {
+			//find all relationships
+			for(crom_l1_composed.ModelElement element : cromElements) {	
+				if(element instanceof crom_l1_composed.Relationship) {
+					//get place, set place generic
+					crom_l1_composed.Place place = ((crom_l1_composed.Relationship) element).getFirst();
+					place.setLower(0); place.setUpper(-1);
+					((crom_l1_composed.Relationship) element).setFirst(place);
+					((crom_l1_composed.Relationship) element).setSecond(place);
+		}}}
+			
+		//Intra_Relationship_Constraints
+		if(!config.get(11)) {
+			//find all intrarelationship constraints, delete them
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					for(Relation constraint : ((crom_l1_composed.CompartmentType) element).getConstraints()) {	
+						if(constraint instanceof crom_l1_composed.Reflexive || 
+							constraint instanceof crom_l1_composed.Irreflexive ||		
+							constraint instanceof crom_l1_composed.Total ||
+							constraint instanceof crom_l1_composed.Cyclic ||
+							constraint instanceof crom_l1_composed.Acyclic)
+								ConstraintsToDelete.add((Constraint) constraint);	
+					}
+					for(Constraint constraint : ConstraintsToDelete) 
+						((crom_l1_composed.CompartmentType) element).getConstraints().remove(constraint);
+					ConstraintsToDelete.clear();
+		}}}
+			
+		//Inter_Relationship_Constraints
+		if(!config.get(12)) {
+			//find all interrelationship constraints, delete them
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					for(Relation constraint : ((crom_l1_composed.CompartmentType) element).getConstraints()) {	
+						if(constraint instanceof crom_l1_composed.RelationshipImplication || 
+							constraint instanceof crom_l1_composed.RelationshipExclusion )
+								ConstraintsToDelete.add((Constraint) constraint);	
+					}
+					for(Constraint constraint : ConstraintsToDelete) 
+						((crom_l1_composed.CompartmentType) element).getConstraints().remove(constraint);	
+		}}}	
+		
+	//Fulfillments	
+	//------------	
+		//Compartments
+		if(!config.get(2)) {
+			//find fulfillments
+			for(Relation relation : testCase.getCromModel().getRelations()) {
+				if(relation instanceof crom_l1_composed.Fulfillment) {
+					//delete fulfilment if filler is compartment_type
+					if(((crom_l1_composed.Fulfillment) relation).getFiller() instanceof crom_l1_composed.CompartmentType)
+						RelationsToDelete.add(relation);
+				}
+			}
+			for(Relation relation : RelationsToDelete) 
+				testCase.getCromModel().getRelations().remove(relation);
+			RelationsToDelete.clear();
+		}
+			
+		//Dates
+		if(!config.get(3)) {
+			//find fulfillments
+			for(Relation relation : testCase.getCromModel().getRelations()) {
+				if(relation instanceof crom_l1_composed.Fulfillment) {
+					//delete fulfilment if filler is data type
+					if(((crom_l1_composed.Fulfillment) relation).getFiller() instanceof crom_l1_composed.DataType)
+						RelationsToDelete.add(relation);
+				}
+			}
+			for(Relation relation : RelationsToDelete) 
+				testCase.getCromModel().getRelations().remove(relation);
+			RelationsToDelete.clear();
+		}
+		
+		//Playable_By_Defining_Compartment
+		if(!config.get(16)) {
+			//find fulfillments 
+			for(Relation relation : testCase.getCromModel().getRelations()) {
+				if(relation instanceof crom_l1_composed.Fulfillment) {
+					if(((crom_l1_composed.Fulfillment) relation).getFiller() instanceof crom_l1_composed.CompartmentType)	{ 
+						//delete fulfilment if filler is compartment_type
+						crom_l1_composed.CompartmentType filler =(crom_l1_composed.CompartmentType) ((crom_l1_composed.Fulfillment) relation).getFiller();
+						crom_l1_composed.RoleType filled = (crom_l1_composed.RoleType) ((crom_l1_composed.Fulfillment) relation).getFilled();
+						//is filled role in filler compartment types
+						for(Part part : filler.getParts()) {
+							if(part.getRole() instanceof crom_l1_composed.RoleType)
+								if(part.getRole()==filled) RelationsToDelete.add(relation); 	
+							if(part.getRole() instanceof crom_l1_composed.RoleGroup) {
+								if(RoleGroupChildContainsRole((crom_l1_composed.RoleGroup) part.getRole(), filled))
+									RelationsToDelete.add(relation);
+		}}}}}		
+					for(Relation relation : RelationsToDelete) 
+						testCase.getCromModel().getRelations().remove(relation);
+					RelationsToDelete.clear();
+		}
+	
+	//Inheritances	
+	//------------	
 		//Role_Inheritance
 		if(!config.get(1)) {
 			//RoleInheritance transformation to implement correct
 		}
 		
-		//Compartments
-		if(!config.get(2)) {
-			//find compartment types
-			for(crom_l1_composed.ModelElement element : cromElements) {
-				if(element instanceof crom_l1_composed.CompartmentType) {
-					//delete attributes and operation
-					((crom_l1_composed.CompartmentType) element).getAttributes().clear();
-					((crom_l1_composed.CompartmentType) element).getOperations().clear();
-		}}}
+		//Compartment_Inheritance
+		if(!config.get(15)) {
+			for(Relation relation : testCase.getCromModel().getRelations()) {
+				//find compartment inheritances, delete them
+				if(relation instanceof crom_l1_composed.CompartmentInheritance)
+					RelationsToDelete.add(relation);
+				}
+				for(Relation relation : RelationsToDelete) 
+					testCase.getCromModel().getRelations().remove(relation);
+				RelationsToDelete.clear();
+		}
 		
-		//Dates
-		if(!config.get(3)) {
-			//find fulfillments
-			for(crom_l1_composed.ModelElement element : cromElements) {
-				if(element instanceof crom_l1_composed.Fulfillment) {
-					//delete fulfilment if filler is data type
-					if(((crom_l1_composed.Fulfillment) element).getFiller() instanceof crom_l1_composed.DataType)
-						cromElements.remove(cromElements.indexOf(element));
-		}}}
+		//Data_Type_Inheritance
+		if(!config.get(18)) {
+			for(Relation relation : testCase.getCromModel().getRelations()) {
+			//find data type inheritances, delete them
+				if(relation instanceof crom_l1_composed.DataInheritance)
+					RelationsToDelete.add(relation);
+				}
+				for(Relation relation : RelationsToDelete) 
+					testCase.getCromModel().getRelations().remove(relation);
+		}
 		
-		//Role_Implication
-		if(!config.get(4)) {
-			changeRoleConstraints("RoleImplication", cromElements);
-		}	
-				
-		//Role_Prohibition
-		if(!config.get(5)) {
-			changeRoleConstraints("RoleProhibition", cromElements);
-		}	
-				
-		//Role_Equivalence
-		if(!config.get(6)) {
-			changeRoleConstraints("RoleEquivalence", cromElements);
-		}	
+	//Datatype	
+	//--------
+		if(!config.get(17)) {
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				//find data types, delete them
+				if(element instanceof crom_l1_composed.DataType)
+					ElementsToDelete.add(element);
+				if(element instanceof crom_l1_composed.Group) {	
+					for(crom_l1_composed.ModelElement groupElement : ((crom_l1_composed.Group) element).getElements()) {
+						if(groupElement instanceof crom_l1_composed.DataType)
+							ElementsToDeleteFromGroup.add(groupElement);
+						if(groupElement instanceof crom_l1_composed.Group)
+							TraverseInGroup((crom_l1_composed.Group) groupElement);
+					}
+					for(crom_l1_composed.ModelElement elementToDelete : ElementsToDeleteFromGroup)
+						((crom_l1_composed.Group) element).getElements().remove(elementToDelete);
+				}	
+			}
+			for(crom_l1_composed.ModelElement element : ElementsToDelete) 
+				cromElements.remove(element);		
+		}
 		
 		return testCase;
 	}
@@ -232,6 +413,34 @@ public class TestGenerator {
 		}	
 	}
 	
+	public static void TraverseInGroup(crom_l1_composed.Group group) {
+		List<crom_l1_composed.ModelElement> ElementsToDelete = new ArrayList<crom_l1_composed.ModelElement>();
+		System.out.println("test2");
+		System.out.println(group.getElements());
+		for(crom_l1_composed.ModelElement groupElement : group.getElements()) {
+			if(groupElement instanceof crom_l1_composed.DataType) {
+				System.out.println("test3");
+				ElementsToDelete.add(groupElement);
+			}	
+			if(groupElement instanceof crom_l1_composed.Group)
+				TraverseInGroup((crom_l1_composed.Group) groupElement);
+		}
+		for(crom_l1_composed.ModelElement element : ElementsToDelete) {
+			group.getElements().remove(element);
+			System.out.println(element.toString());
+		}
+	}
+	
+	public static boolean RoleGroupChildContainsRole(crom_l1_composed.RoleGroup roleGroup, crom_l1_composed.RoleType filled) {
+		for(RoleGroupElement roleGroupElement : roleGroup.getElements()) {
+			if(roleGroupElement instanceof crom_l1_composed.RoleType)
+				if((crom_l1_composed.RoleType) roleGroupElement==filled) return true;
+			if(roleGroupElement instanceof crom_l1_composed.RoleGroup)
+				RoleGroupChildContainsRole((crom_l1_composed.RoleGroup) roleGroupElement, filled);
+		} 
+		return false;
+	}
+	
 	/**
 	 * loads the {@link TestCase} of the specified {@link File}.
 	 * @param file
@@ -268,16 +477,11 @@ public class TestGenerator {
 	    ResourceSet set1 = new ResourceSetImpl();
 	    Resource res1 = set1.createResource(file);
 	    
-	    if (testCase != null)
-	    	res1.getContents().add(EcoreUtil.copy(testCase));
-
+	    if (testCase != null) res1.getContents().add(EcoreUtil.copy(testCase));
 	    try {
-	      res1.save(Collections.EMPTY_MAP);
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    }
-	    
-	    return res1;
+	    	res1.save(Collections.EMPTY_MAP);
+	    } catch(IOException e) {}
+	   	return res1;
 	  }
 	 
 	/**

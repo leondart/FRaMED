@@ -24,4 +24,5 @@ Bundle-ActivationPolicy: lazy
 Import-Package: de.ovgu.featureide.fm.core,
  de.ovgu.featureide.fm.core.configuration,
  de.ovgu.featureide.fm.core.io,
- de.ovgu.featureide.fm.core.io.xml
+ de.ovgu.featureide.fm.core.io.xml,
+ org.eclipse.core.resources
