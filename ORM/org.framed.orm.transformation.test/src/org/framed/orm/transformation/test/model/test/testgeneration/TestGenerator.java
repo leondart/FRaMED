@@ -325,7 +325,15 @@ public class TestGenerator {
 	//------------	
 		//Role_Inheritance
 		if(!config.get(1)) {
-			//RoleInheritance transformation to implement correct
+			Relation relTest=null;
+			for(Relation relation : testCase.getCromModel().getRelations()) {
+				//find compartment inheritances, delete them
+				if(relation instanceof crom_l1_composed.RoleInheritance)
+					RelationsToDelete.add(relation);
+			}
+			for(Relation relation : RelationsToDelete) 
+				testCase.getCromModel().getRelations().remove(relation);
+			RelationsToDelete.clear();		
 		}
 		
 		//Compartment_Inheritance

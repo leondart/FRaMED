@@ -8,7 +8,7 @@
       <elements name="OperationCompartmentA(input : Boolean)"/>
     </secondSegment>
     <model>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RoleF" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="RoleF" outgoingRelations="//@elements.0/@model/@elements.3" type="RoleType">
         <firstSegment/>
         <secondSegment>
           <elements name="OperationRoleE(input : Integer) : String"/>
@@ -19,7 +19,7 @@
           <bottomRight x="1061" y="500"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RoleE" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="RoleE" incomingRelations="//@elements.0/@model/@elements.3" type="RoleType">
         <firstSegment>
           <elements name="AttributeRoleE : Integer"/>
         </firstSegment>
@@ -96,6 +96,7 @@
           <bottomRight x="752" y="518"/>
         </boundaries>
       </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0"/>
     </model>
     <boundaries>
       <topLeft x="848" y="158"/>
@@ -368,8 +369,8 @@
     </secondSegment>
     <model/>
     <boundaries>
-      <topLeft x="397" y="440"/>
-      <bottomRight x="660" y="593"/>
+      <topLeft x="380" y="432"/>
+      <bottomRight x="666" y="608"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.14" source="//@elements.4" referencedRoles="//@elements.8/@model/@elements.0 //@elements.8/@model/@elements.1 //@elements.8/@model/@elements.2 //@elements.8/@model/@elements.3"/>
