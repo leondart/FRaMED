@@ -226,14 +226,15 @@ public class TestGenerator {
 		//Relationship_Cardinality
 		if(!config.get(10)) {
 			//find all relationships
-			for(crom_l1_composed.ModelElement element : cromElements) {	
-				if(element instanceof crom_l1_composed.Relationship) {
-					//get place, set place generic
-					crom_l1_composed.Place place = ((crom_l1_composed.Relationship) element).getFirst();
-					place.setLower(0); place.setUpper(-1);
-					((crom_l1_composed.Relationship) element).setFirst(place);
-					((crom_l1_composed.Relationship) element).setSecond(place);
-		}}}
+			for(crom_l1_composed.ModelElement element : cromElements) {
+				if(element instanceof crom_l1_composed.CompartmentType) {
+					for(Relationship relationship : ((crom_l1_composed.CompartmentType) element).getRelationships()) { 	
+							//get place, set place generic
+						relationship.getFirst().setLower(0);
+						relationship.getFirst().setUpper(-1);
+						relationship.getSecond().setLower(0);
+						relationship.getSecond().setUpper(-1);
+		}}}}
 			
 		//Intra_Relationship_Constraints
 		if(!config.get(11)) {

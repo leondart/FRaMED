@@ -24,7 +24,6 @@ import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
  * @author Kevin Kassin
  * This class generate valid feature configurations in compact manner to test transformations.
  */
-
 public class ConfigGenerator {
 	
 /*
@@ -50,28 +49,29 @@ public class ConfigGenerator {
 	config[17] = Data_Types
 	config[18] = Data_Type_Inheritance
 */
+	
+	/**
+	 * requirementConfigTuple, list of requirement with its corresponding configurations 
+	 */
+	public static List<String> rCT;
+	
+	/**
+	 * list of configurations
+	 */
+	public static List<String> configList;
+	
 	/**
 	 * reduced number of feature, which are relevant to test the transformations 
 	 */
 	public static int reducedFeatures=19;
 	
 	/**
-	 * used to save prior valid configurations
-	 */
-	public BitSet configBefore1;
-	
-	/**
-	 * used to save prior valid configurations
-	 */
-	public BitSet configBefore2;
-	
-	/**
-	* The file of the corresponding feature model.
+	* the file of the corresponding feature model.
 	*/
 	File featureModelFile = null;
 	
 	/**
-	* The actual feature model used for the configuration
+	* the actual feature model used for the configuration
 	*/
 	private FeatureModel featureModel = new FeatureModel();
 	
@@ -79,8 +79,8 @@ public class ConfigGenerator {
 	 * constructor
 	 */
 	public ConfigGenerator() {
-		configBefore1=null;
-		configBefore2=null;
+		rCT=calculateRequirementConfigTuple();
+		configList = new ArrayList<String>();
 	}
 	
 	/**
@@ -140,140 +140,147 @@ public class ConfigGenerator {
 	}
 	
 	/**
-	 * This method created the model configuration based on the generated bitSet_config
-	 * @param bitSet_config
-	 * @return model configuration based on bitSet_config
+	 * calculates a list of requirements and its corresponding configurations
+	 * @return list of requirements and its corresponding configurations
 	 */
-	public Configuration buildFramedConfiguration(BitSet bitSet_config) {
-		Configuration configuration = new Configuration(featureModel);
-	    configuration.setPropagate(true);
-	    configuration.resetValues();
-	    configuration.update();
-	 
-	    //features that are always selected
-		configuration.setManual("RML_Feature_Model", Selection.SELECTED);
-		configuration.setManual("Role_Types", Selection.SELECTED);
-		configuration.setManual("Playable", Selection.SELECTED);
-		configuration.setManual("Players", Selection.SELECTED);
-		configuration.setManual("Naturals", Selection.SELECTED);
-		configuration.setManual("Roles", Selection.SELECTED);
-		    
-		//features depending on bitSet_config
-		//Role_Properties and Role_Behavior, Role_Properties equals Role_Behavior
-		if(bitSet_config.get(0)) {	configuration.setManual("Role_Properties", Selection.SELECTED); 
-		    						configuration.setManual("Role_Behavior", Selection.SELECTED); } 
-		    else { configuration.setManual("Role_Properties", Selection.UNSELECTED); 
-		    	   configuration.setManual("Role_Behavior", Selection.UNSELECTED); }
-		//Role_Inheritance
-		if(bitSet_config.get(1)) configuration.setManual("Role_Inheritance", Selection.SELECTED);
-		    else configuration.setManual("Role_Inheritance", Selection.UNSELECTED);
-		//Compartments
-		if(bitSet_config.get(2)) configuration.setManual("Compartments", Selection.SELECTED);
-		    else configuration.setManual("Compartments", Selection.UNSELECTED);
-		//Dates
-		if(bitSet_config.get(3)) configuration.setManual("Dates", Selection.SELECTED);
-    		else configuration.setManual("Dates", Selection.UNSELECTED);
-		//Role_Implication
-		if(bitSet_config.get(4)) configuration.setManual("Role_Implication", Selection.SELECTED);
-	    	else configuration.setManual("Role_Implication", Selection.UNSELECTED);
-		//Role_Prohibition
-		if(bitSet_config.get(5)) configuration.setManual("Role_Prohibition", Selection.SELECTED);
-	    	else configuration.setManual("Role_Prohibition", Selection.UNSELECTED);
-		//Role_Equivalence, Role_Implication implies Role_Equivalence
-		//Selection stays on UNDEFINED if !Role_Equivalence and Role_Implication -> checked later in validCheck
-		if(bitSet_config.get(6)) configuration.setManual("Role_Equivalence", Selection.SELECTED); 
-		    else if(!bitSet_config.get(4)) configuration.setManual("Role_Equivalence", Selection.UNSELECTED);
-		//Group_Constraints
-		if(bitSet_config.get(7)) configuration.setManual("Group_Constraints", Selection.SELECTED);
-	    	else configuration.setManual("Group_Constraints", Selection.UNSELECTED);	
-		//Occurrence_Constraints
-		if(bitSet_config.get(8)) configuration.setManual("Occurrence_Constraints", Selection.SELECTED);
-	    	else configuration.setManual("Occurrence_Constraints", Selection.UNSELECTED);
-		//Relationships, On_Relationship equals Relationships
-		if(bitSet_config.get(9)) { 	configuration.setManual("Relationships", Selection.SELECTED);
-			   						configuration.setManual("On_Relationships", Selection.SELECTED); }
-		   	else { 	configuration.setManual("Relationships", Selection.UNSELECTED);
-		    		configuration.setManual("On_Relationships", Selection.UNSELECTED); }
-		//Relationship_Cardinality
-		if(bitSet_config.get(10) && bitSet_config.get(9)) configuration.setManual("Relationship_Cardinality", Selection.SELECTED);
-	    	else configuration.setManual("Relationship_Cardinality", Selection.UNSELECTED);
-		//Intra_Relationship_Constraints and Parthood_Constraints
-		if(bitSet_config.get(11) && bitSet_config.get(9)) { 
-		    	configuration.setManual("Intra_Relationship_Constraints", Selection.SELECTED); 
-		    	configuration.setManual("Parthood_Constraints", Selection.SELECTED); }
-		    else { configuration.setManual("Intra_Relationship_Constraints", Selection.UNSELECTED);
-		    	   configuration.setManual("Parthood_Constraints", Selection.UNSELECTED); }
-		//Inter_Relationship_Constraints
-		if(bitSet_config.get(12) && bitSet_config.get(9)) configuration.setManual("Inter_Relationship_Constraints", Selection.SELECTED);
-	    	else configuration.setManual("Inter_Relationship_Constraints", Selection.UNSELECTED);
-		//Compartment_Types/ Participants and Contains_Compartments, On_Compartments equals Compartment_Types
-		//Selection stays on UNDEFINED if !Compartments and Compartment_Types -> checked later in validCheck
-		if(bitSet_config.get(13)) { configuration.setManual("Compartment_Types", Selection.SELECTED);
-									configuration.setManual("Contains_Compartments", Selection.SELECTED); 
-									configuration.setManual("Participants", Selection.SELECTED);
-									configuration.setManual("On_Compartments", Selection.SELECTED); } 
-		    else if(!bitSet_config.get(2)) { configuration.setManual("Compartment_Types", Selection.UNSELECTED);
-		    		  						 configuration.setManual("Contains_Compartments", Selection.UNSELECTED); 
-		    		  						 configuration.setManual("Participants", Selection.UNSELECTED); 
-		    		  						 configuration.setManual("On_Compartments", Selection.UNSELECTED); }
-		//Compartment_Properties and Compartment_Behavior, Compartment_Properties equals Compartment_Behavior
-		if(bitSet_config.get(14) && configuration.getSelectablefeature("Compartment_Types").getSelection()==Selection.SELECTED) 
-		    { configuration.setManual("Compartment_Properties", Selection.SELECTED);
-			  configuration.setManual("Compartment_Behavior", Selection.SELECTED); } 
-		    else { configuration.setManual("Compartment_Properties", Selection.UNSELECTED);
-		    	   configuration.setManual("Compartment_Behavior", Selection.UNSELECTED); }
-		//Compartment_Inheritance
-		if(bitSet_config.get(15) && configuration.getSelectablefeature("Compartment_Types").getSelection()==Selection.SELECTED) 
-		    	 configuration.setManual("Compartment_Inheritance", Selection.SELECTED);
-		    else configuration.setManual("Compartment_Inheritance", Selection.UNSELECTED);
-		//Playable_by_Defining_Compartment
-		if(bitSet_config.get(16) && configuration.getSelectablefeature("Compartment_Types").getSelection()==Selection.SELECTED) 
-		    	 configuration.setManual("Playable_by_Defining_Compartment", Selection.SELECTED);
-		    else configuration.setManual("Playable_by_Defining_Compartment", Selection.UNSELECTED);
-		//Data_Types, Dates implies Data_Types
-		//Selection stays on UNDEFINED if !Data_Types and Dates -> checked later in validCheck
-		if(bitSet_config.get(17)) configuration.setManual("Data_Types", Selection.SELECTED);
-		    else if(!bitSet_config.get(3)) configuration.setManual("Data_Types", Selection.UNSELECTED);
-		//Data_Type_Inheritance
-		if(bitSet_config.get(18) && configuration.getSelectablefeature("Data_Types").getSelection()==Selection.SELECTED) 
-		    	 configuration.setManual("Data_Type_Inheritance", Selection.SELECTED);
-    		else configuration.setManual("Data_Type_Inheritance", Selection.UNSELECTED);
-		return configuration;
+	public static List<String> calculateRequirementConfigTuple() {
+		rCT = new ArrayList<String>();//rCT = requirementConfigTuple
+		
+		/* Example 1
+		 * ---------
+		 * indexes in the strings are the same as listed at above in the class. 
+		 * 
+		 * Role Implication (Bit 4) Implies Role Equivalence (Bit 6) 
+		 * rCT.add("****1*1************"); //R9: role implications are transformed
+		 * 
+		 * If Role Implication is not transformed, Feature Role Equivalence can be choosen or not
+		 * rCT.add("****0*0************"); //R10_1: role implications are not transformed
+		 * rCT.add("****0*1************"); //R10_2
+		 * 
+		 * Example 2
+		 * ---------
+		 * 
+		 * Playable_By_Defining_Compartment (Bit 16) implies Compartments (Bit 2) and Compartment_Types (Bit 13)
+		 * rCT.add("**1**********1**1**"); //R31: fulfillments of compartment to its self are transformed 
+		 * 
+		 * If Playable_By_Defining_Compartment is not choosen, Compartments and Compartment_Types can be choosen
+		 * Compartments imples Compartment_Types
+		 * rCT.add("**0**********0**0**"); //R32_1: fulfillments of compartment to its self are not transformed
+		 * rCT.add("**0**********1**0**"); //R32_2
+		 * rCT.add("**1**********1**0**"); //R32_3
+		 */
+		
+		//set requirements and their relevant feature configuration
+		rCT.add("1******************"); //Requirement 1: role properties and operations are transformed
+		rCT.add("0******************"); //R2: role properties and operations are not transformed
+		rCT.add("*1*****************"); //R3: role inheritances are transformed
+		rCT.add("*0*****************"); //R4: role inheritances are not transformed
+		rCT.add("**1**********1*****"); //R5: fulfillments with compartment types as player are transformed
+		rCT.add("**0**********0*****"); //R6_1: fulfillments with compartment types as player are not transformed
+		rCT.add("**0**********1*****"); //R6_2
+		rCT.add("***1**********1****"); //R7: fulfillments with data types as player are transformed
+		rCT.add("***0**********0****"); //R8_1: fulfillments with data types as player are not transformed
+		rCT.add("***0**********1****"); //R8_2 
+		rCT.add("****1*1************"); //R9: role implications are transformed
+		rCT.add("****0*0************"); //R10_1: role implications are not transformed
+		rCT.add("****0*1************"); //R10_2
+		rCT.add("*****1*************"); //R11: role prohibitions are transformed
+		rCT.add("*****0*************"); //R12: role prohibitions are not transformed
+		//R13_1: role equivalences are transformed = R9
+		//R13_2 = R10_2
+		//R14: role equivalences are not transformed = R10_1
+		rCT.add("*******1***********"); //R15: group constraints are transformed
+		rCT.add("*******0***********"); //R16: group constraints are not transformed
+		rCT.add("********1**********"); //R17: occurrence constraints are transformed
+		rCT.add("********0**********"); //R18: occurrence constraints are not transformed
+		rCT.add("*********1001******"); //R19_1: relationships are transformed
+		rCT.add("*********1010******"); //R19_2     connected to its child
+		rCT.add("*********1011******"); //R19_3     features, every combination
+		rCT.add("*********1100******"); //R19_4     of child features used
+		rCT.add("*********1101******"); //R19_5
+		rCT.add("*********1110******"); //R19_6
+		rCT.add("*********1111******"); //R19_7
+		rCT.add("*********0000******"); //R20: relationships are not transformed
+		rCT.add("*********11********"); //R21: relationship cardinalities are transformed
+		rCT.add("*********00********"); //R22_1: relationship cardinalities are not transformed
+		rCT.add("*********10********"); //R22_2
+		rCT.add("*********1*1*******"); //R23: relationship cardinalities are transformed
+		rCT.add("*********0*0*******"); //R24_1: relationship cardinalities are not transformed
+		rCT.add("*********1*0*******"); //R24_2
+		rCT.add("*********1**1******"); //R25: relationship cardinalities are transformed
+		rCT.add("*********0**0******"); //R26_1: relationship cardinalities are not transformed
+		rCT.add("*********1**0******"); //R26_2
+		rCT.add("*************11****"); //R27: compartment type attributes and operations are transformed
+		rCT.add("*************00****"); //R28_1: compartment type attributes and operations are not transformed
+		rCT.add("*************10****"); //R28_2
+		rCT.add("*************1*1***"); //R29: compartment inheritance are transformed
+		rCT.add("*************0*0***"); //R30_1: compartment inheritance are not transformed
+		rCT.add("*************1*0***"); //R30_2
+		rCT.add("**1**********1**1**"); //R31: fulfillments of compartment to its self are transformed 
+		rCT.add("**0**********0**0**"); //R32_1: fulfillments of compartment to its self are not transformed
+		rCT.add("**0**********1**0**"); //R32_2
+		rCT.add("**1**********1**0**"); //R32_3
+		rCT.add("*****************11"); //R33_1: data types are transformed
+		rCT.add("*****************10"); //R33_2 
+		rCT.add("*****************00"); //R34: data types are not transformed
+		//R35: data type inheritance are transformed = R33_1
+		//R36_1: data type inheritance are not transformed = R34
+		//R36_2 = R33_2
+
+		return rCT;
 	}
 	
 	/**
-	 * This method checks if a configuration is valid.
-	 * @param bitSet_config_config 
-	 * @return boolean if configuration is valid
+	 * are all entries of requirementConfigTuple/ rCT used
+	 * @param used list to save if all entries of requirementConfigTuple are used
+	 * @return boolean if all entries of requirementConfigTuple are used
 	 */
-	public boolean validCheck(BitSet bitSet_config) {
-		Configuration configuration; 
-		Boolean containsUndefined=false;
-	    
-		int reducedFeaturesOn=0, differenceToConfigBefore1=0, differenceToConfigBefore2=0;
-		//count number of choosed reduced features
-		for(int i=0; i<reducedFeatures; i++) if(bitSet_config.get(i)) reducedFeaturesOn++;
-		//copy config and xor BitSets to count differences
-		BitSet configCopy = new BitSet(19);
-		for(int i=0; i<reducedFeatures; i++) {if(bitSet_config.get(i)) configCopy.set(i);} 
-		if(configBefore1!=null) {configCopy.xor(configBefore1); differenceToConfigBefore1 = configCopy.cardinality();}
-		else differenceToConfigBefore1=reducedFeatures+1;
-		for(int i=0; i<reducedFeatures; i++) {if(bitSet_config.get(i)) configCopy.set(i);}
-		if(configBefore2!=null) {configCopy.xor(configBefore2); differenceToConfigBefore2 = configCopy.cardinality();}	
-		else differenceToConfigBefore2=reducedFeatures+1;
-		
-		if((reducedFeaturesOn!=0 && reducedFeaturesOn<=9) || 		//configurations with 0 or more than 9 reduced Features
-		   (differenceToConfigBefore1<=8)				  || 	    //configuration differs on more than 8 places to the two accepted before
-		   (differenceToConfigBefore2<=8)
-		) return false;  			
-		configuration = buildFramedConfiguration(bitSet_config);
-		for(SelectableFeature feature : configuration.getFeatures()) if(feature.getSelection()==Selection.UNDEFINED) containsUndefined=true;
-		if(!(configuration.isValid()) || 							//configuration is valid
-		   containsUndefined) return false;    	 					//configuration does not contain any undefined features
-		
-		configBefore2=configBefore1; 
-		configBefore1=bitSet_config;
+	public static boolean allEntriesUsed(List<Boolean> used) {
+		for(boolean b : used) if(!b) return false;
 		return true;
+	}
+	
+	/**
+	 * calculates the configurations using requirementConfigTuple/rCT 
+	 */
+	public static void calculateCofigurations() {
+		String config;
+		boolean noContradiction;
+		List<Boolean> used = new ArrayList<Boolean>();
+		for(int h=0; h<rCT.size(); h++) used.add(false);
+		
+		while(!allEntriesUsed(used)) {
+			config=null;
+			//find first unused entry
+			for(String entry : rCT) {
+				if(!used.get(rCT.indexOf(entry)) && config==null) {
+					config=entry;
+					used.set(rCT.indexOf(entry), true);
+				}
+			}
+			
+			for(String entry : rCT) {
+				noContradiction=true;
+				//check other unused entries for contradictions
+				if(!used.get(rCT.indexOf(entry))) {
+					for(int i=0; i<reducedFeatures; i++) { 
+						if(config.charAt(i)!='*' && entry.charAt(i)!='*' && config.charAt(i)!=entry.charAt(i)) noContradiction=false;	
+					}
+					//if no contradictions, migrate the entries into each other
+					if(noContradiction) {
+						for(int j=0; j<reducedFeatures; j++) {
+							if(config.charAt(j)=='*')
+								if(j==reducedFeatures-1) config = config.substring(0, j) + entry.charAt(j);
+								else if(j==0) config = entry.charAt(j) + config.substring(j+1);
+								     else config = config.substring(0, j) + entry.charAt(j) + config.substring(j+1);
+						}
+						used.set(rCT.indexOf(entry), true);
+					}
+				}	
+			}
+			config = config.replace('*', '0');
+			configList.add(config);
+		}	
 	}
 	
 	/**
@@ -283,31 +290,12 @@ public class ConfigGenerator {
 	 * @throws FileNotFoundException 
 	 */
 	public List<BitSet> generateConfigurations() throws FileNotFoundException, UnsupportedModelException {
+		List<BitSet> bitSet_configList = new ArrayList<BitSet>();
 		
-		int int_config = 0b0000000000000000000;
-		List<BitSet> configList = new ArrayList<BitSet>();
-		BitSet bitSet_config = new BitSet(19);
-		/*
-		readFeatureModel();
-		while(int_config<=0b1111111111111111111) {
-			bitSet_config = BitSet.valueOf(new long[]{int_config});
-			bitSet_config = shiftBitSet(bitSet_config);
-			if(validCheck(bitSet_config)) configList.add(bitSet_config);
-			int_config++; 
-		}
-		*/
+		calculateCofigurations();
 		
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111111111111111})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0000000000000000000})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111110110000100010})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1011101100000101100})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1001100000001111111})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0110110011111100000})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0011110000000111111})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b1111111001110100010})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0000111110000011111})));
-		configList.add(shiftBitSet(BitSet.valueOf(new long[]{0b0101100111110000011})));
-	
-		return configList;
+		for(String str_config : configList) 
+			bitSet_configList.add(shiftBitSet(BitSet.valueOf(new long[]{Integer.parseInt(str_config, 2)})));
+		return bitSet_configList;
 	}
 }
