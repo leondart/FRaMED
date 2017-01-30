@@ -67,7 +67,7 @@ public class TransformationTestSuite {
   private static final URI FRAMED_FILE_URI = URI.createFileURI("framed_model.xmi");
   
   /**
-   * TODO
+   * Object that creates the generated test cases
    */
   private static TestGenerator TEST_GENERATOR = new TestGenerator();
   
@@ -83,7 +83,6 @@ public class TransformationTestSuite {
     File file = null;
     
     TEST_GENERATOR.generateTestCases();
-   
     // if bundle is available this test runs as plugin junit test
     Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
     if (bundle != null) {
@@ -98,6 +97,7 @@ public class TransformationTestSuite {
     loadDirectory(list, file);
     return list;
   }
+  
 	/**
 	 * Loads all {@link TestCase} of the given directory
 	 * 
@@ -310,8 +310,19 @@ public class TransformationTestSuite {
     return res1;
   }
 
+  @After
+  public void deleteFiles() throws Exception {
+    // delete created files after test
+    Files.delete(Paths.get(CROM_FILE_URI.toFileString()));
+    Files.delete(Paths.get(FRAMED_FILE_URI.toFileString()));
+    if(testCase.getTitle().startsWith("Generated test")) deleteGeneratedTestCase();
+  }
+  
+  /**
+   * Deletes the test case file corresponding to the test case that was just executed
+   */
   public void deleteGeneratedTestCase() {
-	  String filename = testCase.getDescription().substring(0, testCase.getDescription().indexOf("|"));
+	  String filename = testCase.getTitle().substring(15);
 	  Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
 	  URL fileURL = bundle.getEntry("testcases/Generated/" + filename + ".xmi");
 	  try {
@@ -320,15 +331,6 @@ public class TransformationTestSuite {
 	} catch (URISyntaxException | IOException e) {
 		e.printStackTrace();
 	}
-  }
-  
-  @After
-  public void deleteFiles() throws Exception {
-    // delete created files after test
-    Files.delete(Paths.get(CROM_FILE_URI.toFileString()));
-    Files.delete(Paths.get(FRAMED_FILE_URI.toFileString()));
-    if(testCase.getDescription().startsWith("0") || testCase.getDescription().startsWith("1"))
-    	deleteGeneratedTestCase();
   }
   
 }

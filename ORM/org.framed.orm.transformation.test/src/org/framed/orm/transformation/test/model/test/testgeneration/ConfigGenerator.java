@@ -21,35 +21,31 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 
 /**
- * @author Kevin Kassin
- * This class generate valid feature configurations in compact manner to test transformations.
+ * @author Kevin Kassin<br>
+ * This class generate valid feature configurations in structured manner to test transformations.<br>
+ *  config[index] = features<br>
+ 	------------------------<br>
+	config[0] = Role_Properties, Role_Behavior<br>
+	config[1] = Role_Inheritance<br>
+	config[2] = Compartments<br>
+	config[3] = Dates<br>
+	config[4] = Role_Implication<br>
+	config[5] = Role_Prohibtion<br>
+	config[6] = Role_Equivalence<br>
+	config[7] = Group_Constraints<br>
+	config[8] = Occurence_Constraints<br>
+	config[9] = Relationship<br>
+	config[10] = Relationship_Cardinality<br>
+	config[11] = Intra_Relationship_Constraints<br>
+	config[12] = Inter_Relationship_Constraints<br>
+	config[13] = Compartment_Types<br>
+	config[14] = Compartment_Properties, Compartment_Behavior<br>
+	config[15] = Compartment_Inheritance<br>
+	config[16] = Playable_By_Defining_Compartment<br>
+	config[17] = Data_Types<br>
+	config[18] = Data_Type_Inheritance
  */
 public class ConfigGenerator {
-	
-/*
- 	config[index] = features
- 	------------------------
-	config[0] = Role_Properties, Role_Behavior
-	config[1] = Role_Inheritance
-	config[2] = Compartments
-	config[3] = Dates
-	config[4] = Role_Implication
-	config[5] = Role_Prohibtion
-	config[6] = Role_Equivalence
-	config[7] = Group_Constraints
-	config[8] = Occurence_Constraints
-	config[9] = Relationship
-	config[10] = Relationship_Cardinality
-	config[11] = Intra_Relationship_Constraints
-	config[12] = Inter_Relationship_Constraints
-	config[13] = Compartment_Types
-	config[14] = Compartment_Properties, Compartment_Behavior
-	config[15] = Compartment_Inheritance
-	config[16] = Playable_By_Defining_Compartment
-	config[17] = Data_Types
-	config[18] = Data_Type_Inheritance
-*/
-	
 	/**
 	 * requirementConfigTuple, list of requirement with its corresponding configurations 
 	 */
@@ -76,7 +72,7 @@ public class ConfigGenerator {
 	private FeatureModel featureModel = new FeatureModel();
 	
 	/**
-	 * constructor
+	 * Constructor
 	 */
 	public ConfigGenerator() {
 		rCT=calculateRequirementConfigTuple();
@@ -107,7 +103,7 @@ public class ConfigGenerator {
 	 * @return shifted BitSet 
 	 */
 	public BitSet shiftBitSet(BitSet bitset) {
-		BitSet bitSetCopy = new BitSet(19);
+		BitSet bitSetCopy = new BitSet(reducedFeatures);
 		int j=bitset.length()-1;
 		for(int i=reducedFeatures-bitset.length(); i<reducedFeatures; i++) {
 			if(bitset.get(j)) bitSetCopy.set(i);
@@ -140,35 +136,35 @@ public class ConfigGenerator {
 	}
 	
 	/**
-	 * calculates a list of requirements and its corresponding configurations
+	 * Set Requirements that are used to generate valid configurations that cover every requirement.<br>
+	 * <br>
+	 * <!-- begin-user-doc -->
+	 * Example 1<br>
+	 * ---------<br>
+	 * indexes in the strings are the same as listed as above in this class.<br> 
+	 * <br>
+	 * Role Implication (Bit 4) Implies Role Equivalence (Bit 6)<br> 
+	 * rCT.add("****1*1************"); //R9: role implications are transformed<br>
+	 * <br>
+	 * If Role Implication is not transformed, Feature Role Equivalence can be choosen or not<br>
+	 * rCT.add("****0*0************"); //R10_1: role implications are not transformed<br>
+	 * rCT.add("****0*1************"); //R10_2<br>
+	 * <br>
+	 * Example 2<br>
+	 * ---------<br>
+	 * Playable_By_Defining_Compartment (Bit 16) implies Compartments (Bit 2) and Compartment_Types (Bit 13)<br>
+	 * rCT.add("**1**********1**1**"); //R31: fulfillments of compartment to its self are transformed<br> 
+	 * <br>
+	 * If Playable_By_Defining_Compartment is not choosen, Compartments and Compartment_Types can be choosen<br>
+	 * Compartments imples Compartment_Types<br>
+	 * rCT.add("**0**********0**0**"); //R32_1: fulfillments of compartment to its self are not transformed<br>
+	 * rCT.add("**0**********1**0**"); //R32_2<br>
+	 * rCT.add("**1**********1**0**"); //R32_3<br>
+	 * <!-- end-user-doc -->
 	 * @return list of requirements and its corresponding configurations
 	 */
 	public static List<String> calculateRequirementConfigTuple() {
 		rCT = new ArrayList<String>();//rCT = requirementConfigTuple
-		
-		/* Example 1
-		 * ---------
-		 * indexes in the strings are the same as listed at above in the class. 
-		 * 
-		 * Role Implication (Bit 4) Implies Role Equivalence (Bit 6) 
-		 * rCT.add("****1*1************"); //R9: role implications are transformed
-		 * 
-		 * If Role Implication is not transformed, Feature Role Equivalence can be choosen or not
-		 * rCT.add("****0*0************"); //R10_1: role implications are not transformed
-		 * rCT.add("****0*1************"); //R10_2
-		 * 
-		 * Example 2
-		 * ---------
-		 * 
-		 * Playable_By_Defining_Compartment (Bit 16) implies Compartments (Bit 2) and Compartment_Types (Bit 13)
-		 * rCT.add("**1**********1**1**"); //R31: fulfillments of compartment to its self are transformed 
-		 * 
-		 * If Playable_By_Defining_Compartment is not choosen, Compartments and Compartment_Types can be choosen
-		 * Compartments imples Compartment_Types
-		 * rCT.add("**0**********0**0**"); //R32_1: fulfillments of compartment to its self are not transformed
-		 * rCT.add("**0**********1**0**"); //R32_2
-		 * rCT.add("**1**********1**0**"); //R32_3
-		 */
 		
 		//set requirements and their relevant feature configuration
 		rCT.add("1******************"); //Requirement 1: role properties and operations are transformed
@@ -234,8 +230,8 @@ public class ConfigGenerator {
 	}
 	
 	/**
-	 * are all entries of requirementConfigTuple/ rCT used
-	 * @param used list to save if all entries of requirementConfigTuple are used
+	 * Checks if all entries of requirementConfigTuple/ rCT are used
+	 * @param used 
 	 * @return boolean if all entries of requirementConfigTuple are used
 	 */
 	public static boolean allEntriesUsed(List<Boolean> used) {
@@ -244,7 +240,7 @@ public class ConfigGenerator {
 	}
 	
 	/**
-	 * calculates the configurations using requirementConfigTuple/rCT 
+	 * Calculates the configurations using requirementConfigTuple/rCT 
 	 */
 	public static void calculateCofigurations() {
 		String config;

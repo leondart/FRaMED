@@ -32,7 +32,7 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 public class TestGenerator {
 	
 	/**
-	 * 
+	 * Object that creates configurations for test cases
 	 */
 	public ConfigGenerator configGenerator;
 	
@@ -71,15 +71,27 @@ public class TestGenerator {
 		}      
 	}
 	
+	/**
+	 * Edits the title of the given testCase depending on the given configuration
+	 * @param testCase
+	 * @param config
+	 * @return changed testCase
+	 */
 	public TestCase editTitle(TestCase testCase, BitSet config) {
 		testCase.setTitle("Generated test " + configGenerator.bitSetToString(config));
 		return testCase;
 	}
 	
+	/**
+	 * Edits the description of the given testCase depending on the given configuration
+	 * @param testCase
+	 * @param config
+	 * @return changed testCase
+	 */
 	public TestCase editDescription(TestCase testCase, BitSet config) {
 		String description;
 		boolean firstFeature=true; 
-		description = configGenerator.bitSetToString(config) + "| This test was generated. The following features are choosen: ";
+		description = "This test was generated. The following features are choosen: ";
 		for(FRaMEDFeature feature : testCase.getFramedModel().getFramedConfiguration().getFeatures()) {
 			if(!firstFeature) description = description + ", ";
 			description = description + feature.getName();
@@ -89,6 +101,12 @@ public class TestGenerator {
 		return testCase;
 	}
 
+	/**
+	 * Edits the feature list/ framed configuration of the given testCase depending on the given configuration
+	 * @param testCase
+	 * @param config
+	 * @return changed testCase
+	 */
 	public TestCase editFeatureConfiguration(TestCase testCase, BitSet config) {
 		EList<FRaMEDFeature> featureList = testCase.getFramedModel().getFramedConfiguration().getFeatures();
 	
@@ -136,6 +154,12 @@ public class TestGenerator {
 		return testCase;
 	}
 	
+	/**
+	 * Edits the crom model of the given testCase depending on the given configuration
+	 * @param testCase
+	 * @param config
+	 * @return changed testCase
+	 */
 	public TestCase editCromModel(TestCase testCase, BitSet config) {
 		EList<crom_l1_composed.ModelElement> cromElements = testCase.getCromModel().getElements();
 		List<crom_l1_composed.ModelElement> ElementsToDelete = new ArrayList<crom_l1_composed.ModelElement>(); 
@@ -329,7 +353,6 @@ public class TestGenerator {
 	//------------	
 		//Role_Inheritance
 		if(!config.get(1)) {
-			Relation relTest=null;
 			for(Relation relation : testCase.getCromModel().getRelations()) {
 				//find compartment inheritances, delete them
 				if(relation instanceof crom_l1_composed.RoleInheritance)
@@ -388,6 +411,11 @@ public class TestGenerator {
 		return testCase;
 	}
 	
+	/**
+	 * Deletes a role constraint of a type specified by constraintType from a given list of crom model elements
+	 * @param constraintType
+	 * @param cromElements
+	 */
 	public static void changeRoleConstraints(String constraintType, EList<crom_l1_composed.ModelElement> cromElements) {
 		EList<Constraint> constraints;
 		ArrayList<Constraint> toDelete;
@@ -411,11 +439,19 @@ public class TestGenerator {
 				for(Constraint constraint : toDelete) constraints.remove(constraints.indexOf(constraint));
 	}}}
 
+	/**
+	 * Deletes attributes and operations of a given role
+	 * @param role
+	 */
 	public static void DeleteAttributesAndOperationFromRole(crom_l1_composed.RoleType role) {
 		role.getAttributes().clear();
 		role.getOperations().clear();
 	}
 	
+	/**
+	 * Traverses in a given Rolegroup: delete attributes and operations in role, call method recursive for other role groups
+	 * @param roleGroup
+	 */
 	public static void TraverseInRoleGroups(crom_l1_composed.RoleGroup roleGroup) {
 		for(RoleGroupElement roleGroupElement : roleGroup.getElements()) {
 			if(roleGroupElement instanceof crom_l1_composed.RoleType)
@@ -425,13 +461,14 @@ public class TestGenerator {
 		}	
 	}
 	
+	/**
+	 * Traverses in a given Group: delete data types, call method recursive for other groups
+	 * @param group
+	 */
 	public static void TraverseInGroup(crom_l1_composed.Group group) {
 		List<crom_l1_composed.ModelElement> ElementsToDelete = new ArrayList<crom_l1_composed.ModelElement>();
-		System.out.println("test2");
-		System.out.println(group.getElements());
 		for(crom_l1_composed.ModelElement groupElement : group.getElements()) {
 			if(groupElement instanceof crom_l1_composed.DataType) {
-				System.out.println("test3");
 				ElementsToDelete.add(groupElement);
 			}	
 			if(groupElement instanceof crom_l1_composed.Group)
@@ -439,10 +476,15 @@ public class TestGenerator {
 		}
 		for(crom_l1_composed.ModelElement element : ElementsToDelete) {
 			group.getElements().remove(element);
-			System.out.println(element.toString());
 		}
 	}
 	
+	/**
+	 * Checks if a played role is part of a role group of the playing compartment type itself
+	 * @param roleGroup
+	 * @param filled
+	 * @return boolean if a played role is part of a role group of the playing compartment type itself
+	 */
 	public static boolean RoleGroupChildContainsRole(crom_l1_composed.RoleGroup roleGroup, crom_l1_composed.RoleType filled) {
 		for(RoleGroupElement roleGroupElement : roleGroup.getElements()) {
 			if(roleGroupElement instanceof crom_l1_composed.RoleType)
@@ -497,10 +539,10 @@ public class TestGenerator {
 	  }
 	 
 	/**
-	 * This method calculates the  
+	 * This method calculates the index of the feature in the given featureList with the given featureName  
 	 * @param featureName
 	 * @param featureList
-	 * @return
+	 * @return the index of the feature in the given featureList with the given featureName
 	 */
 	private static int getFeatureNumber(String featureName, EList<FRaMEDFeature> featureList) {
 		for(FRaMEDFeature feature : featureList) {
