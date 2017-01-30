@@ -193,13 +193,14 @@ public class ConfigGenerator {
 		rCT.add("*******0***********"); //R16: group constraints are not transformed
 		rCT.add("********1**********"); //R17: occurrence constraints are transformed
 		rCT.add("********0**********"); //R18: occurrence constraints are not transformed
-		rCT.add("*********1001******"); //R19_1: relationships are transformed
-		rCT.add("*********1010******"); //R19_2     connected to its child
-		rCT.add("*********1011******"); //R19_3     features, every combination
-		rCT.add("*********1100******"); //R19_4     of child features used
-		rCT.add("*********1101******"); //R19_5
-		rCT.add("*********1110******"); //R19_6
-		rCT.add("*********1111******"); //R19_7
+		rCT.add("*********1000******"); //R19_1: relationships are transformed
+		rCT.add("*********1001******"); //R19_2		connected to its child
+		rCT.add("*********1010******"); //R19_3     features, every combination
+		rCT.add("*********1011******"); //R19_4     of child features used
+		rCT.add("*********1100******"); //R19_5     
+		rCT.add("*********1101******"); //R19_6
+		rCT.add("*********1110******"); //R19_7
+		rCT.add("*********1111******"); //R19_8
 		rCT.add("*********0000******"); //R20: relationships are not transformed
 		rCT.add("*********11********"); //R21: relationship cardinalities are transformed
 		rCT.add("*********00********"); //R22_1: relationship cardinalities are not transformed
@@ -226,6 +227,8 @@ public class ConfigGenerator {
 		//R35: data type inheritance are transformed = R33_1
 		//R36_1: data type inheritance are not transformed = R34
 		//R36_2 = R33_2
+		rCT.add("0000000000000000000"); //R37_1: Corner case empty configuration
+		rCT.add("1111111111111111111"); //R37_2: Corner case full configuration
 
 		return rCT;
 	}

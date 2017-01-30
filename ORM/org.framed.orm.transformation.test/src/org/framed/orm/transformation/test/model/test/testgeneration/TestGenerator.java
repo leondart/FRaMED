@@ -31,6 +31,9 @@ import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
  */
 public class TestGenerator {
 	
+	/**
+	 * 
+	 */
 	public ConfigGenerator configGenerator;
 	
 	/**
@@ -76,7 +79,7 @@ public class TestGenerator {
 	public TestCase editDescription(TestCase testCase, BitSet config) {
 		String description;
 		boolean firstFeature=true; 
-		description = "This test was generated. The following features are choosen: ";
+		description = configGenerator.bitSetToString(config) + "| This test was generated. The following features are choosen: ";
 		for(FRaMEDFeature feature : testCase.getFramedModel().getFramedConfiguration().getFeatures()) {
 			if(!firstFeature) description = description + ", ";
 			description = description + feature.getName();

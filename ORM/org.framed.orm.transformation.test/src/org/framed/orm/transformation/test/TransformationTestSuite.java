@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -66,10 +67,10 @@ public class TransformationTestSuite {
   private static final URI FRAMED_FILE_URI = URI.createFileURI("framed_model.xmi");
   
   /**
-   * 
+   * TODO
    */
   private static TestGenerator TEST_GENERATOR = new TestGenerator();
-
+  
   /**
    * Loads all {@link TestCase}s from the "testcases" directory of this plugin.
    * 
@@ -309,10 +310,25 @@ public class TransformationTestSuite {
     return res1;
   }
 
+  public void deleteGeneratedTestCase() {
+	  String filename = testCase.getDescription().substring(0, testCase.getDescription().indexOf("|"));
+	  Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
+	  URL fileURL = bundle.getEntry("testcases/Generated/" + filename + ".xmi");
+	  try {
+		File file = new File(FileLocator.resolve(fileURL).toURI());
+		Files.delete(Paths.get(file.getPath()));
+	} catch (URISyntaxException | IOException e) {
+		e.printStackTrace();
+	}
+  }
+  
   @After
   public void deleteFiles() throws Exception {
     // delete created files after test
     Files.delete(Paths.get(CROM_FILE_URI.toFileString()));
     Files.delete(Paths.get(FRAMED_FILE_URI.toFileString()));
+    if(testCase.getDescription().startsWith("0") || testCase.getDescription().startsWith("1"))
+    	deleteGeneratedTestCase();
   }
+  
 }
