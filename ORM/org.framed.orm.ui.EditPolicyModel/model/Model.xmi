@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editPolicyEcore1:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editPolicyEcore1="http://www.example.org/editPolicyEcore1">
+  <configuration>
+    <mappings policyName="testPolicy">
+      <rule xsi:type="editPolicyEcore1:FeatureNameMappingRule" name="FeatureConfigurationSettingTEST"/>
+    </mappings>
+    <mappings policyName="unused">
+      <rule xsi:type="editPolicyEcore1:FeatureNameMappingRule" name="FeatureConfigurationSettingUNUSED"/>
+    </mappings>
+  </configuration>
+  <policies name="testPolicy">
+    <rule xsi:type="editPolicyEcore1:AndRule">
+      <rules xsi:type="editPolicyEcore1:RelationNameRule" name="testName"/>
+      <rules xsi:type="editPolicyEcore1:RelationNameRule" name="testName"/>
+    </rule>
+  </policies>
+</editPolicyEcore1:Model>

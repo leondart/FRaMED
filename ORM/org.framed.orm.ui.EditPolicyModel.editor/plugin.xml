@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated editPolicyEcore1 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="editPolicyEcore1.presentation.EditPolicyEcore1ModelWizardID"
+            name="%_UI_EditPolicyEcore1ModelWizard_label"
+            class="editPolicyEcore1.presentation.EditPolicyEcore1ModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EditPolicyEcore1ModelFile.gif">
+         <description>%_UI_EditPolicyEcore1ModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated editPolicyEcore1 -->
+      <editor
+            id="editPolicyEcore1.presentation.EditPolicyEcore1EditorID"
+            name="%_UI_EditPolicyEcore1Editor_label"
+            icon="icons/full/obj16/EditPolicyEcore1ModelFile.gif"
+            extensions="editpolicyecore1"
+            class="editPolicyEcore1.presentation.EditPolicyEcore1Editor"
+            contributorClass="editPolicyEcore1.presentation.EditPolicyEcore1ActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

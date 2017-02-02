@@ -9,7 +9,8 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.framed.orm.featuremodel.provider;
-  uses:="org.framed.orm.featuremodel.util,
+  uses:="org.eclipse.emf.ecore,
+   org.framed.orm.featuremodel.util,
    org.eclipse.emf.common.util,
    org.eclipse.emf.edit.provider,
    org.eclipse.emf.common.notify",

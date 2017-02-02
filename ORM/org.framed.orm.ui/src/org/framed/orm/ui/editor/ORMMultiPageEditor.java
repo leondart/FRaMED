@@ -219,8 +219,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     cromDiaEditor = new ReadOnlyEditor();
   }
 
-
-
   /** {@inheritDoc}
    * This method calls the methods to create the editors and adds them as pages.
    * In this method the title image of this editor is set as well.
