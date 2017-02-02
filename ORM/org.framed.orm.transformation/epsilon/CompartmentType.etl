@@ -21,18 +21,17 @@ rule CompartmentType
 	if (not (children == null)) {
 		for(e in children.elements) e.~features=t.~features;
 	
-		
 		// iterate over all children of the compartment type	
 		for (elem : source!ModelElement in children.elements) {
 			
 			var e = elem.equivalent();
+			
 			if (e == null) { continue; }
 			if (e.instanceOf(target!AbstractRole)) { 			// ROLE
 				// create a new part with the role
 				var part = new target!Part;
 				part.role = e;
 				part.whole = n;
-				
 				// parse the lower and upper bound from the role
 				var desc = elem.description;
 				if (not (desc == null) and t.~features.get("Occurrence_Constraints")) {
@@ -48,6 +47,7 @@ rule CompartmentType
 				}				
 				// add the new part to the compartment
 				n.getParts().add(part);
+				
 			} else if (e.instanceOf(target!RelationshipImplication) or e.instanceOf(target!RelationshipExclusion)) { // INTER_RELATIONSHIP_CONSTRAINT
 				for (rst : source!Relation in children.elements){
 					if (rst.getType.getValue == 7){ // RELATIONSHIP
@@ -63,6 +63,8 @@ rule CompartmentType
 				n.getConstraints().add(e);
 			} else if ( e.instanceOf(target!Relationship)) {	// RELATIONSHIP
 				n.getRelationships().add(e);
+			} else if ( e.instanceOf(target!RoleInheritance)) {
+				t.~parent.relations.add(e);
 			}			
 		}
 	}

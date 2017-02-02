@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -66,10 +67,10 @@ public class TransformationTestSuite {
   private static final URI FRAMED_FILE_URI = URI.createFileURI("framed_model.xmi");
   
   /**
-   * 
+   * Object that creates the generated test cases
    */
   private static TestGenerator TEST_GENERATOR = new TestGenerator();
-
+  
   /**
    * Loads all {@link TestCase}s from the "testcases" directory of this plugin.
    * 
@@ -81,8 +82,7 @@ public class TransformationTestSuite {
     List<Object[]> list = new LinkedList<Object[]>();
     File file = null;
     
-    //TEST_GENERATOR.generateTestCases();
-   
+    TEST_GENERATOR.generateTestCases();
     // if bundle is available this test runs as plugin junit test
     Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
     if (bundle != null) {
@@ -97,6 +97,7 @@ public class TransformationTestSuite {
     loadDirectory(list, file);
     return list;
   }
+  
 	/**
 	 * Loads all {@link TestCase} of the given directory
 	 * 
@@ -314,5 +315,22 @@ public class TransformationTestSuite {
     // delete created files after test
     Files.delete(Paths.get(CROM_FILE_URI.toFileString()));
     Files.delete(Paths.get(FRAMED_FILE_URI.toFileString()));
+    if(testCase.getTitle().startsWith("Generated test")) deleteGeneratedTestCase();
   }
+  
+  /**
+   * Deletes the test case file corresponding to the test case that was just executed
+   */
+  public void deleteGeneratedTestCase() {
+	  String filename = testCase.getTitle().substring(15);
+	  Bundle bundle = Platform.getBundle("org.framed.orm.transformation.test");
+	  URL fileURL = bundle.getEntry("testcases/Generated/" + filename + ".xmi");
+	  try {
+		File file = new File(FileLocator.resolve(fileURL).toURI());
+		Files.delete(Paths.get(file.getPath()));
+	} catch (URISyntaxException | IOException e) {
+		e.printStackTrace();
+	}
+  }
+  
 }

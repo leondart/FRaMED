@@ -18,5 +18,11 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.framed.orm.transformation.test.model.test,
  org.framed.orm.transformation.test.model.test.impl,
+ org.framed.orm.transformation.test.model.test.testgeneration,
  org.framed.orm.transformation.test.model.test.util
 Bundle-ActivationPolicy: lazy
+Import-Package: de.ovgu.featureide.fm.core,
+ de.ovgu.featureide.fm.core.configuration,
+ de.ovgu.featureide.fm.core.io,
+ de.ovgu.featureide.fm.core.io.xml,
+ org.eclipse.core.resources

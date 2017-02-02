@@ -8,7 +8,7 @@
       <elements name="OperationCompartmentA(input : Boolean)"/>
     </secondSegment>
     <model>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RoleF" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="RoleF" outgoingRelations="//@elements.0/@model/@elements.3" type="RoleType">
         <firstSegment/>
         <secondSegment>
           <elements name="OperationRoleE(input : Integer) : String"/>
@@ -19,7 +19,7 @@
           <bottomRight x="1061" y="500"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RoleE" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="RoleE" incomingRelations="//@elements.0/@model/@elements.3" type="RoleType">
         <firstSegment>
           <elements name="AttributeRoleE : Integer"/>
         </firstSegment>
@@ -96,6 +96,7 @@
           <bottomRight x="752" y="518"/>
         </boundaries>
       </elements>
+      <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0"/>
     </model>
     <boundaries>
       <topLeft x="848" y="158"/>
@@ -135,7 +136,7 @@
       <bottomRight x="300" y="421"/>
     </boundaries>
   </elements>
-  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@elements.5" outgoingRelations="//@elements.9 //@elements.11" type="NaturalType">
+  <elements xsi:type="org.framed.orm.model:Shape" name="NaturalA" incomingRelations="//@elements.5" outgoingRelations="//@elements.9 //@elements.11 //@elements.15" type="NaturalType">
     <firstSegment>
       <elements name="AttributeNatA : String"/>
     </firstSegment>
@@ -179,7 +180,7 @@
       <bottomRight x="290" y="591"/>
     </boundaries>
   </elements>
-  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB" incomingRelations="//@elements.9" outgoingRelations="//@elements.13">
+  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentB" incomingRelations="//@elements.9 //@elements.16" outgoingRelations="//@elements.13">
     <firstSegment/>
     <secondSegment/>
     <model>
@@ -361,22 +362,56 @@
     </bendpoints>
   </elements>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.8" referencedRoles="//@elements.0/@model/@elements.2/@model/@elements.1"/>
+  <elements xsi:type="org.framed.orm.model:Shape" name="CompartmentC" incomingRelations="//@elements.15" outgoingRelations="//@elements.16">
+    <firstSegment/>
+    <secondSegment>
+      <elements name="OperationCompartmentC(input : Boolean)"/>
+    </secondSegment>
+    <model/>
+    <boundaries>
+      <topLeft x="380" y="432"/>
+      <bottomRight x="666" y="608"/>
+    </boundaries>
+  </elements>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.14" source="//@elements.4" referencedRoles="//@elements.8/@model/@elements.0 //@elements.8/@model/@elements.1 //@elements.8/@model/@elements.2 //@elements.8/@model/@elements.3"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Inheritance" target="//@elements.8" source="//@elements.14"/>
   <framedConfiguration>
     <features/>
     <features name="Role_Types"/>
+    <features name="Role_Structure"/>
+    <features name="Role_Properties"/>
+    <features name="Role_Behavior" manuallySelected="true"/>
+    <features name="Role_Inheritance" manuallySelected="true"/>
     <features name="Playable"/>
     <features name="Players"/>
     <features name="Naturals"/>
+    <features name="Roles"/>
+    <features name="Compartments" manuallySelected="true"/>
+    <features name="Dates" manuallySelected="true"/>
     <features name="Dependent"/>
+    <features name="On_Compartments"/>
     <features name="On_Relationships"/>
     <features name="Role_Constraints"/>
     <features name="Role_Implication" manuallySelected="true"/>
+    <features name="Role_Prohibition" manuallySelected="true"/>
     <features name="Role_Equivalence"/>
     <features name="Group_Constraints" manuallySelected="true"/>
     <features name="Occurrence_Constraints" manuallySelected="true"/>
     <features name="Relationships"/>
     <features name="Relationship_Constraints"/>
     <features name="Relationship_Cardinality" manuallySelected="true"/>
-    <features name="Intra_Relationship_Constraints" manuallySelected="true"/>
+    <features name="Intra_Relationship_Constraints"/>
+    <features name="Parthood_Constraints" manuallySelected="true"/>
+    <features name="Inter_Relationship_Constraints" manuallySelected="true"/>
+    <features name="Compartment_Types"/>
+    <features name="Compartment_Structure"/>
+    <features name="Compartment_Properties" manuallySelected="true"/>
+    <features name="Compartment_Behavior"/>
+    <features name="Compartment_Inheritance" manuallySelected="true"/>
+    <features name="Participants"/>
+    <features name="Contains_Compartments" manuallySelected="true"/>
+    <features name="Playable_by_Defining_Compartment" manuallySelected="true"/>
+    <features name="Data_Types"/>
+    <features name="Data_Type_Inheritance" manuallySelected="true"/>
   </framedConfiguration>
 </org.framed.orm.model:Model>
