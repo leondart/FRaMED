@@ -36,15 +36,12 @@ public class EditPolicyHandler {
 	{
 		Set<String> policies = new HashSet<>();
 		//get list of policies for configuration
-		System.out.println("List of model: " + model.toString());
-		System.out.println("List of conf: " + model.getConfiguration().toString());
-		System.out.println("List of mappping: " + model.getConfiguration().getMappings().toString());
 
 		for(editPolicyEcore1.Mapping mapping : (editPolicyEcore1.Mapping[]) model.getConfiguration().getMappings().toArray()) {
 			if(abstractMappingRuleVisitor(mapping.getRule()))
 				policies.add(mapping.getPolicyName());
 		}
-		System.out.println("List of Policies: " + policies.toString());
+		//System.out.println("List of Policies: " + policies.toString());
 
 		for(editPolicyEcore1.Policy policy: model.getPolicies()) {
 			if(policies.contains(policy.getName())) {
@@ -83,7 +80,6 @@ public class EditPolicyHandler {
 		return false;
 	}
 
-
 	//configurationMapping:
 	private boolean abstractMappingRuleVisitor(editPolicyEcore1.AbstractMappingRule rule)
 	{
@@ -106,7 +102,6 @@ public class EditPolicyHandler {
 
 	private boolean featureNameMappingRuleVisitor(editPolicyEcore1.FeatureNameMappingRule rule)
 	{
-		System.out.println("In in featureNameMappingRuleVisitor!!!" + rule.toString());
 		if(rule.getName().equals("FeatureConfigurationSettingTEST")) {
 			return true;
 		}
@@ -162,8 +157,7 @@ public class EditPolicyHandler {
 				return (editPolicyEcore1.Model) res.getContents().get(0);
 			}
 		} catch (Exception e) {
-			System.err.println("Was not able to xmi:  \"" + filename
-					+ "\" due : " + e.toString());
+			System.err.println("Was not able to load xmi:  \"" + filename + "\" due : " + e.toString());
 			for (StackTraceElement el : e.getStackTrace())
 				System.err.println(el.toString());
 		}
