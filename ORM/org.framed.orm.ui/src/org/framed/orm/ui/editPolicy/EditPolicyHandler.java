@@ -37,77 +37,26 @@ public class EditPolicyHandler {
 		Set<String> policies = new HashSet<>();
 		//get list of policies for configuration
 
+		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor();
+		editPolicyConfigurationVisitor.setConfiguration(framedConfiguration);
+
 		for(editPolicyEcore1.Mapping mapping : (editPolicyEcore1.Mapping[]) model.getConfiguration().getMappings().toArray()) {
-			if(abstractMappingRuleVisitor(mapping.getRule()))
+			if(editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
 				policies.add(mapping.getPolicyName());
 		}
 		//System.out.println("List of Policies: " + policies.toString());
 
+		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor();
+		editPolicyRuleVisitor.setCommand(cmd);
+
 		for(editPolicyEcore1.Policy policy: model.getPolicies()) {
 			if(policies.contains(policy.getName())) {
-				if(!abstractRuleVisitor(policy.getRule()))
+				if(!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
 					return false;
 			}
 		}
 		return true;
 	}
-
-	//for policies
-	private boolean abstractRuleVisitor(editPolicyEcore1.AbstractRule rule)
-	{
-		if (rule instanceof editPolicyEcore1.AndRule)
-			return andRuleVisitor((editPolicyEcore1.AndRule)rule);
-		if (rule instanceof editPolicyEcore1.RelationNameRule)
-			return relationNameRuleVisitor((editPolicyEcore1.RelationNameRule)rule);
-
-		System.out.println("NodeVisitor for type not implemented");
-		return false;
-	}
-
-	private boolean andRuleVisitor(editPolicyEcore1.AndRule rule)
-	{
-		for(editPolicyEcore1.AbstractRule abstractRule : rule.getRules()) {
-			if(!abstractRuleVisitor(abstractRule)) return false;
-		}
-		return true;
-	}
-
-	private boolean relationNameRuleVisitor(editPolicyEcore1.RelationNameRule rule)
-	{
-		if(rule.getName().equals("testName")) {
-			return true;
-		}
-		return false;
-	}
-
-	//configurationMapping:
-	private boolean abstractMappingRuleVisitor(editPolicyEcore1.AbstractMappingRule rule)
-	{
-		if (rule instanceof editPolicyEcore1.AndMappingRule)
-			return andMappingRuleVisitor((editPolicyEcore1.AndMappingRule)rule);
-		if (rule instanceof editPolicyEcore1.FeatureNameMappingRule)
-			return featureNameMappingRuleVisitor((editPolicyEcore1.FeatureNameMappingRule)rule);
-
-		System.out.println("NodeVisitor for type not implemented");
-		return false;
-	}
-
-	private boolean andMappingRuleVisitor(editPolicyEcore1.AndMappingRule rule)
-	{
-		for(editPolicyEcore1.AbstractMappingRule abstractMappingRule : rule.getRules()) {
-			if(!abstractMappingRuleVisitor(abstractMappingRule)) return false;
-		}
-		return true;
-	}
-
-	private boolean featureNameMappingRuleVisitor(editPolicyEcore1.FeatureNameMappingRule rule)
-	{
-		if(rule.getName().equals("FeatureConfigurationSettingTEST")) {
-			return true;
-		}
-		return false;
-	}
-
 
 	public boolean canExecute(ORMRelationCreateCommand relationCommand)
 	{
