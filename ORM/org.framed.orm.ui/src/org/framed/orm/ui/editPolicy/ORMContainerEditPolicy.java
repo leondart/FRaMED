@@ -21,6 +21,13 @@ import org.framed.orm.ui.command.ORMOrphanChildCommand;
  */
 public class ORMContainerEditPolicy extends ContainerEditPolicy {
 
+	private EditPolicyHandler ep;
+
+	public ORMContainerEditPolicy(EditPolicyHandler editPolicyHandler)
+	{
+		this.ep = editPolicyHandler;
+	}
+
   @Override
   protected Command getCreateCommand(CreateRequest request) {
     // stays empty
@@ -48,6 +55,7 @@ public class ORMContainerEditPolicy extends ContainerEditPolicy {
       orphan.setLabel("Reparenting");
 
       EditPolicyCommandDecorator<ORMOrphanChildCommand> cmd = new EditPolicyCommandDecorator<>(orphan);
+      cmd.setEditPolicyHandler(ep);
 
       result.add(cmd);
     }

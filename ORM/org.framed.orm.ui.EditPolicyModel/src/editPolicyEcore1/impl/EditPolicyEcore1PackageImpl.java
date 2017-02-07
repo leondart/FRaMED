@@ -3,21 +3,34 @@
 package editPolicyEcore1.impl;
 
 import editPolicyEcore1.AbstractMappingRule;
+import editPolicyEcore1.AbstractNameRule;
 import editPolicyEcore1.AbstractRule;
 import editPolicyEcore1.AndMappingRule;
 import editPolicyEcore1.AndRule;
+import editPolicyEcore1.CommandNameRule;
 import editPolicyEcore1.Configuration;
 import editPolicyEcore1.EditPolicyEcore1Factory;
 import editPolicyEcore1.EditPolicyEcore1Package;
+import editPolicyEcore1.FalseRule;
 import editPolicyEcore1.FeatureNameMappingRule;
 import editPolicyEcore1.ImplicationMappingRule;
+import editPolicyEcore1.ImplicationRule;
 import editPolicyEcore1.Mapping;
 import editPolicyEcore1.Model;
 import editPolicyEcore1.NotMappingRule;
+import editPolicyEcore1.NotRule;
 import editPolicyEcore1.OrMappingRule;
+import editPolicyEcore1.OrRule;
+import editPolicyEcore1.ParentTypeRule;
 import editPolicyEcore1.Policy;
 import editPolicyEcore1.RelationNameRule;
 
+import editPolicyEcore1.ShapeNameRule;
+import editPolicyEcore1.ShapeTypeRule;
+import editPolicyEcore1.SourceTypeRule;
+import editPolicyEcore1.StepInRule;
+import editPolicyEcore1.TargetTypeRule;
+import editPolicyEcore1.TrueRule;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -122,6 +135,97 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * @generated
 	 */
 	private EClass implicationMappingRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass orRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass notRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass implicationRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractNameRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sourceTypeRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass targetTypeRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass commandNameRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass shapeTypeRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parentTypeRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stepInRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass trueRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass falseRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass shapeNameRuleEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -369,15 +473,6 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRelationNameRule_Name() {
-		return (EAttribute)relationNameRuleEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getNotMappingRule() {
 		return notMappingRuleEClass;
 	}
@@ -441,6 +536,168 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOrRule() {
+		return orRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrRule_Rules() {
+		return (EReference)orRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getNotRule() {
+		return notRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNotRule_Rule() {
+		return (EReference)notRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImplicationRule() {
+		return implicationRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImplicationRule_Antecedent() {
+		return (EReference)implicationRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImplicationRule_Consequent() {
+		return (EReference)implicationRuleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAbstractNameRule() {
+		return abstractNameRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAbstractNameRule_Name() {
+		return (EAttribute)abstractNameRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSourceTypeRule() {
+		return sourceTypeRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTargetTypeRule() {
+		return targetTypeRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCommandNameRule() {
+		return commandNameRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getShapeTypeRule() {
+		return shapeTypeRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParentTypeRule() {
+		return parentTypeRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStepInRule() {
+		return stepInRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTrueRule() {
+		return trueRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFalseRule() {
+		return falseRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getShapeNameRule() {
+		return shapeNameRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EditPolicyEcore1Factory getEditPolicyEcore1Factory() {
 		return (EditPolicyEcore1Factory)getEFactoryInstance();
 	}
@@ -493,7 +750,6 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		createEReference(andRuleEClass, AND_RULE__RULES);
 
 		relationNameRuleEClass = createEClass(RELATION_NAME_RULE);
-		createEAttribute(relationNameRuleEClass, RELATION_NAME_RULE__NAME);
 
 		notMappingRuleEClass = createEClass(NOT_MAPPING_RULE);
 		createEReference(notMappingRuleEClass, NOT_MAPPING_RULE__RULE);
@@ -504,6 +760,37 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		implicationMappingRuleEClass = createEClass(IMPLICATION_MAPPING_RULE);
 		createEReference(implicationMappingRuleEClass, IMPLICATION_MAPPING_RULE__ANTECEDENT);
 		createEReference(implicationMappingRuleEClass, IMPLICATION_MAPPING_RULE__CONSEQUENT);
+
+		orRuleEClass = createEClass(OR_RULE);
+		createEReference(orRuleEClass, OR_RULE__RULES);
+
+		notRuleEClass = createEClass(NOT_RULE);
+		createEReference(notRuleEClass, NOT_RULE__RULE);
+
+		implicationRuleEClass = createEClass(IMPLICATION_RULE);
+		createEReference(implicationRuleEClass, IMPLICATION_RULE__ANTECEDENT);
+		createEReference(implicationRuleEClass, IMPLICATION_RULE__CONSEQUENT);
+
+		abstractNameRuleEClass = createEClass(ABSTRACT_NAME_RULE);
+		createEAttribute(abstractNameRuleEClass, ABSTRACT_NAME_RULE__NAME);
+
+		sourceTypeRuleEClass = createEClass(SOURCE_TYPE_RULE);
+
+		targetTypeRuleEClass = createEClass(TARGET_TYPE_RULE);
+
+		commandNameRuleEClass = createEClass(COMMAND_NAME_RULE);
+
+		shapeTypeRuleEClass = createEClass(SHAPE_TYPE_RULE);
+
+		parentTypeRuleEClass = createEClass(PARENT_TYPE_RULE);
+
+		stepInRuleEClass = createEClass(STEP_IN_RULE);
+
+		trueRuleEClass = createEClass(TRUE_RULE);
+
+		falseRuleEClass = createEClass(FALSE_RULE);
+
+		shapeNameRuleEClass = createEClass(SHAPE_NAME_RULE);
 	}
 
 	/**
@@ -537,10 +824,23 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		featureNameMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		andMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		andRuleEClass.getESuperTypes().add(this.getAbstractRule());
-		relationNameRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		relationNameRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
 		notMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		orMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		implicationMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
+		orRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		notRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		implicationRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		abstractNameRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		sourceTypeRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		targetTypeRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		commandNameRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		shapeTypeRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		parentTypeRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		stepInRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		trueRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		falseRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		shapeNameRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -572,7 +872,6 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		initEReference(getAndRule_Rules(), this.getAbstractRule(), null, "rules", null, 2, -1, AndRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(relationNameRuleEClass, RelationNameRule.class, "RelationNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRelationNameRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, RelationNameRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(notMappingRuleEClass, NotMappingRule.class, "NotMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNotMappingRule_Rule(), this.getAbstractMappingRule(), null, "rule", null, 1, 1, NotMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -583,6 +882,37 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		initEClass(implicationMappingRuleEClass, ImplicationMappingRule.class, "ImplicationMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImplicationMappingRule_Antecedent(), this.getAbstractMappingRule(), null, "antecedent", null, 1, 1, ImplicationMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImplicationMappingRule_Consequent(), this.getAbstractMappingRule(), null, "consequent", null, 1, 1, ImplicationMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(orRuleEClass, OrRule.class, "OrRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOrRule_Rules(), this.getAbstractRule(), null, "rules", null, 2, -1, OrRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(notRuleEClass, NotRule.class, "NotRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNotRule_Rule(), this.getAbstractRule(), null, "rule", null, 1, 1, NotRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(implicationRuleEClass, ImplicationRule.class, "ImplicationRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImplicationRule_Antecedent(), this.getAbstractRule(), null, "antecedent", null, 1, 1, ImplicationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImplicationRule_Consequent(), this.getAbstractRule(), null, "consequent", null, 1, 1, ImplicationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(abstractNameRuleEClass, AbstractNameRule.class, "AbstractNameRule", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractNameRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, AbstractNameRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sourceTypeRuleEClass, SourceTypeRule.class, "SourceTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(targetTypeRuleEClass, TargetTypeRule.class, "TargetTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(commandNameRuleEClass, CommandNameRule.class, "CommandNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(shapeTypeRuleEClass, ShapeTypeRule.class, "ShapeTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(parentTypeRuleEClass, ParentTypeRule.class, "ParentTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(stepInRuleEClass, StepInRule.class, "StepInRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(trueRuleEClass, TrueRule.class, "TrueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(falseRuleEClass, FalseRule.class, "FalseRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(shapeNameRuleEClass, ShapeNameRule.class, "ShapeNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

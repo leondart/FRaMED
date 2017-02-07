@@ -67,6 +67,18 @@ public class EditPolicyEcore1FactoryImpl extends EFactoryImpl implements EditPol
 			case EditPolicyEcore1Package.NOT_MAPPING_RULE: return createNotMappingRule();
 			case EditPolicyEcore1Package.OR_MAPPING_RULE: return createOrMappingRule();
 			case EditPolicyEcore1Package.IMPLICATION_MAPPING_RULE: return createImplicationMappingRule();
+			case EditPolicyEcore1Package.OR_RULE: return createOrRule();
+			case EditPolicyEcore1Package.NOT_RULE: return createNotRule();
+			case EditPolicyEcore1Package.IMPLICATION_RULE: return createImplicationRule();
+			case EditPolicyEcore1Package.SOURCE_TYPE_RULE: return createSourceTypeRule();
+			case EditPolicyEcore1Package.TARGET_TYPE_RULE: return createTargetTypeRule();
+			case EditPolicyEcore1Package.COMMAND_NAME_RULE: return createCommandNameRule();
+			case EditPolicyEcore1Package.SHAPE_TYPE_RULE: return createShapeTypeRule();
+			case EditPolicyEcore1Package.PARENT_TYPE_RULE: return createParentTypeRule();
+			case EditPolicyEcore1Package.STEP_IN_RULE: return createStepInRule();
+			case EditPolicyEcore1Package.TRUE_RULE: return createTrueRule();
+			case EditPolicyEcore1Package.FALSE_RULE: return createFalseRule();
+			case EditPolicyEcore1Package.SHAPE_NAME_RULE: return createShapeNameRule();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -180,6 +192,126 @@ public class EditPolicyEcore1FactoryImpl extends EFactoryImpl implements EditPol
 	public ImplicationMappingRule createImplicationMappingRule() {
 		ImplicationMappingRuleImpl implicationMappingRule = new ImplicationMappingRuleImpl();
 		return implicationMappingRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrRule createOrRule() {
+		OrRuleImpl orRule = new OrRuleImpl();
+		return orRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotRule createNotRule() {
+		NotRuleImpl notRule = new NotRuleImpl();
+		return notRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImplicationRule createImplicationRule() {
+		ImplicationRuleImpl implicationRule = new ImplicationRuleImpl();
+		return implicationRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SourceTypeRule createSourceTypeRule() {
+		SourceTypeRuleImpl sourceTypeRule = new SourceTypeRuleImpl();
+		return sourceTypeRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetTypeRule createTargetTypeRule() {
+		TargetTypeRuleImpl targetTypeRule = new TargetTypeRuleImpl();
+		return targetTypeRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CommandNameRule createCommandNameRule() {
+		CommandNameRuleImpl commandNameRule = new CommandNameRuleImpl();
+		return commandNameRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ShapeTypeRule createShapeTypeRule() {
+		ShapeTypeRuleImpl shapeTypeRule = new ShapeTypeRuleImpl();
+		return shapeTypeRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParentTypeRule createParentTypeRule() {
+		ParentTypeRuleImpl parentTypeRule = new ParentTypeRuleImpl();
+		return parentTypeRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StepInRule createStepInRule() {
+		StepInRuleImpl stepInRule = new StepInRuleImpl();
+		return stepInRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TrueRule createTrueRule() {
+		TrueRuleImpl trueRule = new TrueRuleImpl();
+		return trueRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FalseRule createFalseRule() {
+		FalseRuleImpl falseRule = new FalseRuleImpl();
+		return falseRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ShapeNameRule createShapeNameRule() {
+		ShapeNameRuleImpl shapeNameRule = new ShapeNameRuleImpl();
+		return shapeNameRule;
 	}
 
 	/**

@@ -126,6 +126,7 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 			case EditPolicyEcore1Package.RELATION_NAME_RULE: {
 				RelationNameRule relationNameRule = (RelationNameRule)theEObject;
 				T result = caseRelationNameRule(relationNameRule);
+				if (result == null) result = caseAbstractNameRule(relationNameRule);
 				if (result == null) result = caseAbstractRule(relationNameRule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -148,6 +149,103 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 				ImplicationMappingRule implicationMappingRule = (ImplicationMappingRule)theEObject;
 				T result = caseImplicationMappingRule(implicationMappingRule);
 				if (result == null) result = caseAbstractMappingRule(implicationMappingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.OR_RULE: {
+				OrRule orRule = (OrRule)theEObject;
+				T result = caseOrRule(orRule);
+				if (result == null) result = caseAbstractRule(orRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.NOT_RULE: {
+				NotRule notRule = (NotRule)theEObject;
+				T result = caseNotRule(notRule);
+				if (result == null) result = caseAbstractRule(notRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.IMPLICATION_RULE: {
+				ImplicationRule implicationRule = (ImplicationRule)theEObject;
+				T result = caseImplicationRule(implicationRule);
+				if (result == null) result = caseAbstractRule(implicationRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.ABSTRACT_NAME_RULE: {
+				AbstractNameRule abstractNameRule = (AbstractNameRule)theEObject;
+				T result = caseAbstractNameRule(abstractNameRule);
+				if (result == null) result = caseAbstractRule(abstractNameRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.SOURCE_TYPE_RULE: {
+				SourceTypeRule sourceTypeRule = (SourceTypeRule)theEObject;
+				T result = caseSourceTypeRule(sourceTypeRule);
+				if (result == null) result = caseAbstractNameRule(sourceTypeRule);
+				if (result == null) result = caseAbstractRule(sourceTypeRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.TARGET_TYPE_RULE: {
+				TargetTypeRule targetTypeRule = (TargetTypeRule)theEObject;
+				T result = caseTargetTypeRule(targetTypeRule);
+				if (result == null) result = caseAbstractNameRule(targetTypeRule);
+				if (result == null) result = caseAbstractRule(targetTypeRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.COMMAND_NAME_RULE: {
+				CommandNameRule commandNameRule = (CommandNameRule)theEObject;
+				T result = caseCommandNameRule(commandNameRule);
+				if (result == null) result = caseAbstractNameRule(commandNameRule);
+				if (result == null) result = caseAbstractRule(commandNameRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.SHAPE_TYPE_RULE: {
+				ShapeTypeRule shapeTypeRule = (ShapeTypeRule)theEObject;
+				T result = caseShapeTypeRule(shapeTypeRule);
+				if (result == null) result = caseAbstractNameRule(shapeTypeRule);
+				if (result == null) result = caseAbstractRule(shapeTypeRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.PARENT_TYPE_RULE: {
+				ParentTypeRule parentTypeRule = (ParentTypeRule)theEObject;
+				T result = caseParentTypeRule(parentTypeRule);
+				if (result == null) result = caseAbstractNameRule(parentTypeRule);
+				if (result == null) result = caseAbstractRule(parentTypeRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.STEP_IN_RULE: {
+				StepInRule stepInRule = (StepInRule)theEObject;
+				T result = caseStepInRule(stepInRule);
+				if (result == null) result = caseAbstractRule(stepInRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.TRUE_RULE: {
+				TrueRule trueRule = (TrueRule)theEObject;
+				T result = caseTrueRule(trueRule);
+				if (result == null) result = caseAbstractRule(trueRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.FALSE_RULE: {
+				FalseRule falseRule = (FalseRule)theEObject;
+				T result = caseFalseRule(falseRule);
+				if (result == null) result = caseAbstractRule(falseRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.SHAPE_NAME_RULE: {
+				ShapeNameRule shapeNameRule = (ShapeNameRule)theEObject;
+				T result = caseShapeNameRule(shapeNameRule);
+				if (result == null) result = caseAbstractNameRule(shapeNameRule);
+				if (result == null) result = caseAbstractRule(shapeNameRule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -347,6 +445,201 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseImplicationMappingRule(ImplicationMappingRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Or Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Or Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrRule(OrRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Not Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Not Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotRule(NotRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implication Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implication Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplicationRule(ImplicationRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Name Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Name Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractNameRule(AbstractNameRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Source Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Source Type Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSourceTypeRule(SourceTypeRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Type Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetTypeRule(TargetTypeRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Command Name Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Command Name Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCommandNameRule(CommandNameRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shape Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shape Type Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShapeTypeRule(ShapeTypeRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parent Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parent Type Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParentTypeRule(ParentTypeRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Step In Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Step In Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStepInRule(StepInRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>True Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>True Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTrueRule(TrueRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>False Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>False Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFalseRule(FalseRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Shape Name Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Shape Name Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseShapeNameRule(ShapeNameRule object) {
 		return null;
 	}
 

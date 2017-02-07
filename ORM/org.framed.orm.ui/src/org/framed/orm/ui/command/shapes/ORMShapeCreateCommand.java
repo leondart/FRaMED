@@ -10,7 +10,7 @@ import org.framed.orm.model.Type;
 
 /**
  * Through this command all {@link Shape}s can be created(invoked into the model tree).
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMShapeCreateCommand extends Command {
@@ -54,7 +54,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
-   * 
+   *
    */
   public ORMShapeCreateCommand() {
     super.setLabel("ORMShapeCreate");
@@ -63,7 +63,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * This method tests if the conditions for executing this command are fulfilled,
-   * 
+   *
    * @return true if the parameter boundaries, node and parent are set.
    */
   @Override
@@ -73,7 +73,7 @@ public class ORMShapeCreateCommand extends Command {
     }
 
     int val = shape.getType().getValue();
-    
+
     switch (val) {
       case Type.COMPARTMENT_TYPE_VALUE:
         return attributeSegment != null && operationSegment != null && childmodel != null
@@ -105,8 +105,8 @@ public class ORMShapeCreateCommand extends Command {
   @Override
   public void execute() {
 	//distinguish RoleModel and Compartment Type if the type of shape is Compartment Type
-	//if name is already "Role Model" dont change it, else set it to "<...>"  
-	if(shape.getName()==null) shape.setName("<...>"); 	
+	//if name is already "Role Model" dont change it, else set it to "<...>"
+	if(shape.getName()==null) shape.setName("<...>");
     shape.setBoundaries(boundarie);
     shape.setContainer(parent);
     shape.setFirstSegment(attributeSegment);
@@ -118,7 +118,7 @@ public class ORMShapeCreateCommand extends Command {
   /**
    * {@inheritDoc} This command is undone through setting all the variables of the {@link Shape},
    * which where set in this command, on null.
-   * 
+   *
    */
   @Override
   public void undo() {
@@ -131,7 +131,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * Setter for the boundarie of the {@link Shape}, which is to be created.
-   * 
+   *
    * @param boundaries org.framed.orm.geometry.Rectangle
    * */
   public void setBoundaries(final Rectangle boundaries) {
@@ -140,7 +140,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * Setter for the {@link Shape}, which is created/invoked in this command.
-   * 
+   *
    * @param shape org.framed.orm.model.Shape
    * */
   public void setShape(final Shape shape) {
@@ -149,7 +149,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * Setter for the attibute {@link Segment} of the {@link Shape}, which is to be created.
-   * 
+   *
    * @param attributeSegment org.framed.orm.model.Segment
    * */
   public void setAttributeSegment(final Segment attributeSegment) {
@@ -159,7 +159,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * Setter for the operation {@link Segment} of the {@link Shape}, which is to be created.
-   * 
+   *
    * @param operationSegment org.framed.orm.model.Segment
    * */
   public void setOperationSegment(final Segment operationSegment) {
@@ -169,7 +169,7 @@ public class ORMShapeCreateCommand extends Command {
 
   /**
    * Setter for the child {@link Model} of the {@link Shape}, which is to be created.
-   * 
+   *
    * @param childmodel org.framed.orm.model.Model
    * */
   public void setChildmodel(final Model childmodel) {
@@ -180,17 +180,26 @@ public class ORMShapeCreateCommand extends Command {
   /**
    * Setter for the description( a {@link NamedElement}) of the {@link Shape}, which is to be
    * created.
-   * 
+   *
    * @param description org.framed.orm.model.NamedElement
    * */
   public void setDescription(final NamedElement description) {
     this.description = description;
   }
 
+  /**
+   * getter for shape for EditPolicyConfiguration
+   *
+   * @return Shape
+   */
+  public Shape getShape()
+  {
+	  return this.shape;
+  }
 
   /**
    * Setter for the {@link Model} to which the {@link Shape} should be added.
-   * 
+   *
    * @param parent org.framed.orm.model.Model
    * */
   public void setContainer(final Model parent) {

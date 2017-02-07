@@ -39,6 +39,8 @@ public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
   /** The model element, which is controlled through hostEditPart. */
   private final Object hostModel;
 
+  private EditPolicyHandler ep;
+
   /**
    * The constructor of this class. This class is initialized through calling the constructor of the
    * parent class and through setting the global variables.
@@ -50,6 +52,7 @@ public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
     editorPart = (ORMMultiPageEditor) editor.getParentEditor();
     hostEditPart = (AbstractGraphicalEditPart) host;
     hostModel = hostEditPart.getModel();
+    ep = editor.getEditPolicyHandler();
   }
 
 
@@ -66,6 +69,7 @@ public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
     command.setShape((Shape) getHost().getModel());
 
     EditPolicyCommandDecorator<ORMShapeDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
+    cmd.setEditPolicyHandler(this.ep);
 
     return cmd;
   }

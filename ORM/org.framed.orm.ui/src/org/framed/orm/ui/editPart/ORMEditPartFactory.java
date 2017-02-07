@@ -20,6 +20,7 @@ import org.framed.orm.ui.editPart.shape.ORMSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMShapeWithoutSegmentEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 
 
 
@@ -28,10 +29,17 @@ import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
  * EditPartFactory. Whenever an EditPart in that viewer needs to create another EditPart, it can use
  * the Viewer's factory. The factory is also used by the viewer whenever
  * {@link EditPartViewer#setContents(Object)} is called.(Comment taken from {@link EditPartFactory}.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMEditPartFactory implements EditPartFactory {
+
+	private EditPolicyHandler ep;
+
+	public ORMEditPartFactory(EditPolicyHandler ep)
+	{
+		this.ep = ep;
+	}
 
   /** {@inheritDoc} */
   @Override
@@ -39,7 +47,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     EditPart part = null;
 
     if (model instanceof Model) {
-      part = new ORMModelEditPart();
+      part = new ORMModelEditPart(this.ep);
     }
 
     else if (model instanceof Relation) {

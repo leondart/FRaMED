@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gef.CompoundSnapToHelper;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
@@ -29,18 +30,20 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMShapeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMShapeComponentEditPolicy;
+import org.framed.orm.ui.editPolicy.ORMShapeGraphicalNodeEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
 
 /**
  * This {@link EditPart} is the super/parent {@link EditPart} also super/parent controller of all
  * {@link Shape}s.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements NodeEditPart {
@@ -73,8 +76,11 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
   public void createEditPolicies() {
     if (!((Shape) getModel()).getType().equals(Type.RELATIONSHIP_SHAPE_CHILD)) {
 
+        ORMGraphicalEditor editor =
+    	 (ORMGraphicalEditor) ((DefaultEditDomain) this.getViewer().getEditDomain()).getEditorPart();
+    	EditPolicyHandler ep = editor.getEditPolicyHandler();
       // edit policy for handling requests of editing the shape name
-      installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
+      installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy(ep));
       installEditPolicy("Snap Feedback", new SnapFeedbackPolicy());
       // edit policy, which handels requests for deleting the shape, which is controlled
       // through this edit part
@@ -250,7 +256,7 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
    * of a {@link Model} or the name of a shape in a model is changed than the role/ compartment list
    * of the parent(compartenttype/group) must be updated for that reason the refreshVisuals() of the
    * parent of the model is called on a change notification.
-   * 
+   *
    * */
   public class ORMShapeAdapter implements Adapter {
 
@@ -308,7 +314,7 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
 
   /**
    * A getter for the boundaries of this {@link Shape}.
-   * 
+   *
    * @return shape boundaries
    * */
   public Rectangle getConstraints() {

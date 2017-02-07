@@ -24,6 +24,12 @@ import org.framed.orm.ui.figure.shapes.ORMShapeFigure;
  * */
 public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
 
+	EditPolicyHandler ep;
+
+	public ORMNamedElementDirectEditPolicy (EditPolicyHandler ep)
+	{
+		this.ep = ep;
+	}
   /**
    * {@inheritDoc} In this specific EditPolicy the command, which is returned, is for renaming of a
    * {@link NamedElement}.
@@ -39,6 +45,7 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     command.setNewName(newName);
 
     EditPolicyCommandDecorator<ORMNamedElementRenameCommand> cmd = new EditPolicyCommandDecorator<>(command);
+    cmd.setEditPolicyHandler(this.ep);
 
     return cmd;
   }

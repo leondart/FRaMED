@@ -121,6 +121,114 @@ public interface EditPolicyEcore1Factory extends EFactory {
 	ImplicationMappingRule createImplicationMappingRule();
 
 	/**
+	 * Returns a new object of class '<em>Or Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Or Rule</em>'.
+	 * @generated
+	 */
+	OrRule createOrRule();
+
+	/**
+	 * Returns a new object of class '<em>Not Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Not Rule</em>'.
+	 * @generated
+	 */
+	NotRule createNotRule();
+
+	/**
+	 * Returns a new object of class '<em>Implication Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Implication Rule</em>'.
+	 * @generated
+	 */
+	ImplicationRule createImplicationRule();
+
+	/**
+	 * Returns a new object of class '<em>Source Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Source Type Rule</em>'.
+	 * @generated
+	 */
+	SourceTypeRule createSourceTypeRule();
+
+	/**
+	 * Returns a new object of class '<em>Target Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Target Type Rule</em>'.
+	 * @generated
+	 */
+	TargetTypeRule createTargetTypeRule();
+
+	/**
+	 * Returns a new object of class '<em>Command Name Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Command Name Rule</em>'.
+	 * @generated
+	 */
+	CommandNameRule createCommandNameRule();
+
+	/**
+	 * Returns a new object of class '<em>Shape Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shape Type Rule</em>'.
+	 * @generated
+	 */
+	ShapeTypeRule createShapeTypeRule();
+
+	/**
+	 * Returns a new object of class '<em>Parent Type Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parent Type Rule</em>'.
+	 * @generated
+	 */
+	ParentTypeRule createParentTypeRule();
+
+	/**
+	 * Returns a new object of class '<em>Step In Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Step In Rule</em>'.
+	 * @generated
+	 */
+	StepInRule createStepInRule();
+
+	/**
+	 * Returns a new object of class '<em>True Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>True Rule</em>'.
+	 * @generated
+	 */
+	TrueRule createTrueRule();
+
+	/**
+	 * Returns a new object of class '<em>False Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>False Rule</em>'.
+	 * @generated
+	 */
+	FalseRule createFalseRule();
+
+	/**
+	 * Returns a new object of class '<em>Shape Name Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Shape Name Rule</em>'.
+	 * @generated
+	 */
+	ShapeNameRule createShapeNameRule();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

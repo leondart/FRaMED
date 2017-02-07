@@ -31,8 +31,38 @@
     <genClasses ecoreClass="editPolicyEcore1.ecore#//AndRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//AndRule/rules"/>
     </genClasses>
-    <genClasses ecoreClass="editPolicyEcore1.ecore#//RelationNameRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute editPolicyEcore1.ecore#//RelationNameRule/name"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//RelationNameRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//NotMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//NotMappingRule/rule"/>
     </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//OrMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//OrMappingRule/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//ImplicationMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//ImplicationMappingRule/antecedent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//ImplicationMappingRule/consequent"/>
+    </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//OrRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//OrRule/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//NotRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//NotRule/rule"/>
+    </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//ImplicationRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//ImplicationRule/antecedent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//ImplicationRule/consequent"/>
+    </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//AbstractNameRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute editPolicyEcore1.ecore#//AbstractNameRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//SourceTypeRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//TargetTypeRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//CommandNameRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//ShapeTypeRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//ParentTypeRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//StepInRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//TrueRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//FalseRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//ShapeNameRule"/>
   </genPackages>
 </genmodel:GenModel>

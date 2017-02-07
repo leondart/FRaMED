@@ -170,7 +170,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     }
     setEditDomain(new DefaultEditDomain(this));
 
-    this.editPolicyHandler = new EditPolicyHandler();
+    this.editPolicyHandler = new EditPolicyHandler(this.rootmodel.getFramedConfiguration());
   }
 
   @Override
@@ -261,7 +261,7 @@ public CommandStack getCommandStack() {return super.getCommandStack();}
     final GraphicalViewer viewer = getGraphicalViewer();
     final PaletteViewer paletteViewer = getEditDomain().getPaletteViewer();
 
-    viewer.setEditPartFactory(new ORMEditPartFactory());
+    viewer.setEditPartFactory(new ORMEditPartFactory(this.getEditPolicyHandler()));
     // set Contextmenu provider class + action registry
     viewer.setContextMenu(new ORMGraphicalEditorContextMenuProvider(getGraphicalViewer(),
         getActionRegistry()));

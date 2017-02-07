@@ -120,6 +120,58 @@ public class EditPolicyEcore1AdapterFactory extends AdapterFactoryImpl {
 				return createImplicationMappingRuleAdapter();
 			}
 			@Override
+			public Adapter caseOrRule(OrRule object) {
+				return createOrRuleAdapter();
+			}
+			@Override
+			public Adapter caseNotRule(NotRule object) {
+				return createNotRuleAdapter();
+			}
+			@Override
+			public Adapter caseImplicationRule(ImplicationRule object) {
+				return createImplicationRuleAdapter();
+			}
+			@Override
+			public Adapter caseAbstractNameRule(AbstractNameRule object) {
+				return createAbstractNameRuleAdapter();
+			}
+			@Override
+			public Adapter caseSourceTypeRule(SourceTypeRule object) {
+				return createSourceTypeRuleAdapter();
+			}
+			@Override
+			public Adapter caseTargetTypeRule(TargetTypeRule object) {
+				return createTargetTypeRuleAdapter();
+			}
+			@Override
+			public Adapter caseCommandNameRule(CommandNameRule object) {
+				return createCommandNameRuleAdapter();
+			}
+			@Override
+			public Adapter caseShapeTypeRule(ShapeTypeRule object) {
+				return createShapeTypeRuleAdapter();
+			}
+			@Override
+			public Adapter caseParentTypeRule(ParentTypeRule object) {
+				return createParentTypeRuleAdapter();
+			}
+			@Override
+			public Adapter caseStepInRule(StepInRule object) {
+				return createStepInRuleAdapter();
+			}
+			@Override
+			public Adapter caseTrueRule(TrueRule object) {
+				return createTrueRuleAdapter();
+			}
+			@Override
+			public Adapter caseFalseRule(FalseRule object) {
+				return createFalseRuleAdapter();
+			}
+			@Override
+			public Adapter caseShapeNameRule(ShapeNameRule object) {
+				return createShapeNameRuleAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -318,6 +370,188 @@ public class EditPolicyEcore1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImplicationMappingRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.OrRule <em>Or Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.OrRule
+	 * @generated
+	 */
+	public Adapter createOrRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.NotRule <em>Not Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.NotRule
+	 * @generated
+	 */
+	public Adapter createNotRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.ImplicationRule <em>Implication Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.ImplicationRule
+	 * @generated
+	 */
+	public Adapter createImplicationRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.AbstractNameRule <em>Abstract Name Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.AbstractNameRule
+	 * @generated
+	 */
+	public Adapter createAbstractNameRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.SourceTypeRule <em>Source Type Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.SourceTypeRule
+	 * @generated
+	 */
+	public Adapter createSourceTypeRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.TargetTypeRule <em>Target Type Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.TargetTypeRule
+	 * @generated
+	 */
+	public Adapter createTargetTypeRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.CommandNameRule <em>Command Name Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.CommandNameRule
+	 * @generated
+	 */
+	public Adapter createCommandNameRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.ShapeTypeRule <em>Shape Type Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.ShapeTypeRule
+	 * @generated
+	 */
+	public Adapter createShapeTypeRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.ParentTypeRule <em>Parent Type Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.ParentTypeRule
+	 * @generated
+	 */
+	public Adapter createParentTypeRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.StepInRule <em>Step In Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.StepInRule
+	 * @generated
+	 */
+	public Adapter createStepInRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.TrueRule <em>True Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.TrueRule
+	 * @generated
+	 */
+	public Adapter createTrueRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.FalseRule <em>False Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.FalseRule
+	 * @generated
+	 */
+	public Adapter createFalseRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.ShapeNameRule <em>Shape Name Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.ShapeNameRule
+	 * @generated
+	 */
+	public Adapter createShapeNameRuleAdapter() {
 		return null;
 	}
 

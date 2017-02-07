@@ -27,6 +27,14 @@ import org.framed.orm.ui.command.shapes.ORMShapeCreateCommand;
  * */
 public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
 
+
+	private EditPolicyHandler ep;
+
+	public ORMModelXYLayoutPolicy(EditPolicyHandler editPolicyHandler)
+	{
+		this.ep = editPolicyHandler;
+	}
+
   /**
    * {@inheritDoc} Constraints means here boundaries.
    *
@@ -40,6 +48,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     command.setNewBoundaries(createModelReactangle((Rectangle) newBoundarie));
 
     EditPolicyCommandDecorator<ORMShapeChangeBoundariesCommand> cmd = new EditPolicyCommandDecorator<>(command);
+    cmd.setEditPolicyHandler(ep);
 
     return cmd;
   }
@@ -180,6 +189,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     command.setDescription(description);
 
     EditPolicyCommandDecorator<ORMShapeCreateCommand> cmd = new EditPolicyCommandDecorator<>(command);
+    cmd.setEditPolicyHandler(this.ep);
 
     return cmd;
   }
