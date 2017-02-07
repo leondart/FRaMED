@@ -108,6 +108,18 @@ public class EditPolicyEcore1AdapterFactory extends AdapterFactoryImpl {
 				return createRelationNameRuleAdapter();
 			}
 			@Override
+			public Adapter caseNotMappingRule(NotMappingRule object) {
+				return createNotMappingRuleAdapter();
+			}
+			@Override
+			public Adapter caseOrMappingRule(OrMappingRule object) {
+				return createOrMappingRuleAdapter();
+			}
+			@Override
+			public Adapter caseImplicationMappingRule(ImplicationMappingRule object) {
+				return createImplicationMappingRuleAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -264,6 +276,48 @@ public class EditPolicyEcore1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelationNameRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.NotMappingRule <em>Not Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.NotMappingRule
+	 * @generated
+	 */
+	public Adapter createNotMappingRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.OrMappingRule <em>Or Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.OrMappingRule
+	 * @generated
+	 */
+	public Adapter createOrMappingRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link editPolicyEcore1.ImplicationMappingRule <em>Implication Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see editPolicyEcore1.ImplicationMappingRule
+	 * @generated
+	 */
+	public Adapter createImplicationMappingRuleAdapter() {
 		return null;
 	}
 

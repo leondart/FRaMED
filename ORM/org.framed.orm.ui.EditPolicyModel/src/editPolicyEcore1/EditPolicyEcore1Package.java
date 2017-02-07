@@ -346,6 +346,99 @@ public interface EditPolicyEcore1Package extends EPackage {
 	int RELATION_NAME_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link editPolicyEcore1.impl.NotMappingRuleImpl <em>Not Mapping Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see editPolicyEcore1.impl.NotMappingRuleImpl
+	 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getNotMappingRule()
+	 * @generated
+	 */
+	int NOT_MAPPING_RULE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Rule</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_MAPPING_RULE__RULE = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Not Mapping Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT_MAPPING_RULE_FEATURE_COUNT = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link editPolicyEcore1.impl.OrMappingRuleImpl <em>Or Mapping Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see editPolicyEcore1.impl.OrMappingRuleImpl
+	 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getOrMappingRule()
+	 * @generated
+	 */
+	int OR_MAPPING_RULE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_MAPPING_RULE__RULES = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Or Mapping Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR_MAPPING_RULE_FEATURE_COUNT = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link editPolicyEcore1.impl.ImplicationMappingRuleImpl <em>Implication Mapping Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see editPolicyEcore1.impl.ImplicationMappingRuleImpl
+	 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getImplicationMappingRule()
+	 * @generated
+	 */
+	int IMPLICATION_MAPPING_RULE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Antecedent</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICATION_MAPPING_RULE__ANTECEDENT = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Consequent</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICATION_MAPPING_RULE__CONSEQUENT = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Implication Mapping Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPLICATION_MAPPING_RULE_FEATURE_COUNT = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link editPolicyEcore1.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -567,6 +660,80 @@ public interface EditPolicyEcore1Package extends EPackage {
 	EAttribute getRelationNameRule_Name();
 
 	/**
+	 * Returns the meta object for class '{@link editPolicyEcore1.NotMappingRule <em>Not Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Not Mapping Rule</em>'.
+	 * @see editPolicyEcore1.NotMappingRule
+	 * @generated
+	 */
+	EClass getNotMappingRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link editPolicyEcore1.NotMappingRule#getRule <em>Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Rule</em>'.
+	 * @see editPolicyEcore1.NotMappingRule#getRule()
+	 * @see #getNotMappingRule()
+	 * @generated
+	 */
+	EReference getNotMappingRule_Rule();
+
+	/**
+	 * Returns the meta object for class '{@link editPolicyEcore1.OrMappingRule <em>Or Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Or Mapping Rule</em>'.
+	 * @see editPolicyEcore1.OrMappingRule
+	 * @generated
+	 */
+	EClass getOrMappingRule();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link editPolicyEcore1.OrMappingRule#getRules <em>Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Rules</em>'.
+	 * @see editPolicyEcore1.OrMappingRule#getRules()
+	 * @see #getOrMappingRule()
+	 * @generated
+	 */
+	EReference getOrMappingRule_Rules();
+
+	/**
+	 * Returns the meta object for class '{@link editPolicyEcore1.ImplicationMappingRule <em>Implication Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Implication Mapping Rule</em>'.
+	 * @see editPolicyEcore1.ImplicationMappingRule
+	 * @generated
+	 */
+	EClass getImplicationMappingRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link editPolicyEcore1.ImplicationMappingRule#getAntecedent <em>Antecedent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Antecedent</em>'.
+	 * @see editPolicyEcore1.ImplicationMappingRule#getAntecedent()
+	 * @see #getImplicationMappingRule()
+	 * @generated
+	 */
+	EReference getImplicationMappingRule_Antecedent();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link editPolicyEcore1.ImplicationMappingRule#getConsequent <em>Consequent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Consequent</em>'.
+	 * @see editPolicyEcore1.ImplicationMappingRule#getConsequent()
+	 * @see #getImplicationMappingRule()
+	 * @generated
+	 */
+	EReference getImplicationMappingRule_Consequent();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -776,6 +943,68 @@ public interface EditPolicyEcore1Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute RELATION_NAME_RULE__NAME = eINSTANCE.getRelationNameRule_Name();
+
+		/**
+		 * The meta object literal for the '{@link editPolicyEcore1.impl.NotMappingRuleImpl <em>Not Mapping Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see editPolicyEcore1.impl.NotMappingRuleImpl
+		 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getNotMappingRule()
+		 * @generated
+		 */
+		EClass NOT_MAPPING_RULE = eINSTANCE.getNotMappingRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Rule</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NOT_MAPPING_RULE__RULE = eINSTANCE.getNotMappingRule_Rule();
+
+		/**
+		 * The meta object literal for the '{@link editPolicyEcore1.impl.OrMappingRuleImpl <em>Or Mapping Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see editPolicyEcore1.impl.OrMappingRuleImpl
+		 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getOrMappingRule()
+		 * @generated
+		 */
+		EClass OR_MAPPING_RULE = eINSTANCE.getOrMappingRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OR_MAPPING_RULE__RULES = eINSTANCE.getOrMappingRule_Rules();
+
+		/**
+		 * The meta object literal for the '{@link editPolicyEcore1.impl.ImplicationMappingRuleImpl <em>Implication Mapping Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see editPolicyEcore1.impl.ImplicationMappingRuleImpl
+		 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getImplicationMappingRule()
+		 * @generated
+		 */
+		EClass IMPLICATION_MAPPING_RULE = eINSTANCE.getImplicationMappingRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Antecedent</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPLICATION_MAPPING_RULE__ANTECEDENT = eINSTANCE.getImplicationMappingRule_Antecedent();
+
+		/**
+		 * The meta object literal for the '<em><b>Consequent</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPLICATION_MAPPING_RULE__CONSEQUENT = eINSTANCE.getImplicationMappingRule_Consequent();
 
 	}
 

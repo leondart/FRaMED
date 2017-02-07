@@ -94,6 +94,33 @@ public interface EditPolicyEcore1Factory extends EFactory {
 	RelationNameRule createRelationNameRule();
 
 	/**
+	 * Returns a new object of class '<em>Not Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Not Mapping Rule</em>'.
+	 * @generated
+	 */
+	NotMappingRule createNotMappingRule();
+
+	/**
+	 * Returns a new object of class '<em>Or Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Or Mapping Rule</em>'.
+	 * @generated
+	 */
+	OrMappingRule createOrMappingRule();
+
+	/**
+	 * Returns a new object of class '<em>Implication Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Implication Mapping Rule</em>'.
+	 * @generated
+	 */
+	ImplicationMappingRule createImplicationMappingRule();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

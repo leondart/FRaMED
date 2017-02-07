@@ -64,6 +64,9 @@ public class EditPolicyEcore1FactoryImpl extends EFactoryImpl implements EditPol
 			case EditPolicyEcore1Package.AND_MAPPING_RULE: return createAndMappingRule();
 			case EditPolicyEcore1Package.AND_RULE: return createAndRule();
 			case EditPolicyEcore1Package.RELATION_NAME_RULE: return createRelationNameRule();
+			case EditPolicyEcore1Package.NOT_MAPPING_RULE: return createNotMappingRule();
+			case EditPolicyEcore1Package.OR_MAPPING_RULE: return createOrMappingRule();
+			case EditPolicyEcore1Package.IMPLICATION_MAPPING_RULE: return createImplicationMappingRule();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -147,6 +150,36 @@ public class EditPolicyEcore1FactoryImpl extends EFactoryImpl implements EditPol
 	public RelationNameRule createRelationNameRule() {
 		RelationNameRuleImpl relationNameRule = new RelationNameRuleImpl();
 		return relationNameRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotMappingRule createNotMappingRule() {
+		NotMappingRuleImpl notMappingRule = new NotMappingRuleImpl();
+		return notMappingRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrMappingRule createOrMappingRule() {
+		OrMappingRuleImpl orMappingRule = new OrMappingRuleImpl();
+		return orMappingRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImplicationMappingRule createImplicationMappingRule() {
+		ImplicationMappingRuleImpl implicationMappingRule = new ImplicationMappingRuleImpl();
+		return implicationMappingRule;
 	}
 
 	/**

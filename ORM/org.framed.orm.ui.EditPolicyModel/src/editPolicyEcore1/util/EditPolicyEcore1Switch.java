@@ -130,6 +130,27 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EditPolicyEcore1Package.NOT_MAPPING_RULE: {
+				NotMappingRule notMappingRule = (NotMappingRule)theEObject;
+				T result = caseNotMappingRule(notMappingRule);
+				if (result == null) result = caseAbstractMappingRule(notMappingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.OR_MAPPING_RULE: {
+				OrMappingRule orMappingRule = (OrMappingRule)theEObject;
+				T result = caseOrMappingRule(orMappingRule);
+				if (result == null) result = caseAbstractMappingRule(orMappingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EditPolicyEcore1Package.IMPLICATION_MAPPING_RULE: {
+				ImplicationMappingRule implicationMappingRule = (ImplicationMappingRule)theEObject;
+				T result = caseImplicationMappingRule(implicationMappingRule);
+				if (result == null) result = caseAbstractMappingRule(implicationMappingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -281,6 +302,51 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRelationNameRule(RelationNameRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Not Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Not Mapping Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotMappingRule(NotMappingRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Or Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Or Mapping Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOrMappingRule(OrMappingRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Implication Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Implication Mapping Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImplicationMappingRule(ImplicationMappingRule object) {
 		return null;
 	}
 

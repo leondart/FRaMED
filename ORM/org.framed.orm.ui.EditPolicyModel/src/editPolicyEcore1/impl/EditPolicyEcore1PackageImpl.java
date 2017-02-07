@@ -10,8 +10,11 @@ import editPolicyEcore1.Configuration;
 import editPolicyEcore1.EditPolicyEcore1Factory;
 import editPolicyEcore1.EditPolicyEcore1Package;
 import editPolicyEcore1.FeatureNameMappingRule;
+import editPolicyEcore1.ImplicationMappingRule;
 import editPolicyEcore1.Mapping;
 import editPolicyEcore1.Model;
+import editPolicyEcore1.NotMappingRule;
+import editPolicyEcore1.OrMappingRule;
 import editPolicyEcore1.Policy;
 import editPolicyEcore1.RelationNameRule;
 
@@ -98,6 +101,27 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * @generated
 	 */
 	private EClass relationNameRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass notMappingRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass orMappingRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass implicationMappingRuleEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -354,6 +378,69 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNotMappingRule() {
+		return notMappingRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNotMappingRule_Rule() {
+		return (EReference)notMappingRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOrMappingRule() {
+		return orMappingRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrMappingRule_Rules() {
+		return (EReference)orMappingRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImplicationMappingRule() {
+		return implicationMappingRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImplicationMappingRule_Antecedent() {
+		return (EReference)implicationMappingRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getImplicationMappingRule_Consequent() {
+		return (EReference)implicationMappingRuleEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EditPolicyEcore1Factory getEditPolicyEcore1Factory() {
 		return (EditPolicyEcore1Factory)getEFactoryInstance();
 	}
@@ -407,6 +494,16 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 
 		relationNameRuleEClass = createEClass(RELATION_NAME_RULE);
 		createEAttribute(relationNameRuleEClass, RELATION_NAME_RULE__NAME);
+
+		notMappingRuleEClass = createEClass(NOT_MAPPING_RULE);
+		createEReference(notMappingRuleEClass, NOT_MAPPING_RULE__RULE);
+
+		orMappingRuleEClass = createEClass(OR_MAPPING_RULE);
+		createEReference(orMappingRuleEClass, OR_MAPPING_RULE__RULES);
+
+		implicationMappingRuleEClass = createEClass(IMPLICATION_MAPPING_RULE);
+		createEReference(implicationMappingRuleEClass, IMPLICATION_MAPPING_RULE__ANTECEDENT);
+		createEReference(implicationMappingRuleEClass, IMPLICATION_MAPPING_RULE__CONSEQUENT);
 	}
 
 	/**
@@ -441,6 +538,9 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		andMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		andRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		relationNameRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		notMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
+		orMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
+		implicationMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -473,6 +573,16 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 
 		initEClass(relationNameRuleEClass, RelationNameRule.class, "RelationNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRelationNameRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, RelationNameRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(notMappingRuleEClass, NotMappingRule.class, "NotMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNotMappingRule_Rule(), this.getAbstractMappingRule(), null, "rule", null, 1, 1, NotMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(orMappingRuleEClass, OrMappingRule.class, "OrMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOrMappingRule_Rules(), this.getAbstractMappingRule(), null, "rules", null, 2, -1, OrMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(implicationMappingRuleEClass, ImplicationMappingRule.class, "ImplicationMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getImplicationMappingRule_Antecedent(), this.getAbstractMappingRule(), null, "antecedent", null, 1, 1, ImplicationMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImplicationMappingRule_Consequent(), this.getAbstractMappingRule(), null, "consequent", null, 1, 1, ImplicationMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
