@@ -64,7 +64,6 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 
 	public boolean canExecute(Command cmd)
 	{
-
 		// Accessing the model information
 		System.out.println("EditPolicyHandler CanExecuteq: " + cmd.getClass().toString());
 		System.out.println("CanExecute XMI returns: " + canExecute(model, cmd));
@@ -110,7 +109,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 
 	private editPolicyEcore1.Model loadModel() {
 
-		String filename = new String("platform:/plugin/org.framed.orm.ui.EditPolicyModel/model/Model.xmi");
+		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/Model.xmi");
 		try {
 			ResourceSet set = new ResourceSetImpl();
 			Resource res = set.createResource(URI.createURI(filename));
