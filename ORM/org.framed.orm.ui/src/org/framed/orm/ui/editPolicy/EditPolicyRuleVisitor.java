@@ -87,9 +87,7 @@ public class EditPolicyRuleVisitor {
 
 		private boolean commandNameRuleVisitor(editPolicyEcore1.CommandNameRule rule)
 		{
-
 			System.out.println("stepInRule not implemented");
-
 
 			if(rule.getName().equals(cmd.getLabel())) {
 				return true;

@@ -22,6 +22,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="policyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//AbstractMappingRule"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="newEReference2" eType="#//Policy"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureNameMappingRule" eSuperTypes="#//AbstractMappingRule">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

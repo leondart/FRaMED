@@ -15,21 +15,51 @@ import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 
 public class EditPolicyHandler {
 
+	/**
+	 * current configuration
+	 */
 	private FRaMEDConfiguration configuration;
+
+	/**
+	 * xmi model
+	 */
+	private editPolicyEcore1.Model model;
+
+	/**
+	 * list of Policiy-Rules which need to be evaluated
+	 */
+	private Set<String> policyRules;
 
 	public EditPolicyHandler(FRaMEDConfiguration configuration)
 	{
 		this.configuration = configuration;
+		model = this.loadModel();
+
+		this.loadPolicyRules();
 	}
+
+	/**
+	 * loads all Policies which are activated by current configuration
+	 */
+	private void loadPolicyRules()
+	{
+		policyRules = new HashSet<>();
+
+		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(configuration);
+		for(editPolicyEcore1.Mapping mapping : (editPolicyEcore1.Mapping[]) model.getConfiguration().getMappings().toArray()) {
+			if(editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
+				policyRules.add(mapping.getPolicyName());
+		}
+	}
+
 
 	public boolean canExecute(Command cmd)
 	{
-		editPolicyEcore1.Model model = this.getModel();
-		System.out.println("xmi loaded. ");
+		this.loadPolicyRules();
 
 		// Accessing the model information
 		System.out.println("EditPolicyHandler CanExecuteq: " + cmd.getClass().toString());
-		System.out.println("CanExecute XMI returns: " + canExecute(model, configuration, cmd));
+		System.out.println("CanExecute XMI returns: " + canExecute(model, cmd));
 
 		if (cmd instanceof ORMRelationCreateCommand)
 			return canExecute((ORMRelationCreateCommand) cmd);
@@ -37,22 +67,14 @@ public class EditPolicyHandler {
 		return true;
 	}
 
-	private boolean canExecute(editPolicyEcore1.Model model, FRaMEDConfiguration framedConfiguration, Command cmd)
+	private boolean canExecute(editPolicyEcore1.Model model, Command cmd)
 	{
-		Set<String> policies = new HashSet<>();
-		//get list of policies for configuration
-
-		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(framedConfiguration);
-		for(editPolicyEcore1.Mapping mapping : (editPolicyEcore1.Mapping[]) model.getConfiguration().getMappings().toArray()) {
-			if(editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
-				policies.add(mapping.getPolicyName());
-		}
-		System.out.println("List of Policies: " + policies.toString());
+		System.out.println("List of Policies: " + policyRules.toString());
 
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd);
 
 		for(editPolicyEcore1.Policy policy: model.getPolicies()) {
-			if(policies.contains(policy.getName())) {
+			if(policyRules.contains(policy.getName())) {
 				if(!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
 					return false;
 			}
@@ -80,7 +102,7 @@ public class EditPolicyHandler {
 	}
 
 
-	private editPolicyEcore1.Model getModel() {
+	private editPolicyEcore1.Model loadModel() {
 
 		String filename = new String("platform:/plugin/org.framed.orm.ui.EditPolicyModel/model/Model.xmi");
 		try {

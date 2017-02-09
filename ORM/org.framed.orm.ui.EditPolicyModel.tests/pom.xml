@@ -9,6 +9,6 @@
     <version>2.0.3</version>
   </parent>
 
-  <artifactId>org.framed.orm.ui.EditPolicyModel</artifactId>
+  <artifactId>org.framed.orm.ui.EditPolicyModel.tests</artifactId>
   <packaging>eclipse-plugin</packaging>
 </project> 

@@ -20,6 +20,7 @@
     <genClasses ecoreClass="editPolicyEcore1.ecore#//Mapping">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute editPolicyEcore1.ecore#//Mapping/policyName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//Mapping/rule"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//Mapping/newEReference2"/>
     </genClasses>
     <genClasses ecoreClass="editPolicyEcore1.ecore#//FeatureNameMappingRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute editPolicyEcore1.ecore#//FeatureNameMappingRule/name"/>

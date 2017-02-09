@@ -16,6 +16,7 @@
 		<module>../org.framed.orm.transformation</module>
 		<module>../org.framed.orm.transformation.test</module>
 		<module>../org.framed.orm.featuremodel</module>
+		<module>../org.framed.orm.EditPolicyModel</module>
 	</modules>
 
 	<properties>
