@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.framed.orm.ui.editor;
 
@@ -12,17 +12,17 @@ import org.eclipse.gef.commands.CommandStackEventListener;
 
 /**
  * @author paul
- * 
+ *
  *         Builds the subject part of an observer pattern. Listens to events of the command stack
  *         and leads them to the registered observers. This class is needed, because Java forbids
  *         multi-inheritance... TODO: If there is already an observer without the need to subclass
  *         CommandStackEventListener use that one instead of this helper class
- * 
+ *
  */
 public class EditorChangeNotifier implements CommandStackEventListener {
 
   static int id = 0;
-  private List<ORMGraphicalEditorPalette> observers = new ArrayList<ORMGraphicalEditorPalette>();
+  private List<ORMGraphicalEditorObserver> observers = new ArrayList<ORMGraphicalEditorObserver>();
   private ORMGraphicalEditor parentEditor;
 
   public EditorChangeNotifier(ORMGraphicalEditor parent) {
@@ -33,7 +33,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see org.eclipse.gef.commands.CommandStackEventListener#stackChanged(org.eclipse.gef.commands.
    * CommandStackEvent)
    */
@@ -44,7 +44,7 @@ public class EditorChangeNotifier implements CommandStackEventListener {
     String type = event.getCommand().getLabel();
 
     /* notify all registered observers */
-    Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
+    Iterator<ORMGraphicalEditorObserver> it = observers.iterator();
 
     while (it.hasNext()) {
       it.next().update(type);
@@ -53,19 +53,19 @@ public class EditorChangeNotifier implements CommandStackEventListener {
 
   public void editorTypeChanged(ORMGraphicalEditor.EditorType type) {
     /* notify all registered observers */
-    Iterator<ORMGraphicalEditorPalette> it = observers.iterator();
+    Iterator<ORMGraphicalEditorObserver> it = observers.iterator();
 
     while (it.hasNext()) {
       it.next().update(type);
     }
   }
 
-  public void register(ORMGraphicalEditorPalette observer) {
+  public void register(ORMGraphicalEditorObserver observer) {
     if (!observers.contains(observer))
       observers.add(observer);
   }
 
-  public void unregister(ORMGraphicalEditorPalette observer) {
+  public void unregister(ORMGraphicalEditorObserver observer) {
     observers.remove(observer);
   }
 

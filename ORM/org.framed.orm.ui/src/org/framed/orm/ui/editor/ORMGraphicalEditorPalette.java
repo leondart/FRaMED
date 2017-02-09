@@ -50,11 +50,11 @@ import org.framed.orm.ui.tool.CreationAndDirectEditTool;
 
 /**
  * This class provides the palette and its entries for the {@link ORMGraphicalEditor}.
- * 
+ *
  * @author Kay Bierzynski
  * @author Marc Kandler
  * */
-public class ORMGraphicalEditorPalette extends PaletteRoot {
+public class ORMGraphicalEditorPalette extends PaletteRoot implements ORMGraphicalEditorObserver {
 
   /** The {@link PaletteGroup} to which all {@link PaletteDrawer}s are added. */
   private PaletteGroup group;
@@ -65,7 +65,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /**
    * The model of the currently used file.
-   * 
+   *
    */
   private Model rootmodel;
 
@@ -86,8 +86,8 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /**
   * This palette belongs to a {@link ORMGraphicalEditor} and represents the palette of possible editor elements to choose from.
   * In this constructor all Palette Entries are created and the visibility of the palette elements is set according to the configuration.
-  * 
-  * @param stepOUTPaletteVisibility Pre-filled map with the Palette Entry and the {@link FeatureExpression} which makes this entry visible in the editor in the step-OUT state. 
+  *
+  * @param stepOUTPaletteVisibility Pre-filled map with the Palette Entry and the {@link FeatureExpression} which makes this entry visible in the editor in the step-OUT state.
   * @param stepINPaletteVisibility Pre-filled map with the Palette Entry and the {@link FeatureExpression} which makes this entry visible in the editor in the step-IN state.
   * @param rootmodel
   * @throws ScriptException
@@ -121,7 +121,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
 
   /**
    * A getter for the visibility of a palette entry.
-   * 
+   *
    * @return boolean
    * */
   private boolean getEntryVisisbility(final String name) {
@@ -131,7 +131,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
   /**
    * This method sets the visibility of the palette entries according to the current configuration as well as the state of the editor
    * (step-IN vs. step-OUT).
-   * 
+   *
    * @param topLevelPage True if the current state of the editor is the step-OUT view. Otherwise false.
    */
   public void setPaletteEntriesVisibility(final boolean topLevelPage) {
@@ -181,7 +181,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     }
   }
 
-  /** ! Update function for EditorChangeNotifier 
+  /** ! Update function for EditorChangeNotifier
    *   This method updates the visibility of the all palette entries
    *  according to the current configuration.
    **/
@@ -267,7 +267,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     entry.setSmallIcon(Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/group.png"));
     drawer.add(entry);
     addEntry(PaletteEntry.GROUP, entry, true);
-    
+
     entry =
             new CombinedTemplateCreationEntry(PaletteEntry.ROLE_MODEL.getName(), "Create a new Role Model",
                 new ORMRoleModelFactory(), null, null);
@@ -276,7 +276,7 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
                 "icons/compartment.png"));
         drawer.add(entry);
         addEntry(PaletteEntry.ROLE_MODEL, entry, true);
-    
+
     group.add(drawer);
   }
 
@@ -431,4 +431,5 @@ public class ORMGraphicalEditorPalette extends PaletteRoot {
     // Currently Entry 1 to 13
     group.add(drawer);
   }
+
 }

@@ -171,6 +171,7 @@ public class ORMGraphicalEditor extends AbstractGraphicalEditor {
     setEditDomain(new DefaultEditDomain(this));
 
     this.editPolicyHandler = new EditPolicyHandler(this.rootmodel.getFramedConfiguration());
+    changeNotifier.register(this.editPolicyHandler); //notify EditPolicyhandler about changes to configuration
   }
 
   @Override
@@ -650,7 +651,7 @@ public CommandStack getCommandStack() {return super.getCommandStack();}
     // set data editor type to the same type as the behaviour editor type
     // (btw: the complete design
     // of this editor hick-hack should be refactored)
-    ((ORMMultiPageEditor) getParentEditor()).getDataEditor().updateEditorType();;
+    ((ORMMultiPageEditor) getParentEditor()).getDataEditor().updateEditorType();
   }
 
   /**

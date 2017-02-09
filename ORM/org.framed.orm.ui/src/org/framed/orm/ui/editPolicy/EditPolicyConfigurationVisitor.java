@@ -11,7 +11,6 @@ public class EditPolicyConfigurationVisitor {
 	public EditPolicyConfigurationVisitor(FRaMEDConfiguration framedConfiguration)
 	{
 		this.configuration = framedConfiguration;
-
 	}
 	private FRaMEDConfiguration configuration;
 
@@ -63,13 +62,8 @@ public class EditPolicyConfigurationVisitor {
 		return true;
 	}
 
-
 	private boolean featureNameMappingRuleVisitor(editPolicyEcore1.FeatureNameMappingRule rule)
 	{
-		//test for terminal-symbol "true"
-		if(rule.getName().equals("true"))
-			return true;
-
  		List<String> features = new ArrayList<String>();
 
  		for (FRaMEDFeature feature : this.configuration.getFeatures()) {

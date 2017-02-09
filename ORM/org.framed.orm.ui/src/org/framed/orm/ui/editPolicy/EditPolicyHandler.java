@@ -12,8 +12,10 @@ import org.eclipse.gef.commands.Command;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
+import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
+import org.framed.orm.ui.editor.ORMGraphicalEditorObserver;
 
-public class EditPolicyHandler {
+public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 
 	/**
 	 * current configuration
@@ -43,6 +45,13 @@ public class EditPolicyHandler {
 	 */
 	private void loadPolicyRules()
 	{
+		/*
+		System.out.println("-------------------------------");
+ 		for (FRaMEDFeature feature : this.configuration.getFeatures()) {
+ 			System.out.println("EditPolicyHandler feature: " + feature.getName().getName());
+ 		}
+		System.out.println("-------------------------------");
+*/
 		policies = new HashSet<>();
 
 		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(configuration);
@@ -55,7 +64,6 @@ public class EditPolicyHandler {
 
 	public boolean canExecute(Command cmd)
 	{
-		this.loadPolicyRules();
 
 		// Accessing the model information
 		System.out.println("EditPolicyHandler CanExecuteq: " + cmd.getClass().toString());
@@ -72,7 +80,6 @@ public class EditPolicyHandler {
 		System.out.println("List of Policies: " + policies.toString());
 
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd);
-
 
 		for(editPolicyEcore1.Policy policy: policies) {
 			if(!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
@@ -121,6 +128,17 @@ public class EditPolicyHandler {
 				System.err.println(el.toString());
 		}
 		return null;
+	}
+
+	@Override
+	public void update(String type) {
+		this.loadPolicyRules();
+
+	}
+
+	@Override
+	public void update(EditorType type) {
+		this.loadPolicyRules();
 	}
 }
 
