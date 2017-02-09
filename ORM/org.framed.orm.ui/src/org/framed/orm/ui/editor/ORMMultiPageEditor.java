@@ -513,8 +513,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
     stepOUTPaletteVisibility.put(PaletteEntry.DATA_TYPE, new FeatureExpression(
         FeatureName.DATA_TYPES));
     stepOUTPaletteVisibility.put(PaletteEntry.GROUP, new FeatureExpression(true));
-    stepOUTPaletteVisibility.put(PaletteEntry.FULFILLMENT, new FeatureExpression(
-            FeatureName.DATES));
+    stepOUTPaletteVisibility.put(PaletteEntry.FULFILLMENT, new FeatureExpression(true));
 
     stepOUTPaletteVisibility.put(PaletteEntry.OPERATION, new FeatureExpression(true));
     stepOUTPaletteVisibility.put(PaletteEntry.ATTRIBUTE, new FeatureExpression(true));
