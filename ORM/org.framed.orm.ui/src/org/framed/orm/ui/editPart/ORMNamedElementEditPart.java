@@ -5,6 +5,7 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -13,16 +14,18 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.framed.orm.model.NamedElement;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 import org.framed.orm.ui.editPolicy.ORMAttributeOperationComponentEditPolicy;
-import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editPolicy.ORMDragEditPartsTracker;
+import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 
 /**
  * This {@link EditPart} is the controller for {@link NamedElement}s, which represent attributes and
  * operations.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
@@ -44,7 +47,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see
    * org.eclipse.gef.editparts.AbstractGraphicalEditPart#getDragTracker(org.eclipse.gef.Request)
    */
@@ -62,8 +65,12 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
   /** {@inheritDoc} */
   @Override
   protected void createEditPolicies() {
+      ORMGraphicalEditor editor =
+  	 (ORMGraphicalEditor) ((DefaultEditDomain) this.getViewer().getEditDomain()).getEditorPart();
+  	EditPolicyHandler ep = editor.getEditPolicyHandler();
+
     // edit policy for handling requests of editing the named element name
-    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy(ep));
     // edit policy, which handels requests for deleting the named element, which is controlled
     // through this edit part
     installEditPolicy(EditPolicy.COMPONENT_ROLE, new ORMAttributeOperationComponentEditPolicy());
@@ -93,7 +100,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
    * {@inheritDoc} The refreshVisuals of this {@link EditPart} updates the text(shorten named
    * element name) and the tooltip(complete named elment name) of the named element figure(
    * {@link Label}.
-   * 
+   *
    */
   @Override
   protected void refreshVisuals() {
@@ -128,7 +135,7 @@ public class ORMNamedElementEditPart extends AbstractGraphicalEditPart {
    * The {@link Adapter} of this {@link EditPart}. An adapter is a receiver of notifications and is
    * typically associated with a Notifier via an AdapterFactory. This {@link Adapter} calls the
    * refreshVisuals() method when it gets a change notification.
-   * 
+   *
    * */
   public class ORMNamedElementAdapter implements Adapter {
 

@@ -8,6 +8,7 @@ import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PolylineConnection;
+import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -17,14 +18,16 @@ import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
 import org.framed.orm.ui.editPart.shape.ORMSuperShapeEditPart;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 import org.framed.orm.ui.editPolicy.ORMNamedElementDirectEditPolicy;
 import org.framed.orm.ui.editor.ORMCellEditorLocator;
 import org.framed.orm.ui.editor.ORMDirectEditManager;
+import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.figure.shapes.ORMConnectionMultiplePolyline;
 
 /**
  * This {@link EditPart} is the controller for {@link Relation}s from type relationship.
- * 
+ *
  * @author Kay Bierzynski (initial development, implemented Relationship Implication, last changes
  *         due to new model)
  * @author Lars Schuetze (refactoring)
@@ -39,7 +42,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   /**
    * This method returns a {@link ConnectionEndpointLocator} for this {@link Relation} from type
    * relationship.
-   * 
+   *
    * @return locator org.eclipse.draw2d.ConnectionEndpointLocator
    * */
   private Locator getConnectionLocator(final PolylineConnection connection, final boolean isEnd) {
@@ -63,7 +66,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
    * A getter for the model element {@link Relation} from type relationship.
-   * 
+   *
    * @return ({@link Relationship}) getModel()
    * */
   public Relation getRelationship() {
@@ -73,13 +76,18 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
   @Override
   protected void createEditPolicies() {
     super.createEditPolicies();
+
+    ORMGraphicalEditor editor =
+	 (ORMGraphicalEditor) ((DefaultEditDomain) this.getViewer().getEditDomain()).getEditorPart();
+	EditPolicyHandler ep = editor.getEditPolicyHandler();
+
     // edit policy for handling requests of editing the named element name
-    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy());
+    installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new ORMNamedElementDirectEditPolicy(ep));
   }
 
   /**
    * A getter for the relationship figure.
-   * 
+   *
    * @return ({@link PolylineConnection}) getFigure()
    * */
   protected ORMConnectionMultiplePolyline getRelationFigure() {
@@ -163,7 +171,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
    * A getter for name {@link Label} of this relationship.
-   * 
+   *
    * @return nameLabel
    * */
   public Label getNameLabel() {
@@ -172,7 +180,7 @@ public class ORMRelationshipEditPart extends ORMRelationEditPart {
 
   /**
    * A getter for constraint {@link Label} of this relationship.
-   * 
+   *
    * @return constraintLabel
    * */
   public Label getConstraintLabel() {
