@@ -14,70 +14,70 @@ public class EditPolicyRuleVisitor {
 			this.cmd = cmd;
 		}
 
-		public boolean abstractRuleVisitor(editPolicyEcore1.AbstractRule rule)
+		public boolean abstractRuleVisitor(model.AbstractRule rule)
 		{
 
-			if (rule instanceof editPolicyEcore1.AndRule)
-				return andRuleVisitor((editPolicyEcore1.AndRule)rule);
+			if (rule instanceof model.AndRule)
+				return andRuleVisitor((model.AndRule)rule);
 
-			if (rule instanceof editPolicyEcore1.OrRule)
-				return orRuleVisitor((editPolicyEcore1.OrRule)rule);
+			if (rule instanceof model.OrRule)
+				return orRuleVisitor((model.OrRule)rule);
 
-			if (rule instanceof editPolicyEcore1.NotRule)
-				return notRuleVisitor((editPolicyEcore1.NotRule)rule);
+			if (rule instanceof model.NotRule)
+				return notRuleVisitor((model.NotRule)rule);
 
-			if (rule instanceof editPolicyEcore1.ImplicationRule)
-				return implicationRuleVisitor((editPolicyEcore1.ImplicationRule)rule);
+			if (rule instanceof model.ImplicationRule)
+				return implicationRuleVisitor((model.ImplicationRule)rule);
 
 			/*
-			if (rule instanceof editPolicyEcore1.ShapeNameRule)
-				return shapeNameRuleVisitor((editPolicyEcore1.ShapeNameRule)rule);
+			if (rule instanceof model.ShapeNameRule)
+				return shapeNameRuleVisitor((model.ShapeNameRule)rule);
 
-			if (rule instanceof editPolicyEcore1.ShapeTypeRule)
-				return shapeTypeRuleVisitor((editPolicyEcore1.ShapeTypeRule)rule);
+			if (rule instanceof model.ShapeTypeRule)
+				return shapeTypeRuleVisitor((model.ShapeTypeRule)rule);
 */
-			if (rule instanceof editPolicyEcore1.StepInRule)
-				return stepInRule((editPolicyEcore1.StepInRule)rule);
+			if (rule instanceof model.StepInRule)
+				return stepInRule((model.StepInRule)rule);
 
-			if (rule instanceof editPolicyEcore1.CommandNameRule)
-				return commandNameRuleVisitor((editPolicyEcore1.CommandNameRule)rule);
+			if (rule instanceof model.CommandNameRule)
+				return commandNameRuleVisitor((model.CommandNameRule)rule);
 
-			if (rule instanceof editPolicyEcore1.RelationNameRule)
-				return relationNameRuleVisitor((editPolicyEcore1.RelationNameRule)rule);
+			if (rule instanceof model.RelationNameRule)
+				return relationNameRuleVisitor((model.RelationNameRule)rule);
 
-			if (rule instanceof editPolicyEcore1.TrueRule)
+			if (rule instanceof model.TrueRule)
 				return true;
 
-			if (rule instanceof editPolicyEcore1.FalseRule)
+			if (rule instanceof model.FalseRule)
 				return false;
 
 			System.out.println("NodeVisitor for type not implemented");
 			return false;
 		}
 
-		private boolean andRuleVisitor(editPolicyEcore1.AndRule rule)
+		private boolean andRuleVisitor(model.AndRule rule)
 		{
-			for(editPolicyEcore1.AbstractRule abstractRule : rule.getRules()) {
+			for(model.AbstractRule abstractRule : rule.getRules()) {
 				if(!abstractRuleVisitor(abstractRule)) return false;
 			}
 			return true;
 		}
 
 
-		private boolean notRuleVisitor(editPolicyEcore1.NotRule rule)
+		private boolean notRuleVisitor(model.NotRule rule)
 		{
 			return !abstractRuleVisitor(rule.getRule());
 		}
 
-		private boolean orRuleVisitor(editPolicyEcore1.OrRule rule)
+		private boolean orRuleVisitor(model.OrRule rule)
 		{
-			for(editPolicyEcore1.AbstractRule abstractRule : rule.getRules()) {
+			for(model.AbstractRule abstractRule : rule.getRules()) {
 				if(abstractRuleVisitor(abstractRule)) return true;
 			}
 			return false;
 		}
 
-		private boolean implicationRuleVisitor(editPolicyEcore1.ImplicationRule rule)
+		private boolean implicationRuleVisitor(model.ImplicationRule rule)
 		{
 			if(abstractRuleVisitor(rule.getAntecedent())) {
 				return abstractRuleVisitor(rule.getConsequent());
@@ -85,7 +85,7 @@ public class EditPolicyRuleVisitor {
 			return true;
 		}
 
-		private boolean commandNameRuleVisitor(editPolicyEcore1.CommandNameRule rule)
+		private boolean commandNameRuleVisitor(model.CommandNameRule rule)
 		{
 			System.out.println("stepInRule not implemented");
 
@@ -95,7 +95,7 @@ public class EditPolicyRuleVisitor {
 			return false;
 		}
 
-		private boolean relationNameRuleVisitor(editPolicyEcore1.RelationNameRule rule)
+		private boolean relationNameRuleVisitor(model.RelationNameRule rule)
 		{
 			Relation relation;
 			Method getRelationNameMethod;
@@ -115,7 +115,7 @@ public class EditPolicyRuleVisitor {
 			return false;
 		}
 
-		private boolean stepInRule(editPolicyEcore1.StepInRule rule)
+		private boolean stepInRule(model.StepInRule rule)
 		{
 			System.out.println("stepInRule not implemented");
 			/*

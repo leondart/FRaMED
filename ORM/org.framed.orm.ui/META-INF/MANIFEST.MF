@@ -39,4 +39,4 @@ Export-Package: org.framed.orm.ui.command,
  org.framed.orm.ui.factory,
  org.framed.orm.ui.figure,
  org.framed.orm.ui.figure.shapes
-Import-Package: editPolicyEcore1
+Import-Package: model

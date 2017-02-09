@@ -7,30 +7,30 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated editPolicyEcore1 -->
+      <!-- @generated model -->
       <category
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="editPolicyEcore1.presentation.EditPolicyEcore1ModelWizardID"
-            name="%_UI_EditPolicyEcore1ModelWizard_label"
-            class="editPolicyEcore1.presentation.EditPolicyEcore1ModelWizard"
+            id="model.presentation.ModelModelWizardID"
+            name="%_UI_ModelModelWizard_label"
+            class="model.presentation.ModelModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/EditPolicyEcore1ModelFile.gif">
-         <description>%_UI_EditPolicyEcore1ModelWizard_description</description>
+            icon="icons/full/obj16/ModelModelFile.gif">
+         <description>%_UI_ModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated editPolicyEcore1 -->
+      <!-- @generated model -->
       <editor
-            id="editPolicyEcore1.presentation.EditPolicyEcore1EditorID"
-            name="%_UI_EditPolicyEcore1Editor_label"
-            icon="icons/full/obj16/EditPolicyEcore1ModelFile.gif"
-            extensions="editpolicyecore1"
-            class="editPolicyEcore1.presentation.EditPolicyEcore1Editor"
-            contributorClass="editPolicyEcore1.presentation.EditPolicyEcore1ActionBarContributor">
+            id="model.presentation.ModelEditorID"
+            name="%_UI_ModelEditor_label"
+            icon="icons/full/obj16/ModelModelFile.gif"
+            extensions="model"
+            class="model.presentation.ModelEditor"
+            contributorClass="model.presentation.ModelActionBarContributor">
       </editor>
    </extension>
 

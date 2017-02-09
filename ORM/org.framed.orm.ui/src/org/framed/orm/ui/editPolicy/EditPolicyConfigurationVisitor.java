@@ -14,47 +14,47 @@ public class EditPolicyConfigurationVisitor {
 	}
 	private FRaMEDConfiguration configuration;
 
-	public boolean abstractMappingRuleVisitor(editPolicyEcore1.AbstractMappingRule rule)
+	public boolean abstractMappingRuleVisitor(model.AbstractMappingRule rule)
 	{
-		if (rule instanceof editPolicyEcore1.AndMappingRule)
-			return andMappingRuleVisitor((editPolicyEcore1.AndMappingRule)rule);
-		if (rule instanceof editPolicyEcore1.OrMappingRule)
-			return orMappingRuleVisitor((editPolicyEcore1.OrMappingRule)rule);
-		if (rule instanceof editPolicyEcore1.NotMappingRule)
-			return notMappingRuleVisitor((editPolicyEcore1.NotMappingRule)rule);
-		if (rule instanceof editPolicyEcore1.ImplicationMappingRule)
-			return implicationMappingRuleVisitor((editPolicyEcore1.ImplicationMappingRule)rule);
-		if (rule instanceof editPolicyEcore1.FeatureNameMappingRule)
-			return featureNameMappingRuleVisitor((editPolicyEcore1.FeatureNameMappingRule)rule);
-		if (rule instanceof editPolicyEcore1.TrueMappingRule)
+		if (rule instanceof model.AndMappingRule)
+			return andMappingRuleVisitor((model.AndMappingRule)rule);
+		if (rule instanceof model.OrMappingRule)
+			return orMappingRuleVisitor((model.OrMappingRule)rule);
+		if (rule instanceof model.NotMappingRule)
+			return notMappingRuleVisitor((model.NotMappingRule)rule);
+		if (rule instanceof model.ImplicationMappingRule)
+			return implicationMappingRuleVisitor((model.ImplicationMappingRule)rule);
+		if (rule instanceof model.FeatureNameMappingRule)
+			return featureNameMappingRuleVisitor((model.FeatureNameMappingRule)rule);
+		if (rule instanceof model.TrueMappingRule)
 			return true;
 
 		System.out.println("NodeVisitor for type not implemented");
 		return false;
 	}
 
-	private boolean andMappingRuleVisitor(editPolicyEcore1.AndMappingRule rule)
+	private boolean andMappingRuleVisitor(model.AndMappingRule rule)
 	{
-		for(editPolicyEcore1.AbstractMappingRule abstractMappingRule : rule.getRules()) {
+		for(model.AbstractMappingRule abstractMappingRule : rule.getRules()) {
 			if(!abstractMappingRuleVisitor(abstractMappingRule)) return false;
 		}
 		return true;
 	}
 
-	private boolean notMappingRuleVisitor(editPolicyEcore1.NotMappingRule rule)
+	private boolean notMappingRuleVisitor(model.NotMappingRule rule)
 	{
 		return !abstractMappingRuleVisitor(rule.getRule());
 	}
 
-	private boolean orMappingRuleVisitor(editPolicyEcore1.OrMappingRule rule)
+	private boolean orMappingRuleVisitor(model.OrMappingRule rule)
 	{
-		for(editPolicyEcore1.AbstractMappingRule abstractMappingRule : rule.getRules()) {
+		for(model.AbstractMappingRule abstractMappingRule : rule.getRules()) {
 			if(abstractMappingRuleVisitor(abstractMappingRule)) return true;
 		}
 		return false;
 	}
 
-	private boolean implicationMappingRuleVisitor(editPolicyEcore1.ImplicationMappingRule rule)
+	private boolean implicationMappingRuleVisitor(model.ImplicationMappingRule rule)
 	{
 		if(abstractMappingRuleVisitor(rule.getAntecedent())) {
 			return abstractMappingRuleVisitor(rule.getConsequent());
@@ -62,7 +62,7 @@ public class EditPolicyConfigurationVisitor {
 		return true;
 	}
 
-	private boolean featureNameMappingRuleVisitor(editPolicyEcore1.FeatureNameMappingRule rule)
+	private boolean featureNameMappingRuleVisitor(model.FeatureNameMappingRule rule)
 	{
  		List<String> features = new ArrayList<String>();
 

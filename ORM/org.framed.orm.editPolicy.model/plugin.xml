@@ -7,11 +7,11 @@
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated editPolicyEcore1 -->
+      <!-- @generated model -->
       <package
-            uri="http://www.example.org/editPolicyEcore1"
-            class="editPolicyEcore1.EditPolicyEcore1Package"
-            genModel="model/editPolicyEcore1.genmodel"/>
+            uri="http://www.example.org/model"
+            class="model.ModelPackage"
+            genModel="model/model.genmodel"/>
    </extension>
 
 </plugin>

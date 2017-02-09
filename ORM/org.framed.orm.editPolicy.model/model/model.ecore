@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model" nsURI="http://www.example.org/model" nsPrefix="model">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
+        eType="#//Configuration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="policies" upperBound="-1"
+        eType="#//Policy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Policy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" eType="#//AbstractRule"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
+        eType="#//Mapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractMappingRule" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//AbstractMappingRule"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="policy" lowerBound="1"
+        eType="#//Policy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureNameMappingRule" eSuperTypes="#//AbstractMappingRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndMappingRule" eSuperTypes="#//AbstractMappingRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="2" upperBound="-1"
+        eType="#//AbstractMappingRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractRule" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AndRule" eSuperTypes="#//AbstractRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="2" upperBound="-1"
+        eType="#//AbstractRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationNameRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NotMappingRule" eSuperTypes="#//AbstractMappingRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//AbstractMappingRule"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrMappingRule" eSuperTypes="#//AbstractMappingRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="2" upperBound="-1"
+        eType="#//AbstractMappingRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicationMappingRule" eSuperTypes="#//AbstractMappingRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="antecedent" lowerBound="1"
+        eType="#//AbstractMappingRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consequent" lowerBound="1"
+        eType="#//AbstractMappingRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrRule" eSuperTypes="#//AbstractRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="2" upperBound="-1"
+        eType="#//AbstractRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotRule" eSuperTypes="#//AbstractRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//AbstractRule"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImplicationRule" eSuperTypes="#//AbstractRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="antecedent" lowerBound="1"
+        eType="#//AbstractRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consequent" lowerBound="1"
+        eType="#//AbstractRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractNameRule" abstract="true" eSuperTypes="#//AbstractRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SourceTypeRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetTypeRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CommandNameRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ShapeTypeRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParentTypeRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StepInRule" eSuperTypes="#//AbstractRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TrueRule" eSuperTypes="#//AbstractRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FalseRule" eSuperTypes="#//AbstractRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ShapeNameRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TrueMappingRule" eSuperTypes="#//AbstractMappingRule"/>
+</ecore:EPackage>

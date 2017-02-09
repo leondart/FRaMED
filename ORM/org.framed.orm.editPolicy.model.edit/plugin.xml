@@ -7,10 +7,10 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated editPolicyEcore1 -->
+      <!-- @generated model -->
       <factory
-            uri="http://www.example.org/editPolicyEcore1"
-            class="editPolicyEcore1.provider.EditPolicyEcore1ItemProviderAdapterFactory"
+            uri="http://www.example.org/model"
+            class="model.provider.ModelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

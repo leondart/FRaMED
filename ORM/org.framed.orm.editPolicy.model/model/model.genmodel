@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.framed.orm.editPolicy.model/src"
+    modelPluginID="org.framed.orm.editPolicy.model" modelName="Model" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>model.ecore</foreignModel>
+  <genPackages prefix="Model" disposableProviderFactory="true" ecorePackage="model.ecore#/">
+    <genClasses ecoreClass="model.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Model/configuration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Model/policies"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Policy">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Policy/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Policy/rule"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Configuration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Configuration/mappings"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="model.ecore#//AbstractMappingRule"/>
+    <genClasses ecoreClass="model.ecore#//Mapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Mapping/rule"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Mapping/policy"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//FeatureNameMappingRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//FeatureNameMappingRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//AndMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//AndMappingRule/rules"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="model.ecore#//AbstractRule"/>
+    <genClasses ecoreClass="model.ecore#//AndRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//AndRule/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//RelationNameRule"/>
+    <genClasses ecoreClass="model.ecore#//NotMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//NotMappingRule/rule"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//OrMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//OrMappingRule/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ImplicationMappingRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ImplicationMappingRule/antecedent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ImplicationMappingRule/consequent"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//OrRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//OrRule/rules"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//NotRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//NotRule/rule"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//ImplicationRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ImplicationRule/antecedent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//ImplicationRule/consequent"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="model.ecore#//AbstractNameRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//AbstractNameRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//SourceTypeRule"/>
+    <genClasses ecoreClass="model.ecore#//TargetTypeRule"/>
+    <genClasses ecoreClass="model.ecore#//CommandNameRule"/>
+    <genClasses ecoreClass="model.ecore#//ShapeTypeRule"/>
+    <genClasses ecoreClass="model.ecore#//ParentTypeRule"/>
+    <genClasses ecoreClass="model.ecore#//StepInRule"/>
+    <genClasses ecoreClass="model.ecore#//TrueRule"/>
+    <genClasses ecoreClass="model.ecore#//FalseRule"/>
+    <genClasses ecoreClass="model.ecore#//ShapeNameRule"/>
+    <genClasses ecoreClass="model.ecore#//TrueMappingRule"/>
+  </genPackages>
+</genmodel:GenModel>

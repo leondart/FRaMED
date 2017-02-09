@@ -25,12 +25,12 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	/**
 	 * xmi model
 	 */
-	private editPolicyEcore1.Model model;
+	private model.Model model;
 
 	/**
 	 * list of Policy-Rules which need to be evaluated
 	 */
-	private Set<editPolicyEcore1.Policy> policies;
+	private Set<model.Policy> policies;
 
 	public EditPolicyHandler(FRaMEDConfiguration configuration)
 	{
@@ -55,7 +55,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		policies = new HashSet<>();
 
 		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(configuration);
-		for(editPolicyEcore1.Mapping mapping : (editPolicyEcore1.Mapping[]) model.getConfiguration().getMappings().toArray()) {
+		for(model.Mapping mapping : (model.Mapping[]) model.getConfiguration().getMappings().toArray()) {
 			if(editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
 				policies.add(mapping.getPolicy());
 		}
@@ -74,13 +74,13 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		return true;
 	}
 
-	private boolean canExecute(editPolicyEcore1.Model model, Command cmd)
+	private boolean canExecute(model.Model model, Command cmd)
 	{
 		System.out.println("List of Policies: " + policies.toString());
 
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd);
 
-		for(editPolicyEcore1.Policy policy: policies) {
+		for(model.Policy policy: policies) {
 			if(!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
 				return false;
 		}
@@ -107,7 +107,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	}
 
 
-	private editPolicyEcore1.Model loadModel() {
+	private model.Model loadModel() {
 
 		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/Model.xmi");
 		try {
@@ -116,10 +116,10 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 			res.load(Collections.EMPTY_MAP);
 			// if there are file contents in this directory
 			if (res.getContents().size() > 0
-					&& res.getContents().get(0) instanceof editPolicyEcore1.Model) {
+					&& res.getContents().get(0) instanceof model.Model) {
 				// load test file and add it to test list
 
-				return (editPolicyEcore1.Model) res.getContents().get(0);
+				return (model.Model) res.getContents().get(0);
 			}
 		} catch (Exception e) {
 			System.err.println("Was not able to load xmi:  \"" + filename + "\" due : " + e.toString());
