@@ -63,29 +63,29 @@ public class MappingItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPolicyNamePropertyDescriptor(object);
+			addPolicyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Policy Name feature.
+	 * This adds a property descriptor for the Policy feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPolicyNamePropertyDescriptor(Object object) {
+	protected void addPolicyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Mapping_policyName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_policyName_feature", "_UI_Mapping_type"),
-				 EditPolicyEcore1Package.Literals.MAPPING__POLICY_NAME,
+				 getString("_UI_Mapping_policy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_policy_feature", "_UI_Mapping_type"),
+				 EditPolicyEcore1Package.Literals.MAPPING__POLICY,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -139,10 +139,7 @@ public class MappingItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Mapping)object).getPolicyName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Mapping_type") :
-			getString("_UI_Mapping_type") + " " + label;
+		return getString("_UI_Mapping_type");
 	}
 	
 
@@ -158,9 +155,6 @@ public class MappingItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Mapping.class)) {
-			case EditPolicyEcore1Package.MAPPING__POLICY_NAME:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case EditPolicyEcore1Package.MAPPING__RULE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -203,6 +197,11 @@ public class MappingItemProvider
 			(createChildParameter
 				(EditPolicyEcore1Package.Literals.MAPPING__RULE,
 				 EditPolicyEcore1Factory.eINSTANCE.createImplicationMappingRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EditPolicyEcore1Package.Literals.MAPPING__RULE,
+				 EditPolicyEcore1Factory.eINSTANCE.createTrueMappingRule()));
 	}
 
 	/**

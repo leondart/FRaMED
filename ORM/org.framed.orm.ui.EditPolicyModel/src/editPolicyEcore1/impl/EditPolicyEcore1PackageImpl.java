@@ -30,6 +30,7 @@ import editPolicyEcore1.ShapeTypeRule;
 import editPolicyEcore1.SourceTypeRule;
 import editPolicyEcore1.StepInRule;
 import editPolicyEcore1.TargetTypeRule;
+import editPolicyEcore1.TrueMappingRule;
 import editPolicyEcore1.TrueRule;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -228,6 +229,13 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	private EClass shapeNameRuleEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass trueMappingRuleEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -383,8 +391,8 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMapping_PolicyName() {
-		return (EAttribute)mappingEClass.getEStructuralFeatures().get(0);
+	public EReference getMapping_Rule() {
+		return (EReference)mappingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -392,7 +400,7 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMapping_Rule() {
+	public EReference getMapping_Policy() {
 		return (EReference)mappingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -698,6 +706,15 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTrueMappingRule() {
+		return trueMappingRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EditPolicyEcore1Factory getEditPolicyEcore1Factory() {
 		return (EditPolicyEcore1Factory)getEFactoryInstance();
 	}
@@ -735,8 +752,8 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		abstractMappingRuleEClass = createEClass(ABSTRACT_MAPPING_RULE);
 
 		mappingEClass = createEClass(MAPPING);
-		createEAttribute(mappingEClass, MAPPING__POLICY_NAME);
 		createEReference(mappingEClass, MAPPING__RULE);
+		createEReference(mappingEClass, MAPPING__POLICY);
 
 		featureNameMappingRuleEClass = createEClass(FEATURE_NAME_MAPPING_RULE);
 		createEAttribute(featureNameMappingRuleEClass, FEATURE_NAME_MAPPING_RULE__NAME);
@@ -791,6 +808,8 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		falseRuleEClass = createEClass(FALSE_RULE);
 
 		shapeNameRuleEClass = createEClass(SHAPE_NAME_RULE);
+
+		trueMappingRuleEClass = createEClass(TRUE_MAPPING_RULE);
 	}
 
 	/**
@@ -841,6 +860,7 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		trueRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		falseRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		shapeNameRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		trueMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -857,8 +877,8 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		initEClass(abstractMappingRuleEClass, AbstractMappingRule.class, "AbstractMappingRule", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(mappingEClass, Mapping.class, "Mapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMapping_PolicyName(), ecorePackage.getEString(), "policyName", null, 0, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMapping_Rule(), this.getAbstractMappingRule(), null, "rule", null, 1, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMapping_Policy(), this.getPolicy(), null, "policy", null, 1, 1, Mapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureNameMappingRuleEClass, FeatureNameMappingRule.class, "FeatureNameMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeatureNameMappingRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, FeatureNameMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -913,6 +933,8 @@ public class EditPolicyEcore1PackageImpl extends EPackageImpl implements EditPol
 		initEClass(falseRuleEClass, FalseRule.class, "FalseRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(shapeNameRuleEClass, ShapeNameRule.class, "ShapeNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(trueMappingRuleEClass, TrueMappingRule.class, "TrueMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -162,6 +162,11 @@ public class ImplicationMappingRuleItemProvider extends AbstractMappingRuleItemP
 
 		newChildDescriptors.add
 			(createChildParameter
+				(EditPolicyEcore1Package.Literals.IMPLICATION_MAPPING_RULE__ANTECEDENT,
+				 EditPolicyEcore1Factory.eINSTANCE.createTrueMappingRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(EditPolicyEcore1Package.Literals.IMPLICATION_MAPPING_RULE__CONSEQUENT,
 				 EditPolicyEcore1Factory.eINSTANCE.createFeatureNameMappingRule()));
 
@@ -184,6 +189,11 @@ public class ImplicationMappingRuleItemProvider extends AbstractMappingRuleItemP
 			(createChildParameter
 				(EditPolicyEcore1Package.Literals.IMPLICATION_MAPPING_RULE__CONSEQUENT,
 				 EditPolicyEcore1Factory.eINSTANCE.createImplicationMappingRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EditPolicyEcore1Package.Literals.IMPLICATION_MAPPING_RULE__CONSEQUENT,
+				 EditPolicyEcore1Factory.eINSTANCE.createTrueMappingRule()));
 	}
 
 	/**

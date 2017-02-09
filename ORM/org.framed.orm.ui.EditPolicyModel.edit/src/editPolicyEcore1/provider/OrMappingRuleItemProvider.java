@@ -166,6 +166,11 @@ public class OrMappingRuleItemProvider
 			(createChildParameter
 				(EditPolicyEcore1Package.Literals.OR_MAPPING_RULE__RULES,
 				 EditPolicyEcore1Factory.eINSTANCE.createImplicationMappingRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EditPolicyEcore1Package.Literals.OR_MAPPING_RULE__RULES,
+				 EditPolicyEcore1Factory.eINSTANCE.createTrueMappingRule()));
 	}
 
 }

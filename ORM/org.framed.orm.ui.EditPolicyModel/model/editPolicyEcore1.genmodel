@@ -18,9 +18,8 @@
     </genClasses>
     <genClasses image="false" ecoreClass="editPolicyEcore1.ecore#//AbstractMappingRule"/>
     <genClasses ecoreClass="editPolicyEcore1.ecore#//Mapping">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute editPolicyEcore1.ecore#//Mapping/policyName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//Mapping/rule"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//Mapping/newEReference2"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference editPolicyEcore1.ecore#//Mapping/policy"/>
     </genClasses>
     <genClasses ecoreClass="editPolicyEcore1.ecore#//FeatureNameMappingRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute editPolicyEcore1.ecore#//FeatureNameMappingRule/name"/>
@@ -65,5 +64,6 @@
     <genClasses ecoreClass="editPolicyEcore1.ecore#//TrueRule"/>
     <genClasses ecoreClass="editPolicyEcore1.ecore#//FalseRule"/>
     <genClasses ecoreClass="editPolicyEcore1.ecore#//ShapeNameRule"/>
+    <genClasses ecoreClass="editPolicyEcore1.ecore#//TrueMappingRule"/>
   </genPackages>
 </genmodel:GenModel>

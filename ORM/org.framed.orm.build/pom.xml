@@ -16,7 +16,7 @@
 		<module>../org.framed.orm.transformation</module>
 		<module>../org.framed.orm.transformation.test</module>
 		<module>../org.framed.orm.featuremodel</module>
-		<module>../org.framed.orm.EditPolicyModel</module>
+		<module>../org.framed.orm.ui.EditPolicyModel</module> 
 	</modules>
 
 	<properties>
@@ -91,10 +91,16 @@
 		</plugins>
 	</build>
 	
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.rosi.crom.metamodel</groupId>
 			<artifactId>org.rosi.crom.metamodel</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+				<dependency>
+			<groupId>org.framed.orm.ui.EditPolicyModel</groupId>
+			<artifactId>org.framed.orm.ui.EditPolicyModel</artifactId>
 			<version>0.1.0</version>
 		</dependency>
 <!-- 		<dependency>

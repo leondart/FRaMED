@@ -27,6 +27,8 @@ public class EditPolicyConfigurationVisitor {
 			return implicationMappingRuleVisitor((editPolicyEcore1.ImplicationMappingRule)rule);
 		if (rule instanceof editPolicyEcore1.FeatureNameMappingRule)
 			return featureNameMappingRuleVisitor((editPolicyEcore1.FeatureNameMappingRule)rule);
+		if (rule instanceof editPolicyEcore1.TrueMappingRule)
+			return true;
 
 		System.out.println("NodeVisitor for type not implemented");
 		return false;

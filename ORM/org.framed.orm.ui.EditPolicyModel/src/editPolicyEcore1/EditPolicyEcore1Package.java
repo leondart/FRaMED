@@ -188,22 +188,22 @@ public interface EditPolicyEcore1Package extends EPackage {
 	int MAPPING = 4;
 
 	/**
-	 * The feature id for the '<em><b>Policy Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING__POLICY_NAME = 0;
-
-	/**
 	 * The feature id for the '<em><b>Rule</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__RULE = 1;
+	int MAPPING__RULE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Policy</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__POLICY = 1;
 
 	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
@@ -785,6 +785,25 @@ public interface EditPolicyEcore1Package extends EPackage {
 	int SHAPE_NAME_RULE_FEATURE_COUNT = ABSTRACT_NAME_RULE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link editPolicyEcore1.impl.TrueMappingRuleImpl <em>True Mapping Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see editPolicyEcore1.impl.TrueMappingRuleImpl
+	 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getTrueMappingRule()
+	 * @generated
+	 */
+	int TRUE_MAPPING_RULE = 26;
+
+	/**
+	 * The number of structural features of the '<em>True Mapping Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRUE_MAPPING_RULE_FEATURE_COUNT = ABSTRACT_MAPPING_RULE_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link editPolicyEcore1.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -890,17 +909,6 @@ public interface EditPolicyEcore1Package extends EPackage {
 	EClass getMapping();
 
 	/**
-	 * Returns the meta object for the attribute '{@link editPolicyEcore1.Mapping#getPolicyName <em>Policy Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Policy Name</em>'.
-	 * @see editPolicyEcore1.Mapping#getPolicyName()
-	 * @see #getMapping()
-	 * @generated
-	 */
-	EAttribute getMapping_PolicyName();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link editPolicyEcore1.Mapping#getRule <em>Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -910,6 +918,17 @@ public interface EditPolicyEcore1Package extends EPackage {
 	 * @generated
 	 */
 	EReference getMapping_Rule();
+
+	/**
+	 * Returns the meta object for the reference '{@link editPolicyEcore1.Mapping#getPolicy <em>Policy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Policy</em>'.
+	 * @see editPolicyEcore1.Mapping#getPolicy()
+	 * @see #getMapping()
+	 * @generated
+	 */
+	EReference getMapping_Policy();
 
 	/**
 	 * Returns the meta object for class '{@link editPolicyEcore1.FeatureNameMappingRule <em>Feature Name Mapping Rule</em>}'.
@@ -1254,6 +1273,16 @@ public interface EditPolicyEcore1Package extends EPackage {
 	EClass getShapeNameRule();
 
 	/**
+	 * Returns the meta object for class '{@link editPolicyEcore1.TrueMappingRule <em>True Mapping Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>True Mapping Rule</em>'.
+	 * @see editPolicyEcore1.TrueMappingRule
+	 * @generated
+	 */
+	EClass getTrueMappingRule();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1367,20 +1396,20 @@ public interface EditPolicyEcore1Package extends EPackage {
 		EClass MAPPING = eINSTANCE.getMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Policy Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MAPPING__POLICY_NAME = eINSTANCE.getMapping_PolicyName();
-
-		/**
 		 * The meta object literal for the '<em><b>Rule</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference MAPPING__RULE = eINSTANCE.getMapping_Rule();
+
+		/**
+		 * The meta object literal for the '<em><b>Policy</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING__POLICY = eINSTANCE.getMapping_Policy();
 
 		/**
 		 * The meta object literal for the '{@link editPolicyEcore1.impl.FeatureNameMappingRuleImpl <em>Feature Name Mapping Rule</em>}' class.
@@ -1687,6 +1716,16 @@ public interface EditPolicyEcore1Package extends EPackage {
 		 * @generated
 		 */
 		EClass SHAPE_NAME_RULE = eINSTANCE.getShapeNameRule();
+
+		/**
+		 * The meta object literal for the '{@link editPolicyEcore1.impl.TrueMappingRuleImpl <em>True Mapping Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see editPolicyEcore1.impl.TrueMappingRuleImpl
+		 * @see editPolicyEcore1.impl.EditPolicyEcore1PackageImpl#getTrueMappingRule()
+		 * @generated
+		 */
+		EClass TRUE_MAPPING_RULE = eINSTANCE.getTrueMappingRule();
 
 	}
 

@@ -601,6 +601,29 @@ public class EditPolicyEcore1ItemProviderAdapterFactory extends EditPolicyEcore1
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link editPolicyEcore1.TrueMappingRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TrueMappingRuleItemProvider trueMappingRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link editPolicyEcore1.TrueMappingRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTrueMappingRuleAdapter() {
+		if (trueMappingRuleItemProvider == null) {
+			trueMappingRuleItemProvider = new TrueMappingRuleItemProvider(this);
+		}
+
+		return trueMappingRuleItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -722,6 +745,7 @@ public class EditPolicyEcore1ItemProviderAdapterFactory extends EditPolicyEcore1
 		if (trueRuleItemProvider != null) trueRuleItemProvider.dispose();
 		if (falseRuleItemProvider != null) falseRuleItemProvider.dispose();
 		if (shapeNameRuleItemProvider != null) shapeNameRuleItemProvider.dispose();
+		if (trueMappingRuleItemProvider != null) trueMappingRuleItemProvider.dispose();
 	}
 
 }

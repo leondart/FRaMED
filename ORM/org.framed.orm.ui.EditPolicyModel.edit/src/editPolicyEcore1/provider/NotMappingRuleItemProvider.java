@@ -157,6 +157,11 @@ public class NotMappingRuleItemProvider extends AbstractMappingRuleItemProvider 
 			(createChildParameter
 				(EditPolicyEcore1Package.Literals.NOT_MAPPING_RULE__RULE,
 				 EditPolicyEcore1Factory.eINSTANCE.createImplicationMappingRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(EditPolicyEcore1Package.Literals.NOT_MAPPING_RULE__RULE,
+				 EditPolicyEcore1Factory.eINSTANCE.createTrueMappingRule()));
 	}
 
 }

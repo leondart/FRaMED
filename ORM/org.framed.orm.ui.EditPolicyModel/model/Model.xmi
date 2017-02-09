@@ -1,63 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editPolicyEcore1:Model
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:editPolicyEcore1="http://www.example.org/editPolicyEcore1">
+<editPolicyEcore1:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editPolicyEcore1="http://www.example.org/editPolicyEcore1" xsi:schemaLocation="http://www.example.org/editPolicyEcore1 editPolicyEcore1.ecore">
   <configuration>
-    <mappings
-        policyName="testPolicy">
-      <rule
-          xsi:type="editPolicyEcore1:AndMappingRule">
-        <rules
-            xsi:type="editPolicyEcore1:OrMappingRule">
-          <rules
-              xsi:type="editPolicyEcore1:FeatureNameMappingRule"
-              name="false"/>
-          <rules
-              xsi:type="editPolicyEcore1:FeatureNameMappingRule"
-              name="true"/>
-        </rules>
-        <rules
-            xsi:type="editPolicyEcore1:ImplicationMappingRule">
-          <antecedent
-              xsi:type="editPolicyEcore1:FeatureNameMappingRule"
-              name="true"/>
-          <consequent
-              xsi:type="editPolicyEcore1:FeatureNameMappingRule"
-              name="true"/>
-        </rules>
-      </rule>
-    </mappings>
-    <mappings
-        policyName="unused">
-      <rule
-          xsi:type="editPolicyEcore1:FeatureNameMappingRule"
-          name="FeatureConfigurationSettingUNUSED"/>
+    <mappings policy="//@policies.0">
+      <rule xsi:type="editPolicyEcore1:TrueMappingRule"/>
     </mappings>
   </configuration>
-  <policies
-      name="testPolicy">
-    <rule xsi:type="editPolicyEcore1:AndRule">
-      <rules
-          xsi:type="editPolicyEcore1:ImplicationRule">
-        <antecedent
-            xsi:type="editPolicyEcore1:FalseRule"/>
-        <consequent
-            xsi:type="editPolicyEcore1:FalseRule"/>
-      </rules>
-      <rules
-          xsi:type="editPolicyEcore1:OrRule">
-        <rules
-            xsi:type="editPolicyEcore1:StepInRule"/>
-        <rules
-            xsi:type="editPolicyEcore1:TrueRule"/>
-        <rules
-            xsi:type="editPolicyEcore1:FalseRule"/>
-      </rules>
-      <rules
-          xsi:type="editPolicyEcore1:CommandNameRule"
-          name="ORMShapeCreate"/>
-    </rule>
+  <policies name="testPolicy">
+    <rule xsi:type="editPolicyEcore1:TrueRule"/>
   </policies>
 </editPolicyEcore1:Model>

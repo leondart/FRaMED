@@ -249,6 +249,13 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EditPolicyEcore1Package.TRUE_MAPPING_RULE: {
+				TrueMappingRule trueMappingRule = (TrueMappingRule)theEObject;
+				T result = caseTrueMappingRule(trueMappingRule);
+				if (result == null) result = caseAbstractMappingRule(trueMappingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -640,6 +647,21 @@ public class EditPolicyEcore1Switch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseShapeNameRule(ShapeNameRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>True Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>True Mapping Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTrueMappingRule(TrueMappingRule object) {
 		return null;
 	}
 

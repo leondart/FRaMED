@@ -229,6 +229,15 @@ public interface EditPolicyEcore1Factory extends EFactory {
 	ShapeNameRule createShapeNameRule();
 
 	/**
+	 * Returns a new object of class '<em>True Mapping Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>True Mapping Rule</em>'.
+	 * @generated
+	 */
+	TrueMappingRule createTrueMappingRule();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

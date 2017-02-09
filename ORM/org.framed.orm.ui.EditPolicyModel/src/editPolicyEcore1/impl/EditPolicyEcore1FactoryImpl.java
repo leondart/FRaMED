@@ -79,6 +79,7 @@ public class EditPolicyEcore1FactoryImpl extends EFactoryImpl implements EditPol
 			case EditPolicyEcore1Package.TRUE_RULE: return createTrueRule();
 			case EditPolicyEcore1Package.FALSE_RULE: return createFalseRule();
 			case EditPolicyEcore1Package.SHAPE_NAME_RULE: return createShapeNameRule();
+			case EditPolicyEcore1Package.TRUE_MAPPING_RULE: return createTrueMappingRule();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -312,6 +313,16 @@ public class EditPolicyEcore1FactoryImpl extends EFactoryImpl implements EditPol
 	public ShapeNameRule createShapeNameRule() {
 		ShapeNameRuleImpl shapeNameRule = new ShapeNameRuleImpl();
 		return shapeNameRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TrueMappingRule createTrueMappingRule() {
+		TrueMappingRuleImpl trueMappingRule = new TrueMappingRuleImpl();
+		return trueMappingRule;
 	}
 
 	/**

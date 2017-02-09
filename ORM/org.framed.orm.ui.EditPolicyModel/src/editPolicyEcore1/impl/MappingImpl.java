@@ -6,6 +6,7 @@ import editPolicyEcore1.AbstractMappingRule;
 import editPolicyEcore1.EditPolicyEcore1Package;
 import editPolicyEcore1.Mapping;
 
+import editPolicyEcore1.Policy;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -24,33 +25,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link editPolicyEcore1.impl.MappingImpl#getPolicyName <em>Policy Name</em>}</li>
  *   <li>{@link editPolicyEcore1.impl.MappingImpl#getRule <em>Rule</em>}</li>
+ *   <li>{@link editPolicyEcore1.impl.MappingImpl#getPolicy <em>Policy</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MappingImpl extends EObjectImpl implements Mapping {
-	/**
-	 * The default value of the '{@link #getPolicyName() <em>Policy Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPolicyName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String POLICY_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getPolicyName() <em>Policy Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPolicyName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String policyName = POLICY_NAME_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getRule() <em>Rule</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -60,6 +41,16 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * @ordered
 	 */
 	protected AbstractMappingRule rule;
+
+	/**
+	 * The cached value of the '{@link #getPolicy() <em>Policy</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPolicy()
+	 * @generated
+	 * @ordered
+	 */
+	protected Policy policy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,27 +69,6 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	protected EClass eStaticClass() {
 		return EditPolicyEcore1Package.Literals.MAPPING;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPolicyName() {
-		return policyName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPolicyName(String newPolicyName) {
-		String oldPolicyName = policyName;
-		policyName = newPolicyName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EditPolicyEcore1Package.MAPPING__POLICY_NAME, oldPolicyName, policyName));
 	}
 
 	/**
@@ -149,6 +119,44 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Policy getPolicy() {
+		if (policy != null && policy.eIsProxy()) {
+			InternalEObject oldPolicy = (InternalEObject)policy;
+			policy = (Policy)eResolveProxy(oldPolicy);
+			if (policy != oldPolicy) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EditPolicyEcore1Package.MAPPING__POLICY, oldPolicy, policy));
+			}
+		}
+		return policy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Policy basicGetPolicy() {
+		return policy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPolicy(Policy newPolicy) {
+		Policy oldPolicy = policy;
+		policy = newPolicy;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EditPolicyEcore1Package.MAPPING__POLICY, oldPolicy, policy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -166,10 +174,11 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EditPolicyEcore1Package.MAPPING__POLICY_NAME:
-				return getPolicyName();
 			case EditPolicyEcore1Package.MAPPING__RULE:
 				return getRule();
+			case EditPolicyEcore1Package.MAPPING__POLICY:
+				if (resolve) return getPolicy();
+				return basicGetPolicy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -182,11 +191,11 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EditPolicyEcore1Package.MAPPING__POLICY_NAME:
-				setPolicyName((String)newValue);
-				return;
 			case EditPolicyEcore1Package.MAPPING__RULE:
 				setRule((AbstractMappingRule)newValue);
+				return;
+			case EditPolicyEcore1Package.MAPPING__POLICY:
+				setPolicy((Policy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -200,11 +209,11 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EditPolicyEcore1Package.MAPPING__POLICY_NAME:
-				setPolicyName(POLICY_NAME_EDEFAULT);
-				return;
 			case EditPolicyEcore1Package.MAPPING__RULE:
 				setRule((AbstractMappingRule)null);
+				return;
+			case EditPolicyEcore1Package.MAPPING__POLICY:
+				setPolicy((Policy)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -218,28 +227,12 @@ public class MappingImpl extends EObjectImpl implements Mapping {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EditPolicyEcore1Package.MAPPING__POLICY_NAME:
-				return POLICY_NAME_EDEFAULT == null ? policyName != null : !POLICY_NAME_EDEFAULT.equals(policyName);
 			case EditPolicyEcore1Package.MAPPING__RULE:
 				return rule != null;
+			case EditPolicyEcore1Package.MAPPING__POLICY:
+				return policy != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (policyName: ");
-		result.append(policyName);
-		result.append(')');
-		return result.toString();
 	}
 
 } //MappingImpl

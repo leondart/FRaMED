@@ -19,10 +19,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractMappingRule" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="policyName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//AbstractMappingRule"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="newEReference2" eType="#//Policy"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="policy" lowerBound="1"
+        eType="#//Policy"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureNameMappingRule" eSuperTypes="#//AbstractMappingRule">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -77,4 +77,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="TrueRule" eSuperTypes="#//AbstractRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="FalseRule" eSuperTypes="#//AbstractRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="ShapeNameRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TrueMappingRule" eSuperTypes="#//AbstractMappingRule"/>
 </ecore:EPackage>

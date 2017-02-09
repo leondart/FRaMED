@@ -26,9 +26,9 @@ public class EditPolicyHandler {
 	private editPolicyEcore1.Model model;
 
 	/**
-	 * list of Policiy-Rules which need to be evaluated
+	 * list of Policy-Rules which need to be evaluated
 	 */
-	private Set<String> policyRules;
+	private Set<editPolicyEcore1.Policy> policies;
 
 	public EditPolicyHandler(FRaMEDConfiguration configuration)
 	{
@@ -43,12 +43,12 @@ public class EditPolicyHandler {
 	 */
 	private void loadPolicyRules()
 	{
-		policyRules = new HashSet<>();
+		policies = new HashSet<>();
 
 		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(configuration);
 		for(editPolicyEcore1.Mapping mapping : (editPolicyEcore1.Mapping[]) model.getConfiguration().getMappings().toArray()) {
 			if(editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
-				policyRules.add(mapping.getPolicyName());
+				policies.add(mapping.getPolicy());
 		}
 	}
 
@@ -69,15 +69,14 @@ public class EditPolicyHandler {
 
 	private boolean canExecute(editPolicyEcore1.Model model, Command cmd)
 	{
-		System.out.println("List of Policies: " + policyRules.toString());
+		System.out.println("List of Policies: " + policies.toString());
 
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd);
 
-		for(editPolicyEcore1.Policy policy: model.getPolicies()) {
-			if(policyRules.contains(policy.getName())) {
-				if(!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
-					return false;
-			}
+
+		for(editPolicyEcore1.Policy policy: policies) {
+			if(!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
+				return false;
 		}
 		return true;
 	}
