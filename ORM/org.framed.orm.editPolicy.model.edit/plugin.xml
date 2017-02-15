@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated model -->
       <factory
-            uri="http://www.example.org/model"
+            uri="platform:/resource/org.framed.orm.editPolicy.model/"
             class="model.provider.ModelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

@@ -59,7 +59,7 @@ public interface Policy extends EObject {
 	 * @return the value of the '<em>Rule</em>' containment reference.
 	 * @see #setRule(AbstractRule)
 	 * @see model.ModelPackage#getPolicy_Rule()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	AbstractRule getRule();
