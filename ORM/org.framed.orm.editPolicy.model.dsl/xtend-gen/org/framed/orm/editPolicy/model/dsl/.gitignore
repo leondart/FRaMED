@@ -4,3 +4,5 @@
 /.DslStandaloneSetup.xtendbin
 /DslRuntimeModule.java
 /DslStandaloneSetup.java
+/.DslStandaloneSetupGenerated.java._trace
+/.DslStandaloneSetupGenerated1.java._trace

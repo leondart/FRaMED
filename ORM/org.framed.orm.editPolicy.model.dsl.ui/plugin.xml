@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="editpolicy"
-			id="org.framed.orm.editPolicy.model.dsl.Dl"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl"
 			name="Dl Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="org.framed.orm.editPolicy.model.dsl.Dl.validate">
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="org.framed.orm.editPolicy.model.dsl.Dsl.validate">
 		<activeWhen>
 			<reference
-					definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened" />
+				<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.XtextEditor.opened" />
+					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+		<definition id="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.framed.orm.editPolicy.model.dsl.Dl" 
+						value="org.framed.orm.editPolicy.model.dsl.Dsl" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
 		</definition>
-		<definition id="org.framed.orm.editPolicy.model.dsl.Dl.XtextEditor.opened">
+		<definition id="org.framed.orm.editPolicy.model.dsl.Dsl.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-						value="org.framed.orm.editPolicy.model.dsl.Dl" 
+						value="org.framed.orm.editPolicy.model.dsl.Dsl" 
 						forcePluginActivation="true"/>
 				</with>		
 			</and>
@@ -78,22 +78,22 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl"
 			name="Dl">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 		</page>
 		<page
-			category="org.framed.orm.editPolicy.model.dsl.Dl"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl.coloring"
+			category="org.framed.orm.editPolicy.model.dsl.Dsl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl.coloring"
 			name="Syntax Coloring">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 		</page>
 		<page
-			category="org.framed.orm.editPolicy.model.dsl.Dl"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl.templates"
+			category="org.framed.orm.editPolicy.model.dsl.Dsl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl.templates"
 			name="Templates">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 		</page>
@@ -101,8 +101,8 @@
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl"
 			name="Dl">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 			<enabledWhen>
@@ -121,7 +121,7 @@
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="org.framed.orm.editPolicy.model.dsl.Dl.validate"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="org.framed.orm.editPolicy.model.dsl.Dl.validate"
+				 commandId="org.framed.orm.editPolicy.model.dsl.Dsl.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName" 
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened" />
+					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened" />
+					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.XtextEditor.opened" />
+						<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -208,17 +208,17 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="editpolicy">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
 			uriExtension="editpolicy">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for org.framed.orm.editPolicy.model.dsl.Dl -->
+	<!-- marker definitions for org.framed.orm.editPolicy.model.dsl.Dsl -->
 	<extension
 			id="dl.check.fast"
 			name="Dl Problem"
@@ -242,23 +242,23 @@
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
 			fileExtensions="editpolicy"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.framed.orm.editPolicy.model.dsl.Dl"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl.compiler.preferencePage"
+			category="org.framed.orm.editPolicy.model.dsl.Dsl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl.compiler.preferencePage"
 			name="Compiler">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="org.framed.orm.editPolicy.model.dsl.Dl"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl.compiler.propertyPage"
+			category="org.framed.orm.editPolicy.model.dsl.Dsl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl.compiler.propertyPage"
 			name="Compiler">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 			<enabledWhen>
@@ -271,20 +271,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.framed.orm.editPolicy.model.dsl.Dl.OpenGeneratedCode"
+				id="org.framed.orm.editPolicy.model.dsl.Dsl.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened" />
+					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened" />
+				<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -292,11 +292,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -316,16 +316,16 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened"/>
+					<reference definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for org.framed.orm.editPolicy.model.dsl.Dl -->
+	<!-- quickfix marker resolution generator for org.framed.orm.editPolicy.model.dsl.Dsl -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.framed.orm.editPolicy.model.dsl.ui.dl.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
@@ -333,7 +333,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.framed.orm.editPolicy.model.dsl.ui.dl.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
@@ -341,7 +341,7 @@
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
 			markerType="org.framed.orm.editPolicy.model.dsl.ui.dl.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
@@ -352,11 +352,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+					definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -368,7 +368,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="org.framed.orm.editPolicy.model.dsl.Dl.Editor.opened">
+						definitionId="org.framed.orm.editPolicy.model.dsl.Dsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -376,28 +376,28 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.framed.orm.editPolicy.model.dsl.Dl"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.framed.orm.editPolicy.model.dsl.Dl.refactoring"
+			category="org.framed.orm.editPolicy.model.dsl.Dsl"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="org.framed.orm.editPolicy.model.dsl.Dsl.refactoring"
 			name="Refactoring">
 			<keywordReference id="org.framed.orm.editPolicy.model.dsl.ui.keyword_Dl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="org.framed.orm.editPolicy.model.dsl.Dl.compare.contentViewers"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.framed.orm.editPolicy.model.dsl.Dsl.compare.contentViewers"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="editpolicy">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="org.framed.orm.editPolicy.model.dsl.Dl.compare.contentMergeViewers"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+		<viewer id="org.framed.orm.editPolicy.model.dsl.Dsl.compare.contentMergeViewers"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
 			extensions="editpolicy" label="Dl Compare">
 		</viewer>
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="org.framed.orm.editPolicy.model.dsl.Dl.editors.documentProviders"
-			class="org.framed.orm.editPolicy.model.dsl.ui.DlExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+		<provider id="org.framed.orm.editPolicy.model.dsl.Dsl.editors.documentProviders"
+			class="org.framed.orm.editPolicy.model.dsl.ui.DslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
 			extensions="editpolicy">
 		</provider>
 	</extension>

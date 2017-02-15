@@ -3,6 +3,7 @@
  */
 package org.framed.orm.editPolicy.model.dsl
 
+import org.eclipse.xtext.ISetup
 
 /**
  * Initialization support for running Xtext languages without Equinox extension registry.
@@ -13,3 +14,4 @@ class DslStandaloneSetup extends DslStandaloneSetupGenerated {
 		new DslStandaloneSetup().createInjectorAndDoEMFRegistration()
 	}
 }
+	

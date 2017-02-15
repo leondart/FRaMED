@@ -4,6 +4,7 @@
 package org.framed.orm.editPolicy.model.dsl.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
+import javax.xml.bind.Binder
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
