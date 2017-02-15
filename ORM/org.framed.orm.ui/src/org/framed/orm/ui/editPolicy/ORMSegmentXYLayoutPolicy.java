@@ -18,6 +18,14 @@ import org.framed.orm.ui.factory.ORMOperationFactory;
  * */
 public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
 
+	private EditPolicyHandler ep;
+
+	public ORMSegmentXYLayoutPolicy(EditPolicyHandler ep)
+	{
+		super();
+		this.ep = ep;
+	}
+
   /**
    * {@inheritDoc} Specifically the create commands for attributes and methods.
    * */
@@ -33,6 +41,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
               new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getFirstSegment());
           command.getCmd().setElement((NamedElement) (request.getNewObject()));
+          command.setEditPolicyHandler(ep);
           retVal = command;
         }
 
@@ -41,6 +50,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
                     new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getSecondSegment());
           command.getCmd().setElement((NamedElement) (request.getNewObject()));
+          command.setEditPolicyHandler(ep);
           retVal = command;
         }
       }
@@ -55,6 +65,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
                     new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getFirstSegment());
           command.getCmd().setElement((NamedElement) (request.getNewObject()));
+          command.setEditPolicyHandler(ep);
           retVal = command;
         }
 
@@ -63,6 +74,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
                     new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getSecondSegment());
           command.getCmd().setElement((NamedElement) (request.getNewObject()));
+          command.setEditPolicyHandler(ep);
           retVal = command;
         }
       }

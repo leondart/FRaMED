@@ -47,7 +47,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     EditPart part = null;
 
     if (model instanceof Model) {
-      part = new ORMModelEditPart(this.ep);
+      part = new ORMModelEditPart<>(this.ep);
     }
 
     else if (model instanceof Relation) {
@@ -79,7 +79,7 @@ public class ORMEditPartFactory implements EditPartFactory {
     }
 
     else if (model instanceof Segment) {
-      part = new ORMSegmentEditPart();
+      part = new ORMSegmentEditPart(ep);
     }
 
     else if (!(model instanceof ModelElement) && model instanceof NamedElement) {

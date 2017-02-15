@@ -26,16 +26,16 @@ Configuration returns Configuration:
 
 Policy returns Policy:
 	'Policy'
-	name=EString
+	 name=EString
 	'{'
-		'rule' rule=AbstractRule
+		rule=AbstractRule
 	'}';
 
 Mapping returns Mapping:
 	'Mapping'
 	'{'
-		'policy' policy=[Policy|EString]
 		'rule' rule=AbstractMappingRule
+		'policy' policy=[Policy|EString]
 	'}';
 
 FeatureNameMappingRule returns FeatureNameMappingRule:
@@ -46,26 +46,26 @@ FeatureNameMappingRule returns FeatureNameMappingRule:
 AndMappingRule returns AndMappingRule:
 	'AndMappingRule'
 	'{'
-		'rules' '{' rules+=AbstractMappingRule ( "," rules+=AbstractMappingRule)* '}' 
+		rules+=AbstractMappingRule ( "," rules+=AbstractMappingRule)* 
 	'}';
 
 NotMappingRule returns NotMappingRule:
 	'NotMappingRule'
 	'{'
-		'rule' rule=AbstractMappingRule
+		rule=AbstractMappingRule
 	'}';
 
 OrMappingRule returns OrMappingRule:
 	'OrMappingRule'
 	'{'
-		'rules' '{' rules+=AbstractMappingRule ( "," rules+=AbstractMappingRule)* '}' 
+		rules+=AbstractMappingRule ( "," rules+=AbstractMappingRule)*
 	'}';
 
 ImplicationMappingRule returns ImplicationMappingRule:
 	'ImplicationMappingRule'
 	'{'
-		'antecedent' antecedent=AbstractMappingRule
-		'consequent' consequent=AbstractMappingRule
+		'if' antecedent=AbstractMappingRule
+		'then' consequent=AbstractMappingRule
 	'}';
 
 TrueMappingRule returns TrueMappingRule:
@@ -79,7 +79,7 @@ EString returns ecore::EString:
 AndRule returns AndRule:
 	'AndRule'
 	'{'
-		'rules' '{' rules+=AbstractRule ( "," rules+=AbstractRule)* '}' 
+		rules+=AbstractRule ( "," rules+=AbstractRule)*
 	'}';
 
 RelationNameRule returns RelationNameRule:
@@ -90,20 +90,20 @@ RelationNameRule returns RelationNameRule:
 OrRule returns OrRule:
 	'OrRule'
 	'{'
-		'rules' '{' rules+=AbstractRule ( "," rules+=AbstractRule)* '}' 
+		rules+=AbstractRule ( "," rules+=AbstractRule)*
 	'}';
 
 NotRule returns NotRule:
 	'NotRule'
 	'{'
-		'rule' rule=AbstractRule
+		rule=AbstractRule
 	'}';
 
 ImplicationRule returns ImplicationRule:
 	'ImplicationRule'
 	'{'
-		'antecedent' antecedent=AbstractRule
-		'consequent' consequent=AbstractRule
+		'if' antecedent=AbstractRule
+		'then' consequent=AbstractRule
 	'}';
 
 SourceTypeRule returns SourceTypeRule:

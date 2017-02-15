@@ -69,8 +69,6 @@ public class ORMSuperShapeEditPart extends AbstractGraphicalEditPart implements 
     return ORMFigureFactory.createFigure(this);
   }
 
-
-
   /** {@inheritDoc} */
   @Override
   public void createEditPolicies() {

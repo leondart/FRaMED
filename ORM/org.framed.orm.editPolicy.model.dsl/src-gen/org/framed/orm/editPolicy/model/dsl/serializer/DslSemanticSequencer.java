@@ -270,18 +270,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Mapping returns Mapping
 	 *
 	 * Constraint:
-	 *     (policy=[Policy|EString] rule=AbstractMappingRule)
+	 *     (rule=AbstractMappingRule policy=[Policy|EString])
 	 */
 	protected void sequence_Mapping(ISerializationContext context, Mapping semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.MAPPING__POLICY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.MAPPING__POLICY));
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.MAPPING__RULE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.MAPPING__RULE));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.MAPPING__POLICY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.MAPPING__POLICY));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMappingAccess().getPolicyPolicyEStringParserRuleCall_3_0_1(), semanticObject.getPolicy());
-		feeder.accept(grammarAccess.getMappingAccess().getRuleAbstractMappingRuleParserRuleCall_5_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getMappingAccess().getRuleAbstractMappingRuleParserRuleCall_3_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getMappingAccess().getPolicyPolicyEStringParserRuleCall_5_0_1(), semanticObject.getPolicy());
 		feeder.finish();
 	}
 	
@@ -312,7 +312,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNotMappingRuleAccess().getRuleAbstractMappingRuleParserRuleCall_3_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getNotMappingRuleAccess().getRuleAbstractMappingRuleParserRuleCall_2_0(), semanticObject.getRule());
 		feeder.finish();
 	}
 	
@@ -331,7 +331,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NOT_RULE__RULE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNotRuleAccess().getRuleAbstractRuleParserRuleCall_3_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getNotRuleAccess().getRuleAbstractRuleParserRuleCall_2_0(), semanticObject.getRule());
 		feeder.finish();
 	}
 	
@@ -397,7 +397,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPolicyAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPolicyAccess().getRuleAbstractRuleParserRuleCall_4_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getPolicyAccess().getRuleAbstractRuleParserRuleCall_3_0(), semanticObject.getRule());
 		feeder.finish();
 	}
 	

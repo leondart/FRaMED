@@ -17,16 +17,21 @@ import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Segment;
 import org.framed.orm.ui.editPart.ORMNamedElementEditPart;
+import org.framed.orm.ui.editPolicy.EditPolicyHandler;
 import org.framed.orm.ui.editPolicy.ORMSegmentXYLayoutPolicy;
 import org.framed.orm.ui.figure.ORMFigureFactory;
 import org.framed.orm.ui.figure.shapes.PartFigure;
 
 /**
  * This {@link EditPart} is for {@link Segment}s.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
+
+	/* editpolicyHandler for checking configuration in canExecute() of commands */
+	private EditPolicyHandler ep;
+
   /**
    * Defines the Number of Visible Children per Segment.
    */
@@ -60,12 +65,13 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
    * it's parent, initializing it's {@link Adapter} and initializing the global variables
    * collectNamedElement and collectionEle.
    */
-  public ORMSegmentEditPart() {
+  public ORMSegmentEditPart(EditPolicyHandler ep) {
     super();
     adapter = new ORMSegmentAdapter();
     collectNamedElement = new Label();
     collectNamedElement.setText("...");
     collectionEle = new PartFigure();
+	this.ep = ep;
   }
 
   /** {@inheritDoc} A {@link Segment} has as a figure a {@link PartFigure}. */
@@ -85,7 +91,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
    * collectNamedElement( it has as a text ...) are added and the names of the named elements with
    * index >2 are collected and shown in the tooltip(collectionEle) of the label
    * collectNamedElement.
-   * 
+   *
    * */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
@@ -168,7 +174,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
    * taken from collectionNamedElement and added before the collectEle. At end this method tests if
    * the collectionNamedElement contains at least one children when not than the the collectEle is
    * removed from the conetntPane.
-   * 
+   *
    * */
   @Override
   protected void removeChildVisual(final EditPart childEditPart) {
@@ -271,7 +277,7 @@ public class ORMSegmentEditPart extends AbstractGraphicalEditPart {
   protected void createEditPolicies() {
     // the ORMSegmentXYLayoutPolicy is added here(although it does nothing) so that attributes and
     // operations are selectable
-    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
+    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy(ep));
   }
 
 

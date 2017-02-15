@@ -8,7 +8,7 @@ import org.framed.orm.ui.factory.ORMOperationFactory;
 
 /**
  * Through this command a attribute or operation can be created(invoked into the model tree).
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMAttributeOperationCreateCommand extends Command {
@@ -22,7 +22,7 @@ public class ORMAttributeOperationCreateCommand extends Command {
 
   /**
    * Constructor of this command, where the label is set, which describes this command to the user.
-   * 
+   *
    */
   public ORMAttributeOperationCreateCommand() {
     super.setLabel("ORMAttributeOperationCreate");
@@ -30,7 +30,7 @@ public class ORMAttributeOperationCreateCommand extends Command {
 
   /**
    * This method tests if the conditions for executing this command are fulfilled,
-   * 
+   *
    * @return true when the parent segment and the attribute or operation are set.
    */
   @Override
@@ -60,7 +60,7 @@ public class ORMAttributeOperationCreateCommand extends Command {
 
   /**
    * Setter of the parent {@link Segment}
-   * 
+   *
    * @param Segment org.framed.orm.model.Segment
    */
   public void setParentSegment(final Segment segment) {
@@ -70,7 +70,7 @@ public class ORMAttributeOperationCreateCommand extends Command {
   /**
    * Setter of the attribute or operation, which should be created/invoked. The basis attribute or
    * operation class is given by {@link ORMAttributeFactory} or {@link ORMOperationFactory}.
-   * 
+   *
    * @param element org.framed.orm.model.NamedElement
    */
   public void setElement(final NamedElement element) {

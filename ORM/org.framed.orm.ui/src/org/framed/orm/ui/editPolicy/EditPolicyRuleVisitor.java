@@ -16,7 +16,6 @@ public class EditPolicyRuleVisitor {
 
 		public boolean abstractRuleVisitor(model.AbstractRule rule)
 		{
-
 			if (rule instanceof model.AndRule)
 				return andRuleVisitor((model.AndRule)rule);
 
@@ -29,13 +28,12 @@ public class EditPolicyRuleVisitor {
 			if (rule instanceof model.ImplicationRule)
 				return implicationRuleVisitor((model.ImplicationRule)rule);
 
-			/*
-			if (rule instanceof model.ShapeNameRule)
-				return shapeNameRuleVisitor((model.ShapeNameRule)rule);
+//			if (rule instanceof model.ShapeNameRule)
+//				return shapeNameRuleVisitor((model.ShapeNameRule)rule);
 
 			if (rule instanceof model.ShapeTypeRule)
 				return shapeTypeRuleVisitor((model.ShapeTypeRule)rule);
-*/
+
 			if (rule instanceof model.StepInRule)
 				return stepInRule((model.StepInRule)rule);
 
@@ -87,7 +85,7 @@ public class EditPolicyRuleVisitor {
 
 		private boolean commandNameRuleVisitor(model.CommandNameRule rule)
 		{
-			System.out.println("stepInRule not implemented");
+			System.out.println("testing: " + rule.getName() + " === " + cmd.getLabel());
 
 			if(rule.getName().equals(cmd.getLabel())) {
 				return true;
@@ -98,22 +96,38 @@ public class EditPolicyRuleVisitor {
 		private boolean relationNameRuleVisitor(model.RelationNameRule rule)
 		{
 			Relation relation;
-			Method getRelationNameMethod;
-			try {
-				getRelationNameMethod = cmd.getClass().getMethod("getRelation");
-			} catch (SecurityException e) { return false; }
-			catch (NoSuchMethodException e) { return false; }
-			try {
-				relation = (Relation) getRelationNameMethod.invoke(cmd);
-			} catch (Exception e) {return false;}
-			System.out.println("got RelationName with reflection: type: " + relation.getType());
+			Method method;
 
-			relation.getType();
+			try {
+				method = cmd.getClass().getMethod("getRelation");
+				relation =  (Relation) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
 			if(rule.getName().equals(relation.getType())) {
 				return true;
 			}
 			return false;
 		}
+
+		private boolean shapeTypeRuleVisitor(model.ShapeTypeRule rule)
+		{
+			System.out.println("not yet implemented!");
+			String str;
+			Method method;
+
+			try {
+				method = cmd.getClass().getMethod("getParentType");
+				str =  (String) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			System.out.println("String is: " + str);
+
+			if(rule.getName().equals(str)) {
+				return true;
+			}
+			return false;
+		}
+
 
 		private boolean stepInRule(model.StepInRule rule)
 		{
@@ -123,5 +137,4 @@ public class EditPolicyRuleVisitor {
 				return true;*/
 			return false;
 		}
-
 }

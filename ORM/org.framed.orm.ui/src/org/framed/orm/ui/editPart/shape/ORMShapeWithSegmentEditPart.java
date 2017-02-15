@@ -23,7 +23,7 @@ import org.framed.orm.ui.figure.shapes.ORMRoleTypeFigure;
 /**
  * This {@link EditPart} is the controller for a {@link Shape} from type natrualtype, roletype or
  * datatype. This class is the parent of {@link ORMCompartmentEditPart}.
- * 
+ *
  * @author Kay Bierzynski
  * */
 public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
@@ -53,14 +53,15 @@ public class ORMShapeWithSegmentEditPart extends ORMSuperShapeEditPart {
     // adding of the children to the segment
     // this policy is installed here for better selectability for the case when the user wants to
     // create attributes and operations
-    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy());
+	ORMGraphicalEditor editor = (ORMGraphicalEditor) ((DefaultEditDomain)this.getViewer().getEditDomain()).getEditorPart();
+    installEditPolicy(EditPolicy.LAYOUT_ROLE, new ORMSegmentXYLayoutPolicy(editor.getEditPolicyHandler()));
   }
 
   /**
    * {@inheritDoc} In case of this {@link EditPart} that would be the figure of a {@link Segment}.
    * When the user uses the data view on the editor the second segment(operation segment) isn't
    * added to the contentPane.
-   * 
+   *
    * */
   @Override
   protected void addChildVisual(final EditPart childEditPart, final int index) {
