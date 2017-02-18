@@ -5810,7 +5810,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:1916:1: ( rule__FeatureNameMappingRule__Group__1__Impl rule__FeatureNameMappingRule__Group__2 )
             // InternalDsl.g:1917:2: rule__FeatureNameMappingRule__Group__1__Impl rule__FeatureNameMappingRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__FeatureNameMappingRule__Group__1__Impl();
 
             state._fsp--;
@@ -7471,7 +7471,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:2483:1: ( rule__ImplicationMappingRule__Group__1__Impl rule__ImplicationMappingRule__Group__2 )
             // InternalDsl.g:2484:2: rule__ImplicationMappingRule__Group__1__Impl rule__ImplicationMappingRule__Group__2
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_20);
             rule__ImplicationMappingRule__Group__1__Impl();
 
             state._fsp--;
@@ -7621,7 +7621,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:2537:1: ( rule__ImplicationMappingRule__Group__3__Impl rule__ImplicationMappingRule__Group__4 )
             // InternalDsl.g:2538:2: rule__ImplicationMappingRule__Group__3__Impl rule__ImplicationMappingRule__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_21);
             rule__ImplicationMappingRule__Group__3__Impl();
 
             state._fsp--;
@@ -8644,7 +8644,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:2888:1: ( rule__RelationNameRule__Group__0__Impl rule__RelationNameRule__Group__1 )
             // InternalDsl.g:2889:2: rule__RelationNameRule__Group__0__Impl rule__RelationNameRule__Group__1
             {
-            pushFollow(FOLLOW_21);
+            pushFollow(FOLLOW_22);
             rule__RelationNameRule__Group__0__Impl();
 
             state._fsp--;
@@ -8719,7 +8719,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:2915:1: ( rule__RelationNameRule__Group__1__Impl rule__RelationNameRule__Group__2 )
             // InternalDsl.g:2916:2: rule__RelationNameRule__Group__1__Impl rule__RelationNameRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__RelationNameRule__Group__1__Impl();
 
             state._fsp--;
@@ -9817,7 +9817,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3293:1: ( rule__ImplicationRule__Group__1__Impl rule__ImplicationRule__Group__2 )
             // InternalDsl.g:3294:2: rule__ImplicationRule__Group__1__Impl rule__ImplicationRule__Group__2
             {
-            pushFollow(FOLLOW_19);
+            pushFollow(FOLLOW_20);
             rule__ImplicationRule__Group__1__Impl();
 
             state._fsp--;
@@ -9967,7 +9967,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3347:1: ( rule__ImplicationRule__Group__3__Impl rule__ImplicationRule__Group__4 )
             // InternalDsl.g:3348:2: rule__ImplicationRule__Group__3__Impl rule__ImplicationRule__Group__4
             {
-            pushFollow(FOLLOW_20);
+            pushFollow(FOLLOW_21);
             rule__ImplicationRule__Group__3__Impl();
 
             state._fsp--;
@@ -10282,7 +10282,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3455:1: ( rule__SourceTypeRule__Group__0__Impl rule__SourceTypeRule__Group__1 )
             // InternalDsl.g:3456:2: rule__SourceTypeRule__Group__0__Impl rule__SourceTypeRule__Group__1
             {
-            pushFollow(FOLLOW_22);
+            pushFollow(FOLLOW_23);
             rule__SourceTypeRule__Group__0__Impl();
 
             state._fsp--;
@@ -10357,7 +10357,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3482:1: ( rule__SourceTypeRule__Group__1__Impl rule__SourceTypeRule__Group__2 )
             // InternalDsl.g:3483:2: rule__SourceTypeRule__Group__1__Impl rule__SourceTypeRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__SourceTypeRule__Group__1__Impl();
 
             state._fsp--;
@@ -10512,7 +10512,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3536:1: ( rule__TargetTypeRule__Group__0__Impl rule__TargetTypeRule__Group__1 )
             // InternalDsl.g:3537:2: rule__TargetTypeRule__Group__0__Impl rule__TargetTypeRule__Group__1
             {
-            pushFollow(FOLLOW_23);
+            pushFollow(FOLLOW_24);
             rule__TargetTypeRule__Group__0__Impl();
 
             state._fsp--;
@@ -10587,7 +10587,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3563:1: ( rule__TargetTypeRule__Group__1__Impl rule__TargetTypeRule__Group__2 )
             // InternalDsl.g:3564:2: rule__TargetTypeRule__Group__1__Impl rule__TargetTypeRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__TargetTypeRule__Group__1__Impl();
 
             state._fsp--;
@@ -10742,7 +10742,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3617:1: ( rule__CommandNameRule__Group__0__Impl rule__CommandNameRule__Group__1 )
             // InternalDsl.g:3618:2: rule__CommandNameRule__Group__0__Impl rule__CommandNameRule__Group__1
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_25);
             rule__CommandNameRule__Group__0__Impl();
 
             state._fsp--;
@@ -10817,7 +10817,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3644:1: ( rule__CommandNameRule__Group__1__Impl rule__CommandNameRule__Group__2 )
             // InternalDsl.g:3645:2: rule__CommandNameRule__Group__1__Impl rule__CommandNameRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__CommandNameRule__Group__1__Impl();
 
             state._fsp--;
@@ -10972,7 +10972,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3698:1: ( rule__ShapeTypeRule__Group__0__Impl rule__ShapeTypeRule__Group__1 )
             // InternalDsl.g:3699:2: rule__ShapeTypeRule__Group__0__Impl rule__ShapeTypeRule__Group__1
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_26);
             rule__ShapeTypeRule__Group__0__Impl();
 
             state._fsp--;
@@ -11047,7 +11047,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3725:1: ( rule__ShapeTypeRule__Group__1__Impl rule__ShapeTypeRule__Group__2 )
             // InternalDsl.g:3726:2: rule__ShapeTypeRule__Group__1__Impl rule__ShapeTypeRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__ShapeTypeRule__Group__1__Impl();
 
             state._fsp--;
@@ -11202,7 +11202,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3779:1: ( rule__ParentTypeRule__Group__0__Impl rule__ParentTypeRule__Group__1 )
             // InternalDsl.g:3780:2: rule__ParentTypeRule__Group__0__Impl rule__ParentTypeRule__Group__1
             {
-            pushFollow(FOLLOW_26);
+            pushFollow(FOLLOW_27);
             rule__ParentTypeRule__Group__0__Impl();
 
             state._fsp--;
@@ -11277,7 +11277,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3806:1: ( rule__ParentTypeRule__Group__1__Impl rule__ParentTypeRule__Group__2 )
             // InternalDsl.g:3807:2: rule__ParentTypeRule__Group__1__Impl rule__ParentTypeRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__ParentTypeRule__Group__1__Impl();
 
             state._fsp--;
@@ -11432,7 +11432,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3860:1: ( rule__StepInRule__Group__0__Impl rule__StepInRule__Group__1 )
             // InternalDsl.g:3861:2: rule__StepInRule__Group__0__Impl rule__StepInRule__Group__1
             {
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_28);
             rule__StepInRule__Group__0__Impl();
 
             state._fsp--;
@@ -11577,7 +11577,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3914:1: ( rule__TrueRule__Group__0__Impl rule__TrueRule__Group__1 )
             // InternalDsl.g:3915:2: rule__TrueRule__Group__0__Impl rule__TrueRule__Group__1
             {
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_29);
             rule__TrueRule__Group__0__Impl();
 
             state._fsp--;
@@ -11722,7 +11722,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:3968:1: ( rule__FalseRule__Group__0__Impl rule__FalseRule__Group__1 )
             // InternalDsl.g:3969:2: rule__FalseRule__Group__0__Impl rule__FalseRule__Group__1
             {
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             rule__FalseRule__Group__0__Impl();
 
             state._fsp--;
@@ -11942,7 +11942,7 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
             // InternalDsl.g:4049:1: ( rule__ShapeNameRule__Group__1__Impl rule__ShapeNameRule__Group__2 )
             // InternalDsl.g:4050:2: rule__ShapeNameRule__Group__1__Impl rule__ShapeNameRule__Group__2
             {
-            pushFollow(FOLLOW_12);
+            pushFollow(FOLLOW_19);
             rule__ShapeNameRule__Group__1__Impl();
 
             state._fsp--;
@@ -12293,25 +12293,21 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Policy__NameAssignment_1"
-    // InternalDsl.g:4174:1: rule__Policy__NameAssignment_1 : ( ruleEString ) ;
+    // InternalDsl.g:4174:1: rule__Policy__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Policy__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDsl.g:4178:1: ( ( ruleEString ) )
-            // InternalDsl.g:4179:2: ( ruleEString )
+            // InternalDsl.g:4178:1: ( ( RULE_ID ) )
+            // InternalDsl.g:4179:2: ( RULE_ID )
             {
-            // InternalDsl.g:4179:2: ( ruleEString )
-            // InternalDsl.g:4180:3: ruleEString
+            // InternalDsl.g:4179:2: ( RULE_ID )
+            // InternalDsl.g:4180:3: RULE_ID
             {
-             before(grammarAccess.getPolicyAccess().getNameEStringParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_2);
-            ruleEString();
-
-            state._fsp--;
-
-             after(grammarAccess.getPolicyAccess().getNameEStringParserRuleCall_1_0()); 
+             before(grammarAccess.getPolicyAccess().getNameIDTerminalRuleCall_1_0()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getPolicyAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -12416,29 +12412,25 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Mapping__PolicyAssignment_5"
-    // InternalDsl.g:4219:1: rule__Mapping__PolicyAssignment_5 : ( ( ruleEString ) ) ;
+    // InternalDsl.g:4219:1: rule__Mapping__PolicyAssignment_5 : ( ( RULE_ID ) ) ;
     public final void rule__Mapping__PolicyAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalDsl.g:4223:1: ( ( ( ruleEString ) ) )
-            // InternalDsl.g:4224:2: ( ( ruleEString ) )
+            // InternalDsl.g:4223:1: ( ( ( RULE_ID ) ) )
+            // InternalDsl.g:4224:2: ( ( RULE_ID ) )
             {
-            // InternalDsl.g:4224:2: ( ( ruleEString ) )
-            // InternalDsl.g:4225:3: ( ruleEString )
+            // InternalDsl.g:4224:2: ( ( RULE_ID ) )
+            // InternalDsl.g:4225:3: ( RULE_ID )
             {
              before(grammarAccess.getMappingAccess().getPolicyPolicyCrossReference_5_0()); 
-            // InternalDsl.g:4226:3: ( ruleEString )
-            // InternalDsl.g:4227:4: ruleEString
+            // InternalDsl.g:4226:3: ( RULE_ID )
+            // InternalDsl.g:4227:4: RULE_ID
             {
-             before(grammarAccess.getMappingAccess().getPolicyPolicyEStringParserRuleCall_5_0_1()); 
-            pushFollow(FOLLOW_2);
-            ruleEString();
-
-            state._fsp--;
-
-             after(grammarAccess.getMappingAccess().getPolicyPolicyEStringParserRuleCall_5_0_1()); 
+             before(grammarAccess.getMappingAccess().getPolicyPolicyIDTerminalRuleCall_5_0_1()); 
+            match(input,RULE_ID,FOLLOW_2); 
+             after(grammarAccess.getMappingAccess().getPolicyPolicyIDTerminalRuleCall_5_0_1()); 
 
             }
 
@@ -13381,23 +13373,24 @@ public class InternalDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000010002L});
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000044000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x00001FFF80000000L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x000000004F800000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000080000000000L});
 
 }

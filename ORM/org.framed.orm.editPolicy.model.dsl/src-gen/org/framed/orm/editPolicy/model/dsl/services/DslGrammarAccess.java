@@ -282,7 +282,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPolicyKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cRuleAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cRuleAbstractRuleParserRuleCall_3_0 = (RuleCall)cRuleAssignment_3.eContents().get(0);
@@ -290,23 +290,23 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Policy:
 		//	'Policy'
-		//	name=EString
+		//	name=ID
 		//	'{'
 		//	rule=AbstractRule
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Policy' name=EString '{' rule=AbstractRule '}'
+		//'Policy' name=ID '{' rule=AbstractRule '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Policy'
 		public Keyword getPolicyKeyword_0() { return cPolicyKeyword_0; }
 		
-		//name=EString
+		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//EString
-		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -331,18 +331,18 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPolicyKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cPolicyAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final CrossReference cPolicyPolicyCrossReference_5_0 = (CrossReference)cPolicyAssignment_5.eContents().get(0);
-		private final RuleCall cPolicyPolicyEStringParserRuleCall_5_0_1 = (RuleCall)cPolicyPolicyCrossReference_5_0.eContents().get(1);
+		private final RuleCall cPolicyPolicyIDTerminalRuleCall_5_0_1 = (RuleCall)cPolicyPolicyCrossReference_5_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Mapping:
 		//	'Mapping'
 		//	'{'
 		//	'rule' rule=AbstractMappingRule
-		//	'policy' policy=[Policy|EString]
+		//	'policy' policy=[Policy]
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Mapping' '{' 'rule' rule=AbstractMappingRule 'policy' policy=[Policy|EString] '}'
+		//'Mapping' '{' 'rule' rule=AbstractMappingRule 'policy' policy=[Policy] '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Mapping'
@@ -363,14 +363,14 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//'policy'
 		public Keyword getPolicyKeyword_4() { return cPolicyKeyword_4; }
 		
-		//policy=[Policy|EString]
+		//policy=[Policy]
 		public Assignment getPolicyAssignment_5() { return cPolicyAssignment_5; }
 		
-		//[Policy|EString]
+		//[Policy]
 		public CrossReference getPolicyPolicyCrossReference_5_0() { return cPolicyPolicyCrossReference_5_0; }
 		
-		//EString
-		public RuleCall getPolicyPolicyEStringParserRuleCall_5_0_1() { return cPolicyPolicyEStringParserRuleCall_5_0_1; }
+		//ID
+		public RuleCall getPolicyPolicyIDTerminalRuleCall_5_0_1() { return cPolicyPolicyIDTerminalRuleCall_5_0_1; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
@@ -1220,7 +1220,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Policy:
 	//	'Policy'
-	//	name=EString
+	//	name=ID
 	//	'{'
 	//	rule=AbstractRule
 	//	'}';
@@ -1236,7 +1236,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//	'Mapping'
 	//	'{'
 	//	'rule' rule=AbstractMappingRule
-	//	'policy' policy=[Policy|EString]
+	//	'policy' policy=[Policy]
 	//	'}';
 	public MappingElements getMappingAccess() {
 		return pMapping;
