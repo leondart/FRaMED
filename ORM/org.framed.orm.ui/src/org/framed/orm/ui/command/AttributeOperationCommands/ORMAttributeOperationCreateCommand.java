@@ -3,6 +3,7 @@ package org.framed.orm.ui.command.AttributeOperationCommands;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.NamedElement;
 import org.framed.orm.model.Segment;
+import org.framed.orm.model.Shape;
 import org.framed.orm.ui.factory.ORMAttributeFactory;
 import org.framed.orm.ui.factory.ORMOperationFactory;
 
@@ -65,6 +66,14 @@ public class ORMAttributeOperationCreateCommand extends Command {
    */
   public void setParentSegment(final Segment segment) {
     this.segment = segment;
+  }
+
+  /**
+   * Getter for parent model for editpolicyhandler
+   *
+   */
+  public Shape getParent() {
+    return ((Shape) this.segment.eContainer());
   }
 
   /**

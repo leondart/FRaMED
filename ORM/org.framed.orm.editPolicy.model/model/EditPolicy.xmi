@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Model
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:model="platform:/resource/org.framed.orm.editPolicy.model/">
+  <configuration>
+    <mappings
+        policy="//@policies.0">
+      <rule
+          xsi:type="model:TrueMappingRule"/>
+    </mappings>
+  </configuration>
+  <policies
+      name="testPolicy">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent
+          xsi:type="model:CommandNameRule"
+          name="ORMAttributeOperationCreate"/>
+      <consequent
+          xsi:type="model:ParentTypeRule"
+          name="CompartmentType"/>
+    </rule>
+  </policies>
+</model:Model>

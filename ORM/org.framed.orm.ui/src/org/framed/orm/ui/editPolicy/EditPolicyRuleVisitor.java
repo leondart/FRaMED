@@ -4,14 +4,18 @@ import java.lang.reflect.Method;
 
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.Relation;
+import org.framed.orm.model.Shape;
 
 public class EditPolicyRuleVisitor {
 
 		private Command cmd;
 
-		public EditPolicyRuleVisitor(Command cmd)
+		private boolean isStepOut;
+
+		public EditPolicyRuleVisitor(Command cmd, boolean isStepOut)
 		{
 			this.cmd = cmd;
+			this.isStepOut = isStepOut;
 		}
 
 		public boolean abstractRuleVisitor(model.AbstractRule rule)
@@ -33,6 +37,9 @@ public class EditPolicyRuleVisitor {
 
 			if (rule instanceof model.ShapeTypeRule)
 				return shapeTypeRuleVisitor((model.ShapeTypeRule)rule);
+
+			if (rule instanceof model.ParentTypeRule)
+				return parentTypeRuleVisitor((model.ParentTypeRule)rule);
 
 			if (rule instanceof model.StepInRule)
 				return stepInRule((model.StepInRule)rule);
@@ -128,13 +135,30 @@ public class EditPolicyRuleVisitor {
 			return false;
 		}
 
+		private boolean parentTypeRuleVisitor(model.ParentTypeRule rule)
+		{
+			Shape shape;
+			Method method;
+
+			try {
+				method = cmd.getClass().getMethod("getParent");
+				shape =  (Shape) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			if(shape == null) return false;
+
+			String type = shape.getType().getLiteral();
+			//System.out.println("Type is: " + type + " rulename is: " + rule.getName());
+
+			if(rule.getName().equals(type)) {
+				return true;
+			}
+			return false;
+		}
+
 
 		private boolean stepInRule(model.StepInRule rule)
 		{
-			System.out.println("stepInRule not implemented");
-			/*
-			if(editorIsInStepIn())
-				return true;*/
-			return false;
+			return this.isStepOut;
 		}
 }
