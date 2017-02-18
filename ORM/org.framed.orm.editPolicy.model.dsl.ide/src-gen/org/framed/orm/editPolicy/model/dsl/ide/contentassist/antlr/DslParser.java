@@ -37,7 +37,10 @@ public class DslParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getAbstractRuleAccess().getAlternatives(), "rule__AbstractRule__Alternatives");
 					put(grammarAccess.getAbstractMappingRuleAccess().getAlternatives(), "rule__AbstractMappingRule__Alternatives");
+					put(grammarAccess.getMappingAccess().getRuleAlternatives_3_0(), "rule__Mapping__RuleAlternatives_3_0");
 					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
+					put(grammarAccess.getMappingExpressionAccess().getAlternatives(), "rule__MappingExpression__Alternatives");
+					put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getModelAccess().getGroup_4(), "rule__Model__Group_4__0");
 					put(grammarAccess.getModelAccess().getGroup_4_3(), "rule__Model__Group_4_3__0");
@@ -70,6 +73,12 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTrueRuleAccess().getGroup(), "rule__TrueRule__Group__0");
 					put(grammarAccess.getFalseRuleAccess().getGroup(), "rule__FalseRule__Group__0");
 					put(grammarAccess.getShapeNameRuleAccess().getGroup(), "rule__ShapeNameRule__Group__0");
+					put(grammarAccess.getMappingExpressionAccess().getGroup_1(), "rule__MappingExpression__Group_1__0");
+					put(grammarAccess.getAndMappingAccess().getGroup(), "rule__AndMapping__Group__0");
+					put(grammarAccess.getAndMappingAccess().getGroup_1(), "rule__AndMapping__Group_1__0");
+					put(grammarAccess.getOrMappingAccess().getGroup(), "rule__OrMapping__Group__0");
+					put(grammarAccess.getOrMappingAccess().getGroup_1(), "rule__OrMapping__Group_1__0");
+					put(grammarAccess.getPrimaryAccess().getGroup_2(), "rule__Primary__Group_2__0");
 					put(grammarAccess.getModelAccess().getConfigurationAssignment_3(), "rule__Model__ConfigurationAssignment_3");
 					put(grammarAccess.getModelAccess().getPoliciesAssignment_4_2(), "rule__Model__PoliciesAssignment_4_2");
 					put(grammarAccess.getModelAccess().getPoliciesAssignment_4_3_1(), "rule__Model__PoliciesAssignment_4_3_1");
@@ -82,7 +91,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFeatureNameMappingRuleAccess().getNameAssignment_2(), "rule__FeatureNameMappingRule__NameAssignment_2");
 					put(grammarAccess.getAndMappingRuleAccess().getRulesAssignment_2(), "rule__AndMappingRule__RulesAssignment_2");
 					put(grammarAccess.getAndMappingRuleAccess().getRulesAssignment_3_1(), "rule__AndMappingRule__RulesAssignment_3_1");
-					put(grammarAccess.getNotMappingRuleAccess().getRuleAssignment_2(), "rule__NotMappingRule__RuleAssignment_2");
+					put(grammarAccess.getNotMappingRuleAccess().getRuleAssignment_1(), "rule__NotMappingRule__RuleAssignment_1");
 					put(grammarAccess.getOrMappingRuleAccess().getRulesAssignment_2(), "rule__OrMappingRule__RulesAssignment_2");
 					put(grammarAccess.getOrMappingRuleAccess().getRulesAssignment_3_1(), "rule__OrMappingRule__RulesAssignment_3_1");
 					put(grammarAccess.getImplicationMappingRuleAccess().getAntecedentAssignment_3(), "rule__ImplicationMappingRule__AntecedentAssignment_3");
@@ -101,6 +110,9 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getShapeTypeRuleAccess().getNameAssignment_2(), "rule__ShapeTypeRule__NameAssignment_2");
 					put(grammarAccess.getParentTypeRuleAccess().getNameAssignment_2(), "rule__ParentTypeRule__NameAssignment_2");
 					put(grammarAccess.getShapeNameRuleAccess().getNameAssignment_2(), "rule__ShapeNameRule__NameAssignment_2");
+					put(grammarAccess.getMappingExpressionAccess().getRuleAssignment_1_2(), "rule__MappingExpression__RuleAssignment_1_2");
+					put(grammarAccess.getAndMappingAccess().getRulesAssignment_1_2(), "rule__AndMapping__RulesAssignment_1_2");
+					put(grammarAccess.getOrMappingAccess().getRulesAssignment_1_2(), "rule__OrMapping__RulesAssignment_1_2");
 				}
 			};
 		}

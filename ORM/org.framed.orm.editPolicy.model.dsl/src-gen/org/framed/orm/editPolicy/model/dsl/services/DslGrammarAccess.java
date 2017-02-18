@@ -327,7 +327,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cRuleKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cRuleAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cRuleAbstractMappingRuleParserRuleCall_3_0 = (RuleCall)cRuleAssignment_3.eContents().get(0);
+		private final Alternatives cRuleAlternatives_3_0 = (Alternatives)cRuleAssignment_3.eContents().get(0);
+		private final RuleCall cRuleAbstractMappingRuleParserRuleCall_3_0_0 = (RuleCall)cRuleAlternatives_3_0.eContents().get(0);
+		private final RuleCall cRuleMappingExpressionParserRuleCall_3_0_1 = (RuleCall)cRuleAlternatives_3_0.eContents().get(1);
 		private final Keyword cPolicyKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cPolicyAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final CrossReference cPolicyPolicyCrossReference_5_0 = (CrossReference)cPolicyAssignment_5.eContents().get(0);
@@ -337,12 +339,12 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//Mapping:
 		//	'Mapping'
 		//	'{'
-		//	'rule' rule=AbstractMappingRule
+		//	'rule' rule=(AbstractMappingRule | MappingExpression)
 		//	'policy' policy=[Policy]
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Mapping' '{' 'rule' rule=AbstractMappingRule 'policy' policy=[Policy] '}'
+		//'Mapping' '{' 'rule' rule=(AbstractMappingRule | MappingExpression) 'policy' policy=[Policy] '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Mapping'
@@ -354,11 +356,17 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//'rule'
 		public Keyword getRuleKeyword_2() { return cRuleKeyword_2; }
 		
-		//rule=AbstractMappingRule
+		//rule=(AbstractMappingRule | MappingExpression)
 		public Assignment getRuleAssignment_3() { return cRuleAssignment_3; }
 		
+		//(AbstractMappingRule | MappingExpression)
+		public Alternatives getRuleAlternatives_3_0() { return cRuleAlternatives_3_0; }
+		
 		//AbstractMappingRule
-		public RuleCall getRuleAbstractMappingRuleParserRuleCall_3_0() { return cRuleAbstractMappingRuleParserRuleCall_3_0; }
+		public RuleCall getRuleAbstractMappingRuleParserRuleCall_3_0_0() { return cRuleAbstractMappingRuleParserRuleCall_3_0_0; }
+		
+		//MappingExpression
+		public RuleCall getRuleMappingExpressionParserRuleCall_3_0_1() { return cRuleMappingExpressionParserRuleCall_3_0_1; }
 		
 		//'policy'
 		public Keyword getPolicyKeyword_4() { return cPolicyKeyword_4; }
@@ -457,36 +465,25 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	public class NotMappingRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.NotMappingRule");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNotMappingRuleKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRuleAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRuleAbstractMappingRuleParserRuleCall_2_0 = (RuleCall)cRuleAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cExclamationMarkKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cRuleAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cRuleAbstractMappingRuleParserRuleCall_1_0 = (RuleCall)cRuleAssignment_1.eContents().get(0);
 		
 		//NotMappingRule:
-		//	'NotMappingRule'
-		//	'{'
-		//	rule=AbstractMappingRule
-		//	'}';
+		//	'!' rule=AbstractMappingRule;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'NotMappingRule' '{' rule=AbstractMappingRule '}'
+		//'!' rule=AbstractMappingRule
 		public Group getGroup() { return cGroup; }
 		
-		//'NotMappingRule'
-		public Keyword getNotMappingRuleKeyword_0() { return cNotMappingRuleKeyword_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		//'!'
+		public Keyword getExclamationMarkKeyword_0() { return cExclamationMarkKeyword_0; }
 		
 		//rule=AbstractMappingRule
-		public Assignment getRuleAssignment_2() { return cRuleAssignment_2; }
+		public Assignment getRuleAssignment_1() { return cRuleAssignment_1; }
 		
 		//AbstractMappingRule
-		public RuleCall getRuleAbstractMappingRuleParserRuleCall_2_0() { return cRuleAbstractMappingRuleParserRuleCall_2_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public RuleCall getRuleAbstractMappingRuleParserRuleCall_1_0() { return cRuleAbstractMappingRuleParserRuleCall_1_0; }
 	}
 	public class OrMappingRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.OrMappingRule");
@@ -1076,6 +1073,147 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
 	}
+	public class MappingExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.MappingExpression");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAndMappingParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cExclamationMarkKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Action cNotMappingRuleAction_1_1 = (Action)cGroup_1.eContents().get(1);
+		private final Assignment cRuleAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRuleAndMappingParserRuleCall_1_2_0 = (RuleCall)cRuleAssignment_1_2.eContents().get(0);
+		
+		//MappingExpression AbstractMappingRule:
+		//	AndMapping | '!' {NotMappingRule} rule=AndMapping
+		@Override public ParserRule getRule() { return rule; }
+		
+		//AndMapping | '!' {NotMappingRule} rule=AndMapping
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//AndMapping
+		public RuleCall getAndMappingParserRuleCall_0() { return cAndMappingParserRuleCall_0; }
+		
+		//'!' {NotMappingRule} rule=AndMapping
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'!'
+		public Keyword getExclamationMarkKeyword_1_0() { return cExclamationMarkKeyword_1_0; }
+		
+		//{NotMappingRule}
+		public Action getNotMappingRuleAction_1_1() { return cNotMappingRuleAction_1_1; }
+		
+		//rule=AndMapping
+		public Assignment getRuleAssignment_1_2() { return cRuleAssignment_1_2; }
+		
+		//AndMapping
+		public RuleCall getRuleAndMappingParserRuleCall_1_2_0() { return cRuleAndMappingParserRuleCall_1_2_0; }
+	}
+	public class AndMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.AndMapping");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cOrMappingParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cAndMappingRuleRulesAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cAmpersandAmpersandKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRulesAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRulesOrMappingParserRuleCall_1_2_0 = (RuleCall)cRulesAssignment_1_2.eContents().get(0);
+		
+		//AndMapping AbstractMappingRule:
+		//	OrMapping ({AndMappingRule.rules+=current} '&&' rules+=OrMapping)*
+		@Override public ParserRule getRule() { return rule; }
+		
+		//OrMapping ({AndMappingRule.rules+=current} '&&' rules+=OrMapping)*
+		public Group getGroup() { return cGroup; }
+		
+		//OrMapping
+		public RuleCall getOrMappingParserRuleCall_0() { return cOrMappingParserRuleCall_0; }
+		
+		//({AndMappingRule.rules+=current} '&&' rules+=OrMapping)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{AndMappingRule.rules+=current}
+		public Action getAndMappingRuleRulesAction_1_0() { return cAndMappingRuleRulesAction_1_0; }
+		
+		//'&&'
+		public Keyword getAmpersandAmpersandKeyword_1_1() { return cAmpersandAmpersandKeyword_1_1; }
+		
+		//rules+=OrMapping
+		public Assignment getRulesAssignment_1_2() { return cRulesAssignment_1_2; }
+		
+		//OrMapping
+		public RuleCall getRulesOrMappingParserRuleCall_1_2_0() { return cRulesOrMappingParserRuleCall_1_2_0; }
+	}
+	public class OrMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.OrMapping");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cPrimaryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cOrMappingRuleRulesAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cVerticalLineVerticalLineKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cRulesAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRulesPrimaryParserRuleCall_1_2_0 = (RuleCall)cRulesAssignment_1_2.eContents().get(0);
+		
+		//OrMapping AbstractMappingRule:
+		//	Primary ({OrMappingRule.rules+=current} '||' rules+=Primary)*
+		@Override public ParserRule getRule() { return rule; }
+		
+		//Primary ({OrMappingRule.rules+=current} '||' rules+=Primary)*
+		public Group getGroup() { return cGroup; }
+		
+		//Primary
+		public RuleCall getPrimaryParserRuleCall_0() { return cPrimaryParserRuleCall_0; }
+		
+		//({OrMappingRule.rules+=current} '||' rules+=Primary)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{OrMappingRule.rules+=current}
+		public Action getOrMappingRuleRulesAction_1_0() { return cOrMappingRuleRulesAction_1_0; }
+		
+		//'||'
+		public Keyword getVerticalLineVerticalLineKeyword_1_1() { return cVerticalLineVerticalLineKeyword_1_1; }
+		
+		//rules+=Primary
+		public Assignment getRulesAssignment_1_2() { return cRulesAssignment_1_2; }
+		
+		//Primary
+		public RuleCall getRulesPrimaryParserRuleCall_1_2_0() { return cRulesPrimaryParserRuleCall_1_2_0; }
+	}
+	public class PrimaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.Primary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cTrueMappingRuleParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFeatureNameMappingRuleParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final RuleCall cMappingExpressionParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		
+		//Primary AbstractMappingRule:
+		//	TrueMappingRule | FeatureNameMappingRule |
+		//	'(' MappingExpression ')'
+		@Override public ParserRule getRule() { return rule; }
+		
+		//TrueMappingRule | FeatureNameMappingRule | '(' MappingExpression ')'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//TrueMappingRule
+		public RuleCall getTrueMappingRuleParserRuleCall_0() { return cTrueMappingRuleParserRuleCall_0; }
+		
+		//FeatureNameMappingRule
+		public RuleCall getFeatureNameMappingRuleParserRuleCall_1() { return cFeatureNameMappingRuleParserRuleCall_1; }
+		
+		//'(' MappingExpression ')'
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
+		
+		//MappingExpression
+		public RuleCall getMappingExpressionParserRuleCall_2_1() { return cMappingExpressionParserRuleCall_2_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
+	}
 	
 	
 	private final ModelElements pModel;
@@ -1105,6 +1243,10 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final TrueRuleElements pTrueRule;
 	private final FalseRuleElements pFalseRule;
 	private final ShapeNameRuleElements pShapeNameRule;
+	private final MappingExpressionElements pMappingExpression;
+	private final AndMappingElements pAndMapping;
+	private final OrMappingElements pOrMapping;
+	private final PrimaryElements pPrimary;
 	
 	private final Grammar grammar;
 	
@@ -1142,6 +1284,10 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pTrueRule = new TrueRuleElements();
 		this.pFalseRule = new FalseRuleElements();
 		this.pShapeNameRule = new ShapeNameRuleElements();
+		this.pMappingExpression = new MappingExpressionElements();
+		this.pAndMapping = new AndMappingElements();
+		this.pOrMapping = new OrMappingElements();
+		this.pPrimary = new PrimaryElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -1235,7 +1381,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//Mapping:
 	//	'Mapping'
 	//	'{'
-	//	'rule' rule=AbstractMappingRule
+	//	'rule' rule=(AbstractMappingRule | MappingExpression)
 	//	'policy' policy=[Policy]
 	//	'}';
 	public MappingElements getMappingAccess() {
@@ -1272,10 +1418,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NotMappingRule:
-	//	'NotMappingRule'
-	//	'{'
-	//	rule=AbstractMappingRule
-	//	'}';
+	//	'!' rule=AbstractMappingRule;
 	public NotMappingRuleElements getNotMappingRuleAccess() {
 		return pNotMappingRule;
 	}
@@ -1500,6 +1643,47 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getShapeNameRuleRule() {
 		return getShapeNameRuleAccess().getRule();
+	}
+	
+	//MappingExpression AbstractMappingRule:
+	//	AndMapping | '!' {NotMappingRule} rule=AndMapping
+	public MappingExpressionElements getMappingExpressionAccess() {
+		return pMappingExpression;
+	}
+	
+	public ParserRule getMappingExpressionRule() {
+		return getMappingExpressionAccess().getRule();
+	}
+	
+	//AndMapping AbstractMappingRule:
+	//	OrMapping ({AndMappingRule.rules+=current} '&&' rules+=OrMapping)*
+	public AndMappingElements getAndMappingAccess() {
+		return pAndMapping;
+	}
+	
+	public ParserRule getAndMappingRule() {
+		return getAndMappingAccess().getRule();
+	}
+	
+	//OrMapping AbstractMappingRule:
+	//	Primary ({OrMappingRule.rules+=current} '||' rules+=Primary)*
+	public OrMappingElements getOrMappingAccess() {
+		return pOrMapping;
+	}
+	
+	public ParserRule getOrMappingRule() {
+		return getOrMappingAccess().getRule();
+	}
+	
+	//Primary AbstractMappingRule:
+	//	TrueMappingRule | FeatureNameMappingRule |
+	//	'(' MappingExpression ')'
+	public PrimaryElements getPrimaryAccess() {
+		return pPrimary;
+	}
+	
+	public ParserRule getPrimaryRule() {
+		return getPrimaryAccess().getRule();
 	}
 	
 	//terminal ID:

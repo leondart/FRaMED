@@ -34,7 +34,7 @@ Policy returns Policy:
 Mapping returns Mapping:
 	'Mapping'
 	'{'
-		'rule' rule=AbstractMappingRule
+		'rule' rule=(AbstractMappingRule | MappingExpression)
 		'policy' policy=[Policy|ID]
 	'}';
 
@@ -50,11 +50,8 @@ AndMappingRule returns AndMappingRule:
 	'}';
 
 NotMappingRule returns NotMappingRule:
-	'NotMappingRule'
-	'{'
-		rule=AbstractMappingRule
-	'}';
-
+	'!' rule=AbstractMappingRule;  
+ 		
 OrMappingRule returns OrMappingRule:
 	'OrMappingRule'
 	'{'
@@ -150,3 +147,21 @@ ShapeNameRule returns ShapeNameRule:
 	{ShapeNameRule}
 	'ShapeNameRule'
 	name=EString;
+
+
+//TODO, FIXME
+MappingExpression returns AbstractMappingRule:
+   AndMapping | '!' {NotMappingRule} rule=AndMapping;
+  
+AndMapping returns AbstractMappingRule:
+  OrMapping ({AndMappingRule.rules+=current} '&&' rules+=OrMapping)*;
+
+OrMapping returns AbstractMappingRule:
+  Primary ({OrMappingRule.rules+=current} '||' rules+=Primary)*;
+  
+Primary returns AbstractMappingRule:
+	TrueMappingRule | FeatureNameMappingRule |
+	'(' MappingExpression ')'
+	;
+	
+	
