@@ -14,7 +14,7 @@ Model returns Model:
 AbstractRule returns AbstractRule:
 	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | 
 	CommandNameRule | ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule |
-	RelationIsCyclicRule | RelationIsReflexivRule | RelationTypesAreEqualRule;
+	RelationIsCyclicRule | RelationIsReflexivRule | RelationTypesAreEqualRule | TypeExistsRule;
 
 AbstractMappingRule returns AbstractMappingRule:
 	FeatureNameMappingRule | AndMappingRule | NotMappingRule | OrMappingRule | ImplicationMappingRule | TrueMappingRule;
@@ -99,6 +99,11 @@ AndRule returns AndRule:
 RelationNameRule returns RelationNameRule:
 	{RelationNameRule}
 	'RelationNameRule'
+	name=EString;
+	
+TypeExistsRule returns TypeExistsRule:
+	{TypeExistsRule}
+	'TypeExistsRule'
 	name=EString;
 
 OrRule returns OrRule:

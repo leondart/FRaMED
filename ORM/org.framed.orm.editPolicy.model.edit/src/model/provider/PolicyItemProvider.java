@@ -263,6 +263,11 @@ public class PolicyItemProvider
 			(createChildParameter
 				(ModelPackage.Literals.POLICY__RULE,
 				 ModelFactory.eINSTANCE.createRelationTypesAreEqualRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.POLICY__RULE,
+				 ModelFactory.eINSTANCE.createTypeExistsRule()));
 	}
 
 	/**

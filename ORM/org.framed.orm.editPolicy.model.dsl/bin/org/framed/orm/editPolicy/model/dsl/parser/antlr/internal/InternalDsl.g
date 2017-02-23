@@ -340,6 +340,15 @@ ruleAbstractRule returns [EObject current=null]
 			$current = $this_RelationTypesAreEqualRule_16.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getAbstractRuleAccess().getTypeExistsRuleParserRuleCall_17());
+		}
+		this_TypeExistsRule_17=ruleTypeExistsRule
+		{
+			$current = $this_TypeExistsRule_17.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -1251,6 +1260,55 @@ ruleRelationNameRule returns [EObject current=null]
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRelationNameRuleRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_2_0,
+						"org.framed.orm.editPolicy.model.dsl.Dsl.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleTypeExistsRule
+entryRuleTypeExistsRule returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTypeExistsRuleRule()); }
+	iv_ruleTypeExistsRule=ruleTypeExistsRule
+	{ $current=$iv_ruleTypeExistsRule.current; }
+	EOF;
+
+// Rule TypeExistsRule
+ruleTypeExistsRule returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getTypeExistsRuleAccess().getTypeExistsRuleAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='TypeExistsRule'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getTypeExistsRuleAccess().getTypeExistsRuleKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTypeExistsRuleAccess().getNameEStringParserRuleCall_2_0());
+				}
+				lv_name_2_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTypeExistsRuleRule());
 					}
 					set(
 						$current,

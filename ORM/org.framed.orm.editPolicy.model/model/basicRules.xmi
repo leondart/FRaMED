@@ -8,11 +8,11 @@
       <rule xsi:type="model:TrueMappingRule"/>
     </mappings>
     <mappings policy="//@policies.2">
-      <rule xsi:type="model:TrueMappingRule"/>
+      <rule xsi:type="model:FeatureNameMappingRule" name="false"/>
     </mappings>
     <mappings policy="//@policies.3">
       <rule xsi:type="model:NotMappingRule">
-        <rule xsi:type="model:FeatureNameMappingRule" name="Compartment"/>
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartments"/>
       </rule>
     </mappings>
     <mappings policy="//@policies.4">
@@ -60,14 +60,12 @@
     </rule>
   </policies>
   <policies name="r4">
-    <rule xsi:type="model:ImplicationRule">
-      <antecedent xsi:type="model:AndRule">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
         <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
-      </antecedent>
-      <consequent xsi:type="model:NotRule">
-        <rule xsi:type="model:TrueRule"/>
-      </consequent>
+        <rules xsi:type="model:TypeExistsRule" name="RoleType"/>
+      </rule>
     </rule>
   </policies>
   <policies name="r5">

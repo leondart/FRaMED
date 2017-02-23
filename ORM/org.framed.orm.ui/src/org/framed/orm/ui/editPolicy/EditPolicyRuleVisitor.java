@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPolicy;
 import java.lang.reflect.Method;
 
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.model.Model;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
@@ -39,6 +40,9 @@ public class EditPolicyRuleVisitor {
 
 			if (rule instanceof model.ShapeTypeRule)
 				return shapeTypeRuleVisitor((model.ShapeTypeRule)rule);
+
+			if (rule instanceof model.TypeExistsRule)
+				return typeExistsRule((model.TypeExistsRule)rule);
 
 			if (rule instanceof model.RelationTypesAreEqualRule)
 				return relationTypesAreEqualRuleVisitor((model.RelationTypesAreEqualRule)rule);
@@ -110,7 +114,7 @@ public class EditPolicyRuleVisitor {
 
 		private boolean commandNameRuleVisitor(model.CommandNameRule rule)
 		{
-			//System.out.println("testing: " + rule.getName() + " === " + cmd.getLabel());
+			System.out.println("testing: " + rule.getName() + " === " + cmd.getLabel());
 
 			if(rule.getName().equals(cmd.getLabel())) {
 				return true;
@@ -215,7 +219,15 @@ public class EditPolicyRuleVisitor {
 			try {
 				method = cmd.getClass().getMethod("getParentType");
 				str =  (String) method.invoke(cmd);
-			} catch (Exception e) { return false; }
+			} catch (Exception e) {
+				try {
+						method = cmd.getClass().getMethod("getShape");
+						Shape shape =  (Shape) method.invoke(cmd);
+						str = shape.getType().getLiteral();
+				} catch (Exception e1) {
+					return false;
+				}
+			}
 
 			System.out.println("ShapeTypeRule: String is: " + str + "name is " + rule.getName());
 
@@ -243,6 +255,26 @@ public class EditPolicyRuleVisitor {
 			if(rule.getName().equals(type)) {
 				return true;
 			}
+			return false;
+		}
+
+		private boolean typeExistsRule(model.TypeExistsRule rule)
+		{
+			Model model;
+			Method method;
+
+			try {
+				method = cmd.getClass().getMethod("getParent");
+				model =  (Model) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			if(model == null) return false;
+
+		    for(ModelElement element : model.getElements()) {
+		        String type = element.getType().getLiteral();
+		        if(type.equals(rule.getName()))
+		        	return true;
+		    }
 			return false;
 		}
 

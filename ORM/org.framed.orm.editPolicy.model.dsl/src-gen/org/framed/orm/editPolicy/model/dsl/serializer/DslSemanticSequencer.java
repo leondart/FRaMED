@@ -33,6 +33,7 @@ import model.StepInRule;
 import model.TargetTypeRule;
 import model.TrueMappingRule;
 import model.TrueRule;
+import model.TypeExistsRule;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.Action;
@@ -177,6 +178,9 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case ModelPackage.TRUE_RULE:
 				sequence_TrueRule(context, (TrueRule) semanticObject); 
+				return; 
+			case ModelPackage.TYPE_EXISTS_RULE:
+				sequence_TypeExistsRule(context, (TypeExistsRule) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -683,6 +687,25 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 */
 	protected void sequence_TrueRule(ISerializationContext context, TrueRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractRule returns TypeExistsRule
+	 *     TypeExistsRule returns TypeExistsRule
+	 *
+	 * Constraint:
+	 *     name=EString
+	 */
+	protected void sequence_TypeExistsRule(ISerializationContext context, TypeExistsRule semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.ABSTRACT_NAME_RULE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.ABSTRACT_NAME_RULE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypeExistsRuleAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	

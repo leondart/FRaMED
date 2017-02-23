@@ -10,9 +10,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
-import org.framed.orm.featuremodel.FRaMEDFeature;
-import org.framed.orm.model.Type;
-import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.ORMGraphicalEditorObserver;
@@ -38,7 +35,8 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	 */
 	private Set<model.Policy> policies;
 
-	public EditPolicyHandler(FRaMEDConfiguration configuration) {
+	public EditPolicyHandler(FRaMEDConfiguration configuration)
+	{
 		this.configuration = configuration;
 		model = this.loadModel();
 
@@ -49,13 +47,13 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	 * loads all Policies which are activated by current configuration
 	 */
 	private void loadPolicyRules() {
-		/**/
+		/*
 		  System.out.println("-------------------------------");
 		  for (FRaMEDFeature feature : this.configuration.getFeatures()) {
 			  System.out.println("EditPolicyHandler feature: " + feature.getName().getName());
 		  }
 		  System.out.println("-------------------------------");
-
+*/
 
 		policies = new HashSet<>();
 
@@ -69,48 +67,16 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		}
 	}
 
-	public boolean canExecute(Command cmd) {
-		Boolean ret = canExecute(model, cmd);
-		// Accessing the model information
-		System.out.println("EditPolicyHandler CanExecuteq: " + cmd.getClass().toString());
-
-		return ret;
-/*
-		if (cmd instanceof ORMRelationCreateCommand)
-			return canExecute((ORMRelationCreateCommand) cmd);
-
-		return true;
-		*/
-	}
-
-	private boolean canExecute(model.Model model, Command cmd)
+	public boolean canExecute(Command cmd)
 	{
-		//System.out.println("List of Policies: " + policies.toString());
-
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd, this.isStepOut);
 
 		for (model.Policy policy : policies) {
+			System.out.println("Testing: " + policy.getName());
 			if (!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule())) {
 				System.out.println("Not Allowed because of: " + policy.getName());
 				return false;
 			}
-		}
-		return true;
-	}
-
-	public boolean canExecute(ORMRelationCreateCommand relationCommand) {
-		int val = relationCommand.getRelation().getType().getValue();
-		switch (val) {
-		case Type.RELATIONSHIP_VALUE:
-			return true;
-		case Type.IRREFLEXIVE_VALUE:
-		case Type.TOTAL_VALUE:
-		case Type.CYCLIC_VALUE:
-		case Type.ACYCLIC_VALUE:
-		case Type.REFLEXIVE_VALUE:
-			return relationCommand.getReferencedRelations().size() == 1;
-		case Type.INHERITANCE_VALUE:
-			return true;
 		}
 		return true;
 	}
@@ -133,8 +99,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 				return (model.Model) res.getContents().get(0);
 			}
 		} catch (Exception e) {
-			System.err.println("Was not able to load xmi:  \"" + filename
-					+ "\" due : " + e.toString());
+			System.err.println("Was not able to load xmi:  \"" + filename + "\" due : " + e.toString());
 			for (StackTraceElement el : e.getStackTrace())
 				System.err.println(el.toString());
 		}
@@ -142,7 +107,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	}
 
 	/**
-	 * This method updates the reloads the configuration it is called when
+	 * This method updates the reloads the configuration. it is called when
 	 * configuration has changed.
 	 *
 	 **/
@@ -155,7 +120,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	}
 
 	/**
-	 * This method updates the reloads the configuration it is called when
+	 * This method updates the reloads the configuration. it is called when
 	 * configuration has changed.
 	 *
 	 **/

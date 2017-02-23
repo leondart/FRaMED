@@ -123,16 +123,17 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRelationIsCyclicRuleParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
 		private final RuleCall cRelationIsReflexivRuleParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
 		private final RuleCall cRelationTypesAreEqualRuleParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cTypeExistsRuleParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
 		
 		//AbstractRule:
 		//	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule |
 		//	ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule | RelationIsCyclicRule |
-		//	RelationIsReflexivRule | RelationTypesAreEqualRule;
+		//	RelationIsReflexivRule | RelationTypesAreEqualRule | TypeExistsRule;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule |
 		//ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule | RelationIsCyclicRule |
-		//RelationIsReflexivRule | RelationTypesAreEqualRule
+		//RelationIsReflexivRule | RelationTypesAreEqualRule | TypeExistsRule
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//AndRule
@@ -185,6 +186,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//RelationTypesAreEqualRule
 		public RuleCall getRelationTypesAreEqualRuleParserRuleCall_16() { return cRelationTypesAreEqualRuleParserRuleCall_16; }
+		
+		//TypeExistsRule
+		public RuleCall getTypeExistsRuleParserRuleCall_17() { return cTypeExistsRuleParserRuleCall_17; }
 	}
 	public class AbstractMappingRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.AbstractMappingRule");
@@ -778,6 +782,35 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		//EString
 		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
 	}
+	public class TypeExistsRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.TypeExistsRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cTypeExistsRuleAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cTypeExistsRuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		
+		//TypeExistsRule:
+		//	{TypeExistsRule}
+		//	'TypeExistsRule'
+		//	name=EString;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{TypeExistsRule} 'TypeExistsRule' name=EString
+		public Group getGroup() { return cGroup; }
+		
+		//{TypeExistsRule}
+		public Action getTypeExistsRuleAction_0() { return cTypeExistsRuleAction_0; }
+		
+		//'TypeExistsRule'
+		public Keyword getTypeExistsRuleKeyword_1() { return cTypeExistsRuleKeyword_1; }
+		
+		//name=EString
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+	}
 	public class OrRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.OrRule");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1309,6 +1342,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final EStringElements pEString;
 	private final AndRuleElements pAndRule;
 	private final RelationNameRuleElements pRelationNameRule;
+	private final TypeExistsRuleElements pTypeExistsRule;
 	private final OrRuleElements pOrRule;
 	private final NotRuleElements pNotRule;
 	private final ImplicationRuleElements pImplicationRule;
@@ -1353,6 +1387,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pEString = new EStringElements();
 		this.pAndRule = new AndRuleElements();
 		this.pRelationNameRule = new RelationNameRuleElements();
+		this.pTypeExistsRule = new TypeExistsRuleElements();
 		this.pOrRule = new OrRuleElements();
 		this.pNotRule = new NotRuleElements();
 		this.pImplicationRule = new ImplicationRuleElements();
@@ -1414,7 +1449,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	//AbstractRule:
 	//	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule |
 	//	ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule | RelationIsCyclicRule |
-	//	RelationIsReflexivRule | RelationTypesAreEqualRule;
+	//	RelationIsReflexivRule | RelationTypesAreEqualRule | TypeExistsRule;
 	public AbstractRuleElements getAbstractRuleAccess() {
 		return pAbstractRule;
 	}
@@ -1613,6 +1648,18 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getRelationNameRuleRule() {
 		return getRelationNameRuleAccess().getRule();
+	}
+	
+	//TypeExistsRule:
+	//	{TypeExistsRule}
+	//	'TypeExistsRule'
+	//	name=EString;
+	public TypeExistsRuleElements getTypeExistsRuleAccess() {
+		return pTypeExistsRule;
+	}
+	
+	public ParserRule getTypeExistsRuleRule() {
+		return getTypeExistsRuleAccess().getRule();
 	}
 	
 	//OrRule:

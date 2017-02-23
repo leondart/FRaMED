@@ -83,6 +83,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.RELATION_IS_CYCLIC_RULE: return createRelationIsCyclicRule();
 			case ModelPackage.RELATION_IS_REFLEXIV_RULE: return createRelationIsReflexivRule();
 			case ModelPackage.RELATION_TYPES_ARE_EQUAL_RULE: return createRelationTypesAreEqualRule();
+			case ModelPackage.TYPE_EXISTS_RULE: return createTypeExistsRule();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -356,6 +357,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public RelationTypesAreEqualRule createRelationTypesAreEqualRule() {
 		RelationTypesAreEqualRuleImpl relationTypesAreEqualRule = new RelationTypesAreEqualRuleImpl();
 		return relationTypesAreEqualRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TypeExistsRule createTypeExistsRule() {
+		TypeExistsRuleImpl typeExistsRule = new TypeExistsRuleImpl();
+		return typeExistsRule;
 	}
 
 	/**

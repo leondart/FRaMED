@@ -265,6 +265,15 @@ public interface ModelFactory extends EFactory {
 	RelationTypesAreEqualRule createRelationTypesAreEqualRule();
 
 	/**
+	 * Returns a new object of class '<em>Type Exists Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Exists Rule</em>'.
+	 * @generated
+	 */
+	TypeExistsRule createTypeExistsRule();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

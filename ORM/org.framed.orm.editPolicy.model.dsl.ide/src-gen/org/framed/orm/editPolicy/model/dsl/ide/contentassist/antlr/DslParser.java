@@ -63,6 +63,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAndRuleAccess().getGroup(), "rule__AndRule__Group__0");
 					put(grammarAccess.getAndRuleAccess().getGroup_3(), "rule__AndRule__Group_3__0");
 					put(grammarAccess.getRelationNameRuleAccess().getGroup(), "rule__RelationNameRule__Group__0");
+					put(grammarAccess.getTypeExistsRuleAccess().getGroup(), "rule__TypeExistsRule__Group__0");
 					put(grammarAccess.getOrRuleAccess().getGroup(), "rule__OrRule__Group__0");
 					put(grammarAccess.getOrRuleAccess().getGroup_3(), "rule__OrRule__Group_3__0");
 					put(grammarAccess.getNotRuleAccess().getGroup(), "rule__NotRule__Group__0");
@@ -102,6 +103,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAndRuleAccess().getRulesAssignment_2(), "rule__AndRule__RulesAssignment_2");
 					put(grammarAccess.getAndRuleAccess().getRulesAssignment_3_1(), "rule__AndRule__RulesAssignment_3_1");
 					put(grammarAccess.getRelationNameRuleAccess().getNameAssignment_2(), "rule__RelationNameRule__NameAssignment_2");
+					put(grammarAccess.getTypeExistsRuleAccess().getNameAssignment_2(), "rule__TypeExistsRule__NameAssignment_2");
 					put(grammarAccess.getOrRuleAccess().getRulesAssignment_2(), "rule__OrRule__RulesAssignment_2");
 					put(grammarAccess.getOrRuleAccess().getRulesAssignment_3_1(), "rule__OrRule__RulesAssignment_3_1");
 					put(grammarAccess.getNotRuleAccess().getRuleAssignment_2(), "rule__NotRule__RuleAssignment_2");

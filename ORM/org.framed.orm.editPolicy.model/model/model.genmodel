@@ -68,5 +68,6 @@
     <genClasses ecoreClass="model.ecore#//RelationIsCyclicRule"/>
     <genClasses ecoreClass="model.ecore#//RelationIsReflexivRule"/>
     <genClasses ecoreClass="model.ecore#//RelationTypesAreEqualRule"/>
+    <genClasses ecoreClass="model.ecore#//TypeExistsRule"/>
   </genPackages>
 </genmodel:GenModel>

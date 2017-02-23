@@ -693,6 +693,29 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link model.TypeExistsRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TypeExistsRuleItemProvider typeExistsRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link model.TypeExistsRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTypeExistsRuleAdapter() {
+		if (typeExistsRuleItemProvider == null) {
+			typeExistsRuleItemProvider = new TypeExistsRuleItemProvider(this);
+		}
+
+		return typeExistsRuleItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -818,6 +841,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (relationIsCyclicRuleItemProvider != null) relationIsCyclicRuleItemProvider.dispose();
 		if (relationIsReflexivRuleItemProvider != null) relationIsReflexivRuleItemProvider.dispose();
 		if (relationTypesAreEqualRuleItemProvider != null) relationTypesAreEqualRuleItemProvider.dispose();
+		if (typeExistsRuleItemProvider != null) typeExistsRuleItemProvider.dispose();
 	}
 
 }

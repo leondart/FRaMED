@@ -863,6 +863,35 @@ public interface ModelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link model.impl.TypeExistsRuleImpl <em>Type Exists Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.TypeExistsRuleImpl
+	 * @see model.impl.ModelPackageImpl#getTypeExistsRule()
+	 * @generated
+	 */
+	int TYPE_EXISTS_RULE = 30;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXISTS_RULE__NAME = ABSTRACT_NAME_RULE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Type Exists Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_EXISTS_RULE_FEATURE_COUNT = ABSTRACT_NAME_RULE_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1372,6 +1401,16 @@ public interface ModelPackage extends EPackage {
 	EClass getRelationTypesAreEqualRule();
 
 	/**
+	 * Returns the meta object for class '{@link model.TypeExistsRule <em>Type Exists Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Type Exists Rule</em>'.
+	 * @see model.TypeExistsRule
+	 * @generated
+	 */
+	EClass getTypeExistsRule();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1844,6 +1883,16 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RELATION_TYPES_ARE_EQUAL_RULE = eINSTANCE.getRelationTypesAreEqualRule();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.TypeExistsRuleImpl <em>Type Exists Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.TypeExistsRuleImpl
+		 * @see model.impl.ModelPackageImpl#getTypeExistsRule()
+		 * @generated
+		 */
+		EClass TYPE_EXISTS_RULE = eINSTANCE.getTypeExistsRule();
 
 	}
 

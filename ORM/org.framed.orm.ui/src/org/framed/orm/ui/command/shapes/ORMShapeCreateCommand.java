@@ -205,4 +205,13 @@ public class ORMShapeCreateCommand extends Command {
   public void setContainer(final Model parent) {
     this.parent = parent;
   }
+
+  /**
+   * getter for parent.
+   * @return
+   */
+  public Model getParent()
+  {
+	  return parent;
+  }
 }

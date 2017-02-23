@@ -81,4 +81,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="RelationIsCyclicRule" eSuperTypes="#//AbstractRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="RelationIsReflexivRule" eSuperTypes="#//AbstractRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="RelationTypesAreEqualRule" eSuperTypes="#//AbstractRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeExistsRule" eSuperTypes="#//AbstractNameRule"/>
 </ecore:EPackage>

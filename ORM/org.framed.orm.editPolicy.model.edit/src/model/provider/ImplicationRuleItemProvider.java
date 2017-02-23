@@ -222,6 +222,11 @@ public class ImplicationRuleItemProvider extends AbstractRuleItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
+				(ModelPackage.Literals.IMPLICATION_RULE__ANTECEDENT,
+				 ModelFactory.eINSTANCE.createTypeExistsRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(ModelPackage.Literals.IMPLICATION_RULE__CONSEQUENT,
 				 ModelFactory.eINSTANCE.createAndRule()));
 
@@ -304,6 +309,11 @@ public class ImplicationRuleItemProvider extends AbstractRuleItemProvider {
 			(createChildParameter
 				(ModelPackage.Literals.IMPLICATION_RULE__CONSEQUENT,
 				 ModelFactory.eINSTANCE.createRelationTypesAreEqualRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.IMPLICATION_RULE__CONSEQUENT,
+				 ModelFactory.eINSTANCE.createTypeExistsRule()));
 	}
 
 	/**

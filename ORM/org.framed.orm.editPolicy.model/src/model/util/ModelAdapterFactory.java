@@ -188,6 +188,10 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createRelationTypesAreEqualRuleAdapter();
 			}
 			@Override
+			public Adapter caseTypeExistsRule(TypeExistsRule object) {
+				return createTypeExistsRuleAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -624,6 +628,20 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelationTypesAreEqualRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.TypeExistsRule <em>Type Exists Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.TypeExistsRule
+	 * @generated
+	 */
+	public Adapter createTypeExistsRuleAdapter() {
 		return null;
 	}
 

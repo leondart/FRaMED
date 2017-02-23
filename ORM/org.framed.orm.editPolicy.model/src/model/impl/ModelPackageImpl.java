@@ -35,6 +35,7 @@ import model.TargetTypeRule;
 import model.TrueMappingRule;
 import model.TrueRule;
 
+import model.TypeExistsRule;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -258,6 +259,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass relationTypesAreEqualRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass typeExistsRuleEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -766,6 +774,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTypeExistsRule() {
+		return typeExistsRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -867,6 +884,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		relationIsReflexivRuleEClass = createEClass(RELATION_IS_REFLEXIV_RULE);
 
 		relationTypesAreEqualRuleEClass = createEClass(RELATION_TYPES_ARE_EQUAL_RULE);
+
+		typeExistsRuleEClass = createEClass(TYPE_EXISTS_RULE);
 	}
 
 	/**
@@ -921,6 +940,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		relationIsCyclicRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		relationIsReflexivRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		relationTypesAreEqualRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		typeExistsRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1001,6 +1021,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(relationIsReflexivRuleEClass, RelationIsReflexivRule.class, "RelationIsReflexivRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(relationTypesAreEqualRuleEClass, RelationTypesAreEqualRule.class, "RelationTypesAreEqualRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(typeExistsRuleEClass, TypeExistsRule.class, "TypeExistsRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
