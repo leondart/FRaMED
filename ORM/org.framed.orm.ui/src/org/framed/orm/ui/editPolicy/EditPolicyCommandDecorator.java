@@ -1,6 +1,7 @@
 package org.framed.orm.ui.editPolicy;
 
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.ui.command.shapes.ORMShapeDeleteCommand;
 
 public class EditPolicyCommandDecorator<T extends Command> extends Command {
 
@@ -25,6 +26,8 @@ public class EditPolicyCommandDecorator<T extends Command> extends Command {
 	 */
 	@Override
 	public boolean canExecute() {
+		if(this.myCommand instanceof ORMShapeDeleteCommand)
+			return true;
 		if(this.editPolicyHandler == null) {
 			System.out.println("EditPolicyHandler for " + this.myCommand.getClass().toString() + " not set");
 			return this.myCommand.canExecute();

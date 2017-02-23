@@ -37,14 +37,8 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   private ORMGraphicalEditor editor;
 
-  public ORMShapeGraphicalNodeEditPolicy(
-		EditPart host) {
-
-	    editor =
-	            (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain()).getEditorPart();
-
-
-	// TODO Auto-generated constructor stub
+  public ORMShapeGraphicalNodeEditPolicy(EditPart host) {
+	    editor = (ORMGraphicalEditor) ((DefaultEditDomain) host.getViewer().getEditDomain()).getEditorPart();
 }
 
 /**
@@ -206,11 +200,11 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * */
   private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionCompleteCommand(
       final CreateConnectionRequest request) {
-    final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator<ORMRelationCreateCommand>)request.getStartCommand();
+    final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator<ORMRelationCreateCommand>) request.getStartCommand();
     result.getCmd().setTarget((Shape) getHost().getModel());
+    result.setEditPolicyHandler(editor.getEditPolicyHandler());
     return result;
   }
-
 
   /**
    * This method creates and return the creation command for all {@link Relation}s except the

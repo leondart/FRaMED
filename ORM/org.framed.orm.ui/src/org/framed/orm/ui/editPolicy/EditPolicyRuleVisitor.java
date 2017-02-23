@@ -3,6 +3,7 @@ package org.framed.orm.ui.editPolicy;
 import java.lang.reflect.Method;
 
 import org.eclipse.gef.commands.Command;
+import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
 
@@ -37,6 +38,12 @@ public class EditPolicyRuleVisitor {
 
 			if (rule instanceof model.ShapeTypeRule)
 				return shapeTypeRuleVisitor((model.ShapeTypeRule)rule);
+
+			if (rule instanceof model.TargetTypeRule)
+				return targetTypeRuleVisitor((model.TargetTypeRule)rule);
+
+			if (rule instanceof model.SourceTypeRule)
+				return sourceTypeRuleVisitor((model.SourceTypeRule)rule);
 
 			if (rule instanceof model.ParentTypeRule)
 				return parentTypeRuleVisitor((model.ParentTypeRule)rule);
@@ -92,7 +99,7 @@ public class EditPolicyRuleVisitor {
 
 		private boolean commandNameRuleVisitor(model.CommandNameRule rule)
 		{
-			System.out.println("testing: " + rule.getName() + " === " + cmd.getLabel());
+			//System.out.println("testing: " + rule.getName() + " === " + cmd.getLabel());
 
 			if(rule.getName().equals(cmd.getLabel())) {
 				return true;
@@ -110,7 +117,9 @@ public class EditPolicyRuleVisitor {
 				relation =  (Relation) method.invoke(cmd);
 			} catch (Exception e) { return false; }
 
-			if(rule.getName().equals(relation.getType())) {
+			//System.out.println("string: " + relation.getType().getLiteral() + " name is " + rule.getName());
+
+			if(rule.getName().equals(relation.getType().getLiteral())) {
 				return true;
 			}
 			return false;
@@ -118,7 +127,6 @@ public class EditPolicyRuleVisitor {
 
 		private boolean shapeTypeRuleVisitor(model.ShapeTypeRule rule)
 		{
-			System.out.println("not yet implemented!");
 			String str;
 			Method method;
 
@@ -127,7 +135,7 @@ public class EditPolicyRuleVisitor {
 				str =  (String) method.invoke(cmd);
 			} catch (Exception e) { return false; }
 
-			System.out.println("String is: " + str);
+			System.out.println("ShapeTypeRule: String is: " + str + "name is " + rule.getName());
 
 			if(rule.getName().equals(str)) {
 				return true;
@@ -148,7 +156,7 @@ public class EditPolicyRuleVisitor {
 			if(shape == null) return false;
 
 			String type = shape.getType().getLiteral();
-			//System.out.println("Type is: " + type + " rulename is: " + rule.getName());
+			System.out.println("parentTypeRUle: Type is: " + type + " rulename is: " + rule.getName());
 
 			if(rule.getName().equals(type)) {
 				return true;
@@ -156,6 +164,47 @@ public class EditPolicyRuleVisitor {
 			return false;
 		}
 
+		private boolean targetTypeRuleVisitor(model.TargetTypeRule rule)
+		{
+			ModelElement element;
+			Method method;
+
+			try {
+				method = cmd.getClass().getMethod("getTarget");
+				element = (ModelElement) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			if(element == null) return false;
+
+			String type = element.getType().getLiteral();
+			System.out.println("targetTypeRUle :Type is: " + type + " rulename is: " + rule.getName());
+
+			if(rule.getName().equals(type)) {
+				return true;
+			}
+			return false;
+		}
+
+		private boolean sourceTypeRuleVisitor(model.SourceTypeRule rule)
+		{
+			ModelElement element;
+			Method method;
+
+			try {
+				method = cmd.getClass().getMethod("getSource");
+				element = (ModelElement) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			if(element == null) return false;
+
+			String type = element.getType().getLiteral();
+			System.out.println("sourceTypeRUle :Type is: " + type + " rulename is: " + rule.getName());
+
+			if(rule.getName().equals(type)) {
+				return true;
+			}
+			return false;
+		}
 
 		private boolean stepInRule(model.StepInRule rule)
 		{

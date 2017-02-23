@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="platform:/resource/org.framed.orm.editPolicy.model/">
+  <configuration>
+    <mappings policy="//@policies.0">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.1">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.2">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.3">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartment"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.4">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.5">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.6">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.7">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+  </configuration>
+  <policies name="r1">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:OrRule">
+          <rules xsi:type="model:TargetTypeRule" name="Group"/>
+          <rules xsi:type="model:SourceTypeRule" name="Group"/>
+        </rules>
+      </antecedent>
+      <consequent xsi:type="model:FalseRule"/>
+    </rule>
+  </policies>
+  <policies name="r2">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+      </antecedent>
+      <consequent xsi:type="model:TargetTypeRule" name="CompartmentType"/>
+    </rule>
+  </policies>
+  <policies name="r3">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+        <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
+      </antecedent>
+      <consequent xsi:type="model:StepInRule"/>
+    </rule>
+  </policies>
+  <policies name="r4">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+        <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
+      </antecedent>
+      <consequent xsi:type="model:NotRule">
+        <rule xsi:type="model:TrueRule"/>
+      </consequent>
+    </rule>
+  </policies>
+  <policies name="r5">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
+      </antecedent>
+      <consequent xsi:type="model:NotRule">
+        <rule xsi:type="model:TrueRule"/>
+      </consequent>
+    </rule>
+  </policies>
+  <policies name="r6">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
+      </antecedent>
+      <consequent xsi:type="model:NotRule">
+        <rule xsi:type="model:TrueRule"/>
+      </consequent>
+    </rule>
+  </policies>
+  <policies name="r7">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
+      </antecedent>
+      <consequent xsi:type="model:FalseRule"/>
+    </rule>
+  </policies>
+  <policies name="r8">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Relationship"/>
+      </antecedent>
+      <consequent xsi:type="model:AndRule">
+        <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
+        <rules xsi:type="model:TargetTypeRule" name="RoleType"/>
+      </consequent>
+    </rule>
+  </policies>
+</model:Model>

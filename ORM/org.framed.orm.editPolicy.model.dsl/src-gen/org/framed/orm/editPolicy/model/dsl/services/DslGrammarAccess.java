@@ -1083,6 +1083,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRuleAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRuleAndMappingParserRuleCall_1_2_0 = (RuleCall)cRuleAssignment_1_2.eContents().get(0);
 		
+		////TODO, FIXME
 		//MappingExpression AbstractMappingRule:
 		//	AndMapping | '!' {NotMappingRule} rule=AndMapping
 		@Override public ParserRule getRule() { return rule; }
@@ -1645,6 +1646,7 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		return getShapeNameRuleAccess().getRule();
 	}
 	
+	////TODO, FIXME
 	//MappingExpression AbstractMappingRule:
 	//	AndMapping | '!' {NotMappingRule} rule=AndMapping
 	public MappingExpressionElements getMappingExpressionAccess() {

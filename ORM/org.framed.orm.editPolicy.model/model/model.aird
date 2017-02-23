@@ -3,8 +3,10 @@
   <models xmi:type="ecore:EPackage" href="http://www.eclipse.org/emf/2002/Ecore#/"/>
   <models xmi:type="ecore:EPackage" href="model.ecore#/"/>
   <models xmi:type="genmodel:GenModel" href="model.genmodel#/"/>
-  <models xmi:type="model:Model" href="EditPolicy.xmi#/"/>
-  <models xmi:type="model:Model" href="EditPolicy_noRules.xmi#/"/>
+  <models xmi:type="model:Model" href="Model.xmi#/"/>
+  <models xmi:type="model:Model" href="featureRules.xmi#/"/>
+  <models xmi:type="model:Model" href="noRules.xmi#/"/>
+  <models xmi:type="model:Model" href="basicRules.xmi#/"/>
   <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_QhkvwOjPEeaW1rJczE9dhw" initialized="true">
     <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_QkMl8OjPEeaW1rJczE9dhw" name="model class diagram">
       <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_QkNNAOjPEeaW1rJczE9dhw" source="GMF_DIAGRAMS">
@@ -2091,6 +2093,5 @@
     </ownedRepresentations>
     <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
   </ownedViews>
-  <models xmi:type="model:Model" href="Model.xmi#/"/>
   <models xmi:type="model_1:Model" href="Model.xmi#/"/>
 </viewpoint:DAnalysis>

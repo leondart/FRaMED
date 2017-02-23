@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.featuremodel.FRaMEDConfiguration;
+import org.framed.orm.featuremodel.FRaMEDFeature;
 import org.framed.orm.model.Type;
 import org.framed.orm.ui.command.connectionkinds.ORMRelationCreateCommand;
 import org.framed.orm.ui.editor.ORMGraphicalEditor;
@@ -48,13 +49,14 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	 * loads all Policies which are activated by current configuration
 	 */
 	private void loadPolicyRules() {
-		/*
-		 * System.out.println("-------------------------------"); for
-		 * (FRaMEDFeature feature : this.configuration.getFeatures()) {
-		 * System.out.println("EditPolicyHandler feature: " +
-		 * feature.getName().getName()); }
-		 * System.out.println("-------------------------------");
-		 */
+		/**/
+		  System.out.println("-------------------------------");
+		  for (FRaMEDFeature feature : this.configuration.getFeatures()) {
+			  System.out.println("EditPolicyHandler feature: " + feature.getName().getName());
+		  }
+		  System.out.println("-------------------------------");
+
+
 		policies = new HashSet<>();
 
 		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(
@@ -68,25 +70,30 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	}
 
 	public boolean canExecute(Command cmd) {
+		Boolean ret = canExecute(model, cmd);
 		// Accessing the model information
-		System.out.println("EditPolicyHandler CanExecuteq: "
-				+ cmd.getClass().toString());
-		System.out.println("CanExecute XMI returns: " + canExecute(model, cmd));
+		System.out.println("EditPolicyHandler CanExecuteq: " + cmd.getClass().toString());
 
+		return ret;
+/*
 		if (cmd instanceof ORMRelationCreateCommand)
 			return canExecute((ORMRelationCreateCommand) cmd);
 
 		return true;
+		*/
 	}
 
-	private boolean canExecute(model.Model model, Command cmd) {
-		System.out.println("List of Policies: " + policies.toString());
+	private boolean canExecute(model.Model model, Command cmd)
+	{
+		//System.out.println("List of Policies: " + policies.toString());
 
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd, this.isStepOut);
 
 		for (model.Policy policy : policies) {
-			if (!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule()))
+			if (!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule())) {
+				System.out.println("Not Allowed because of: " + policy.getName());
 				return false;
+			}
 		}
 		return true;
 	}
@@ -109,12 +116,12 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		return true;
 	}
 
-	private model.Model loadModel() {
+	private model.Model loadModel()
+	{
+		// String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
+		// String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
+		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
 
-		// String filename = new
-		// String("platform:/plugin/org.framed.orm.editPolicy.model/model/EditPolicy_noRules.xmi");
-		String filename = new String(
-				"platform:/plugin/org.framed.orm.editPolicy.model/model/EditPolicy.xmi");
 		try {
 			ResourceSet set = new ResourceSetImpl();
 			Resource res = set.createResource(URI.createURI(filename));
