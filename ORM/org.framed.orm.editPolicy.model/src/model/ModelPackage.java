@@ -804,6 +804,65 @@ public interface ModelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link model.impl.RelationIsCyclicRuleImpl <em>Relation Is Cyclic Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.RelationIsCyclicRuleImpl
+	 * @see model.impl.ModelPackageImpl#getRelationIsCyclicRule()
+	 * @generated
+	 */
+	int RELATION_IS_CYCLIC_RULE = 27;
+
+	/**
+	 * The number of structural features of the '<em>Relation Is Cyclic Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_IS_CYCLIC_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link model.impl.RelationIsReflexivRuleImpl <em>Relation Is Reflexiv Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.RelationIsReflexivRuleImpl
+	 * @see model.impl.ModelPackageImpl#getRelationIsReflexivRule()
+	 * @generated
+	 */
+	int RELATION_IS_REFLEXIV_RULE = 28;
+
+	/**
+	 * The number of structural features of the '<em>Relation Is Reflexiv Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_IS_REFLEXIV_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link model.impl.RelationTypesAreEqualRuleImpl <em>Relation Types Are Equal Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see model.impl.RelationTypesAreEqualRuleImpl
+	 * @see model.impl.ModelPackageImpl#getRelationTypesAreEqualRule()
+	 * @generated
+	 */
+	int RELATION_TYPES_ARE_EQUAL_RULE = 29;
+
+	/**
+	 * The number of structural features of the '<em>Relation Types Are Equal Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATION_TYPES_ARE_EQUAL_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link model.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1283,6 +1342,36 @@ public interface ModelPackage extends EPackage {
 	EClass getTrueMappingRule();
 
 	/**
+	 * Returns the meta object for class '{@link model.RelationIsCyclicRule <em>Relation Is Cyclic Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Relation Is Cyclic Rule</em>'.
+	 * @see model.RelationIsCyclicRule
+	 * @generated
+	 */
+	EClass getRelationIsCyclicRule();
+
+	/**
+	 * Returns the meta object for class '{@link model.RelationIsReflexivRule <em>Relation Is Reflexiv Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Relation Is Reflexiv Rule</em>'.
+	 * @see model.RelationIsReflexivRule
+	 * @generated
+	 */
+	EClass getRelationIsReflexivRule();
+
+	/**
+	 * Returns the meta object for class '{@link model.RelationTypesAreEqualRule <em>Relation Types Are Equal Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Relation Types Are Equal Rule</em>'.
+	 * @see model.RelationTypesAreEqualRule
+	 * @generated
+	 */
+	EClass getRelationTypesAreEqualRule();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1725,6 +1814,36 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TRUE_MAPPING_RULE = eINSTANCE.getTrueMappingRule();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.RelationIsCyclicRuleImpl <em>Relation Is Cyclic Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.RelationIsCyclicRuleImpl
+		 * @see model.impl.ModelPackageImpl#getRelationIsCyclicRule()
+		 * @generated
+		 */
+		EClass RELATION_IS_CYCLIC_RULE = eINSTANCE.getRelationIsCyclicRule();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.RelationIsReflexivRuleImpl <em>Relation Is Reflexiv Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.RelationIsReflexivRuleImpl
+		 * @see model.impl.ModelPackageImpl#getRelationIsReflexivRule()
+		 * @generated
+		 */
+		EClass RELATION_IS_REFLEXIV_RULE = eINSTANCE.getRelationIsReflexivRule();
+
+		/**
+		 * The meta object literal for the '{@link model.impl.RelationTypesAreEqualRuleImpl <em>Relation Types Are Equal Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see model.impl.RelationTypesAreEqualRuleImpl
+		 * @see model.impl.ModelPackageImpl#getRelationTypesAreEqualRule()
+		 * @generated
+		 */
+		EClass RELATION_TYPES_ARE_EQUAL_RULE = eINSTANCE.getRelationTypesAreEqualRule();
 
 	}
 

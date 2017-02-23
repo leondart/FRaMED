@@ -77,7 +77,7 @@
         <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
       </antecedent>
       <consequent xsi:type="model:NotRule">
-        <rule xsi:type="model:TrueRule"/>
+        <rule xsi:type="model:RelationIsCyclicRule"/>
       </consequent>
     </rule>
   </policies>
@@ -88,7 +88,7 @@
         <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
       </antecedent>
       <consequent xsi:type="model:NotRule">
-        <rule xsi:type="model:TrueRule"/>
+        <rule xsi:type="model:RelationIsReflexivRule"/>
       </consequent>
     </rule>
   </policies>
@@ -98,7 +98,7 @@
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
         <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
       </antecedent>
-      <consequent xsi:type="model:FalseRule"/>
+      <consequent xsi:type="model:RelationTypesAreEqualRule"/>
     </rule>
   </policies>
   <policies name="r8">

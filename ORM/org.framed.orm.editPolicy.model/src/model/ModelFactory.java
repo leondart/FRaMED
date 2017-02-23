@@ -238,6 +238,33 @@ public interface ModelFactory extends EFactory {
 	TrueMappingRule createTrueMappingRule();
 
 	/**
+	 * Returns a new object of class '<em>Relation Is Cyclic Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relation Is Cyclic Rule</em>'.
+	 * @generated
+	 */
+	RelationIsCyclicRule createRelationIsCyclicRule();
+
+	/**
+	 * Returns a new object of class '<em>Relation Is Reflexiv Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relation Is Reflexiv Rule</em>'.
+	 * @generated
+	 */
+	RelationIsReflexivRule createRelationIsReflexivRule();
+
+	/**
+	 * Returns a new object of class '<em>Relation Types Are Equal Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Relation Types Are Equal Rule</em>'.
+	 * @generated
+	 */
+	RelationTypesAreEqualRule createRelationTypesAreEqualRule();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

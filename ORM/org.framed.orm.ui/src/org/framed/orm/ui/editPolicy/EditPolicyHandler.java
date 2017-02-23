@@ -110,8 +110,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		case Type.REFLEXIVE_VALUE:
 			return relationCommand.getReferencedRelations().size() == 1;
 		case Type.INHERITANCE_VALUE:
-			return relationCommand.checkCycle(relationCommand.getTarget(),
-					relationCommand.getSource());
+			return true;
 		}
 		return true;
 	}
@@ -119,8 +118,8 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	private model.Model loadModel()
 	{
 		// String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
-		// String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
-		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
+		 String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
+		//String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
 
 		try {
 			ResourceSet set = new ResourceSetImpl();

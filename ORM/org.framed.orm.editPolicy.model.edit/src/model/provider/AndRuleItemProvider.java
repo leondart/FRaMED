@@ -202,6 +202,21 @@ public class AndRuleItemProvider extends AbstractRuleItemProvider {
 			(createChildParameter
 				(ModelPackage.Literals.AND_RULE__RULES,
 				 ModelFactory.eINSTANCE.createShapeNameRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.AND_RULE__RULES,
+				 ModelFactory.eINSTANCE.createRelationIsCyclicRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.AND_RULE__RULES,
+				 ModelFactory.eINSTANCE.createRelationIsReflexivRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.AND_RULE__RULES,
+				 ModelFactory.eINSTANCE.createRelationTypesAreEqualRule()));
 	}
 
 }

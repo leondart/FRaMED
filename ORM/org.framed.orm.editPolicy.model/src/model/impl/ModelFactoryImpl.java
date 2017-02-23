@@ -80,6 +80,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.FALSE_RULE: return createFalseRule();
 			case ModelPackage.SHAPE_NAME_RULE: return createShapeNameRule();
 			case ModelPackage.TRUE_MAPPING_RULE: return createTrueMappingRule();
+			case ModelPackage.RELATION_IS_CYCLIC_RULE: return createRelationIsCyclicRule();
+			case ModelPackage.RELATION_IS_REFLEXIV_RULE: return createRelationIsReflexivRule();
+			case ModelPackage.RELATION_TYPES_ARE_EQUAL_RULE: return createRelationTypesAreEqualRule();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -323,6 +326,36 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public TrueMappingRule createTrueMappingRule() {
 		TrueMappingRuleImpl trueMappingRule = new TrueMappingRuleImpl();
 		return trueMappingRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RelationIsCyclicRule createRelationIsCyclicRule() {
+		RelationIsCyclicRuleImpl relationIsCyclicRule = new RelationIsCyclicRuleImpl();
+		return relationIsCyclicRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RelationIsReflexivRule createRelationIsReflexivRule() {
+		RelationIsReflexivRuleImpl relationIsReflexivRule = new RelationIsReflexivRuleImpl();
+		return relationIsReflexivRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RelationTypesAreEqualRule createRelationTypesAreEqualRule() {
+		RelationTypesAreEqualRuleImpl relationTypesAreEqualRule = new RelationTypesAreEqualRuleImpl();
+		return relationTypesAreEqualRule;
 	}
 
 	/**

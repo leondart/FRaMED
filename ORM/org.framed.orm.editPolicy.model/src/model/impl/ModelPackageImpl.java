@@ -23,7 +23,10 @@ import model.OrMappingRule;
 import model.OrRule;
 import model.ParentTypeRule;
 import model.Policy;
+import model.RelationIsCyclicRule;
+import model.RelationIsReflexivRule;
 import model.RelationNameRule;
+import model.RelationTypesAreEqualRule;
 import model.ShapeNameRule;
 import model.ShapeTypeRule;
 import model.SourceTypeRule;
@@ -234,6 +237,27 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass trueMappingRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass relationIsCyclicRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass relationIsReflexivRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass relationTypesAreEqualRuleEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -715,6 +739,33 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRelationIsCyclicRule() {
+		return relationIsCyclicRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRelationIsReflexivRule() {
+		return relationIsReflexivRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRelationTypesAreEqualRule() {
+		return relationTypesAreEqualRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory)getEFactoryInstance();
 	}
@@ -810,6 +861,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		shapeNameRuleEClass = createEClass(SHAPE_NAME_RULE);
 
 		trueMappingRuleEClass = createEClass(TRUE_MAPPING_RULE);
+
+		relationIsCyclicRuleEClass = createEClass(RELATION_IS_CYCLIC_RULE);
+
+		relationIsReflexivRuleEClass = createEClass(RELATION_IS_REFLEXIV_RULE);
+
+		relationTypesAreEqualRuleEClass = createEClass(RELATION_TYPES_ARE_EQUAL_RULE);
 	}
 
 	/**
@@ -861,6 +918,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		falseRuleEClass.getESuperTypes().add(this.getAbstractRule());
 		shapeNameRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
 		trueMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
+		relationIsCyclicRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		relationIsReflexivRuleEClass.getESuperTypes().add(this.getAbstractRule());
+		relationTypesAreEqualRuleEClass.getESuperTypes().add(this.getAbstractRule());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -935,6 +995,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(shapeNameRuleEClass, ShapeNameRule.class, "ShapeNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(trueMappingRuleEClass, TrueMappingRule.class, "TrueMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(relationIsCyclicRuleEClass, RelationIsCyclicRule.class, "RelationIsCyclicRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(relationIsReflexivRuleEClass, RelationIsReflexivRule.class, "RelationIsReflexivRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(relationTypesAreEqualRuleEClass, RelationTypesAreEqualRule.class, "RelationTypesAreEqualRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

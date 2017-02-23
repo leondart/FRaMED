@@ -202,6 +202,21 @@ public class NotRuleItemProvider extends AbstractRuleItemProvider {
 			(createChildParameter
 				(ModelPackage.Literals.NOT_RULE__RULE,
 				 ModelFactory.eINSTANCE.createShapeNameRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.NOT_RULE__RULE,
+				 ModelFactory.eINSTANCE.createRelationIsCyclicRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.NOT_RULE__RULE,
+				 ModelFactory.eINSTANCE.createRelationIsReflexivRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.NOT_RULE__RULE,
+				 ModelFactory.eINSTANCE.createRelationTypesAreEqualRule()));
 	}
 
 }

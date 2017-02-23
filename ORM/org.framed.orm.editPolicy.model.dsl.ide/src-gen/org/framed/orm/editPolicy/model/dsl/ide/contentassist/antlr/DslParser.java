@@ -57,6 +57,9 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOrMappingRuleAccess().getGroup_3(), "rule__OrMappingRule__Group_3__0");
 					put(grammarAccess.getImplicationMappingRuleAccess().getGroup(), "rule__ImplicationMappingRule__Group__0");
 					put(grammarAccess.getTrueMappingRuleAccess().getGroup(), "rule__TrueMappingRule__Group__0");
+					put(grammarAccess.getRelationIsCyclicRuleAccess().getGroup(), "rule__RelationIsCyclicRule__Group__0");
+					put(grammarAccess.getRelationTypesAreEqualRuleAccess().getGroup(), "rule__RelationTypesAreEqualRule__Group__0");
+					put(grammarAccess.getRelationIsReflexivRuleAccess().getGroup(), "rule__RelationIsReflexivRule__Group__0");
 					put(grammarAccess.getAndRuleAccess().getGroup(), "rule__AndRule__Group__0");
 					put(grammarAccess.getAndRuleAccess().getGroup_3(), "rule__AndRule__Group_3__0");
 					put(grammarAccess.getRelationNameRuleAccess().getGroup(), "rule__RelationNameRule__Group__0");

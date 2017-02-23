@@ -91,22 +91,6 @@ public class ORMRelationCreateCommand extends Command {
     return true;
   }
 
-  /*
-   * check whether ModelElement target and source have a cycle in inheritance-relation
-   */
-  public final boolean checkCycle(ModelElement target, ModelElement source) {
-	  if(source.equals(target)) return false;
-
-	  for(Relation relation : source.getIncomingRelations()) {
-		  if(relation.getType().getValue() == Type.INHERITANCE_VALUE) {
-			  if(!checkCycle(target, relation.getSource())) {
-				  return false;
-			  }
-		  }
-	  }
-	  return true;
-  }
-
   /**
    * {@inheritDoc} In this method the {@link Relation} is created/ invoked into the model tree
    * through setting it's parameter. After that three {@link Bendpoint}s are added to the

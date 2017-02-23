@@ -6,6 +6,7 @@ import org.eclipse.gef.commands.Command;
 import org.framed.orm.model.ModelElement;
 import org.framed.orm.model.Relation;
 import org.framed.orm.model.Shape;
+import org.framed.orm.model.Type;
 
 public class EditPolicyRuleVisitor {
 
@@ -38,6 +39,16 @@ public class EditPolicyRuleVisitor {
 
 			if (rule instanceof model.ShapeTypeRule)
 				return shapeTypeRuleVisitor((model.ShapeTypeRule)rule);
+
+			if (rule instanceof model.RelationTypesAreEqualRule)
+				return relationTypesAreEqualRuleVisitor((model.RelationTypesAreEqualRule)rule);
+
+			if (rule instanceof model.RelationIsCyclicRule)
+				return relationIsCyclicRuleVisitor((model.RelationIsCyclicRule)rule);
+
+			if (rule instanceof model.RelationIsReflexivRule)
+				return relationIsReflexivRuleVisitor((model.RelationIsReflexivRule)rule);
+
 
 			if (rule instanceof model.TargetTypeRule)
 				return targetTypeRuleVisitor((model.TargetTypeRule)rule);
@@ -121,6 +132,77 @@ public class EditPolicyRuleVisitor {
 
 			if(rule.getName().equals(relation.getType().getLiteral())) {
 				return true;
+			}
+			return false;
+		}
+
+
+		  /*
+		   * check whether ModelElement target and source have a cycle in inheritance-relation
+		   */
+		  private final boolean isAcyclic(ModelElement target, ModelElement source) {
+			  if(source.equals(target)) return false;
+
+			  for(Relation relation : source.getIncomingRelations()) {
+				  if(relation.getType().getValue() == Type.INHERITANCE_VALUE) {
+					  if(!isAcyclic(target, relation.getSource())) {
+						  return false;
+					  }
+				  }
+			  }
+			  return true;
+		  }
+
+		private boolean relationIsCyclicRuleVisitor(model.RelationIsCyclicRule rule)
+		{
+			Method method;
+			ModelElement target;
+			ModelElement source;
+
+			try {
+				method = cmd.getClass().getMethod("getTarget");
+				target =  (ModelElement) method.invoke(cmd);
+				method = cmd.getClass().getMethod("getSource");
+				source =  (ModelElement) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			return !isAcyclic(target, source);
+		}
+
+		private boolean relationTypesAreEqualRuleVisitor(model.RelationTypesAreEqualRule rule)
+		{
+			Method method;
+			ModelElement target;
+			ModelElement source;
+
+			try {
+				method = cmd.getClass().getMethod("getTarget");
+				target =  (ModelElement) method.invoke(cmd);
+				method = cmd.getClass().getMethod("getSource");
+				source =  (ModelElement) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			if(target.getType().getLiteral().equals(source.getType().getLiteral())) {
+					return true;
+			}
+			return false;
+		}
+
+		private boolean relationIsReflexivRuleVisitor(model.RelationIsReflexivRule rule)
+		{
+			Method method;
+			ModelElement target;
+			ModelElement source;
+
+			try {
+				method = cmd.getClass().getMethod("getTarget");
+				target =  (ModelElement) method.invoke(cmd);
+				method = cmd.getClass().getMethod("getSource");
+				source =  (ModelElement) method.invoke(cmd);
+			} catch (Exception e) { return false; }
+
+			if(target.equals(source)) {
+					return true;
 			}
 			return false;
 		}

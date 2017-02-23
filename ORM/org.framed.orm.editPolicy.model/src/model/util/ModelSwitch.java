@@ -256,6 +256,27 @@ public class ModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ModelPackage.RELATION_IS_CYCLIC_RULE: {
+				RelationIsCyclicRule relationIsCyclicRule = (RelationIsCyclicRule)theEObject;
+				T result = caseRelationIsCyclicRule(relationIsCyclicRule);
+				if (result == null) result = caseAbstractRule(relationIsCyclicRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.RELATION_IS_REFLEXIV_RULE: {
+				RelationIsReflexivRule relationIsReflexivRule = (RelationIsReflexivRule)theEObject;
+				T result = caseRelationIsReflexivRule(relationIsReflexivRule);
+				if (result == null) result = caseAbstractRule(relationIsReflexivRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ModelPackage.RELATION_TYPES_ARE_EQUAL_RULE: {
+				RelationTypesAreEqualRule relationTypesAreEqualRule = (RelationTypesAreEqualRule)theEObject;
+				T result = caseRelationTypesAreEqualRule(relationTypesAreEqualRule);
+				if (result == null) result = caseAbstractRule(relationTypesAreEqualRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -662,6 +683,51 @@ public class ModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTrueMappingRule(TrueMappingRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relation Is Cyclic Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relation Is Cyclic Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelationIsCyclicRule(RelationIsCyclicRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relation Is Reflexiv Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relation Is Reflexiv Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelationIsReflexivRule(RelationIsReflexivRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relation Types Are Equal Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relation Types Are Equal Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelationTypesAreEqualRule(RelationTypesAreEqualRule object) {
 		return null;
 	}
 

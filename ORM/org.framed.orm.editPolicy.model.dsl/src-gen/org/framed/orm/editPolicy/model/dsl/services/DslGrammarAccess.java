@@ -120,14 +120,19 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTrueRuleParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		private final RuleCall cFalseRuleParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
 		private final RuleCall cShapeNameRuleParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cRelationIsCyclicRuleParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cRelationIsReflexivRuleParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cRelationTypesAreEqualRuleParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
 		
 		//AbstractRule:
 		//	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule |
-		//	ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule;
+		//	ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule | RelationIsCyclicRule |
+		//	RelationIsReflexivRule | RelationTypesAreEqualRule;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule |
-		//ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule
+		//ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule | RelationIsCyclicRule |
+		//RelationIsReflexivRule | RelationTypesAreEqualRule
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//AndRule
@@ -171,6 +176,15 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ShapeNameRule
 		public RuleCall getShapeNameRuleParserRuleCall_13() { return cShapeNameRuleParserRuleCall_13; }
+		
+		//RelationIsCyclicRule
+		public RuleCall getRelationIsCyclicRuleParserRuleCall_14() { return cRelationIsCyclicRuleParserRuleCall_14; }
+		
+		//RelationIsReflexivRule
+		public RuleCall getRelationIsReflexivRuleParserRuleCall_15() { return cRelationIsReflexivRuleParserRuleCall_15; }
+		
+		//RelationTypesAreEqualRule
+		public RuleCall getRelationTypesAreEqualRuleParserRuleCall_16() { return cRelationTypesAreEqualRuleParserRuleCall_16; }
 	}
 	public class AbstractMappingRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.AbstractMappingRule");
@@ -605,6 +619,66 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'TrueMappingRule'
 		public Keyword getTrueMappingRuleKeyword_1() { return cTrueMappingRuleKeyword_1; }
+	}
+	public class RelationIsCyclicRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.RelationIsCyclicRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRelationIsCyclicRuleAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRelationIsCyclicRuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//RelationIsCyclicRule:
+		//	{RelationIsCyclicRule}
+		//	'RelationIsCyclicRule';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{RelationIsCyclicRule} 'RelationIsCyclicRule'
+		public Group getGroup() { return cGroup; }
+		
+		//{RelationIsCyclicRule}
+		public Action getRelationIsCyclicRuleAction_0() { return cRelationIsCyclicRuleAction_0; }
+		
+		//'RelationIsCyclicRule'
+		public Keyword getRelationIsCyclicRuleKeyword_1() { return cRelationIsCyclicRuleKeyword_1; }
+	}
+	public class RelationTypesAreEqualRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.RelationTypesAreEqualRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRelationTypesAreEqualRuleAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRelationTypesAreEqualRuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//RelationTypesAreEqualRule:
+		//	{RelationTypesAreEqualRule}
+		//	'RelationTypesAreEqualRule';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{RelationTypesAreEqualRule} 'RelationTypesAreEqualRule'
+		public Group getGroup() { return cGroup; }
+		
+		//{RelationTypesAreEqualRule}
+		public Action getRelationTypesAreEqualRuleAction_0() { return cRelationTypesAreEqualRuleAction_0; }
+		
+		//'RelationTypesAreEqualRule'
+		public Keyword getRelationTypesAreEqualRuleKeyword_1() { return cRelationTypesAreEqualRuleKeyword_1; }
+	}
+	public class RelationIsReflexivRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.RelationIsReflexivRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRelationIsReflexivRuleAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cRelationIsReflexivRuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//RelationIsReflexivRule:
+		//	{RelationIsReflexivRule}
+		//	'RelationIsReflexivRule';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{RelationIsReflexivRule} 'RelationIsReflexivRule'
+		public Group getGroup() { return cGroup; }
+		
+		//{RelationIsReflexivRule}
+		public Action getRelationIsReflexivRuleAction_0() { return cRelationIsReflexivRuleAction_0; }
+		
+		//'RelationIsReflexivRule'
+		public Keyword getRelationIsReflexivRuleKeyword_1() { return cRelationIsReflexivRuleKeyword_1; }
 	}
 	public class EStringElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.framed.orm.editPolicy.model.dsl.Dsl.EString");
@@ -1229,6 +1303,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	private final OrMappingRuleElements pOrMappingRule;
 	private final ImplicationMappingRuleElements pImplicationMappingRule;
 	private final TrueMappingRuleElements pTrueMappingRule;
+	private final RelationIsCyclicRuleElements pRelationIsCyclicRule;
+	private final RelationTypesAreEqualRuleElements pRelationTypesAreEqualRule;
+	private final RelationIsReflexivRuleElements pRelationIsReflexivRule;
 	private final EStringElements pEString;
 	private final AndRuleElements pAndRule;
 	private final RelationNameRuleElements pRelationNameRule;
@@ -1270,6 +1347,9 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pOrMappingRule = new OrMappingRuleElements();
 		this.pImplicationMappingRule = new ImplicationMappingRuleElements();
 		this.pTrueMappingRule = new TrueMappingRuleElements();
+		this.pRelationIsCyclicRule = new RelationIsCyclicRuleElements();
+		this.pRelationTypesAreEqualRule = new RelationTypesAreEqualRuleElements();
+		this.pRelationIsReflexivRule = new RelationIsReflexivRuleElements();
 		this.pEString = new EStringElements();
 		this.pAndRule = new AndRuleElements();
 		this.pRelationNameRule = new RelationNameRuleElements();
@@ -1333,7 +1413,8 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//AbstractRule:
 	//	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule |
-	//	ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule;
+	//	ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule | RelationIsCyclicRule |
+	//	RelationIsReflexivRule | RelationTypesAreEqualRule;
 	public AbstractRuleElements getAbstractRuleAccess() {
 		return pAbstractRule;
 	}
@@ -1464,6 +1545,39 @@ public class DslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTrueMappingRuleRule() {
 		return getTrueMappingRuleAccess().getRule();
+	}
+	
+	//RelationIsCyclicRule:
+	//	{RelationIsCyclicRule}
+	//	'RelationIsCyclicRule';
+	public RelationIsCyclicRuleElements getRelationIsCyclicRuleAccess() {
+		return pRelationIsCyclicRule;
+	}
+	
+	public ParserRule getRelationIsCyclicRuleRule() {
+		return getRelationIsCyclicRuleAccess().getRule();
+	}
+	
+	//RelationTypesAreEqualRule:
+	//	{RelationTypesAreEqualRule}
+	//	'RelationTypesAreEqualRule';
+	public RelationTypesAreEqualRuleElements getRelationTypesAreEqualRuleAccess() {
+		return pRelationTypesAreEqualRule;
+	}
+	
+	public ParserRule getRelationTypesAreEqualRuleRule() {
+		return getRelationTypesAreEqualRuleAccess().getRule();
+	}
+	
+	//RelationIsReflexivRule:
+	//	{RelationIsReflexivRule}
+	//	'RelationIsReflexivRule';
+	public RelationIsReflexivRuleElements getRelationIsReflexivRuleAccess() {
+		return pRelationIsReflexivRule;
+	}
+	
+	public ParserRule getRelationIsReflexivRuleRule() {
+		return getRelationIsReflexivRuleAccess().getRule();
 	}
 	
 	//EString:

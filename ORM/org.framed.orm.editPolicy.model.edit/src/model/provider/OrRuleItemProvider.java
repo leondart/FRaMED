@@ -202,6 +202,21 @@ public class OrRuleItemProvider extends AbstractRuleItemProvider {
 			(createChildParameter
 				(ModelPackage.Literals.OR_RULE__RULES,
 				 ModelFactory.eINSTANCE.createShapeNameRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.OR_RULE__RULES,
+				 ModelFactory.eINSTANCE.createRelationIsCyclicRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.OR_RULE__RULES,
+				 ModelFactory.eINSTANCE.createRelationIsReflexivRule()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ModelPackage.Literals.OR_RULE__RULES,
+				 ModelFactory.eINSTANCE.createRelationTypesAreEqualRule()));
 	}
 
 }

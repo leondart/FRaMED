@@ -22,7 +22,10 @@ import model.OrMappingRule;
 import model.OrRule;
 import model.ParentTypeRule;
 import model.Policy;
+import model.RelationIsCyclicRule;
+import model.RelationIsReflexivRule;
 import model.RelationNameRule;
+import model.RelationTypesAreEqualRule;
 import model.ShapeNameRule;
 import model.ShapeTypeRule;
 import model.SourceTypeRule;
@@ -142,8 +145,17 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ModelPackage.POLICY:
 				sequence_Policy(context, (Policy) semanticObject); 
 				return; 
+			case ModelPackage.RELATION_IS_CYCLIC_RULE:
+				sequence_RelationIsCyclicRule(context, (RelationIsCyclicRule) semanticObject); 
+				return; 
+			case ModelPackage.RELATION_IS_REFLEXIV_RULE:
+				sequence_RelationIsReflexivRule(context, (RelationIsReflexivRule) semanticObject); 
+				return; 
 			case ModelPackage.RELATION_NAME_RULE:
 				sequence_RelationNameRule(context, (RelationNameRule) semanticObject); 
+				return; 
+			case ModelPackage.RELATION_TYPES_ARE_EQUAL_RULE:
+				sequence_RelationTypesAreEqualRule(context, (RelationTypesAreEqualRule) semanticObject); 
 				return; 
 			case ModelPackage.SHAPE_NAME_RULE:
 				sequence_ShapeNameRule(context, (ShapeNameRule) semanticObject); 
@@ -497,6 +509,32 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     AbstractRule returns RelationIsCyclicRule
+	 *     RelationIsCyclicRule returns RelationIsCyclicRule
+	 *
+	 * Constraint:
+	 *     {RelationIsCyclicRule}
+	 */
+	protected void sequence_RelationIsCyclicRule(ISerializationContext context, RelationIsCyclicRule semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractRule returns RelationIsReflexivRule
+	 *     RelationIsReflexivRule returns RelationIsReflexivRule
+	 *
+	 * Constraint:
+	 *     {RelationIsReflexivRule}
+	 */
+	protected void sequence_RelationIsReflexivRule(ISerializationContext context, RelationIsReflexivRule semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     AbstractRule returns RelationNameRule
 	 *     RelationNameRule returns RelationNameRule
 	 *
@@ -511,6 +549,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRelationNameRuleAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AbstractRule returns RelationTypesAreEqualRule
+	 *     RelationTypesAreEqualRule returns RelationTypesAreEqualRule
+	 *
+	 * Constraint:
+	 *     {RelationTypesAreEqualRule}
+	 */
+	protected void sequence_RelationTypesAreEqualRule(ISerializationContext context, RelationTypesAreEqualRule semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

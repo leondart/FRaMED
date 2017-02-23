@@ -313,6 +313,33 @@ ruleAbstractRule returns [EObject current=null]
 			$current = $this_ShapeNameRule_13.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getAbstractRuleAccess().getRelationIsCyclicRuleParserRuleCall_14());
+		}
+		this_RelationIsCyclicRule_14=ruleRelationIsCyclicRule
+		{
+			$current = $this_RelationIsCyclicRule_14.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getAbstractRuleAccess().getRelationIsReflexivRuleParserRuleCall_15());
+		}
+		this_RelationIsReflexivRule_15=ruleRelationIsReflexivRule
+		{
+			$current = $this_RelationIsReflexivRule_15.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getAbstractRuleAccess().getRelationTypesAreEqualRuleParserRuleCall_16());
+		}
+		this_RelationTypesAreEqualRule_16=ruleRelationTypesAreEqualRule
+		{
+			$current = $this_RelationTypesAreEqualRule_16.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -985,6 +1012,96 @@ ruleTrueMappingRule returns [EObject current=null]
 		otherlv_1='TrueMappingRule'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getTrueMappingRuleAccess().getTrueMappingRuleKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleRelationIsCyclicRule
+entryRuleRelationIsCyclicRule returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationIsCyclicRuleRule()); }
+	iv_ruleRelationIsCyclicRule=ruleRelationIsCyclicRule
+	{ $current=$iv_ruleRelationIsCyclicRule.current; }
+	EOF;
+
+// Rule RelationIsCyclicRule
+ruleRelationIsCyclicRule returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRelationIsCyclicRuleAccess().getRelationIsCyclicRuleAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='RelationIsCyclicRule'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRelationIsCyclicRuleAccess().getRelationIsCyclicRuleKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleRelationTypesAreEqualRule
+entryRuleRelationTypesAreEqualRule returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationTypesAreEqualRuleRule()); }
+	iv_ruleRelationTypesAreEqualRule=ruleRelationTypesAreEqualRule
+	{ $current=$iv_ruleRelationTypesAreEqualRule.current; }
+	EOF;
+
+// Rule RelationTypesAreEqualRule
+ruleRelationTypesAreEqualRule returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRelationTypesAreEqualRuleAccess().getRelationTypesAreEqualRuleAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='RelationTypesAreEqualRule'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRelationTypesAreEqualRuleAccess().getRelationTypesAreEqualRuleKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleRelationIsReflexivRule
+entryRuleRelationIsReflexivRule returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationIsReflexivRuleRule()); }
+	iv_ruleRelationIsReflexivRule=ruleRelationIsReflexivRule
+	{ $current=$iv_ruleRelationIsReflexivRule.current; }
+	EOF;
+
+// Rule RelationIsReflexivRule
+ruleRelationIsReflexivRule returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getRelationIsReflexivRuleAccess().getRelationIsReflexivRuleAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='RelationIsReflexivRule'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRelationIsReflexivRuleAccess().getRelationIsReflexivRuleKeyword_1());
 		}
 	)
 ;

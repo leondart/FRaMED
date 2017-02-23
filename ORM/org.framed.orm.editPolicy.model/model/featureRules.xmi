@@ -38,28 +38,40 @@
     </mappings>
     <mappings policy="//@policies.7">
       <rule xsi:type="model:NotMappingRule">
-        <rule xsi:type="model:AndMappingRule">
-          <rules xsi:type="model:FeatureNameMappingRule" name="Playable_by_Defining_Compartment"/>
-          <rules xsi:type="model:FeatureNameMappingRule" name="Naturals"/>
-        </rule>
+        <rule xsi:type="model:FeatureNameMappingRule" name="Naturals"/>
       </rule>
     </mappings>
     <mappings policy="//@policies.8">
       <rule xsi:type="model:NotMappingRule">
-        <rule xsi:type="model:FeatureNameMappingRule" name="Inter_Relationship_Constraints"/>
+        <rule xsi:type="model:FeatureNameMappingRule" name="Roles"/>
       </rule>
     </mappings>
     <mappings policy="//@policies.9">
       <rule xsi:type="model:NotMappingRule">
-        <rule xsi:type="model:FeatureNameMappingRule" name="Role_Inheritance"/>
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartments"/>
       </rule>
     </mappings>
     <mappings policy="//@policies.10">
       <rule xsi:type="model:NotMappingRule">
-        <rule xsi:type="model:FeatureNameMappingRule" name="Data_Type_Inheritance"/>
+        <rule xsi:type="model:FeatureNameMappingRule" name="Dates"/>
       </rule>
     </mappings>
     <mappings policy="//@policies.11">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Inter_Relationship_Constraints"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.12">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Role_Inheritance"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.13">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Data_Type_Inheritance"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.14">
       <rule xsi:type="model:NotMappingRule">
         <rule xsi:type="model:FeatureNameMappingRule" name="Compartment_Inheritance"/>
       </rule>
@@ -127,6 +139,33 @@
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
         <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
         <rules xsi:type="model:SourceTypeRule" name="NaturalType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_r">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_c">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_d">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:SourceTypeRule" name="DataType"/>
       </rule>
     </rule>
   </policies>

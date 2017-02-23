@@ -624,6 +624,75 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link model.RelationIsCyclicRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RelationIsCyclicRuleItemProvider relationIsCyclicRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link model.RelationIsCyclicRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRelationIsCyclicRuleAdapter() {
+		if (relationIsCyclicRuleItemProvider == null) {
+			relationIsCyclicRuleItemProvider = new RelationIsCyclicRuleItemProvider(this);
+		}
+
+		return relationIsCyclicRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link model.RelationIsReflexivRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RelationIsReflexivRuleItemProvider relationIsReflexivRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link model.RelationIsReflexivRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRelationIsReflexivRuleAdapter() {
+		if (relationIsReflexivRuleItemProvider == null) {
+			relationIsReflexivRuleItemProvider = new RelationIsReflexivRuleItemProvider(this);
+		}
+
+		return relationIsReflexivRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link model.RelationTypesAreEqualRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RelationTypesAreEqualRuleItemProvider relationTypesAreEqualRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link model.RelationTypesAreEqualRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRelationTypesAreEqualRuleAdapter() {
+		if (relationTypesAreEqualRuleItemProvider == null) {
+			relationTypesAreEqualRuleItemProvider = new RelationTypesAreEqualRuleItemProvider(this);
+		}
+
+		return relationTypesAreEqualRuleItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -746,6 +815,9 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (falseRuleItemProvider != null) falseRuleItemProvider.dispose();
 		if (shapeNameRuleItemProvider != null) shapeNameRuleItemProvider.dispose();
 		if (trueMappingRuleItemProvider != null) trueMappingRuleItemProvider.dispose();
+		if (relationIsCyclicRuleItemProvider != null) relationIsCyclicRuleItemProvider.dispose();
+		if (relationIsReflexivRuleItemProvider != null) relationIsReflexivRuleItemProvider.dispose();
+		if (relationTypesAreEqualRuleItemProvider != null) relationTypesAreEqualRuleItemProvider.dispose();
 	}
 
 }

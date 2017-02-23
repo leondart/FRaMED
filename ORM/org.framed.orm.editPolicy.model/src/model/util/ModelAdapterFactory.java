@@ -176,6 +176,18 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createTrueMappingRuleAdapter();
 			}
 			@Override
+			public Adapter caseRelationIsCyclicRule(RelationIsCyclicRule object) {
+				return createRelationIsCyclicRuleAdapter();
+			}
+			@Override
+			public Adapter caseRelationIsReflexivRule(RelationIsReflexivRule object) {
+				return createRelationIsReflexivRuleAdapter();
+			}
+			@Override
+			public Adapter caseRelationTypesAreEqualRule(RelationTypesAreEqualRule object) {
+				return createRelationTypesAreEqualRuleAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -570,6 +582,48 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTrueMappingRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.RelationIsCyclicRule <em>Relation Is Cyclic Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.RelationIsCyclicRule
+	 * @generated
+	 */
+	public Adapter createRelationIsCyclicRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.RelationIsReflexivRule <em>Relation Is Reflexiv Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.RelationIsReflexivRule
+	 * @generated
+	 */
+	public Adapter createRelationIsReflexivRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link model.RelationTypesAreEqualRule <em>Relation Types Are Equal Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see model.RelationTypesAreEqualRule
+	 * @generated
+	 */
+	public Adapter createRelationTypesAreEqualRuleAdapter() {
 		return null;
 	}
 

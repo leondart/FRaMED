@@ -65,5 +65,8 @@
     <genClasses ecoreClass="model.ecore#//FalseRule"/>
     <genClasses ecoreClass="model.ecore#//ShapeNameRule"/>
     <genClasses ecoreClass="model.ecore#//TrueMappingRule"/>
+    <genClasses ecoreClass="model.ecore#//RelationIsCyclicRule"/>
+    <genClasses ecoreClass="model.ecore#//RelationIsReflexivRule"/>
+    <genClasses ecoreClass="model.ecore#//RelationTypesAreEqualRule"/>
   </genPackages>
 </genmodel:GenModel>

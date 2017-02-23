@@ -12,7 +12,9 @@ Model returns Model:
 	'}';
 
 AbstractRule returns AbstractRule:
-	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | CommandNameRule | ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule;
+	AndRule | RelationNameRule | OrRule | NotRule | ImplicationRule | SourceTypeRule | TargetTypeRule | 
+	CommandNameRule | ShapeTypeRule | ParentTypeRule | StepInRule | TrueRule | FalseRule | ShapeNameRule |
+	RelationIsCyclicRule | RelationIsReflexivRule | RelationTypesAreEqualRule;
 
 AbstractMappingRule returns AbstractMappingRule:
 	FeatureNameMappingRule | AndMappingRule | NotMappingRule | OrMappingRule | ImplicationMappingRule | TrueMappingRule;
@@ -68,6 +70,21 @@ ImplicationMappingRule returns ImplicationMappingRule:
 TrueMappingRule returns TrueMappingRule:
 	{TrueMappingRule}
 	'TrueMappingRule'
+	;
+	
+RelationIsCyclicRule returns RelationIsCyclicRule:
+	{RelationIsCyclicRule}
+	'RelationIsCyclicRule'
+	;
+
+RelationTypesAreEqualRule returns RelationTypesAreEqualRule:
+	{RelationTypesAreEqualRule}
+	'RelationTypesAreEqualRule'
+	;
+	
+RelationIsReflexivRule returns RelationIsReflexivRule:
+	{RelationIsReflexivRule}
+	'RelationIsReflexivRule'
 	;
 
 EString returns ecore::EString:
