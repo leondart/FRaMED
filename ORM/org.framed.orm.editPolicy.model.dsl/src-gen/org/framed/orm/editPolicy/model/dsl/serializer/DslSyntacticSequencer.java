@@ -20,14 +20,18 @@ import org.framed.orm.editPolicy.model.dsl.services.DslGrammarAccess;
 public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected DslGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_2_0_a;
-	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_2_0_p;
+	protected AbstractElementAlias match_PrimaryMapping_LeftParenthesisKeyword_1_0_a;
+	protected AbstractElementAlias match_PrimaryMapping_LeftParenthesisKeyword_1_0_p;
+	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_1_0_a;
+	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_1_0_p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (DslGrammarAccess) access;
-		match_Primary_LeftParenthesisKeyword_2_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0());
-		match_Primary_LeftParenthesisKeyword_2_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0());
+		match_PrimaryMapping_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryMappingAccess().getLeftParenthesisKeyword_1_0());
+		match_PrimaryMapping_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryMappingAccess().getLeftParenthesisKeyword_1_0());
+		match_Primary_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_1_0());
+		match_Primary_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_1_0());
 	}
 	
 	@Override
@@ -42,10 +46,14 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Primary_LeftParenthesisKeyword_2_0_a.equals(syntax))
-				emit_Primary_LeftParenthesisKeyword_2_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Primary_LeftParenthesisKeyword_2_0_p.equals(syntax))
-				emit_Primary_LeftParenthesisKeyword_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_PrimaryMapping_LeftParenthesisKeyword_1_0_a.equals(syntax))
+				emit_PrimaryMapping_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PrimaryMapping_LeftParenthesisKeyword_1_0_p.equals(syntax))
+				emit_PrimaryMapping_LeftParenthesisKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Primary_LeftParenthesisKeyword_1_0_a.equals(syntax))
+				emit_Primary_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Primary_LeftParenthesisKeyword_1_0_p.equals(syntax))
+				emit_Primary_LeftParenthesisKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -55,13 +63,14 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '!' rule=AndMapping
-	 *     (rule start) (ambiguity) 'FeatureNameMappingRule' name=EString
-	 *     (rule start) (ambiguity) 'TrueMappingRule' (rule start)
+	 *     (rule start) (ambiguity) '!' rule=PrimaryMapping
+	 *     (rule start) (ambiguity) 'true' (rule start)
+	 *     (rule start) (ambiguity) name=EString
 	 *     (rule start) (ambiguity) {AndMappingRule.rules+=}
+	 *     (rule start) (ambiguity) {ImplicationMappingRule.antecedent=}
 	 *     (rule start) (ambiguity) {OrMappingRule.rules+=}
 	 */
-	protected void emit_Primary_LeftParenthesisKeyword_2_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimaryMapping_LeftParenthesisKeyword_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -70,11 +79,54 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '!' rule=AndMapping
+	 *     (rule start) (ambiguity) '!' rule=PrimaryMapping
 	 *     (rule start) (ambiguity) {AndMappingRule.rules+=}
+	 *     (rule start) (ambiguity) {ImplicationMappingRule.antecedent=}
 	 *     (rule start) (ambiguity) {OrMappingRule.rules+=}
 	 */
-	protected void emit_Primary_LeftParenthesisKeyword_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PrimaryMapping_LeftParenthesisKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '('*
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '!' rule=Primary
+	 *     (rule start) (ambiguity) 'CommandName' name=EString
+	 *     (rule start) (ambiguity) 'ParentType' name=EString
+	 *     (rule start) (ambiguity) 'RelationIsCyclic' (rule start)
+	 *     (rule start) (ambiguity) 'RelationIsReflexiv' (rule start)
+	 *     (rule start) (ambiguity) 'RelationName' name=EString
+	 *     (rule start) (ambiguity) 'RelationTypesAreEqual' (rule start)
+	 *     (rule start) (ambiguity) 'ShapeName' name=EString
+	 *     (rule start) (ambiguity) 'ShapeType' name=EString
+	 *     (rule start) (ambiguity) 'SourceType' name=EString
+	 *     (rule start) (ambiguity) 'StepIn' (rule start)
+	 *     (rule start) (ambiguity) 'TargetType' name=EString
+	 *     (rule start) (ambiguity) 'TypeExists' name=EString
+	 *     (rule start) (ambiguity) 'false' (rule start)
+	 *     (rule start) (ambiguity) 'true' (rule start)
+	 *     (rule start) (ambiguity) {AndRule.rules+=}
+	 *     (rule start) (ambiguity) {ImplicationRule.antecedent=}
+	 *     (rule start) (ambiguity) {OrRule.rules+=}
+	 */
+	protected void emit_Primary_LeftParenthesisKeyword_1_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '('+
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '!' rule=Primary
+	 *     (rule start) (ambiguity) {AndRule.rules+=}
+	 *     (rule start) (ambiguity) {ImplicationRule.antecedent=}
+	 *     (rule start) (ambiguity) {OrRule.rules+=}
+	 */
+	protected void emit_Primary_LeftParenthesisKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

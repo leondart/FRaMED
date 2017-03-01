@@ -199,7 +199,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * @return {@link ORMRelationCreateCommand}
    * */
   private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionCompleteCommand(
-      final CreateConnectionRequest request) {
+    final CreateConnectionRequest request) {
     final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator<ORMRelationCreateCommand>) request.getStartCommand();
     result.getCmd().setTarget((Shape) getHost().getModel());
     result.setEditPolicyHandler(editor.getEditPolicyHandler());

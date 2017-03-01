@@ -60,23 +60,10 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		if (epackage == ModelPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case ModelPackage.AND_MAPPING_RULE:
-				if (rule == grammarAccess.getAbstractMappingRuleRule()
-						|| rule == grammarAccess.getAndMappingRuleRule()) {
-					sequence_AndMappingRule(context, (AndMappingRule) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getMappingExpressionRule()
-						|| rule == grammarAccess.getAndMappingRule()
-						|| action == grammarAccess.getAndMappingAccess().getAndMappingRuleRulesAction_1_0()
-						|| rule == grammarAccess.getOrMappingRule()
-						|| action == grammarAccess.getOrMappingAccess().getOrMappingRuleRulesAction_1_0()
-						|| rule == grammarAccess.getPrimaryRule()) {
-					sequence_AndMapping(context, (AndMappingRule) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_AndMapping(context, (AndMappingRule) semanticObject); 
+				return; 
 			case ModelPackage.AND_RULE:
-				sequence_AndRule(context, (AndRule) semanticObject); 
+				sequence_AndPolicy(context, (AndRule) semanticObject); 
 				return; 
 			case ModelPackage.COMMAND_NAME_RULE:
 				sequence_CommandNameRule(context, (CommandNameRule) semanticObject); 
@@ -91,10 +78,10 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_FeatureNameMappingRule(context, (FeatureNameMappingRule) semanticObject); 
 				return; 
 			case ModelPackage.IMPLICATION_MAPPING_RULE:
-				sequence_ImplicationMappingRule(context, (ImplicationMappingRule) semanticObject); 
+				sequence_ImplicationMapping(context, (ImplicationMappingRule) semanticObject); 
 				return; 
 			case ModelPackage.IMPLICATION_RULE:
-				sequence_ImplicationRule(context, (ImplicationRule) semanticObject); 
+				sequence_ImplicationPolicy(context, (ImplicationRule) semanticObject); 
 				return; 
 			case ModelPackage.MAPPING:
 				sequence_Mapping(context, (Mapping) semanticObject); 
@@ -103,42 +90,16 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
 			case ModelPackage.NOT_MAPPING_RULE:
-				if (rule == grammarAccess.getMappingExpressionRule()
-						|| rule == grammarAccess.getAndMappingRule()
-						|| action == grammarAccess.getAndMappingAccess().getAndMappingRuleRulesAction_1_0()
-						|| rule == grammarAccess.getOrMappingRule()
-						|| action == grammarAccess.getOrMappingAccess().getOrMappingRuleRulesAction_1_0()
-						|| rule == grammarAccess.getPrimaryRule()) {
-					sequence_MappingExpression(context, (NotMappingRule) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAbstractMappingRuleRule()
-						|| rule == grammarAccess.getNotMappingRuleRule()) {
-					sequence_NotMappingRule(context, (NotMappingRule) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_NotMappingExpression(context, (NotMappingRule) semanticObject); 
+				return; 
 			case ModelPackage.NOT_RULE:
-				sequence_NotRule(context, (NotRule) semanticObject); 
+				sequence_NotExpression(context, (NotRule) semanticObject); 
 				return; 
 			case ModelPackage.OR_MAPPING_RULE:
-				if (rule == grammarAccess.getAbstractMappingRuleRule()
-						|| rule == grammarAccess.getOrMappingRuleRule()) {
-					sequence_OrMappingRule(context, (OrMappingRule) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getMappingExpressionRule()
-						|| rule == grammarAccess.getAndMappingRule()
-						|| action == grammarAccess.getAndMappingAccess().getAndMappingRuleRulesAction_1_0()
-						|| rule == grammarAccess.getOrMappingRule()
-						|| action == grammarAccess.getOrMappingAccess().getOrMappingRuleRulesAction_1_0()
-						|| rule == grammarAccess.getPrimaryRule()) {
-					sequence_OrMapping(context, (OrMappingRule) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_OrMapping(context, (OrMappingRule) semanticObject); 
+				return; 
 			case ModelPackage.OR_RULE:
-				sequence_OrRule(context, (OrRule) semanticObject); 
+				sequence_OrPolicy(context, (OrRule) semanticObject); 
 				return; 
 			case ModelPackage.PARENT_TYPE_RULE:
 				sequence_ParentTypeRule(context, (ParentTypeRule) semanticObject); 
@@ -189,28 +150,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     AbstractMappingRule returns AndMappingRule
-	 *     AndMappingRule returns AndMappingRule
-	 *
-	 * Constraint:
-	 *     (rules+=AbstractMappingRule rules+=AbstractMappingRule*)
-	 */
-	protected void sequence_AndMappingRule(ISerializationContext context, AndMappingRule semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     MappingExpression returns AndMappingRule
-	 *     AndMapping returns AndMappingRule
-	 *     AndMapping.AndMappingRule_1_0 returns AndMappingRule
+	 *     ImplicationMapping returns AndMappingRule
+	 *     ImplicationMapping.ImplicationMappingRule_1_0 returns AndMappingRule
 	 *     OrMapping returns AndMappingRule
 	 *     OrMapping.OrMappingRule_1_0 returns AndMappingRule
-	 *     Primary returns AndMappingRule
+	 *     AndMapping returns AndMappingRule
+	 *     AndMapping.AndMappingRule_1_0 returns AndMappingRule
+	 *     NotMappingExpression returns AndMappingRule
+	 *     PrimaryMapping returns AndMappingRule
 	 *
 	 * Constraint:
-	 *     (rules+=AndMapping_AndMappingRule_1_0 rules+=OrMapping)
+	 *     (rules+=AndMapping_AndMappingRule_1_0 rules+=NotMappingExpression)
 	 */
 	protected void sequence_AndMapping(ISerializationContext context, AndMappingRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -219,21 +170,38 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     AbstractRule returns AndRule
-	 *     AndRule returns AndRule
+	 *     PolicyExpression returns AndRule
+	 *     ImplicationPolicy returns AndRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns AndRule
+	 *     OrPolicy returns AndRule
+	 *     OrPolicy.OrRule_1_0 returns AndRule
+	 *     AndPolicy returns AndRule
+	 *     AndPolicy.AndRule_1_0 returns AndRule
+	 *     NotExpression returns AndRule
+	 *     Primary returns AndRule
 	 *
 	 * Constraint:
-	 *     (rules+=AbstractRule rules+=AbstractRule*)
+	 *     (rules+=AndPolicy_AndRule_1_0 rules+=NotExpression)
 	 */
-	protected void sequence_AndRule(ISerializationContext context, AndRule semanticObject) {
+	protected void sequence_AndPolicy(ISerializationContext context, AndRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns CommandNameRule
 	 *     AbstractRule returns CommandNameRule
 	 *     CommandNameRule returns CommandNameRule
+	 *     PolicyExpression returns CommandNameRule
+	 *     ImplicationPolicy returns CommandNameRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns CommandNameRule
+	 *     OrPolicy returns CommandNameRule
+	 *     OrPolicy.OrRule_1_0 returns CommandNameRule
+	 *     AndPolicy returns CommandNameRule
+	 *     AndPolicy.AndRule_1_0 returns CommandNameRule
+	 *     NotExpression returns CommandNameRule
+	 *     Primary returns CommandNameRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -263,8 +231,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns FalseRule
 	 *     AbstractRule returns FalseRule
 	 *     FalseRule returns FalseRule
+	 *     PolicyExpression returns FalseRule
+	 *     ImplicationPolicy returns FalseRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns FalseRule
+	 *     OrPolicy returns FalseRule
+	 *     OrPolicy.OrRule_1_0 returns FalseRule
+	 *     AndPolicy returns FalseRule
+	 *     AndPolicy.AndRule_1_0 returns FalseRule
+	 *     NotExpression returns FalseRule
+	 *     Primary returns FalseRule
 	 *
 	 * Constraint:
 	 *     {FalseRule}
@@ -276,14 +254,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     MappingRule returns FeatureNameMappingRule
 	 *     AbstractMappingRule returns FeatureNameMappingRule
 	 *     FeatureNameMappingRule returns FeatureNameMappingRule
 	 *     MappingExpression returns FeatureNameMappingRule
-	 *     AndMapping returns FeatureNameMappingRule
-	 *     AndMapping.AndMappingRule_1_0 returns FeatureNameMappingRule
+	 *     ImplicationMapping returns FeatureNameMappingRule
+	 *     ImplicationMapping.ImplicationMappingRule_1_0 returns FeatureNameMappingRule
 	 *     OrMapping returns FeatureNameMappingRule
 	 *     OrMapping.OrMappingRule_1_0 returns FeatureNameMappingRule
-	 *     Primary returns FeatureNameMappingRule
+	 *     AndMapping returns FeatureNameMappingRule
+	 *     AndMapping.AndMappingRule_1_0 returns FeatureNameMappingRule
+	 *     NotMappingExpression returns FeatureNameMappingRule
+	 *     PrimaryMapping returns FeatureNameMappingRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -294,20 +276,27 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.FEATURE_NAME_MAPPING_RULE__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFeatureNameMappingRuleAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFeatureNameMappingRuleAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     AbstractMappingRule returns ImplicationMappingRule
-	 *     ImplicationMappingRule returns ImplicationMappingRule
+	 *     MappingExpression returns ImplicationMappingRule
+	 *     ImplicationMapping returns ImplicationMappingRule
+	 *     ImplicationMapping.ImplicationMappingRule_1_0 returns ImplicationMappingRule
+	 *     OrMapping returns ImplicationMappingRule
+	 *     OrMapping.OrMappingRule_1_0 returns ImplicationMappingRule
+	 *     AndMapping returns ImplicationMappingRule
+	 *     AndMapping.AndMappingRule_1_0 returns ImplicationMappingRule
+	 *     NotMappingExpression returns ImplicationMappingRule
+	 *     PrimaryMapping returns ImplicationMappingRule
 	 *
 	 * Constraint:
-	 *     (antecedent=AbstractMappingRule consequent=AbstractMappingRule)
+	 *     (antecedent=ImplicationMapping_ImplicationMappingRule_1_0 consequent=OrMapping)
 	 */
-	protected void sequence_ImplicationMappingRule(ISerializationContext context, ImplicationMappingRule semanticObject) {
+	protected void sequence_ImplicationMapping(ISerializationContext context, ImplicationMappingRule semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.IMPLICATION_MAPPING_RULE__ANTECEDENT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.IMPLICATION_MAPPING_RULE__ANTECEDENT));
@@ -315,21 +304,28 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.IMPLICATION_MAPPING_RULE__CONSEQUENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getImplicationMappingRuleAccess().getAntecedentAbstractMappingRuleParserRuleCall_3_0(), semanticObject.getAntecedent());
-		feeder.accept(grammarAccess.getImplicationMappingRuleAccess().getConsequentAbstractMappingRuleParserRuleCall_5_0(), semanticObject.getConsequent());
+		feeder.accept(grammarAccess.getImplicationMappingAccess().getImplicationMappingRuleAntecedentAction_1_0(), semanticObject.getAntecedent());
+		feeder.accept(grammarAccess.getImplicationMappingAccess().getConsequentOrMappingParserRuleCall_1_2_0(), semanticObject.getConsequent());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     AbstractRule returns ImplicationRule
-	 *     ImplicationRule returns ImplicationRule
+	 *     PolicyExpression returns ImplicationRule
+	 *     ImplicationPolicy returns ImplicationRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns ImplicationRule
+	 *     OrPolicy returns ImplicationRule
+	 *     OrPolicy.OrRule_1_0 returns ImplicationRule
+	 *     AndPolicy returns ImplicationRule
+	 *     AndPolicy.AndRule_1_0 returns ImplicationRule
+	 *     NotExpression returns ImplicationRule
+	 *     Primary returns ImplicationRule
 	 *
 	 * Constraint:
-	 *     (antecedent=AbstractRule consequent=AbstractRule)
+	 *     (antecedent=ImplicationPolicy_ImplicationRule_1_0 consequent=OrPolicy)
 	 */
-	protected void sequence_ImplicationRule(ISerializationContext context, ImplicationRule semanticObject) {
+	protected void sequence_ImplicationPolicy(ISerializationContext context, ImplicationRule semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.IMPLICATION_RULE__ANTECEDENT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.IMPLICATION_RULE__ANTECEDENT));
@@ -337,31 +333,8 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.IMPLICATION_RULE__CONSEQUENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getImplicationRuleAccess().getAntecedentAbstractRuleParserRuleCall_3_0(), semanticObject.getAntecedent());
-		feeder.accept(grammarAccess.getImplicationRuleAccess().getConsequentAbstractRuleParserRuleCall_5_0(), semanticObject.getConsequent());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     MappingExpression returns NotMappingRule
-	 *     AndMapping returns NotMappingRule
-	 *     AndMapping.AndMappingRule_1_0 returns NotMappingRule
-	 *     OrMapping returns NotMappingRule
-	 *     OrMapping.OrMappingRule_1_0 returns NotMappingRule
-	 *     Primary returns NotMappingRule
-	 *
-	 * Constraint:
-	 *     rule=AndMapping
-	 */
-	protected void sequence_MappingExpression(ISerializationContext context, NotMappingRule semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMappingExpressionAccess().getRuleAndMappingParserRuleCall_1_2_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getImplicationPolicyAccess().getImplicationRuleAntecedentAction_1_0(), semanticObject.getAntecedent());
+		feeder.accept(grammarAccess.getImplicationPolicyAccess().getConsequentOrPolicyParserRuleCall_1_2_0(), semanticObject.getConsequent());
 		feeder.finish();
 	}
 	
@@ -371,10 +344,19 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Mapping returns Mapping
 	 *
 	 * Constraint:
-	 *     ((rule=AbstractMappingRule | rule=MappingExpression) policy=[Policy|ID])
+	 *     (rule=MappingExpression policy=[Policy|ID])
 	 */
 	protected void sequence_Mapping(ISerializationContext context, Mapping semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.MAPPING__RULE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.MAPPING__RULE));
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.MAPPING__POLICY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.MAPPING__POLICY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMappingAccess().getRuleMappingExpressionParserRuleCall_0_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getMappingAccess().getPolicyPolicyIDTerminalRuleCall_2_0_1(), semanticObject.getPolicy());
+		feeder.finish();
 	}
 	
 	
@@ -392,66 +374,70 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     AbstractMappingRule returns NotMappingRule
-	 *     NotMappingRule returns NotMappingRule
+	 *     PolicyExpression returns NotRule
+	 *     ImplicationPolicy returns NotRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns NotRule
+	 *     OrPolicy returns NotRule
+	 *     OrPolicy.OrRule_1_0 returns NotRule
+	 *     AndPolicy returns NotRule
+	 *     AndPolicy.AndRule_1_0 returns NotRule
+	 *     NotExpression returns NotRule
+	 *     Primary returns NotRule
 	 *
 	 * Constraint:
-	 *     rule=AbstractMappingRule
+	 *     rule=Primary
 	 */
-	protected void sequence_NotMappingRule(ISerializationContext context, NotMappingRule semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNotMappingRuleAccess().getRuleAbstractMappingRuleParserRuleCall_1_0(), semanticObject.getRule());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     AbstractRule returns NotRule
-	 *     NotRule returns NotRule
-	 *
-	 * Constraint:
-	 *     rule=AbstractRule
-	 */
-	protected void sequence_NotRule(ISerializationContext context, NotRule semanticObject) {
+	protected void sequence_NotExpression(ISerializationContext context, NotRule semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NOT_RULE__RULE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NOT_RULE__RULE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNotRuleAccess().getRuleAbstractRuleParserRuleCall_2_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getNotExpressionAccess().getRulePrimaryParserRuleCall_1_2_0(), semanticObject.getRule());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     AbstractMappingRule returns OrMappingRule
-	 *     OrMappingRule returns OrMappingRule
+	 *     MappingExpression returns NotMappingRule
+	 *     ImplicationMapping returns NotMappingRule
+	 *     ImplicationMapping.ImplicationMappingRule_1_0 returns NotMappingRule
+	 *     OrMapping returns NotMappingRule
+	 *     OrMapping.OrMappingRule_1_0 returns NotMappingRule
+	 *     AndMapping returns NotMappingRule
+	 *     AndMapping.AndMappingRule_1_0 returns NotMappingRule
+	 *     NotMappingExpression returns NotMappingRule
+	 *     PrimaryMapping returns NotMappingRule
 	 *
 	 * Constraint:
-	 *     (rules+=AbstractMappingRule rules+=AbstractMappingRule*)
+	 *     rule=PrimaryMapping
 	 */
-	protected void sequence_OrMappingRule(ISerializationContext context, OrMappingRule semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_NotMappingExpression(ISerializationContext context, NotMappingRule semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.NOT_MAPPING_RULE__RULE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNotMappingExpressionAccess().getRulePrimaryMappingParserRuleCall_1_2_0(), semanticObject.getRule());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
 	 *     MappingExpression returns OrMappingRule
-	 *     AndMapping returns OrMappingRule
-	 *     AndMapping.AndMappingRule_1_0 returns OrMappingRule
+	 *     ImplicationMapping returns OrMappingRule
+	 *     ImplicationMapping.ImplicationMappingRule_1_0 returns OrMappingRule
 	 *     OrMapping returns OrMappingRule
 	 *     OrMapping.OrMappingRule_1_0 returns OrMappingRule
-	 *     Primary returns OrMappingRule
+	 *     AndMapping returns OrMappingRule
+	 *     AndMapping.AndMappingRule_1_0 returns OrMappingRule
+	 *     NotMappingExpression returns OrMappingRule
+	 *     PrimaryMapping returns OrMappingRule
 	 *
 	 * Constraint:
-	 *     (rules+=OrMapping_OrMappingRule_1_0 rules+=Primary)
+	 *     (rules+=OrMapping_OrMappingRule_1_0 rules+=AndMapping)
 	 */
 	protected void sequence_OrMapping(ISerializationContext context, OrMappingRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -460,21 +446,38 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     AbstractRule returns OrRule
-	 *     OrRule returns OrRule
+	 *     PolicyExpression returns OrRule
+	 *     ImplicationPolicy returns OrRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns OrRule
+	 *     OrPolicy returns OrRule
+	 *     OrPolicy.OrRule_1_0 returns OrRule
+	 *     AndPolicy returns OrRule
+	 *     AndPolicy.AndRule_1_0 returns OrRule
+	 *     NotExpression returns OrRule
+	 *     Primary returns OrRule
 	 *
 	 * Constraint:
-	 *     (rules+=AbstractRule rules+=AbstractRule*)
+	 *     (rules+=OrPolicy_OrRule_1_0 rules+=AndPolicy)
 	 */
-	protected void sequence_OrRule(ISerializationContext context, OrRule semanticObject) {
+	protected void sequence_OrPolicy(ISerializationContext context, OrRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns ParentTypeRule
 	 *     AbstractRule returns ParentTypeRule
 	 *     ParentTypeRule returns ParentTypeRule
+	 *     PolicyExpression returns ParentTypeRule
+	 *     ImplicationPolicy returns ParentTypeRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns ParentTypeRule
+	 *     OrPolicy returns ParentTypeRule
+	 *     OrPolicy.OrRule_1_0 returns ParentTypeRule
+	 *     AndPolicy returns ParentTypeRule
+	 *     AndPolicy.AndRule_1_0 returns ParentTypeRule
+	 *     NotExpression returns ParentTypeRule
+	 *     Primary returns ParentTypeRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -495,7 +498,7 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Policy returns Policy
 	 *
 	 * Constraint:
-	 *     (name=ID rule=AbstractRule)
+	 *     (name=ID rule=PolicyExpression)
 	 */
 	protected void sequence_Policy(ISerializationContext context, Policy semanticObject) {
 		if (errorAcceptor != null) {
@@ -505,16 +508,26 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.POLICY__RULE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPolicyAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPolicyAccess().getRuleAbstractRuleParserRuleCall_3_0(), semanticObject.getRule());
+		feeder.accept(grammarAccess.getPolicyAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getPolicyAccess().getRulePolicyExpressionParserRuleCall_2_0(), semanticObject.getRule());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns RelationIsCyclicRule
 	 *     AbstractRule returns RelationIsCyclicRule
 	 *     RelationIsCyclicRule returns RelationIsCyclicRule
+	 *     PolicyExpression returns RelationIsCyclicRule
+	 *     ImplicationPolicy returns RelationIsCyclicRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns RelationIsCyclicRule
+	 *     OrPolicy returns RelationIsCyclicRule
+	 *     OrPolicy.OrRule_1_0 returns RelationIsCyclicRule
+	 *     AndPolicy returns RelationIsCyclicRule
+	 *     AndPolicy.AndRule_1_0 returns RelationIsCyclicRule
+	 *     NotExpression returns RelationIsCyclicRule
+	 *     Primary returns RelationIsCyclicRule
 	 *
 	 * Constraint:
 	 *     {RelationIsCyclicRule}
@@ -526,8 +539,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns RelationIsReflexivRule
 	 *     AbstractRule returns RelationIsReflexivRule
 	 *     RelationIsReflexivRule returns RelationIsReflexivRule
+	 *     PolicyExpression returns RelationIsReflexivRule
+	 *     ImplicationPolicy returns RelationIsReflexivRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns RelationIsReflexivRule
+	 *     OrPolicy returns RelationIsReflexivRule
+	 *     OrPolicy.OrRule_1_0 returns RelationIsReflexivRule
+	 *     AndPolicy returns RelationIsReflexivRule
+	 *     AndPolicy.AndRule_1_0 returns RelationIsReflexivRule
+	 *     NotExpression returns RelationIsReflexivRule
+	 *     Primary returns RelationIsReflexivRule
 	 *
 	 * Constraint:
 	 *     {RelationIsReflexivRule}
@@ -539,8 +562,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns RelationNameRule
 	 *     AbstractRule returns RelationNameRule
 	 *     RelationNameRule returns RelationNameRule
+	 *     PolicyExpression returns RelationNameRule
+	 *     ImplicationPolicy returns RelationNameRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns RelationNameRule
+	 *     OrPolicy returns RelationNameRule
+	 *     OrPolicy.OrRule_1_0 returns RelationNameRule
+	 *     AndPolicy returns RelationNameRule
+	 *     AndPolicy.AndRule_1_0 returns RelationNameRule
+	 *     NotExpression returns RelationNameRule
+	 *     Primary returns RelationNameRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -558,8 +591,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns RelationTypesAreEqualRule
 	 *     AbstractRule returns RelationTypesAreEqualRule
 	 *     RelationTypesAreEqualRule returns RelationTypesAreEqualRule
+	 *     PolicyExpression returns RelationTypesAreEqualRule
+	 *     ImplicationPolicy returns RelationTypesAreEqualRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns RelationTypesAreEqualRule
+	 *     OrPolicy returns RelationTypesAreEqualRule
+	 *     OrPolicy.OrRule_1_0 returns RelationTypesAreEqualRule
+	 *     AndPolicy returns RelationTypesAreEqualRule
+	 *     AndPolicy.AndRule_1_0 returns RelationTypesAreEqualRule
+	 *     NotExpression returns RelationTypesAreEqualRule
+	 *     Primary returns RelationTypesAreEqualRule
 	 *
 	 * Constraint:
 	 *     {RelationTypesAreEqualRule}
@@ -571,8 +614,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns ShapeNameRule
 	 *     AbstractRule returns ShapeNameRule
 	 *     ShapeNameRule returns ShapeNameRule
+	 *     PolicyExpression returns ShapeNameRule
+	 *     ImplicationPolicy returns ShapeNameRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns ShapeNameRule
+	 *     OrPolicy returns ShapeNameRule
+	 *     OrPolicy.OrRule_1_0 returns ShapeNameRule
+	 *     AndPolicy returns ShapeNameRule
+	 *     AndPolicy.AndRule_1_0 returns ShapeNameRule
+	 *     NotExpression returns ShapeNameRule
+	 *     Primary returns ShapeNameRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -590,8 +643,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns ShapeTypeRule
 	 *     AbstractRule returns ShapeTypeRule
 	 *     ShapeTypeRule returns ShapeTypeRule
+	 *     PolicyExpression returns ShapeTypeRule
+	 *     ImplicationPolicy returns ShapeTypeRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns ShapeTypeRule
+	 *     OrPolicy returns ShapeTypeRule
+	 *     OrPolicy.OrRule_1_0 returns ShapeTypeRule
+	 *     AndPolicy returns ShapeTypeRule
+	 *     AndPolicy.AndRule_1_0 returns ShapeTypeRule
+	 *     NotExpression returns ShapeTypeRule
+	 *     Primary returns ShapeTypeRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -609,8 +672,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns SourceTypeRule
 	 *     AbstractRule returns SourceTypeRule
 	 *     SourceTypeRule returns SourceTypeRule
+	 *     PolicyExpression returns SourceTypeRule
+	 *     ImplicationPolicy returns SourceTypeRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns SourceTypeRule
+	 *     OrPolicy returns SourceTypeRule
+	 *     OrPolicy.OrRule_1_0 returns SourceTypeRule
+	 *     AndPolicy returns SourceTypeRule
+	 *     AndPolicy.AndRule_1_0 returns SourceTypeRule
+	 *     NotExpression returns SourceTypeRule
+	 *     Primary returns SourceTypeRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -628,8 +701,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns StepInRule
 	 *     AbstractRule returns StepInRule
 	 *     StepInRule returns StepInRule
+	 *     PolicyExpression returns StepInRule
+	 *     ImplicationPolicy returns StepInRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns StepInRule
+	 *     OrPolicy returns StepInRule
+	 *     OrPolicy.OrRule_1_0 returns StepInRule
+	 *     AndPolicy returns StepInRule
+	 *     AndPolicy.AndRule_1_0 returns StepInRule
+	 *     NotExpression returns StepInRule
+	 *     Primary returns StepInRule
 	 *
 	 * Constraint:
 	 *     {StepInRule}
@@ -641,8 +724,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns TargetTypeRule
 	 *     AbstractRule returns TargetTypeRule
 	 *     TargetTypeRule returns TargetTypeRule
+	 *     PolicyExpression returns TargetTypeRule
+	 *     ImplicationPolicy returns TargetTypeRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns TargetTypeRule
+	 *     OrPolicy returns TargetTypeRule
+	 *     OrPolicy.OrRule_1_0 returns TargetTypeRule
+	 *     AndPolicy returns TargetTypeRule
+	 *     AndPolicy.AndRule_1_0 returns TargetTypeRule
+	 *     NotExpression returns TargetTypeRule
+	 *     Primary returns TargetTypeRule
 	 *
 	 * Constraint:
 	 *     name=EString
@@ -660,14 +753,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     MappingRule returns TrueMappingRule
 	 *     AbstractMappingRule returns TrueMappingRule
 	 *     TrueMappingRule returns TrueMappingRule
 	 *     MappingExpression returns TrueMappingRule
-	 *     AndMapping returns TrueMappingRule
-	 *     AndMapping.AndMappingRule_1_0 returns TrueMappingRule
+	 *     ImplicationMapping returns TrueMappingRule
+	 *     ImplicationMapping.ImplicationMappingRule_1_0 returns TrueMappingRule
 	 *     OrMapping returns TrueMappingRule
 	 *     OrMapping.OrMappingRule_1_0 returns TrueMappingRule
-	 *     Primary returns TrueMappingRule
+	 *     AndMapping returns TrueMappingRule
+	 *     AndMapping.AndMappingRule_1_0 returns TrueMappingRule
+	 *     NotMappingExpression returns TrueMappingRule
+	 *     PrimaryMapping returns TrueMappingRule
 	 *
 	 * Constraint:
 	 *     {TrueMappingRule}
@@ -679,8 +776,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns TrueRule
 	 *     AbstractRule returns TrueRule
 	 *     TrueRule returns TrueRule
+	 *     PolicyExpression returns TrueRule
+	 *     ImplicationPolicy returns TrueRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns TrueRule
+	 *     OrPolicy returns TrueRule
+	 *     OrPolicy.OrRule_1_0 returns TrueRule
+	 *     AndPolicy returns TrueRule
+	 *     AndPolicy.AndRule_1_0 returns TrueRule
+	 *     NotExpression returns TrueRule
+	 *     Primary returns TrueRule
 	 *
 	 * Constraint:
 	 *     {TrueRule}
@@ -692,8 +799,18 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     PolicyRule returns TypeExistsRule
 	 *     AbstractRule returns TypeExistsRule
 	 *     TypeExistsRule returns TypeExistsRule
+	 *     PolicyExpression returns TypeExistsRule
+	 *     ImplicationPolicy returns TypeExistsRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns TypeExistsRule
+	 *     OrPolicy returns TypeExistsRule
+	 *     OrPolicy.OrRule_1_0 returns TypeExistsRule
+	 *     AndPolicy returns TypeExistsRule
+	 *     AndPolicy.AndRule_1_0 returns TypeExistsRule
+	 *     NotExpression returns TypeExistsRule
+	 *     Primary returns TypeExistsRule
 	 *
 	 * Constraint:
 	 *     name=EString

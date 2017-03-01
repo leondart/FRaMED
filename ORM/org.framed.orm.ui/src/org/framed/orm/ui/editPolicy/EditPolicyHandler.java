@@ -84,8 +84,8 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	private model.Model loadModel()
 	{
 		// String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
-		 String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
-		//String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
+		 //String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
+		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
 
 		try {
 			ResourceSet set = new ResourceSetImpl();

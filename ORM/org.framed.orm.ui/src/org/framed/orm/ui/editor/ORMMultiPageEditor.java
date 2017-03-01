@@ -33,12 +33,10 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
-import org.framed.orm.featuremodel.FeatureName;
 import org.framed.orm.model.Model;
 import org.framed.orm.model.OrmPackage;
 import org.framed.orm.model.Shape;
 import org.framed.orm.model.Type;
-import org.framed.orm.ui.expression.ExpressionNode;
 import org.framed.orm.ui.expression.FeatureExpression;
 
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
@@ -506,7 +504,13 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * @throws ScriptException
    */
   private void initializePaletteVisibilityMappings() throws ScriptException {
+
+	  for(PaletteEntry p: PaletteEntry.values()) {
+		    stepOUTPaletteVisibility.put(p, new FeatureExpression(true));
+		    stepINPaletteVisibility.put(p, new FeatureExpression(true));
+	  }
     // Step-Out Visibility
+	  /*
     stepOUTPaletteVisibility.put(PaletteEntry.COMPARTMENT, new FeatureExpression(
         FeatureName.COMPARTMENT_TYPES));
     stepOUTPaletteVisibility.put(PaletteEntry.NATURAL_TYPE, new FeatureExpression(true));
@@ -557,5 +561,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
             + FeatureName.CONTAINS_COMPARTMENTS + ")"));
     stepINPaletteVisibility.put(PaletteEntry.ROLE_MODEL, new FeatureExpression(
     		"!" + FeatureName.COMPARTMENT_TYPES));
+  */
   }
 }
