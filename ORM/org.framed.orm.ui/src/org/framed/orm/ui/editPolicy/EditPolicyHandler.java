@@ -14,6 +14,13 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.ORMGraphicalEditorObserver;
 
+
+/**
+ * This class provides canExecute(Command cmd) which checks whether a given command may execute according to editPolicies
+ *
+ * @author Christian Deussen
+ *
+ */
 public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 
 	/**
@@ -46,33 +53,39 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	/**
 	 * loads all Policies which are activated by current configuration
 	 */
-	private void loadPolicyRules() {
+	private void loadPolicyRules()
+	{
 		/*
 		  System.out.println("-------------------------------");
 		  for (FRaMEDFeature feature : this.configuration.getFeatures()) {
 			  System.out.println("EditPolicyHandler feature: " + feature.getName().getName());
 		  }
 		  System.out.println("-------------------------------");
-*/
+		 */
 
 		policies = new HashSet<>();
 
-		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(
-				configuration);
+		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(configuration);
 		for (model.Mapping mapping : (model.Mapping[]) model.getConfiguration()
 				.getMappings().toArray()) {
-			if (editPolicyConfigurationVisitor
-					.abstractMappingRuleVisitor(mapping.getRule()))
+			if (editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
 				policies.add(mapping.getPolicy());
 		}
 	}
 
+	/**
+	 * canExecute is called to check whether a command is allowed to execute in a given situation
+	 * checks each policy
+	 *
+	 * this function
+	 * @param cmd
+	 * @return Boolean
+	 */
 	public boolean canExecute(Command cmd)
 	{
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd, this.isStepOut);
 
 		for (model.Policy policy : policies) {
-			System.out.println("Testing: " + policy.getName());
 			if (!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule())) {
 				System.out.println("Not Allowed because of: " + policy.getName());
 				return false;
@@ -81,10 +94,14 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		return true;
 	}
 
+
+	/*
+	 * Load editPolicy ecore Model from file.
+	 */
 	private model.Model loadModel()
 	{
-		// String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
-		 //String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
+		//String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
+		//String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
 		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
 
 		try {
@@ -107,7 +124,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	}
 
 	/**
-	 * This method updates the reloads the configuration. it is called when
+	 * This method reloads the configuration. it is called when
 	 * configuration has changed.
 	 *
 	 **/
@@ -120,7 +137,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	}
 
 	/**
-	 * This method updates the reloads the configuration. it is called when
+	 * This method reloads the configuration. it is called when
 	 * configuration has changed.
 	 *
 	 **/

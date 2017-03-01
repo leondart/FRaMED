@@ -28,6 +28,7 @@ public class ORMAttributeOperationComponentEditPolicy extends ComponentEditPolic
       ORMAttributeOperationDeleteCommand command = new ORMAttributeOperationDeleteCommand();
       command.setElement((NamedElement) getHost().getModel());
       command.setParentSegment((Segment) getHost().getParent().getModel());
+      //wrap command to automatically check editPolicies on canExecute of command
       EditPolicyCommandDecorator<ORMAttributeOperationDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
       return cmd;
     }

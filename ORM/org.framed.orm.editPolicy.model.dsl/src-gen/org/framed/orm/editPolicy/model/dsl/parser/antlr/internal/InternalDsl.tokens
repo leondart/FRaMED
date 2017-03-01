@@ -8,7 +8,7 @@
 'ParentType'=22
 'RelationIsCyclic'=13
 'RelationIsReflexiv'=15
-'RelationName'=16
+'RelationType'=16
 'RelationTypesAreEqual'=14
 'ShapeName'=25
 'ShapeType'=21

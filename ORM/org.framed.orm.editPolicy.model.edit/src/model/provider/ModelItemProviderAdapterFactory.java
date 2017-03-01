@@ -233,26 +233,26 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link model.RelationNameRule} instances.
+	 * This keeps track of the one adapter used for all {@link model.RelationTypeRule} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RelationNameRuleItemProvider relationNameRuleItemProvider;
+	protected RelationTypeRuleItemProvider relationTypeRuleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link model.RelationNameRule}.
+	 * This creates an adapter for a {@link model.RelationTypeRule}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createRelationNameRuleAdapter() {
-		if (relationNameRuleItemProvider == null) {
-			relationNameRuleItemProvider = new RelationNameRuleItemProvider(this);
+	public Adapter createRelationTypeRuleAdapter() {
+		if (relationTypeRuleItemProvider == null) {
+			relationTypeRuleItemProvider = new RelationTypeRuleItemProvider(this);
 		}
 
-		return relationNameRuleItemProvider;
+		return relationTypeRuleItemProvider;
 	}
 
 	/**
@@ -821,7 +821,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		if (featureNameMappingRuleItemProvider != null) featureNameMappingRuleItemProvider.dispose();
 		if (andMappingRuleItemProvider != null) andMappingRuleItemProvider.dispose();
 		if (andRuleItemProvider != null) andRuleItemProvider.dispose();
-		if (relationNameRuleItemProvider != null) relationNameRuleItemProvider.dispose();
+		if (relationTypeRuleItemProvider != null) relationTypeRuleItemProvider.dispose();
 		if (notMappingRuleItemProvider != null) notMappingRuleItemProvider.dispose();
 		if (orMappingRuleItemProvider != null) orMappingRuleItemProvider.dispose();
 		if (implicationMappingRuleItemProvider != null) implicationMappingRuleItemProvider.dispose();

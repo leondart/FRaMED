@@ -80,9 +80,13 @@
   <policies name="p1">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
-        <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+        </rules>
         <rules xsi:type="model:TargetTypeRule" name="CompartmentType"/>
       </rule>
     </rule>
@@ -90,8 +94,10 @@
   <policies name="p2">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
-        <rules xsi:type="model:ShapeTypeRule" name="CompartmentType"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+          <rules xsi:type="model:ShapeTypeRule" name="CompartmentType"/>
+        </rules>
         <rules xsi:type="model:StepInRule"/>
       </rule>
     </rule>
@@ -136,8 +142,10 @@
   <policies name="p6_n">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
         <rules xsi:type="model:SourceTypeRule" name="NaturalType"/>
       </rule>
     </rule>
@@ -145,8 +153,10 @@
   <policies name="p6_r">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
         <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
       </rule>
     </rule>
@@ -154,8 +164,10 @@
   <policies name="p6_c">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
         <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
       </rule>
     </rule>
@@ -163,8 +175,10 @@
   <policies name="p6_d">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
         <rules xsi:type="model:SourceTypeRule" name="DataType"/>
       </rule>
     </rule>
@@ -174,8 +188,8 @@
       <rule xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
         <rules xsi:type="model:OrRule">
-          <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
-          <rules xsi:type="model:RelationNameRule" name="Exclusion"/>
+          <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+          <rules xsi:type="model:RelationTypeRule" name="Exclusion"/>
         </rules>
       </rule>
     </rule>
@@ -183,10 +197,16 @@
   <policies name="p8_ROLE">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
-        <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
-        <rules xsi:type="model:TargetTypeRule" name="RoleType"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:AndRule">
+              <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+              <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+            </rules>
+            <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
+          </rules>
+          <rules xsi:type="model:TargetTypeRule" name="RoleType"/>
+        </rules>
         <rules xsi:type="model:StepInRule"/>
       </rule>
     </rule>
@@ -194,9 +214,13 @@
   <policies name="p8_DATA">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
-        <rules xsi:type="model:SourceTypeRule" name="DataType"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="DataType"/>
+        </rules>
         <rules xsi:type="model:TargetTypeRule" name="DataType"/>
       </rule>
     </rule>
@@ -204,9 +228,13 @@
   <policies name="p8_COMPARTMENT">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
-        <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+        </rules>
         <rules xsi:type="model:TargetTypeRule" name="CompartmentType"/>
       </rule>
     </rule>

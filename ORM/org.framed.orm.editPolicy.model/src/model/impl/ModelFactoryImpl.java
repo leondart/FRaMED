@@ -63,7 +63,7 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.FEATURE_NAME_MAPPING_RULE: return createFeatureNameMappingRule();
 			case ModelPackage.AND_MAPPING_RULE: return createAndMappingRule();
 			case ModelPackage.AND_RULE: return createAndRule();
-			case ModelPackage.RELATION_NAME_RULE: return createRelationNameRule();
+			case ModelPackage.RELATION_TYPE_RULE: return createRelationTypeRule();
 			case ModelPackage.NOT_MAPPING_RULE: return createNotMappingRule();
 			case ModelPackage.OR_MAPPING_RULE: return createOrMappingRule();
 			case ModelPackage.IMPLICATION_MAPPING_RULE: return createImplicationMappingRule();
@@ -164,9 +164,9 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RelationNameRule createRelationNameRule() {
-		RelationNameRuleImpl relationNameRule = new RelationNameRuleImpl();
-		return relationNameRule;
+	public RelationTypeRule createRelationTypeRule() {
+		RelationTypeRuleImpl relationTypeRule = new RelationTypeRuleImpl();
+		return relationTypeRule;
 	}
 
 	/**

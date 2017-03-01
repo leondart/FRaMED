@@ -77,6 +77,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
             Type.REFLEXIVE, Type.ROLE_TYPE, Type.ROLE_TYPE))
           && tNotEqualSCheck(request)
           && hasARelationship(request, true) && !hasConstraintsKind(request)) {
+          //wrap command to automatically check editPolicies on canExecute of command
         final EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> result =
             (EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand>) request.getStartCommand();
         result.getCmd().setTarget((Shape) getHost().getModel());
@@ -115,6 +116,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
           || oTCheck(request, Type.ACYCLIC, Type.ROLE_TYPE) || oTCheck(request, Type.REFLEXIVE,
             Type.ROLE_TYPE)) && hasARelationship(request, false)) {
 
+        //wrap command to automatically check editPolicies on canExecute of command
         final EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> result =
             new EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand>(new ORMRelationshipConstraintCreateCommand());
         result.setEditPolicyHandler(editor.getEditPolicyHandler());
@@ -200,6 +202,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
    * */
   private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionCompleteCommand(
     final CreateConnectionRequest request) {
+    //wrap command to automatically check editPolicies on canExecute of command
     final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator<ORMRelationCreateCommand>) request.getStartCommand();
     result.getCmd().setTarget((Shape) getHost().getModel());
     result.setEditPolicyHandler(editor.getEditPolicyHandler());
@@ -208,7 +211,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
   /**
    * This method creates and return the creation command for all {@link Relation}s except the
-   * relations from type cyclic, total, acyclic, reflexive and irrflexive.
+   * relations from type cyclic, total, acyclic, reflexive and irreflexive.
    *
    * @return {@link ORMRelationCreateCommand}
    * */
@@ -229,6 +232,7 @@ public class ORMShapeGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
       result.setTargetLabel(ele2);
       ((Relation) request.getNewObject()).getConnectionAnchor().setContainer(container);
     }
+    //wrap command to automatically check editPolicies on canExecute of command
     final EditPolicyCommandDecorator<ORMRelationCreateCommand> ret = new EditPolicyCommandDecorator<>(result);
     ret.setEditPolicyHandler(editor.getEditPolicyHandler());
 

@@ -53,7 +53,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRelationIsCyclicRuleAccess().getGroup(), "rule__RelationIsCyclicRule__Group__0");
 					put(grammarAccess.getRelationTypesAreEqualRuleAccess().getGroup(), "rule__RelationTypesAreEqualRule__Group__0");
 					put(grammarAccess.getRelationIsReflexivRuleAccess().getGroup(), "rule__RelationIsReflexivRule__Group__0");
-					put(grammarAccess.getRelationNameRuleAccess().getGroup(), "rule__RelationNameRule__Group__0");
+					put(grammarAccess.getRelationTypeRuleAccess().getGroup(), "rule__RelationTypeRule__Group__0");
 					put(grammarAccess.getTypeExistsRuleAccess().getGroup(), "rule__TypeExistsRule__Group__0");
 					put(grammarAccess.getSourceTypeRuleAccess().getGroup(), "rule__SourceTypeRule__Group__0");
 					put(grammarAccess.getTargetTypeRuleAccess().getGroup(), "rule__TargetTypeRule__Group__0");
@@ -90,7 +90,7 @@ public class DslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMappingAccess().getRuleAssignment_0(), "rule__Mapping__RuleAssignment_0");
 					put(grammarAccess.getMappingAccess().getPolicyAssignment_2(), "rule__Mapping__PolicyAssignment_2");
 					put(grammarAccess.getFeatureNameMappingRuleAccess().getNameAssignment_1(), "rule__FeatureNameMappingRule__NameAssignment_1");
-					put(grammarAccess.getRelationNameRuleAccess().getNameAssignment_2(), "rule__RelationNameRule__NameAssignment_2");
+					put(grammarAccess.getRelationTypeRuleAccess().getNameAssignment_2(), "rule__RelationTypeRule__NameAssignment_2");
 					put(grammarAccess.getTypeExistsRuleAccess().getNameAssignment_2(), "rule__TypeExistsRule__NameAssignment_2");
 					put(grammarAccess.getSourceTypeRuleAccess().getNameAssignment_2(), "rule__SourceTypeRule__NameAssignment_2");
 					put(grammarAccess.getTargetTypeRuleAccess().getNameAssignment_2(), "rule__TargetTypeRule__NameAssignment_2");

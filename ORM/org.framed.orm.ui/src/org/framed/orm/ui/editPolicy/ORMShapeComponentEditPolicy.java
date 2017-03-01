@@ -68,6 +68,7 @@ public class ORMShapeComponentEditPolicy extends ComponentEditPolicy {
     final ORMShapeDeleteCommand command = new ORMShapeDeleteCommand();
     command.setShape((Shape) getHost().getModel());
 
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMShapeDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
     cmd.setEditPolicyHandler(this.ep);
 

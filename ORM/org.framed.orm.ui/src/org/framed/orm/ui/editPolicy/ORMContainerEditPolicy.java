@@ -54,6 +54,7 @@ public class ORMContainerEditPolicy extends ContainerEditPolicy {
       orphan.setParent((Model) this.getHost().getModel());
       orphan.setLabel("Reparenting");
 
+      //wrap command to automatically check editPolicies on canExecute of command
       EditPolicyCommandDecorator<ORMOrphanChildCommand> cmd = new EditPolicyCommandDecorator<>(orphan);
       cmd.setEditPolicyHandler(ep);
 

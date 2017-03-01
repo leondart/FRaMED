@@ -47,6 +47,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     command.setShape((Shape) child.getModel());
     command.setNewBoundaries(createModelReactangle((Rectangle) newBoundarie));
 
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMShapeChangeBoundariesCommand> cmd = new EditPolicyCommandDecorator<>(command);
     cmd.setEditPolicyHandler(ep);
 
@@ -188,6 +189,7 @@ public class ORMModelXYLayoutPolicy extends ORMAbstractXYLayoutPolicy {
     command.setChildmodel(childmodel);
     command.setDescription(description);
 
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMShapeCreateCommand> cmd = new EditPolicyCommandDecorator<>(command);
     cmd.setEditPolicyHandler(this.ep);
 

@@ -8,7 +8,7 @@
       <rule xsi:type="model:TrueMappingRule"/>
     </mappings>
     <mappings policy="//@policies.2">
-      <rule xsi:type="model:FeatureNameMappingRule" name="false"/>
+      <rule xsi:type="model:FeatureNameMappingRule" name="disable"/>
     </mappings>
     <mappings policy="//@policies.3">
       <rule xsi:type="model:NotMappingRule">
@@ -31,21 +31,23 @@
   <policies name="r1">
     <rule xsi:type="model:ImplicationRule">
       <antecedent xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
         <rules xsi:type="model:OrRule">
           <rules xsi:type="model:TargetTypeRule" name="Group"/>
           <rules xsi:type="model:SourceTypeRule" name="Group"/>
         </rules>
       </antecedent>
-      <consequent xsi:type="model:FalseRule"/>
+      <consequent xsi:type="model:TrueRule"/>
     </rule>
   </policies>
   <policies name="r2">
     <rule xsi:type="model:ImplicationRule">
       <antecedent xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Fulfillment"/>
+        <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
       </antecedent>
       <consequent xsi:type="model:TargetTypeRule" name="CompartmentType"/>
     </rule>
@@ -62,8 +64,10 @@
   <policies name="r4">
     <rule xsi:type="model:NotRule">
       <rule xsi:type="model:AndRule">
-        <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
-        <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+          <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
+        </rules>
         <rules xsi:type="model:TypeExistsRule" name="RoleType"/>
       </rule>
     </rule>
@@ -72,7 +76,7 @@
     <rule xsi:type="model:ImplicationRule">
       <antecedent xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
+        <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
       </antecedent>
       <consequent xsi:type="model:NotRule">
         <rule xsi:type="model:RelationIsCyclicRule"/>
@@ -83,7 +87,7 @@
     <rule xsi:type="model:ImplicationRule">
       <antecedent xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
+        <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
       </antecedent>
       <consequent xsi:type="model:NotRule">
         <rule xsi:type="model:RelationIsReflexivRule"/>
@@ -94,7 +98,7 @@
     <rule xsi:type="model:ImplicationRule">
       <antecedent xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Inheritance"/>
+        <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
       </antecedent>
       <consequent xsi:type="model:RelationTypesAreEqualRule"/>
     </rule>
@@ -103,7 +107,7 @@
     <rule xsi:type="model:ImplicationRule">
       <antecedent xsi:type="model:AndRule">
         <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
-        <rules xsi:type="model:RelationNameRule" name="Relationship"/>
+        <rules xsi:type="model:RelationTypeRule" name="Relationship"/>
       </antecedent>
       <consequent xsi:type="model:AndRule">
         <rules xsi:type="model:SourceTypeRule" name="RoleType"/>

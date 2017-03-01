@@ -37,6 +37,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
       Shape shape = (Shape) getHost().getModel();
       if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
         if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
+        	//wrap command to automatically check editPolicies on canExecute of command
           final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
               new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getFirstSegment());
@@ -46,6 +47,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
         }
 
         if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
+            //wrap command to automatically check editPolicies on canExecute of command
             final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
                     new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getSecondSegment());
@@ -61,6 +63,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
       Shape shape = (Shape) getHost().getParent().getModel();
       if (shape.getFirstSegment() != null && shape.getSecondSegment() != null) {
         if (request.getNewObjectType().equals(ORMAttributeFactory.attribute)) {
+            //wrap command to automatically check editPolicies on canExecute of command
             final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
                     new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getFirstSegment());
@@ -70,6 +73,7 @@ public class ORMSegmentXYLayoutPolicy extends XYLayoutEditPolicy {
         }
 
         if (request.getNewObjectType().equals(ORMOperationFactory.operation)) {
+            //wrap command to automatically check editPolicies on canExecute of command
             final EditPolicyCommandDecorator<ORMAttributeOperationCreateCommand> command =
                     new EditPolicyCommandDecorator<>(new ORMAttributeOperationCreateCommand());
           command.getCmd().setParentSegment(shape.getSecondSegment());

@@ -44,7 +44,8 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
           new CallRelationshipConstraintsActionCommand();
       command.setEditPart(getHost());
 
-      EditPolicyCommandDecorator<CallRelationshipConstraintsActionCommand> retval = new EditPolicyCommandDecorator<>(command);
+      //wrap command to automatically check editPolicies on canExecute of command
+      retVal = new EditPolicyCommandDecorator<>(command);
 
     } else if (getHost() instanceof ORMRelationshipEditPart) {
       Relation rlship = (Relation) getHost().getModel();
@@ -72,6 +73,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
   private EditPolicyCommandDecorator<ORMRelationDeleteCommand> setupRelationDelete(final Relation rel) {
     final ORMRelationDeleteCommand command = new ORMRelationDeleteCommand();
     command.setRelation(rel);
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMRelationDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
     return cmd;
   }
@@ -88,6 +90,7 @@ public class ORMRelationConnectionEditPolicy extends ConnectionEditPolicy {
         new ORMRelationshipConstraintDeleteCommand();
     command.setRelation(rc);
     command.setEPViewer(epv);
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMRelationshipConstraintDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
     return cmd;
   }

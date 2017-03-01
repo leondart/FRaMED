@@ -24,7 +24,7 @@ import model.ParentTypeRule;
 import model.Policy;
 import model.RelationIsCyclicRule;
 import model.RelationIsReflexivRule;
-import model.RelationNameRule;
+import model.RelationTypeRule;
 import model.RelationTypesAreEqualRule;
 import model.ShapeNameRule;
 import model.ShapeTypeRule;
@@ -113,8 +113,8 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case ModelPackage.RELATION_IS_REFLEXIV_RULE:
 				sequence_RelationIsReflexivRule(context, (RelationIsReflexivRule) semanticObject); 
 				return; 
-			case ModelPackage.RELATION_NAME_RULE:
-				sequence_RelationNameRule(context, (RelationNameRule) semanticObject); 
+			case ModelPackage.RELATION_TYPE_RULE:
+				sequence_RelationTypeRule(context, (RelationTypeRule) semanticObject); 
 				return; 
 			case ModelPackage.RELATION_TYPES_ARE_EQUAL_RULE:
 				sequence_RelationTypesAreEqualRule(context, (RelationTypesAreEqualRule) semanticObject); 
@@ -562,29 +562,29 @@ public class DslSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     PolicyRule returns RelationNameRule
-	 *     AbstractRule returns RelationNameRule
-	 *     RelationNameRule returns RelationNameRule
-	 *     PolicyExpression returns RelationNameRule
-	 *     ImplicationPolicy returns RelationNameRule
-	 *     ImplicationPolicy.ImplicationRule_1_0 returns RelationNameRule
-	 *     OrPolicy returns RelationNameRule
-	 *     OrPolicy.OrRule_1_0 returns RelationNameRule
-	 *     AndPolicy returns RelationNameRule
-	 *     AndPolicy.AndRule_1_0 returns RelationNameRule
-	 *     NotExpression returns RelationNameRule
-	 *     Primary returns RelationNameRule
+	 *     PolicyRule returns RelationTypeRule
+	 *     AbstractRule returns RelationTypeRule
+	 *     RelationTypeRule returns RelationTypeRule
+	 *     PolicyExpression returns RelationTypeRule
+	 *     ImplicationPolicy returns RelationTypeRule
+	 *     ImplicationPolicy.ImplicationRule_1_0 returns RelationTypeRule
+	 *     OrPolicy returns RelationTypeRule
+	 *     OrPolicy.OrRule_1_0 returns RelationTypeRule
+	 *     AndPolicy returns RelationTypeRule
+	 *     AndPolicy.AndRule_1_0 returns RelationTypeRule
+	 *     NotExpression returns RelationTypeRule
+	 *     Primary returns RelationTypeRule
 	 *
 	 * Constraint:
 	 *     name=EString
 	 */
-	protected void sequence_RelationNameRule(ISerializationContext context, RelationNameRule semanticObject) {
+	protected void sequence_RelationTypeRule(ISerializationContext context, RelationTypeRule semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, ModelPackage.Literals.ABSTRACT_NAME_RULE__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ModelPackage.Literals.ABSTRACT_NAME_RULE__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRelationNameRuleAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRelationTypeRuleAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

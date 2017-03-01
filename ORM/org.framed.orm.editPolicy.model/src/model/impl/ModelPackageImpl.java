@@ -26,6 +26,7 @@ import model.Policy;
 import model.RelationIsCyclicRule;
 import model.RelationIsReflexivRule;
 import model.RelationNameRule;
+import model.RelationTypeRule;
 import model.RelationTypesAreEqualRule;
 import model.ShapeNameRule;
 import model.ShapeTypeRule;
@@ -118,7 +119,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass relationNameRuleEClass = null;
+	private EClass relationTypeRuleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -504,8 +505,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRelationNameRule() {
-		return relationNameRuleEClass;
+	public EClass getRelationTypeRule() {
+		return relationTypeRuleEClass;
 	}
 
 	/**
@@ -834,7 +835,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		andRuleEClass = createEClass(AND_RULE);
 		createEReference(andRuleEClass, AND_RULE__RULES);
 
-		relationNameRuleEClass = createEClass(RELATION_NAME_RULE);
+		relationTypeRuleEClass = createEClass(RELATION_TYPE_RULE);
 
 		notMappingRuleEClass = createEClass(NOT_MAPPING_RULE);
 		createEReference(notMappingRuleEClass, NOT_MAPPING_RULE__RULE);
@@ -919,7 +920,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		featureNameMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		andMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		andRuleEClass.getESuperTypes().add(this.getAbstractRule());
-		relationNameRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
+		relationTypeRuleEClass.getESuperTypes().add(this.getAbstractNameRule());
 		notMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		orMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
 		implicationMappingRuleEClass.getESuperTypes().add(this.getAbstractMappingRule());
@@ -971,7 +972,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(andRuleEClass, AndRule.class, "AndRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAndRule_Rules(), this.getAbstractRule(), null, "rules", null, 2, -1, AndRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(relationNameRuleEClass, RelationNameRule.class, "RelationNameRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(relationTypeRuleEClass, RelationTypeRule.class, "RelationTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(notMappingRuleEClass, NotMappingRule.class, "NotMappingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNotMappingRule_Rule(), this.getAbstractMappingRule(), null, "rule", null, 1, 1, NotMappingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

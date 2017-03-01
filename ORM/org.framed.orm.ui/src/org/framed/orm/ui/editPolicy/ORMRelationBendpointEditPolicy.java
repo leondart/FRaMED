@@ -58,6 +58,7 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     sourceRef.setY(targetP.y());
     command.setTargetRefence(targetRef);
 
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMRelationCreateBendpointCommand> cmd = new EditPolicyCommandDecorator<>(command);
 
     return cmd;
@@ -86,6 +87,7 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
     command.setNewDimension(p.getDifference(sourceP), p.getDifference(targetP));
     command.setIndex(request.getIndex());
 
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMRelationMoveBendpointCommand> cmd = new EditPolicyCommandDecorator<>(command);
 
     return cmd;
@@ -98,6 +100,7 @@ public class ORMRelationBendpointEditPolicy extends BendpointEditPolicy {
    */
   @Override
   protected Command getDeleteBendpointCommand(final BendpointRequest request) {
+	//wrap command to automatically check editPolicies on canExecute of command
     final EditPolicyCommandDecorator<ORMRelationDeleteBendpointCommand> command = new EditPolicyCommandDecorator<>(new ORMRelationDeleteBendpointCommand());
     //command.setEditPolicyHandler();
     command.getCmd().setRelation((Relation) request.getSource().getModel());

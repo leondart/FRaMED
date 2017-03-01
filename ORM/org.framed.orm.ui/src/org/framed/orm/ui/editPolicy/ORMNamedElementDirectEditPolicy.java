@@ -44,6 +44,7 @@ public class ORMNamedElementDirectEditPolicy extends DirectEditPolicy {
     String newName = (String) request.getCellEditor().getValue();
     command.setNewName(newName);
 
+    //wrap command to automatically check editPolicies on canExecute of command
     EditPolicyCommandDecorator<ORMNamedElementRenameCommand> cmd = new EditPolicyCommandDecorator<>(command);
     cmd.setEditPolicyHandler(this.ep);
 

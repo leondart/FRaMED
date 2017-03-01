@@ -123,11 +123,11 @@ public class ModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.RELATION_NAME_RULE: {
-				RelationNameRule relationNameRule = (RelationNameRule)theEObject;
-				T result = caseRelationNameRule(relationNameRule);
-				if (result == null) result = caseAbstractNameRule(relationNameRule);
-				if (result == null) result = caseAbstractRule(relationNameRule);
+			case ModelPackage.RELATION_TYPE_RULE: {
+				RelationTypeRule relationTypeRule = (RelationTypeRule)theEObject;
+				T result = caseRelationTypeRule(relationTypeRule);
+				if (result == null) result = caseAbstractNameRule(relationTypeRule);
+				if (result == null) result = caseAbstractRule(relationTypeRule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -425,17 +425,17 @@ public class ModelSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Relation Name Rule</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Relation Type Rule</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Relation Name Rule</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Relation Type Rule</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseRelationNameRule(RelationNameRule object) {
+	public T caseRelationTypeRule(RelationTypeRule object) {
 		return null;
 	}
 

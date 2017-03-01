@@ -31,7 +31,7 @@
     <genClasses ecoreClass="model.ecore#//AndRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//AndRule/rules"/>
     </genClasses>
-    <genClasses ecoreClass="model.ecore#//RelationNameRule"/>
+    <genClasses ecoreClass="model.ecore#//RelationTypeRule"/>
     <genClasses ecoreClass="model.ecore#//NotMappingRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//NotMappingRule/rule"/>
     </genClasses>

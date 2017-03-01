@@ -88,8 +88,9 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    *
    * @return {@link ORMRelationCreateCommand}
    * */
-  private EditPolicyCommandDecorator setupConnectionCompleteCommand(
+  private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionCompleteCommand(
       final CreateConnectionRequest request) {
+    //wrap command to automatically check editPolicies on canExecute of command
     final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = (EditPolicyCommandDecorator) request.getStartCommand();
     result.getCmd().setTarget(((Relation) getHost().getModel()).getConnectionAnchor());
     return result;
@@ -103,6 +104,7 @@ public class ORMRelationGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
    * */
   private EditPolicyCommandDecorator<ORMRelationCreateCommand> setupConnectionStartCommand(
       final CreateConnectionRequest request, final Model container) {
+	  //wrap command to automatically check editPolicies on canExecute of command
     final EditPolicyCommandDecorator<ORMRelationCreateCommand> result = new EditPolicyCommandDecorator<ORMRelationCreateCommand>(new ORMRelationCreateCommand());
     result.setEditPolicyHandler(editPolicyHandler);
     result.getCmd().setSource(((Relation) getHost().getModel()).getConnectionAnchor());

@@ -141,7 +141,7 @@ public class NotRuleItemProvider extends AbstractRuleItemProvider {
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.NOT_RULE__RULE,
-				 ModelFactory.eINSTANCE.createRelationNameRule()));
+				 ModelFactory.eINSTANCE.createRelationTypeRule()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -345,14 +345,14 @@ public interface ModelPackage extends EPackage {
 	int ABSTRACT_NAME_RULE_FEATURE_COUNT = ABSTRACT_RULE_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link model.impl.RelationNameRuleImpl <em>Relation Name Rule</em>}' class.
+	 * The meta object id for the '{@link model.impl.RelationTypeRuleImpl <em>Relation Type Rule</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see model.impl.RelationNameRuleImpl
-	 * @see model.impl.ModelPackageImpl#getRelationNameRule()
+	 * @see model.impl.RelationTypeRuleImpl
+	 * @see model.impl.ModelPackageImpl#getRelationTypeRule()
 	 * @generated
 	 */
-	int RELATION_NAME_RULE = 9;
+	int RELATION_TYPE_RULE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -361,16 +361,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION_NAME_RULE__NAME = ABSTRACT_NAME_RULE__NAME;
+	int RELATION_TYPE_RULE__NAME = ABSTRACT_NAME_RULE__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Relation Name Rule</em>' class.
+	 * The number of structural features of the '<em>Relation Type Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RELATION_NAME_RULE_FEATURE_COUNT = ABSTRACT_NAME_RULE_FEATURE_COUNT + 0;
+	int RELATION_TYPE_RULE_FEATURE_COUNT = ABSTRACT_NAME_RULE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link model.impl.NotMappingRuleImpl <em>Not Mapping Rule</em>}' class.
@@ -1092,14 +1092,14 @@ public interface ModelPackage extends EPackage {
 	EReference getAndRule_Rules();
 
 	/**
-	 * Returns the meta object for class '{@link model.RelationNameRule <em>Relation Name Rule</em>}'.
+	 * Returns the meta object for class '{@link model.RelationTypeRule <em>Relation Type Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Relation Name Rule</em>'.
-	 * @see model.RelationNameRule
+	 * @return the meta object for class '<em>Relation Type Rule</em>'.
+	 * @see model.RelationTypeRule
 	 * @generated
 	 */
-	EClass getRelationNameRule();
+	EClass getRelationTypeRule();
 
 	/**
 	 * Returns the meta object for class '{@link model.NotMappingRule <em>Not Mapping Rule</em>}'.
@@ -1603,14 +1603,14 @@ public interface ModelPackage extends EPackage {
 		EReference AND_RULE__RULES = eINSTANCE.getAndRule_Rules();
 
 		/**
-		 * The meta object literal for the '{@link model.impl.RelationNameRuleImpl <em>Relation Name Rule</em>}' class.
+		 * The meta object literal for the '{@link model.impl.RelationTypeRuleImpl <em>Relation Type Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see model.impl.RelationNameRuleImpl
-		 * @see model.impl.ModelPackageImpl#getRelationNameRule()
+		 * @see model.impl.RelationTypeRuleImpl
+		 * @see model.impl.ModelPackageImpl#getRelationTypeRule()
 		 * @generated
 		 */
-		EClass RELATION_NAME_RULE = eINSTANCE.getRelationNameRule();
+		EClass RELATION_TYPE_RULE = eINSTANCE.getRelationTypeRule();
 
 		/**
 		 * The meta object literal for the '{@link model.impl.NotMappingRuleImpl <em>Not Mapping Rule</em>}' class.

@@ -318,6 +318,7 @@ public CommandStack getCommandStack() {return super.getCommandStack();}
                       new ORMRelationshipConstraintDeleteCommand();
                   command.setRelation(r);
                   command.setEPViewer(ep.getViewer());
+                  //wrap command to automatically check editPolicies on canExecute of command
                   EditPolicyCommandDecorator<ORMRelationshipConstraintDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
 
                   getCommandStack().execute(cmd);
@@ -327,6 +328,7 @@ public CommandStack getCommandStack() {return super.getCommandStack();}
 
               if (!constraintExist) {
                 relationship.getReferencedRelation().add(relation);
+                //wrap command to automatically check editPolicies on canExecute of command
                 EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> command =
                     new EditPolicyCommandDecorator<>(new ORMRelationshipConstraintCreateCommand());
                 command.setEditPolicyHandler(ORMGraphicalEditor.this.getEditPolicyHandler());

@@ -5,15 +5,15 @@ package model.tests;
 import junit.textui.TestRunner;
 
 import model.ModelFactory;
-import model.RelationNameRule;
+import model.RelationTypeRule;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Relation Name Rule</b></em>'.
+ * A test case for the model object '<em><b>Relation Type Rule</b></em>'.
  * <!-- end-user-doc -->
  * @generated
  */
-public class RelationNameRuleTest extends AbstractNameRuleTest {
+public class RelationTypeRuleTest extends AbstractNameRuleTest {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -21,28 +21,28 @@ public class RelationNameRuleTest extends AbstractNameRuleTest {
 	 * @generated
 	 */
 	public static void main(String[] args) {
-		TestRunner.run(RelationNameRuleTest.class);
+		TestRunner.run(RelationTypeRuleTest.class);
 	}
 
 	/**
-	 * Constructs a new Relation Name Rule test case with the given name.
+	 * Constructs a new Relation Type Rule test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RelationNameRuleTest(String name) {
+	public RelationTypeRuleTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Relation Name Rule test case.
+	 * Returns the fixture for this Relation Type Rule test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected RelationNameRule getFixture() {
-		return (RelationNameRule)fixture;
+	protected RelationTypeRule getFixture() {
+		return (RelationTypeRule)fixture;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class RelationNameRuleTest extends AbstractNameRuleTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(ModelFactory.eINSTANCE.createRelationNameRule());
+		setFixture(ModelFactory.eINSTANCE.createRelationTypeRule());
 	}
 
 	/**
@@ -67,4 +67,4 @@ public class RelationNameRuleTest extends AbstractNameRuleTest {
 		setFixture(null);
 	}
 
-} //RelationNameRuleTest
+} //RelationTypeRuleTest

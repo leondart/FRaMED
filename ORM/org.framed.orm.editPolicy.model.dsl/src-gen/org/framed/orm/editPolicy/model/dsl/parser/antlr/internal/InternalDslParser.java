@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'true'", "'RelationIsCyclic'", "'RelationTypesAreEqual'", "'RelationIsReflexiv'", "'RelationName'", "'TypeExists'", "'SourceType'", "'TargetType'", "'CommandName'", "'ShapeType'", "'ParentType'", "'StepIn'", "'false'", "'ShapeName'", "'=>'", "'||'", "'&&'", "'!'", "'('", "')'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'true'", "'RelationIsCyclic'", "'RelationTypesAreEqual'", "'RelationIsReflexiv'", "'RelationType'", "'TypeExists'", "'SourceType'", "'TargetType'", "'CommandName'", "'ShapeType'", "'ParentType'", "'StepIn'", "'false'", "'ShapeName'", "'=>'", "'||'", "'&&'", "'!'", "'('", "')'"
     };
     public static final int RULE_ID=4;
     public static final int T__29=29;
@@ -337,7 +337,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePolicyRule"
-    // InternalDsl.g:149:1: rulePolicyRule returns [EObject current=null] : (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationNameRule_13= ruleRelationNameRule ) ;
+    // InternalDsl.g:149:1: rulePolicyRule returns [EObject current=null] : (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationTypeRule_13= ruleRelationTypeRule ) ;
     public final EObject rulePolicyRule() throws RecognitionException {
         EObject current = null;
 
@@ -367,17 +367,17 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
         EObject this_ShapeNameRule_12 = null;
 
-        EObject this_RelationNameRule_13 = null;
+        EObject this_RelationTypeRule_13 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalDsl.g:155:2: ( (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationNameRule_13= ruleRelationNameRule ) )
-            // InternalDsl.g:156:2: (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationNameRule_13= ruleRelationNameRule )
+            // InternalDsl.g:155:2: ( (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationTypeRule_13= ruleRelationTypeRule ) )
+            // InternalDsl.g:156:2: (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationTypeRule_13= ruleRelationTypeRule )
             {
-            // InternalDsl.g:156:2: (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationNameRule_13= ruleRelationNameRule )
+            // InternalDsl.g:156:2: (this_TrueRule_0= ruleTrueRule | this_FalseRule_1= ruleFalseRule | this_CommandNameRule_2= ruleCommandNameRule | this_ShapeTypeRule_3= ruleShapeTypeRule | this_ParentTypeRule_4= ruleParentTypeRule | this_StepInRule_5= ruleStepInRule | this_SourceTypeRule_6= ruleSourceTypeRule | this_TargetTypeRule_7= ruleTargetTypeRule | this_RelationIsCyclicRule_8= ruleRelationIsCyclicRule | this_RelationIsReflexivRule_9= ruleRelationIsReflexivRule | this_RelationTypesAreEqualRule_10= ruleRelationTypesAreEqualRule | this_TypeExistsRule_11= ruleTypeExistsRule | this_ShapeNameRule_12= ruleShapeNameRule | this_RelationTypeRule_13= ruleRelationTypeRule )
             int alt3=14;
             switch ( input.LA(1) ) {
             case 12:
@@ -693,18 +693,18 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 14 :
-                    // InternalDsl.g:274:3: this_RelationNameRule_13= ruleRelationNameRule
+                    // InternalDsl.g:274:3: this_RelationTypeRule_13= ruleRelationTypeRule
                     {
 
-                    			newCompositeNode(grammarAccess.getPolicyRuleAccess().getRelationNameRuleParserRuleCall_13());
+                    			newCompositeNode(grammarAccess.getPolicyRuleAccess().getRelationTypeRuleParserRuleCall_13());
                     		
                     pushFollow(FOLLOW_2);
-                    this_RelationNameRule_13=ruleRelationNameRule();
+                    this_RelationTypeRule_13=ruleRelationTypeRule();
 
                     state._fsp--;
 
 
-                    			current = this_RelationNameRule_13;
+                    			current = this_RelationTypeRule_13;
                     			afterParserOrEnumRuleCall();
                     		
 
@@ -1945,25 +1945,25 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleEString"
 
 
-    // $ANTLR start "entryRuleRelationNameRule"
-    // InternalDsl.g:702:1: entryRuleRelationNameRule returns [EObject current=null] : iv_ruleRelationNameRule= ruleRelationNameRule EOF ;
-    public final EObject entryRuleRelationNameRule() throws RecognitionException {
+    // $ANTLR start "entryRuleRelationTypeRule"
+    // InternalDsl.g:702:1: entryRuleRelationTypeRule returns [EObject current=null] : iv_ruleRelationTypeRule= ruleRelationTypeRule EOF ;
+    public final EObject entryRuleRelationTypeRule() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRelationNameRule = null;
+        EObject iv_ruleRelationTypeRule = null;
 
 
         try {
-            // InternalDsl.g:702:57: (iv_ruleRelationNameRule= ruleRelationNameRule EOF )
-            // InternalDsl.g:703:2: iv_ruleRelationNameRule= ruleRelationNameRule EOF
+            // InternalDsl.g:702:57: (iv_ruleRelationTypeRule= ruleRelationTypeRule EOF )
+            // InternalDsl.g:703:2: iv_ruleRelationTypeRule= ruleRelationTypeRule EOF
             {
-             newCompositeNode(grammarAccess.getRelationNameRuleRule()); 
+             newCompositeNode(grammarAccess.getRelationTypeRuleRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleRelationNameRule=ruleRelationNameRule();
+            iv_ruleRelationTypeRule=ruleRelationTypeRule();
 
             state._fsp--;
 
-             current =iv_ruleRelationNameRule; 
+             current =iv_ruleRelationTypeRule; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1978,12 +1978,12 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleRelationNameRule"
+    // $ANTLR end "entryRuleRelationTypeRule"
 
 
-    // $ANTLR start "ruleRelationNameRule"
-    // InternalDsl.g:709:1: ruleRelationNameRule returns [EObject current=null] : ( () otherlv_1= 'RelationName' ( (lv_name_2_0= ruleEString ) ) ) ;
-    public final EObject ruleRelationNameRule() throws RecognitionException {
+    // $ANTLR start "ruleRelationTypeRule"
+    // InternalDsl.g:709:1: ruleRelationTypeRule returns [EObject current=null] : ( () otherlv_1= 'RelationType' ( (lv_name_2_0= ruleEString ) ) ) ;
+    public final EObject ruleRelationTypeRule() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -1994,18 +1994,18 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalDsl.g:715:2: ( ( () otherlv_1= 'RelationName' ( (lv_name_2_0= ruleEString ) ) ) )
-            // InternalDsl.g:716:2: ( () otherlv_1= 'RelationName' ( (lv_name_2_0= ruleEString ) ) )
+            // InternalDsl.g:715:2: ( ( () otherlv_1= 'RelationType' ( (lv_name_2_0= ruleEString ) ) ) )
+            // InternalDsl.g:716:2: ( () otherlv_1= 'RelationType' ( (lv_name_2_0= ruleEString ) ) )
             {
-            // InternalDsl.g:716:2: ( () otherlv_1= 'RelationName' ( (lv_name_2_0= ruleEString ) ) )
-            // InternalDsl.g:717:3: () otherlv_1= 'RelationName' ( (lv_name_2_0= ruleEString ) )
+            // InternalDsl.g:716:2: ( () otherlv_1= 'RelationType' ( (lv_name_2_0= ruleEString ) ) )
+            // InternalDsl.g:717:3: () otherlv_1= 'RelationType' ( (lv_name_2_0= ruleEString ) )
             {
             // InternalDsl.g:717:3: ()
             // InternalDsl.g:718:4: 
             {
 
             				current = forceCreateModelElement(
-            					grammarAccess.getRelationNameRuleAccess().getRelationNameRuleAction_0(),
+            					grammarAccess.getRelationTypeRuleAccess().getRelationTypeRuleAction_0(),
             					current);
             			
 
@@ -2013,7 +2013,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
             otherlv_1=(Token)match(input,16,FOLLOW_8); 
 
-            			newLeafNode(otherlv_1, grammarAccess.getRelationNameRuleAccess().getRelationNameKeyword_1());
+            			newLeafNode(otherlv_1, grammarAccess.getRelationTypeRuleAccess().getRelationTypeKeyword_1());
             		
             // InternalDsl.g:728:3: ( (lv_name_2_0= ruleEString ) )
             // InternalDsl.g:729:4: (lv_name_2_0= ruleEString )
@@ -2022,7 +2022,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
             // InternalDsl.g:730:5: lv_name_2_0= ruleEString
             {
 
-            					newCompositeNode(grammarAccess.getRelationNameRuleAccess().getNameEStringParserRuleCall_2_0());
+            					newCompositeNode(grammarAccess.getRelationTypeRuleAccess().getNameEStringParserRuleCall_2_0());
             				
             pushFollow(FOLLOW_2);
             lv_name_2_0=ruleEString();
@@ -2031,7 +2031,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
 
 
             					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getRelationNameRuleRule());
+            						current = createModelElementForParent(grammarAccess.getRelationTypeRuleRule());
             					}
             					set(
             						current,
@@ -2065,7 +2065,7 @@ public class InternalDslParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleRelationNameRule"
+    // $ANTLR end "ruleRelationTypeRule"
 
 
     // $ANTLR start "entryRuleTypeExistsRule"

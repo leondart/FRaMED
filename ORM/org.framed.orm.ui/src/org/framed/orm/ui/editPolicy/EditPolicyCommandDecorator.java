@@ -3,9 +3,21 @@ package org.framed.orm.ui.editPolicy;
 import org.eclipse.gef.commands.Command;
 import org.framed.orm.ui.command.shapes.ORMShapeDeleteCommand;
 
+/**
+ * This class is a wrapper for editor commands to hook into canExecute-method.
+ * on canExecute() the editPolicyhandler is called.
+ * editPolicyHandler needs to be set on command creation!
+ *
+ * @author Christian Deussen
+ *
+ */
 public class EditPolicyCommandDecorator<T extends Command> extends Command {
 
 	private T myCommand;
+
+	/**
+	 * editPolicyHandler which provides canExecute implementation
+	 */
 	private EditPolicyHandler editPolicyHandler;
 
 	public void setEditPolicyHandler(EditPolicyHandler ep) {
@@ -22,14 +34,20 @@ public class EditPolicyCommandDecorator<T extends Command> extends Command {
 	}
 
 	/**
-	 * @return <code>true</code> if the command can be executed
+	 * @return <code>true</code> when the command is allowed to be executed
 	 */
 	@Override
 	public boolean canExecute() {
+		/**
+		 * somehow ORMShapeDeleteCommand is triggered by the framework quite frequently.
+		 * so we do not check this command
+		 */
 		if(this.myCommand instanceof ORMShapeDeleteCommand)
 			return true;
+
 		if(this.editPolicyHandler == null) {
-			System.out.println("EditPolicyHandler for " + this.myCommand.getClass().toString() + " not set");
+			System.out.println("EditPolicyHandler for " + this.myCommand.getClass().toString() +
+					" not set. Set on editPolicyHandler on Command creation");
 			return this.myCommand.canExecute();
 		}
 		return this.myCommand.canExecute() && this.editPolicyHandler.canExecute(myCommand);
@@ -45,7 +63,10 @@ public class EditPolicyCommandDecorator<T extends Command> extends Command {
 		return this.myCommand.canUndo();
 	}
 
-	//dont override chaincommand
+	/**
+	 *
+	 * dont override chain-command. => wont work
+	 */
 
 	/**
 	 * This is called to indicate that the <code>Command</code> will not be used

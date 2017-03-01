@@ -349,25 +349,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleRelationNameRule
-entryRuleRelationNameRule
+// Entry rule entryRuleRelationTypeRule
+entryRuleRelationTypeRule
 :
-{ before(grammarAccess.getRelationNameRuleRule()); }
-	 ruleRelationNameRule
-{ after(grammarAccess.getRelationNameRuleRule()); } 
+{ before(grammarAccess.getRelationTypeRuleRule()); }
+	 ruleRelationTypeRule
+{ after(grammarAccess.getRelationTypeRuleRule()); } 
 	 EOF 
 ;
 
-// Rule RelationNameRule
-ruleRelationNameRule 
+// Rule RelationTypeRule
+ruleRelationTypeRule 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getRelationNameRuleAccess().getGroup()); }
-		(rule__RelationNameRule__Group__0)
-		{ after(grammarAccess.getRelationNameRuleAccess().getGroup()); }
+		{ before(grammarAccess.getRelationTypeRuleAccess().getGroup()); }
+		(rule__RelationTypeRule__Group__0)
+		{ after(grammarAccess.getRelationTypeRuleAccess().getGroup()); }
 	)
 ;
 finally {
@@ -1008,9 +1008,9 @@ rule__PolicyRule__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getPolicyRuleAccess().getRelationNameRuleParserRuleCall_13()); }
-		ruleRelationNameRule
-		{ after(grammarAccess.getPolicyRuleAccess().getRelationNameRuleParserRuleCall_13()); }
+		{ before(grammarAccess.getPolicyRuleAccess().getRelationTypeRuleParserRuleCall_13()); }
+		ruleRelationTypeRule
+		{ after(grammarAccess.getPolicyRuleAccess().getRelationTypeRuleParserRuleCall_13()); }
 	)
 ;
 finally {
@@ -1791,80 +1791,80 @@ finally {
 }
 
 
-rule__RelationNameRule__Group__0
+rule__RelationTypeRule__Group__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RelationNameRule__Group__0__Impl
-	rule__RelationNameRule__Group__1
+	rule__RelationTypeRule__Group__0__Impl
+	rule__RelationTypeRule__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationNameRule__Group__0__Impl
+rule__RelationTypeRule__Group__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRelationNameRuleAccess().getRelationNameRuleAction_0()); }
+	{ before(grammarAccess.getRelationTypeRuleAccess().getRelationTypeRuleAction_0()); }
 	()
-	{ after(grammarAccess.getRelationNameRuleAccess().getRelationNameRuleAction_0()); }
+	{ after(grammarAccess.getRelationTypeRuleAccess().getRelationTypeRuleAction_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationNameRule__Group__1
+rule__RelationTypeRule__Group__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RelationNameRule__Group__1__Impl
-	rule__RelationNameRule__Group__2
+	rule__RelationTypeRule__Group__1__Impl
+	rule__RelationTypeRule__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationNameRule__Group__1__Impl
+rule__RelationTypeRule__Group__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRelationNameRuleAccess().getRelationNameKeyword_1()); }
-	'RelationName'
-	{ after(grammarAccess.getRelationNameRuleAccess().getRelationNameKeyword_1()); }
+	{ before(grammarAccess.getRelationTypeRuleAccess().getRelationTypeKeyword_1()); }
+	'RelationType'
+	{ after(grammarAccess.getRelationTypeRuleAccess().getRelationTypeKeyword_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationNameRule__Group__2
+rule__RelationTypeRule__Group__2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RelationNameRule__Group__2__Impl
+	rule__RelationTypeRule__Group__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationNameRule__Group__2__Impl
+rule__RelationTypeRule__Group__2__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRelationNameRuleAccess().getNameAssignment_2()); }
-	(rule__RelationNameRule__NameAssignment_2)
-	{ after(grammarAccess.getRelationNameRuleAccess().getNameAssignment_2()); }
+	{ before(grammarAccess.getRelationTypeRuleAccess().getNameAssignment_2()); }
+	(rule__RelationTypeRule__NameAssignment_2)
+	{ after(grammarAccess.getRelationTypeRuleAccess().getNameAssignment_2()); }
 )
 ;
 finally {
@@ -3889,15 +3889,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationNameRule__NameAssignment_2
+rule__RelationTypeRule__NameAssignment_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRelationNameRuleAccess().getNameEStringParserRuleCall_2_0()); }
+		{ before(grammarAccess.getRelationTypeRuleAccess().getNameEStringParserRuleCall_2_0()); }
 		ruleEString
-		{ after(grammarAccess.getRelationNameRuleAccess().getNameEStringParserRuleCall_2_0()); }
+		{ after(grammarAccess.getRelationTypeRuleAccess().getNameEStringParserRuleCall_2_0()); }
 	)
 ;
 finally {

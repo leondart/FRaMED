@@ -81,6 +81,7 @@ public abstract class ORMAbstractXYLayoutPolicy extends XYLayoutEditPolicy {
         addCommand.setLabel("Adding");
         addCommand.setDebugLabel("Adding");
 
+        //wrap command to automatically check editPolicies on canExecute of command
         EditPolicyCommandDecorator<ORMAddCommand> cmd = new EditPolicyCommandDecorator<>(addCommand);
 
         result.add(cmd);

@@ -1407,9 +1407,9 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_XCjekOjREeaW1rJczE9dhw" name="RelationNameRule" tooltipText="" outgoingEdges="_ObiuoO11Eea1CsUOzsmDkw" width="12" height="10">
-        <target xmi:type="ecore:EClass" href="model.ecore#//RelationNameRule"/>
-        <semanticElements xmi:type="ecore:EClass" href="model.ecore#//RelationNameRule"/>
+      <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_XCjekOjREeaW1rJczE9dhw" name="RelationTypeRule" tooltipText="" outgoingEdges="_ObiuoO11Eea1CsUOzsmDkw" width="12" height="10">
+        <target xmi:type="ecore:EClass" href="model.ecore#//RelationTypeRule"/>
+        <semanticElements xmi:type="ecore:EClass" href="model.ecore#//RelationTypeRule"/>
         <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
         <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
         <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -1855,8 +1855,8 @@
         <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
       </ownedDiagramElements>
       <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_ObiuoO11Eea1CsUOzsmDkw" sourceNode="_XCjekOjREeaW1rJczE9dhw" targetNode="_GIyOQO11Eea1CsUOzsmDkw">
-        <target xmi:type="ecore:EClass" href="model.ecore#//RelationNameRule"/>
-        <semanticElements xmi:type="ecore:EGenericType" href="model.ecore#//RelationNameRule/@eGenericSuperTypes.0"/>
+        <target xmi:type="ecore:EClass" href="model.ecore#//RelationTypeRule"/>
+        <semanticElements xmi:type="ecore:EGenericType" href="model.ecore#//RelationTypeRule/@eGenericSuperTypes.0"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_Obj8wO11Eea1CsUOzsmDkw" targetArrow="InputClosedArrow" routingStyle="tree">
           <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
           <strokeColor xmi:type="viewpoint:RGBValues" xmi:id="_Obj8we11Eea1CsUOzsmDkw" red="136" green="136" blue="136"/>

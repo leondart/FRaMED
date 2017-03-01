@@ -85,13 +85,13 @@ public interface ModelFactory extends EFactory {
 	AndRule createAndRule();
 
 	/**
-	 * Returns a new object of class '<em>Relation Name Rule</em>'.
+	 * Returns a new object of class '<em>Relation Type Rule</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Relation Name Rule</em>'.
+	 * @return a new object of class '<em>Relation Type Rule</em>'.
 	 * @generated
 	 */
-	RelationNameRule createRelationNameRule();
+	RelationTypeRule createRelationTypeRule();
 
 	/**
 	 * Returns a new object of class '<em>Not Mapping Rule</em>'.

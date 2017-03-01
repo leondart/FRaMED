@@ -272,11 +272,11 @@ rulePolicyRule returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPolicyRuleAccess().getRelationNameRuleParserRuleCall_13());
+			newCompositeNode(grammarAccess.getPolicyRuleAccess().getRelationTypeRuleParserRuleCall_13());
 		}
-		this_RelationNameRule_13=ruleRelationNameRule
+		this_RelationTypeRule_13=ruleRelationTypeRule
 		{
-			$current = $this_RelationNameRule_13.current;
+			$current = $this_RelationTypeRule_13.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -698,15 +698,15 @@ ruleEString returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 	)
 ;
 
-// Entry rule entryRuleRelationNameRule
-entryRuleRelationNameRule returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRelationNameRuleRule()); }
-	iv_ruleRelationNameRule=ruleRelationNameRule
-	{ $current=$iv_ruleRelationNameRule.current; }
+// Entry rule entryRuleRelationTypeRule
+entryRuleRelationTypeRule returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelationTypeRuleRule()); }
+	iv_ruleRelationTypeRule=ruleRelationTypeRule
+	{ $current=$iv_ruleRelationTypeRule.current; }
 	EOF;
 
-// Rule RelationNameRule
-ruleRelationNameRule returns [EObject current=null]
+// Rule RelationTypeRule
+ruleRelationTypeRule returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -717,23 +717,23 @@ ruleRelationNameRule returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getRelationNameRuleAccess().getRelationNameRuleAction_0(),
+					grammarAccess.getRelationTypeRuleAccess().getRelationTypeRuleAction_0(),
 					$current);
 			}
 		)
-		otherlv_1='RelationName'
+		otherlv_1='RelationType'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getRelationNameRuleAccess().getRelationNameKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getRelationTypeRuleAccess().getRelationTypeKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRelationNameRuleAccess().getNameEStringParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getRelationTypeRuleAccess().getNameEStringParserRuleCall_2_0());
 				}
 				lv_name_2_0=ruleEString
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRelationNameRuleRule());
+						$current = createModelElementForParent(grammarAccess.getRelationTypeRuleRule());
 					}
 					set(
 						$current,

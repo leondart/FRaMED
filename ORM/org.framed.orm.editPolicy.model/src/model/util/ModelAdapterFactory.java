@@ -104,8 +104,8 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createAndRuleAdapter();
 			}
 			@Override
-			public Adapter caseRelationNameRule(RelationNameRule object) {
-				return createRelationNameRuleAdapter();
+			public Adapter caseRelationTypeRule(RelationTypeRule object) {
+				return createRelationTypeRuleAdapter();
 			}
 			@Override
 			public Adapter caseNotMappingRule(NotMappingRule object) {
@@ -338,16 +338,16 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link model.RelationNameRule <em>Relation Name Rule</em>}'.
+	 * Creates a new adapter for an object of class '{@link model.RelationTypeRule <em>Relation Type Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see model.RelationNameRule
+	 * @see model.RelationTypeRule
 	 * @generated
 	 */
-	public Adapter createRelationNameRuleAdapter() {
+	public Adapter createRelationTypeRuleAdapter() {
 		return null;
 	}
 

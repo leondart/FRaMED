@@ -153,6 +153,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
 
       for (Relation relation : dialog.getChosenCreateConstraints()) {
         if (!constraints.contains(relation)) {
+        	//wrap command to automatically check editPolicies on canExecute of command
         	EditPolicyCommandDecorator<ORMRelationshipConstraintCreateCommand> command =
               new EditPolicyCommandDecorator<>(new ORMRelationshipConstraintCreateCommand());
           command.setEditPolicyHandler(editor.getEditPolicyHandler());
@@ -177,6 +178,7 @@ public class RelationshipConstraintsAction extends SelectionAction {
               new ORMRelationshipConstraintDeleteCommand();
           command.setRelation(relation);
           command.setEPViewer(editPart.getViewer());
+          //wrap command to automatically check editPolicies on canExecute of command
           EditPolicyCommandDecorator<ORMRelationshipConstraintDeleteCommand> cmd = new EditPolicyCommandDecorator<>(command);
 
           compoundCommand.add(cmd);

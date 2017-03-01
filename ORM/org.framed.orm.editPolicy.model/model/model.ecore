@@ -36,7 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" lowerBound="2" upperBound="-1"
         eType="#//AbstractRule" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RelationNameRule" eSuperTypes="#//AbstractNameRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationTypeRule" eSuperTypes="#//AbstractNameRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="NotMappingRule" eSuperTypes="#//AbstractMappingRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" lowerBound="1" eType="#//AbstractMappingRule"
         containment="true"/>

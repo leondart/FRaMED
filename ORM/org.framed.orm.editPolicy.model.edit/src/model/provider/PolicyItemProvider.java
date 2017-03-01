@@ -187,7 +187,7 @@ public class PolicyItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(ModelPackage.Literals.POLICY__RULE,
-				 ModelFactory.eINSTANCE.createRelationNameRule()));
+				 ModelFactory.eINSTANCE.createRelationTypeRule()));
 
 		newChildDescriptors.add
 			(createChildParameter

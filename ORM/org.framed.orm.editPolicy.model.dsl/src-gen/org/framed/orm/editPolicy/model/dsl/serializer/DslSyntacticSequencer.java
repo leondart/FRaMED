@@ -98,7 +98,7 @@ public class DslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'ParentType' name=EString
 	 *     (rule start) (ambiguity) 'RelationIsCyclic' (rule start)
 	 *     (rule start) (ambiguity) 'RelationIsReflexiv' (rule start)
-	 *     (rule start) (ambiguity) 'RelationName' name=EString
+	 *     (rule start) (ambiguity) 'RelationType' name=EString
 	 *     (rule start) (ambiguity) 'RelationTypesAreEqual' (rule start)
 	 *     (rule start) (ambiguity) 'ShapeName' name=EString
 	 *     (rule start) (ambiguity) 'ShapeType' name=EString

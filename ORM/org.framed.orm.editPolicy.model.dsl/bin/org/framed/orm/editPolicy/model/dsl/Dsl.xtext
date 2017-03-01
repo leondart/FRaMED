@@ -12,7 +12,7 @@ Model returns Model:
 PolicyRule returns AbstractRule:
 	TrueRule | FalseRule | CommandNameRule | ShapeTypeRule | ParentTypeRule | StepInRule | SourceTypeRule | TargetTypeRule |
 	RelationIsCyclicRule | RelationIsReflexivRule | RelationTypesAreEqualRule | TypeExistsRule | ShapeNameRule 
-	| RelationNameRule;
+	| RelationTypeRule;
 	
 AbstractRule returns AbstractRule:
 	PolicyRule;
@@ -54,9 +54,9 @@ RelationIsReflexivRule returns RelationIsReflexivRule:
 EString returns ecore::EString:
 	STRING | ID;
 
-RelationNameRule returns RelationNameRule:
-	{RelationNameRule}
-	'RelationName'
+RelationTypeRule returns RelationTypeRule:
+	{RelationTypeRule}
+	'RelationType'
 	name=EString;
 	
 TypeExistsRule returns TypeExistsRule:
