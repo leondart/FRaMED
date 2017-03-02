@@ -506,7 +506,7 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
    * @throws ScriptException
    */
   private void initializePaletteVisibilityMappings() throws ScriptException {
-	  /*
+/*
 	  //For testing:
 	  for(PaletteEntry p: PaletteEntry.values()) {
 		    stepOUTPaletteVisibility.put(p, new FeatureExpression(true));
@@ -565,5 +565,6 @@ public class ORMMultiPageEditor extends MultiPageEditorPart implements ISelectio
             + FeatureName.CONTAINS_COMPARTMENTS + ")"));
     stepINPaletteVisibility.put(PaletteEntry.ROLE_MODEL, new FeatureExpression(
     		"!" + FeatureName.COMPARTMENT_TYPES));
+
   }
 }
