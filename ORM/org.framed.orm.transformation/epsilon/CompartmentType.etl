@@ -65,7 +65,8 @@ rule CompartmentType
 				n.getRelationships().add(e);
 			} else if ( e.instanceOf(target!RoleInheritance)) {
 				t.~parent.relations.add(e);
-			}			
+			}
+			//TODO: add support for compartment types and fulfillments					
 		}
 	}
 	
