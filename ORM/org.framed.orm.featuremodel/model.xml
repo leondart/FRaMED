@@ -100,10 +100,10 @@
 				</imp>
 			</rule>
 			<rule>
-				<imp>
+				<eq>
 					<var>Contains_Compartments</var>
 					<var>Roles</var>
-				</imp>
+				</eq>
 			</rule>
 		</constraints>
 		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
