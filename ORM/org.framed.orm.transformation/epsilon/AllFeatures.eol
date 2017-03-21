@@ -27,6 +27,7 @@ operation getAllFeatures() : Set {
 	set.add("Intra_Relationship_Constraints");
 	set.add("Parthood_Constraints");
 	set.add("Inter_Relationship_Constraints");
+	set.add("Contains_Compartments");
 	set.add("Compartment_Types");
 	set.add("Compartment_Structure");
 	set.add("Compartment_Properties");

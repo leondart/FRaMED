@@ -47,8 +47,9 @@ rule CompartmentType
 				}				
 				// add the new part to the compartment
 				n.getParts().add(part);
-			}else if (e.instanceOf(target!CompartmentType)) {	//COMPARTMENT_TYPE
+			} else if (e.instanceOf(target!CompartmentType)) {	//COMPARTMENT_TYPE
 				n.getContains.add(e);
+				if(not(t.~features.get("Contains_Compartments"))) n.getContains.remove(e);
 			} else if (e.instanceOf(target!RelationshipImplication) or e.instanceOf(target!RelationshipExclusion)) { // INTER_RELATIONSHIP_CONSTRAINT
 				for (rst : source!Relation in children.elements){
 					if (rst.getType.getValue == 7){ // RELATIONSHIP
