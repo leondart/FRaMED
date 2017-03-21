@@ -47,7 +47,8 @@ rule CompartmentType
 				}				
 				// add the new part to the compartment
 				n.getParts().add(part);
-				
+			}else if (e.instanceOf(target!CompartmentType)) {	//COMPARTMENT_TYPE
+				n.getContains.add(e);
 			} else if (e.instanceOf(target!RelationshipImplication) or e.instanceOf(target!RelationshipExclusion)) { // INTER_RELATIONSHIP_CONSTRAINT
 				for (rst : source!Relation in children.elements){
 					if (rst.getType.getValue == 7){ // RELATIONSHIP
@@ -65,8 +66,7 @@ rule CompartmentType
 				n.getRelationships().add(e);
 			} else if ( e.instanceOf(target!RoleInheritance)) {
 				t.~parent.relations.add(e);
-			}
-			//TODO: add support for compartment types and fulfillments					
+			} 		
 		}
 	}
 	

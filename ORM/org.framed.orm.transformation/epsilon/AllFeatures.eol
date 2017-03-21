@@ -11,6 +11,7 @@ operation getAllFeatures() : Set {
 	set.add("Naturals");
 	set.add("Compartments");
 	set.add("Dates");
+	set.add("Roles");
 	set.add("Dependent");
 	set.add("On_Compartments");
 	set.add("On_Relationships");
