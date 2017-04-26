@@ -55,6 +55,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	 */
 	private void loadPolicyRules()
 	{
+
 		/*
 		  System.out.println("-------------------------------");
 		  for (FRaMEDFeature feature : this.configuration.getFeatures()) {
@@ -102,7 +103,8 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	{
 		//String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
 		//String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
-		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
+		//String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/featureRules.xmi");
+		String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/allRules.xmi");
 
 		try {
 			ResourceSet set = new ResourceSetImpl();

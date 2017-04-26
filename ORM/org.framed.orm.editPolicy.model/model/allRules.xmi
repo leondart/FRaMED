@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="platform:/resource/org.framed.orm.editPolicy.model/">
+  <configuration>
+    <mappings policy="//@policies.8">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Playable_by_Defining_Compartment"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.9">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Contains_Compartments"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.10">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartment_Properties"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.11">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartment_Behavior"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.12">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Role_Properties"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.13">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Role_Behavior"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.14">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Relationships"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.15">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Naturals"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.16">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Roles"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.17">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartments"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.18">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Dates"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.19">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Inter_Relationship_Constraints"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.20">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Role_Inheritance"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.21">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Data_Type_Inheritance"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.22">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartment_Inheritance"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.0">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.1">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.2">
+      <rule xsi:type="model:FeatureNameMappingRule" name="disable"/>
+    </mappings>
+    <mappings policy="//@policies.3">
+      <rule xsi:type="model:NotMappingRule">
+        <rule xsi:type="model:FeatureNameMappingRule" name="Compartments"/>
+      </rule>
+    </mappings>
+    <mappings policy="//@policies.4">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.5">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.6">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+    <mappings policy="//@policies.7">
+      <rule xsi:type="model:TrueMappingRule"/>
+    </mappings>
+  </configuration>
+  <policies name="r1">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
+        <rules xsi:type="model:OrRule">
+          <rules xsi:type="model:TargetTypeRule" name="Group"/>
+          <rules xsi:type="model:SourceTypeRule" name="Group"/>
+        </rules>
+      </antecedent>
+      <consequent xsi:type="model:TrueRule"/>
+    </rule>
+  </policies>
+  <policies name="r2">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+      </antecedent>
+      <consequent xsi:type="model:TargetTypeRule" name="CompartmentType"/>
+    </rule>
+  </policies>
+  <policies name="r3">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+        <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
+      </antecedent>
+      <consequent xsi:type="model:StepInRule"/>
+    </rule>
+  </policies>
+  <policies name="r4">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+          <rules xsi:type="model:ShapeTypeRule" name="RoleType"/>
+        </rules>
+        <rules xsi:type="model:TypeExistsRule" name="RoleType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="r5">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+      </antecedent>
+      <consequent xsi:type="model:NotRule">
+        <rule xsi:type="model:RelationIsCyclicRule"/>
+      </consequent>
+    </rule>
+  </policies>
+  <policies name="r6">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+      </antecedent>
+      <consequent xsi:type="model:NotRule">
+        <rule xsi:type="model:RelationIsReflexivRule"/>
+      </consequent>
+    </rule>
+  </policies>
+  <policies name="r7">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+      </antecedent>
+      <consequent xsi:type="model:RelationTypesAreEqualRule"/>
+    </rule>
+  </policies>
+  <policies name="r8">
+    <rule xsi:type="model:ImplicationRule">
+      <antecedent xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationTypeRule" name="Relationship"/>
+      </antecedent>
+      <consequent xsi:type="model:AndRule">
+        <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
+        <rules xsi:type="model:TargetTypeRule" name="RoleType"/>
+      </consequent>
+    </rule>
+  </policies>
+  <policies name="p1">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+        </rules>
+        <rules xsi:type="model:TargetTypeRule" name="CompartmentType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p2">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMShapeCreate"/>
+          <rules xsi:type="model:ShapeTypeRule" name="CompartmentType"/>
+        </rules>
+        <rules xsi:type="model:StepInRule"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p3_props">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMAttributeOperationCreate"/>
+        <rules xsi:type="model:ParentTypeRule" name="CompartmentType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p3_behavior">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMAttributeOperationCreate"/>
+        <rules xsi:type="model:ParentTypeRule" name="CompartmentType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p4_props">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMAttributeOperationCreate"/>
+        <rules xsi:type="model:ParentTypeRule" name="RoleType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p4_behavior">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMAttributeOperationCreate"/>
+        <rules xsi:type="model:ParentTypeRule" name="RoleType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p5">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:RelationTypeRule" name="Relationship"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_n">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
+        <rules xsi:type="model:SourceTypeRule" name="NaturalType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_r">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
+        </rules>
+        <rules xsi:type="model:StepInRule"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_c">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
+        <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p6_d">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+          <rules xsi:type="model:RelationTypeRule" name="Fulfillment"/>
+        </rules>
+        <rules xsi:type="model:SourceTypeRule" name="DataType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p7">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+        <rules xsi:type="model:OrRule">
+          <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+          <rules xsi:type="model:RelationTypeRule" name="Exclusion"/>
+        </rules>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p8_ROLE">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:AndRule">
+              <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+              <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+            </rules>
+            <rules xsi:type="model:SourceTypeRule" name="RoleType"/>
+          </rules>
+          <rules xsi:type="model:TargetTypeRule" name="RoleType"/>
+        </rules>
+        <rules xsi:type="model:StepInRule"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p8_DATA">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="DataType"/>
+        </rules>
+        <rules xsi:type="model:TargetTypeRule" name="DataType"/>
+      </rule>
+    </rule>
+  </policies>
+  <policies name="p8_COMPARTMENT">
+    <rule xsi:type="model:NotRule">
+      <rule xsi:type="model:AndRule">
+        <rules xsi:type="model:AndRule">
+          <rules xsi:type="model:AndRule">
+            <rules xsi:type="model:CommandNameRule" name="ORMRelationCreate"/>
+            <rules xsi:type="model:RelationTypeRule" name="Inheritance"/>
+          </rules>
+          <rules xsi:type="model:SourceTypeRule" name="CompartmentType"/>
+        </rules>
+        <rules xsi:type="model:TargetTypeRule" name="CompartmentType"/>
+      </rule>
+    </rule>
+  </policies>
+</model:Model>

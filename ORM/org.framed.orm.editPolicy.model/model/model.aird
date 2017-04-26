@@ -7,6 +7,7 @@
   <models xmi:type="model:Model" href="featureRules.xmi#/"/>
   <models xmi:type="model:Model" href="noRules.xmi#/"/>
   <models xmi:type="model:Model" href="basicRules.xmi#/"/>
+  <models xmi:type="model:Model" href="allRules.xmi#/"/>
   <ownedViews xmi:type="viewpoint:DRepresentationContainer" xmi:id="_QhkvwOjPEeaW1rJczE9dhw" initialized="true">
     <ownedRepresentations xmi:type="diagram:DSemanticDiagram" xmi:id="_QkMl8OjPEeaW1rJczE9dhw" name="model class diagram">
       <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_QkNNAOjPEeaW1rJczE9dhw" source="GMF_DIAGRAMS">

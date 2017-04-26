@@ -95,8 +95,7 @@ public class EditPolicyRuleVisitor {
 		if (rule instanceof model.FalseRule)
 			return false;
 
-		System.out.println("NodeVisitor for " + rule.getClass().toString()
-				+ " not implemented");
+		System.out.println("NodeVisitor for " + rule.getClass().toString() + " not implemented");
 		return false;
 	}
 
@@ -144,7 +143,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean implicationRuleVisitor(model.ImplicationRule rule) {
+	private boolean implicationRuleVisitor(model.ImplicationRule rule)
+	{
 		if (abstractRuleVisitor(rule.getAntecedent())) {
 			return abstractRuleVisitor(rule.getConsequent());
 		}
@@ -157,9 +157,9 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean commandNameRuleVisitor(model.CommandNameRule rule) {
-		System.out.println("testing: " + rule.getName() + " === "
-				+ cmd.getLabel());
+	private boolean commandNameRuleVisitor(model.CommandNameRule rule)
+	{
+		//System.out.println("testing: " + rule.getName() + " === " + cmd.getLabel());
 
 		if (rule.getName().equals(cmd.getLabel())) {
 			return true;
@@ -176,7 +176,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean relationTypeRuleVisitor(model.RelationTypeRule rule) {
+	private boolean relationTypeRuleVisitor(model.RelationTypeRule rule)
+	{
 		Relation relation;
 		Method method;
 
@@ -187,8 +188,7 @@ public class EditPolicyRuleVisitor {
 			return false;
 		}
 
-		// System.out.println("string: " + relation.getType().getLiteral() +
-		// " name is " + rule.getName());
+		// System.out.println("string: " + relation.getType().getLiteral() + " name is " + rule.getName());
 
 		if (rule.getName().equals(relation.getType().getLiteral())) {
 			return true;
@@ -204,7 +204,8 @@ public class EditPolicyRuleVisitor {
 	 * @param source
 	 * @return
 	 */
-	private final boolean isAcyclic(ModelElement target, ModelElement source) {
+	private final boolean isAcyclic(ModelElement target, ModelElement source)
+	{
 		if (source.equals(target))
 			return false;
 
@@ -224,7 +225,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean relationIsCyclicRuleVisitor(model.RelationIsCyclicRule rule) {
+	private boolean relationIsCyclicRuleVisitor(model.RelationIsCyclicRule rule)
+	{
 		Method method;
 		ModelElement target;
 		ModelElement source;
@@ -248,7 +250,8 @@ public class EditPolicyRuleVisitor {
 	 * @return
 	 */
 	private boolean relationTypesAreEqualRuleVisitor(
-			model.RelationTypesAreEqualRule rule) {
+			model.RelationTypesAreEqualRule rule)
+	{
 		Method method;
 		ModelElement target;
 		ModelElement source;
@@ -275,7 +278,8 @@ public class EditPolicyRuleVisitor {
 	 * @return
 	 */
 	private boolean relationIsReflexivRuleVisitor(
-			model.RelationIsReflexivRule rule) {
+			model.RelationIsReflexivRule rule)
+	{
 		Method method;
 		ModelElement target;
 		ModelElement source;
@@ -302,7 +306,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean shapeTypeRuleVisitor(model.ShapeTypeRule rule) {
+	private boolean shapeTypeRuleVisitor(model.ShapeTypeRule rule)
+	{
 		String str;
 		Method method;
 
@@ -319,8 +324,7 @@ public class EditPolicyRuleVisitor {
 			}
 		}
 
-		System.out.println("ShapeTypeRule: String is: " + str + "name is "
-				+ rule.getName());
+		//System.out.println("ShapeTypeRule: String is: " + str + "name is " + rule.getName());
 
 		if (rule.getName().equals(str)) {
 			return true;
@@ -335,7 +339,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean parentTypeRuleVisitor(model.ParentTypeRule rule) {
+	private boolean parentTypeRuleVisitor(model.ParentTypeRule rule)
+	{
 		Shape shape;
 		Method method;
 
@@ -350,8 +355,7 @@ public class EditPolicyRuleVisitor {
 			return false;
 
 		String type = shape.getType().getLiteral();
-		System.out.println("parentTypeRUle: Type is: " + type
-				+ " rulename is: " + rule.getName());
+		//System.out.println("parentTypeRUle: Type is: " + type + " rulename is: " + rule.getName());
 
 		if (rule.getName().equals(type)) {
 			return true;
@@ -366,7 +370,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean typeExistsRule(model.TypeExistsRule rule) {
+	private boolean typeExistsRule(model.TypeExistsRule rule)
+	{
 		Model model;
 		Method method;
 
@@ -395,7 +400,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean targetTypeRuleVisitor(model.TargetTypeRule rule) {
+	private boolean targetTypeRuleVisitor(model.TargetTypeRule rule)
+	{
 		ModelElement element;
 		Method method;
 
@@ -410,8 +416,7 @@ public class EditPolicyRuleVisitor {
 			return false;
 
 		String type = element.getType().getLiteral();
-		System.out.println("targetTypeRUle :Type is: " + type
-				+ " rulename is: " + rule.getName());
+		//System.out.println("targetTypeRUle :Type is: " + type + " rulename is: " + rule.getName());
 
 		if (rule.getName().equals(type)) {
 			return true;
@@ -427,7 +432,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean sourceTypeRuleVisitor(model.SourceTypeRule rule) {
+	private boolean sourceTypeRuleVisitor(model.SourceTypeRule rule)
+	{
 		ModelElement element;
 		Method method;
 
@@ -442,8 +448,7 @@ public class EditPolicyRuleVisitor {
 			return false;
 
 		String type = element.getType().getLiteral();
-		System.out.println("sourceTypeRUle :Type is: " + type
-				+ " rulename is: " + rule.getName());
+		//System.out.println("sourceTypeRUle :Type is: " + type + " rulename is: " + rule.getName());
 
 		if (rule.getName().equals(type)) {
 			return true;
@@ -456,7 +461,8 @@ public class EditPolicyRuleVisitor {
 	 * @param rule
 	 * @return
 	 */
-	private boolean stepInRule(model.StepInRule rule) {
+	private boolean stepInRule(model.StepInRule rule)
+	{
 		return this.isStepOut;
 	}
 }
