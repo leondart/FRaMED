@@ -27,7 +27,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors;bundle-version="3.8.200",
  org.eclipse.jface.text;bundle-version="3.9.2",
  org.framed.orm.model.editor;bundle-version="2.0.3",
- org.framed.orm.editPolicy.model
+ org.framed.orm.editPolicy.model;bundle-version="2.0.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.framed.orm.ui.command,
@@ -39,4 +39,3 @@ Export-Package: org.framed.orm.ui.command,
  org.framed.orm.ui.factory,
  org.framed.orm.ui.figure,
  org.framed.orm.ui.figure.shapes
-Import-Package: model

@@ -14,6 +14,9 @@ import org.framed.orm.ui.editor.ORMGraphicalEditor;
 import org.framed.orm.ui.editor.ORMGraphicalEditor.EditorType;
 import org.framed.orm.ui.editor.ORMGraphicalEditorObserver;
 
+import model.*;
+
+
 
 /**
  * This class provides canExecute(Command cmd) which checks whether a given command may execute according to editPolicies
@@ -35,12 +38,11 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	/**
 	 * xmi model
 	 */
-	private model.Model model;
-
+	private Model model;
 	/**
 	 * list of Policy-Rules which need to be evaluated
 	 */
-	private Set<model.Policy> policies;
+	private Set<Policy> policies;
 
 	public EditPolicyHandler(FRaMEDConfiguration configuration)
 	{
@@ -67,7 +69,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 		policies = new HashSet<>();
 
 		EditPolicyConfigurationVisitor editPolicyConfigurationVisitor = new EditPolicyConfigurationVisitor(configuration);
-		for (model.Mapping mapping : (model.Mapping[]) model.getConfiguration()
+		for (Mapping mapping : (Mapping[]) model.getConfiguration()
 				.getMappings().toArray()) {
 			if (editPolicyConfigurationVisitor.abstractMappingRuleVisitor(mapping.getRule()))
 				policies.add(mapping.getPolicy());
@@ -86,7 +88,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	{
 		EditPolicyRuleVisitor editPolicyRuleVisitor = new EditPolicyRuleVisitor(cmd, this.isStepOut);
 
-		for (model.Policy policy : policies) {
+		for (Policy policy : policies) {
 			if (!editPolicyRuleVisitor.abstractRuleVisitor(policy.getRule())) {
 				System.out.println("Not Allowed because of: " + policy.getName());
 				return false;
@@ -99,7 +101,7 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 	/*
 	 * Load editPolicy ecore Model from file.
 	 */
-	private model.Model loadModel()
+	private Model loadModel()
 	{
 		//String("platform:/plugin/org.framed.orm.editPolicy.model/model/noRules.xmi");
 		//String filename = new String("platform:/plugin/org.framed.orm.editPolicy.model/model/basicRules.xmi");
@@ -112,10 +114,10 @@ public class EditPolicyHandler implements ORMGraphicalEditorObserver {
 			res.load(Collections.EMPTY_MAP);
 			// if there are file contents in this directory
 			if (res.getContents().size() > 0
-					&& res.getContents().get(0) instanceof model.Model) {
+					&& res.getContents().get(0) instanceof Model) {
 				// load test file and add it to test list
 
-				return (model.Model) res.getContents().get(0);
+				return (Model) res.getContents().get(0);
 			}
 		} catch (Exception e) {
 			System.err.println("Was not able to load xmi:  \"" + filename + "\" due : " + e.toString());

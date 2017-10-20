@@ -13,68 +13,71 @@ import org.eclipse.gef.commands.CommandStackEventListener;
 /**
  * @author paul
  *
- *         Builds the subject part of an observer pattern. Listens to events of the command stack
- *         and leads them to the registered observers. This class is needed, because Java forbids
- *         multi-inheritance... TODO: If there is already an observer without the need to subclass
+ *         Builds the subject part of an observer pattern. Listens to events of
+ *         the command stack and leads them to the registered observers. This
+ *         class is needed, because Java forbids multi-inheritance... TODO: If
+ *         there is already an observer without the need to subclass
  *         CommandStackEventListener use that one instead of this helper class
  *
  */
 public class EditorChangeNotifier implements CommandStackEventListener {
 
-  static int id = 0;
-  private List<ORMGraphicalEditorObserver> observers = new ArrayList<ORMGraphicalEditorObserver>();
-  private ORMGraphicalEditor parentEditor;
+	static int id = 0;
+	private List<ORMGraphicalEditorObserver> observers = new ArrayList<ORMGraphicalEditorObserver>();
+	private ORMGraphicalEditor parentEditor;
 
-  public EditorChangeNotifier(ORMGraphicalEditor parent) {
-    ++id;
-    setParentEditor(parent);
-  }
+	public EditorChangeNotifier(ORMGraphicalEditor parent) {
+		++id;
+		setParentEditor(parent);
+	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see
+	 * org.eclipse.gef.commands.CommandStackEventListener#stackChanged(org.eclipse.
+	 * gef.commands. CommandStackEvent)
+	 */
+	@Override
+	public void stackChanged(CommandStackEvent event) {
+		if (event.getCommand() == null)
+			return;
+		if (event.getCommand().getLabel() == null)
+			return;
+		String type = event.getCommand().getLabel();
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see org.eclipse.gef.commands.CommandStackEventListener#stackChanged(org.eclipse.gef.commands.
-   * CommandStackEvent)
-   */
-  @Override
-  public void stackChanged(CommandStackEvent event) {
-    if (event.getCommand().getLabel() == null)
-      return;
-    String type = event.getCommand().getLabel();
+		/* notify all registered observers */
+		Iterator<ORMGraphicalEditorObserver> it = observers.iterator();
 
-    /* notify all registered observers */
-    Iterator<ORMGraphicalEditorObserver> it = observers.iterator();
+		while (it.hasNext()) {
+			it.next().update(type);
+		}
+	}
 
-    while (it.hasNext()) {
-      it.next().update(type);
-    }
-  }
+	public void editorTypeChanged(ORMGraphicalEditor.EditorType type) {
+		/* notify all registered observers */
+		Iterator<ORMGraphicalEditorObserver> it = observers.iterator();
 
-  public void editorTypeChanged(ORMGraphicalEditor.EditorType type) {
-    /* notify all registered observers */
-    Iterator<ORMGraphicalEditorObserver> it = observers.iterator();
+		while (it.hasNext()) {
+			it.next().update(type);
+		}
+	}
 
-    while (it.hasNext()) {
-      it.next().update(type);
-    }
-  }
+	public void register(ORMGraphicalEditorObserver observer) {
+		if (!observers.contains(observer))
+			observers.add(observer);
+	}
 
-  public void register(ORMGraphicalEditorObserver observer) {
-    if (!observers.contains(observer))
-      observers.add(observer);
-  }
+	public void unregister(ORMGraphicalEditorObserver observer) {
+		observers.remove(observer);
+	}
 
-  public void unregister(ORMGraphicalEditorObserver observer) {
-    observers.remove(observer);
-  }
+	public ORMGraphicalEditor getParentEditor() {
+		return parentEditor;
+	}
 
-  public ORMGraphicalEditor getParentEditor() {
-    return parentEditor;
-  }
-
-  public void setParentEditor(ORMGraphicalEditor parentEditor) {
-    this.parentEditor = parentEditor;
-  }
+	public void setParentEditor(ORMGraphicalEditor parentEditor) {
+		this.parentEditor = parentEditor;
+	}
 
 }
