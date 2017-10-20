@@ -102,7 +102,7 @@ operation source!Shape addOperations(n : target!Type) {
  * Searches the source model for a shape element with the given name and returns the equivalent target model element 
  * if a shape of given name was found, or null otherwise.
  */
-operation Any findTypeForName(str : String) : target!Type {
+operation findTypeForName(str : String) : target!Type {
 	var shape = source!Shape.allInstances().select(s|s.name = str).first;
 	if (shape.isDefined()) {
 		return shape.equivalent();

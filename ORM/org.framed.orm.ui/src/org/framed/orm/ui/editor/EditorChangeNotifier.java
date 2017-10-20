@@ -39,6 +39,8 @@ public class EditorChangeNotifier implements CommandStackEventListener {
    */
   @Override
   public void stackChanged(CommandStackEvent event) {
+	if (event.getCommand()==null)
+		return;
     if (event.getCommand().getLabel() == null)
       return;
     String type = event.getCommand().getLabel();
