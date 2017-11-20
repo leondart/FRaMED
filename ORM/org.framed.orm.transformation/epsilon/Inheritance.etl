@@ -5,7 +5,7 @@
  * It is assumed that source and target reference are valid, i.e., are of the same type and correspond
  * to the inheritance. For instance, a NaturalInheritance has source and target elements of type NaturalType.
  */
-operation Any transformInheritance(s : source!Relation, t : target!Inheritance) {
+operation transformInheritance(s : source!Relation, t : target!Inheritance) {
 	var relationSource = s.getSource.equivalent();
 	var relationTarget = s.getTarget.equivalent();
 	

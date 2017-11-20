@@ -14,7 +14,7 @@ import "Inheritance.etl";
 import "Relationship.etl";
 import "Fulfillment.etl";
 
-operation Any println() : Any { 
+operation println() : Any { 
 	("Printing : " + self)->println();
 }
 
