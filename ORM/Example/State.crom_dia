@@ -4,7 +4,7 @@
     <firstSegment/>
     <secondSegment/>
     <model>
-      <elements xsi:type="org.framed.orm.model:Shape" name="Component" incomingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.9" outgoingRelations="//@elements.0/@model/@elements.12" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="Component" incomingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.9 //@elements.0/@model/@elements.12" type="RoleType">
         <firstSegment/>
         <secondSegment>
           <elements name="operation()"/>
@@ -13,11 +13,11 @@
         </secondSegment>
         <description name="1...*"/>
         <boundaries>
-          <topLeft x="51" y="168"/>
-          <bottomRight x="287" y="271"/>
+          <topLeft x="20" y="18"/>
+          <bottomRight x="309" y="139"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="AbstractState" incomingRelations="//@elements.0/@model/@elements.11 //@elements.0/@model/@elements.12" outgoingRelations="//@elements.0/@model/@elements.4" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="AbstractState" incomingRelations="//@elements.0/@model/@elements.11" outgoingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.12" type="RoleType">
         <firstSegment/>
         <secondSegment>
           <elements name="operation()"/>
@@ -25,8 +25,8 @@
         </secondSegment>
         <description name="1...*"/>
         <boundaries>
-          <topLeft x="598" y="172"/>
-          <bottomRight x="820" y="264"/>
+          <topLeft x="548" y="18"/>
+          <bottomRight x="801" y="139"/>
         </boundaries>
       </elements>
       <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
@@ -41,7 +41,7 @@
           <bottomRight x="1"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Relation" name="Component-State" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.1" connectionAnchor="//@elements.0/@model/@elements.3">
+      <elements xsi:type="org.framed.orm.model:Relation" name="state" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.1" referencedRelation="//@elements.0/@model/@elements.12" connectionAnchor="//@elements.0/@model/@elements.3">
         <sourceLabel name="1...1"/>
         <targetLabel name="1...1"/>
       </elements>
@@ -60,8 +60,8 @@
             </secondSegment>
             <description name=""/>
             <boundaries>
-              <topLeft x="17" y="5"/>
-              <bottomRight x="219" y="157"/>
+              <topLeft x="12" y="2"/>
+              <bottomRight x="145" y="88"/>
             </boundaries>
           </elements>
           <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteState2" type="RoleType">
@@ -71,8 +71,8 @@
             </secondSegment>
             <description name=""/>
             <boundaries>
-              <topLeft x="226" y="5"/>
-              <bottomRight x="426" y="155"/>
+              <topLeft x="156" y="2"/>
+              <bottomRight x="290" y="90"/>
             </boundaries>
           </elements>
           <elements xsi:type="org.framed.orm.model:Shape" name="ConcreteStateN" type="RoleType">
@@ -82,15 +82,15 @@
             </secondSegment>
             <description name=""/>
             <boundaries>
-              <topLeft x="553" y="5"/>
-              <bottomRight x="754" y="156"/>
+              <topLeft x="336" y="2"/>
+              <bottomRight x="472" y="92"/>
             </boundaries>
           </elements>
         </model>
         <description name="1...*"/>
         <boundaries>
-          <topLeft x="324" y="344"/>
-          <bottomRight x="1096" y="540"/>
+          <topLeft x="320" y="186"/>
+          <bottomRight x="801" y="320"/>
         </boundaries>
       </elements>
       <elements xsi:type="org.framed.orm.model:Shape" name="Client" outgoingRelations="//@elements.0/@model/@elements.9" type="RoleType">
@@ -101,8 +101,8 @@
         </secondSegment>
         <description name=""/>
         <boundaries>
-          <topLeft x="54" y="364"/>
-          <bottomRight x="286" y="462"/>
+          <topLeft x="20" y="222"/>
+          <bottomRight x="309" y="322"/>
         </boundaries>
       </elements>
       <elements xsi:type="org.framed.orm.model:Shape" name="" type="RelationshipShapeChild">
@@ -111,7 +111,7 @@
           <bottomRight x="1"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Relation" name="useComponent" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.7" connectionAnchor="//@elements.0/@model/@elements.8">
+      <elements xsi:type="org.framed.orm.model:Relation" name="use" type="Relationship" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.7" connectionAnchor="//@elements.0/@model/@elements.8">
         <sourceLabel name="0...*"/>
         <targetLabel name="1...*"/>
       </elements>
@@ -122,26 +122,26 @@
         </boundaries>
       </elements>
       <elements xsi:type="org.framed.orm.model:Relation" type="RoleImplication" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.6"/>
-      <elements xsi:type="org.framed.orm.model:Relation" type="RoleEquivalence" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.0">
+      <elements xsi:type="org.framed.orm.model:Relation" name="Reflexive" type="Reflexive" target="//@elements.0/@model/@elements.0" source="//@elements.0/@model/@elements.1" referencedRelation="//@elements.0/@model/@elements.4">
         <bendpoints>
-          <referencePoints x="288" y="220"/>
-          <referencePoints x="709" y="172"/>
-          <distances x="268" y="14"/>
-          <distances x="-272" y="16"/>
+          <referencePoints x="651" y="30"/>
+          <referencePoints x="310" y="79"/>
+          <distances x="210" y="25"/>
+          <distances/>
         </bendpoints>
       </elements>
     </model>
     <boundaries>
-      <topLeft x="820" y="116"/>
-      <bottomRight x="1122" y="380"/>
+      <topLeft x="612" y="12"/>
+      <bottomRight x="782" y="162"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.2" type="NaturalType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="283" y="171"/>
-      <bottomRight x="522" y="323"/>
+      <topLeft x="12" y="60"/>
+      <bottomRight x="212" y="122"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.0 //@elements.0/@model/@elements.7 //@elements.0/@model/@elements.1 //@elements.0/@model/@elements.6"/>

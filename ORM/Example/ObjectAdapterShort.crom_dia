@@ -19,7 +19,7 @@
           <bottomRight x="256" y="120"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="Adaptee" incomingRelations="//@elements.0/@model/@elements.4 //@elements.0/@model/@elements.7" type="RoleType">
+      <elements xsi:type="org.framed.orm.model:Shape" name="Adaptee" incomingRelations="//@elements.0/@model/@elements.4" type="RoleType">
         <firstSegment/>
         <secondSegment>
           <elements name="specificOperation()"/>
@@ -52,71 +52,30 @@
           <bottomRight x="1"/>
         </boundaries>
       </elements>
-      <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAdaptees(1...*)" outgoingRelations="//@elements.0/@model/@elements.7" type="RoleGroup">
-        <model>
-          <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAdaptee1" type="RoleType">
-            <firstSegment/>
-            <secondSegment>
-              <elements name="specificOperation()"/>
-            </secondSegment>
-            <description name=""/>
-            <boundaries>
-              <topLeft x="12" y="2"/>
-              <bottomRight x="169" y="88"/>
-            </boundaries>
-          </elements>
-          <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAdaptee2" type="RoleType">
-            <firstSegment/>
-            <secondSegment>
-              <elements name="specificOperation()"/>
-            </secondSegment>
-            <description name=""/>
-            <boundaries>
-              <topLeft x="180" y="2"/>
-              <bottomRight x="337" y="88"/>
-            </boundaries>
-          </elements>
-          <elements xsi:type="org.framed.orm.model:Shape" name="RefinedAdapteeN" type="RoleType">
-            <firstSegment/>
-            <secondSegment>
-              <elements name="specificOperation()"/>
-            </secondSegment>
-            <description name=""/>
-            <boundaries>
-              <topLeft x="396" y="2"/>
-              <bottomRight x="570" y="89"/>
-            </boundaries>
-          </elements>
-        </model>
-        <description name=""/>
-        <boundaries>
-          <topLeft x="75" y="138"/>
-          <bottomRight x="652" y="273"/>
-        </boundaries>
-      </elements>
-      <elements xsi:type="org.framed.orm.model:Relation" type="RoleImplication" target="//@elements.0/@model/@elements.1" source="//@elements.0/@model/@elements.6"/>
     </model>
     <boundaries>
-      <topLeft x="480" y="24"/>
-      <bottomRight x="782" y="181"/>
+      <topLeft x="480" y="12"/>
+      <bottomRight x="785" y="172"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="GenericComponent" outgoingRelations="//@elements.3" type="NaturalType">
     <firstSegment/>
     <secondSegment/>
     <boundaries>
-      <topLeft x="36" y="24"/>
-      <bottomRight x="245" y="97"/>
+      <topLeft x="12" y="12"/>
+      <bottomRight x="205" y="88"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Shape" name="GenericAdaptee" outgoingRelations="//@elements.4" type="NaturalType">
     <firstSegment/>
-    <secondSegment/>
+    <secondSegment>
+      <elements name="specificOperation()"/>
+    </secondSegment>
     <boundaries>
-      <topLeft x="36" y="108"/>
-      <bottomRight x="246" y="181"/>
+      <topLeft x="12" y="96"/>
+      <bottomRight x="205" y="173"/>
     </boundaries>
   </elements>
   <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.1" referencedRoles="//@elements.0/@model/@elements.0"/>
-  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.2" referencedRoles="//@elements.0/@model/@elements.1 //@elements.0/@model/@elements.6"/>
+  <elements xsi:type="org.framed.orm.model:Relation" type="Fulfillment" target="//@elements.0" source="//@elements.2" referencedRoles="//@elements.0/@model/@elements.1"/>
 </org.framed.orm.model:Model>
